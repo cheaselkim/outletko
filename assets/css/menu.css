@@ -1,0 +1,296 @@
+.btn-custom2{
+  height: 28px;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.btn-submenu{
+	min-width: 160px !important;
+	width: auto;
+	padding: 5px;	
+  background: white;
+}
+
+.btn-submenu.active{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background: #e3e3e3;
+}
+
+.btn-submenu:hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transform: scale(1.1);
+}
+
+.eventmenu li:hover .dropdown-menu, .eventmenu li:focus .dropdown-menu {
+  display: block;
+  visibility: visible;
+  right: auto;
+  left: auto;
+  min-width: 160px;
+  margin-top: -10px;
+}
+
+
+.dropdown-menu li a{
+  color: black;
+}
+
+.dropdown-menu li{
+  padding-left: 10px;
+}
+
+.dropdown-menu li:hover{
+  display: block;
+}
+
+.dropdown-menu li a:hover{
+  text-decoration: none;  
+}
+
+  .btn_div button{
+    width:100%;
+   display: inline-block;
+  }
+
+  .noline button:focus{
+    outline-color: transparent;
+    box-shadow: none;
+  }
+
+  .cstmrow{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .form-group{
+    margin-bottom: 0rem;
+  }
+
+    .cstmdiv{
+      padding-right:2px;
+      padding-left: 2px;
+    }
+    .cstmdiv2{
+      padding:2px;
+    }
+
+    .cstmdiv3{
+      padding: 3px;
+    }
+    .cstmbtn{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    font-size: 15px;
+  
+    }
+    
+
+
+
+.cstmbtn2 {
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #bfbfbf));
+  background:-moz-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-webkit-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-o-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-ms-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:linear-gradient(to bottom, #cccccc 5%, #bfbfbf 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#bfbfbf',GradientType=0);
+  background-color:#cccccc;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  cursor:pointer;
+  color:#759e3e;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+}
+.cstmbtn2:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bfbfbf), color-stop(1, #cccccc));
+  background:-moz-linear-gradient(top, #bfbfbf 5%, #cccccc 100%);
+  background:-webkit-linear-gradient(top, #bfbfbf 5%, #cccccc 100%);
+  background:-o-linear-gradient(top, #bfbfbf 5%, #cccccc 100%);
+  background:-ms-linear-gradient(top, #bfbfbf 5%, #cccccc 100%);
+  background:linear-gradient(to bottom, #bfbfbf 5%, #cccccc 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bfbfbf', endColorstr='#cccccc',GradientType=0);
+  background-color:#bfbfbf;
+}
+.cstmbtn2:active {
+  position:relative;
+  top:1px;
+}
+
+.cstmbtn3{
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #bfbfbf));
+  background:-moz-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-webkit-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-o-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:-ms-linear-gradient(top, #cccccc 5%, #bfbfbf 100%);
+  background:linear-gradient(to bottom, #cccccc 5%, #bfbfbf 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#bfbfbf',GradientType=0);
+  background-color:#cccccc;
+  border:1px solid #9b9d9f;
+  display:inline-block;
+  cursor:pointer;
+  color:#759e3e;
+  font-family:Arial;
+  font-size:13px;
+  font-weight:bold;
+/*  padding:6px 24px;*/
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+  border-radius: 0px 2px 2px 0px;
+}
+
+
+
+    
+
+    *{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    font-size: 14px;
+}
+    
+        .cstminput{
+      height: 26px;
+      border:1px solid #9b9d9f;
+   /*   padding:5px;*/
+      font-size: 13px;
+     
+    }
+
+            .cstmselect{
+      height: 26px;
+      border:1px solid #9b9d9f;
+      padding:0px;
+      padding-left: 3px;
+      font-size: 13px;
+/*      margin-left: 5px;*/
+
+    }
+
+    .sm{
+      width:120px;
+    }
+
+    .xs{
+      width: 80px;
+    }
+
+    .medium{
+      width:147px;
+    }
+
+    .large{
+      width:500px;
+    }
+
+    .lmedium{
+      width:200px;
+    }
+
+  .xlarge{
+      width:625px;
+    }
+  .slarge{
+     width:340px;
+  }
+
+    .spn_lbl{
+      width :100px;
+      float: left;
+      margin-left: 10px;
+      display: inline-block;
+    }
+
+
+    .table .thead-light th {
+    background-color: #759e3e;
+    border-color:#c8ced3;
+    font-size: 14px;
+    color: #f0f3f5;
+
+
+    }
+
+      .table .thead-light th {
+    border-color: #c8ced3;
+    /*font-size: 14px;
+    color: #f0f3f5;*/
+
+    }
+
+    .termtbl tbody tr td{
+      height:15px;
+     padding: 3px;
+    }
+
+    .termtbl thead tr{
+      height:30px;
+     padding: 7px;
+    }
+
+    .tblbel tbody tr td{
+      border-bottom: 1px solid #c8ced3;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 8px;
+
+
+    }
+
+     .tblbel th{
+      border: 1px solid #c8ced3;
+
+    }
+
+    .tblbel{
+      border:  1px solid #c8ced3;
+
+    }
+
+    label{
+      font-size: 14px;
+    }
+
+    .spanlbl{
+      font-weight: bold;
+      padding-right: 10px;
+    }
+
+    textarea {
+   resize: none;
+}
+
+    
+

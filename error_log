@@ -1,0 +1,18 @@
+[14-Aug-2019 16:20:45 Asia/Manila] PHP Fatal error:  Constant expression contains invalid operations in /home/outletk1/public_html/application/helpers/report_helper.php on line 124
+[14-Aug-2019 17:25:39 Asia/Manila] PHP Fatal error:  Cannot redeclare sales_per_product_category() (previously declared in /home/outletk1/public_html/application/helpers/report_helper.php:306) in /home/outletk1/public_html/application/helpers/report_helper.php on line 340
+[14-Aug-2019 17:25:39 Asia/Manila] PHP Fatal error:  Cannot redeclare sales_per_product_category() (previously declared in /home/outletk1/public_html/application/helpers/report_helper.php:306) in /home/outletk1/public_html/application/helpers/report_helper.php on line 340
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620
+[12-Sep-2019 14:56:45 Asia/Manila] PHP Fatal error:  Cannot redeclare Sales_model::end_day_query() in /home/outletk1/public_html/application/models/Sales_model.php on line 620

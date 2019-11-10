@@ -1,0 +1,952 @@
+section{
+  min-height: 88vh;
+  height: auto;
+}
+
+footer{
+  color: gray;
+  /*background:rgb(235, 241, 222);*/
+}
+
+.btn-bd-green{
+  background: white;
+  /*border: 1px solid rgb(119, 147, 60);*/
+  color : rgb(119, 147, 60);
+}
+
+.btn-bg-green{
+  color:white;
+  font-weight: bold;
+  /*background: rgb(119, 147, 60);*/
+}
+
+.btn-navbar{
+  font-size: 12px;
+  width: 90px;
+}
+
+.bd-bottom-green{
+  border-bottom: 1px solid rgb(146, 208, 80);
+  -webkit-box-shadow: 0 5px 5px rgb(235, 241, 222);
+  -moz-box-shadow: 0 5px 5px rgb(235, 241, 222);
+  box-shadow: 0 5px 5px rgb(235, 241, 222);
+}
+
+.text-orange{
+  /*color: orange;*/
+}
+
+.span-eprocurement{
+  /*color: green;*/
+}
+
+.span-manage{
+  /*color: gray;*/
+}
+
+.span-suite{
+  /*color: orange;*/
+}
+
+.list-procurement{
+  list-style: none;
+  padding: 0;
+}
+
+.list-procurement li span{
+  font-weight: 520;
+  color: rgb(146, 208, 80);
+}
+
+.list-procurement li i{
+  padding-right: 3px;
+}
+
+.bg-orange{
+  background: rgb(255, 192, 0);
+}
+
+.bg-blue{
+  background: rgb(85, 142, 213);
+}
+
+.bg-green{
+  background: rgb(119, 147, 60);
+}
+
+.bg-dark-orange{
+  background: rgb(228, 108, 10);
+}
+
+.bg-brown{
+  background: rgb(148, 138, 84);
+}
+
+.bg-violet{
+  background: rgb(96, 74, 123);
+}
+
+.img-procure{
+/*  margin-top: 10vh;*/
+  height: 72vh; 
+  width: 100%;
+  float: right;
+  bottom: 0;
+}
+
+.span-forBuyers{
+  color: rgb(79, 98, 40);
+}
+
+.btn-orange{
+  background: orange;
+  color: white;
+  border: 1px solid black;
+}
+
+.section-row-forBuyers{
+}
+
+.section-forBuyers{
+  border-bottom: 1px solid #ECF0F1;
+  margin-bottom: 5px;
+}
+
+.section-eProcurement{
+  border-bottom: 1px solid #ECF0F1; 
+}
+
+.section-contactUs input[type='text'],textarea{
+  border: 1px solid black;
+  border-radius: 0;
+  padding: 10px;
+}
+
+.section-contactUs{
+  background: rgb(235, 241, 222);
+}
+
+
+.div-contactUs-right{
+  width: 100%;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.text-black{
+  color: black;
+}
+
+.text-gray{
+  color: gray;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: orange;
+}
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='orange' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  .div-title{
+    font-size: 22px;
+    font-weight: 550;
+    text-shadow: 1px 2px 1px #808080; 
+    text-align: center;
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 15px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 100px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  } 
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .span-subtitle{
+    color: gray;
+  }
+
+  .list-procurement li{
+    font-size: 13px;
+  }
+
+  .card{
+    height: 100px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+  }
+
+  .section-contactUs{
+    padding-bottom: 20px;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+    display: table;
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 22px;
+    font-family: "Brush Script MT", cursive;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+  }
+
+  .div-subtitle{
+    text-align: center;
+  }
+
+  .div-rows{
+    padding-top: 2rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: relative;
+  }
+
+  .span-forBuyers-title{
+    font-size: 20px;
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 17px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 14px;
+    color: gray;
+  }
+
+  .span-forBuyers-desc2{
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .div-contactUs-subtitle{
+    font-size: 20px;
+  }
+
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .div-title{
+    font-size: 53px;
+    font-weight: 550;
+    text-shadow: 3px 5px 1px #808080; 
+    text-align: center;
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 20px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 130px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  }
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .span-subtitle{
+    color: gray;
+  }
+
+  .card{
+    height: 100px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+  } 
+
+  .span-more{
+    font-family: "Brush Script MT", cursive;
+      font-size: 25px;    
+  }
+
+  .span-forBuyers-title{
+    font-size: 32px;
+    font-weight: 600;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 18px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 15px;
+    color: gray;
+  }
+
+  .section-contactUs{
+    padding-bottom: 20px;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+    display: table;
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brush Script MT", cursive;
+    transform: rotate(-25deg);
+      position: absolute;
+      top: 235px;
+      right: 0px;
+      width: 300px;
+  }
+
+  .div-subtitle{
+    text-align: center;
+  }
+
+  .div-rows{
+    padding-top: 3rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: relative;
+  }
+
+  .div-contactUs-subtitle{
+    font-size: 25px;
+  }
+
+
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .div-title{
+    font-size: 53px;
+    font-weight: 550;
+    text-shadow: 3px 1px 1px #808080; 
+    text-align: center;
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 25px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 130px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  }
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .span-subtitle{
+    color: gray;
+    font-size: 22px;
+  }
+
+  .list-procurement li{
+    font-size: 18px;
+  }
+
+  .card{
+    height: 100px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+  }
+
+  .span-more{
+    font-family: "Brush Script MT", cursive;
+      font-size: 25px;    
+  }
+
+  .span-forBuyers-title{
+    font-size: 32px;
+    font-weight: 600;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 18px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 15px;
+    color: gray;
+  }
+
+  .section-contactUs{
+    padding-bottom: 20px;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+    display: table;
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brush Script MT", cursive;
+    transform: rotate(-25deg);
+      position: absolute;
+      top: 235px;
+      right: 0px;
+      width: 300px;
+  }
+
+  .div-subtitle{
+    text-align: center;
+  }
+
+  .div-rows{
+    padding-top: 3rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: relative;
+  }
+
+  .div-contactUs-subtitle{
+    font-size: 25px;
+  }
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .div-title{
+    font-size: 50px;
+    font-weight: 550;
+    text-shadow: 3px 3px 1px #808080; 
+    text-align: left;
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 25px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 130px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  }
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .span-subtitle{
+    color: gray;
+    font-size: 25px;
+  }
+
+  .list-procurement li{
+    font-size: 20px;
+  }
+
+  .span-what{
+    font-size: 25px;
+  }
+
+  .card{
+    height: 90px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+    font-size: 13.5px;
+  }
+
+  .span-more{
+    font-family: "Brush Script MT", cursive;
+      font-size: 25px;    
+  }
+
+  .span-forBuyers-title{
+    font-size: 31px;
+    font-weight: 600;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 25px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 18px;
+    color: gray;
+  }
+
+  .span-forBuyers-desc2{
+    font-size: 22px;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+    display: table;
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brush Script MT", cursive;
+    transform: rotate(-25deg);
+      position: absolute;
+      top: 235px;
+      right: 0px;
+      width: 280px;
+  }
+
+  .div-subtitle{
+    text-align: left;
+  }
+
+  .div-rows{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: absolute;
+  }
+
+  .div-contactUs-subtitle{
+    padding:0rem 5rem;
+  } 
+
+  .div-contactUs-subtitle{
+    font-size: 25px;
+  }
+
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .div-title{
+    font-size: 50px;
+    font-weight: 550;
+    text-shadow: 3px 3px 1px #808080;
+    text-align: left; 
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 25px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 100px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  }
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .list-procurement li{
+    font-size: 19px;
+  }
+
+  .span-what{
+    font-size: 25px;
+  }
+
+  .card{
+    height: 90px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+    font-size: 13.5px;
+  }
+
+  .span-more{
+    font-family: "Brush Script MT", cursive;
+      font-size: 30px;    
+  }
+
+  .span-forBuyers-title{
+    font-size: 35px;
+    font-weight: 600;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 23px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 18px;
+    color: gray;
+  }
+
+  .span-forBuyers-desc2{
+    font-size: 22px;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brush Script MT", cursive;
+    transform: rotate(-25deg);
+      position: absolute;
+      top: 235px;
+      right: 0px;
+      width: 280px;
+  }
+
+  .div-subtitle{
+    text-align: left;
+  }
+
+  .div-rows{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: absolute;
+  }
+
+  .div-contactUs-subtitle{
+    padding:0rem 5rem;
+  }
+
+  .div-contactUs-subtitle{
+    font-size: 25px;
+  }
+
+}
+
+@media only screen and (min-width: 1400px) {
+  .div-title{
+    font-size: 75px;
+    font-weight: 550;
+    text-shadow: 3px 3px 1px #808080; 
+    text-align: left;
+  } 
+
+  .caption-pic-left{
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 400px;
+      transform: rotate(30deg);
+      text-align: left;
+      display: block;
+  }
+
+  .caption-pic-left span{
+    color: gray;
+      font-size: 35px;
+      font-family: "Arial";
+      display: block;
+      margin-top: 10px;
+  }
+
+  .caption-pic-right{
+      position: absolute;
+      height: 300px;
+      top: 170px;
+      right: 0px;
+      width: 300px;
+      transform: rotate(90deg);
+      position: fixed;
+      z-index: 9999;
+  }
+
+  .btn-vertical{
+    padding: 10px 20px;
+    float: right;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .span-subtitle{
+    color: gray;
+    font-size: 35px;
+  }
+
+  .list-procurement li{
+    font-size: 25px;
+  }
+
+  .span-what{
+    font-size: 30px;
+  }
+
+  .card{
+    height: 130px;
+    -webkit-box-shadow: 5px 5px 5px #808080;
+    -moz-box-shadow: 5px 5px 5px #808080;
+    box-shadow: 5px 5px 5px #808080;
+    font-size: 22px;
+  }
+
+  .span-more{
+    font-family: "Brush Script MT", cursive;
+      font-size: 40px;    
+  }
+
+  .span-forBuyers-title{
+    font-size: 45px;
+    font-weight: 600;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .span-forBuyers-subtitle{
+    font-size: 35px;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .span-forBuyers-desc{
+    font-size: 23px;
+    color: gray;
+  }
+
+  .section-contactUs-right{
+    width: 100%;
+    height: 330px;
+    background: rgb(215, 228, 189);
+    display: table;
+  }
+
+  .span-contactUs-right{
+    font-size: 40px;
+    text-shadow: 3px 3px 1px #808080; 
+  }
+
+  .div-contactUs-rotate{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brush Script MT", cursive;
+    transform: rotate(-25deg);
+      position: absolute;
+      top: 235px;
+      right: 0px;
+      width: 280px;
+  }
+
+  .div-subtitle{
+    text-align: left;
+  }
+
+  .div-rows{
+    padding-top: 13rem;
+  }
+
+  .img-outlet{
+    visibility: visible;
+    position: absolute;
+  }
+
+  .span-forBuyers-desc2 span{
+    font-size: 28px;
+  }
+
+  .div-contactUs-subtitle{
+    padding:0rem 5rem;
+  }
+
+  .div-contactUs-subtitle{
+    font-size: 25px;
+  }
+
+}
+

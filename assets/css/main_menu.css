@@ -1,0 +1,774 @@
+.card{
+
+	border: 1px solid black;
+
+	background: white;
+
+}
+
+
+
+a.card:hover{
+
+	background: gray;
+
+}
+
+
+
+a.card:hover label{
+
+	color: white;
+
+	cursor: pointer;
+
+}
+
+
+
+.card-body-menu{
+
+	height: 100%;
+
+	width: 100%;
+
+}
+
+
+
+.card-body-menu label{
+
+	margin-top: 10px;
+
+	font-size: 25px;
+
+	font-weight: bold;
+
+}
+
+
+
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 500px) {
+
+	
+
+	.card-body-menu{
+
+		height: 60px;
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 50px;
+
+		width: 50px;
+
+		float: left;
+
+		margin-top: -15px;
+
+		padding-bottom: 3px;
+
+		padding-top: 3px;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		float: left;
+
+		margin-left: 20px;
+
+		margin-top: -5px;
+
+		font-size: 22px;
+
+	}
+
+
+
+	.div-body-menu{
+
+		padding-top: 30px !important;
+
+		padding-bottom: 20px;
+
+	}
+
+
+
+	#menu_1, #menu_2, #menu_3, #menu_4, #menu_5{
+
+		cursor: not-allowed;
+
+		opacity: 0.5;
+
+		background: #CCC;		
+
+	}
+
+
+
+	#menu_1 > .div-list-menu,#menu_2 > .div-list-menu,#menu_3 > .div-list-menu,#menu_4 > .div-list-menu,#menu_5 > .div-list-menu{
+
+		pointer-events: none;
+
+	}
+
+
+
+	a#menu_1:hover label, a#menu_2:hover label,a#menu_3:hover label,a#menu_4:hover label,a#menu_5:hover label{
+
+		color: black;
+
+	}
+
+
+
+	#sign_out{
+
+		cursor: pointer;
+
+	}
+
+
+
+	#icon-menu{
+
+		font-size: 30px !important;
+
+	}
+
+
+
+} 
+
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 599px) {
+
+	
+
+/*	.card{
+
+		width: 900px !important;
+
+	}
+
+
+
+	.card-body-menu{
+
+		height: 160px;
+
+		width: 125px;
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 60px;
+
+		width: 60px;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		font-size: 16px;
+
+
+
+	}
+
+
+
+	.div-body-menu{
+
+		padding-bottom: 20px;
+
+	}
+
+*/
+
+
+
+	.card-body-menu{
+
+		height: 50px;
+
+		cursor: pointer;
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 50px;
+
+		width: 50px;
+
+		float: left;
+
+		margin-top: -15px;
+
+		padding-bottom: 3px;
+
+		padding-top: 3px;
+
+	}
+
+
+
+	.card-body-menu span{
+
+		float: left;
+
+		margin-left: 20px;
+
+		font-size: 22px;
+
+		margin-top: -5px;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		float: left;
+
+		margin-left: 20px;
+
+		margin-top: 0;
+
+		font-size: 22px;
+
+	}
+
+
+
+	.div-body-menu{
+
+		padding-top: 30px !important;
+
+		padding-bottom: 20px;
+
+	}
+
+
+
+	.card-deck .card {
+
+	    margin-bottom: 10px;
+
+	}
+
+
+
+	#sign_out{
+
+		cursor: pointer;
+
+	}
+
+
+
+	#icon-menu{
+
+		margin-top: 3px;
+
+		font-size: 30px !important;
+
+	}
+
+
+
+	#chart{
+
+		visibility: hidden;
+
+	}
+
+
+
+  	.div-body-menu{
+
+    	min-height: 85vh;
+
+    	height: auto;
+
+	    background: rgb(235, 241, 222);
+
+	    padding-top: 20px !important;
+
+	}
+
+
+
+	.div-menu{
+
+		width: 80% !important;
+
+		margin: 0 auto;
+
+		min-height: 450px;
+
+		height: auto; 
+
+	}
+
+
+
+	#div-menu-2{
+
+		margin-top: 0;
+
+	}
+
+
+
+	.img{
+
+		width: 100%;
+
+		max-width: 115px;
+
+		height: 115px;
+
+	}
+
+
+
+	.btnpadding{
+
+		padding-top: 75px;
+
+		padding-left: 250px;
+
+	}
+
+
+
+	.menu-img-box{
+
+/*		padding-right: 20px;
+
+		padding-left: 20px;*/
+
+/*		line-height: 25px;*/
+
+/*		height: 80px;*/
+
+		font-size: 22px;
+
+		text-align: center;
+	}
+
+
+
+	.menu-img-box img{
+
+		height: 80px;
+
+		width: 90px;
+
+		margin: 0 auto;
+/*		float: left;*/
+
+	}
+
+/*	.menu-img-box span{
+
+		margin-left: 25px;
+
+		font-size: 20px;
+
+		margin-top: -5px;
+
+	}*/
+
+
+
+	.menu-img-box label{
+
+		float: left;
+
+		margin-left: 20px;
+
+		font-size: 22px;
+
+		margin-top: -5px;
+
+	}
+
+
+
+	.div-title{
+
+		text-align: center;
+
+	}
+
+
+
+} 
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+
+	
+
+	.card-body-menu{
+
+		height: 200px;
+
+		width: auto;
+
+		text-align: center;	
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 100px;
+
+		width: 100px;
+
+		display: block;
+
+		margin: 0 auto;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		font-size: 18px;
+
+		line-height: 50px;
+
+	}
+
+
+
+	.div-body-menu{
+
+		padding-bottom: 20px;
+
+	}
+
+
+
+	.div-title{
+
+		text-align: left;
+
+	}
+
+
+
+} 
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+
+	
+
+	.card-body-menu img{
+
+		height: 100px;
+
+		width: 100px;
+
+		display: block;
+
+		margin: 0 auto;
+
+		float: none;
+
+		padding-bottom: 3px;
+
+		padding-top: 3px;
+
+	}
+
+
+	.card-body-menu span{
+
+		float: none;
+
+		margin-left: 0px;
+
+		font-size: 20px;
+
+	}
+
+
+
+} 
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+
+	
+
+	.card-body-menu{
+
+		height: 250px;
+
+		width: auto;
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 130px;
+
+		width: 130px;
+
+		display: block;
+
+		margin: 0 auto;
+
+		float: none;
+
+		padding-bottom: 3px;
+
+		padding-top: 3px;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		line-height: 70px;
+
+		font-size: 25px;
+
+		float: none;
+
+		margin-left: 0;	
+
+	}
+
+
+
+	.card-body-menu span{
+
+		float: none;
+
+		margin-left: 0px;
+
+		font-size: 22px;
+
+	}
+
+
+
+
+
+	.div-body-menu{
+
+		padding-bottom: 20px;
+
+	}
+
+
+
+	.div-list-menu{
+
+		height: 200px;
+
+	}
+
+
+
+	.div-body-menu{
+
+		/*    min-height: 658px;*/
+
+		min-height: 85vh;
+
+		height: auto;
+
+		background: rgb(235, 241, 222);
+
+		padding-top: 20px !important;
+
+	}
+
+
+
+	.div-menu{
+
+		width: 80%;
+
+		margin: 0 auto;
+
+		min-height: 450px;
+
+		height: auto; 
+
+	}
+
+
+
+	.img{
+
+		width: 100%;
+
+		max-width: 115px;
+
+		height: 115px;
+
+	}
+
+
+
+	.btnpadding{
+
+		padding-top: 75px;
+
+		padding-left: 250px;
+
+	}
+
+
+
+	.menu-img-box{
+
+		padding-right: 0px;
+
+		padding-left: 0px;
+
+		text-align: center;
+
+		font-size: 22px;
+	}
+
+
+
+	.menu-img-box img{
+
+		margin-right: 28px;
+
+		margin-left: 28px;
+
+		width: 70%;
+
+		height: 68%;
+
+	}
+
+
+
+	.menu-img-box label{
+
+		font-size: 18px;
+
+		margin-left: 0px;
+
+		float: none;
+
+	}
+
+}
+
+
+
+
+
+/* Extra large devices (large laptops and desktops, 1400px and up) */
+
+@media only screen and (min-width: 1400px) {
+
+	
+
+	.div-list-menu{
+
+		height: 260px;
+
+	}
+
+
+
+	.card-body-menu{
+
+		height: 200px;
+
+		width: auto;
+
+	}
+
+
+
+	.card-body-menu img{
+
+		height: 180px;
+
+		width: 170px;
+
+		display: block;
+
+		margin: 0 auto;
+
+	}
+
+
+
+	.card-body-menu label{
+
+		margin-top: 100px;
+
+		line-height: 100px;
+
+		font-size: 35px;
+
+	}
+
+
+
+	.div-body-menu{
+
+		padding-bottom: 20px;
+
+	}
+
+
+
+}
+

@@ -1,0 +1,2007 @@
+#particles-js canvas{
+/*    position: absolute;*/
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+
+.text-black{
+	color: black;
+}
+
+.text-white{
+	color: white;
+}
+
+.text-red{
+	color: red;
+}
+
+.text-white-yellow{
+	color: rgb(255, 255, 204);
+}
+
+.text-yellow{
+	color: yellow;
+}
+
+.text-dark-yellow{
+	color: rgb(255,192,0);
+}
+
+.span-outletko{
+	font-size: 45px;
+	font-weight: 550;
+}
+
+.font-weight-600{
+	font-weight: 600;
+}
+
+.font-size-38{
+	font-size: 40px;
+}
+
+.font-size-18{
+	font-size: 18px;
+}
+
+.font-size-20{
+	font-size: 20px;
+}
+
+.font-size-16{
+	font-size: 16px;
+}
+
+.font-size-12{
+	font-size: 12px;
+}
+
+.font-size-14{
+	font-size: 14px;
+}
+
+.line-height-35{
+	line-height: 35px;
+}
+
+.line-height-25{
+	line-height: 20px;
+}
+
+.line-height-20{
+	line-height: 20px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: gray;
+  opacity: 0.6; /* Firefox */
+  font-size: 17px;
+}
+
+a.span:hover{
+	text-decoration: none !important;
+}
+
+.footer-a{
+	color: rgb(119,147,60) !important;
+}
+
+
+.textbox-orange{
+	border: 1px solid rgb(255,192,0);
+}
+
+.textbox-green{
+	border: 1px solid rgb(119,147,60);
+}
+
+.text-dark-green{
+	font-weight: 600;
+	color: rgb(119,147,60);
+}
+
+.textbox-30{
+	height: 30px;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+	background-color: rgb(119,147,60);
+}
+
+.custom-control-label::before{
+	background: white;
+	border: 1px solid rgb(119,147,60);
+}
+
+.div-signup{
+	min-height: 250px; 
+	height: auto;
+	background: rgb(253,234,218);
+	min-width: 200px;
+}
+
+.div-login2{
+	min-height: 80px; 
+	height: auto;
+	background: white;
+}
+
+/*input[type="text"],input[type="password"]{
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid rgb(119,147,60);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+  font-size: 17px;
+}
+
+input[type="text"].error,input[type="password"].error,input[type="text"].error:focus,input[type="password"].error:focus{
+  background: transparent;
+  border: none;
+  box-shadow:0 4px 2px -2px #900;
+  border-radius: 0;
+  width: 100%;
+  font-size: 17px;
+}
+
+
+input[type="text"]:focus,input[type="password"]:focus{
+  border-bottom: 3px solid rgb(119,147,60);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 17px;
+}*/
+
+.div-run{
+	height: 121px;
+	width: 107%;
+	background: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 22px;
+	padding-right: 22px;
+/*	background: rgb(79,98,40);*/
+}
+
+.div-bottom{
+	bottom: 17px;
+	position: absolute;
+/*	margin-top: 350px;*/
+/*	position: fixed;
+	bottom: 0;
+	left: 15;
+	margin-bottom: 125px;*/
+}
+
+.btn-green{
+	background: rgb(119,147,60);
+	color: white;
+}
+
+.span-green, .span-green:hover{
+	color: rgb(119,147,60);
+}
+
+#bg-eoutlet{
+	background-image: url('../../assets/img/bg-login.png');
+	height: 60vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.div-card{
+	width: 31vh;
+	height: 14vh;
+	padding-top: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
+	font-weight: 600;
+}
+
+.text-shadow-3{
+	text-shadow: 3px 3px 1px #a8a8a8; 
+}
+
+.text-shadow-2{
+	text-shadow: 2px 3px 1px #a8a8a8; 
+}
+
+
+.span-help{
+	font-weight: bold;	
+	color: rgb(119,147,60);
+	font-size: 15px;
+}
+
+.div-card span{
+/*	text-shadow: 7px 5px 5px #808080; */
+	font-size: 14px;
+}
+
+.bg-yellow{
+	background: rgb(255, 192,0);
+	color: white;
+}
+
+.bg-blue{
+	background: rgb(0, 112, 192);
+	color: white;
+}
+
+.bg-green{
+	background: rgb(79, 98, 40);
+	color: white;
+}
+
+.bg-orange{
+	background: rgb(228, 108, 10);
+	color: white;
+}
+
+.bg-violet{
+	background: rgb(112, 48, 160);
+	color: white;
+}
+
+.bg-brown{
+	background: rgb(128,96,0);
+	color:white;
+}
+
+section{
+/*	min-height: 82vh;
+	height: auto;*/
+}
+
+footer{
+/*	color: gray;*/
+/*	background:rgb(235, 241, 222);*/
+	color: rgb(119,147,60);
+}
+
+.btn-bd-green{
+	background: white;
+	border: 1px solid rgb(119, 147, 60);
+	color : rgb(119, 147, 60);
+}
+
+.btn-bg-green{
+	color:white;
+	font-weight: bold;
+	background: rgb(119, 147, 60);
+}
+
+.btn-navbar{
+	font-size: 12px;
+	width: 90px;
+}
+
+.bd-bottom-green{
+	border-bottom: 1px solid rgb(146, 208, 80);
+  -webkit-box-shadow: 0 5px 5px rgb(235, 241, 222);
+  -moz-box-shadow: 0 5px 5px rgb(235, 241, 222);
+  box-shadow: 0 5px 5px rgb(235, 241, 222);
+}
+
+.bd-bottom-orange{
+	border-bottom: 1px solid rgb(250, 192, 144);
+/*  -webkit-box-shadow: 0 5px 5px rgb(255, 192, 0);
+  -moz-box-shadow: 0 5px 5px rgb(255, 192, 0);
+  box-shadow: 0 5px 5px rgb(255, 192, 0);*/
+}
+
+.text-orange{
+	color: orange;
+}
+
+.span-eprocurement{
+	color: green;
+}
+
+.span-manage{
+	color: gray;
+}
+
+.span-suite{
+	color: orange;
+}
+
+.list-procurement{
+	list-style: none;
+	padding: 0;
+}
+
+.list-procurement li span{
+	font-weight: 520;
+	color: rgb(146, 208, 80);
+}
+
+.list-procurement li i{
+	padding-right: 3px;
+}
+
+/*.bg-orange{
+	background: rgb(255, 192, 0);
+}
+
+.bg-blue{
+	background: rgb(85, 142, 213);
+}
+
+.bg-green{
+	background: rgb(119, 147, 60);
+}
+
+.bg-dark-orange{
+	background: rgb(228, 108, 10);
+}
+
+.bg-brown{
+	background: rgb(148, 138, 84);
+}
+
+.bg-violet{
+	background: rgb(96, 74, 123);
+}*/
+
+.img-procure{
+/*	margin-top: 10vh;*/
+	height: 72vh; 
+	width: 100%;
+	float: right;
+	bottom: 0;
+}
+
+.span-forBuyers{
+	color: rgb(79, 98, 40);
+}
+
+.btn-orange{
+	background: orange;
+	color: white;
+/*	border: 1px solid black;*/
+}
+
+.section-row-forBuyers{
+}
+
+.section-forBuyers{
+	border-bottom: 1px solid #ECF0F1;
+	margin-bottom: 5px;
+}
+
+
+
+.section-contactUs input[type='text'],textarea{
+	border: 1px solid black;
+	border-radius: 0;
+	padding: 10px;
+}
+
+.section-contactUs{
+	background: rgb(235, 241, 222);
+}
+
+
+.div-contactUs-right{
+	width: 100%;
+	margin-top: 100px;
+	text-align: center;
+}
+
+.text-black{
+	color: black;
+}
+
+.text-gray{
+	color: gray;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: orange;
+}
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='orange' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+	.div-title{
+		font-size: 22px;
+		font-weight: 550;
+		text-shadow: 1px 2px 1px #808080; 
+		text-align: center;
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 15px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 100px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}	
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 15px;
+	}
+
+	.span-subtitle{
+		color: gray;
+	}
+
+	.list-procurement li{
+		font-size: 13px;
+	}
+
+	.card{
+		height: 100px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	}
+
+	.section-contactUs{
+		padding-bottom: 20px;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+		display: table;
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 22px;
+		font-family: "Brush Script MT", cursive;
+	    position: absolute;
+	    bottom: 20px;
+	    right: 20px;
+	    width: 300px;
+	}
+
+	.div-subtitle{
+		text-align: center;
+	}
+
+	.div-rows{
+		padding-top: 2rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: relative;
+	}
+
+	.span-forBuyers-title{
+		font-size: 20px;
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 17px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 14px;
+		color: gray;
+	}
+
+	.span-forBuyers-desc2{
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	.div-contactUs-subtitle{
+		font-size: 20px;
+	}
+
+	.img-logo{
+		height: 60px;
+	}
+
+	.section-eProcurement{
+		background: url("../img/bg-login.png");
+		background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../img/bg-login.png');
+		background-size: 150% 100%;	
+		background-repeat: no-repeat;
+		height: 150vh;
+	}
+
+	.div-login{
+		height: 84vh;
+		background: white;
+		padding-top: 5vh;
+	}
+
+	.span-login-logo{
+		display: none;
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+	.font-size-38{
+		font-size: 25px;
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;;
+	}
+
+	.line-height-35{
+		line-height: 25px;
+	}
+
+	.col-sm-4{
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+	}
+
+	.col-sm-8{
+		-ms-flex: 0 0 66.666667%;
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%;
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+	#div-scroll-bottom{
+		margin-top: 350px;
+	}
+
+	.div-scroll{
+		height: 50px; 
+		background: white;
+	}
+
+	.div-orange{
+		height: 6px; 
+		background: rgb(255,192,0);
+	}
+
+	#div-row-signup{
+		margin-top: -130%;
+		width: 85%;
+		margin-right: 8% !important; 
+	}
+
+	.div-right-login{
+		width: 90% !important;
+	}
+
+	/* Slider */
+	#textSlider.row {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 100% !important;
+	}
+	#textSlider div {
+	  color: #FFF;
+	  font-family: 'Lato', sans-serif;
+	  text-transform: uppercase;
+	}
+
+	.iamCol {
+		text-align: right;
+		float: left;
+		font-weight: 300;
+	}
+	.iamCol p:nth-child(2) { margin-top: -20pt !important; }
+	.slideCol {
+		text-align: left;
+		overflow: hidden;
+		font-weight: 550;
+		font-size:12px;
+		display: block;
+		white-space: nowrap;
+	}
+
+	.slideCol p { margin: 0px !important; }
+
+	.scroller {
+	   height: 30pt;
+	   line-height: 30pt;
+	   overflow: hidden;
+	}
+	.scroller .inner { animation: 7s normal infinite running scroll; }
+	@keyframes scroll {
+	   0%   {margin-top: 0px;}
+	   30%  {margin-top: 0px;}
+
+	   45%  {margin-top: -30pt;}
+	   60%  {margin-top: -30pt;}
+
+	   75%  {margin-top: -60pt;}
+	   90%  {margin-top: -60pt;}
+
+	   100% {margin-top: 0px;}
+	}
+
+	.div-right-login{
+		padding-right: 50px;
+	}
+
+	#div-gallery{
+		display: none;
+	}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.div-title{
+		font-size: 53px;
+		font-weight: 550;
+		text-shadow: 3px 5px 1px #808080; 
+		text-align: center;
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 20px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 130px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	.span-subtitle{
+		color: gray;
+	}
+
+	.card{
+		height: 100px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	}	
+
+	.span-more{
+		font-family: "Brush Script MT", cursive;
+	    font-size: 25px;		
+	}
+
+	.span-forBuyers-title{
+		font-size: 32px;
+		font-weight: 600;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 18px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 15px;
+		color: gray;
+	}
+
+	.section-contactUs{
+		padding-bottom: 20px;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+		display: table;
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 30px;
+		font-family: "Brush Script MT", cursive;
+		transform: rotate(-25deg);
+	    position: absolute;
+	    top: 235px;
+	    right: 0px;
+	    width: 300px;
+	}
+
+	.div-subtitle{
+		text-align: center;
+	}
+
+	.div-rows{
+		padding-top: 3rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: relative;
+	}
+
+	.div-contactUs-subtitle{
+		font-size: 25px;
+	}
+
+	.img-logo{
+		height: 70px;
+	}
+
+	.section-eProcurement{
+		background: url("../img/bg-login.png");
+		background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../img/bg-login.png');
+		background-size: 120% 100%;	
+		background-repeat: no-repeat;
+		height: 97vh;
+	}
+
+	.div-login{
+		height: 89vh;
+		background: white;
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+	#div-scroll-bottom{
+		margin-top: 280px;
+	}
+
+	.div-scroll{
+		height: 50px; 
+		background: white;
+	}
+
+	.div-orange{
+		height: 6px; 
+		background: rgb(255,192,0);
+	}
+
+	#div-row-signup{
+		margin-top: -67%;
+		width: 90%;
+		margin-right: 5% !important; 
+	}
+
+	/* Slider */
+	#textSlider.row {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 100% !important;
+	}
+	#textSlider div {
+	  color: #FFF;
+	  font-family: 'Lato', sans-serif;
+	  text-transform: uppercase;
+	}
+
+	.iamCol {
+		text-align: right;
+		float: left;
+		font-weight: 300;
+	}
+	.iamCol p:nth-child(2) { margin-top: -20pt !important; }
+	.slideCol {
+		text-align: left;
+		overflow: hidden;
+		font-weight: 550;
+		font-size:20px;
+		display: block;
+		white-space: nowrap;
+	}
+
+	.slideCol p { margin: 0px !important; }
+
+	.scroller {
+	   height: 30pt;
+	   line-height: 30pt;
+	   overflow: hidden;
+	}
+	.scroller .inner { animation: 7s normal infinite running scroll; }
+	@keyframes scroll {
+	   0%   {margin-top: 0px;}
+	   30%  {margin-top: 0px;}
+
+	   45%  {margin-top: -30pt;}
+	   60%  {margin-top: -30pt;}
+
+	   75%  {margin-top: -60pt;}
+	   90%  {margin-top: -60pt;}
+
+	   100% {margin-top: 0px;}
+	}
+
+	.div-right-login{
+		padding-right: 50px;
+	}
+
+	#div-gallery{
+		display: none !important;
+	}
+
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.div-title{
+		font-size: 53px;
+		font-weight: 550;
+		text-shadow: 3px 1px 1px #808080; 
+		text-align: center;
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 25px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 130px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	.span-subtitle{
+		color: gray;
+		font-size: 22px;
+	}
+
+	.list-procurement li{
+		font-size: 18px;
+	}
+
+	.card{
+		height: 100px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	}
+
+	.span-more{
+		font-family: "Brush Script MT", cursive;
+	    font-size: 25px;		
+	}
+
+	.span-forBuyers-title{
+		font-size: 32px;
+		font-weight: 600;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 18px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 15px;
+		color: gray;
+	}
+
+	.section-contactUs{
+		padding-bottom: 20px;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+		display: table;
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 30px;
+		font-family: "Brush Script MT", cursive;
+		transform: rotate(-25deg);
+	    position: absolute;
+	    top: 235px;
+	    right: 0px;
+	    width: 300px;
+	}
+
+	.div-subtitle{
+		text-align: center;
+	}
+
+	.div-rows{
+		padding-top: 3rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: relative;
+	}
+
+	.div-contactUs-subtitle{
+		font-size: 25px;
+	}
+
+	.img-logo{
+		height: 70px;
+	}
+
+	.div-card{
+		width: 31vh;
+		height: 10vh;
+		padding-top: 15px;
+		padding-left: 25px;
+		padding-right: 25px;
+		font-weight: 600;
+		margin-bottom: 10px;
+	}
+
+	.section-eProcurement{
+		background: url("../img/bg-login.png");
+		background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../img/bg-login.png');
+		background-size: 150% 100%;	
+	}
+
+	.div-login{
+		height: 89vh;
+		margin-left: 80px;
+		background: white;
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+	.pad-right{
+		padding-right: 3px !important;
+	}
+
+	.pad-left{
+		padding-left: 3px !important;
+	}
+
+	.pad-center{
+		padding-right: 3px !important;
+		padding-left: 3px !important;
+	}
+
+	#div-scroll-bottom{
+		margin-top: 215px;
+	}
+
+	.div-scroll{
+		height: 50px; 
+		background: white;
+	}
+
+	.div-orange{
+		height: 6px; 
+		background: rgb(255,192,0);
+	}
+
+	#div-row-signup{
+		margin-top: -93%;
+		width: 104.5%;
+		margin-left: -4% !important;
+		margin-right: -10% !important;
+		padding-right: 0% !important;
+	}
+
+	/* Slider */
+	#textSlider.row {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 100% !important;
+	}
+	#textSlider div {
+	  color: #FFF;
+	  font-family: 'Lato', sans-serif;
+	  text-transform: uppercase;
+	}
+
+	.iamCol {
+		text-align: right;
+		float: left;
+		font-weight: 300;
+	}
+	.iamCol p:nth-child(2) { margin-top: -20pt !important; }
+	.slideCol {
+		text-align: left;
+		overflow: hidden;
+		font-weight: 550;
+		font-size:20px;
+		display: block;
+		white-space: nowrap;
+	}
+
+	.slideCol p { margin: 0px !important; }
+
+	.scroller {
+	   height: 30pt;
+	   line-height: 30pt;
+	   overflow: hidden;
+	}
+	.scroller .inner { animation: 7s normal infinite running scroll; }
+	@keyframes scroll {
+	   0%   {margin-top: 0px;}
+	   30%  {margin-top: 0px;}
+
+	   45%  {margin-top: -30pt;}
+	   60%  {margin-top: -30pt;}
+
+	   75%  {margin-top: -60pt;}
+	   90%  {margin-top: -60pt;}
+
+	   100% {margin-top: 0px;}
+	}
+
+	.div-right-login{
+		padding-right: 20px !important;
+	}
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.div-title{
+		font-size: 50px;
+		font-weight: 550;
+		text-shadow: 3px 3px 1px #808080; 
+		text-align: left;
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 25px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 130px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	.span-subtitle{
+		color: gray;
+		font-size: 25px;
+	}
+
+	.list-procurement li{
+		font-size: 20px;
+	}
+
+	.span-what{
+		font-size: 25px;
+	}
+
+	.card{
+		height: 90px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	  font-size: 13.5px;
+	}
+
+	.span-more{
+		font-family: "Brush Script MT", cursive;
+	    font-size: 25px;		
+	}
+
+	.span-forBuyers-title{
+		font-size: 31px;
+		font-weight: 600;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 25px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 18px;
+		color: gray;
+	}
+
+	.span-forBuyers-desc2{
+		font-size: 22px;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+		display: table;
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 30px;
+		font-family: "Brush Script MT", cursive;
+		transform: rotate(-25deg);
+	    position: absolute;
+	    top: 235px;
+	    right: 0px;
+	    width: 280px;
+	}
+
+	.div-subtitle{
+		text-align: left;
+	}
+
+	.div-rows{
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: absolute;
+	}
+
+	.div-contactUs-subtitle{
+		padding:0rem 5rem;
+	}	
+
+	.div-contactUs-subtitle{
+		font-size: 25px;
+	}
+
+	.img-logo{
+		height: 70px;
+	}
+
+
+	.section-eProcurement{
+		background: url("../img/bg-login.png");
+		background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../img/bg-login.png');
+		background-size: 100% 100%;	
+	}
+
+	.div-login{
+		height: 86vh;
+		background: white;
+	}
+
+	.div-left-login{
+		display: none;
+	}
+
+	.pad-right{
+		padding-right: 3px;
+	}
+
+	.pad-left{
+		padding-left: 3px;
+	}
+
+	.pad-center{
+		padding-right: 3px;
+		padding-left: 3px;
+	}
+
+	#div-gallery{
+		display: none;
+	}
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+	.div-title{
+		font-size: 50px;
+		font-weight: 550;
+		text-shadow: 3px 3px 1px #808080;
+		text-align: left; 
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 25px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 100px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	.list-procurement li{
+		font-size: 19px;
+	}
+
+	.span-what{
+		font-size: 25px;
+	}
+
+	.card{
+		height: 90px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	  font-size: 13.5px;
+	}
+
+	.span-more{
+		font-family: "Brush Script MT", cursive;
+	    font-size: 30px;		
+	}
+
+	.span-forBuyers-title{
+		font-size: 35px;
+		font-weight: 600;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 23px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 18px;
+		color: gray;
+	}
+
+	.span-forBuyers-desc2{
+		font-size: 22px;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 30px;
+		font-family: "Brush Script MT", cursive;
+		transform: rotate(-25deg);
+	    position: absolute;
+	    top: 235px;
+	    right: 0px;
+	    width: 280px;
+	}
+
+	.div-subtitle{
+		text-align: left;
+	}
+
+	.div-rows{
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: absolute;
+	}
+
+	.div-contactUs-subtitle{
+		padding:0rem 5rem;
+	}
+
+	.div-contactUs-subtitle{
+		font-size: 25px;
+	}
+
+	.img-logo{
+		height: 80px;
+	}
+
+	.div-card{
+		width: 34.7vh;
+		height: 15vh;
+		padding-top: 25px;
+		padding-left: 25px;
+		padding-right: 25px;
+		font-weight: 600;
+	}
+
+	.section-eProcurement{
+/*		background: url("../img/bg-login.png");*/
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/bg-login.png');
+		background-size: 100% 100%;	
+		background-blend-mode: darken;
+		height: 80vh;
+	}
+
+	.div-login{
+		height: 82vh;
+		background: white;
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+	.div-col-span{
+		z-index: 99999;
+		font-size: 32px;
+		color: white;
+		font-family: "Brush Script MT", cursive;
+		margin: 0 auto;
+		line-height: 140px;
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	}
+
+	.div-bakery-products{
+		background:url('../img/eoutlet-img/bakery.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-gen-merchandise{
+		background:url('../img/eoutlet-img/gen_merch.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-alcohol{
+		background:url('../img/eoutlet-img/alcohol.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-fruits{
+		background:url('../img/eoutlet-img/fruits.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-pharmacy{
+		background:url('../img/eoutlet-img/pharmacy.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-hardware{
+		background:url('../img/eoutlet-img/hardware.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-footware{
+		background:url('../img/eoutlet-img/footwear.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-supplies{
+		background:url('../img/eoutlet-img/supplies.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-beauty{
+		background:url('../img/eoutlet-img/beauty.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-handicraft{
+		background:url('../img/eoutlet-img/handicraft.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-hair-cut{
+		background:url('../img/eoutlet-img/haircut.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-massage{
+		background:url('../img/eoutlet-img/massage.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-facial{
+		background:url('../img/eoutlet-img/facial.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-foot-spa{
+		background:url('../img/eoutlet-img/footspa.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-eye{
+		background:url('../img/eoutlet-img/eye.png');
+		background-size: 95% 100%;
+		background-repeat: no-repeat;
+		height: 125px;
+		text-align: center;
+	}
+
+	.div-outlet-img{
+		height: 170px;
+	}
+
+	#div-outlet-bags{
+		background:url('../img/eoutlet-img/bags-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-clothes{
+		background:url('../img/eoutlet-img/clothes-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-jewelry{
+		background:url('../img/eoutlet-img/jewelry-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-gift{
+		background:url('../img/eoutlet-img/gift-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-electronics{
+		background:url('../img/eoutlet-img/electronics-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-bicycle{
+		background:url('../img/eoutlet-img/bicycle-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-furniture{
+		background:url('../img/eoutlet-img/furniture-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-gen-merch{
+		background:url('../img/eoutlet-img/gen-merch-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-beauty-salon{
+		background:url('../img/eoutlet-img/beauty-salon-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-spa{
+		background:url('../img/eoutlet-img/spa-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-pharmacy{
+		background:url('../img/eoutlet-img/pharmacy-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-tailor{
+		background:url('../img/eoutlet-img/tailor-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-food-store{
+		background:url('../img/eoutlet-img/food-store-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-food-station{
+		background:url('../img/eoutlet-img/food-station-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-hardware{
+		background:url('../img/eoutlet-img/hardware-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-outlet-motor{
+		background:url('../img/eoutlet-img/motor-outlet.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	.div-featured-img{
+		height: 250px;
+	}
+
+	#div-featured-shoes{
+		background:url('../img/eoutlet-img/shoe-manila.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-featured-derma{
+		background:url('../img/eoutlet-img/derma.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-featured-food-park{
+		background:url('../img/eoutlet-img/food-park.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	#div-featured-bag{
+		background:url('../img/eoutlet-img/bag-store.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
+	.pad-right{
+		padding-right: 3px;
+	}
+
+	.pad-left{
+		padding-left: 3px;
+	}
+
+	.pad-center{
+		padding-right: 3px;
+		padding-left: 3px;
+	}
+
+	#div-scroll-bottom{
+		margin-top: 200px;
+	}
+
+	.div-scroll{
+		height: 70px; 
+		background: white;
+	}
+
+	.div-orange{
+		height: 6px; 
+		background: rgb(255,192,0);
+	}
+
+	#div-row-signup{
+		margin-top: -70%;
+		width: 81%;
+		margin-left: 19% !important;
+		padding-left: 44px;
+	}
+
+	#div-search-engine{
+		margin-top: 100px;
+		margin-left: 65px;
+	}
+
+	/* Slider */
+	#textSlider.row {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 100% !important;
+	}
+	#textSlider div {
+	  color: #FFF;
+	  font-family: 'Lato', sans-serif;
+	  text-transform: uppercase;
+	}
+
+	.iamCol {
+	    text-align: right;
+	  float: left;
+	  font-weight: 300;
+	  font-size:30px;
+	}
+	.iamCol p:nth-child(2) { margin-top: -20pt !important; }
+	.slideCol {
+	  text-align: left;
+	    overflow: hidden;
+	    font-weight: 550;
+	  font-size:25px;
+	  display: block;
+	  white-space: nowrap;
+	}
+
+	.slideCol p { margin: 0px !important; }
+
+	.scroller {
+	   height: 60pt;
+	   line-height: 60pt;
+	   overflow: hidden;
+	}
+	.scroller .inner { animation: 10s normal infinite running scroll; }
+	@keyframes scroll {
+	   0%   {margin-top: 0px;}
+	   30%  {margin-top: 0px;}
+
+	   40%  {margin-top: -60pt;}
+	   60%  {margin-top: -60pt;}
+
+	   70%  {margin-top: -120pt;}
+	   90%  {margin-top: -120pt;}
+
+	/*   75%  {margin-top: -120pt;}
+	   90%  {margin-top: -120pt;}*/
+
+	   100% {margin-top: 0px;}
+	}
+
+	#div-gallery{
+		display: block !important;
+	}
+
+	.div-login2{
+		width: 300px !important;
+	}
+
+	.div-signup{
+		width: 300px !important;
+	}
+
+}
+
+@media only screen and (min-width: 1400px) {
+	.div-title{
+		font-size: 75px;
+		font-weight: 550;
+		text-shadow: 3px 3px 1px #808080; 
+		text-align: left;
+	}	
+
+	.caption-pic-left{
+	    position: absolute;
+	    top: 120px;
+	    left: 0;
+	    width: 400px;
+	    transform: rotate(30deg);
+	    text-align: left;
+	    display: block;
+	}
+
+	.caption-pic-left span{
+		color: gray;
+	    font-size: 35px;
+	    font-family: "Arial";
+	    display: block;
+	    margin-top: 10px;
+	}
+
+	.caption-pic-right{
+	    position: absolute;
+	    height: 300px;
+	    top: 170px;
+	    right: 0px;
+	    width: 300px;
+	    transform: rotate(90deg);
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+	.btn-vertical{
+		padding: 10px 20px;
+		float: right;
+		background: orange;
+		color: white;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	.span-subtitle{
+		color: gray;
+		font-size: 35px;
+	}
+
+	.list-procurement li{
+		font-size: 25px;
+	}
+
+	.span-what{
+		font-size: 30px;
+	}
+
+	.card{
+		height: 130px;
+	  -webkit-box-shadow: 5px 5px 5px #808080;
+	  -moz-box-shadow: 5px 5px 5px #808080;
+	  box-shadow: 5px 5px 5px #808080;
+	  font-size: 22px;
+	}
+
+	.span-more{
+		font-family: "Brush Script MT", cursive;
+	    font-size: 40px;		
+	}
+
+	.span-forBuyers-title{
+		font-size: 45px;
+		font-weight: 600;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.span-forBuyers-subtitle{
+		font-size: 35px;
+		font-weight: 600;
+		color: gray;
+	}
+
+	.span-forBuyers-desc{
+		font-size: 23px;
+		color: gray;
+	}
+
+	.section-contactUs-right{
+		width: 100%;
+		height: 330px;
+		background: rgb(215, 228, 189);
+		display: table;
+	}
+
+	.span-contactUs-right{
+		font-size: 40px;
+		text-shadow: 3px 3px 1px #808080; 
+	}
+
+	.div-contactUs-rotate{
+		text-align: center;
+		font-size: 30px;
+		font-family: "Brush Script MT", cursive;
+		transform: rotate(-25deg);
+	    position: absolute;
+	    top: 235px;
+	    right: 0px;
+	    width: 280px;
+	}
+
+	.div-subtitle{
+		text-align: left;
+	}
+
+	.div-rows{
+		padding-top: 13rem;
+	}
+
+	.img-outlet{
+		visibility: visible;
+		position: absolute;
+	}
+
+	.span-forBuyers-desc2 span{
+		font-size: 28px;
+	}
+
+	.div-contactUs-subtitle{
+		padding:0rem 5rem;
+	}
+
+	.div-contactUs-subtitle{
+		font-size: 25px;
+	}
+
+	.section-eProcurement{
+		background: url("../img/bg-login.png");
+		background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../img/bg-login.png');
+		background-size: 100% 100%;	
+	}
+
+	.div-left-login{
+		display: block;
+	}
+
+
+
+}
+

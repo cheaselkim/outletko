@@ -1,0 +1,82 @@
+body{
+  background: white;
+}
+
+.form-control{
+  border-radius: 0!important;
+}
+
+.bg-gray{
+  background: rgba(255,255,255,0.8);
+}
+
+.required{
+  color: red !important;
+}
+
+button{
+  height: 35px;
+}
+
+.text-black{
+  color: black !important;
+  cursor: pointer;
+}
+
+.div-header{
+  display: block;
+  height:7.5vh;
+  width: 100%;
+  clear: both;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.div-subheader{
+  height: 7vh;
+  width: 100%;
+  /*background: rgb(0,153,0);*/
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.span-eoutlet{
+  /*color: orange;*/
+}
+
+.span-suite{
+  /*color: green;*/
+}
+
+.text-white{
+  /*color: white;*/
+}
+
+.li-subheader label{
+  /*color: yellow;*/
+}
+
+input[type='text']{
+  height: 35px;
+}
+
+.form-control{
+  height: 35px;
+  border: 1px solid black !important;
+}
+
+a.disabled{
+  background: gray;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+a.disabled .div-list-menu{
+  pointer-events: none;
+}
+
+a.disabled img{
+  pointer-events: none;
+}

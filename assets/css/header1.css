@@ -1,0 +1,513 @@
+
+body{
+  background: white;
+}
+
+
+
+.div-header{
+  height: 60px;
+}
+
+.div-sub-header{
+  height: 50px;
+  background: rgb(0,153,0);
+}
+
+.div-body{
+  height: 620px;
+  background: rgb(187, 215, 248);
+}
+
+.div-trans{
+  height: 50px;
+}
+
+.div-item{
+  height: 150px;
+  background: rgb(147,205,221);
+}
+
+.div-bottom{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.ul-total-sales{
+  padding-top: 12px;
+}
+
+.text-yellow{
+  color: rgb(255,255,0);
+  font-weight: 550;
+}
+
+.text-yellow-green{
+  color: rgb(79,98,40);
+  font-weight: 550;
+}
+
+.btn-bg-green2{
+  background: green;
+  color: white;
+}
+
+.btn-customer{
+  background: rgb(195,214,155);
+}
+
+.btn-sales-report{
+  background: rgb(228,108,10); color: white;
+}
+
+.text-box-total{
+  width: 120px;
+}
+
+input[type='text']{
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+.text-box-cust-name{
+  width: 250px;
+}
+
+.div-sub-main-trans{
+  height: auto;
+}
+
+.div-main-trans{
+  height: auto;
+}
+
+#color-sub-trans{
+  background: rgb(193,235,198);
+}
+
+#color-trans{
+  background: rgb(209,238,248);
+}
+
+.table-size{
+  height: 75%;
+}
+
+#tbl-size{
+  height: 315px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  overflow: auto;
+}
+
+#table-products {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table-products td, #table-products th {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+#table-products tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#table-products tr:hover {
+  background-color: #ddd;
+}
+
+#table-products th {
+/*  padding-top: 12px;
+  padding-bottom: 12px;*/
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#table-items {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table-items td, #table-items th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table-items tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#table-items tr:hover {
+  background-color: #ddd;
+}
+
+#table-items th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.text-small{
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+.text-lg{
+  padding-left: 65px;
+  padding-right: 65px;
+}
+
+.text-md{
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.right{
+  float: right;
+}
+
+.left{
+  float: left;
+}
+
+.cstmbtn{
+  padding: 10px 15px 15px 40px;
+  background: rgb(73, 180, 96);
+}
+
+.btn-grey{
+  background-color: #e7e7e7; 
+  color: black;
+}
+
+input[type="checkbox"]{
+  width: 30px; /*Desired width*/
+  height: 30px; /*Desired height*/
+  cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .text-date{
+    font-size: 15px;
+  }
+
+  .img-item-box{
+    margin-top: 17px;
+    margin-left: 15px;
+    height: 140px;
+    width: 170px;
+    border: 1px solid black;
+    background: white;
+  }
+
+  .btn-select-item{
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 45%;
+    width: 100%;
+  }
+
+  #text-box-cust-code{
+    width: 40px;
+  }
+
+  #text-box-cust-name{
+    width: 220px;
+  }
+
+  #text-box-stock{ 
+    width: 40px;  
+  }
+
+  #text-box-stock2{
+    width: 30px;
+  }
+
+  .span-eprocurementsuite{
+    font-size: 35px; 
+    text-shadow: 3px 3px 3px gray;
+  }
+
+  .div-date{
+    padding-top: 0px;
+    padding-left: 30px;
+  }
+
+  .flt{
+    float: right;
+    padding-right: 100px;
+  }
+
+  .col-size{
+    margin-left: 5px;
+  }
+} 
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .text-date{
+    font-size: 15px;
+  }
+
+  .flt{
+    float: right;
+  }
+
+  .col-size{
+    margin-left: 25px;
+  }
+
+  .img-item-box{
+    margin-top: 17px;
+    margin-left: 15px;
+    height: 140px;
+    width: 170px;
+    border: 1px solid black;
+    background: white;
+  }
+
+  .btn-select-item{
+/*    padding-left: 40px;
+    padding-right: 40px;*/
+    margin-top: 45%;
+  }
+
+  #text-box-cust-code{
+    width: 80px;
+  }
+
+  #text-box-cust-name{
+    width: 270px;
+  }
+
+  #text-box-stock{ 
+    width: 90px;  
+  }
+
+  #text-box-stock2{
+    width: 60px;
+  }
+
+  .span-eprocurementsuite{
+    font-size: 35px; 
+    text-shadow: 3px 3px 3px gray;
+  }
+
+  .div-date{
+    padding-top: 0px;
+    padding-left: 30px;
+  }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+  .text-date{
+    font-size: 18px;
+  }
+
+  .flt{
+    float: right;
+  }
+
+  .col-size{
+    margin-left: 25px;
+  }
+
+  .img-item-box{
+    margin-top: 17px;
+    margin-left: 15px;
+    height: 140px;
+    width: 160px;
+    border: 1px solid black;
+    background: white;
+  }
+
+  .btn-select-item{
+/*    padding-left: 40px;
+    padding-right: 40px;*/
+    margin-top: 45%;
+  }
+
+  #text-box-cust-code{
+    width: 110px;
+  }
+
+  #text-box-cust-name{
+    width: 270px;
+  }
+
+  #prod_no{
+    width: 80px;
+  }
+
+  #prod_name{
+    width: 76%;
+    height: 100px;
+  }
+
+  #text-box-stock{ 
+    width: 90px;  
+  }
+
+  #text-box-stock2{
+    width: 60px;
+  }
+
+  .span-eprocurementsuite{
+    font-size: 40px; 
+    text-shadow: 3px 3px 3px gray;
+  }
+
+  .div-date{
+    padding-top: 0px;
+    padding-left: 30px;
+  }
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .text-date{
+    font-size: 18px;
+  }
+
+  .flt{
+    float: right;
+  }
+
+  .col-size{
+    margin-left: 50px;
+  }
+
+  .img-item-box{
+    margin-top: 10px;
+    margin-left: 15px;
+    height: 160px;
+    width: 220px;
+    border: 1px solid black;
+  }
+
+  .btn-select-item{
+/*   padding-left: 40px;
+    padding-right: 40px;*/
+    margin-top: 45%;
+  }
+
+  #text-box-cust-code{
+    width: 110px;
+  }
+
+  #text-box-cust-name{
+    width: 505px;
+  }
+
+  #prod_no{
+    width: 130px;
+  }
+
+  #prod_name{
+    width: 82%;
+    height: 100px;
+  }
+
+  #text-box-stock{ 
+    width: 120px;  
+  }
+
+  #text-box-stock2{
+    width: 100px;
+  }
+
+  .span-eprocurementsuite{
+    font-size: 40px; 
+    text-shadow: 3px 3px 3px gray;
+  }
+
+  .div-date{
+    padding-top: 0px;
+    padding-left: 30px;
+  }
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .span-eprocurementsuite{
+    font-size: 40px; 
+    text-shadow: 3px 3px 3px gray;
+  }
+
+  .img-item-box{
+    margin-top: 5px;
+    margin-left: 15px;
+    height: 140px;
+    width: 220px;
+    border: 1px solid black;
+  }
+
+  #prod_no{
+    width: 112px;
+  }
+
+  #prod_name{
+    width: 82.6%;
+    height: 92px;
+  }
+
+  .btn-select-item{
+   padding-left: 33px;
+    padding-right: 34px;
+    margin-top: 10px;
+    margin-left: 31.5px;
+  }
+
+  .btn-customer{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .flt{
+    float: right;
+  }
+
+  .col-size{
+    margin-left: 50px;
+  }
+
+  .text-date{
+    font-size: 20px;
+  }
+
+  #text-box-stock{ 
+    width: 145px;  
+  }
+
+  #text-box-stock2{
+    width: 120px;
+  }
+
+  .text-agent{
+    text-align: center;
+  }
+
+  .div-date{
+    padding-top: 12px;
+    padding-left: 30px;
+  }
+
+  .cstminput{
+    height: 28px;
+    width: 100px;
+  }
+
+}
+  

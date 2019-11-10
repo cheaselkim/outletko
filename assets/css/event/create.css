@@ -1,0 +1,48 @@
+/*.b-dark{
+  height: 100px;
+  width: 100%;
+  background: black;
+}
+
+.b-light{
+  height: 100px;
+  width: 100%;
+  background: yellow;
+}*/
+
+/*[class*="col-"] {
+  border: 1px solid black;
+}*/
+
+.input-date > span:hover{cursor: pointer;}
+
+.lbl-tbox{
+  margin: 0;
+}
+
+.div-tbl-create-event{
+  min-height: 60px;
+  height: auto;
+  border: 1px solid gray;
+}
+
+.btn-add-item{
+  width: 120px;
+}
+
+.btn-add-item-dl{
+  width: 250px;
+}
+
+@element .maindiv and (min-width: 850px) {
+
+  .maindiv{
+    background: white;
+  }
+
+  .div3-event{
+    padding-left: 50px;
+  }
+
+}
+

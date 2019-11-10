@@ -1,0 +1,568 @@
+input.error, select.error{
+    border: 1px solid #d0011b !important;
+}
+
+.border-black{
+  border: 0.5px solid black !important;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.text-sales{
+  font-size: 18px;
+/*  padding-top: 5px;*/
+}
+.text-date{
+  font-size: 18px;
+}
+
+.txt-box-text-size{
+    font-size: 18px;
+  }
+
+.cust-text{
+    font-size: 18px;
+    padding: 0px 0px 0px 0px;
+}
+
+.text-table{
+  font-size: 18px;
+}
+
+.bg-button{
+  background:rgb(215,228,189);
+}
+
+.text-yellow{
+  color: yellow;
+}
+
+.btn-query{
+  height: 23px !important;
+}
+
+.btn-height-35{
+  height: 35px !important;
+}
+
+.btn-height-30{
+  height: 30px !important;
+}
+
+.font-size-18{
+  font-size: 18px !important;
+}
+
+.font-size-17{
+  font-size: 17px !important;
+}
+
+.font-weight-600{
+  font-weight: 600;
+  padding: 0px 0px 0px 0px;
+}
+
+.form-control{
+  border: 1px solid black !important;
+  height: 35px !important;
+  font-size: 16px !important;
+}
+
+input,select{
+  height: 35px !important;
+  font-size: 16px !important;
+}
+
+input[type='checkbox']{
+  height: 20px !important;
+/*  font-size: 20px;*/
+/*  padding: 10px;*/
+
+    width: 5mm;
+    height: 10mm;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0.1mm solid black;
+}
+
+input[type=checkbox]:checked:after {
+    margin-left: 1mm;
+    margin-top: -0.4mm;
+    width: 3mm;
+    height: 5mm;
+    border: solid black;
+    border-width: 0 1.2mm 1.2mm 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: "";
+    display: inline-block;
+}
+
+.btn-orange{
+  background: #FF7900 !important;
+  color: white !important;
+}
+
+.ui-autocomplete {
+  overflow: auto;
+  height: 200px;
+}
+
+body{
+  background: white;
+}
+
+.form-control{
+  border-radius: 0!important;
+  color: black !important;
+}
+
+
+.bg-gray{
+  background: rgba(255,255,255,0.8);
+}
+
+.required{
+  color: red !important;
+}
+
+/*button{
+  height: 40px !important;
+}*/
+
+.text-black{
+  color: black !important;
+  cursor: pointer;
+}
+
+.modal{
+  top: 20%;
+}
+
+.modal-xl{
+  width: 1200px;
+}
+
+.div-header{
+  display: block;
+  height:7.5vh !important;
+  width: 100%;
+  clear: both;
+  padding-left: 20px;
+  padding-right: 20px;
+  vertical-align: middle;
+}
+
+.div-subheader{
+  height: 6.5vh !important;
+  width: 100%;
+  background: rgb(0,153,0);
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 5px !important;
+  padding-bottom: 5px;
+  vertical-align: middle;
+}
+
+.span-eoutlet{
+  color: orange;
+}
+
+.span-suite{
+  color: green;
+}
+
+.text-white{
+  color: white;
+}
+
+.li-subheader label{
+  color: yellow;
+}
+
+/*input[type='text']{
+  height: 40px !important;
+}*/
+
+/*.form-control{
+  height: 40px !important;
+  border: 1px solid black !important;
+}*/
+
+a.disabled{
+  background: gray;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+a.disabled .div-list-menu{
+  pointer-events: none;
+}
+
+a.disabled img{
+  pointer-events: none;
+}
+
+#icon-menu{
+  cursor: pointer;
+  font-size: 25px !important;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 500px) and (orientation: portrait) {
+  .span-eoutletsuite{
+    font-size: 25px;
+  }
+
+  .div-title{
+    padding-top: 6px;
+    text-align: center;
+  }
+
+  .div-account{
+    visibility: hidden;
+  }
+
+  #div-subheader-1{
+    display: none;  
+  }
+
+  #div-subheader-2{
+    display: block;
+  }
+
+  #div-subheader-3{
+    display: none;
+  }
+
+  .div-menu{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #div-menu-1{
+    order: 2;
+  }
+
+  #div-menu-1{
+    order: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #menu_5{
+    order: 8;
+  }
+
+  #icon-menu{
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .div-header{
+    height: 6.5vh !important;
+  }
+
+  .div-subheader{
+    height: 5.5vh !important;
+  }
+
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px)  and (orientation: portrait){
+  .span-eoutletsuite{
+    font-size: 35px;
+  }
+
+  .span-date{
+    font-size: 18px;
+  }
+
+  .li-subheader{
+    font-size: 18px;
+  }
+
+  #sales_reports{
+    width: 100px;
+  }
+
+  .font-icons{
+    font-size: 100px;
+    line-height: 170px;
+  }
+
+  #total_sales_for_today{
+    width: 150px;
+  }
+
+  .div-subheader-trans{
+    padding-top: 5px;
+  }
+
+  .div-account{
+    visibility: hidden;
+  }
+
+  #div-subheader-1{
+    display: none;  
+  }
+
+  #div-subheader-2{
+    display: none;
+  }
+
+  #div-subheader-3{
+    display: block;
+  }
+
+
+  #div-menu-2{
+    margin-top: 40px;
+  }
+
+  .div-header{
+    height: 5vh !important;
+  }
+
+  .div-subheader{
+    height:8vh !important;
+  }
+
+  /*FLIP*/
+
+
+  .flip-card {
+    background-color: transparent;
+    width: 250px;
+    height: 250px;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front label{
+    font-size: 20px;
+  }
+
+  .list-inv{
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+    z-index: 2;
+    padding: 15px;
+  }
+
+  .flip-card-back {
+  /*  background-color: #2980b9;*/
+    color: white;
+    transform: rotateY(180deg);
+    z-index: 3;
+  }
+
+  /*END FLIP*/
+
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+  .div-account{
+    visibility: visible;
+  }
+
+  #div-subheader-2{
+    display: none;
+  }
+
+  #div-subheader-3{
+    display: none;
+  }
+
+  #div-menu-2{
+    margin-top: 40px;
+  }
+
+  .span-eoutletsuite{
+    font-size: 25px !important;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .div-account{
+    visibility: visible;
+  }
+
+  #div-subheader-2{
+    display: none;
+  }
+
+  #div-subheader-3{
+    display: none;
+  }
+
+  #div-menu-2{
+    margin-top: 40px;
+  }
+
+  .span-eoutletsuite{
+    font-size: 25px !important;
+  }
+
+  .span-date{
+    font-size: 18px;
+  }
+
+  .li-subheader{
+    font-size: 18px;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .span-eoutletsuite{
+    font-size: 40px !important; 
+  }
+
+  .span-date{
+    font-size: 25px !important;
+  }
+
+  .li-subheader{
+    font-size: 25px !important;
+  }
+
+  #sales_reports{
+    width: 193px;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 250px;
+    height: 250px;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front label{
+    font-size: 20px;
+  }
+
+  .list-inv{
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+    z-index: 2;
+    padding: 15px;
+  }
+
+  .flip-card-back {
+  /*  background-color: #2980b9;*/
+    color: white;
+    transform: rotateY(180deg);
+    z-index: 3;
+  }
+
+  .list-group-item-action{
+    height: auto;
+  }
+
+  .div-subheader-trans{
+    padding-top: 10px;
+  }
+
+  .li-button{
+    padding-top: 8px;
+  }
+
+  .prod-submenu{
+    font-size: 15px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .font-icons{
+    font-size: 100px;
+    line-height: 170px;
+  }
+
+  .div-account{
+    visibility: visible;
+  }
+
+  #div-subheader-2{
+    display: none;
+  }
+
+  #div-subheader-3{
+    display: none;
+  }
+
+  #div-menu-2{
+    margin-top: 10px;
+  }
+
+  .pad-right{
+    padding-right: 3px !important;
+  }
+
+  .pad-left{
+    padding-left: 3px !important;
+  }
+
+  .pad-center{
+    padding-right: 3px !important;
+    padding-left: 3px !important;
+  }
+}
+
+@media only screen and (min-width: 1400px){
+
+}
