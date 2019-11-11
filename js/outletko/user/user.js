@@ -517,7 +517,10 @@ function home(){
 
 function index(){
    var csrf_name = $("input[name=csrf_name]").val();
-  
+   $("#prod_cat_tbl tbody tr").remove();
+   $("#list-category").empty();
+   $("#prod_category").empty();
+
   $.ajax({
     data: {csrf_name : csrf_name}, 
     type: "GET", 
@@ -1932,9 +1935,6 @@ function save_category(){
     },
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
-      $("#prod_cat_tbl tbody tr").remove();
-      $("#list-category").empty();
-      $("#prod_category").empty();
       index();
       // swal.close();
       
