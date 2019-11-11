@@ -49,7 +49,7 @@
 <!-- END NAVBAR -->
 
 <!-- SEARCH -->
-<div class="container pt-2 ">
+<div class="container pt-2 " hidden>
 	<div class="row">
 		<div class="col-12 col-md-12 px-0">
 			<div class="row">

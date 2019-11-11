@@ -192,7 +192,7 @@ textarea{
 /*CENTER (ADD PRODUCTS)*/
 .div-center{
 	background: white;
-	min-height: 500px;
+	min-height: 700px;
 	height: auto;
 }
 
@@ -225,7 +225,7 @@ textarea{
 }
 
 .div-list-img{
-	height: 250px;
+	height: 230px;
 /*    height: 225px;*/
 /*    width: 225px;*/
 	width: 100%;
@@ -308,6 +308,10 @@ textarea{
 
 .btn-width-samll{
 	width: 50px;
+}
+
+.div-list-category{
+	height: 150px;
 }
 
 }

@@ -371,6 +371,7 @@ class Signup extends CI_Controller {
 
     $data['result'] = $this->signup_model->check_login($username, $password);
     $data['token'] = $this->security->get_csrf_hash();
+    $data['user_type'] = $this->session->userdata("user_type");
     echo json_encode($data);
   }
 

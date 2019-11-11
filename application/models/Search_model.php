@@ -15,13 +15,13 @@ class Search_model extends CI_Model {
 		$prov_qry = "";
 		$city_qry = "";
 
-		if (!empty($prov_id)){
-			$prov_qry = "AND `province`.`id` = '".$prov_id."'";
-		}
+		// if (!empty($prov_id)){
+		// 	$prov_qry = "AND `province`.`id` = '".$prov_id."'";
+		// }
 
-		if (!empty($city_id)){
-			$city_qry = "AND `city`.`id` = '".$city_id."'";
-		}
+		// if (!empty($city_id)){
+		// 	$city_qry = "AND `city`.`id` = '".$city_id."'";
+		// }
 
 		$query = $this->db2->query("
 			SELECT 

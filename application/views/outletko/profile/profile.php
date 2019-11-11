@@ -7,7 +7,7 @@
 
 <div class="container pt-3 pb-4">
 	<div class="row">
-		<div class="col-12 col-sm-12 col-md-10 col-lg-10">
+		<div class="col-12 col-sm-12 col-md-10 col-lg-12">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header">
 					<div class="row">
@@ -50,12 +50,12 @@
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">
 				<div class="col-3 col-lg-auto px-0">
-					<div class="div-left-aboutus">					
+					<div class="div-left-aboutus" style="height: 700px;">					
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
 							<span class="font-weight-bold">About Us</span>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
-							<div class="div-aboutus-details">
+							<div class="div-aboutus-details" style="height: 655px;">
 								<p id="text_aboutus"></p>								
 							</div>
 						</div>
@@ -104,7 +104,7 @@
 								<span class="font-size-25" id="prod-name">Abaca Seedlings</span><br>
 								<span class="font-size-20" id="prod-price">PHP 25.00</span>
 							</div>
-							<div class="col-6">
+							<div class="col-7">
 								
 								<div class="row">
 									<div class="col-10">
@@ -168,46 +168,49 @@
 					</div>
 
 				</div>
+				<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1" hidden>
+					<div class="row">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 " >
+							<div class="div-ads px-2 pt-2">
+								<span class="text-green">Ads Space</span>
+
+								<!-- ADS IMAGES -->
+								<div class="row">
+
+									<div class="col-lg-12 col-md-4 pt-3">
+										<div class="div-ads-img">	
+											<img src="https://5d973bb52ee8692cdb78-ae7e48b6a1da5e36e0a688675ec574a6.ssl.cf1.rackcdn.com/34/56/78/34567836/ad_34567836_c4edf44e26169131_web.jpg" class="img-fluid">
+										</div>	
+									</div>
+
+									<div class="col-lg-12 col-md-4 pt-3">
+										<div class="div-ads-img">	
+											<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a41d8529540325.5732a809bcc1b.png" class="img-fluid">
+										</div>	
+									</div>
+
+									<div class="col-lg-12 col-md-4 pt-3">
+										<div class="div-ads-img">	
+											<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
+										</div>	
+									</div>
+
+
+
+								</div>
+								<!-- END ADS IMAGES -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
 			</div>
 
 			<!-- DIV HOME -->
 
-		</div>
-		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1">
-			<div class="row">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-12 " >
-					<div class="div-ads px-2 pt-2">
-						<span class="text-green">Ads Space</span>
-
-						<!-- ADS IMAGES -->
-						<div class="row">
-
-							<div class="col-lg-12 col-md-4 pt-3">
-								<div class="div-ads-img">	
-									<img src="https://5d973bb52ee8692cdb78-ae7e48b6a1da5e36e0a688675ec574a6.ssl.cf1.rackcdn.com/34/56/78/34567836/ad_34567836_c4edf44e26169131_web.jpg" class="img-fluid">
-								</div>	
-							</div>
-
-							<div class="col-lg-12 col-md-4 pt-3">
-								<div class="div-ads-img">	
-									<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a41d8529540325.5732a809bcc1b.png" class="img-fluid">
-								</div>	
-							</div>
-
-							<div class="col-lg-12 col-md-4 pt-3">
-								<div class="div-ads-img">	
-									<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
-								</div>	
-							</div>
-
-
-
-						</div>
-						<!-- END ADS IMAGES -->
-
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 

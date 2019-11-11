@@ -61,8 +61,10 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<ul id="list-category">
-							</ul>
+							<div class="div-list-category">
+								<ul id="list-category">
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -88,7 +90,7 @@
 					</div>
 				</div>
 
-				<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1">
+				<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1" hidden>
 					<div class="row">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 " >
 							<div class="div-ads px-2 pt-2">

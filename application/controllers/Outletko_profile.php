@@ -90,6 +90,7 @@ class Outletko_profile extends CI_Controller {
             $products[$key] = array(
                 'product_name' => $value->product_name,
                 "product_description" => $value->product_description,
+                "product_unit_price" => $value->product_unit_price,
                 "img_location" => $unserialized_files,
                 "id" => $value->id);
         }

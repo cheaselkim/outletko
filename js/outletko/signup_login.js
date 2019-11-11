@@ -70,7 +70,13 @@ function check_login(){
 		success : function(result){	
 			$("input[name=csrf_name]").val(result.token);
 			console.log(result);
-			location.reload();
+
+			if (result.user_type == "5"){
+				location.reload();
+			}else{
+				window.open(base_url, "_self");
+			}
+
 			// window.open(base_url + "my-order", "_self");
 		}, error : function(err){
 			console.log(err.responseText);
