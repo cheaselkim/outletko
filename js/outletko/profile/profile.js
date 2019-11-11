@@ -140,7 +140,7 @@ function get_profile(id){
             var margin_plus_image = "";
 
             if (x > 3){
-              margin = "mt-2";
+              margin = "mt-3";
             }else{
               margin = "";
             }
