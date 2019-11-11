@@ -699,7 +699,7 @@ function index(){
             var margin_plus_image = "";
 
             if (x > 3){
-              margin = "mt-2";
+              margin = "mt-3";
             }else{
               margin = "";
             }
@@ -712,7 +712,7 @@ function index(){
 
             pad = "pad-center";
 
-            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-2'+margin+' '+pad+' "   >'+
+            var e = $('<div class="col col-6 col-md-3 col-lg-3'+margin+' '+pad+' "   >'+
         					'<div class="div-list-img" >'+
         						'<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
             					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
