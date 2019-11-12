@@ -751,9 +751,9 @@ function index(){
             var margin_plus_image = "";
 
             if (x > 3){
-              margin = "mt-3";
+              margin = "mt-4";
             }else{
-              margin = "";
+              margin = "mt-3";
             }
 
             if (x > 2){
@@ -762,9 +762,9 @@ function index(){
               margin_plus_image = "";
             }
 
-            pad = "pad-center";
-
-            var e = $('<div class="col col-6 col-md-3 col-lg-3 mt-3 '+pad+' "   >'+
+            // pad = "pad-center";
+            pad = "";
+            var e = $('<div class="col col-6 col-md-3 col-lg-3 '+margin+' '+pad+' "   >'+
         					'<div class="div-list-img" >'+
         						'<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
             					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
@@ -773,20 +773,20 @@ function index(){
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
                     '<span class="font-weight-600 font-size-16" >'+product_name+'</span><br>' + 
-                    '<span class="font-weight-600 font-size-16 text-red">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
+                    '<span class="font-weight-600 font-size-14 text-red">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
                     '</div>' +
         				'</div>');
         	$('#posted_prod').append(e);  
         }
     //products
     
-        var e2 = $('<div class="col col-6 col-md-3 col-lg-3 mt-3 pad-center">' +
+        var e2 = $('<div class="col col-6 col-md-3 col-lg-3 '+margin+' '+pad+' ">' +
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
 						'</div>' +
 						'<div class="bd-green text-center cursor-pointer div-list-img-btn" data-toggle="modal" data-target="#img_upload">' +
 							'<span class="font-weight-600 font-size-16">Add Product</span> <br>' +
-							'<span class="font-weight-600 font-size-16 text-red">PHP 0.00</span>' +
+							'<span class="font-weight-600 font-size-14 text-red">PHP 0.00</span>' +
 						'</div>' +
       				'</div>'  );
 
