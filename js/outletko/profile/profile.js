@@ -51,9 +51,12 @@ function get_profile(id){
         
         $("#text_aboutus").text(result.result[0].about_us);
 
-        $("#text-buss-email").text(" "+ (result.result[0].email == null ? "" : result.result[0].email));
-        $("#text-buss-contact-no").text(" "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));
-        $("#text-buss-facebook").text(" "+ (result.result[0].facebook == null ? "" : result.result[0].facebook));
+        $("#text-buss-email").text("Email : "+ (result.result[0].email == null ? "" : result.result[0].email));
+        $("#text-buss-contact-no").text("Mobile No. : "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));
+        $("#text-buss-tel-no").text("Tel No. : "+(result.result[0].telephone_no == null ? "" : result.result[0].telephone_no));
+        $("#text-buss-facebook").text("Facebook : "+ (result.result[0].facebook == null ? "" : result.result[0].facebook));
+
+        
 
         
         $("#email_text").text(" "+ (result.result[0].email == null ? "" : result.result[0].email));

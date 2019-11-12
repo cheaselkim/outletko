@@ -22,21 +22,24 @@
 										<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="text-white text-buss-type" id="text-buss-type">Business Type</span>
+										<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 									</div>
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
 										<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 										<div class="row">
-											<div class="col-4">
-												<span class="text-white text-buss-address" id="text-buss-contact-no">Business Address</span>												
+											<div class="col-3">
+												<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
+											</div>
+											<div class="col-2">
+												<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
 											</div>
 											<div class="col-4">
-												<span class="text-white text-buss-address" id="text-buss-email">Business Address</span>												
+												<span class="text-white text-buss-address" id="text-buss-email"></span>												
 											</div>
-											<div class="col-4">
-												<span class="text-white text-buss-address" id="text-buss-facebook">Business Address</span>												
+											<div class="col-3" hidden>
+												<span class="text-white text-buss-address" id="text-buss-facebook"></span>												
 											</div>
 										</div>
 									</div>

@@ -8,22 +8,29 @@ if (!function_exists("tbl_query")){
 
 										// <div style='border: 1px solid black;background: url('../\\\/images/\\\/profile/\\\/".$img[0]."')'>
 										// </div>
-
+		$address = "";
 		foreach ($query as $key => $value) {
 			$img = unserialize($value->loc_image);
 			$img_loc = base_url().'images/profile/'.$img[0];
 			$href = base_url()."search/outlet?store=".str_replace(' ', '-', strtolower($value->account_name))."&strid=".$value->id."";
 
+			$address .= ($value->street == null ? "" : ($value->street == "" ? "" : $value->street.", "));
+			$address .= ($value->village == null ? "" : ($value->village == "" ? "" : $value->village.", "));
+			$address .= ($value->barangay == null ? "" : ($value->barangay == "" ? "" : $value->barangay.", "));
+			$address .= ($value->city_desc == null ? "" : ($value->city_desc == "" ? "" : $value->city_desc.", "));
+			$address .= ($value->province_desc == null ? "" : ($value->province_desc == "" ? "" : $value->province_desc));
+
 			$output .= "<a class='row py-3'  style='border-bottom:1px solid gray;' href='".$href."'>
-							<div class='col-12'>
+							<div class='col-12 pr-0'>
 								<div class='row'>
-									<div class='col-sm-auto pr-0'>
+									<div class='col-sm-auto px-0'>
 										<img src='".$img_loc."' class='img-prof img-thumbnail'>
 									</div>
-									<div class='col-sm-10'>
-										<span class='text-black'>".$value->account_name."</span><br>
-										<small class='text-black'>".$value->city_desc.", ".$value->province_desc."</small><br>
-										<span class='text-black'>".substr($value->about_us, 0, 100)."...</span><br>
+									<div class='col-sm-10 pr-0'>
+										<span class='text-black h4'>".$value->account_name."</span><br>
+										<small class='text-black'>".$address."</small><br>
+										<small class='text-black'>+63".$value->mobile_no."</small><br>
+										<span class='text-black'>".substr($value->about_us, 0, 120)."...</span><br>
 									</div>
 								</div>
 							</div>

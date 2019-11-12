@@ -159,8 +159,12 @@ textarea{
 	font-size: 30px;
 }
 
-.text-buss-type, .text-buss-address{
-	font-size: 20px;
+.text-buss-type{
+	font-size: 18px;
+}
+
+.text-buss-address{
+	font-size: 16px;
 }
 
 .text-span-header-clickable{
