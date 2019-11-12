@@ -163,11 +163,18 @@
 					
 						<div class="row pt-2">
 							<div class="col-lg-3 col-md-4 col-sm-12">
-								<span class="text-capitalize">About US</span>
+								<span class="text-capitalize">About Us</span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
-								<textarea rows="5" class="form-control textbox-green2" id="input_aboutus"></textarea>
-								<small class="text-green" id="span-aboutus">The limit is 200 Characters</small>
+								<textarea rows="5" class="form-control textbox-green2" id="input_aboutus" maxlength="200"></textarea>
+								<div class="row">
+									<div class="col-6">
+										<small class="text-green" id="span-aboutus">The limit is 200 Characters</small>
+									</div>
+									<div class="col-6 text-right">
+										<small class="text-green"><span id="input_aboutus_length"></span> / 200</small>
+									</div>
+								</div>
 							</div>
 						</div>
 

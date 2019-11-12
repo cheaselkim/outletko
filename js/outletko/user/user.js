@@ -75,13 +75,18 @@ $(document).ready(function(){
 	/* SETTINGS LINK */
 
 	/* TEXTBOX */
-	$("#textbox_aboutus").focus(function(){
+	$("#input_aboutus").focus(function(){
 		$("#span-aboutus").show("slow");
 	});
 
-	$("#textbox_aboutus").focusout(function(){
+	$("#input_aboutus").focusout(function(){
 		$("#span-aboutus").hide();
 	});
+
+  $("#input_aboutus").keyup(function(){
+    var length = $(this).val().length;
+    $("#input_aboutus_length").text(length);
+  });
 
 	/* TEXTBOX */
 
@@ -617,6 +622,7 @@ function index(){
     //for inputs
         $("#input_businessname").val(result.result[0].account_name);
         $("#input_aboutus").val(result.result[0].about_us);
+        $("#input_aboutus_length").text(result.result[0].about_us.length);
         $("#input_bussinesscategory").val(result.result[0].business_category);
 
         $("#input_bldg").val();
