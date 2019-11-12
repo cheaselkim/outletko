@@ -38,37 +38,39 @@
 
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">
-				<div class="col-3 col-lg-auto px-0">
-					<div class="div-left-aboutus">					
-						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
-							<span class="font-weight-bold">About Us</span>
-						</div>
-						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
-							<div class="div-aboutus-details">
-								<p id="text_aboutus"></p>								
+				<div class="col-2 px-0"> <!--col-lg-auto -->
+					<div class="div-left-panel">
+						<div class="div-left-aboutus">					
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
+								<span class="font-weight-bold">About Us</span>
 							</div>
-						</div>
-					</div>
-					<div class="div-left-contacts" >					
-						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
-							<div class="row">
-								<div class="col-6">								
-									<span class="font-weight-bold">Category</span>
-								</div>
-								<div class="col-5 text-right pr-0">
-									<span class="ml-auto btn btn-orange btn-sm font-weight-600" data-toggle="modal" data-target="#modal_category">Edit</span>								
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
+								<div class="div-aboutus-details">
+									<p id="text_aboutus"></p>								
 								</div>
 							</div>
 						</div>
-						<div class="col-12">
-							<div class="div-list-category">
-								<ul id="list-category">
-								</ul>
+						<div class="div-left-contacts">					
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
+								<div class="row">
+									<div class="col-6">								
+										<span class="font-weight-bold">Category</span>
+									</div>
+									<div class="col-5 text-right pr-0">
+										<span class="ml-auto btn btn-orange btn-sm font-weight-600" data-toggle="modal" data-target="#modal_category">Edit</span>								
+									</div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="div-list-category">
+									<ul id="list-category">
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col pad-right">
+				<div class="col-10 pad-right" >
 					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3">
 						<!-- POST DETAILS -->
 						<div class="row">

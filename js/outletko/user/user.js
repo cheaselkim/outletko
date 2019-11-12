@@ -771,7 +771,7 @@ function index(){
             						// '<i class="fa fa-camera"></i>'+
             					'</div>'+
         					'</div>'+
-                  '<div class="bd-green text-center cursor-pointer div-list-img-btn" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
+                  '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
                     '<span class="font-weight-600 font-size-16" >'+product_name+'</span><br>' + 
                     '<span class="font-weight-600 font-size-14 text-red">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
                     '</div>' +
@@ -784,8 +784,8 @@ function index(){
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
 						'</div>' +
-						'<div class="bd-green text-center cursor-pointer div-list-img-btn" data-toggle="modal" data-target="#img_upload">' +
-							'<span class="font-weight-600 font-size-16">Add Product</span> <br>' +
+						'<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" data-toggle="modal" data-target="#img_upload">' +
+							'<span class="font-weight-600 font-size-16">Add Product</span><br>' +
 							'<span class="font-weight-600 font-size-14 text-red">PHP 0.00</span>' +
 						'</div>' +
       				'</div>'  );

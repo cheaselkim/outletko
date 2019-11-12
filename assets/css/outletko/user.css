@@ -185,7 +185,7 @@ textarea{
 
 /*LEFT SIDEBAR (CONTACT US)*/
 .div-left-contacts{
-	height: 200px;
+	height: 230px;
 	width: 205px;
 	background: white;
 }
@@ -247,6 +247,7 @@ textarea{
 
 .div-list-img-btn{
 /*	width: 225px;*/
+	line-height: 17px;
 	width: 100%;
 }
 

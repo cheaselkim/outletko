@@ -4,7 +4,7 @@
 
 <script type="text/javascript" src="<?php echo base_url('js/outletko/seller/header.js') ?>"></script>
 <!-- NAVRBAR -->
-<nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
+<nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
 	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
