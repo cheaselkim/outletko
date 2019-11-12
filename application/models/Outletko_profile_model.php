@@ -29,6 +29,22 @@ class Outletko_profile_model extends CI_Model {
         return $query;        
     }
 
+    public function search_city($city){
+        $query = $this->db->query("SELECT 
+            province_desc,
+            city_desc,
+             `city`.`province_id` AS prov_id,
+             `city`.`id` AS city_id
+            FROM province 
+            INNER JOIN city ON
+            `city`.`province_id` = `province`.`id`
+            WHERE CONCAT(city_desc, ', ' , province_desc) LIKE ?
+            ORDER BY city_desc, province_desc
+            LIMIT 10", array($city.'%'))->result();
+        return $query;
+    }
+
+
     public function get_profile_dtl($id){
         $query = $this->db2->query("
         SELECT acc.*,
@@ -69,6 +85,7 @@ class Outletko_profile_model extends CI_Model {
         $this->db2->select('*');
         $this->db2->from('products');
         $this->db2->where('account_id', $this->session->userdata("comp_id"));
+        $this->db2->where("product_status", 1);
         // $this->db2->limit(6);
         $query = $this->db2->get();
         return $query->result();
@@ -298,6 +315,26 @@ class Outletko_profile_model extends CI_Model {
         return $status;
     }
     
+    public function delete_product($id){
+        $this->db2->where("id", $id);
+        $this->db2->set("product_status", 0);
+        $this->db2->update("products");
+        // $this->db2->delete("products");
+
+        if($this->db2->trans_status() === FALSE){
+            $db_error = "";
+            $db_error = $this->db->error();
+            $this->db2->trans_rollback();
+           $status = $db_error;
+        }else{  
+            $this->db2->trans_commit();
+            $status = "success";
+        }   
+
+        return $status;
+
+
+    }
     
     // profile picture
     

@@ -59,6 +59,24 @@ class Outletko_profile extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function search_city(){
+
+        $city = $this->input->post("city", TRUE);
+		$data = array();
+		$data['response'] = "false";
+
+		$result = $this->outletko_profile_model->search_city($city);
+		if (!empty($result)){
+			$data['response'] = "true";
+			foreach ($result as $key => $value) {
+				$data['result'][] = array("label" => ($value->city_desc.", ".$value->province_desc), "province" => $value->province_desc, "prov_id" => $value->prov_id, "city_id" => $value->city_id);
+			}
+		}
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 	public function get_profile_dtl(){
     	$id = $this->session->userdata("account_id");
     	$data['result'] = $this->outletko_profile_model->get_profile_dtl($id);
@@ -337,7 +355,13 @@ class Outletko_profile extends CI_Controller {
         echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash())); 
     }
 
-    
+    public function delete_product(){
+        $id = $this->input->post("id");
+        $data['result'] = $this->outletko_profile_model->delete_product($id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
     // Profile Picture
 
     public function upload_profile_image() {

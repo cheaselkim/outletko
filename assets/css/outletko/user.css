@@ -58,7 +58,7 @@ textarea{
 
 .input-group-append span{
 	height: 35px;
-	border-left: : 2px solid #AEDCBF !important;
+	border-left:  2px solid #AEDCBF !important;
 }
 
 .input-group-append span.cursor-pointer:active{
@@ -312,6 +312,12 @@ textarea{
 
 .div-list-category{
 	height: 150px;
+	overflow: auto;
+}
+
+.div-prod-cat-tbl{
+	height: 300px;
+	overflow: auto;
 }
 
 }

@@ -223,7 +223,7 @@
 								<span class="text-capitalize">City / Town <span class="text-red">*</span></span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
-								<input type="text" class="form-control textbox-green2" id="input_city">
+								<input type="text" class="form-control textbox-green2" id="input_city" data-id="0">
 							</div>
 						</div>
 
@@ -232,7 +232,7 @@
 								<span class="text-capitalize">Province <span class="text-red">*</span></span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
-								<input type="text" class="form-control textbox-green2" id="input_province">
+								<input type="text" class="form-control textbox-green2" id="input_province" data-id="0" readonly>
 							</div>
 						</div>
 
@@ -1126,8 +1126,11 @@
             <div class="modal-footer text-sales modal-ftr-bg py-2">
             	<div class="container px-0">	
 	            	<div class="row">
-	            		<div class="col-lg-8"></div>
-	            		<div class="col-lg-2 pad-right">
+	            		<div class="col-lg-6"></div>
+						<div class="col-lg-2 pad-right">
+							<button class="btn btn-danger btn-block font-weight-600" id="delete_product" data-dismiss="modal">Delete</button>
+						</div>
+	            		<div class="col-lg-2 pad-center">
 			            	<button class="btn btn-green2 btn-block font-weight-600" id="save_product" data-dismiss="modal">Save</button>            			
 	            		</div>	
 	            		<div class="col-lg-2 pad-left">
@@ -1323,17 +1326,18 @@
 
 				<div class="row mt-3">
 					<div class="col-12">
-						<table class="table table-sm table-bordered" id="prod_cat_tbl">
-							<thead>
-								<tr>
-									<th style="width: 90%;">Category</th>
-									<th style="width: 10%;" colspan="2">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-						
+						<div class="div-prod-cat-tbl">
+							<table class="table table-sm table-bordered" id="prod_cat_tbl">
+								<thead>
+									<tr>
+										<th style="width: 90%;">Category</th>
+										<th style="width: 10%;" colspan="2">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>						
 					</div>
 				</div>
 
