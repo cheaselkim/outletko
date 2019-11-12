@@ -599,8 +599,8 @@ function index(){
         $("#text-buss-type").text(result.result[0].desc_cat);
         $("#text-buss-address").text((address == "" ? "No Address" : address));
         
-        $("#text_aboutus").text(result.result[0].about_us);
-        
+        $("#text_aboutus").text(result.result[0].about_us.substring(0, 200));
+       
         $("#email_text").text(" "+ (result.result[0].email == null ? "" : result.result[0].email));
         $("#tel_text").text(" "+(result.result[0].telephone_no == null ? "" : result.result[0].telephone_no));
         $("#mobile_text").text(" "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));
@@ -618,11 +618,12 @@ function index(){
         $("#shopee_text").prepend("<i class='fas fa-shopping-bag'></i>");
     //for text
     
-    
+    	var aboutus_length = result.result[0].about_us.substring(0, 200)
+
     //for inputs
         $("#input_businessname").val(result.result[0].account_name);
-        $("#input_aboutus").val(result.result[0].about_us);
-        $("#input_aboutus_length").text(result.result[0].about_us.length);
+        $("#input_aboutus").val(result.result[0].about_us.substring(0, 200));
+        $("#input_aboutus_length").text(aboutus_length.length);
         $("#input_bussinesscategory").val(result.result[0].business_category);
 
         $("#input_bldg").val();
