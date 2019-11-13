@@ -92,7 +92,8 @@ class Buyer extends CI_Controller {
 		$data['result'] = $this->buyer_model->get_order_checkout($prod_id);
 		$data['delivery_type'] = $this->buyer_model->delivery_type($data['result'][0]->account_id);
 		$data['payment_type'] = $this->buyer_model->payment_type($data['result'][0]->account_id);
-
+		$data['sched_time'] = $this->buyer_model->get_sched_time($data['result'][0]->account_id);
+ 
 		$data['token'] = $this->security->get_csrf_hash();
 		$data['seller_id'] = $data['result'][0]->account_id;
 

@@ -27,9 +27,9 @@ if (!function_exists("tbl_query")){
 										<img src='".$img_loc."' class='img-prof img-thumbnail'>
 									</div>
 									<div class='col-sm-10 pr-0'>
-										<span class='text-black h4'>".$value->account_name."</span><br>
+										<span class='text-black h5'>".$value->account_name."</span><br>
 										<small class='text-black'>".$address."</small><br>
-										<small class='text-black'>+63".$value->mobile_no."</small><br>
+										<small class='text-black' hidden>+63".$value->mobile_no."</small>
 										<span class='text-black'>".substr($value->about_us, 0, 120)."...</span><br>
 									</div>
 								</div>

@@ -23,7 +23,7 @@ $(document).ready(function(){
 		swal({
 			type : "warning",
 			title : "Confrim Order? ",
-			text : "Once confirm not allowed to cancel unless seller cancel the order",
+			text : "Once confirmed, you are no longer allowed to cancel unless the seller cancels the order",
 			showCancelButton: true,
 			confirmButtonClass: "btn-danger",
 			confirmButtonText: "Yes",
@@ -40,14 +40,19 @@ $(document).ready(function(){
 	});
 
 	$("#delivery_type").change(function(){
+			$("#sched_date").val("");
+			$("#sched_time").val("");
 			$("#sched_date").prop("readonly", true);
 			$("#sched_time").prop("disabled", true);
 			$("#payment_type").prop("disabled", true);
 
 		if ($(this).val() == "1"){
+			$("#sched_date").val($.datepicker.formatDate('yy-mm-dd', new Date()));
 			$("#sched_date").prop("readonly", false);
 			$("#sched_time").prop("disabled", false);
+			$("#sched_time").addClass("bg-white");
 		}else{
+			$("#sched_time").removeClass("bg-white");
 			$("#payment_type").prop("disabled", false);
 		}
 
@@ -121,6 +126,41 @@ $(document).ready(function(){
 			$("#div-transactions").addClass("show");
 		}
 
+	});
+
+	$("#bill_city").autocomplete({
+		focus: function(event, ui){
+			$("#bill_province").val(ui.item.province);
+		},
+		select: function(event, ui){
+			$("#bill_province").val(ui.item.province);
+			$("#bill_city").attr("data-id", ui.item.city_id);
+			$("#bill_province").attr("data-id", ui.item.prov_id);
+		},
+		source: function(req, add){
+		    var csrf_name = $("input[name=csrf_name]").val();
+			var city = $("#bill_city").val();
+        $.ajax({
+          url: base_url + "Outletko_profile/search_city/", 
+          dataType: "JSON",
+          type: "POST",
+          data: {'city' : city, csrf_name : csrf_name},
+          success: function(data){
+            $("input[name=csrf_name]").val(data.token);
+            if(data.response =="true"){
+                add(data.result);
+            }else{
+              $("#bill_city").val("");
+              $("#bill_province").val("");
+              $("#bill_city").attr("data-id", "0");
+              $("#bill_province").attr("data-id", "0");
+              add('');
+            }
+          }, error: function(err){
+            console.log("Error: " + err.responseText);
+          }
+        });
+		}
 	});
 
 
@@ -469,6 +509,34 @@ function get_order_checkout(div_id){
 					$("#delivery_type").append("<option value='"+result.delivery_type[i].id+"'>"+result.delivery_type[i].delivery_type+"</option>");
 				}
 
+				console.log(result.sched_time);
+				console.log(Number(result.sched_time[0].start_time.substring(0, 2)));
+				console.log(result.sched_time[0].start_time.substring(0,5));
+				console.log(result.sched_time[0].end_time.substring(0,5));
+
+				var sched_day = "";
+
+				$('#sched_time').timepicker({
+					// defaultTime : Number(result.sched_time[0].start_time.substring(0, 2)),
+					timeFormat: 'h:mm p',
+					interval: 30,
+					dynamic: false,
+					dropdown: true,
+					scrollbar: true,			
+					minTime : result.sched_time[0].start_time.substring(0, 5),
+					maxTime : result.sched_time[0].end_time.substring(0,5)
+				});
+							  
+				sched_day += (result.sched_time[0].mon == "1" ? "M, " : "");
+				sched_day += (result.sched_time[0].tue == "1" ? "T, " : "");
+				sched_day += (result.sched_time[0].wed == "1" ? "W, " : "");
+				sched_day += (result.sched_time[0].thu == "1" ? "TH, " : "");
+				sched_day += (result.sched_time[0].fri == "1" ? "F, " : "");
+				sched_day += (result.sched_time[0].sat == "1" ? "S, " : "");
+				sched_day += (result.sched_time[0].sun == "1" ? "SU " : "");
+
+				$("#sched_day").text(sched_day);
+
 				$("#payment_type").prop("selectedIndex", 1);
 				$("#delivery_type").prop("selectedIndex", 3);
 				$("#payment_type").prop("disabled", false);
@@ -502,7 +570,7 @@ function get_order_checkout(div_id){
 					shipping_fee_w_mm += prod_dtls[i].ship_fee_w_mm;
 					shipping_fee_o_mm += prod_dtls[i].ship_fee_o_mm;
 
-					sub_total += (prod_dtls[i].prod_qty * prod_dtls[i].product_unit_price);
+					sub_total += (prod_qty * prod_dtls[i].product_unit_price);
 				}
 
 				if ($("#bill_province").attr("data-id") == "52"){

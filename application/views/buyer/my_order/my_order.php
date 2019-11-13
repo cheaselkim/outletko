@@ -356,17 +356,22 @@
 								</div>
 								<div class="col-4 pad-center">
 									<span>City <span class="text-red">*</span></span>
-									<input type="text" class="form-control" id="bill_city" data-id="1024">
+									<input type="text" class="form-control" id="bill_city" data-id="0">
 								</div>
 								<div class="col-4 pad-left">
 									<span>Province <span class="text-red">*</span></span>
-									<input type="text" class="form-control" id="bill_province" data-id="52">
+									<input type="text" class="form-control" id="bill_province" data-id="0" readonly>
 								</div>
 							</div>
 							<div class="row pt-1">
 								<div class="col-4 pad-right">
 									<span>Mobile Number <span class="text-red">*</span></span>
-									<input type="text" class="form-control" id="bill_mobile">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-white" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+										</div>
+										<input type="text" class="form-control" id="bill_mobile">
+									</div>
 								</div>
 								<div class="col-4 pad-center">
 									<span>Email <span class="text-red">*</span></span>
@@ -401,15 +406,16 @@
 							</div>
 							<div class="row">
 								<div class="col-6">
-									<span>Scheduled Date</span>
+									<span>Scheduled Date <span>(Available Days : <i id="sched_day">M,T,W,TH,F,S,SU</i> )</span> </span>
 									<input type="date" class="form-control" id="sched_date" readonly>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-6">
 									<span>Scheduled Time</span>
-									<select class="form-control" id="sched_time" disabled>
-									</select>
+									<!-- <select class="form-control bg-white" id="sched_time" disabled>
+									</select> -->
+									<input type="text" class="form-control" id="sched_time" disabled readonly> 
 								</div>
 							</div>
 							<div class="row">

@@ -38,6 +38,11 @@ class Buyer_model extends CI_Model {
         return $query;
     }
 
+    public function get_sched_time($comp_id){
+        $query = $this->db2->query("SELECT * FROM account_appointment WHERE comp_id = ?", array($comp_id))->result();
+        return $query;
+    }
+
     public function get_orders(){
 
         $query = $this->db2->query("
