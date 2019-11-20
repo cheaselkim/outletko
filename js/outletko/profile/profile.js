@@ -219,7 +219,8 @@ function get_product_info(id){
     dataType : "JSON",
     url : base_url + "Profile/get_product_info",
     success : function(data){
-/*      console.log(data.products[0]);*/
+      console.log(data.products[0]);
+      console.log(data.payment_type[0]);
       $("input[name=csrf_name]").val(data.token);
 
       $("#prod-name").text(data.products[0].product_name);
@@ -230,6 +231,13 @@ function get_product_info(id){
       $("#prod-weight").text("Weight : " + $.number(data.products[0].product_weight, 2));
       $("#std_del").text(data.products[0].delivery_type);
       $("#prod_id").val(data.products[0].id);
+
+      $("#prod_payment_type").text((data.payment_type[0].payment_type == null ? "None" : data.payment_type[0].payment_type));
+      $("#prod_delivery_type").text((data.products[0].delivery_type == null ? "None" : data.products[0].delivery_type));
+      $("#prod_del_opt").text((data.products[0].product_del_opt == null ? "None" : data.products[0].product_del_opt));
+      $("#prod_return").text((data.products[0].product_return == null ? "None" : data.products[0].product_return));
+      $("#prod_warranty").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));
+
 
       $("#shipp_w_mm").text($.number(data.products[0].ship_w_mm, 2));
       $("#shipp_o_mm").text($.number(data.products[0].ship_o_mm, 2));

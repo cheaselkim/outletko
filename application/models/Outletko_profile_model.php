@@ -252,9 +252,27 @@ class Outletko_profile_model extends CI_Model {
             $data['date_insert'] = date("Y-m-d H:i:s");
             $this->db2->insert("account_appointment", $data);
         }
+    }
 
+    public function save_warranty($warranty, $return){
+        $data['account_warranty'] = $warranty;
+        $data['account_return'] = $return;
+        $data['comp_id'] = $this->session->userdata("comp_id");
+
+        $query = $this->db2->query("SELECT * FROM account_warranty WHERE comp_id = ?", array($this->session->userdata("comp_id")))->result();
+
+        if (!empty($query)){
+            $data['date_update'] = date("Y-m-d H:i:s");
+            $this->db2->where("comp_id", $this->session->userdata("comp_id"));
+            $this->db2->update("account_warranty", $data);
+        }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
+            $this->db2->insert("account_warranty", $data);
+        }
 
     }
+
+
 
     public function update_profile($account_hdr,$account_id) {
         $this->db2->where('account_id',$account_id);
@@ -422,6 +440,11 @@ class Outletko_profile_model extends CI_Model {
 
     public function get_prod_category(){
         $query = $this->db2->query("SELECT * FROM product_category WHERE comp_id = ?", array($this->session->userdata("comp_id")))->result();
+        return $query;
+    }
+
+    public function get_warranty(){
+        $query = $this->db2->query("SELECT * FROM account_warranty WHERE comp_id = ? ", array($this->session->userdata("comp_id")))->result();
         return $query;
     }
 

@@ -497,7 +497,39 @@
 									</div>
 								</div>
 
+								<div class="row" id="div-for-warranty">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<hr class="my-2 hr-green">
+
+										<div class="row mb-3">
+											<div class="col-lg-12 col-md-12 col-sm-12">
+												<span class="font-size-18 font-weight-600 text-uppercase">Returns & Warranty</span>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-2 col-lg-2 col-md-4 col-sm-6">
+												<span class="font-size-18">Returns <span class="text-red">*</span> </span>
+											</div>
+											<div class="col-10 col-lg-10 col-md-8 col-sm-6">
+												<input type="text" class="form-control textbox-green2" id="inp_return" placeholder="7 Days Return">
+											</div>
+										</div>
+
+										<div class="row mt-1">
+											<div class="col-2 col-lg-2 col-md-4 col-sm-6">
+												<span class="font-size-18">Warranty <span class="text-red">*</span> </span>
+											</div>
+											<div class="col-10 col-lg-10 col-md-8 col-sm-6">
+												<input type="text" class="form-control textbox-green2" id="inp_warranty" placeholder="30 Days Warranty">
+											</div>
+										</div>
+
+									</div>
+								</div>
+
 								<hr class="my-4 hr-green">
+
 
 								<div class="row">
 									<div class="col-lg-3 col-md-3 col-sm-12"></div>
@@ -1079,7 +1111,7 @@
 		                    	</div>
 		                    </div>
 
-		                    <div class="form-group mb-0 row">
+		                    <div class="form-group mb-0 row" >
 		                    	<div class="col-12 col-md-12 col-lg-12">
 		                    		<span class="font-weight-600">Standard Delivery</span>
 		                    		<!-- <input type="text" class="form-control textbox-green2" id=""> -->
@@ -1093,7 +1125,7 @@
 		                    	<div class="col-12 col-md-12 col-lg-12">
 		                    		
 		                    		<div class="row my-2">
-		                    			<div class="col-lg-6">
+		                    			<div class="col-lg-8">
 		                    				<span>Shipping Fee (Within Metro Manila)</span>
 		                    			</div>
 		                    			<div class="col-lg-4">
@@ -1109,7 +1141,7 @@
 		                    		</div>
 
 		                    		<div class="row">
-		                    			<div class="col-lg-6">
+		                    			<div class="col-lg-8">
 		                    				<span>Shipping Fee (Outside Metro Manila)</span>
 		                    			</div>
 		                    			<div class="col-lg-4">
@@ -1124,6 +1156,22 @@
 
 		                    	</div>
 		                    </div>
+
+
+							<div class="form-group mb-0 row">
+								<div class="col-12 col-md-12 col-lg-12">
+									<span class="font-weight-600">Delivery Options <span class="text-red">*</span> </span>
+									<input type="text" class="form-control textbox-green2" id="prod_del_opt" placeholder="1 to 3 days Delivery">
+								</div>
+							</div>
+
+							<div class="form-group mb-0 row">
+								<div class="col-12 col-md-12 col-lg-12">
+									<span class="font-weight-600">Returns & Warranty <span class="text-red">*</span></span>
+									<input type="text" class="form-control textbox-green2" id="prod_return" placeholder="7 Days Return">
+									<input type="text" class="form-control textbox-green2 mt-1" id="prod_warranty" placeholder="30 Days Warranty">
+								</div>
+							</div>
 
 		                </div>
 

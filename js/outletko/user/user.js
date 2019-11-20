@@ -128,13 +128,13 @@ $(document).ready(function(){
         $("#btn-day-"+i).val(0);
       }
 
-      $('#ftime').timepicker({
-          startTime: '8:00'      
-      });
+      // $('#ftime').timepicker({
+      //     startTime: '8:00'      
+      // });
 
-      $('#ttime').timepicker({
-          startTime: '17:00'
-      });
+      // $('#ttime').timepicker({
+      //     startTime: '17:00'
+      // });
 
 
 
@@ -153,25 +153,25 @@ $(document).ready(function(){
   });
 
 
-  $('#ftime').timepicker({
-      timeFormat: 'h:mm p',
-      interval: 30,
-      defaultTime : '8',
-      startTime: '8:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-  });
+  // $('#ftime').timepicker({
+  //     timeFormat: 'h:mm p',
+  //     interval: 30,
+  //     defaultTime : '8',
+  //     startTime: '8:00',
+  //     dynamic: false,
+  //     dropdown: true,
+  //     scrollbar: true
+  // });
 
-  $('#ttime').timepicker({
-      timeFormat: 'h:mm p',
-      interval: 30,
-      defaultTime: '17',
-      startTime: '17:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-  });
+  // $('#ttime').timepicker({
+  //     timeFormat: 'h:mm p',
+  //     interval: 30,
+  //     defaultTime: '17',
+  //     startTime: '17:00',
+  //     dynamic: false,
+  //     dropdown: true,
+  //     scrollbar: true
+  // });
 
 
 	/* MY ORDER */
@@ -731,20 +731,21 @@ function index(){
         // $("#ftime").val(result.appointment[0].start_time);
         // $("#ttime").val(result.appointment[0].end_time);
 
-        $("#ftime").timepicker({
-          startTime : result.appointment[0].startTime
-        });
+        // $("#ftime").timepicker({
+        //   startTime : result.appointment[0].startTime
+        // });
 
-        $("#ttime").timepicker({
-          startTime : result.appointment[0].startTime
-        });
+        // $("#ttime").timepicker({
+        //   startTime : result.appointment[0].startTime
+        // });
 
 
       }
 
-      // console.log(result.payment_type);
-      // console.log(result.delivery_type);
-      // console.log(result.delivery_type);
+      if (result.warranty.length != 0){
+        $("#inp_warranty").val(result.warranty[0].account_warranty);
+        $("#inp_return").val(result.warranty[0].account_return);
+      }
 
 
     //products
@@ -1287,6 +1288,8 @@ function check_payment(){
 
   var payment_type = 0;
   var delivery_type = 0;
+  var inp_return = jQuery.trim($("#inp_return").val()).length;
+  var inp_warranty = jQuery.trim($("#inp_warranty").val()).length;
 
   $('.payment_type').each(function () {
    if (this.checked) {
@@ -1301,7 +1304,7 @@ function check_payment(){
   });
 
 
-  if (payment_type == 0 || delivery_type == 0){
+  if (payment_type == 0 || delivery_type == 0 || inp_return == 0 || inp_warranty == 0){
     swal({
       type : "warning",
       title : "Please input all required Fields"
@@ -1322,10 +1325,13 @@ function check_product(){
   var prod_condition = $("#prod_condition").val();
   var prod_stock = $("#prod_stock").val();
   var prod_weight = $("#prod_weight").val();
+  var prod_del_opt = $("#prod_del_opt").val();
+  var prod_return = $("#prod_return").val();
+  var prod_warranty = $("#prod_warranty").val();
   var imgInp = $("#imgInp").val();
   product_category = 1;
 
-  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == "" || prod_category == "" || prod_condition == ""){
+  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == "" || prod_category == "" || prod_condition == "" || prod_del_opt == "" || prod_return == "" || prod_warranty == ""){
     swal({
       type : "error",
       title : "Please input all required fields"
@@ -1418,6 +1424,8 @@ function save_payment(){
   var payment_type = new Array();
   var delivery_type = new Array();
   var appointment = new Array();
+  var inp_return = $("#inp_return").val();
+  var inp_warranty = $("#inp_warranty").val();
   var sub = "";
   var i = 0;
 
@@ -1472,7 +1480,7 @@ function save_payment(){
   var ship_o_mm = $("#ship_o_mm").val();
 
   $.ajax({
-    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment},
+    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Outletko_profile/save_payment",
@@ -1501,6 +1509,9 @@ function save_product(){
   var prod_stock = $("#prod_stock").val();
   var prod_weight = $("#prod_weight").val();
   var prod_del = $("#prod_std_delivery").val();
+  var prod_del_opt = $("#prod_del_opt").val();
+  var prod_return = $("#prod_return").val();
+  var prod_warranty = $("#prod_warranty").val();
   var prod_ship_fee_w_mm = $("#prod_ship_fee_w_mm").val();
   var prod_ship_fee_o_mm = $("#prod_ship_fee_o_mm").val();
   var imgInp = $("#imgInp").val();
@@ -1520,6 +1531,9 @@ function save_product(){
     product_stock : prod_stock,
     product_weight : prod_weight,
     product_delivery : prod_del,
+    product_del_opt : prod_del_opt,
+    product_return : prod_return,
+    product_warranty : prod_warranty,
     ship_fee_w_mm : prod_ship_fee_w_mm,
     ship_fee_o_mm : prod_ship_fee_o_mm
   } 
@@ -1752,7 +1766,19 @@ function get_product_info(id){
             $("#prod_ship_fee_w_mm").val(data.products[0].ship_fee_w_mm);
             $("#prod_ship_fee_o_mm").val(data.products[0].ship_fee_o_mm);
             
-        }, error: function(err){
+            if (jQuery.trim(data.products[0].product_return).length != 0){
+              $("#prod_return").val(data.products[0].product_return);
+            }else{
+              $("#prod_return").val($("#inp_return").val());
+            }
+
+            if (jQuery.trim(data.products[0].product_warranty).length != 0){
+              $("#prod_warranty").val(data.products[0].product_warranty);
+            }else{
+              $("#prod_warranty").val($("#inp_warranty").val());
+            }
+
+          }, error: function(err){
           console.log(err.responseText);
         }
     });

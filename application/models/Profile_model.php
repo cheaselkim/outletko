@@ -27,15 +27,15 @@ class Profile_model extends CI_Model {
         
         FROM `account` as acc
         
-        LEFT JOIN `eoutletsuite_dbase`.`province` as prov
+        LEFT JOIN `province` as prov
         
         on acc.province = prov.id
         
-        LEFT JOIN `eoutletsuite_dbase`.`city` as city
+        LEFT JOIN `city` as city
         
         on acc.city = city.id
         
-        LEFT JOIN `eoutletsuite_dbase`.`business_type` as bus_type
+        LEFT JOIN `business_type` as bus_type
         
         on acc.business_category = bus_type.id
         
@@ -69,6 +69,38 @@ class Profile_model extends CI_Model {
         $query = $this->db2->get();
         return $query->result();
     }	
+
+    public function get_payment_type($comp_id){
+        $query = $this->db2->query("
+        SELECT GROUP_CONCAT(' ', payment_type.payment_type) AS payment_type
+        FROM account_payment_type 
+        LEFT JOIN payment_type ON 
+        account_payment_type.payment_type_id = payment_type.id
+        WHERE account_payment_type.account_id = ? AND account_payment_type.payment_type_check = ?        
+        ", array($comp_id, "1"))->result();
+        return $query;
+    }
+
+    public function get_product_return($comp_id){
+        $query = $this->db2->query("SELECT account_return FROM account_warranty WHERE comp_id = ? ", array($comp_id))->row();
+
+        if (!empty($query->account_return)){
+            return $query->account_return;
+        }else{
+            return null;
+        }
+    }
+
+    public function get_product_warranty($comp_id){
+        $query = $this->db2->query("SELECT account_warranty FROM account_warranty WHERE comp_id = ? ", array($comp_id))->row();
+
+        if (!empty($query->account_warranty)){
+            return $query->account_warranty;
+        }else{
+            return null;
+        }
+
+    }
 
     public function insert_prod($data){
         $query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $data['prod_id']))->result();

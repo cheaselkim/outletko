@@ -136,6 +136,7 @@ $(document).ready(function(){
 			$("#bill_province").val(ui.item.province);
 			$("#bill_city").attr("data-id", ui.item.city_id);
 			$("#bill_province").attr("data-id", ui.item.prov_id);
+			get_order_checkout($("#div_id").val());
 		},
 		source: function(req, add){
 		    var csrf_name = $("input[name=csrf_name]").val();
@@ -177,7 +178,6 @@ function get_billing(){
 		success : function(result){
 			var data = result.result[0];
 			$("input[name=csrf_name]").val(result.token);
-
 			$("#bill_address").val(data.address);
 			$("#bill_barangay").val(data.barangay);
 			$("#bill_city").val(data.city_desc);
@@ -465,8 +465,10 @@ function delete_item(id){
 
 
 function get_order_checkout(div_id){
+	$("#div_id").val(div_id);
+
 	var csrf_name = $("input[name=csrf_name]").val();
-	var shipping_fee = 0;
+	var shipping_fee = "";
 	// var prod_id = [];
 	var prod_id = [];
 	var products = [];
@@ -480,6 +482,7 @@ function get_order_checkout(div_id){
         }
         products.push(sub);
     });	
+
 
 
 	if (products.length == 0){
@@ -509,31 +512,37 @@ function get_order_checkout(div_id){
 					$("#delivery_type").append("<option value='"+result.delivery_type[i].id+"'>"+result.delivery_type[i].delivery_type+"</option>");
 				}
 
-				console.log(result.sched_time);
-				console.log(Number(result.sched_time[0].start_time.substring(0, 2)));
-				console.log(result.sched_time[0].start_time.substring(0,5));
-				console.log(result.sched_time[0].end_time.substring(0,5));
+				// console.log(result.sched_time);
+				// console.log(Number(result.sched_time[0].start_time.substring(0, 2)));
+				// console.log(result.sched_time[0].start_time.substring(0,5));
+				// console.log(result.sched_time[0].end_time.substring(0,5));
 
 				var sched_day = "";
+				console.log(result.sched_time.length);
 
-				$('#sched_time').timepicker({
-					// defaultTime : Number(result.sched_time[0].start_time.substring(0, 2)),
-					timeFormat: 'h:mm p',
-					interval: 30,
-					dynamic: false,
-					dropdown: true,
-					scrollbar: true,			
-					minTime : result.sched_time[0].start_time.substring(0, 5),
-					maxTime : result.sched_time[0].end_time.substring(0,5)
-				});
-							  
-				sched_day += (result.sched_time[0].mon == "1" ? "M, " : "");
-				sched_day += (result.sched_time[0].tue == "1" ? "T, " : "");
-				sched_day += (result.sched_time[0].wed == "1" ? "W, " : "");
-				sched_day += (result.sched_time[0].thu == "1" ? "TH, " : "");
-				sched_day += (result.sched_time[0].fri == "1" ? "F, " : "");
-				sched_day += (result.sched_time[0].sat == "1" ? "S, " : "");
-				sched_day += (result.sched_time[0].sun == "1" ? "SU " : "");
+				if (result.sched_time.length != 0){
+
+					$('#sched_time').timepicker({
+						// defaultTime : Number(result.sched_time[0].start_time.substring(0, 2)),
+						timeFormat: 'h:mm p',
+						interval: 30,
+						dynamic: false,
+						dropdown: true,
+						scrollbar: true,			
+						minTime : result.sched_time[0].start_time.substring(0, 5),
+						maxTime : result.sched_time[0].end_time.substring(0,5)
+					});
+								  
+					sched_day += (result.sched_time[0].mon == "1" ? "M, " : "");
+					sched_day += (result.sched_time[0].tue == "1" ? "T, " : "");
+					sched_day += (result.sched_time[0].wed == "1" ? "W, " : "");
+					sched_day += (result.sched_time[0].thu == "1" ? "TH, " : "");
+					sched_day += (result.sched_time[0].fri == "1" ? "F, " : "");
+					sched_day += (result.sched_time[0].sat == "1" ? "S, " : "");
+					sched_day += (result.sched_time[0].sun == "1" ? "SU " : "");	
+
+				}
+
 
 				$("#sched_day").text(sched_day);
 
@@ -567,20 +576,28 @@ function get_order_checkout(div_id){
 					"</td><td class='text-right prod_id' hidden>" + prod_dtls[i].id + 
 					"</td></tr>");
 
-					shipping_fee_w_mm += prod_dtls[i].ship_fee_w_mm;
-					shipping_fee_o_mm += prod_dtls[i].ship_fee_o_mm;
+					shipping_fee_w_mm += Number(prod_dtls[i].ship_fee_w_mm);
+					shipping_fee_o_mm += Number(prod_dtls[i].ship_fee_o_mm);
 
-					sub_total += (prod_qty * prod_dtls[i].product_unit_price);
+					sub_total += (Number(prod_qty) * Number(prod_dtls[i].product_unit_price));
 				}
+
+				console.log($("#bill_province").attr("data-id"));
 
 				if ($("#bill_province").attr("data-id") == "52"){
 					shipping_fee = shipping_fee_w_mm;
+				}else if ($("#bill_province").attr("data-id") == "0"){
+					shipping_fee = 0;
 				}else{	
 					shipping_fee = shipping_fee_o_mm;
 				}
 
+				console.log(sub_total);
+				console.log(shipping_fee);
+				console.log("Total " + $.number((Number(sub_total) + Number(shipping_fee)), 2));
+
 				$("#shipping_fee").text($.number(shipping_fee, 2));
-				$("#shipping_fee").attr("data-id", shipping_fee);			
+				$("#shipping_fee").attr("data-id", Number(shipping_fee));			
 				$("#sub_total").text($.number(sub_total, 2));
 				$("#sub_total").attr("data-id", sub_total);
 				$("#total_amount").text("PHP " + $.number((Number(sub_total) + Number(shipping_fee)), 2));
@@ -697,18 +714,20 @@ function confirm_order(){
     	"total_amount" : total_amount
     }
 
+    // 	beforeSend : function(){
+    // 		swal({
+    // 			title : "Saving....",
+				// showCancelButton: false, 
+				// showConfirmButton: false
+    // 		})
+    // 	},
+
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data},
     	type : "POST",
     	dataType : "JSON",
     	url : base_url + "Buyer/confirm_order",
-    	beforeSend : function(){
-    		swal({
-    			title : "Saving....",
-				showCancelButton: false, 
-				showConfirmButton: false
-    		})
-    	},success : function(result){
+		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 			swal({
 				type : "success",

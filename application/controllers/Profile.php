@@ -54,6 +54,7 @@ class Profile extends CI_Controller {
 		$result = $this->profile_model->get_product_info($id);
 		foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
+            $data['payment_type'] = $this->profile_model->get_payment_type($row->account_id);
             $data['products'][] = array(
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
@@ -65,11 +66,14 @@ class Profile extends CI_Controller {
                 "product_weight" => $row->product_weight,
                 "product_delivery" => $row->product_delivery,
                 "delivery_type" => $row->delivery_type,
+                "product_del_opt" => $row->product_del_opt,
+                "product_return" => ($row->product_return != "" ? $row->product_return : $this->profile_model->get_product_return($row->account_id)),
+                "product_warranty" => ($row->product_warranty != "" ? $row->product_warranty : $this->profile_model->get_product_warranty($row->account_id)),
                 "ship_w_mm" => $row->ship_fee_w_mm,
                 "ship_o_mm" => $row->ship_fee_o_mm,
                 "img_location" => $unserialized_files,
                 "id" => $row->id);
-        }
+            }
         $data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}

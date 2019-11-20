@@ -88,6 +88,7 @@ class Outletko_profile extends CI_Controller {
         $data['shipping_fee'] = $this->outletko_profile_model->get_shipping_fee();
         $data['appointment'] = $this->outletko_profile_model->get_appointment();
         $data['prod_category'] = $this->outletko_profile_model->get_prod_category();
+        $data['warranty'] = $this->outletko_profile_model->get_warranty();
     	$data['products']="";
         
         foreach ($data['result'] as $key => $value) {
@@ -192,6 +193,8 @@ class Outletko_profile extends CI_Controller {
         $ship_w_mm = $this->input->post("ship_w_mm");
         $ship_o_mm = $this->input->post("ship_o_mm");
         $appointment = $this->input->post("appointment");
+        $return = $this->input->post("inp_return");
+        $warranty = $this->input->post("inp_warranty");
 
         $data = array(
                 "std_delivery" => $std_del,

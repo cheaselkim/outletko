@@ -119,10 +119,51 @@
 								</div>
 
 								<div class="col-12 my-2 div-prod-dtls" >
-									<p id="prod-condition"></p>
-									<p id="prod-stock"></p>
+									<p id="prod-condition" hidden></p>
+									<p id="prod-stock" hidden></p>
 									<p id="prod-weight"></p>
 									<p id="prod-dtls"></p>
+
+									<div class="row">
+										<div class="col-12">
+											<span class="font-weight-600 font-size-18">Payment Type : </span>
+										</div>
+										<div class="col-12 pl-4">
+											<span id="prod_payment_type" class="font-size-16"></span>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-12">
+											<span class="font-weight-600 font-size-18">Delivery Type : </span>
+										</div>
+										<div class="col-12 pl-4">
+											<span id="prod_delivery_type" class="font-size-16"></span>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-12">
+											<span class="font-weight-600 font-size-18">Standard Delivery : </span>
+										</div>
+										<div class="col-12 pl-4">
+											<span id="prod_del_opt" class="font-size-16"></span>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-12">
+											<span class="font-weight-600 font-size-18">Returns & Warranty : </span>
+										</div>
+										<div class="col-12 pl-4">
+											<span id="prod_return" class="font-size-16"></span>
+										</div>
+										<div class="col-12 pl-4">
+											<span id="prod_warranty" class="font-size-16"></span>
+										</div>
+									</div>
+
+
 								</div>
 
 								<br>
