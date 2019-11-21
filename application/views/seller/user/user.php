@@ -407,6 +407,29 @@
 										</div>
 										
 										<div class="row pt-3">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right">
+												<button class="btn btn-outline-success px-5 ml-auto mb-2" id="btn_add_ship" data-toggle="modal" data-target="#modal_ship">Add Shipping Fee</button>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px; overflow: auto;">
+												<table class="table table-bordered table-sm" id="tbl-ship-fee">
+													<thead>
+														<tr>
+															<th style="width: 25%;" class="text-center">Courier</th>
+															<th style="width: 10%"  class="text-center">Kilo (Kg)</th>
+															<th style="width: 15%;" class="text-center">Metro Manila</th>
+															<th style="width: 15%;" class="text-center">Luzon</th>
+															<th style="width: 15%;" class="text-center">Visayas</th>
+															<th style="width: 15%;" class="text-center">Mindanao</th>
+															<th style="width: 5%;" colspan="2" class="text-center">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+										<div class="row pt-3" hidden>
 											<div class="col-lg-5 col-md-4 col-sm-6 pl-4">
 												<span class="text-capitalize">Shipping Fee (within Metro Manila)</span>
 											</div>
@@ -423,7 +446,7 @@
 										</div>
 
 
-										<div class="row pt-2">
+										<div class="row pt-2" hidden>
 											<div class="col-lg-5 col-md-4 col-sm-6 pl-4">
 												<span class="text-capitalize">Shipping Fee (Outside Metro Manila)</span>
 											</div>
@@ -1404,4 +1427,72 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal" id="modal_ship">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Shipping Fee</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+	  <input type="hidden" id="ship_id">
+	  	<div class="container">
+			<div class="row">
+				<div class="col-4">
+					<span class="font-weight-600">Courier</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control" id="ship_courier" data-id = "">
+				</div>
+			</div> 
+			<div class="row mt-1">
+				<div class="col-4">
+					<span class="font-weight-600">Kilo (Kg)</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control text-right" value="0" id="ship_kg">
+				</div>
+			</div>
+			<div class="row mt-1">
+				<div class="col-4">
+					<span class="font-weight-600">Metro Manila</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control text-right" value="0" id="ship_mm">
+				</div>
+			</div>
+			<div class="row mt-1">
+				<div class="col-4">
+					<span class="font-weight-600">Luzon</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control text-right" value="0" id="ship_luz">
+				</div>
+			</div>
+			<div class="row mt-1">
+				<div class="col-4">
+					<span class="font-weight-600">Visayas</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control text-right" value="0" id="ship_vis">
+				</div>
+			</div>
+			<div class="row mt-1">
+				<div class="col-4">
+					<span class="font-weight-600">Mindanao</span>
+				</div>
+				<div class="col-8">
+					<input type="text" class="form-control text-right" value="0" id="ship_min">
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+   	    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn-save-ship">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -89,6 +89,7 @@ class Outletko_profile extends CI_Controller {
         $data['appointment'] = $this->outletko_profile_model->get_appointment();
         $data['prod_category'] = $this->outletko_profile_model->get_prod_category();
         $data['warranty'] = $this->outletko_profile_model->get_warranty();
+        $data['courier'] = $this->outletko_profile_model->get_courier();
     	$data['products']="";
         
         foreach ($data['result'] as $key => $value) {
@@ -433,6 +434,50 @@ class Outletko_profile extends CI_Controller {
     public function delete_prod_category(){
         $id = $this->input->post("id");
         $data['result'] = $this->outletko_profile_model->delete_prod_category($id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function search_courier(){
+
+        $courier = $this->input->post("courier", TRUE);
+		$data = array();
+		$data['response'] = "false";
+
+		$result = $this->outletko_profile_model->search_courier($courier);
+		if (!empty($result)){
+			$data['response'] = "true";
+			foreach ($result as $key => $value) {
+				$data['result'][] = array("label" => $value->courier, "id" => $value->id);
+			}
+		}
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function save_ship_fee(){
+
+        $data = array(
+            "comp_id" => $this->session->userdata('comp_id'),
+            "courier_id" => $this->input->post("ship_courier"),
+            "ship_kg" => $this->input->post("ship_kg"),
+            "sf_mm" => $this->input->post("ship_mm"),
+            "sf_luz" => $this->input->post("ship_luz"),
+            "sf_vis" => $this->input->post("ship_vis"),
+            "sf_min" => $this->input->post("ship_min")
+        );
+
+        $id = $this->input->post("ship_id");
+
+        $data['result'] = $this->outletko_profile_model->save_ship_fee($data, $id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function delete_ship(){
+        $data['result'] = $this->outletko_profile_model->delete_ship($this->input->post("id"));
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }

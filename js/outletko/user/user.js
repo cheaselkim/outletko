@@ -19,6 +19,12 @@ $(document).ready(function(){
   $("#prod_stock").number(true, 0);
   $("#prod_weight").number(true, 2);
 
+  $("#ship_kg").number(true,2);
+  $("#ship_mm").number(true,2);
+  $("#ship_luz").number(true,2);
+  $("#ship_vis").number(true,2);
+  $("#ship_min").number(true,2);
+
   $("#prod_ship_fee_w_mm").number(true, 2);
   $("#prod_ship_fee_o_mm").number(true, 2);
   	
@@ -410,7 +416,49 @@ $(document).ready(function(){
         });
 		}
 	});
-  
+
+  $("#ship_courier").autocomplete({
+		select: function(event, ui){
+			$("#ship_courier").attr("data-id", ui.item.id);
+		},
+		source: function(req, add){
+      var csrf_name = $("input[name=csrf_name]").val();
+			var ship_courier = $("#ship_courier").val();
+        $.ajax({
+          url: base_url + "Outletko_profile/search_courier/", 
+          dataType: "JSON",
+          type: "POST",
+          data: {'courier' : ship_courier, csrf_name : csrf_name},
+          success: function(data){
+            $("input[name=csrf_name]").val(data.token);
+            if(data.response =="true"){
+                add(data.result);
+            }else{
+              $("#ship_courier").val("");
+                add('');
+            }
+          }, error: function(err){
+            console.log("Error: " + err.responseText);
+          }
+        });
+		}
+	});  
+
+  $("#btn-save-ship").click(function(){
+    swal({
+      type : "warning",
+      title : "Save?",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }, function(isConfirm){
+      if (isConfirm){
+        check_ship();
+      }
+    }); 
+
+  }); 
 
 });
 
@@ -571,6 +619,7 @@ function home(){
 
 function index(){
    var csrf_name = $("input[name=csrf_name]").val();
+   $("#tbl-ship-fee tbody tr").remove();
    $("#prod_cat_tbl tbody tr").remove();
    $("#list-category").empty();
    $("#prod_category").empty();
@@ -815,6 +864,24 @@ function index(){
 
             $("#prod_category").append("<option value='"+prod_cat[i].id+"'>"+prod_cat[i].product_category+"</option>");
 
+          }
+
+        }
+
+        var courier = result.courier;
+
+        if (courier.length != 0){
+          for(var i = 0; i < courier.length; i++){
+            $("#tbl-ship-fee tbody").append("<tr><td class='tbl-courier-id' hidden>" + courier[i].id + 
+            "</td><td class='tbl-courier-name'>" + courier[i].courier_name + 
+            "</td><td class='tbl-ship-kg'>" + courier[i].ship_kg + 
+            "</td><td class='tbl-sf-mm'>" + courier[i].sf_mm + 
+            "</td><td class='tbl-sf-luz'>" + courier[i].sf_luz +
+            "</td><td class='tbl-sf-vis'>" + courier[i].sf_vis + 
+            "</td><td class='tbl-sf-min'>" + courier[i].sf_min +  
+            "</td><td><button class='btn btn-success py-0' onclick='edit_ship("+courier[i].id+", "+i+")'><i class='far fa-edit'></i></button>" +  
+            "</td><td><button class='btn btn-danger py-0' onclick='delete_ship("+courier[i].id+")'><i class='far fa-trash-alt'></i></button>" +  
+            "</td></tr>");
           }
 
         }
@@ -2094,9 +2161,116 @@ function delete_category(id){
 
 }
 
+function check_ship(){
+  var ship_courier = $("#ship_courier").attr("data-id");
+  var ship_mm = $("#ship_mm").val();
+  var ship_luz = $("#ship_luz").val();
+  var ship_vis = $("#ship_vis").val();
+  var ship_min = $("#ship_min").val();
+
+  if (ship_courier == "" || ship_mm == "" || ship_luz == "" || ship_vis == "" || ship_min == ""){
+    swal({
+      type : "warning",
+      title : "Please input all required fields",
+      text : "If there is no shipping fee value for other region, please input zero(0)."
+    })
+  }else{
+    save_ship();
+  }
+
+}
+
+function save_ship(){
+
+  var csrf_name = $("input[name=csrf_name]").val();
+  var ship_courier = $("#ship_courier").attr("data-id");
+  var ship_kg = $("#ship_kg").val();
+  var ship_mm = $("#ship_mm").val();
+  var ship_luz = $("#ship_luz").val();
+  var ship_vis = $("#ship_vis").val();
+  var ship_min = $("#ship_min").val();
+  var ship_id = $("#ship_id").val();
+
+  $.ajax({
+    data : {csrf_name : csrf_name, ship_courier : ship_courier, ship_kg : ship_kg, ship_mm : ship_mm, ship_luz : ship_luz, ship_vis : ship_vis, ship_min : ship_min, ship_id : ship_id},
+    type : "POST",
+    dataType : "JSON",
+    url : base_url + "Outletko_profile/save_ship_fee",
+    success : function(result){
+      $("input[name=csrf_name]").val(result.token);
+      $("#modal_ship").find(":input").val("");
+
+      swal({
+        type : "success",
+        title : "Successfull Saved."
+      }, function(){
+        index();
+      })
+
+    }, error : function(err){
+      console.log(err.responseText);
+    }
+  })
 
 
+}
 
+function edit_ship(id, key){
+
+  $("#ship_id").val(id);
+
+  var table = "#tbl-ship-fee tbody tr:eq("+key+")";
+
+  $("#ship_courier").attr("data-id", $(table).find(".tbl-courier-id").text());
+  $("#ship_courier").val($(table).find(".tbl-courier-name").text());
+  $("#ship_kg").val($(table).find(".tbl-courier-kg").text());
+  $("#ship_mm").val($(table).find(".tbl-sf-mm").text());
+  $("#ship_luz").val($(table).find(".tbl-sf-luz").text());
+  $("#ship_vis").val($(table).find(".tbl-sf-vis").text());
+  $("#ship_min").val($(table).find(".tbl-sf-min").text());
+
+  $("#modal_ship").modal("show");
+
+}
+
+function delete_ship(id){
+
+  var csrf_name = $("input[name=csrf_name]").val();
+
+  swal({
+    type : "warning",
+    title : "Delete?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
+  }, function(isConfirm){
+    if (isConfirm){
+
+      $.ajax({
+        data : {csrf_name : csrf_name, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/delete_ship",
+        success : function(result){
+          $("input[name=csrf_name]").val(result.token);
+
+          swal({
+            type : "success",
+            title : "Successfully Deleted!"
+          }, function(){
+            index();
+          })
+
+        }, error : function(err){
+          console.log(err.responseText);
+        }
+      })
+
+    }
+  })
+
+}
 
 
 

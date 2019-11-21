@@ -448,4 +448,41 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function get_courier(){
+        $query = $this->db2->query("
+        SELECT 
+            account_courier.*, courier.courier AS courier_name
+        FROM account_courier
+        INNER JOIN courier ON 
+            account_courier.courier_id = courier.id 
+        WHERE account_courier.comp_id = ? AND courier.status = ? ORDER BY courier", array($this->session->userdata('comp_id'), "1"))->result();
+        return $query;
+    }
+
+    public function search_courier($courier){
+        $query = $this->db2->query("SELECT * FROM courier WHERE courier LIKE ? AND `courier`.`status` = ? ORDER BY courier ASC LIMIT 20", 
+        array("%".$courier."%", "1"))->result();
+        return $query;
+    }
+
+    public function save_ship_fee($data, $id){
+
+        $query = $this->db2->query("SELECT * FROM account_courier WHERE id = ?", array($id))->result();
+
+        if (!empty($query)){
+            $data['date_update'] = date("Y-m-d H:i:s");
+            $this->db2->where("id", $id);
+            $this->db2->update("account_courier", $data);
+        }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
+            $this->db2->insert("account_courier", $data);
+        }
+        
+    }
+
+    public function delete_ship($id){
+        $this->db2->where("id", $id);
+        $this->db2->delete("account_courier");
+    }
+
 }
