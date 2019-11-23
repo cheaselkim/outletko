@@ -164,8 +164,12 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
+.font-size-45{
+    font-size: 30px;
+}
+
 .font-size-36{
-    font-size: 28px;
+    font-size: 20px;
 }
 
 #div-search-engine{
@@ -186,8 +190,23 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
+.right{
+    float: right;
+    height: 90vh;
+    background: url('/assets/img/e-store6.png');
+    border-left: 110px solid rgb(119, 147, 60); 
+    border-bottom: 930px solid transparent;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+    
 .font-size-36{
     font-size: 30px;
+}
+
+.font-size-45{
+    font-size: 40px;
 }
 
 .font-size-55{
@@ -265,7 +284,6 @@
     position: absolute;
     text-align: center;
     bottom: calc(0% + 105px);
-    vertical-align: middle;
     width: 60px;
     background: white;
 }

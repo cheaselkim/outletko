@@ -144,10 +144,10 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12" id="div-title">
                               <div class="row">
-                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                // <div class="col-lg-2 col-md-2 col-sm-12">
+                                // </div>
+                                <div class="col-lg-12 col-md-10 col-sm-12 pt-2">
                                   <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 70%;'>
-                                </div>
-                                <div class="col-lg-10 col-md-10 col-sm-12 pt-2">
                                   <span class="font-size-45"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-light-gray">.com</span></span><br>                                
                                 </div>
                               </div>

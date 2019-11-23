@@ -12,7 +12,7 @@ if (!function_exists("tbl_query")){
 		foreach ($query as $key => $value) {
 			$img = unserialize($value->loc_image);
 			$img_loc = base_url().'images/profile/'.$img[0];
-			$href = base_url()."search/outlet?store=".str_replace(' ', '-', strtolower($value->account_name))."&strid=".$value->id."";
+			$href = base_url()."store/".str_replace(' ', '', strtolower($value->account_name))."";
 
 			$address .= ($value->street == null ? "" : ($value->street == "" ? "" : $value->street.", "));
 			$address .= ($value->village == null ? "" : ($value->village == "" ? "" : $value->village.", "));

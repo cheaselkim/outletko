@@ -57,15 +57,15 @@ class Outletko_profile_model extends CI_Model {
         
         FROM `account` as acc
         
-        LEFT JOIN `eoutletsuite_dbase`.`province` as prov
+        LEFT JOIN `province` as prov
         
         on acc.province = prov.id
         
-        LEFT JOIN `eoutletsuite_dbase`.`city` as city
+        LEFT JOIN `city` as city
         
         on acc.city = city.id
         
-        LEFT JOIN `eoutletsuite_dbase`.`business_type` as bus_type
+        LEFT JOIN `business_type` as bus_type
         
         on acc.business_category = bus_type.id
         

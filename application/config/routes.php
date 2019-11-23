@@ -64,7 +64,7 @@ $route['partner/(:num)/(:num)/(:num)'] = 'menu/menu/$1/$2/$3';
 $route['forgot_password'] = 'password/forgot_password';
 
 /*outletko*/
-$route['store/(:any)'] = 'menu/store/$1';
+$route['store/(:any)'] = 'store/store/$1';
 
 $route['my-order'] = 'buyer/my_order';
 $route['my-account'] = 'buyer/my_account';
