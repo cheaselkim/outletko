@@ -18,18 +18,23 @@ class Store extends CI_Controller {
 			$data['account_id'] = $this->session->userdata("account_id");
 			$data['owner'] = 0;
 
-            if ($this->session->userdata("validated") == true){
-				$result = $this->login_model->check_session();	
-				if ($result != true){
-					redirect("/");
+			if (!empty($data['id'])){
+				if ($this->session->userdata("validated") == true){
+					$result = $this->login_model->check_session();	
+					if ($result != true){
+						redirect("/");
+					}else{
+						$data['user_type'] = $this->session->userdata('user_type');
+					}
 				}else{
-					$data['user_type'] = 5;
+					$data['user_type'] = 6;
 				}
+		
+				$this->template->load("0", $data);			
 			}else{
-				$data['user_type'] = 6;
+				redirect("/");
 			}
-	
-			$this->template->load("0", $data);		
+
 
 
 
