@@ -29,7 +29,7 @@
 <!-- SEARCH -->
 <div class="container pt-2 ">
 	<div class="row">
-		<div class="col-12 col-md-12 px-0">
+		<div class="col-12 col-md-11 col-lg-12 mx-auto px-0">
 
 			<form action="<?php echo site_url('search') ?>" method="GET">
 				<div class="row">
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-md-3 col-lg-2 pad-center">
+					<div class="col-12 col-md-4 col-lg-2 pad-center">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>

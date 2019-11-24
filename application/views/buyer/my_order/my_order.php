@@ -8,7 +8,7 @@
 <div class="container pt-3 pb-4">
 	<div class="row">
 
-		<div class="col-12 col-sm-12 col-md-10 col-lg-10">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-10">
 
 			<!-- DIV HOME -->
 			<div class="row" id="div-home">
@@ -49,97 +49,97 @@
 								</div>
 								
 								<div class="row">
-									<div class="col-6">
+									<div class="col-12 col-lg-6 col-md-6 col-sm-12">
 										
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Order No</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_order_no"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Order Date</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_order_daet"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Outlet</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_outlet"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Status</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												
 											</div>
 										</div>
 
 									</div>
-									<div class="col-6">
+									<div class="col-12 col-lg-6 col-md-6 col-sm-12">
 										
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Delivery Type</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_delivery_type"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Payment Type</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_payment_type"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Scheduled Date</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_scheduled_date"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Scheduled Time</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_scheduled_time"></span>
 											</div>
 										</div>
 
 										<div class="row" hidden>
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Courier</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-4">
 												<span id="vw_courier"></span>
 											</div>
 										</div>
 
 										<div class="row" hidden>
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Track No</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_track_no"></span>
 											</div>
 										</div>
@@ -151,80 +151,80 @@
 
 								<div class="row">
 
-									<div class="col-6">
+									<div class="col-12 col-lg-6">
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Full Name</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_fullname"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Contact Person</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_contact_person"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Mobile Number</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_mobile"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Email</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_email"></span>
 											</div>
 										</div>
 
 									</div>
 
-									<div class="col-6">
+									<div class="col-12 col-lg-6">
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Blk, Bldg No., St.</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_address"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Barangay</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_barangay"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">City</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_city"></span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Province</span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_province"></span>
 											</div>
 										</div>
@@ -244,31 +244,31 @@
 								<hr style="border-top: 1px dashed black;">
 
 								<div class="row">
-									<div class="col-6">
+									<div class="col-12 col-lg-6">
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Sub Total : </span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_sub_total">0.00</span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Shipping Fee : </span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_shipping_fee">0.00</span>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-4">
+											<div class="col-6 col-lg-4">
 												<span class="font-weight-600">Total Amount : </span>
 											</div>
-											<div class="col-8">
+											<div class="col-6 col-lg-8">
 												<span id="vw_total_amount">0.00</span>
 											</div>
 										</div>
@@ -340,31 +340,31 @@
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 							<span class="font-weight-600">Billing Address</span>
 							<div class="row pt-1">
-								<div class="col-4 pad-right">
+								<div class="col-12 col-lg-4 pad-right">
 									<span>Full Name <span class="text-red">*</span></span>
 									<input type="text" class="form-control" id="bill_name" value="<?php echo $this->session->userdata('user_fullname') ?>" readonly>
 								</div>
-								<div class="col-8 pad-left">
+								<div class="col-12 col-lg-8 pad-left">
 									<span>House Number, Building and Street Name <span class="text-red">*</span></span>
 									<input type="text" class="form-control" id="bill_address">
 								</div>
 							</div>
 							<div class="row pt-1">
-								<div class="col-4 pad-right">
+								<div class="col-12 col-lg-4 pad-right">
 									<span>Barangay</span>
 									<input type="text" class="form-control" id="bill_barangay">
 								</div>
-								<div class="col-4 pad-center">
+								<div class="col-12 col-lg-4 pad-center">
 									<span>City <span class="text-red">*</span></span>
 									<input type="text" class="form-control" id="bill_city" data-id="0">
 								</div>
-								<div class="col-4 pad-left">
+								<div class="col-12 col-lg-4 pad-left">
 									<span>Province <span class="text-red">*</span></span>
 									<input type="text" class="form-control" id="bill_province" data-id="0" readonly>
 								</div>
 							</div>
 							<div class="row pt-1">
-								<div class="col-4 pad-right">
+								<div class="col-12 col-lg-4 pad-right">
 									<span>Mobile Number <span class="text-red">*</span></span>
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -373,11 +373,11 @@
 										<input type="text" class="form-control" id="bill_mobile">
 									</div>
 								</div>
-								<div class="col-4 pad-center">
+								<div class="col-12 col-lg-4 pad-center">
 									<span>Email <span class="text-red">*</span></span>
 									<input type="text" class="form-control" id="bill_email" readonly>
 								</div>
-								<div class="col-4 pad-left">
+								<div class="col-12 col-lg-4 pad-left">
 									<span>Contact Person</span>
 									<input type="text" class="form-control" id="bill_contact" value="<?php echo $this->session->userdata('user_fullname') ?>">
 								</div>
@@ -397,7 +397,7 @@
 						<div class="col-12">
 							<span class="font-weight-600">Delivery & Payment</span>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 									<span>Delivery Type</span>
 									<select class="form-control" id="delivery_type">
 										<option></option>
@@ -405,13 +405,13 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 									<span>Scheduled Date <span>(Available Days : <i id="sched_day">M,T,W,TH,F,S,SU</i> )</span> </span>
 									<input type="date" class="form-control" id="sched_date" readonly>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 									<span>Scheduled Time</span>
 									<!-- <select class="form-control bg-white" id="sched_time" disabled>
 									</select> -->
@@ -419,12 +419,12 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 									<hr class="my-2" style="border-top: 1px solid gray;">
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 									<span>Payment Type</span>
 									<select class="form-control" id="payment_type" disabled>
 										<option></option>
@@ -444,51 +444,53 @@
 							<div class="row">
 								<div class="col-12 py-3">
 									<div class="row px-3">
-										<div class="col-2">
+										<div class="col-2 d-none d-md-block">
 											<span class="font-weight-600">Order No</span>
 										</div>
-										<div class="col-2">
+										<div class="col-4 col-lg-2 col-md-2">
 											<span class="font-weight-600">Order Date</span>
 										</div>
-										<div class="col-4">
+										<div class="col-8 col-lg-4 col-md-4">
 											<span class="font-weight-600">Outlet Name</span>
 										</div>
-										<div class="col-2">
+										<div class="col-2 d-none d-md-block">
 											<span class="font-weight-600">Total Items</span>
 										</div>
-										<div class="col-2">
+										<div class="col-2 d-none d-md-block">
 											<span class="font-weight-600">Total Amount</span>
 										</div>
 									</div>
 									<div class="row px-3 cursor-pointer" data-toggle="collapse" data-target="#div_order_1">
-										<div class="col-2 border-1">
+										<div class="col-2 border-1 d-none d-md-block">
 											<span></span>
 										</div>
-										<div class="col-2 border-1">
+										<div class="col-4 col-lg-2 col-md-2 border-1">
 											<span><?php echo date("m/d/Y"); ?></span>
 										</div>
-										<div class="col-4 border-1">
+										<div class="col-8 col-lg-4 col-md-4 border-1">
 											<span id="comp_name"></span>
 										</div>
-										<div class="col-2 border-1 text-center">
+										<div class="col-2 border-1 text-center d-none d-md-block">
 											<span id="comp_total_items"></span>
 										</div>
-										<div class="col-2 border-1 text-right">
+										<div class="col-2 border-1 text-right d-none d-md-block">
 											<span id="comp_total_amount"></span>
 										</div>
 									</div>
 									<div class="row px-3 collapse" id="div_order_1">
-										<table class="table table-sm table-bordered" id="prod_dtls">
-											<thead>
-												<tr>
-													<th class="col-6">Product</th>
-													<th class="col-1">Qty</th>
-													<th class="col-2">Unit Price</th>
-													<th class="col-3">Total Amount</th>
-												</tr>												
-											</thead>
-											<tbody></tbody>
-										</table>
+										<div style="overflow: auto;">
+											<table class="table table-sm table-bordered" id="prod_dtls">
+												<thead>
+													<tr>
+														<th class="col-6">Product</th>
+														<th class="col-1">Qty</th>
+														<th class="col-2">Unit Price</th>
+														<th class="col-3">Total Amount</th>
+													</tr>												
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
 									</div>
 									<div class="row">
 										<div class="col-8">
@@ -512,10 +514,10 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-8">
+										<div class="col-6 col-lg-8">
 											<span class="font-weight-600">Total</span> 
 										</div>
-										<div class="col-4 text-right">
+										<div class="col-6 col-lg-4 text-right">
 											<span class="font-weight-600" id="total_amount">PHP 0.00</span>
 										</div>
 									</div>
@@ -544,7 +546,7 @@
 		</div>
 
 		<!-- ADS -->
-		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1">
+		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1 d-none d-lg-block">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 " >
 					<div class="div-ads px-2 pt-2">

@@ -26,15 +26,15 @@ if (!function_exists("tbl_products_no_order")){
 
 				$output .= '<div class="col-12 col-sm-12 col-md-12 col-lg-12 py-0 item div-prod" id="div_prod_'.$div.'"> 
 							<div class="row py-1 bg-white-smoke" style="border: 1px solid black;">
-								<div class="col-6">
+								<div class="col-lg-6 col-md-6 col-sm-12">
 									<span class="h5 font-weight-600">'.$value->account_name.'</span>
 								</div>
-								<div class="col-6 text-right">
+								<div class="col-lg-6 col-md-6 col-sm-12 text-right">
 									<button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$div.')">Proceed to Checkout</button>
 								</div>
 							</div>
 							<div class="row border-1" >
-								<div class="col-1"  style="border-right: 1px solid gray;">
+								<div class="col-4 col-lg-1 col-md-3 col-sm-4"  style="border-right: 1px solid gray;">
 									<div class="row">
 										<div class="col-12 text-center" style="height: 85px;padding-top: 15px;">
 											<input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$value->prod_id.'" data-id="'.$i.'" checked>
@@ -50,25 +50,25 @@ if (!function_exists("tbl_products_no_order")){
 										<img src="'.$img_loc.'" class="img-prod">
 									</div>
 								</div>
-								<div class="col-7 py-2">
+								<div class="col-12 col-lg-7 col-md-4 col-sm-12 py-2 div-prod-info">
 									<div class="row">
 										<div class="col-12">
 											<span class="font-weight-600">'.$value->product_name.'</span><br>
-											<span>details</span><br>
+											<span hidden>details</span>
 										</div>
 										<div class="col-12">
 											<div class="row">
-												<div class="col-6">
+												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
 													<span class="font-weight-600">Price : <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
 												</div>
-												<div class="col-6">
+												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
 													<span class="font-weight-600">Total Price : <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-3 pt-2">
+										<div class="col-6 col-lg-3 col-md-10 col-sm-6 pt-2">
 											<div class="input-group mb-3">
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>
@@ -85,7 +85,7 @@ if (!function_exists("tbl_products_no_order")){
 						';
 			}else{
 				$output .= '<div class="row border-1 ">
-								<div class="col-1"  style="border-right: 1px solid gray;">
+								<div class="col-4 col-lg-1 col-md-3 col-sm-4"  style="border-right: 1px solid gray;">
 									<div class="row">
 										<div class="col-12 text-center" style="height: 85px;padding-top: 15px;">
 											<input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$value->prod_id.'" data-id="'.$i.'" checked>
@@ -101,25 +101,25 @@ if (!function_exists("tbl_products_no_order")){
 										<img src="'.$img_loc.'" class="img-prod">
 									</div>
 								</div>
-								<div class="col-7 py-2">
+								<div class="col-12 col-lg-7 col-md-4 col-sm-12 py-2 div-prod-info">
 									<div class="row">
 										<div class="col-12">
 											<span class="font-weight-600">'.$value->product_name.'</span><br>
-											<span>details</span><br>
+											<span hidden>details</span>
 										</div>
 										<div class="col-12">
 											<div class="row">
-												<div class="col-6">
+												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
 													<span class="font-weight-600">Price : <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
 												</div>
-												<div class="col-6">
+												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
 													<span class="font-weight-600">Total Price : <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-3 pt-2">
+										<div class="col-6 col-lg-3 col-md-10 col-sm-6 pt-2">
 											<div class="input-group mb-3">
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>

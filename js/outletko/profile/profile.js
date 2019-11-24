@@ -154,7 +154,7 @@ function get_profile(id){
               margin_plus_image = "";
             }
 
-            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
+            var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
                   '<div class="div-list-img cursor-pointer" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
                     // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
                       '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+

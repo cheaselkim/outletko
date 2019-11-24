@@ -7,11 +7,11 @@
 
 <div class="container pt-3 pb-4">
 	<div class="row">
-		<div class="col-12 col-sm-12 col-md-10 col-lg-12">
+		<div class="col-12 col-sm-12 col-md-11 col-lg-12 mx-auto">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header">
 					<div class="row">
-						<div class="col-3 col-lg-auto py-1 pad-left">
+						<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
 							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 							</div>
 						</div>
@@ -29,13 +29,13 @@
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 										<div class="row">
-											<div class="col-3">
+											<div class="col-lg-4 col-md-4 col-sm-12">
 												<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
 											</div>
-											<div class="col-2">
+											<div class="col-lg-3 col-md-4 col-sm-12">
 												<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
 											</div>
-											<div class="col-4">
+											<div class="col-lg-4 col-md-4 col-sm-12">
 												<span class="text-white text-buss-address" id="text-buss-email"></span>												
 											</div>
 											<div class="col-3" hidden>
@@ -52,13 +52,13 @@
 
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">
-				<div class="col-3 col-lg-auto px-0">
-					<div class="div-left-aboutus" style="height: 700px;">					
+				<div class="col-lg-auto col-md-auto col-sm-12 px-0">
+					<div class="div-left-aboutus">					
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
 							<span class="font-weight-bold">About Us</span>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
-							<div class="div-aboutus-details" style="height: 655px;">
+							<div class="div-aboutus-details">
 								<p id="text_aboutus"></p>								
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col pad-right">
+				<div class="col pad-right pad-md-right">
 					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3" id="div-display-products">
 						<!-- POST DETAILS -->
 						<div class="row">
@@ -100,24 +100,25 @@
 					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center py-3" id="div-product-details">
 						<!-- PRODUCT DETAILS -->
 						<input type="hidden" id="prod_id">
+						
 						<div class="row">
-							<div class="col-auto mb-4">
+							<div class="col-9 col-lg-11 col-md-10 col-sm-9">
+								<span class="font-size-25">Product Details</span>								
+							</div>
+							<div class="col-3 col-lg-1 col-md-2 col-sm-3">
+								<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-lg-auto col-sm-12 mb-4 text-center">
 								<div class="div-product-details-img mb-2" id="div-product-details-img">
 								</div>
 								<span class="font-size-25" id="prod-name">Abaca Seedlings</span><br>
 								<span class="font-size-20" id="prod-price">PHP 25.00</span>
 							</div>
-							<div class="col-7">
+							<div class="col-lg-7 col-sm-12">
 								
-								<div class="row">
-									<div class="col-10">
-										<span class="font-size-25">Product Details</span>								
-									</div>
-									<div class="col-2 pr-0">
-										<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
-									</div>
-								</div>
-
 								<div class="col-12 my-2 div-prod-dtls" >
 									<p id="prod-condition" hidden></p>
 									<p id="prod-stock" hidden></p>
@@ -166,44 +167,53 @@
 
 								</div>
 
-								<br>
-								<span class="font-weight-600" id="std_lbl">Standard Delivery</span><br>
-								<span class="ml-2" id="std_del">Seeds are delivered by LBC</span>
+								<div class="col-12">
 
-								<div class="row" id="div-ship-fee">
-									<div class="col-11 ml-4 pl-1 border">
-										
-										<div class="row">
-											<div class="col-9 pr-0">
-												 <span>Shipping Fee (Within Metro Manila)</span>
-											</div>
-											<div class="col-3 px-1">
-												<span id="shipp_w_mm">&#8369; 0.00</span>
-											</div>
+									<div class="row">
+										<div class="col-12">
+											<span class="font-weight-600" id="std_lbl">Standard Delivery</span><br>
 										</div>
-
-										<div class="row">
-											<div class="col-9 pr-0">
-												 <span>Shipping Fee (Outside Metro Manila)</span>
-											</div>
-											<div class="col-3 px-1">
-												<span id="shipp_o_mm">&#8369; 0.00</span>
-											</div>
+										<div class="col-12">
+											<span class="ml-2" id="std_del">Seeds are delivered by LBC</span>
 										</div>
+									</div>
 
-									</div>
-								</div>
+									<div class="row" id="div-ship-fee">
+										<div class="col-11 ml-4 pl-1 border">
+											<div class="row">
+												<div class="col-9 pr-0">
+													<span>Shipping Fee (Within Metro Manila)</span>
+												</div>
+												<div class="col-3 px-1">
+													<span id="shipp_w_mm">&#8369; 0.00</span>
+												</div>
+											</div>
 
-								<div class="row mt-15px" id="div-btn-order">
-									<div class="col-2 pad-right	">
-										<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
+											<div class="row">
+												<div class="col-9 pr-0">
+													<span>Shipping Fee (Outside Metro Manila)</span>
+												</div>
+												<div class="col-3 px-1">
+													<span id="shipp_o_mm">&#8369; 0.00</span>
+												</div>
+											</div>
+
+										</div>
 									</div>
-									<div class="col-5 pad-center">
-										<button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
+
+									<div class="row mt-3" id="div-btn-order">
+										<div class="col-12 col-lg-2 col-md-2 col-sm-12 pad-right pt-1">
+											<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
+										</div>
+										<div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-center pt-1">
+											<button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
+										</div>
+										<div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-left pt-1">
+											<button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
+										</div>
 									</div>
-									<div class="col-5 pad-left">
-										<button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
-									</div>
+
+
 								</div>
 
 							</div>

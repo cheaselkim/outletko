@@ -134,13 +134,13 @@ $(document).ready(function(){
         $("#btn-day-"+i).val(0);
       }
 
-      // $('#ftime').timepicker({
-      //     startTime: '8:00'      
-      // });
+      $('#ftime').timepicker({
+          startTime: '8:00'      
+      });
 
-      // $('#ttime').timepicker({
-      //     startTime: '17:00'
-      // });
+      $('#ttime').timepicker({
+          startTime: '17:00'
+      });
 
 
 
@@ -159,25 +159,25 @@ $(document).ready(function(){
   });
 
 
-  // $('#ftime').timepicker({
-  //     timeFormat: 'h:mm p',
-  //     interval: 30,
-  //     defaultTime : '8',
-  //     startTime: '8:00',
-  //     dynamic: false,
-  //     dropdown: true,
-  //     scrollbar: true
-  // });
+  $('#ftime').timepicker({
+      timeFormat: 'h:mm p',
+      interval: 30,
+      defaultTime : '8',
+      startTime: '8:00',
+      dynamic: false,
+      dropdown: true,
+      scrollbar: true
+  });
 
-  // $('#ttime').timepicker({
-  //     timeFormat: 'h:mm p',
-  //     interval: 30,
-  //     defaultTime: '17',
-  //     startTime: '17:00',
-  //     dynamic: false,
-  //     dropdown: true,
-  //     scrollbar: true
-  // });
+  $('#ttime').timepicker({
+      timeFormat: 'h:mm p',
+      interval: 30,
+      defaultTime: '17',
+      startTime: '17:00',
+      dynamic: false,
+      dropdown: true,
+      scrollbar: true
+  });
 
 
 	/* MY ORDER */
@@ -543,10 +543,10 @@ function delivery_type(){
 
       for (var i = 0; i < result.length; i++) {
         div += '<div class="row pt-2">' +
-                      '<div class="col-lg-3 col-md-4 col-sm-6 pl-4">' +
+                      '<div class="col-lg-3 col-md-5 col-sm-6 col-6 pl-4">' +
                         '<span class="text-capitalize">'+result[i].delivery_type+'</span>' +
                       '</div>' +
-                      '<div class="col-lg-1 col-md-1 col-sm-2">' +
+                      '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
                         '<input type="checkbox" name="checkboxG4" id="delivery_'+result[i].id+'" class="css-checkbox delivery_type" value="'+result[i].id+'">' +
                         '<label for="delivery_'+result[i].id+'" id="check_box_'+result[i].id+'" class="css-label"></label>' +
                       '</div>' + 
@@ -576,10 +576,10 @@ function payment_type(){
 
       for (var i = 0; i < result.length; i++) {
         div += '<div class="row pt-2">' +
-                      '<div class="col-lg-3 col-md-4 col-sm-6 pl-4">' +
+                      '<div class="col-lg-3 col-md-5 col-sm-6 col-6 pl-4">' +
                         '<span class="text-capitalize">'+result[i].payment_type+'</span>' +
                       '</div>' +
-                      '<div class="col-lg-1 col-md-1 col-sm-2">' +
+                      '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
                         '<input type="checkbox" name="checkboxG4" id="payment_'+result[i].id+'" class="css-checkbox payment_type" value="'+result[i].id+'">' +
                         '<label for="payment_'+result[i].id+'" class="css-label"></label>' +
                       '</div>' + 
@@ -777,16 +777,16 @@ function index(){
           $("#btn-day-7").val(1);
         }
 
-        // $("#ftime").val(result.appointment[0].start_time);
-        // $("#ttime").val(result.appointment[0].end_time);
+        $("#ftime").val(result.appointment[0].start_time);
+        $("#ttime").val(result.appointment[0].end_time);
 
-        // $("#ftime").timepicker({
-        //   startTime : result.appointment[0].startTime
-        // });
+        $("#ftime").timepicker({
+          startTime : result.appointment[0].startTime
+        });
 
-        // $("#ttime").timepicker({
-        //   startTime : result.appointment[0].startTime
-        // });
+        $("#ttime").timepicker({
+          startTime : result.appointment[0].startTime
+        });
 
 
       }
@@ -821,7 +821,7 @@ function index(){
 
             // pad = "pad-center";
             pad = "";
-            var e = $('<div class="col col-6 col-md-3 col-lg-3 '+margin+' '+pad+' "   >'+
+            var e = $('<div class="col col-6 col-md-4 col-lg-3 '+margin+' '+pad+' "   >'+
         					'<div class="div-list-img" >'+
         						'<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
             					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
@@ -837,7 +837,7 @@ function index(){
         }
     //products
     
-        var e2 = $('<div class="col col-6 col-md-3 col-lg-3 '+margin+' '+pad+' ">' +
+        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 '+margin+' '+pad+' ">' +
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
 						'</div>' +

@@ -6,10 +6,10 @@
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
 	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-		<span class="navbar-toggler-icon"></span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
+		<span class="fas fa-bars"></span>
 	</button>
-	<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+	<div class="collapse navbar-collapse justify-content-end px-3" id="collapsibleNavbar" style="background : rgb(79, 98, 40);margin-left:-15px; margin-right: -15px;">
 
 		<ul class="navbar-nav">
 			<li class="nav-item" hidden>

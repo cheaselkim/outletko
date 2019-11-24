@@ -179,10 +179,10 @@
         <div class="modal-header py-2" style="background: rgb(195, 214, 155);">
           <div class="container">
             <div class="row">
-              <div class="col-lg-2 pr-0">
+              <div class="col-2 pr-0">
                 <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
               </div>
-              <div class="col-lg-10 text-left pl-0">
+              <div class="col-10 text-left pl-0">
                 <span class="font-size-30"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-white">.com</span></span><br>                                
               </div>
             </div>          
@@ -202,7 +202,7 @@
             <div id="div-name">
 
               <div class="row">
-                <div class="col-lg-6 pr-1">
+                <div class="col-lg-6 pad-right">
                   <span>First Name <span class="text-red">*</span></span>
                   <input type="text" class="form-control form-control-sm textbox-green text-uppercase" id="signup_first_name">
                 </div>
@@ -210,7 +210,7 @@
                   <span>Middle Initial</span>
                   <input type="text" class="form-control form-control-sm textbox-green text-uppercase" id="signup_middle_name">
                 </div>
-                <div class="col-lg-6 pl-1">
+                <div class="col-lg-6 pad-left">
                   <span>Last Name <span class="text-red">*</span></span>
                   <input type="text" class="form-control form-control-sm textbox-green text-uppercase" id="signup_last_name">
                 </div>
@@ -230,7 +230,7 @@
               </div>
 
               <div class="row">
-                <div class="col-lg-6 pr-1">
+                <div class="col-lg-6 pad-right">
                   <span>Password <span class="text-red">*</span></span>
                   <div class="input-group">
                       <input type="password" class="form-control form-control-sm textbox-green" id="signup_password">
@@ -241,7 +241,7 @@
                       </div>
                   </div>
                 </div>
-                <div class="col-lg-6 pl-1">
+                <div class="col-lg-6 pad-left">
                   <span>Confirm Password <span class="text-red">*</span></span>
                   <div class="input-group">
                       <input type="password" class="form-control form-control-sm textbox-green" id="signup_conf_password">
@@ -401,10 +401,10 @@
         <div class="modal-header py-2" style="background: rgb(195, 214, 155);">
           <div class="container">
             <div class="row">
-              <div class="col-lg-2 pr-0">
+              <div class="col-2 pr-0">
                 <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
               </div>
-              <div class="col-lg-10 text-left pl-0">
+              <div class="col-10 text-left pl-0">
                 <span class="font-size-30"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-white">.com</span></span><br>                                
               </div>
             </div>          

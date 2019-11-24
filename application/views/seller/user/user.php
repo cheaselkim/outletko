@@ -5,11 +5,11 @@
 
 <div class="container pt-3 pb-4">
 	<div class="row">
-		<div class="col-12 col-sm-12 col-md-10 col-lg-12">
+		<div class="col-12 col-sm-12 col-md-11 col-lg-12 mx-auto">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header pr-0">
 					<div class="row">
-						<div class="col-3 col-lg-auto py-1 pad-left">
+						<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
 							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 							</div>
 						</div>
@@ -38,7 +38,7 @@
 
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">
-				<div class="col-2 px-0"> <!--col-lg-auto -->
+				<div class="col-lg-auto col-md-auto col-sm-12 px-0"> <!--col-lg-auto -->
 					<div class="div-left-panel">
 						<div class="div-left-aboutus">					
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-10 pad-right" >
+				<div class="col pad-right pad-md-right" >
 					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3">
 						<!-- POST DETAILS -->
 						<div class="row">
@@ -138,7 +138,8 @@
 			<!-- DIV SETTING -->
 
 			<div class="row pt-2" id="div-setting">
-				<div class="col-3 col-lg-auto px-0">
+				<div class="col-sm-12 col-lg-auto col-md-auto px-0">
+
 					<div class="div-left-setting">					
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
 							<ul class="list-group list-group-flush" style="width: 100%;">
@@ -147,8 +148,9 @@
 							</ul>
 						</div>
 					</div>
+
 				</div>
-				<div class="col pad-right pb-5">
+				<div class="col pad-right pad-md-right pb-5">
 					<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white pt-2  pb-3" id="div-aboutus">
 						<div class="row">
 							<div class="col-lg-3 col-md-4 col-sm-12">
@@ -352,12 +354,12 @@
 							</div>
 						</div>
 
-						<div class="row pt-4">
-							<div class="col-lg-3 col-md-3 col-sm-12"></div>
-							<div class="col-lg-3 col-md-3 col-sm-12">
+						<div class="row pt-3">
+							<div class="col-lg-3 col-md-3 col-sm-12 pt-1"></div>
+							<div class="col-lg-3 col-md-3 col-sm-12 pt-1">
 								<button class="btn btn-green2 btn-block text-white font-weight-600" id="save_aboutus">Save</button>
 							</div>
-							<div class="col-lg-3 col-md-3 col-sm-12">
+							<div class="col-lg-3 col-md-3 col-sm-12 pt-1">
 								<button class="btn btn-danger btn-block text-white font-weight-600" id="cancel_aboutus">Cancel</button>
 							</div>
 						</div>
@@ -474,7 +476,7 @@
 										<hr class="my-2 hr-green">
 
 										<div class="row">
-											<div class="col-lg-3 col-md-4 col-sm-12 pr-0">
+											<div class="col-lg-3 col-md-5 col-sm-12 pr-0">
 												<span class="font-size-18 font-weight-600 text-uppercase">For Appointment</span>			
 											</div>
 										</div>
@@ -483,15 +485,15 @@
 											<div class="col-lg-5 col-md-4 col-sm-6 pl-4">
 												<span class="text-capitalize">Available Dates</span>
 											</div>
-											<div class="col-lg-7 col-md-2 col-sm-2">
+											<div class="col-lg-7 col-md-7 col-sm-2">
 												<div class="row pl-3">
-													<button class="btn btn-outline-success btn-width-small mr-1" id="btn-day-1" onclick="btn_day(1)" value="0">Mon</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-2" onclick="btn_day(2)" value="0">Tue</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-3" onclick="btn_day(3)" value="0">Wed</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-4" onclick="btn_day(4)" value="0">Thu</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-5" onclick="btn_day(5)" value="0">Fri</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-6" onclick="btn_day(6)" value="0">Sat</button>
-													<button class="btn btn-outline-success btn-width-small mx-1" id="btn-day-7" onclick="btn_day(7)" value="0">Sun</button>
+													<button class="btn btn-outline-success btn-width-small mr-1 mt-1" id="btn-day-1" onclick="btn_day(1)" value="0">Mon</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-2" onclick="btn_day(2)" value="0">Tue</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-3" onclick="btn_day(3)" value="0">Wed</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-4" onclick="btn_day(4)" value="0">Thu</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-5" onclick="btn_day(5)" value="0">Fri</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-6" onclick="btn_day(6)" value="0">Sat</button>
+													<button class="btn btn-outline-success btn-width-small mx-1 mt-1" id="btn-day-7" onclick="btn_day(7)" value="0">Sun</button>
 												</div>
 											</div>
 										</div>
@@ -503,11 +505,11 @@
 											</div>
 											<div class="col-lg-7 col-md-2 col-sm-2">
 												<div class="row">
-													<div class="col-6">
+													<div class="col-6 col-lg-6 col-md-6 col-sm-6">
 														<input type="text" class="form-control bg-white textbox-green2" id="ftime" readonly>
 														<!-- <input type="time" class="form-control" id="ftime" value="<?php echo date('08:00:00') ?>"> -->
 													</div>
-													<div class="col-6">
+													<div class="col-6 col-lg-6 col-md-6 col-sm-6">
 														<input type="text" class="form-control bg-white textbox-green2" id="ttime" readonly>
 														<!-- <input type="time" class="form-control" id="ttime" value="<?php echo date('17:00:00') ?>"> -->
 													</div>
@@ -531,19 +533,19 @@
 										</div>
 
 										<div class="row">
-											<div class="col-2 col-lg-2 col-md-4 col-sm-6">
+											<div class="col-lg-2 col-md-4 col-sm-12">
 												<span class="font-size-18">Returns <span class="text-red">*</span> </span>
 											</div>
-											<div class="col-10 col-lg-10 col-md-8 col-sm-6">
+											<div class="col-lg-10 col-md-8 col-sm-12">
 												<input type="text" class="form-control textbox-green2" id="inp_return" placeholder="7 Days Return">
 											</div>
 										</div>
 
 										<div class="row mt-1">
-											<div class="col-2 col-lg-2 col-md-4 col-sm-6">
+											<div class="col-lg-2 col-md-4 col-sm-12">
 												<span class="font-size-18">Warranty <span class="text-red">*</span> </span>
 											</div>
-											<div class="col-10 col-lg-10 col-md-8 col-sm-6">
+											<div class="col-lg-10 col-md-8 col-sm-12">
 												<input type="text" class="form-control textbox-green2" id="inp_warranty" placeholder="30 Days Warranty">
 											</div>
 										</div>
@@ -555,11 +557,11 @@
 
 
 								<div class="row">
-									<div class="col-lg-3 col-md-3 col-sm-12"></div>
-									<div class="col-lg-3 col-md-3 col-sm-12">
+									<div class="col-lg-3 col-md-3 col-sm-12 pt-1"></div>
+									<div class="col-lg-3 col-md-3 col-sm-12 pt-1">
 										<button class="btn btn-success btn-block text-white " id="save_payment">Save</button>
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-12">
+									<div class="col-lg-3 col-md-3 col-sm-12 pt-1">
 										<button class="btn btn-danger btn-block text-white " id="cancel_payment">Cancel</button>
 									</div>
 								</div>
@@ -574,7 +576,7 @@
 
 			<!-- DIV MY ORDERS  -->
 			<div class="row pt-2 pb-5" id="div-my-orders">
-				<div class="col-12 col-md-7 col-lg-12 bg-white py-3" >
+				<div class="col-12 col-md-12 col-lg-12 bg-white py-3" >
 
 					<div class="row" id="div_order_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -588,177 +590,173 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-3" id="div-tbl-process-order">
-							<!-- <table style='width: 100% !important' class='table table-striped table-sm table-bordered'>
-								<thead>
-									<tr>
-										<th>Order No</th>
-										<th>Order Date</th>
-										<th>From</th>
-										<th>Total Amount</th>
-										<th>Delivery Type</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr onclick="order_table(1)" class="cursor-pointer">
-										<td>10001</td>
-										<td><?php echo date("m/d/Y"); ?></td>
-										<td>Enrique Purugganan</td>
-										<td>350.00</td>
-										<td>For Deliver</td>
-										<td>For Acknowledgement</td>
-									</tr>
-								</tbody>
-							</table>	 -->							
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-3">
+							<div id="div-tbl-process-order" style="overflow: auto;">
+							</div>
 						</div>
 					</div>
 
 					<div class="row" id="div_order">
-						
-						<div class="col-8 col-lg-8 col-md-8 col-sm-8">
+
+						<div class="col-lg-12 col-md-12 col-sm-12">
 							<div class="row">
-								<input type="hidden" id="acknowledge_order_id" value="0">
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4" id="title_order"></span>							
-								</div>
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4">Status : For Acknowledgement</span>							
-								</div>
-
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+								<div class="col-lg-8 col-md-8 col-sm-12">
 									<div class="row">
+										<input type="hidden" id="acknowledge_order_id" value="0">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<table class="table table-sm table-bordered">
-												<thead>
-													<tr>
-														<th>Order No</th>
-														<th>Order Date</th>
-														<th>From</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td id="tbl_order_no"></td>
-														<td id="tbl_order_date"></td>
-														<td id="tbl_from"></td>
-													</tr>
-												</tbody>
-											</table>
+											<span class="h4" id="title_order"></span>							
 										</div>
-									</div>
-								</div>
-								
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<div style="height: 300px; overflow: auto;">
 
-										<table class="table table-sm table-bordered" id="tbl-po-products">
-											<thead>
-												<tr>
-													<th>Product</th>
-													<th>Qty</th>
-													<th>Unit Price</th>
-													<th>Total</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Abracada Seedlings</td>
-													<td>10</td>
-													<td>25.00</td>
-													<td>250.00</td>
-												</tr>
-											</tbody>
-											<tfoot >
-												<tr style="border-top: 2px dotted black;">
-													<td colspan="3" class="font-weight-600">Subtotal</td>
-													<td id="tbl_subtotal" class="font-weight-600"></td>
-												</tr>
-												<tr>
-													<td colspan="3" class="font-weight-600">Shipping</td>
-													<td id="tbl_ship" class="font-weight-600"></td>
-												</tr>
-												<tr>
-													<td colspan="3" class="font-weight-600">Total</td>
-													<td id="tbl_total" class="font-weight-600"></td>
-												</tr>
-											</tfoot>
-										</table>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span class="h4">Status : For Acknowledgement</span>							
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div class="row">
+												<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+													<table class="table table-sm table-bordered">
+														<thead>
+															<tr>
+																<th>Order No</th>
+																<th>Order Date</th>
+																<th>From</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td id="tbl_order_no"></td>
+																<td id="tbl_order_date"></td>
+																<td id="tbl_from"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
 										
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div style="height: 300px; overflow: auto;">
+
+												<table class="table table-sm table-bordered" id="tbl-po-products">
+													<thead>
+														<tr>
+															<th>Product</th>
+															<th>Qty</th>
+															<th>Unit Price</th>
+															<th>Total</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Abracada Seedlings</td>
+															<td>10</td>
+															<td>25.00</td>
+															<td>250.00</td>
+														</tr>
+													</tbody>
+													<tfoot >
+														<tr style="border-top: 2px dotted black;">
+															<td colspan="3" class="font-weight-600">Subtotal</td>
+															<td id="tbl_subtotal" class="font-weight-600"></td>
+														</tr>
+														<tr>
+															<td colspan="3" class="font-weight-600">Shipping</td>
+															<td id="tbl_ship" class="font-weight-600"></td>
+														</tr>
+														<tr>
+															<td colspan="3" class="font-weight-600">Total</td>
+															<td id="tbl_total" class="font-weight-600"></td>
+														</tr>
+													</tfoot>
+												</table>
+												
+											</div>
+										</div>
+
+
+
 									</div>
 								</div>
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="col-lg-4 col-md-4 col-sm-12">
 									<div class="row">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span>Delivery Type : </span>
-											<span id="po_delivery_type">For Delivery</span>
-											<input type="hidden" id="po_delivery_type_id">												
+											<span class="h4">Address</span>
 										</div>
-									</div>
-								</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>House no., Building and Street Name</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_1" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Barangay</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_barangay" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>City / Municipilaty</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_city" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Province</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_prov" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Mobile Number</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_mobile" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Email Address</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_email" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Contact Person</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_contact_person" readonly>
+										</div>
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span>Payment Type : </span>
-											<span id="po_payment_type">Cash on Delivery</span>
-											<input type="hidden" id="po_payment_type_id">
-										</div>
-									</div>
-								</div>
-
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<button class="btn btn-warning" id="btn_back_acknowledge">Back</button>
-											<button class="btn btn-danger" id="btn_cancel_acknowledge">Cancel</button>
-											<button class="btn btn-success" data-toggle="modal" data-target="#modal_acknowledge" id="btn_acknowledge">Acknowledge</button>
-										</div>
 									</div>
 								</div>
 
 							</div>
 						</div>
+						
+						<div class="col-lg-12 col-md-12 col-sm-12">
 
-						<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-							<div class="row">
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4">Address</span>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Delivery Type : </span>
+										<span id="po_delivery_type">For Delivery</span>
+										<input type="hidden" id="po_delivery_type_id">												
+									</div>
 								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>House no., Building and Street Name</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_1" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Barangay</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_barangay" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>City / Municipilaty</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_city" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Province</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_prov" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Mobile Number</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_mobile" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Email Address</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_email" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Contact Person</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_contact_person" readonly>
-								</div>
-
 							</div>
+
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Payment Type : </span>
+										<span id="po_payment_type">Cash on Delivery</span>
+										<input type="hidden" id="po_payment_type_id">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<button class="btn btn-warning" id="btn_back_acknowledge">Back</button>
+										<button class="btn btn-danger" id="btn_cancel_acknowledge">Cancel</button>
+										<button class="btn btn-success" data-toggle="modal" data-target="#modal_acknowledge" id="btn_acknowledge">Acknowledge</button>
+									</div>
+								</div>
+							</div>
+
+
 						</div>
+
+
 					</div>
+
 
 				</div>				
 			</div>
@@ -767,7 +765,7 @@
 			<!-- DIV MY DELIVER -->
 
 			<div class="row pt-2 pb-5" id="div-my-deliver">
-				<div class="col-12 col-md-7 col-lg-12 post-body bg-white py-3" id="">
+				<div class="col-12 col-md-12 col-lg-12 post-body bg-white py-3" id="">
 
 					<div class="row" id="div_deliver_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -781,177 +779,171 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-3" id="div-tbl-close-order">
-							<!-- <table style='width: 100% !important' class='table table-striped table-sm table-bordered'>
-								<thead>
-									<tr>
-										<th>Order No</th>
-										<th>Order Date</th>
-										<th>From</th>
-										<th>Total Amount</th>
-										<th>Delivery Type</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr onclick="deliver_table(1)" class="cursor-pointer">
-										<td>10001</td>
-										<td><?php echo date("m/d/Y"); ?></td>
-										<td>Enrique Purugganan</td>
-										<td>350.00</td>
-										<td>For Deliver</td>
-										<td>For Acknowledgement</td>
-									</tr>
-								</tbody>
-							</table>	 -->							
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-3">
+							<div id="div-tbl-close-order" style="overflow: auto;">  
+							</div>
 						</div>
 					</div>
 
 					<div class="row" id="div_deliver">
 						<input type="hidden" id="close_order_id" value="0">
-						<div class="col-8 col-lg-8 col-md-8 col-sm-8">
-							<div class="row">
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4" id="close_title">Order 10001</span>							
-								</div>
+							<div class="col-lg-12 col-md-12 col-sm-12">
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4">Status : For Delivery</span>							
-								</div>
+								<div class="row">
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<table class="table table-sm table-bordered">
-												<thead>
-													<tr>
-														<th>Order No</th>
-														<th>Order Date</th>
-														<th>From</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td id="tbl_close_order_no"></td>
-														<td id="tbl_close_order_date"></td>
-														<td id="tbl_close_from"></td>
-													</tr>
-												</tbody>
-											</table>
+									<div class="col-lg-8 col-md-8 col-sm-12">
+										<div class="row">
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4" id="close_title">Order 10001</span>							
+											</div>
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Status : For Delivery</span>							
+											</div>
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="row">
+													<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+														<table class="table table-sm table-bordered">
+															<thead>
+																<tr>
+																	<th>Order No</th>
+																	<th>Order Date</th>
+																	<th>From</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td id="tbl_close_order_no"></td>
+																	<td id="tbl_close_order_date"></td>
+																	<td id="tbl_close_from"></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div style="height: 300px; overflow: auto;">
+
+													<table class="table table-sm table-bordered" id="tbl-close-products"> 
+														<thead>
+															<tr>
+																<th>Product</th>
+																<th>Qty</th>
+																<th>Unit Price</th>
+																<th>Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Abracada Seedlings</td>
+																<td>10</td>
+																<td>25.00</td>
+																<td>250.00</td>
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<td colspan="3">Subtotal</td>
+																<td id="tbl_close_subtotal">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="3">Shipping</td>
+																<td id="tbl_close_ship">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="3">Total</td>
+																<td id="tbl_close_total">0.00</td>
+															</tr>
+														</tfoot>
+													</table>
+													
+												</div>
+											</div>
+
 										</div>
 									</div>
-								</div>
-								
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<div style="height: 300px; overflow: auto;">
 
-										<table class="table table-sm table-bordered" id="tbl-close-products"> 
-											<thead>
-												<tr>
-													<th>Product</th>
-													<th>Qty</th>
-													<th>Unit Price</th>
-													<th>Total</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Abracada Seedlings</td>
-													<td>10</td>
-													<td>25.00</td>
-													<td>250.00</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="3">Subtotal</td>
-													<td id="tbl_close_subtotal">0.00</td>
-												</tr>
-												<tr>
-													<td colspan="3">Shipping</td>
-													<td id="tbl_close_ship">0.00</td>
-												</tr>
-												<tr>
-													<td colspan="3">Total</td>
-													<td id="tbl_close_total">0.00</td>
-												</tr>
-											</tfoot>
-										</table>
-										
-									</div>
-								</div>
+									<div class="col-lg-4 col-md-4 col-sm-12">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Address</span>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>House no., Building and Street Name</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_1" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Barangay</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_barangay" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>City / Municipilaty</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_city" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Province</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_prov" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Mobile Number</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_mobile" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Email Address</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_email" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Contact Person</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_contact_person" readonly>
+											</div>
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span>Delivery Type : </span>
-											<span id="close_delivery_type">For Delivery</span>		
-											<input type="hidden" id="close_delivery_type_id">										
 										</div>
 									</div>
+
 								</div>
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span>Payment Type : </span>
-											<span id="close_payment_type">Cash on Delivery</span>
-											<input type="hidden" id="close_payment_type_id">										
-										</div>
-									</div>
-								</div>
+								<div class="row">
 
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
-									<div class="row">
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<button class="btn btn-warning">Cancel</button>
-											<button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Delivered</button>
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Delivery Type : </span>
+												<span id="close_delivery_type">For Delivery</span>		
+												<input type="hidden" id="close_delivery_type_id">										
+											</div>
 										</div>
 									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Payment Type : </span>
+												<span id="close_payment_type">Cash on Delivery</span>
+												<input type="hidden" id="close_payment_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pb-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<button class="btn btn-warning">Cancel</button>
+												<button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Delivered</button>
+											</div>
+										</div>
+									</div>
+
 								</div>
 
 							</div>
-						</div>
-
-						<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-							<div class="row">
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span class="h4">Address</span>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>House no., Building and Street Name</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_1" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Barangay</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_barangay" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>City / Municipilaty</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_city" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Province</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_prov" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Mobile Number</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_mobile" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Email Address</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_email" readonly>
-								</div>
-								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-									<span>Contact Person</span>
-									<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_contact_person" readonly>
-								</div>
-
-							</div>
-						</div>
 
 					</div>
+
 
 				</div>
 			</div>
@@ -1207,13 +1199,13 @@
             	<div class="container px-0">	
 	            	<div class="row">
 	            		<div class="col-lg-6"></div>
-						<div class="col-lg-2 pad-right">
+						<div class="col-lg-2 pad-right pt-1">
 							<button class="btn btn-danger btn-block font-weight-600" id="delete_product" data-dismiss="modal">Delete</button>
 						</div>
-	            		<div class="col-lg-2 pad-center">
+	            		<div class="col-lg-2 pad-center pt-1">
 			            	<button class="btn btn-green2 btn-block font-weight-600" id="save_product" data-dismiss="modal">Save</button>            			
 	            		</div>	
-	            		<div class="col-lg-2 pad-left">
+	            		<div class="col-lg-2 pad-left pt-1">
 			            	<button class="btn btn-orange btn-block font-weight-600" onclick="clear_prod_model()" data-dismiss="modal" >Cancel</button>
 	            		</div>	
 	            	</div>
