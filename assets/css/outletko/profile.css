@@ -1,3 +1,7 @@
+.font-weight-400{
+	font-weight: 400;
+}
+
 .textbox-readonly{
 	background: white !important;
 	color: black !important;
@@ -83,14 +87,31 @@
 }
 
 .div-product-details-img{
-	height: 275px;
-	width: 275px;
+	height: 280px;
+	width: 300px;
 /*	border: 1px solid gray;	*/
 }
 
 .div-prod-dtls{
 	height: 315px; 
 	overflow: auto;
+}
+
+.div-list-img{
+	height: 250px;
+}
+
+.div-header{
+	height: 300px;
+}
+
+.div-prof-pic{
+	height: 180px;	
+	width: 220px;
+}
+
+.text-buss-name{
+	font-size: 40px;
 }
 
 }

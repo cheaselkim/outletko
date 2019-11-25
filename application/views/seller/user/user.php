@@ -152,6 +152,20 @@
 				</div>
 				<div class="col pad-right pad-md-right pb-5">
 					<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white pt-2  pb-3" id="div-aboutus">
+				
+						<div class="row">
+							<div class="col-lg-3 col-md-4 col-sm-12">
+								<span class="text-capitalize">Header Background</span>
+							</div>
+							<div class="col-lg-9 col-md-8 col-sm-12">
+								<div style="height: 35px; width: 50px;border: 1px solid black; background-color: #77933c;" class="cursor-pointer" id="colorpicker">
+								</div>
+								<input type="hidden" id="color-val">
+							</div>
+						</div>
+
+						<hr class="mt-2 mb-0 hr-green">
+
 						<div class="row">
 							<div class="col-lg-3 col-md-4 col-sm-12">
 								<span class="text-capitalize">Business Name <span class="text-red">*</span></span>

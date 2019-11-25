@@ -27,8 +27,17 @@
     <script src="<?php echo base_url('assets/js/popper.min.js') ?>"></script>
     <script src="<?php echo base_url('js/outletko/signup_login.js') ?>"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/layout.css') ?>"> -->
+    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>    
+    <!-- <script src="<?php echo base_url('assets/node_modules/colorpicker/js/eye.js') ?>"></script>    
+    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/layout.js') ?>"></script>    
+    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/util.js') ?>"></script>    
+    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/jquery.js') ?>"></script>     -->
+
 
     <script src="<?php echo base_url('js/login.js') ?>"></script>
 

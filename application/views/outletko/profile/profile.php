@@ -24,7 +24,7 @@
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 										<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 									</div>
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 										<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -35,16 +35,24 @@
 											<div class="col-lg-3 col-md-4 col-sm-12">
 												<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
 											</div>
-											<div class="col-lg-4 col-md-4 col-sm-12">
-												<span class="text-white text-buss-address" id="text-buss-email"></span>												
-											</div>
 											<div class="col-3" hidden>
 												<span class="text-white text-buss-address" id="text-buss-facebook"></span>												
 											</div>
 										</div>
 									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<span class="text-white text-buss-address" id="text-buss-email"></span>												
+									</div>
 								</div>	
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-4">
+							<span class="font-weight-400 text-white" id="header_aboutus"></span>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 text-left">
+							<span class="font-weight-600 text-white font-size-18" id="header_whats_new"></span>
 						</div>
 					</div>
 				</div>
@@ -52,7 +60,7 @@
 
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">
-				<div class="col-lg-auto col-md-auto col-sm-12 px-0">
+				<div class="col-lg-auto col-md-auto col-sm-12 px-0" hidden>
 					<div class="div-left-aboutus">					
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
 							<span class="font-weight-bold">About Us</span>
@@ -81,10 +89,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col pad-right pad-md-right">
+				<div class="col px-0"> <!-- pad-right pad-md-right pad-left -->
 					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3" id="div-display-products">
 						<!-- POST DETAILS -->
-						<div class="row">
+						<div class="row" hidden>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="form-control write-post-box font-size-18" id="account-post" style="height: 100px !important;">
 									

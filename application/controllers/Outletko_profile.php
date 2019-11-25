@@ -181,6 +181,7 @@ class Outletko_profile extends CI_Controller {
             "twitter" => $this->input->post("twitter"),
             "instagram" => $this->input->post("instagram"),
             "shoppee" => $this->input->post("shoppee"),
+            "bg_color" => $this->input->post("bgcolor")
         );
 
         $query = $this->outletko_profile_model->update_aboutus($data);

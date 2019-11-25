@@ -40,9 +40,12 @@ function get_profile(id){
             (result.result[0].province_desc == "" ? "" : result.result[0].province_desc) ;
 
     //for text
+        $(".div-header").css("background", "#"+result.result[0].bg_color);
+
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
 
         $("#account-post").text(result.result[0].account_post);
+        $("#header_whats_new").text(result.result[0].account_post);
 
         $("#text-buss-name").text(result.result[0].account_name);
         $("#owner_name_text").text(result.result[0].first_name+" "+result.result[0].middle_name+" "+result.result[0].last_name);
@@ -50,6 +53,7 @@ function get_profile(id){
         $("#text-buss-address").text((address == "" ? "No Address" : address));
         
         $("#text_aboutus").text(result.result[0].about_us);
+        $("#header_aboutus").text(result.result[0].about_us);
 
         $("#text-buss-email").text("Email : "+ (result.result[0].email == null ? "" : result.result[0].email));
         $("#text-buss-contact-no").text("Mobile No. : "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));

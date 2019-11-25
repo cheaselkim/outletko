@@ -5,6 +5,23 @@ $(document).ready(function(){
   delivery_type();
   get_del_type();
 
+  $("#colorpicker").ColorPicker({
+    color: '#77933c',
+    onShow: function (colpkr) {
+      $(colpkr).fadeIn(500);
+      return false;
+    },
+    onHide: function (colpkr) {
+      $(colpkr).fadeOut(500);
+      return false;
+    },
+    onChange: function (hsb, hex, rgb) {
+      $("#color-val").val(hex);
+      $("#colorpicker").css('background', "#" + hex);
+      $('.div-header').css('background', '#' + hex);
+    }
+  });
+
 	$("#div-setting").hide();
 	$("#div-my-orders").hide();
 	$("#div_order").hide();
@@ -640,6 +657,12 @@ function index(){
     			  (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
     //for text
+        $("#colorpicker").css("background", "#"+result.result[0].bg_color);
+        $("#color-val").val(result.result[0].bg_color);
+        $("#colorpicker").ColorPicker({
+          color: '#'+ result.result[0].bg_color,
+        });
+
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
         $("#account_post").val(result.result[0].account_post);
 
@@ -1433,6 +1456,7 @@ function save_aboutus(){
   var shoppee = $("#input_shopee").val();
   var csrf_name = $("input[name=csrf_name]").val();
 
+  var bgcolor = $("#color-val").val();
 
   var data = {
     business_name : business_name,
@@ -1451,7 +1475,8 @@ function save_aboutus(){
     twitter : twitter,
     instagram : instagram, 
     shoppee : shoppee,
-    csrf_name : csrf_name
+    csrf_name : csrf_name,
+    bgcolor : bgcolor
   }
 
   $.ajax({
