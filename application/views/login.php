@@ -144,8 +144,8 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12" id="div-title">
                               <div class="row">
-                                // <div class="col-lg-2 col-md-2 col-sm-12">
-                                // </div>
+                                 <div class="col-lg-2 col-md-2 col-sm-12" hidden>
+                                </div>
                                 <div class="col-lg-12 col-md-10 col-sm-12 pt-2">
                                   <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 70%;'>
                                   <span class="font-size-45"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-light-gray">.com</span></span><br>                                
@@ -165,8 +165,7 @@
                                         <span class="text-black font-size-28">Connecting you to outlet stores and service providers</span>                                
                                     </div>                            
                                 </div>
-<!--                                     <?php echo form_open('Search'); ?> -->
-                                 <form action="<?php echo site_url('search') ?>" method="GET"> 
+                                  <?php echo form_open('Search/Search'); ?>
                                     <div class="row pr-4">
                                         <div class="col-lg-3 col-md-12 col-sm-12 py-1 pad-right">
                                             <div class="input-group">
@@ -190,8 +189,7 @@
                                         <input type="submit" class="btn btn-orange btn-block " value="Search" id="search" name="search">
                                         </div>                
                                     </div>  
-<!--                                 <?php echo form_close(); ?>               -->
-                                 </form>
+                                  <?php echo form_close(); ?>               
                                 <div class="row">
                                   <div class="col-lg-12 col-md-12 col-sm-12 pr-4" id="div-were">
                                     <span class="font-size-36 text-white" >We're Coming Very Soon</span>

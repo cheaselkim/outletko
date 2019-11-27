@@ -20,8 +20,6 @@ class Login extends CI_Controller {
 			if ($this->session->userdata("user_type") == "5"){
 				redirect('/my-order');
 			}else{
-
-
 				if ($result > 0){
 					$this->load->view("website/otp_password");
 				}else{
@@ -35,7 +33,8 @@ class Login extends CI_Controller {
 					// $this->template->load("0", $data);		
 
 					if ($this->session->userdata("user_type") == "4"){
-						redirect("store/".str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
+						// redirect("store/".str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
+						redirect(str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
 					}else{
 						if (($this->session->userdata("login") == "1") && ($this->session->userdata("all_access") == "1") && ($this->session->userdata("user_type") == "2")){
 							$this->session->set_userdata("login", "0");

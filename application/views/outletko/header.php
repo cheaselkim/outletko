@@ -31,7 +31,8 @@
 	<div class="row">
 		<div class="col-12 col-md-11 col-lg-12 mx-auto px-0">
 
-			<form action="<?php echo site_url('search') ?>" method="GET">
+			<?php echo form_open('Search/Search'); ?>
+			<!-- <form action="<?php echo site_url('search') ?>" method="GET"> -->
 				<div class="row">
 					<div class="col-12 col-md-6 col-lg-5 pad-right">
 						<div class="input-group">
@@ -57,7 +58,10 @@
 						<button class="btn btn-block btn-warning font-small font-weight-600" type="submit">Search</button>
 					</div>
 				</div>
-			</form>
+			<!-- </form> -->
+			<?php echo form_close(); ?>               
+
+
 
 		</div>
 		

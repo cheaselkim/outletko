@@ -5,58 +5,65 @@
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 <input type="hidden" id="id" value="<?php echo $id ?>">
 
-<div class="container pt-3 pb-4">
-	<div class="row">
-		<div class="col-12 col-sm-12 col-md-11 col-lg-12 mx-auto">
+
+<div class=" pt-3">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header">
+		<div class="container">
+
 			<div class="row">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header">
-					<div class="row">
-						<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
-							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
-							</div>
-						</div>
-						<div class="col-9 pad-left py-1">
-							<div class="div-prof-details">
-								<div class="row">
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
-									</div>
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
-									</div>
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
-									</div>
-									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<div class="row">
-											<div class="col-lg-4 col-md-4 col-sm-12">
-												<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-12">
-												<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
-											</div>
-											<div class="col-3" hidden>
-												<span class="text-white text-buss-address" id="text-buss-facebook"></span>												
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-12 col-sm-12">
-										<span class="text-white text-buss-address" id="text-buss-email"></span>												
-									</div>
-								</div>	
-							</div>
-						</div>
+				<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
+					<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 					</div>
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-4">
-							<span class="font-weight-400 text-white" id="header_aboutus"></span>
-						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 text-left">
-							<span class="font-weight-600 text-white font-size-18" id="header_whats_new"></span>
-						</div>
+				</div>
+				<div class="col-9 pad-left py-1">
+					<div class="div-prof-details">
+						<div class="row">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
+							</div>
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
+							</div>
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
+							</div>
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="row">
+									<div class="col-lg-4 col-md-4 col-sm-12">
+										<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
+									</div>
+									<div class="col-lg-3 col-md-4 col-sm-12">
+										<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
+									</div>
+									<div class="col-3" hidden>
+										<span class="text-white text-buss-address" id="text-buss-facebook"></span>												
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<span class="text-white text-buss-address" id="text-buss-email"></span>												
+							</div>
+						</div>	
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-4">
+					<span class="font-weight-400 text-white" id="header_aboutus"></span>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 text-left">
+					<span class="font-weight-600 text-white font-size-18" id="header_whats_new"></span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="container pb-4">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-11 col-lg-12 mx-auto">
 
 			<!-- DIV HOME -->
 			<div class="row pt-2" id="div-home">

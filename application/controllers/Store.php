@@ -9,6 +9,7 @@ class Store extends CI_Controller {
 	  }
 
 	public function store($store){
+		
             $data['id'] = $this->store_model->search_store($store);
             $data['sub_module'] = 0;
 			$data['menu_module'] = 0;
@@ -32,7 +33,6 @@ class Store extends CI_Controller {
 		
 				$this->template->load("0", $data);			
 			}else{
-				redirect("/");
 			}
 
 

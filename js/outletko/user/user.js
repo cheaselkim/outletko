@@ -657,6 +657,7 @@ function index(){
     			  (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
     //for text
+        $(".div-header").css("background", "#"+result.result[0].bg_color);
         $("#colorpicker").css("background", "#"+result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
         $("#colorpicker").ColorPicker({
