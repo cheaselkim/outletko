@@ -87,9 +87,11 @@
 }
 
 .div-product-details-img{
-	height: 280px;
-	width: 300px;
+	/* height: 280px;
+	width: 300px; */
 /*	border: 1px solid gray;	*/
+	height: 350px;
+	width: 350px;
 }
 
 .div-prod-dtls{

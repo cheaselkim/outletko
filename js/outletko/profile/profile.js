@@ -24,13 +24,26 @@ function get_profile(id){
 
  var csrf_name = $("input[name=csrf_name]").val();
 
+  // $.ajax({
+  //   data : {csrf_name : csrf_name, id : id},
+  //   type : "POST",
+  //   dataType : "JSON",
+  //   url : base_url + "Profile/profile",
+  //   dataType : "JSON",
+  //   success : function(result){
+  //     console.log(result);
+  //   }, error : function(err){
+  //     console.log(err.responseText);
+  //   }
+  // })
+
   $.ajax({
     data: {csrf_name : csrf_name, id : id}, 
     type: "POST", 
     url : base_url +  "Profile/profile",
     dataType : "JSON",
     success : function(result){
-
+    console.log(result);
     $("input[name=csrf_name]").val(result.token);
     var profile = base_url + "images/profile/" + result.profile;    
     var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
@@ -40,7 +53,7 @@ function get_profile(id){
             (result.result[0].province_desc == "" ? "" : result.result[0].province_desc) ;
 
     //for text
-        $(".div-header").css("background", "#"+result.result[0].bg_color);
+        $(".div-header").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
 

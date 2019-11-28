@@ -260,7 +260,7 @@
 
 									<div class="col-lg-12 col-md-4 pt-3">
 										<div class="div-ads-img">	
-											<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
+											<!-- <img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid"> -->
 										</div>	
 									</div>
 

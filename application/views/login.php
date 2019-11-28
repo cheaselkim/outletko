@@ -114,7 +114,7 @@
   </div>
 </div>
 
-    <div class="container-fluid" id="div-body" style="display: none;">
+    <div class="container-fluid" id="div-body" style="">
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -165,7 +165,8 @@
                                         <span class="text-black font-size-28">Connecting you to outlet stores and service providers</span>                                
                                     </div>                            
                                 </div>
-                                  <?php echo form_open('Search/Search'); ?>
+                                <!-- <?php echo form_open('Search/Search'); ?> -->
+                                  <form action="<?php echo base_url('Search/index') ?>" method="get">
                                     <div class="row pr-4">
                                         <div class="col-lg-3 col-md-12 col-sm-12 py-1 pad-right">
                                             <div class="input-group">
@@ -188,8 +189,10 @@
                                         <div class="col-lg-2 col-md-12 col-sm-12 py-1 pad-center">
                                         <input type="submit" class="btn btn-orange btn-block " value="Search" id="search" name="search">
                                         </div>                
-                                    </div>  
-                                  <?php echo form_close(); ?>               
+                                    </div>
+                                  </form>  
+                                  <!-- <?php echo form_close(); ?> -->               
+
                                 <div class="row">
                                   <div class="col-lg-12 col-md-12 col-sm-12 pr-4" id="div-were">
                                     <span class="font-size-36 text-white" >We're Coming Very Soon</span>
