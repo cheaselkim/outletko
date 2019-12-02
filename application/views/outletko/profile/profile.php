@@ -21,7 +21,7 @@
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
 							</div>
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -10px;">
 								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -48,8 +48,8 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-4">
-					<span class="font-weight-400 text-white" id="header_aboutus"></span>
+				<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5">
+					<span class="font-weight-400 mx-2" id="header_aboutus"></span>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 text-left">
 					<span class="font-weight-600 text-white font-size-18" id="header_whats_new"></span>

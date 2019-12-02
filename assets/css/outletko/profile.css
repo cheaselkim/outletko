@@ -113,7 +113,15 @@
 }
 
 .text-buss-name{
-	font-size: 40px;
+	font-size: 43px;
+}
+
+.text-buss-type{
+	font-size: 25px;
+}
+
+.text-buss-address{
+	font-size: 13px;
 }
 
 }

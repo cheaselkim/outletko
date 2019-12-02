@@ -8,7 +8,8 @@
 }
 
 body{
-	background: rgb(238, 236, 225);
+	/* background: rgb(238, 236, 225); */
+	background: white;
 }
 
 .error{
