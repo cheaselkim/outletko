@@ -35,46 +35,46 @@ class Signup extends CI_Controller {
     }
 
     public function save_data() {
-    $status = "failed";
+        $status = "failed";
         $info_outletsuite = $this->input->post('info_outletsuite', TRUE);
         $info_outletko = $this->input->post('info_outletko', TRUE);
         $info_outletko['date_insert'] = date("Y-m-d H:i:s");
         $info_outletsuite['date_created'] =  date("Y-m-d H:i:s");
       
         $pass = $info_outletko['password'];
-      $email = $info_outletko['email'];
-      $uname = $info_outletko['username'];
+        $email = $info_outletko['email'];
+        $uname = $info_outletko['username'];
       
-      $year = date("y");
-      $user_type= "4";
-    $account_id_result = $this->signup_model->account_id();
-        $account_id = $year.$user_type.$account_id_result;
+        $year = date("y");
+        $user_type= "4";
+        $account_id_result = $this->signup_model->account_id();
+        $account_id = $year.'1'.$account_id_result;
     
-    $hashed_password = password_hash($pass, PASSWORD_DEFAULT);  
-    $account=array(
-      'account_id'=>$account_id,
-      'account_name'=>$info_outletko['account_name'],
-      'account_status'=>$info_outletko['account_status'],
-      'business_category'=>$info_outletko['business_category'],
-      'user_id'=>$info_outletko['user_id'],
-      'first_name'=>$info_outletko['first_name'],
-      'middle_name'=>$info_outletko['middle_name'],
-      'last_name'=>$info_outletko['last_name'],
-      'address'=>$info_outletko['address'],
-      'confirm_email'=>$info_outletko['confirm_email'],
-      'city'=>$info_outletko['city'],
-      'email'=>$info_outletko['email'],
-      'mobile_no'=>$info_outletko['mobile_no'],
-      'date_insert'=>date("Y-m-d H:i:s")
-    );
+        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);  
+        $account=array(
+          'account_id'=>$account_id,
+          'account_name'=>$info_outletko['account_name'],
+          'account_status'=>$info_outletko['account_status'],
+          'business_category'=>$info_outletko['business_category'],
+          'user_id'=>$info_outletko['user_id'],
+          'first_name'=>$info_outletko['first_name'],
+          'middle_name'=>$info_outletko['middle_name'],
+          'last_name'=>$info_outletko['last_name'],
+          'address'=>$info_outletko['address'],
+          'confirm_email'=>$info_outletko['confirm_email'],
+          'city'=>$info_outletko['city'],
+          'email'=>$info_outletko['email'],
+          'mobile_no'=>$info_outletko['mobile_no'],
+          'date_insert'=>date("Y-m-d H:i:s")
+        );
     
     
     
   
-    $email_check = $this->signup_model->email_check($account['email']);
-    $res = "";
-    $send_email = ""; 
-    $email_check = true;
+      $email_check = $this->signup_model->email_check($account['email']);
+      $res = "";
+      $send_email = ""; 
+      $email_check = true;
 
     // if($email_check){
         $res = $this->signup_model->register($account);
@@ -93,8 +93,58 @@ class Signup extends CI_Controller {
           'otp' => "0",
           'all_access' => "1"
         );
+
         $res2 = $this->signup_model->register_users($account2);
-      $send_email =  $this->send_email($email,$res,$uname,$pass);
+
+        $user_app = array(
+          "last_name" => strtoupper($info_outletko['last_name']),
+          "middle_name" => strtoupper($info_outletko['middle_name']),
+          "first_name" => strtoupper($info_outletko['first_name']),
+          "email" => $info_outletko['email'],
+          "mobile_no" => $info_outletko['mobile_no'],
+          "address" => $info_outletko['address'],
+          "city" => $info_outletko['city'],
+          "account_id" => $account_id,
+          "account_name" => strtoupper($info_outletko['account_name']),
+          "account_status" => $info_outletko['account_status'],
+          "account_class" => '1',
+          "account_type" => '1',
+          "business_type" => $info_outletko['business_category'],
+          // "subscription_type" => $this->input->post("subscription_type", TRUE),
+          // "subscription_date" => $this->input->post("subscription_date", TRUE),
+          // "renewal_date" => $this->input->post("renewal_date", TRUE),
+          // "recruited_by" => $this->input->post("recruited_by", TRUE),
+          "outlet_no" => '3',
+          // "cash_card" => $this->input->post("cash_card", TRUE),
+          "vat" => '1',
+          "currency" => '121',
+          "date_insert" => date('Y-m-d H:i:s')
+          );
+    
+          $user_app_result = $this->signup_model->insert_account($user_app);
+    
+        $users = array(
+          "comp_id" => $user_app_result,
+          "account_id" => $account_id,
+          "account_type" => "1",
+          "first_name" => strtoupper($info_outletko['first_name']),
+          "middle_name" => strtoupper($info_outletko['middle_name']),
+          "last_name" => strtoupper($info_outletko['last_name']),
+          "username" => $account_id,
+          "email" => $info_outletko['email'],
+          "user_type" => "2",
+          "all_access" => "1",
+          "status" => "0"
+        );
+    
+        $users_result = $this->signup_model->insert_users($users);
+        $outlet_result = $this->signup_model->insert_outlet(array("user_id" => $users_result, "outlet_id" => "0"));
+        $product_color = $this->signup_model->insert_product_color($user_app_result);
+        $product_unit = $this->signup_model->insert_product_unit($user_app_result);
+        $sales_discount = $this->signup_model->insert_sales_discount($user_app_result);
+        $customer = $this->signup_model->insert_customer($user_app_result);
+    
+        // $send_email =  $this->send_email($email,$res,$uname,$pass);
     // }else{
     //   $error = 'Email Already Exist !';
     //   $send_email = false;
@@ -162,9 +212,9 @@ class Signup extends CI_Controller {
     }
     
     public function send_email($email, $account_id,$uname,$pass){
-    $this->load->library("email");
-    $status = 0;
-    $hashed_email = password_hash($email, PASSWORD_DEFAULT);
+        $this->load->library("email");
+        $status = 0;
+        $hashed_email = password_hash($email, PASSWORD_DEFAULT);
         $data = "";
     
         $data['account_id'] = $account_id;
@@ -315,7 +365,7 @@ class Signup extends CI_Controller {
 
       $this->email->initialize($config)
                   ->set_newline("\r\n")
-                  ->from('noreply@zugriff.com', 'Outletko User Verification')
+                  ->from('noreply@outletko.com', 'Outletko User Verification')
                   ->to($email)
                   ->subject('Outletko User Verification')
                   ->message($message);

@@ -12,6 +12,8 @@ class Login extends CI_Controller {
 	public function login(){		
 		$result = $this->login_model->check_session();
 
+		// var_dump($result);
+
 		if ($result != true){
 			$this->template->load("", ($data = null));
 		}else{
@@ -62,7 +64,7 @@ class Login extends CI_Controller {
 	}
 
 	public function nologin(){
-		die('asfjaskfsaj');
+		$this->load->view("admin/email/email");
 	}
 
 	public function check_login(){

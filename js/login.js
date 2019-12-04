@@ -120,6 +120,8 @@ $(document).ready(function(){
     
     $("#signup_next").click(function(){
 
+        $("#signup_back").show();
+
         var fname = $("#signup_first_name").val()
         var mname = $("#signup_middle_name").val()
         var lname = $("#signup_last_name").val()

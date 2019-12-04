@@ -122,7 +122,7 @@ class Signup_model extends CI_Model {
       if (!empty($query)){
         foreach ($query as $key => $value) {
           if (password_verify($pword, $value->password)){
-                  if($value->user_type == "2"){
+                  if($value->user_type == "2" || $value->user_type == "1"){
                       $result = $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($value->account_id))->num_rows();
                       
                        $user_array = array(
@@ -196,5 +196,75 @@ class Signup_model extends CI_Model {
       return $query;
     }
 
+    public function insert_account($user_app){
+      $this->db->insert("account_application", $user_app);
+      return ($this->db->affected_rows() > 0) ? $this->db->insert_id() : 0;		
+    }
+
+    public function insert_users($users){
+      $this->db->insert("users", $users);
+      return ($this->db->affected_rows() > 0) ? $this->db->insert_id() : 0;		
+    }
+
+    public function insert_outlet($data){
+      $this->db->insert("user_outlet", $data);
+      return ($this->db->affected_rows() > 0) ? 1 : 0;
+    }
+
+    public function insert_product_color($comp_id){
+
+      $query = $this->db->query("SELECT * FROM auto_product_color")->result();
+
+      foreach ($query as $key => $value) {
+        $data[$key] = array(
+            "comp_id" => $comp_id,
+            "outlet_id" => "0",
+            "color_code" => $value->code,
+            "color_name" => $value->name
+            );
+      }
+      $this->db->insert_batch("product_color", $data);
+    }
+
+    public function insert_product_unit($comp_id){
+      $query = $this->db->query("SELECT * FROM auto_product_unit")->result();
+
+      foreach ($query as $key => $value) {
+        $data[$key] = array(
+            "comp_id" => $comp_id,
+            "outlet_id" => "0",
+            "unit_code" => $value->code,
+            "unit_name" => $value->name
+            );
+      }
+      $this->db->insert_batch("product_unit", $data);
+
+    }
+
+    public function insert_sales_discount($comp_id){
+      $query = $this->db->query("SELECT * FROM auto_sales_discount")->result();
+
+      foreach ($query as $key => $value) {
+        $data[$key] = array(
+            "comp_id" => $comp_id,
+            "outlet_id" => "0",
+            "sales_discount_code" => $value->code,
+            "sales_discount_name" => $value->name
+            );
+      }
+      $this->db->insert_batch("sales_discount", $data);
+
+    }
+
+    public function insert_customer($comp_id){
+      $data = array(
+          "comp_id" => $comp_id,
+          "outlet_id" => "0",
+          "cust_code" => "00001",
+          "cust_name" => "CASH"
+      );
+
+      $this->db->insert("customer", $data);
+    }    
 
 }

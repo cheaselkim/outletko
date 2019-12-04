@@ -200,7 +200,7 @@
 
     <header style="margin-top: 10px;">
 
-        <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">eOutlet</span><span class="span-eprocurement">Suite</span></h2>
+        <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">Outletko</span><span class="span-eprocurement">Suite</span></h2>
 
         <div class="header-right" >
 
@@ -214,7 +214,7 @@
 
     <section style="background: #EDA634;height: 50px;width: 100%;text-align: center;padding: 20px;">
 
-        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to eOutletSuite!</h1>
+        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to Outletko!</h1>
     </section>
 
 
@@ -225,14 +225,14 @@
 
             <h2 style="color: black;">Thank you so much for subscribing!</h2>
 
-            <p style="font-size: 18px;">Get started by logging into your eOutletSuite account at </p>
+            <p style="font-size: 18px;">Get started by logging into your Outletko account at </p>
             <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com" target="_blank">https://www.outletko.com</a></p>
 
             <br><br>
 
             <div class="row col-12">
-
-                <p style="padding-right: 37px;"><b>Your User ID is:</b>  <?php echo $account_id; ?></p>
+                <h4>OutletkoSuite Account</h4>
+                <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $account_id; ?></p>
 
                 <p></p>
 
@@ -244,6 +244,12 @@
 
                 <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $password; ?></p>
 
+            </div>
+
+            <div class="row col-12">
+              <h4>Oulteko Page Account</h4>
+              <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $email; ?></p>
+              <p style="padding-right: 20px;"><b>Your Password is:</b>  password</p>
             </div>
 
         </article>
@@ -271,7 +277,7 @@
 
 
     <footer class="font-text-footer">
-        <p style="float: right;">Copyright @ 2019 Zugriff Corporation</p>
+        <p style="float: right;">Copyright @ 2019 Outletko</p>
     </footer>
 
 </div>

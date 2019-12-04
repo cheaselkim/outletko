@@ -1,9 +1,14 @@
 $(document).ready(function(){
 
-	$("#div-signup-form").hide();
+	// $("#div-signup-form").hide();
+	$("#signup_next").hide();
+	$("#signup_back").hide();
 	$("#btn_signup").hide();
+	$("#div-confirm-email2").hide();
 	$("#div-confirm-email").hide();
 	$("#btn_confirm").hide();
+	$("#btn_confirm2").hide();
+	$("#div-form").hide();
 
 	$("#a_login").click(function(){
 		$("#div-signup-form").hide();
@@ -19,16 +24,58 @@ $(document).ready(function(){
 
 		$("#div-signup-form").show();
 		$("#btn_signup").show();
-
 	})
+
+	$("#a_register_store").click(function(){
+		$("#div-signup-form").hide();
+		$("#btn_signup2").hide();
+		
+		$("#div-business").hide();
+		$("#div-address ").hide();
+
+		$("#next-1").addClass("fas fa-circle");
+		$("#next-2").addClass("fas fa-circle");
+		$("#next-1").removeClass("fas fa-check-circle");
+		$("#next-2").removeClass("fas fa-check-circle");
+		$("#next-2").removeClass("text-black");
+		$("#next-3").removeClass("text-black");
+		$("#div-form").find(":input").val("");
+
+		$("#div-name").show();
+		$("#div-form").show();
+		$("#signup_next").show();
+		// $("#signup_back").show();
+		// $("#signup_save").show();
+	});
+
+	$("#a_signup").click(function(){
+		$("#div-form").hide();
+		$("#signup_next").hide();
+		$("#signup_back").hide();
+		$("#signup_save").hide();
+
+		$("#div-signup-form").find(":input").val("");
+		$("#div-signup-form").show();
+		$("#btn_signup2").show();		
+	});
 
 	$("#btn_signup").click(function(){
 		check_signup_field();
 	});
 
+	$("#btn_signup2").click(function(){
+		check_signup_field();
+	});
+
+
 	$("#btn_confirm").click(function(){
 		confirm_account();
 	});
+
+	$("#btn_confirm2").click(function(){
+		confirm_account();
+	});
+
 
 	$("#btn_login").click(function(){
 		check_login_field();
@@ -119,6 +166,8 @@ function check_signup_field(){
 }
 
 function insert_user(){
+
+	console.log("insert_user");
 	
 	var csrf_name = $("input[name=csrf_name]").val();
 
@@ -147,8 +196,8 @@ function insert_user(){
 			$("input[name=csrf_name]").val(result.token);
 			$("#div-signup-form").hide();
 			$("#btn_signup").hide();
-			$("#div-confirm-email").show();
-			$("#btn_confirm").show();
+			$("#div-confirm-email2").show();
+			$("#btn_confirm2").show();
 		}, error : function(err){
 			console.log(err.responseText);
 		}
@@ -174,7 +223,7 @@ function confirm_account(){
 				$("#div-signup-form").hide();
 				$("#btn_signup").hide();
 				$("#div-confirm-email").hide();
-				$("#btn_confirm").hide();
+				$("#btn_confirm2").hide();
 				$("#div-login-form").show();
 				$("#btn_login").show();
 

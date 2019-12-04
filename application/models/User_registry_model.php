@@ -5,7 +5,9 @@ class User_registry_model extends CI_Model {
 
 	public function __construct(){
 		parent::__construct();
+			$CI = &get_instance(); 
 			$this->load->database();
+			$this->db2 = $CI->load->database('outletko', TRUE);
 			$result = $this->login_model->check_session();
 			if ($result != true){
 				redirect("/");
@@ -185,6 +187,28 @@ class User_registry_model extends CI_Model {
 	public function update_account($data, $id){
 		$this->db->where("id", $id);
 		$this->db->update("account_application", $data);
+	}
+
+	// Outletko
+	public function insert_outletko(){
+		$data = array();
+		$data['date_insert'] = date("Y-m-d H:i:s");
+		$this->db2->insert("account", $data);
+        return ($this->db2->affected_rows() > 0) ? $this->db2->insert_id() : 0;		
+	}
+
+	public function insert_account_outletko($data, $id){
+		$this->db2->where("id", $id);
+		$this->db2->update("account", $data);
+	}
+
+	public function insert_user_outletko($data, $comp_id){
+		$this->db->insert("users", $data);
+
+		$id = $this->db2->insert_id();
+		$this->db2->where("id", $comp_id);
+		$this->db2->set("user_id", $id);
+		$this->db2->update("account");
 	}
 
 }

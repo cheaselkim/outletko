@@ -69,9 +69,10 @@ $(document).ready(function(){
     $("#account_class").change(function(){
     	if ($(this).val() != "1"){
     		$("#business_type").attr("disabled", true);
-    		$("#business_type").val("25");
+    		$("#business_type").val("97");
     	}else{
     		$("#business_type").attr("disabled", false);
+    		$("#business_type").val("");
     	}
     	account_id();
     });
@@ -89,7 +90,7 @@ $(document).ready(function(){
 	});
 
 	$("#business_type").change(function(){
-		account_id();
+		// account_id();
 	});
 
 	$("#save").click(function(){
@@ -243,6 +244,7 @@ function currency(){
 }
 
 function account_id(){
+	var account_class = $("#account_class").val();
 	var business_type = $("#business_type").val();
 	var csrf_name = $("input[name=csrf_name]").val();
 
@@ -253,7 +255,7 @@ function account_id(){
 		url : base_url + "User_registry/account_id",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
-			var account_id = result.year + business_type + result.account_id;
+			var account_id = result.year + (account_class == null ? "1" : account_class) + result.account_id;
 			$("#account_no").val(account_id);
 		}, error : function(err){
 			console.log(err.responseText);

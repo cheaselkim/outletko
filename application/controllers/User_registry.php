@@ -84,6 +84,7 @@ class User_registry extends CI_Controller {
 	}
 
 	public function insert_account(){
+		$outletko_comp = $this->user_registry_model->insert_outletko();
 		$user_app_result = 0;
 		$users_result = 0;
 		$email_result = 0;
@@ -135,15 +136,54 @@ class User_registry extends CI_Controller {
 			"username" => $this->input->post("account_id", TRUE),
 			"email" => $this->input->post("email", TRUE),
 			"user_type" => $user_type,
-			"all_access" => "1"
+			"all_access" => "1",
+			"status" => "1"
 		);
 
+		$user_outletko = array(
+			'account_id' => $this->input->post("account_id", TRUE),
+			'status' => "1",
+			'comp_id' => $outletko_comp,
+			'first_name' => strtoupper($this->input->post("first_name", TRUE)),
+			'middle_name' => strtoupper($this->input->post("middle_name", TRUE)),
+			'last_name'=> strtoupper($this->input->post("last_name", TRUE)),
+			'user_type'=> "4",
+			'password' => password_hash("password", PASSWORD_DEFAULT),
+			'email' => $this->input->post("email", TRUE),
+			'username' => $this->input->post("email", TRUE),
+			'account_type' => "0",
+			'otp' => "0",
+			'all_access' => "1"  
+		);
+
+		$account_outletko=array(
+			'account_id'=>$this->input->post('account_id', TRUE),
+			'account_name'=> ucwords($this->input->post('account_name', TRUE)),
+			'account_status'=> 1,
+			'confirm_email' => 1,
+			'bg_color' => '77933c',
+			'business_category'=> $this->input->post("business_type", TRUE),
+			'first_name' => strtoupper($this->input->post("first_name" ,TRUE)),
+			'middle_name'=> strtoupper($this->input->post("middle_name", TRUE)),
+			'last_name'=> strtoupper($this->input->post("last_name", TRUE)),
+			'address'=> $this->input->post("address", TRUE),
+			'city'=> $this->input->post("city", TRUE),
+			'email'=> $this->input->post("email", TRUE),
+			'mobile_no' => $this->input->post("mobile", TRUE)
+		  );
+	  
+
+		// OutletkoSuite
 		$users_result = $this->user_registry_model->insert_users($users);
 		$outlet_result = $this->user_registry_model->insert_outlet(array("user_id" => $users_result, "outlet_id" => "0"));
 		$product_color = $this->user_registry_model->insert_product_color($user_app_result);
 		$product_unit = $this->user_registry_model->insert_product_unit($user_app_result);
 		$sales_discount = $this->user_registry_model->insert_sales_discount($user_app_result);
 		$customer = $this->user_registry_model->insert_customer($user_app_result);
+
+		// OutletkoAdmin
+		$account_outletko = $this->user_registry_model->insert_account_outletko($account_outletko, $outletko_comp);
+		$user_outletko = $this->user_registry_model->insert_user_outletko($user_outletko, $outletko_comp);
 
 		$email_result = $this->send_email($this->input->post("email", TRUE), $this->input->post("account_id", TRUE));
 
@@ -174,29 +214,39 @@ class User_registry extends CI_Controller {
         $data = array();
 
         $data['account_id'] = $account_id;
-        $data['password'] = $randomString;
+		$data['password'] = $randomString;
+		$data['email'] = $email;
 
         $message = $this->load->view("admin/email/email", $data, TRUE);
 
 		if ($result > 0){
-	        $config = array(
-                        'protocol' => 'mail',
-                        'mail_type' => 'html',
-                        'smtp_host' => 'mail.outletko.com',
-                        'smtp_port' => 465,
-                        'smtp_user' => 'noreply@outletko.com',
-                        'smtp_pass' => 'eoutletsuite_noreply',
-                        'charset' => 'iso-8859-1',
-                        'wordwrap' => TRUE
+	        // $config = array(
+            //             'protocol' => 'mail',
+            //             'mail_type' => 'html',
+            //             'smtp_host' => 'mail.outletko.com',
+            //             'smtp_port' => '465',
+            //             'smtp_user' => 'no_reply@outletko.com',
+            //             'smtp_pass' => 'no_reply1234',
+            //             'charset' => 'iso-8859-1',
+            //             'wordwrap' => TRUE
+	        //         );
 
-	                );
-
+			$config = array(
+				'protocol' => 'smtp',
+				'mail_type' => 'html',
+				'smtp_host' => 'ssl://smtp.gmail.com',
+				'smtp_port' => '465',
+				'smtp_user' => 'epgmcompany@gmail.com',
+				'smtp_pass' => 'epgmcompany101',
+				'charset' => 'iso-8859-1',
+				'wordwrap' => TRUE
+			);
 
 	        $this->email->initialize($config)
 	                    ->set_newline("\r\n")
-	                    ->from('noreply@outletko.com', 'eOutletSuite Application')
+	                    ->from('no_reply@outletko.com', 'eOutletSuite Application')
 	                    ->to($email)
-	                    ->subject('eOutletSuite Account Register')
+	                    ->subject('Outletko Account Register')
 	                    ->message($message);
 
 
@@ -230,7 +280,8 @@ class User_registry extends CI_Controller {
         $data = array();
 
         $data['account_id'] = $account_id;
-        $data['password'] = $randomString;
+		$data['password'] = $randomString;
+		$data['email'] = $email;
 
         $message = $this->load->view("admin/email/email_admin", $data, TRUE);
 
@@ -250,9 +301,9 @@ class User_registry extends CI_Controller {
 
 	        $this->email->initialize($config)
 	                    ->set_newline("\r\n")
-	                    ->from('noreply@outletko.com', 'eOutletSuite Application')
+	                    ->from('noreply@outletko.com', 'OutletkoSuite Application')
 	                    ->to("accounts@outletko.com")
-	                    ->subject('eOutletSuite Account Register')
+	                    ->subject('OutletkoSuite Account Register')
 	                    ->message($message);
 
 
