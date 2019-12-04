@@ -7,7 +7,7 @@
     <meta name="description" content="eoutletsuite, eoutletsuite, eoutletsuite.com, outletko">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
 
-    <link rel="icon" href="assets/img/icon2.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
@@ -87,7 +87,7 @@
       <!-- rgb(119, 147, 60) -->
   <div class="row">
     <div class="col-lg-12 text-center text-white py-2" style="background:rgb(119,147,60); min-height: 3vh;">
-      <span class="font-weight-525 font-italic">Introducing Outletko Suite &mdash; An Business Suite for your Outlet &nbsp; <button class="btn btn-orange py-0 px-2 font-weight-600">JOIN NOW</button> </span>
+      <span class="font-weight-525 font-italic">Introducing Outletko Suite &mdash; A Business Suite for your Outlet &nbsp; <button class="btn btn-orange py-0 px-2 font-weight-600">JOIN NOW</button> </span>
     </div>
   </div>
   <!-- https://images.pexels.com/photos/449559/pexels-photo-449559.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200/ -->
@@ -115,22 +115,22 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-2 mx-auto pt-3">
-          <img src="<?php echo base_url('/assets/img/logo-10.png') ?>" alt="logo" style="height: 100%; width:80%;">
+        <div class="col-lg-2 col-md-2 col-sm-4 mx-auto pt-3 text-center">
+          <img src="<?php echo base_url('/assets/img/logo-10.png') ?>" alt="logo" class="img-logo">
         </div>
       </div>
       
       <div class="row pt-5">
         <div class="col-lg-8 mx-auto">
           <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
               <p class="line-1 anim-typewriter text-white text-shadow-white" hidden>Find Outlet Store Near You!</p>
               <p class="line-1 anim-typewriter text-white text-shadow-black h4" >Connecting you to outlet stores and service providers</p>
             </div>
           </div>
           <form action="<?php echo base_url('Search/index') ?>" method="get">
-            <div class="row mt-3">
-              <div class="col-lg-3 pad-right">
+            <div class="row mt-2">
+              <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
@@ -138,7 +138,7 @@
                   <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="location" placeholder="Search location" aria-label="location" aria-describedby="basic-addon1">
                 </div>    
               </div>
-              <div class="col-lg-7 pad-center">
+              <div class="col-lg-7 col-md-6 col-sm-12 pad-center pt-1">
 
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -148,7 +148,7 @@
                 </div>
           
               </div>
-              <div class="col-lg-2 pad-left">
+              <div class="col-lg-2 col-md-2 col-sm-12 pad-left pt-1">
                 <button class="btn btn-orange btn-block font-weight-600">Search</button>
               </div>
             </div>
@@ -160,90 +160,90 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-8 mx-auto pt-3">
+    <div class="col-lg-8 col-md-12 col-sm-8 mx-auto pt-3">
       <div class="row">
         <div class="col-lg-12 text-center">
           <span class="font-weight-525 h3">Popular Categories</span>
           <hr class="my-2" style="width: 10%;border-top: 3px solid orange;">
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-lg-3">
+      <div class="row mt-2">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center pb-2">
+              <div class="card-body text-center pb-2 px-0">
                 <i class="fas fa-utensils fa-2x text-orange"></i>
                 <h4 class="card-title text-green mt-4">Restaurant </h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center pb-2">
+              <div class="card-body text-center pb-2 px-0">
                 <i class="fas fa-mobile-alt fa-2x text-orange"></i>
-                <h4 class="card-title text-green mt-2">Electronic Store</h4>
+                <h4 class="card-title text-green mt-2">Electronic <br> Store</h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center pb-2">
+              <div class="card-body text-center pb-2 px-0">
                 <i class="fa fa-book fa-2x text-orange"></i>
                 <h4 class="card-title text-green mt-4">Book Store</h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center pb-2">
+              <div class="card-body text-center pb-2 px-0">
                 <i class="fas fa-tshirt fa-2x text-orange"></i>
-                <h4 class="card-title text-green mt-2">Clothing Boutique</h4>
+                <h4 class="card-title text-green mt-2">Clothing <br> Boutique</h4>
               </div>
             </div>
           </a>
         </div>
       </div>
-      <div class="row mt-2">
-        <div class="col-lg-3">
+      <div class="row">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center pb-2">
+              <div class="card-body text-center pb-2 px-0">
                 <i class="fas fa-gem fa-2x text-orange"></i>
                 <h4 class="card-title text-green mt-4">Jewelry Store</h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center">
+              <div class="card-body text-center px-0">
                 <i class="fab fa-pagelines fa-2x text-orange"></i>
                 <h4 class="card-title text-green">Agriculutral Products</h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center">
+              <div class="card-body text-center px-0">
                 <i class="fas fa-blender fa-2x text-orange"></i>
-                <h4 class="card-title text-green mt-2">Appliance Store</h4>
+                <h4 class="card-title text-green mt-2">Appliance <br> Store</h4>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-2">
           <a href="">
             <div class="card">
-              <div class="card-body text-center">
+              <div class="card-body text-center px-0">
                 <i class="fas fa-couch fa-2x text-orange"></i>
                 <h4 class="card-title text-green">Furniture and Handicraft</h4>
               </div>
@@ -252,7 +252,7 @@
         </div>
       </div>
       <div class="row my-4">
-        <div class="col-lg-3 text-center mx-auto">
+        <div class="col-6 col-lg-3 col-md-4 col-sm-6 text-center mx-auto">
           <button class="btn btn-orange btn-block font-weight-600">All Categories</button>
         </div>
       </div>
