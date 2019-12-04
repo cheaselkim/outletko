@@ -1,0 +1,161 @@
+.font-weight-400{
+    font-weight: 400;
+}
+
+.font-weight-600{
+    font-weight: 600;
+}
+
+.font-weight-525{
+    font-weight: 525;
+}
+
+.btn-transparent{
+    background: transparent;
+}
+
+.btn-orange{
+    background: orange;
+    color: white;
+}
+
+.btn-white{
+    background: white;
+}
+
+.btn-green{
+    background: rgb(119,147,60);
+    color: white;
+}
+
+.bd-yellow{
+    border: 0.5px solid yellow;
+}
+
+.bd-orange{
+    border: 0.5px solid orange;
+}
+
+.rounded-top-75{
+    border-top-left-radius : 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+}
+
+.rounded-bottom-75{
+    border-bottom-right-radius: 0.75rem !important;
+    border-bottom-left-radius: 0.75rem !important;
+}
+
+.textbox-orange{
+    border: 1px solid orange;
+}
+
+.text-green{
+    color: green;
+}
+
+.text-orange{
+    color: orange;
+}
+
+.card{
+    height: 140px;
+}
+
+.text-shadow-white{
+    /* text-shadow: 2px 2px white; */
+}
+
+.text-shadow-black{
+    /* text-shadow: 2px 2px black; */
+}
+
+.header{
+    background: linear-gradient(
+        rgba(20,20,20, .8), 
+        rgba(20,20,20, .8)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); 
+    background-repeat:no-repeat; 
+    background-size: 100%;
+}
+
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+/* html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: calc(100vh - 8em);
+  padding: 4em;
+  color: rgba(255,255,255,.75);
+  font-family: 'Anonymous Pro', monospace;  
+  background-color: rgb(25,25,25);  
+} */
+
+.line-1{
+    position: relative;
+    /* top: 50%;   */
+    width: 27em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    /* font-size: 180%;  */
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+  animation-iteration-count: infinite;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 27em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+.pad-center{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.pad-left{
+    padding-left: 3px;
+}
+
+.pad-right{
+    padding-right: 3px;
+}    
+    
+}
