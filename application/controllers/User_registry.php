@@ -220,31 +220,31 @@ class User_registry extends CI_Controller {
         $message = $this->load->view("admin/email/email", $data, TRUE);
 
 		if ($result > 0){
-	        // $config = array(
-            //             'protocol' => 'mail',
-            //             'mail_type' => 'html',
-            //             'smtp_host' => 'mail.outletko.com',
-            //             'smtp_port' => '465',
-            //             'smtp_user' => 'no_reply@outletko.com',
-            //             'smtp_pass' => 'no_reply1234',
-            //             'charset' => 'iso-8859-1',
-            //             'wordwrap' => TRUE
-	        //         );
+	        $config = array(
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+	                );
 
-			$config = array(
-				'protocol' => 'smtp',
-				'mail_type' => 'html',
-				'smtp_host' => 'ssl://smtp.gmail.com',
-				'smtp_port' => '465',
-				'smtp_user' => 'epgmcompany@gmail.com',
-				'smtp_pass' => 'epgmcompany101',
-				'charset' => 'iso-8859-1',
-				'wordwrap' => TRUE
-			);
+			// $config = array(
+			// 	'protocol' => 'smtp',
+			// 	'mail_type' => 'html',
+			// 	'smtp_host' => 'ssl://smtp.gmail.com',
+			// 	'smtp_port' => '465',
+			// 	'smtp_user' => 'epgmcompany@gmail.com',
+			// 	'smtp_pass' => 'epgmcompany101',
+			// 	'charset' => 'iso-8859-1',
+			// 	'wordwrap' => TRUE
+			// );
 
 	        $this->email->initialize($config)
 	                    ->set_newline("\r\n")
-	                    ->from('no_reply@outletko.com', 'eOutletSuite Application')
+	                    ->from('noreply@outletko.com', 'OutletSuite Application')
 	                    ->to($email)
 	                    ->subject('Outletko Account Register')
 	                    ->message($message);
@@ -290,7 +290,7 @@ class User_registry extends CI_Controller {
                         'protocol' => 'mail',
                         'mail_type' => 'html',
                         'smtp_host' => 'mail.outletko.com',
-                        'smtp_port' => 465,
+                        'smtp_port' => '465',
                         'smtp_user' => 'noreply@outletko.com',
                         'smtp_pass' => 'eoutletsuite_noreply',
                         'charset' => 'iso-8859-1',

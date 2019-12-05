@@ -64,7 +64,74 @@ class Login extends CI_Controller {
 	}
 
 	public function nologin(){
-		$this->load->view("admin/email/email");
+		// $this->load->view("admin/email/email");
+			$this->load->library("email");
+			$status = 0;
+			// $randomString = $this->randomString();
+			// $result = $this->password_model->find_accountid($account_id, $randomString);
+			$data = array();
+	
+			$data['account_id'] = 'test';
+			$data['password'] = 'askdjfaskdf';
+			$data['email'] = 'dooleycheasel@gmail.com';
+			$result = 1;
+			$email = 'dooleycheasel@gmail.com';
+
+			$message = $this->load->view("admin/email/email", $data, TRUE);
+	
+			if ($result > 0){
+				$config = array(
+							'protocol' => 'mail',
+							'mail_type' => 'html',
+							'smtp_host' => 'mail.outletko.com',
+							'smtp_port' => '465',
+							'smtp_user' => 'noreply@outletko.com',
+							'smtp_pass' => 'eoutletsuite_noreply',
+							'charset' => 'iso-8859-1',
+							'wordwrap' => TRUE
+						);
+	
+				// $config = array(
+				// 	'protocol' => 'smtp',
+				// 	'mail_type' => 'html',
+				// 	'smtp_host' => 'ssl://smtp.gmail.com',
+				// 	'smtp_port' => '465',
+				// 	'smtp_user' => 'epgmcompany@gmail.com',
+				// 	'smtp_pass' => 'epgmcompany101',
+				// 	'charset' => 'iso-8859-1',
+				// 	'wordwrap' => TRUE
+				// );
+	
+				$this->email->initialize($config)
+							->set_newline("\r\n")
+							->from('noreply@outletko.com', 'OutletSuite Application')
+							->to($email)
+							->subject('Outletko Account Register')
+							->message($message);
+	
+	
+				if($this->email->send()) {
+					$status = 1;
+				}else {
+					$status = $this->email->print_debugger();
+				}
+			}else{
+				$status = 0;
+			}
+			// $status = 1;
+	
+			var_dump($status);
+
+			// var_dump($email);        
+	
+			// var_dump($this->email->initialize($config));
+	
+			// var_dump($this->email->print_debugger());        
+	
+			// var_dump($status);
+			// die($status);
+			// return $status;
+
 	}
 
 	public function check_login(){
@@ -83,4 +150,7 @@ class Login extends CI_Controller {
 	public function menu(){
 		$this->load->view("event/menu");
 	}
+
+
+
 }

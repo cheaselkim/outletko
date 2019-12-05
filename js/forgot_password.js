@@ -110,7 +110,7 @@ function change_password(){
 			}
 	
 			startTimer(4, "");
-			setTimeout(function(){ window.open(base_url + "/logout", "_self"); }, 4000);
+			setTimeout(function(){ window.open(base_url, "_self"); }, 4000);
 		}, error : function(err){
 			console.log(err.responseText);
 		}

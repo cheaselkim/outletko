@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/node_modules/simple-line-icons/css/simple-line-icons.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendors/pace-progress/css/pace.min.css') ?>">
-    <link rel="stylesheet" type="text/css" href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendors/clockpicker/clockpicker.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
     <link rel='stylesheet' type='text/css' href='<?php echo base_url('assets/css/eqcss.css') ?>'>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
 
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.min.js') ?>"></script>
@@ -17,6 +18,7 @@
     
     <script type="text/javascript" src="<?php echo base_url('assets/node_modules/font-awesome/js/all.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/node_modules/@coreui/coreui/dist/js/coreui.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('js/forgot_password.js') ?>"></script>
     <script>var base_url = '<?php echo base_url() ?>';</script>
 	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
