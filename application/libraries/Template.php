@@ -38,6 +38,19 @@
 							$data['page'] = 'admin/user_registry/user_registry_query';														
 						}
 					}else if ($menu == "2"){
+						if ($function == "1"){
+							$data['page'] = 'admin/user_registry/user_registry_entry';							
+						}else if ($function == "2"){
+							if ($edit == "0"){
+								$data['page'] = 'admin/outletko/outletko_query';														
+							}else if ($edit == "1"){
+								$data['page'] = 'admin/outletko/outletko_edit';														
+							}
+						}else if ($function == "3"){
+							$data['page'] = 'admin/outletko/outletko_query';														
+						}else if ($function == "4"){
+							$data['page'] = 'admin/outletko/outletko_query';														
+						}
 
 					}else if ($menu == "3"){
 

@@ -23,9 +23,9 @@
 
               <div class="card-body card-body-menu text-center">
 
-                <img src="<?php echo base_url('assets/images/app_menu/sales.png') ?>" class='img-fluid mb-2'>
+                <img src="<?php echo base_url('assets/images/app_menu/outlet.png') ?>" class='img-fluid mb-2'>
 
-                <span class="h3 font-weight-bold">User Registry</span>
+                <span class="h3 font-weight-bold">OutletkoSuite</span>
 
               </div>
 
@@ -39,9 +39,9 @@
 
               <div class="card-body card-body-menu text-center">
 
-                <img src="<?php echo base_url('assets/images/app_menu/outlet.png') ?>" class='img-fluid mb-2'>
+                <img src="<?php echo base_url('assets/images/app_menu/sales.png') ?>" class='img-fluid mb-2'>
 
-                <span class="h3 font-weight-bold">Business Hierarchy</span>
+                <span class="h3 font-weight-bold">Outletko Page</span>
 
               </div>
 
