@@ -266,9 +266,9 @@ function account_id(){
 
 function renewal_date(){
 	var date = $("#start_date").val();
-	var days = $("#subscription_type option:selected").data("days");
+	var days = $("#subscription_type option:selected").data("days") + 1;
 	var newdate = new Date(date);
-	newdate.setDate(newdate.getDate() + days);
+	newdate.setDate(newdate.getDate() + (days + 10));
 	var renewal_date = $.datepicker.formatDate("yy-mm-dd", newdate);
 	$("#renewal_date").val(renewal_date);
 }
@@ -352,6 +352,7 @@ function check_required_fields(){
 	var business_type = $("#business_type").val();
 	var subscription_type = $("#subscription_type").val();
 	var subscription_date = $("#start_date").val();
+	var payment_date = $("#payment_date").val();
 	var renewal_date = $("#renewal_date").val();
 	var recruited_by = $("#partner_id").val();
 	var outlet = $("#no_outlet").val();
@@ -359,7 +360,8 @@ function check_required_fields(){
 	var town = $("#town_id").val();
 	var province = $("#province_id").val();
 	var cash_card = $("#cash_card").val();
-    var partner_id = $("#partner_id").val();
+	var partner_id = $("#partner_id").val();
+	var area_code = $("#area_code").val();
 
     if (jQuery.trim(last_name).length <= 0 || 
         jQuery.trim(first_name).length <= 0 || 
@@ -370,7 +372,9 @@ function check_required_fields(){
         jQuery.trim(outlet).length <= 0 || 
         jQuery.trim(town).length <= 0 || 
         jQuery.trim(mobile_no).length <= 9 || 
-        jQuery.trim(partner_id).length <= 0 ){
+		jQuery.trim(partner_id).length <= 0 || 
+		jQuery.trim(area_code).length <= 0 ||
+		jQuery.trim(payment_date).length <= 0){
 
         if (jQuery.trim(last_name).length <= 0){
             $("#last_name").addClass("error");
@@ -410,7 +414,15 @@ function check_required_fields(){
 
         if (jQuery.trim(partner_id).length <= 0){
             $("#partner_id").addClass("error");
-        }
+		}
+		
+		if (jQuery.trim(area_code).length <= 0){
+			$("#area_code").addClass("error");
+		}
+
+		if (jQuery.trim(payment_date).length <= 0){
+			$("#payment_date").addClass("error");
+		}
 
         // if (jQuery.trim(cash_card).length <= 0){
         //     $("#cash_card").addClass("error");
@@ -439,6 +451,7 @@ function save(){
 	var middle_name = $("#middle_name").val();
 	var email = $("#email").val();
 	var mobile_no = $("#mobile").val();
+	var area_code = $("#area_code").val();
 	var phone_no = $("#phone").val();
 	var address = $("#address").val();
 	var account_id = $("#account_no").val();
@@ -451,6 +464,7 @@ function save(){
 	var subscription_type = $("#subscription_type").val();
 	var subscription_date = $("#start_date").val();
 	var renewal_date = $("#renewal_date").val();
+	var payment_date = $("#payment_date").val();
 	var recruited_by = $("#partner_id").val();
 	var outlet = $("#no_outlet").val();
 	var vat = $("#vat").val();
@@ -463,7 +477,8 @@ function save(){
 	            first_name : first_name, 
 	            middle_name : middle_name, 
 	            email : email, 
-	            mobile_no : mobile_no, 
+				mobile_no : mobile_no,
+				area_code : area_code, 
 		        phone_no : phone_no, 
 		        address : address, 
 		        town: town,
@@ -476,10 +491,11 @@ function save(){
 		        currency : currency, 
 		        business_type : business_type, 
 		        subscription_type : subscription_type, 
-		        subscription_date : subscription_date,
+				subscription_date : subscription_date,
+				payment_date : payment_date,
 		        renewal_date : renewal_date, 
 		        recruited_by : recruited_by, 
-		        outlet : outlet, 
+				outlet : outlet, 
 		        cash_card : cash_card,
 		        vat : vat,
 		    	csrf_name : csrf_name};

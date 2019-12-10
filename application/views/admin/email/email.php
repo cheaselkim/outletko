@@ -220,7 +220,8 @@
 
         <article class="" style="padding-left: 70px;">
 
-            <h2 style="color: black;">Thank you so much for subscribing!</h2>
+            <h2 style="color: black;">Thank you so much for subscribing! You have Ten(10) days free trial. </h2>
+            <p style="font-size: 18px">Our Sales Team will be contacting you shortly.</p>
 
             <p style="font-size: 18px;">Get started by logging into your Outletko account at </p>
             <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com" target="_blank">https://www.outletko.com</a></p>

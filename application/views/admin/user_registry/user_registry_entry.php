@@ -14,7 +14,7 @@
                         <h3 class="font-weight-bold">Account Information</h3>
                     </div>
                     <div class="col-xs-6 col-md-6 pt-3 text-right" >
-                        <h3 class="font-weight-bold">Edit</h3>
+                        <h3 class="font-weight-bold">Entry</h3>
                     </div>
                 </div>
             </div>
@@ -88,8 +88,8 @@
                             <input class="form-control" id="renewal_date" data-date="" data-date-format="MM/DD/YYYY" type='date'>
                         </div>
                         <div class="col-xs-12 col-md-2 pl-1 pr-0">
-                            <span class="font-size-18">Partner's ID <span class='required'>*</span></span>
-                            <input class="form-control" id="partner_id"  onkeypress="return isNumber(event)">
+                            <span class="font-size-18">Payment Date <span class='required'>*</span></span>
+                            <input class="form-control" id="payment_date" data-date="" data-date-format="MM/DD/YYYY" type='date' value='<?php echo date('Y-m-d') ?>'>
                         </div>
                     </div>
 
@@ -122,7 +122,7 @@
                         <div class="col-xs-12 col-md-2 px-1">
                             <span class="font-size-18">Mobile No <span class='required'>*</span></span>
                             <div class="input-group mb-3">
-                              <div class="input-group-prepend">
+                              <div class="input-group-prepend" style="height: 35px;">
                                 <span class="input-group-text bg-white border px-1" style='border-radius: 0 !important;border: 1px solid black !important; border-right: 0 !important; color: black !important;'>+63</span>
                               </div>
                               <input type="text" class="form-control" id="mobile" name="mobile" style='border-left: 0 !important;' onkeypress="return isNumber(event)">
@@ -130,11 +130,20 @@
                         </div>
                         <div class="col-xs-12 col-md-2 px-1">
                             <span class="font-size-18">Phone No</span>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend" style="height: 35px;width: 40px;">
+                              <input type="text" class="form-control px-1 text-center" id="area_code" onkeypress="return isNumber(event)" value="02">
+                              </div>
                             <input type="text" class="form-control" id="phone" onkeypress="return isNumber(event)">
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-2 pl-1 pr-0 ml-auto">
                             <span class="font-size-18">No. of Outlet <span class='required'>*</span></span>
                             <input type="text" class="form-control"  id="no_outlet" onkeypress="return isNumber(event)">
+                        </div>
+                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
+                            <span class="font-size-18">Partner's ID <span class='required'>*</span></span>
+                            <input class="form-control" id="partner_id"  onkeypress="return isNumber(event)">
                         </div>
                     </div>
 
