@@ -112,7 +112,7 @@ class Signup extends CI_Controller {
           "business_type" => $info_outletko['business_category'],
           "subscription_type" => "1",
           "subscription_date" => date('Y-m-d'),
-          "renewal_date" => date('Y-m-d', strtotime(date('Y-m-d'), '+ 10 days')),
+          "renewal_date" => date('Y-m-d', strtotime("+11 days")),
           // "recruited_by" => $this->input->post("recruited_by", TRUE),
           "outlet_no" => '3',
           // "cash_card" => $this->input->post("cash_card", TRUE),
