@@ -104,16 +104,21 @@
 }
 
 .div-header{
-	height: 300px;
+	min-height: 100px;
+	height: auto;
 }
 
 .div-prof-pic{
-	height: 180px;	
-	width: 220px;
+	height: 120px;	
+	width: 140px;
+}
+
+.div-prof-details{
+	height: 100px;
 }
 
 .text-buss-name{
-	font-size: 43px;
+	font-size: 30px;
 }
 
 .text-buss-type{
