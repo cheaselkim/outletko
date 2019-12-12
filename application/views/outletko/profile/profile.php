@@ -29,10 +29,10 @@
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="row">
-									<div class="col-lg-4 col-md-4 col-sm-12">
+									<div class="col-lg-4 col-md-4 col-sm-12" style="margin-top: -0.5%;">
 										<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
 									</div>
-									<div class="col-lg-3 col-md-4 col-sm-12">
+									<div class="col-lg-3 col-md-4 col-sm-12" style="margin-top: -0.5%;">
 										<span class="text-white text-buss-address" id="text-buss-tel-no"></span>												
 									</div>
 									<div class="col-3" hidden>
@@ -40,7 +40,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: -0.75%;">
 								<span class="text-white text-buss-address" id="text-buss-email"></span>												
 							</div>
 						</div>	
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5">
+				<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5 pt-2">
 					<span class="font-weight-400 mx-2" id="header_aboutus"></span>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 text-left">

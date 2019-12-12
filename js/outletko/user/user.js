@@ -672,7 +672,7 @@ function index(){
         $("#text-buss-type").text(result.result[0].desc_cat);
         $("#text-buss-address").text((address == "" ? "No Address" : address));
         
-        $("#text_aboutus").text(result.result[0].about_us.substring(0, 200));
+        $("#text_aboutus").text((result.result[0].about_us == null ? "" : result.result[0].about_us.substring(0, 400)));
        
         $("#email_text").text(" "+ (result.result[0].email == null ? "" : result.result[0].email));
         $("#tel_text").text(" "+(result.result[0].telephone_no == null ? "" : result.result[0].telephone_no));
@@ -691,15 +691,15 @@ function index(){
         $("#shopee_text").prepend("<i class='fas fa-shopping-bag'></i>");
     //for text
     
-    	var aboutus_length = result.result[0].about_us.substring(0, 200)
+    	var aboutus_length = result.result[0].about_us.substring(0, 400)
 
     //for inputs
         $("#input_businessname").val(result.result[0].account_name);
-        $("#input_aboutus").val(result.result[0].about_us.substring(0, 200));
+        $("#input_aboutus").val(result.result[0].about_us.substring(0, 400));
         $("#input_aboutus_length").text(aboutus_length.length);
         $("#input_bussinesscategory").val(result.result[0].business_category);
 
-        $("#input_bldg").val();
+        $("#input_bldg").val(result.result[0].address);
         $("#input_subdivision").val();
         $("#input_barangay").val();
         $("#input_city").val(result.result[0].city_desc);
@@ -748,6 +748,7 @@ function index(){
 
         if (check == 1){
           $("#delivery_"+ (i + 1) ).prop("checked", true);
+          $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
         }
       }
 
@@ -815,9 +816,12 @@ function index(){
 
       }
 
+      console.log(result.warranty);
       if (result.warranty.length != 0){
         $("#inp_warranty").val(result.warranty[0].account_warranty);
         $("#inp_return").val(result.warranty[0].account_return);
+        $("#prod_warranty").val(result.warranty[0].account_warranty);
+        $("#prod_return").val(result.warranty[0].account_return);
       }
 
 
@@ -861,7 +865,7 @@ function index(){
         }
     //products
     
-        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 '+margin+' '+pad+' ">' +
+        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 mt-3 '+pad+' ">' +
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
 						'</div>' +
@@ -929,9 +933,9 @@ function get_del_type(){
     url : base_url + "Outletko_profile/get_del_type",
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
-
+      $("#prod_std_delivery").append("<option hidden></option>");
       for (var i = 0; i < result.data.length; i++) {
-        $("#prod_std_delivery").append("<option value='"+result.data[i].id+"'>"+result.data[i].delivery_type+"</option>");
+        $("#prod_std_delivery").append("<option value='"+result.data[i].id+"' class='del_"+(Number(i) + 1)+" opt-hide' >"+result.data[i].delivery_type+"</option>");
       }
 
     }, error : function(err){

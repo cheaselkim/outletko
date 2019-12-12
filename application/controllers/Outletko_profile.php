@@ -208,6 +208,7 @@ class Outletko_profile extends CI_Controller {
         $result_delivery = $this->outletko_profile_model->save_delivery_type($delivery_type);
         $result_ship = $this->outletko_profile_model->save_ship($data);
         $result_appointment = $this->outletko_profile_model->save_appointment($appointment);
+        $result_warranty = $this->outletko_profile_model->save_warranty($warranty, $return);
 
         echo json_encode(1);
     }
