@@ -10,7 +10,11 @@
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header pr-0">
 					<div class="row">
 						<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
-							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
+							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img"  style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
+								<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2" id="div-update-button" data-toggle="modal" data-target="#modal_prof_pic">
+									<i class="fas fa-camera text-white"></i><br>
+									<span class="text-white font-weight-bold font-size-18">Update</span>
+								</div>
 							</div>
 						</div>
 						<div class="col-9 pad-left py-1 pr-0">

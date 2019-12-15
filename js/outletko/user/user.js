@@ -29,12 +29,14 @@ $(document).ready(function(){
   $("#div-for-appointment").hide();
   $("#div-for-delivery").hide();
   $("#div-prod-ship-fee").hide();
+  $("#div-update-button").hide();
 
   $("#ship_w_mm").number(true, 2);
   $("#ship_o_mm").number(true, 2);
   $("#prod_price").number(true, 2);
   $("#prod_stock").number(true, 0);
   $("#prod_weight").number(true, 2);
+  $(".div-img-update").hide();
 
   $("#ship_kg").number(true,2);
   $("#ship_mm").number(true,2);
@@ -53,6 +55,26 @@ $(document).ready(function(){
   $("#prod_stock2").hide();
 
   $("#delete_product").hide();
+
+
+  $("#div-prod-img").mouseover(function(){
+    $("#div-update-button").show();
+  });
+
+  $("#div-prod-img").mouseout(function(){
+    $("#div-update-button").hide();
+  });
+
+  $(".div-list-img").mouseover(function(){
+    var id = this.id
+    $("#"+id+" .div-img-update").show();
+  });
+
+  $(".div-list-img").mouseout(function(){
+    var id = this.id
+    $("#"+id+" .div-img-update").hide();
+  });
+
 
 	$("#span_setting").click(function(){
     index();
@@ -665,6 +687,11 @@ function index(){
         });
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
+        $("#div-img-prof").css("background-image", "url('"+profile+"')");
+        $('#div-img-prof').css('background-size', "100% 100%");
+        $('#div-img-prof').css('background-repeat', "no-repeat");
+        $('#div-img-prof').css('background-position', "center center");
+        
         $("#account_post").val(result.result[0].account_post);
 
         $("#text-buss-name").text(result.result[0].account_name);
@@ -850,18 +877,41 @@ function index(){
             // pad = "pad-center";
             pad = "";
             var e = $('<div class="col col-6 col-md-4 col-lg-3 '+margin+' '+pad+' "   >'+
-        					'<div class="div-list-img" >'+
-        						'<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
+                        '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
+        						// '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
             					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
             						// '<i class="fa fa-camera"></i>'+
-            					'</div>'+
+                      '</div>'+
+                      '<div class="col-lg-12 text-center py-4 div-img-update" style="margin-top: 40%;background:rgb(0,0,0,0.3);height:45%;" id="div-img-update-'+x+'">' +
+                        '<i class="fas fa-camera text-white"></i><br>' +
+                        '<span class="font-size-18 font-weight-600 text-white">Update</span>' +
+                      '</div>' +
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
                     '<span class="font-weight-600 font-size-16" >'+product_name+'</span><br>' + 
                     '<span class="font-weight-600 font-size-14 text-red">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
                     '</div>' +
         				'</div>');
-        	$('#posted_prod').append(e);  
+
+                $('#posted_prod').append(e);  
+                $("#div-img-update-"+x+"").hide();
+
+                $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
+                $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
+                $('#div-list-img-'+x+'').css("background-position", "center");
+                $('#div-list-img-'+x+'').css("background-size", "100% 100%");
+      
+                $(".div-list-img").mouseover(function(){
+                  var id = this.id
+                  $("#"+id+" .div-img-update").show();
+                });
+              
+                $(".div-list-img").mouseout(function(){
+                  var id = this.id
+                  $("#"+id+" .div-img-update").hide();
+                });
+              
+
         }
     //products
     

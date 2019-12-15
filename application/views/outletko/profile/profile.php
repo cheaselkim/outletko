@@ -22,16 +22,16 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12 pad-left pt-1">
+				<div class="col-12 pad-left" style="margin-top: -10px;">
 					<div class="div-prof-details">
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-								<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
+								<span class="font-weight-600 text-white text-buss-name" id="text-buss-name">Business Name</span>
 							</div>
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -10px;" hidden>
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
 								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 							</div>
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center" style="margin-top: -5px;">
 								<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -59,7 +59,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2 pb-2" style="margin-top: -5px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5">
@@ -93,7 +93,7 @@
 						
 		<div class="row">
 			<div class="col-9 col-lg-11 col-md-10 col-sm-9">
-				<span class="font-size-25">Product Details</span>								
+				<span class="font-size-25" hidden>Product Details</span>								
 			</div>
 			<div class="col-3 col-lg-1 col-md-2 col-sm-3">
 				<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
@@ -101,56 +101,66 @@
 		</div>
 				
 		<div class="row">
-			<div class="col-lg-auto col-sm-12 mb-4 text-center">
-				<div class="div-product-details-img mb-2" id="div-product-details-img">
+			<div class="col-lg-auto col-sm-12 mb-4">
+				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img">
 				</div>
-				<span class="font-size-25" id="prod-name">Abaca Seedlings</span><br>
-				<span class="font-size-20" id="prod-price">PHP 25.00</span>
+				<span class="font-size-25 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
+				<span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
 			</div>
 			<div class="col-lg-7 col-sm-12">
 				
-				<div class="col-12 my-2 div-prod-dtls" >
+				<div class="col-12 mb-2 div-prod-dtls" >
+					<span class="font-weight-600 font-size-25" hidden>Product Description</span>
 					<p id="prod-condition" hidden></p>
 					<p id="prod-stock" hidden></p>
-					<p id="prod-weight"></p>
-					<p id="prod-dtls"></p>
+					<p id="prod-weight" hidden></p>
+					<!-- <p id="prod-dtls" ></p> -->
 
 					<div class="row">
-						<div class="col-12">
-							<span class="font-weight-600 font-size-18">Payment Type : </span>
+						<div class="col-12" hidden>
+							<span calss="font-size-16">Details : </span>
 						</div>
-						<div class="col-12 pl-4">
-							<span id="prod_payment_type" class="font-size-16"></span>
+						<div class="col-12 "> <!-- pl-4 -->
+							<span class="font-size-18 font-weight-600" id="prod-dtls"></span>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-12">
-							<span class="font-weight-600 font-size-18">Delivery Type : </span>
+							<span class="font-size-16">Payment Type : </span>
 						</div>
 						<div class="col-12 pl-4">
-							<span id="prod_delivery_type" class="font-size-16"></span>
+							<span id="prod_payment_type" class="font-size-18 font-weight-600"></span>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-12">
-							<span class="font-weight-600 font-size-18">Standard Delivery : </span>
+							<span class="font-size-16">Delivery Type : </span>
 						</div>
 						<div class="col-12 pl-4">
-							<span id="prod_del_opt" class="font-size-16"></span>
+							<span id="prod_delivery_type" class="font-size-18 font-weight-600"></span>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-12">
-							<span class="font-weight-600 font-size-18">Returns & Warranty : </span>
+							<span class="font-size-16">Standard Delivery : </span>
 						</div>
 						<div class="col-12 pl-4">
-							<span id="prod_return" class="font-size-16"></span>
+							<span id="prod_del_opt" class="font-size-18 font-weight-600"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<span class="font-size-16">Returns & Warranty : </span>
 						</div>
 						<div class="col-12 pl-4">
-							<span id="prod_warranty" class="font-size-16"></span>
+							<span id="prod_return" class="font-size-18 font-weight-600"></span>
+						</div>
+						<div class="col-12 pl-4">
+							<span id="prod_warranty" class="font-size-18 font-weight-600"></span>
 						</div>
 					</div>
 
@@ -159,16 +169,16 @@
 
 				<div class="col-12">
 
-					<div class="row">
+					<div class="row" hidden>
 						<div class="col-12">
-							<span class="font-weight-600" id="std_lbl">Standard Delivery</span><br>
+							<span class="font-size-16" id="std_lbl">Standard Delivery</span><br>
 						</div>
 						<div class="col-12">
-							<span class="ml-2" id="std_del">Seeds are delivered by LBC</span>
+							<span class="ml-2 font-size-18 font-weight-600" id="std_del">Seeds are delivered by LBC</span>
 						</div>
 					</div>
 
-					<div class="row" id="div-ship-fee">
+					<div class="row" id="div-ship-fee" hidden>
 						<div class="col-11 ml-4 pl-1 border">
 							<div class="row">
 								<div class="col-9 pr-0">
@@ -279,8 +289,8 @@
 						<input type="hidden" id="prod_id">
 						
 						<div class="row">
-							<div class="col-9 col-lg-11 col-md-10 col-sm-9">
-								<span class="font-size-25">Product Details</span>								
+							<div class="col-9 col-lg-11 col-md-10 col-sm-9" >
+								<span class="font-size-25" >Product Details</span>								
 							</div>
 							<div class="col-3 col-lg-1 col-md-2 col-sm-3">
 								<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>

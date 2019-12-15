@@ -167,7 +167,7 @@ function get_profile(id){
           }
           // $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
           $("#div-posted-prod").append("<div class='col-12 div-row-prod-"+i+" pb-2' id='div-row-prod-"+i+"' "+$style+"></div>");
-          $("#div-posted-prod .div-row-prod-"+i+"").append("<div class='container'></div>");
+          $("#div-posted-prod .div-row-prod-"+i+"").append("<div class='container mx-auto'></div>");
           $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
 
         }
@@ -190,13 +190,13 @@ function get_profile(id){
             }
 
             var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
-            '<div class="div-list-img cursor-pointer" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
+            '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
               // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
-                '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
+                '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
                   // '<i class="fa fa-camera"></i>'+
                 '</div>'+
             '</div>'+
-            '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" >' + 
+            '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
               '<span class="font-weight-600 font-size-16">'+product_name+'</span><br>' + 
               '<span class="font-weight-600 font-size-16 text-red">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
             '</div>' +
@@ -281,7 +281,7 @@ function get_product_info(id){
       $("input[name=csrf_name]").val(data.token);
 
       $("#prod-name").text(data.products[0].product_name);
-      $("#prod-dtls").text("Details : " + data.products[0].product_description);
+      $("#prod-dtls").text(data.products[0].product_description);
       $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
       $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Old"));
       $("#prod-stock").text("Stock : " + $.number(data.products[0].product_stock, 0));

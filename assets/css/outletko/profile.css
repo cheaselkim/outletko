@@ -90,8 +90,8 @@
 	/* height: 280px;
 	width: 300px; */
 /*	border: 1px solid gray;	*/
-	height: 350px;
-	width: 350px;
+	height: 320px;
+	width: 320px;
 }
 
 .div-prod-dtls{
@@ -100,7 +100,13 @@
 }
 
 .div-list-img{
-	height: 250px;
+	height: 230px;
+	width: 250px;
+}
+
+.div-list-img-btn{
+	line-height: 17px;
+	width: 250px;
 }
 
 .div-header{
@@ -118,7 +124,7 @@
 }
 
 .text-buss-name{
-	font-size: 30px;
+	font-size: 33px;
 }
 
 .text-buss-type{
@@ -126,7 +132,7 @@
 }
 
 .text-buss-address{
-	font-size: 14px;
+	font-size: 13px;
 }
 
 }
