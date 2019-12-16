@@ -26,6 +26,7 @@
 
     <script src="<?php echo base_url('js/outletko/signup_login.js') ?>"></script>
     <script src="<?php echo base_url('js/login.js') ?>"></script>
+    <script src="<?php echo base_url('js/featured_outlet.js')?>"></script>
 
 
     <style type="text/css">
@@ -83,7 +84,7 @@
 </head>
 <body>
 
-<div class="container-fluid pb-5">
+<div class="container-fluid pb-4">
       <!-- rgb(119, 147, 60) -->
   <div class="row">
     <div class="col-lg-12 text-center text-white py-2" style="background:rgb(119,147,60); min-height: 3vh;">
@@ -125,7 +126,7 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 text-center">
               <p class="line-1 anim-typewriter text-white text-shadow-white" hidden>Find Outlet Store Near You!</p>
-              <p class="line-1 anim-typewriter text-white text-shadow-black h4" >Connecting you to outlet stores and service providers</p>
+              <p class="line-1 anim-typewriter text-white text-shadow-black h4" >Connecting Stores and Service Providers to Community People</p>
             </div>
           </div>
           <form action="<?php echo base_url('Search/index') ?>" method="get">
@@ -159,7 +160,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" hidden>
     <div class="col-lg-8 col-md-12 col-sm-8 mx-auto pt-3">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -258,6 +259,54 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-8 col-md-12 col-sm-8 mx-auto pt-3">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <span class="font-weight-525 h3">Featured Stores for the Month</span>
+          <hr class="my-2" style="width: 25%;border-top: 3px solid orange;">
+        </div>
+      </div>
+      <div class="row" id="div-featured-outlet" >
+      </div>
+      <div class="row my-4">
+        <div class="col-6 col-lg-3 col-md-4 col-sm-6 text-center mx-auto">
+          <button class="btn btn-orange btn-block font-weight-600">All Stores</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="row" style="background: rgb(119,147,60);">
+  <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2" style="padding-left: 100px; padding-right:100px;">
+    <div class="row">
+      <div class="col-4 text-center pr-5">
+        <img src="http://localhost/outletko/assets/img/logo-10.png" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
+        <p class="text-white font-size-14">Outletko is a complete digital platform exclusively designed for micro and small business</p>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-6 text-white" style="line-height:30px;">
+            <a href="" class="text-white">About Us</a><br>
+            <a href="" class="text-white">FAQs</a><br>
+            <a href="" class="text-white">Terms of Service</a>
+          </div>
+          <div class="col-6 text-white" style="line-height:30px;">
+            <a href="" class="text-white">Contact Us</a><br>
+            <a href="" class="text-white">Reviews</a><br>
+            <a href="" class="text-white">Be our Partner</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 text-right">
+        <div class="mt-5 text-right">
+          <span style="font-size: 25px;"><span class="text-white">Follow us on :</span> <i class="fab fa-facebook-f text-orange"></i>&nbsp;<i class="fab fa-twitter text-orange"></i>&nbsp;<i class="fab fa-youtube text-orange"></i>&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;">
     <span>© Copyright Outletko • <?php echo date('Y') ?> • All Rights Reserved</span>

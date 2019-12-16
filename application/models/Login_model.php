@@ -117,5 +117,9 @@ class Login_model extends CI_Model {
     return $query;
   }
 
+  public function featured_outlet(){
+    $query = $this->db2->query("SELECT * FROM account  WHERE account_status = ? LIMIT 8", array(1))->result();
+    return $query;
+  }
 
 }

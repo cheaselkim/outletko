@@ -1,3 +1,4 @@
+
 .font-weight-400{
     font-weight: 400;
 }
@@ -8,6 +9,22 @@
 
 .font-weight-525{
     font-weight: 525;
+}
+
+.font-size-12{
+    font-size: 14px;
+}
+
+.text-facebook{
+    color: #3b5998 ;
+}
+
+.text-twitter{
+    color: #38A1F3;
+}
+
+.text-youtube{
+    color: #c4302b;
 }
 
 .btn-transparent{
@@ -58,8 +75,33 @@
     color: orange;
 }
 
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+
 .card{
-    height: 140px;
+    height: 200px;
+}
+
+.div-store-about{
+    background:rgb(0,0,0,0.2);
+    height:200px;
+}
+
+.card-body{
+    height: 150px;
+    line-height:150px;
+}
+
+.card-body h4{
+    display:inline-block; 
+    vertical-align: middle; 
+    line-height:normal;
 }
 
 .text-shadow-white{
@@ -69,6 +111,27 @@
 .text-shadow-black{
     /* text-shadow: 2px 2px black; */
 }
+
+.text-green-white{
+    color: green;
+    text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+}
+
+.text-green-black{
+    color: green;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+
+.text-orange-white{
+    color: orange;
+    text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+}
+
+.text-orange-black{
+    color: orange;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+
 
 .header{
     background: linear-gradient(
@@ -115,7 +178,7 @@ body{
 }
 @keyframes typewriter{
   from{width: 0;}
-  to{width: 27em;}
+  to{width: 30em;}
 }
 @keyframes blinkTextCursor{
   from{border-right-color: rgba(255,255,255,.75);}

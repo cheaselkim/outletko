@@ -151,6 +151,19 @@ class Login extends CI_Controller {
 		$this->load->view("event/menu");
 	}
 
+	public function featured_outlet(){
+		$result = $this->login_model->featured_outlet();
+		$data['token'] = $this->security->get_csrf_hash();
 
+		foreach ($result as $key => $value) {
+			$data['data'][$key] = array(
+				"account_name" => $value->account_name,
+				"about_us" => $value->about_us,
+				"loc_image" => ($value->loc_image == null ? null : unserialize($value->loc_image))
+ 			);
+		}
+
+		echo json_encode($data);
+	}
 
 }
