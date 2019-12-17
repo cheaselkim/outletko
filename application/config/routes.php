@@ -69,5 +69,10 @@ $route['store/(:any)'] = 'store/store/$1';
 $route['my-order'] = 'buyer/my_order';
 $route['my-account'] = 'buyer/my_account';
 
+// outletko routes
+$route['aboutus'] = 'outletko/menu/1';
+$route['terms'] = 'outletko/menu/2';
+$route['privacy'] = 'outletko/menu/3';
+$route['contactus'] = 'outletko/menu/4';
 
 $route['(:any)'] = 'store/store/$1';    

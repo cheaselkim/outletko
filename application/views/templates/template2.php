@@ -96,6 +96,7 @@
 <?php 
     $this->load->view($header); 
     $this->load->view($page);    
+    $this->load->view("templates/footer");
  ?>
 
   <div class="modal" id="modal_login" style="top: 10%;">

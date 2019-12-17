@@ -278,7 +278,44 @@
     </div>
   </div>
 
-<div class="row" style="background: rgb(119,147,60);">
+<script>
+ $(document).ready(function () {          
+
+  setInterval(function(){ 
+    if ($("#hideMe").is(":visible")){
+      $('#hideMe').hide("slow");
+    }else{
+      setTimeout(function() {
+        $('#hideMe').show("slow");
+      }, 5000);
+    }
+  }, 8000);
+
+
+});
+</script>
+
+<div class="row px-3" id="hideMe" style="position:fixed;margin-top:-28%;z-index:9999;">
+  <div class="col-7 py-2" style="background: rgb(192, 219, 136);">
+    <div class="row">
+      <div class="col-auto">
+        <img src="http://localhost/outletko/assets/img/logo-10.png" alt="logo" style="height:56px; width:60px;border:1px solid white;"><br>
+      </div>
+      <div class="col-8 pl-0 pr-1">
+        <div class="row">
+          <div class="col-12">
+            <p class="my-0" style="font-size:13px;">New Enterprise from Baguio just registered to Outletko</p>
+          </div>
+          <div class="col-12 text-right">
+            <p class="my-0" style="font-size:12px;">8 HOURS AGO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row" style="background: rgb(119,147,60);">
   <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2" style="padding-left: 100px; padding-right:100px;">
     <div class="row">
       <div class="col-4 text-center pr-5">
@@ -288,13 +325,13 @@
       <div class="col-4">
         <div class="row">
           <div class="col-6 text-white" style="line-height:30px;">
-            <a href="" class="text-white">About Us</a><br>
-            <a href="" class="text-white">FAQs</a><br>
-            <a href="" class="text-white">Terms of Service</a>
+            <a href="<?php echo base_url('aboutus') ?>" class="text-white">About Us</a><br>
+            <a href="<?php echo base_url('terms') ?>" class="text-white">Terms and Conditions</a><br>
+            <a href="<?php echo base_url('privacy'); ?>" class="text-white">Privacy Policy</a>
           </div>
           <div class="col-6 text-white" style="line-height:30px;">
-            <a href="" class="text-white">Contact Us</a><br>
-            <a href="" class="text-white">Reviews</a><br>
+            <a href="" class="text-white">FAQs</a><br>
+            <a href="<?php echo base_url('contactus')?>" class="text-white">Contact Us</a><br>
             <a href="" class="text-white">Be our Partner</a>
           </div>
         </div>
@@ -311,6 +348,7 @@
   <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;">
     <span>© Copyright Outletko • <?php echo date('Y') ?> • All Rights Reserved</span>
   </footer>
+
 
 </div>
 

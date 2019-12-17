@@ -504,11 +504,27 @@
 						$data['page'] = 'outletko/profile/profile';
 					}
 
+				
+				
+				}else if ($user_type == "7"){
+					$data['header'] = 'outletko/header';
+
+					if ($menu == "1"){
+						$data['page'] = 'website/aboutus';
+					}else if ($menu == "2"){
+						$data['page'] = 'website/terms';
+					}else if ($menu == "3"){
+						$data['page'] = 'website/privacy';
+					}else if ($menu == "4"){
+						$data['page'] = 'website/contactus';
+					}
+
+
 				}else{
 
 				}
 
-				if ($user_type == "6"){
+				if ($user_type == "6" || $user_type == "7"){
 				    $this->ci->load->view('templates/template2', $data);
 				}else{
 				    $this->ci->load->view('templates/template', $data);
