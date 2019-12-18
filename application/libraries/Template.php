@@ -517,6 +517,8 @@
 						$data['page'] = 'website/privacy';
 					}else if ($menu == "4"){
 						$data['page'] = 'website/contactus';
+					}else if ($menu == "5"){
+						$data['page'] = 'website/reviews';
 					}
 
 

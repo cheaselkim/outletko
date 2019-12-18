@@ -74,5 +74,6 @@ $route['aboutus'] = 'outletko/menu/1';
 $route['terms'] = 'outletko/menu/2';
 $route['privacy'] = 'outletko/menu/3';
 $route['contactus'] = 'outletko/menu/4';
-
+$route['reviews'] = 'outletko/menu/5';
+ 
 $route['(:any)'] = 'store/store/$1';    

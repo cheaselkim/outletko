@@ -1,4 +1,5 @@
 
+
 .font-weight-400{
     font-weight: 400;
 }
@@ -86,7 +87,29 @@ a:hover{
 
 .card{
     height: 200px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
+
+.div-card-name{
+    height: auto;
+    min-height: 40px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.div-card-name{
+    line-height:40px;
+}
+
+.div-card-name h5{
+    display:inline-block; 
+    vertical-align: middle; 
+    line-height:normal;
+}
+
 
 .div-store-about{
     background:rgb(0,0,0,0.2);

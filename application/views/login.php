@@ -86,7 +86,7 @@
 
 <div class="container-fluid pb-4">
       <!-- rgb(119, 147, 60) -->
-  <div class="row">
+  <div class="row" hidden>
     <div class="col-lg-12 text-center text-white py-2" style="background:rgb(119,147,60); min-height: 3vh;">
       <span class="font-weight-525 font-italic">Introducing Outletko Suite &mdash; A Business Suite for your Outlet &nbsp; <button class="btn btn-orange py-0 px-2 font-weight-600">JOIN NOW</button> </span>
     </div>
@@ -261,7 +261,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-8 col-md-12 col-sm-8 mx-auto pt-3">
+    <div class="col-lg-9 col-md-12 col-sm-8 mx-auto pt-3 px-0">
       <div class="row">
         <div class="col-lg-12 text-center">
           <span class="font-weight-525 h3">Featured Stores for the Month</span>
@@ -272,7 +272,7 @@
       </div>
       <div class="row my-4">
         <div class="col-6 col-lg-3 col-md-4 col-sm-6 text-center mx-auto">
-          <button class="btn btn-orange btn-block font-weight-600">All Stores</button>
+          <button class="btn btn-orange btn-block font-weight-600" hidden>All Stores</button>
         </div>
       </div>
     </div>
@@ -299,7 +299,7 @@
   <div class="col-7 py-2" style="background: rgb(192, 219, 136);">
     <div class="row">
       <div class="col-auto">
-        <img src="http://localhost/outletko/assets/img/logo-10.png" alt="logo" style="height:56px; width:60px;border:1px solid white;"><br>
+        <img src="<?php echo base_url('assets/img/logo-10.png');?>" alt="logo" style="height:56px; width:60px;border:1px solid white;"><br>
       </div>
       <div class="col-8 pl-0 pr-1">
         <div class="row">
@@ -319,7 +319,7 @@
   <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2" style="padding-left: 100px; padding-right:100px;">
     <div class="row">
       <div class="col-4 text-center pr-5">
-        <img src="http://localhost/outletko/assets/img/logo-10.png" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
+        <img src="<?php echo base_url('assets/img/logo-10.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
         <p class="text-white font-size-14">Outletko is a complete digital platform exclusively designed for micro and small business</p>
       </div>
       <div class="col-4">
@@ -330,7 +330,7 @@
             <a href="<?php echo base_url('privacy'); ?>" class="text-white">Privacy Policy</a>
           </div>
           <div class="col-6 text-white" style="line-height:30px;">
-            <a href="" class="text-white">FAQs</a><br>
+            <a href="<?php echo base_url('reviews')?>" class="text-white">Reviews</a><br>
             <a href="<?php echo base_url('contactus')?>" class="text-white">Contact Us</a><br>
             <a href="" class="text-white">Be our Partner</a>
           </div>

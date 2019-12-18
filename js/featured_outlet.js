@@ -52,16 +52,19 @@ function get_featured_outlet(){
                     span_about = data[i].about_us.substring(0, 180) + "....";
                 }
 
-                div = '<div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-1 mt-3">' +
+                div = '<div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-1 mt-5 px-4">' +
                 '<a href="'+href_url+'">' +
                   '<div class="card" id="div-card-'+i+'">' +
                     '<div class="px-2 py-2 div-store-about">' +
                         '<span class="text-black font-weight-525 text-decoration-none">'+ span_about +'</span>' +
                     '</div>' +
-                    '<div class="card-body text-center pb-2 px-3" >' +
+                    '<div class="card-body text-center pb-2 px-3" hidden>' +
                       '<h4 class="card-title text-green-white font-weight-600 text-capitalize align-middle">' + name + '</h4>' +
                     '</div>' +
                   '</div>' +
+                  '<div class="col-12 text-center px-2 div-card-name py-1">' +
+                      '<h5 class="card-title text-green-white font-weight-600 text-capitalize align-middle">' + name + '</h4>' +
+                  '</div>'
                 '</a>' +
               '</div>';
                 
