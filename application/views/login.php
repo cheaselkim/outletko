@@ -281,15 +281,71 @@
 <script>
  $(document).ready(function () {          
 
+  // setInterval(function(){ 
+  //   if ($("#hideMe").is(":visible")){
+  //     $('#hideMe').hide("slow");
+  //   }else{
+  //     setTimeout(function() {
+  //       $('#hideMe').show("slow");
+  //     }, 5000);
+  //   }
+  // }, 8000);
+
+  var text = ["A Store from Marikina just registered to Outletko", 
+              "New Enterprise from Caloocan just registered to Outletko",
+              "An Outlet from Pasay just registered to Outletko",
+              "New Enterprise from Manila just registered to Outletko",
+              "New Enterprise from Las Pinas just registered to Outletko",
+              "New Enterprise from Paranaque just registered to Outletko",
+              "An Enterprise from La Union just registered to Outletko",
+              "New Enterprise from Baguio just registered to Outletko"];
+
+  var hours = ["12 HOURS AGO",
+               "4 HOURS AGO",
+               "10 HOURS AGO",
+               "8 HOURS AGO",
+               "4 HOURS AGO",
+               "6 HOURS AGO",
+               "7 HOURS AGO",
+               "8 HOURS AGO"]
+  var counter = 0;
+  // var elem = document.getElementById("changeText");
+  var inst = "";
+
+  var seconds = 0;
+
+  function incrementSeconds() {
+      seconds += 1;
+      // console.log(seconds);
+  }
+
+  var cancel = setInterval(incrementSeconds, 1000);
+
   setInterval(function(){ 
     if ($("#hideMe").is(":visible")){
-      $('#hideMe').hide("slow");
+      $("#hideMe").hide("slow");
     }else{
-      setTimeout(function() {
-        $('#hideMe').show("slow");
-      }, 5000);
+      change();
+      $("#hideMe").show("slow");
     }
-  }, 8000);
+  	// $("#hideMe").show();
+    // setTimeout(function() {
+    //   change();
+    //     $('#hideMe').hide();
+    // }, 3000);  
+  }, 6000);
+
+
+  function change() {
+    // elem.innerHTML = text[counter];
+    $("#notif-text").text(text[counter]);
+    $("#notif-hour").text(hours[counter]);
+    counter++;
+    if (counter >= text.length) {
+      counter = 0;
+      // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+    }
+}
 
 
 });
@@ -304,10 +360,10 @@
       <div class="col-8 pl-0 pr-1">
         <div class="row">
           <div class="col-12">
-            <p class="my-0" style="font-size:13px;">New Enterprise from Baguio just registered to Outletko</p>
+            <p class="my-0" style="font-size:13px;" id="notif-text">New Enterprise from Baguio just registered to Outletko</p>
           </div>
           <div class="col-12 text-right">
-            <p class="my-0" style="font-size:12px;">8 HOURS AGO</p>
+            <p class="my-0" id="notif-hour" style="font-size:12px;">8 HOURS AGO</p>
           </div>
         </div>
       </div>
