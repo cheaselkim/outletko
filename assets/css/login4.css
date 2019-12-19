@@ -128,11 +128,11 @@ a:hover{
 }
 
 .text-shadow-white{
-    /* text-shadow: 2px 2px white; */
+    text-shadow: 2px 2px white;
 }
 
 .text-shadow-black{
-    /* text-shadow: 2px 2px black; */
+    text-shadow: 2px 2px black;
 }
 
 .text-green-white{
