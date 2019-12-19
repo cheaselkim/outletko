@@ -156,9 +156,13 @@ function get_profile(id){
     //products
         $('#posted_prod').empty();
         var posted_rows = (result.products.length/8).toFixed(0);
-        console.log(posted_rows);
+        var posted_rows2 = (result.products.length/ (8 * posted_rows)).toFixed(0);
+        posted_rows = Number(posted_rows) + Number(posted_rows2);
         var $style = "";
         var i =1;
+      	var a = 0;
+      	var mod = 0;
+
         for (var i = 1; i <= posted_rows; i++) {
           if (i % 2 == 0){
             $style = ("style='background:#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color)+"'");
@@ -171,7 +175,7 @@ function get_profile(id){
           $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
 
         }
-        for(var x = 0; x<result.products.length; x++) {
+        for(var x = 0; x < result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location[0];
             var product_name = result.products[x].product_name;
             var margin = "";
@@ -207,17 +211,36 @@ function get_profile(id){
           // }
           var index = 1;
 
+          	a++;
 
-          if (x < 8){
+	        var div_row = (a/8).toFixed(0);
+	        var div_row2 = (((a/8).toFixed(2)) % 1);
+
+	        if (Number(div_row2.toFixed(2)) == 0){
+	        	mod = 0;
+	        }else if (Number((div_row2).toFixed(2)) < 0.50){
+	        	mod = 1;
+	        }else{
+	        	mod = 0;
+	        }
+
+	        // console.log(a + " " + div_row2.toFixed(2) + " " + mod);
+
+
+	        index = Number(div_row) + Number(mod);
             $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
-          }else{
-            index = 2;
-            $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
-            if (x > 16){
-              index = 3;
-              $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
-            }
-          }
+
+
+          // if (x < 8){
+          //   $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          // }else{
+          //   index++;
+          //   $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          //   if (x > 15){
+          //     index = 3;
+          //     $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          //   }
+          // }
 
 
             
