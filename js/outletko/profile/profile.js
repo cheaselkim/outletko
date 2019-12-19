@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   $("#div-product-details").hide();
+  $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
   get_profile($id);
@@ -262,7 +263,33 @@ function get_profile(id){
         //       '</div>'  );
 
         // $('#posted_prod').append(e2);
+
+        var store = result.store_img;
+        var store_img = "";
+
+        console.log(result);
+
+        for (var i = 0; i < store.length; i++) {
+          store_img = base_url + "images/store/" + store[i].image;
+          if (store[i].img_order == "1"){
+            $("#div-store-img-1").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-1').css('background-size', "100% 100%");
+            $('#div-store-img-1').css('background-repeat', "no-repeat");
+            $('#div-store-img-1').css('background-position', "center center");    
+          }else if (store[i].img_order == "2"){
+            $("#div-store-img-2").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-2').css('background-size', "100% 100%");
+            $('#div-store-img-2').css('background-repeat', "no-repeat");
+            $('#div-store-img-2').css('background-position', "center center");    
+          }else{
+            $("#div-store-img-3").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-3').css('background-size', "100% 100%");
+            $('#div-store-img-3').css('background-repeat', "no-repeat");
+            $('#div-store-img-3').css('background-position', "center center");    
+          }
+        }
         
+
     }, error: function(err){
       console.log(err.responseText);
     }

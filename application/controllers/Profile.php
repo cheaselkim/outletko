@@ -22,6 +22,7 @@ class Profile extends CI_Controller {
     	$data['result'] = $this->profile_model->get_profile_dtl($acc_id);
     	$data['prod_cat'] = $this->profile_model->get_product_category($acc_id);
     	$result = $this->profile_model->get_products($acc_id);
+        $store_img = $this->profile_model->get_store_img($acc_id);
         // $data['payment_type'] = $this->profile_model->get_payment_type();
         // $data['delivery_type'] = $this->profile_model->get_delivery_type();
         // $data['shipping_fee'] = $this->profile_model->get_shipping_fee();
@@ -42,6 +43,15 @@ class Profile extends CI_Controller {
                 "id" => $value->id);
         }
 
+        $store = array();
+        foreach ($store_img as $key => $value) {
+            $store[$key] = array(
+                "img_order" => $value->img_order,
+                "image" => unserialize($value->loc_image)
+            );
+        }
+
+        $data['store_img'] = $store;
         $data['products'] = $products;
     	$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);

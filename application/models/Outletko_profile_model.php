@@ -376,6 +376,35 @@ class Outletko_profile_model extends CI_Model {
         return $status;
     }
 
+    public function upload_store_image($data, $img_order){
+        $status = "";
+        $this->db2->trans_begin();
+
+        $query = $this->db2->query("SELECT * FROM account_store WHERE comp_id = ? AND img_order = ?", array($this->session->userdata('comp_id'), $img_order))->result();
+
+        if (!empty($query)){
+            $data['date_update'] = date("Y-m-d H:i:s");
+            $this->db2->where('comp_id',$this->session->userdata('comp_id'));
+            $this->db2->where('img_order',$img_order);
+            $this->db2->update('account_store',$data);                 
+        }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
+            $this->db2->insert("account_store", $data);
+        }
+
+        if($this->db2->trans_status() === FALSE){
+            $db_error = "";
+            $db_error = $this->db->error();
+            $this->db2->trans_rollback();
+           $status = $db_error;
+        }else{  
+            $this->db2->trans_commit();
+            $status = "success";
+        }   
+
+        return $status;
+    }
+
     public function insert_prod_var($prod_id, $var_name){
 
         // $this->db2->where("comp_id", $this->session->userdata("comp_id"));
@@ -456,6 +485,11 @@ class Outletko_profile_model extends CI_Model {
         INNER JOIN courier ON 
             account_courier.courier_id = courier.id 
         WHERE account_courier.comp_id = ? AND courier.status = ? ORDER BY courier", array($this->session->userdata('comp_id'), "1"))->result();
+        return $query;
+    }
+
+    public function get_store_img(){
+        $query = $this->db2->query("SELECT * FROM account_store WHERE comp_id = ? ", array($this->session->userdata('comp_id')))->result();
         return $query;
     }
 

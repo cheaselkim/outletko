@@ -77,7 +77,37 @@
 	</div>
 </div>
 
-<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3" id="div-display-products">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+				<div class="div-store-img" id="div-store-img-1" >
+				</div>
+			</div>
+			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+				<div class="div-store-img" id="div-store-img-2" >
+				</div>
+			</div>
+			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+				<div class="div-store-img" id="div-store-img-3" >
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0"> 
+	<hr class="mt-3 mb-1">
+</div>
+
+<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pb-3" id="div-display-products">
+	<div class="row">
+		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+			<div class="container">
+				<span class="font-size-20 font-weight-600">Products and Services</span>
+			</div>
+		</div>
+	</div>
 	<div class="row" id="div-posted-prod">
 		<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="">
 			<div class="container">

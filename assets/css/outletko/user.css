@@ -1205,6 +1205,20 @@ textarea{
 	overflow: auto;
 }
 
+/* STORE */
+.posted-store{
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.div-store-img{
+	height: 270px;
+	border: 1px solid gray;
+	background-image: url("../../icons/img-icon1.jpg");
+	background-size: 100% 100%;
+	padding-top: 180px;
+}
+
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {

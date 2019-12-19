@@ -90,10 +90,18 @@ class Outletko_profile extends CI_Controller {
         $data['prod_category'] = $this->outletko_profile_model->get_prod_category();
         $data['warranty'] = $this->outletko_profile_model->get_warranty();
         $data['courier'] = $this->outletko_profile_model->get_courier();
+        $store_img = $this->outletko_profile_model->get_store_img();
     	$data['products']="";
         
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
+        }
+
+        foreach ($store_img as $key => $value) {
+            $data['store_img'][$key] = array(
+                "img_order" => $value->img_order,
+                "image" => unserialize($value->loc_image)
+            );
         }
 
         // foreach($result as $row){
@@ -393,6 +401,31 @@ class Outletko_profile extends CI_Controller {
         $this->output->set_content_type('application/json');
         echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
     }
+
+    public function upload_store_image() {
+
+        $files_upload = array();
+
+        $db = $this->load->database('outletko', TRUE);
+
+        $upload_path = './images/store/'; 
+        $counts = count($_FILES["files"]["name"]);
+
+        for($x = 0; $x < $counts; $x++) { 
+            $files_tmp = $_FILES['files']['tmp_name'][$x];
+            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
+
+            move_uploaded_file($files_tmp,$upload_path.$randname);
+            $files_upload[] = $randname;
+        }
+        $serialized = serialize($files_upload);         
+        $data = array("comp_id" => $this->session->userdata('comp_id'), 'loc_image' => $serialized, "img_order" => $this->input->post("store_order")); 
+        $result = $this->outletko_profile_model->upload_store_image($data, $this->input->post("store_order"));
+        $this->output->set_content_type('application/json');
+        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
+    }
+
 
     public function save_prod_variation(){
 

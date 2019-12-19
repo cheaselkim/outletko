@@ -31,6 +31,10 @@ $(document).ready(function(){
   $("#div-prod-ship-fee").hide();
   $("#div-update-button").hide();
 
+  $("#div-store-img-btn-1").hide();
+  $("#div-store-img-btn-2").hide();
+  $("#div-store-img-btn-3").hide();
+
   $("#ship_w_mm").number(true, 2);
   $("#ship_o_mm").number(true, 2);
   $("#prod_price").number(true, 2);
@@ -63,6 +67,60 @@ $(document).ready(function(){
 
   $("#div-prod-img").mouseout(function(){
     $("#div-update-button").hide();
+  });
+
+  $("#div-store-img-1").mouseover(function(){
+    $("#div-store-img-btn-1").show();
+  });
+
+  $("#div-store-img-1").mouseout(function(){
+    $("#div-store-img-btn-1").hide();
+  });
+
+  $("#div-store-img-2").mouseover(function(){
+    $("#div-store-img-btn-2").show();
+  });
+
+  $("#div-store-img-2").mouseout(function(){
+    $("#div-store-img-btn-2").hide();
+  });
+
+  $("#div-store-img-3").mouseover(function(){
+    $("#div-store-img-btn-3").show();
+  });
+
+  $("#div-store-img-3").mouseout(function(){
+    $("#div-store-img-btn-3").hide();
+  });
+
+  $("#div-store-img-btn-1").click(function(){
+    $("#store_id").val(1);
+    $("#modal_store_img").modal("show");
+    var bg = $("#div-store-img-1").css("background-image");
+    $("#div-img-store").css("background-image", bg);
+    $("#div-img-store").css("background-size", "100% 100%");
+    $("#div-img-store").css("background-repeat", "no-repeat");
+    $("#div-img-store").css("background-position", "center center");
+  });
+
+  $("#div-store-img-btn-2").click(function(){
+    $("#store_id").val(2);
+    $("#modal_store_img").modal("show");
+    var bg = $("#div-store-img-2").css("background-image");
+    $("#div-img-store").css("background-image", bg);
+    $("#div-img-store").css("background-size", "100% 100%");
+    $("#div-img-store").css("background-repeat", "no-repeat");
+    $("#div-img-store").css("background-position", "center center");
+  });
+
+  $("#div-store-img-btn-3").click(function(){
+    $("#store_id").val(3);
+    $("#modal_store_img").modal("show");
+    var bg = $("#div-store-img-3").css("background-image");
+    $("#div-img-store").css("background-image", bg);
+    $("#div-img-store").css("background-size", "100% 100%");
+    $("#div-img-store").css("background-repeat", "no-repeat");
+    $("#div-img-store").css("background-position", "center center");
   });
 
   $(".div-list-img").mouseover(function(){
@@ -223,7 +281,11 @@ $(document).ready(function(){
 
 	$("#save_prof_pic").click(function(){
 		save_prof_pic();
-	});
+  });
+  
+  $("#save_store_img").click(function(){
+    save_store_img();
+  });
 
   $("#cancel_aboutus").click(function(){
     home();    
@@ -248,6 +310,10 @@ $(document).ready(function(){
 
   $("#imgProf").change(function(){
       readURL(this, 1);
+  })
+
+  $("#imgStore").change(function(){
+    readURL(this, 3);
   })
 
   $("#btn_add_variation").click(function(){
@@ -534,9 +600,16 @@ function readURL(input, type) {
               // $('#div-prod-img').css('background-repeat', "no-repeat");
               // $('#div-prod-img').css('background-position', "center center");
           }
-        }else{
+        }else if (type == "2"){
           reader.onload = function (e) {
               $('#img-upload').attr('src', e.target.result);
+          }
+        }else if (type == "3"){
+          reader.onload = function (e) {
+            $('#div-img-store').css('background', 'url("' + e.target.result + '")');
+            $('#div-img-store').css('background-size', "100% 100%");
+            $('#div-img-store').css('background-repeat', "no-repeat");
+            $('#div-img-store').css('background-position', "center center");
           }
         }
         reader.readAsDataURL(input.files[0]);
@@ -843,7 +916,7 @@ function index(){
 
       }
 
-      console.log(result.warranty);
+      // console.log(result.warranty);
       if (result.warranty.length != 0){
         $("#inp_warranty").val(result.warranty[0].account_warranty);
         $("#inp_return").val(result.warranty[0].account_return);
@@ -915,7 +988,7 @@ function index(){
         }
     //products
     
-        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 mt-3 '+pad+' ">' +
+        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 mt-4 '+pad+' ">' +
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
 						'</div>' +
@@ -964,6 +1037,28 @@ function index(){
 
         }
 
+        var store = result.store_img;
+        var store_img = "";
+
+        for (var i = 0; i < store.length; i++) {
+          store_img = base_url + "images/store/" + store[i].image;
+          if (store[i].img_order == "1"){
+            $("#div-store-img-1").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-1').css('background-size', "100% 100%");
+            $('#div-store-img-1').css('background-repeat', "no-repeat");
+            $('#div-store-img-1').css('background-position', "center center");    
+          }else if (store[i].img_order == "2"){
+            $("#div-store-img-2").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-2').css('background-size', "100% 100%");
+            $('#div-store-img-2').css('background-repeat', "no-repeat");
+            $('#div-store-img-2').css('background-position', "center center");    
+          }else{
+            $("#div-store-img-3").css("background-image", "url('"+store_img+"')");
+            $('#div-store-img-3').css('background-size', "100% 100%");
+            $('#div-store-img-3').css('background-repeat', "no-repeat");
+            $('#div-store-img-3').css('background-position', "center center");    
+          }
+        }
 
     }, error: function(err){
       console.log(err.responseText);
@@ -1393,6 +1488,70 @@ function save_prof_pic(){
       }); 
 
 }
+
+function save_store_img(){
+
+  var form_data = new FormData(); 
+      var files = $('#imgStore')[0].files;
+      for(var count = 0; count<files.length; count++) {
+      var name = files[count].name;
+      form_data.append("files[]", files[count]);
+      }        
+       //return false   
+      var csrf_name = $("input[name=csrf_name]").val();
+      var store_id = $("#store_id").val();
+      form_data.append('csrf_name', csrf_name);
+      form_data.append('store_order', store_id);
+
+      $.ajax({
+          data : form_data 
+          ,type : "POST"
+          , url:  base_url + "Outletko_profile/upload_store_image"
+          , dataType : "JSON" 
+          , crossOrigin : false
+          , contentType: false
+          , processData: false
+          , beforeSend : function() {
+              swal({
+                  title : "Saving.....",
+                  showCancelButton: false, 
+                  showConfirmButton: false           
+              })                 
+          }
+          , success : function(result) {
+                $("input[name=csrf_name]").val(result.token);
+                if(result.status == "success") {
+                    $("#save_product").removeAttr('disabled');
+                    swal({
+                        title : "Successfully Save",
+                        type : "success",
+                        timer: 2000
+                    }, function(){
+                        index()
+                        clear_prod_model()
+                    });
+                }else {
+                    console.log(result.status);
+                }
+          }, failure : function(msg) {
+              console.log("Error connecting to server...");
+          }, error: function(err) {
+                console.log(err.responseText);
+          }, xhr: function(){
+              var xhr = $.ajaxSettings.xhr() ;
+              xhr.onprogress = function(evt){ 
+                  $("body").css("cursor", "wait"); 
+              };  
+              xhr.onloadend = function(evt){ 
+                  $("body").css("cursor", "default"); 
+              };      
+              return xhr ;
+          }
+
+      }); 
+
+}
+
 
 function check_aboutus(){
 

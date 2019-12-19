@@ -102,6 +102,12 @@ class Profile_model extends CI_Model {
 
     }
 
+    public function get_store_img($id){
+        $query = $this->db2->query("SELECT * FROM account_store WHERE comp_id = ? ", array($id))->result();
+        return $query;
+    }
+
+
     public function insert_prod($data){
         $query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $data['prod_id']))->result();
 

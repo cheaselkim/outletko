@@ -89,6 +89,34 @@
 								</div>	
 							</div>
 						</div>
+
+						<div class="row posted-store mt-3" id="posted_store" style="padding-left: 12px;padding-right:12px;">
+							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+								<div class="div-store-img" id="div-store-img-1" >
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-1">
+										<i class="fas fa-camera text-white"></i><br>
+										<span class="text-white font-weight-bold font-size-18">Update</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+								<div class="div-store-img" id="div-store-img-2" >
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-2">
+										<i class="fas fa-camera text-white"></i><br>
+										<span class="text-white font-weight-bold font-size-18">Update</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+								<div class="div-store-img" id="div-store-img-3" >
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer" id="div-store-img-btn-3">
+										<i class="fas fa-camera text-white"></i><br>
+										<span class="text-white font-weight-bold font-size-18">Update</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<!-- ADD PRODUCTS -->
 						<div class="row posted-prod" id="posted_prod"> 
 						</div>
@@ -1261,6 +1289,36 @@
     </div>
   </div>
 </div>
+
+<!-- MODAL FOR STORE -->
+<div class="modal" id="modal_store_img">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header py-1">
+        <h4 class="modal-title">Store Picture</h4>
+		<input type="hidden" id="store_id">
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0" id="div-img-store" style="height: 270px;border: 1px solid black;">
+      		</div>
+      		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0 cursor-pointer">
+				<button class="btn btn-block btn-outline-success " style="border-top: 0;border-radius: 0;">
+			    	Choose Image
+			    	<input type="file" id="imgStore" class="img-upload-modal">
+				</button>      			
+      		</div>
+      	</div>
+
+      </div>
+      <div class="modal-footer py-1">
+        <button type="button" class="btn btn-success" id="save_store_img" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- MODAL FOR VARIATION  -->
 
