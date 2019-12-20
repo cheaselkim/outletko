@@ -1213,10 +1213,10 @@ textarea{
 
 .div-store-img{
 	height: 270px;
-	border: 1px solid gray;
+	border: 1px solid #AEDCBF;
 	background-image: url("../../icons/img-icon1.jpg");
 	background-size: 100% 100%;
-	padding-top: 180px;
+	padding-top: 200px;
 }
 
 }

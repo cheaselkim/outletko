@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3 div-header-4">
 	<div class="container">
 		<div class="row">
 			<div class="col-4 col-lg-4 col-md-4 col-sm-4">

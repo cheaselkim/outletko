@@ -10,6 +10,7 @@ $(document).ready(function(){
     $("#div-display-products").show();
     $(".div-header-2").show();
     $(".div-header-3").show();
+    $(".div-header-4").show();
     $("#div-product-details").hide();    
   });
 
@@ -308,6 +309,7 @@ function get_product_info(id){
   $("#std_del").hide();
   $(".div-header-2").hide();
   $(".div-header-3").hide();
+  $(".div-header-4").hide();
 
   $("#div-product-details").show();
 
