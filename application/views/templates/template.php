@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/pace-progress/css/pace.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/summernote/css/summernote-bs4.css') ?>">
 
 
     <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script> 
@@ -26,6 +27,8 @@
     <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/popper.min.js') ?>"></script>
     <script src="<?php echo base_url('js/template.js') ?>"></script>
+    <script src="<?php echo base_url('assets/vendors/summernote/js/summernote-bs4.js') ?>"></script>  
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

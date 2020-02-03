@@ -53,7 +53,20 @@
 						}
 
 					}else if ($menu == "3"){
-
+						if ($function == "1"){
+							$data['page'] = 'admin/blog/blog_entry';
+						}else if ($function == "2"){
+							if ($edit == "0"){
+								$data['page'] = 'admin/blog/blog_query';
+							}else{
+								$data['page'] = 'admin/blog/blog_entry';
+							}
+						}else if ($function == "3"){
+							$data['page'] = 'admin/blog/blog_query';
+						}else if ($function == "4"){
+							$data['page'] = 'admin/blog/blog_query';
+							
+						}
 					}else if ($menu == "4"){
 
 					}else if ($menu == "5"){

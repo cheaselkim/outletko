@@ -5,6 +5,7 @@
 <input type="hidden" id="main_menu_module" value="<?php echo $menu_module ?>">
 <input type="hidden" id="comp_id" value="<?php echo $this->session->userdata('comp_id') ?>">
 <input type="hidden" id="outelt_id" value="<?php echo $this->session->userdata('outelt_id') ?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
 <div class="container-fluid px-0 mx-0">
     <div class="row mx-0">
@@ -32,10 +33,10 @@
     <div class="row mx-0" >
         <div class="div-subheader">
             <div class="row">
-                <div class="col-2">
+                <div class="col-3">
                     <span class="span-date text-white"><?php echo date("F d, Y"); ?></span>
                 </div>
-                <div class="col-8 div-subheader-trans">
+                <div class="col-7 div-subheader-trans">
                     <div class="row" hidden>
                         <ul class="list-inline  my-0">
                             <li class="list-inline-item li-subheader"><label>Last Tran No. :&nbsp;</label><span class="last_tran_no text-white" id="last_tran_no">00000</span></li>

@@ -2077,6 +2077,7 @@ function image_file(img,id){
                   $("body").css("cursor", "default"); 
               };      
               return xhr ;
+              
           }
 
       }); 

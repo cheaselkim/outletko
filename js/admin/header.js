@@ -17,7 +17,7 @@ function all_access(){
 		success : function(data){
 			$("input[name=csrf_name]").val(data.token);
 			if (data.result == "1"){
-				for (var i = 1; i <= 8; i++) {
+				for (var i = 1; i <= 4; i++) {
 					$("#menu_"+i).removeClass("disabled");
 				}
 			}else{

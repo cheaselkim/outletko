@@ -55,9 +55,9 @@
 
               <div class="card-body card-body-menu text-center">
 
-                <img src="<?php echo base_url('assets/images/app_menu/products.png') ?>" class='img-fluid mb-2'>
+                <img src="<?php echo base_url('assets/images/app_menu/blog.png') ?>" class='img-fluid mb-2'>
 
-                <span class="h3 font-weight-bold">eBidding</span>
+                <span class="h3 font-weight-bold">Outletko Blog</span>
 
               </div>
 
@@ -65,7 +65,7 @@
 
           </a>
 
-          <a class="card disabled" id="menu_5"> 
+          <a class="card disabled" id="menu_5" W> 
 
             <div  class="w-100 div-list-menu" onclick="main_menu(4);">
 
