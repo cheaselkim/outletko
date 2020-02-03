@@ -59,7 +59,7 @@
 							if ($edit == "0"){
 								$data['page'] = 'admin/blog/blog_query';
 							}else{
-								$data['page'] = 'admin/blog/blog_entry';
+								$data['page'] = 'admin/blog/blog_edit';
 							}
 						}else if ($function == "3"){
 							$data['page'] = 'admin/blog/blog_query';

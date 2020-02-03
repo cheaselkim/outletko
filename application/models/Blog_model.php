@@ -16,7 +16,7 @@ class Blog_model extends CI_Model {
 
     public function get_blog($id){
         $query = $this->db2->query("SELECT * FROM blog WHERE id = ? ", array($id))->result();
-        echo json_encode($id);
+        return $query;
     }
 
     public function insert_blog($data){

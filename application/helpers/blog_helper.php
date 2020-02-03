@@ -26,7 +26,7 @@ if (!function_exists("blog_tbl")){
                 }else if ($type == "3"){
                     $btn = "<button class='btn btn-success btn-sm btn-block' onclick='view_blog(".$value->id.")'>View</button>"; 
                 }else if ($type == "4"){
-                    $btn = "<button class='btn btn-danger btn-sm btn-block' onclick='delete_blog(".$value->id.", ".$row.")'>Delete</button>"; 
+                    $btn = "<button class='btn btn-danger btn-sm btn-block' onclick='delete_blog(".$value->id.", ".$key.")'>Delete</button>"; 
                 }
 
                 $output .= "<tr>

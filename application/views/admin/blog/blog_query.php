@@ -35,3 +35,37 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="modal_blog" class="modal fade" role="dialog" style="top: 0%;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title font-weight-600">Blog</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body py-2 px-0">
+                <div class="container-fluid">
+                    <div class="row my-1">
+                        <div class="col-12 col-lg-5 col-md-12 col-sm-12 mx-auto">
+                            <div class="modal-div-img-blog" id="modal-div-img-blog">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-1">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <span class="h3 font-weight-600" id="blog-title">Title</span>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-blog-content">
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

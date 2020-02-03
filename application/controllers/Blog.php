@@ -28,7 +28,16 @@ class Blog extends CI_Controller {
 
     public function edit_blog(){
         $id = $this->input->post("id");
-        $data['result'] = $this->blog_model->get_blog($id);
+        $result = $this->blog_model->get_blog($id);
+
+        if (!empty($result)){
+            foreach($result as $key => $value){
+                $data['img'] = unserialize($value->img_path);
+                $data['title'] = $value->title;
+                $data['content'] = $value->content;
+            }    
+        }
+
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -49,8 +58,8 @@ class Blog extends CI_Controller {
 
     public function delete_blog(){
         $id = $this->input->post("id");
-        $data['result'] = $this->blog_model->delete_blog($id);
         $data['result_delete'] = $this->blog_model->delete_file($id);
+        $data['result'] = $this->blog_model->delete_blog($id);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -65,6 +74,24 @@ class Blog extends CI_Controller {
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }    
+
+    public function blog_query(){
+        $id = $this->input->post("id");
+        $result = $this->blog_model->get_blog($id);
+        
+
+        if (!empty($result)){
+            foreach($result as $key => $value){
+                $data['img'] = unserialize($value->img_path);
+                $data['title'] = $value->title;
+                $data['content'] = $value->content;
+            }    
+        }
+
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
     public function update_img_file(){
 
