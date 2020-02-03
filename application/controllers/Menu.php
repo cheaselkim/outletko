@@ -38,6 +38,7 @@ class Menu extends CI_Controller {
 			$data['owner'] = $this->menu_model->check_owner();
 			$data['edit'] = 0;
 			$data['width'] = 1366;
+			// var_dump($data);
 			$this->template->load($menu, $data);	
 		}else{
 			redirect("/logout");
@@ -89,6 +90,7 @@ class Menu extends CI_Controller {
 			$data['trans_id'] = 0;
 			$data['account_id'] = $this->session->userdata("account_id");
 			$data['width'] = $width;
+			$data['owner'] = $this->menu_model->check_owner();
 			$this->template->load($menu, $data);						
 		}else{
 			redirect("/logout");

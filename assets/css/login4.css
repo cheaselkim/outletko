@@ -1,4 +1,15 @@
+@import url(//db.onlinewebfonts.com/c/89d11a443c316da80dcb8f5e1f63c86e?family=Bauhaus+93);
+@font-face {
+    font-family: "Bauhaus 93"; 
+    src: url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.eot"); 
+    src: url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.eot?#iefix") format("embedded-opentype"), 
+    url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.woff") format("woff"), 
+    url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.svg#Bauhaus 93") format("svg"); 
+}
 
+.font-bauhaus-93{
+    font-family: "Bauhaus 93";
+}
 
 .font-weight-400{
     font-weight: 400;
@@ -86,14 +97,14 @@ a:hover{
 
 
 .card{
-    height: 200px;
+    height: 150px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
 .div-card-name{
     height: auto;
-    min-height: 40px;
+    min-height: 75px;
     border: 1px solid green;
     border-top: 0;
     border-bottom-left-radius: .25rem;
@@ -101,7 +112,7 @@ a:hover{
 }
 
 .div-card-name{
-    line-height:40px;
+    line-height:75px;
 }
 
 .div-card-name h5{
@@ -128,11 +139,11 @@ a:hover{
 }
 
 .text-shadow-white{
-    text-shadow: 2px 2px white;
+    /* text-shadow: 2px 2px white; */
 }
 
 .text-shadow-black{
-    text-shadow: 2px 2px black;
+    /* text-shadow: 2px 2px black; */
 }
 
 .text-green-white{
@@ -157,11 +168,17 @@ a:hover{
 
 
 .header{
-    background: linear-gradient(
+/*    background: linear-gradient(
         rgba(20,20,20, .8), 
-        rgba(20,20,20, .8)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); 
+        rgba(20,20,20, .8)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); */
+/*    background: url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg');*/
+/*    background: url('http://www.rightfashion.us/wp-content/uploads/2018/07/Ideas-For-Buying-Gold-Earrings.jpg');*/
+    background: linear-gradient(
+        rgba(20,20,20, .3), 
+        rgba(20,20,20, .3)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); 
     background-repeat:no-repeat; 
     background-size: 100%;
+    min-height: 50vh;
 }
 
 /* Google Fonts */
@@ -204,7 +221,7 @@ body{
 }
 @keyframes typewriter{
   from{width: 0;}
-  to{width: 33em;}
+  to{width: 30em;}
 }
 @keyframes blinkTextCursor{
   from{border-right-color: rgba(255,255,255,.75);}
@@ -219,6 +236,24 @@ body{
     width:30%;
 }
 
+.tile{
+  width: 46%;
+  min-height:22px;
+/*    border: 1px #BDBDBD solid;*/
+  display: inline-block;
+  margin: 5px;
+}
+
+.header{
+    background-size: 100% 100%;
+}
+
+.div-search-box{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -228,6 +263,23 @@ body{
     height: 100%; 
     width:80%;
 }
+
+.tile{
+  width: 50%;
+  min-height:22px;
+/*    border: 1px #BDBDBD solid;*/
+  display: inline-block;
+}
+
+.header{
+    background-size: 100% 100%;
+}
+
+.div-search-box{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 
 }
 
@@ -248,9 +300,39 @@ body{
 
 .img-logo{
     height: 100%; 
-    width:30%;
+    width:100%;
 }
 
+.div-footer-1{
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+.header{
+    min-height: 40vh;
+    background-size: 100%;
+}
+
+#div-featured-outlet{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tile{
+  width: 20%;
+  min-height:22px;
+/*    border: 1px #BDBDBD solid;*/
+  display: inline-block;
+}
+
+.div-search-box{
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.card{
+    height: 120px !important;
+}
 
 }
 
@@ -263,9 +345,28 @@ body{
 
 .img-logo{
     height: 100%; 
-    width:30%;
+    width:90%;
 }
     
+.div-footer-1{
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.div-footer-col-2{
+    padding-right:30px;
+    padding-left: 0px;
+}
+
+.font-size-14{
+    font-size: 13px !important;
+}
+
+.div-search-box{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -287,6 +388,63 @@ body{
 .img-logo{
     height: 100%; 
     width:80%;
+}
+
+.div-footer-1{
+    padding-right: 100px;
+    padding-right: 100px;
+}
+
+.div-footer-col-2{
+    padding-right:40px;
+}
+
+.font-size-14{
+    font-size: 14px !important;
+}
+
+.card{
+    height: 150px !important;
+}
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1920px) {
+
+.pad-center{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.pad-left{
+    padding-left: 3px;
+}
+
+.pad-right{
+    padding-right: 3px;
+}    
+    
+.img-logo{
+    height: 100%; 
+    width:90%;
+}
+
+.div-footer-1{
+    padding-right: 350px;
+    padding-right: 350px;
+}
+
+.div-footer-col-2{
+    padding-right:40px;
+}
+
+.font-size-14{
+    font-size: 14px !important;
+}
+
+.card{
+    height: 200px !important;
 }
 
 }

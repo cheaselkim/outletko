@@ -2,11 +2,20 @@ $(document).ready(function(){
 
 	get_billing();
 	get_orders();
+	// bank_list();
+	// remittance_list();
+	// $("#div-home").hide();
 	$("#div-order-dtls").hide();
+	$("#div-checkout-details").hide();
+	$("#div-order-summary").hide();
 	// delivery_type();
 	// payment_type();
 
-	$("#div-checkout-details").hide();
+
+	$("#div-bank-list").hide();
+	$("#div-remittance-list").hide();
+	$("#div-remittance-payment").hide();
+	$("#div-bank-payment").hide();
 
 	$(".prod_qty").number(true, 0);
 	$(".prod_price").number(true, 2);
@@ -19,10 +28,44 @@ $(document).ready(function(){
 	// 	get_order_checkout();
 	// });
 
+	$("#payment_type").change(function(){
+		$("#div-bank-list").hide();
+		$("#div-remittance-list").hide();
+		if ($(this).val() == "5"){
+			$("#div-bank-list").show(	);			
+		}else if ($(this).val() == "6"){
+			$("#div-remittance-list").show();
+		}
+	});
+
 	$("#btn_confirm_order").click(function(){
+		confirm_order();
+	});
+
+	$("#btn_cancel_order").click(function(){
+		cancel_order();
+	});
+
+	$("#btn_order_payment").click(function(){
+		$("#div-home").hide();
+		$("#div-checkout-details").hide();
+	});
+
+	$("#btn_cancel_place").click(function(){
+		cancel_order();
+	});
+
+	$("#btn_order_payment").click(function(){
+		$("#div-home").hide();
+		$("#div-checkout-details").show("slow");
+		$("#div-order-summary").hide();
+	});
+
+
+	$("#btn_place_order").click(function(){
 		swal({
 			type : "warning",
-			title : "Confrim Order? ",
+			title : "Place your Order? ",
 			text : "Once confirmed, you are no longer allowed to cancel unless the seller cancels the order",
 			showCancelButton: true,
 			confirmButtonClass: "btn-danger",
@@ -30,13 +73,10 @@ $(document).ready(function(){
 			cancelButtonText: "No",
 		}, function(isConfirm){
 			if (isConfirm){
-				check_confirm_order();
+				check_place_order();
 			}
 		})
-	});
 
-	$("#btn_cancel_order").click(function(){
-		cancel_order();
 	});
 
 	$("#delivery_type").change(function(){
@@ -167,6 +207,49 @@ $(document).ready(function(){
 
 });
 
+function bank_list(){
+	var csrf_name = $("input[name=csrf_name]").val();
+	var id = $("#seller_id").val();
+
+	$.ajax({
+		data : {csrf_name : csrf_name, id : id},
+		type : "POST",
+		dataType : "JSON",
+		url : base_url + "Buyer/bank_list",
+		success : function(result){
+			$("input[name='csrf_name']").val(result.token);
+			for (var i = 0; i < result.result.length; i++) {
+				$("#bank_list").append("<option value='"+result.result[i].id+"'> Pay via "+result.result[i].bank_name+"</option>");
+			}
+		}, error : function(err){
+			console.log(err.responseText);
+		}
+	})
+
+}
+
+function remittance_list(){
+	var csrf_name = $("input[name=csrf_name]").val();
+	var id = $("#seller_id").val();
+	console.log("id " + id);
+
+	$.ajax({
+		data : {csrf_name : csrf_name, id : id},
+		type : "POST",
+		dataType : "JSON",
+		url : base_url + "Buyer/remittance_list",
+		success : function(result){
+			$("input[name='csrf_name']").val(result.token);
+			console.log(result.result);
+			for (var i = 0; i < result.result.length; i++) {
+				$("#remittance_list").append("<option value='"+result.result[i].id+"'>Pay via "+result.result[i].name+"</option>");
+			}
+		}, error : function(err){
+			console.log(err.responseText);
+		}
+	})
+}
+
 function get_billing(){
 	var csrf_name = $("input[name=csrf_name]").val();
 
@@ -247,6 +330,10 @@ function prod_operation(val, oper){
 		prod_qty = Number($("#prod_qty_"+val).val()) - 1;		
 	}else{
 		prod_qty = Number($("#prod_qty_"+val).val());
+	}
+
+	if (prod_qty == 0){
+		prod_qty = 1;
 	}
 
 	total_price = prod_qty * price;
@@ -467,6 +554,7 @@ function delete_item(id){
 function get_order_checkout(div_id){
 	$("#div_id").val(div_id);
 
+
 	var csrf_name = $("input[name=csrf_name]").val();
 	var shipping_fee = "";
 	// var prod_id = [];
@@ -501,6 +589,7 @@ function get_order_checkout(div_id){
 	    	dataType : "JSON",
 	    	url : base_url + "Buyer/get_order_checkout",
 	    	success : function(result){
+	    		// console.log(result.seller_id);
 	    		$("#seller_id").val(result.seller_id);
 				$("input[name=csrf_name]").val(result.token);
 
@@ -518,7 +607,7 @@ function get_order_checkout(div_id){
 				// console.log(result.sched_time[0].end_time.substring(0,5));
 
 				var sched_day = "";
-				console.log(result.sched_time.length);
+				// console.log(result.sched_time.length);
 
 				if (result.sched_time.length != 0){
 
@@ -553,14 +642,18 @@ function get_order_checkout(div_id){
 				$("#comp_name").text(result.result[0].account_name);
 
 				var prod_dtls = result.result;
+				var img_prod = result.prod_img;
+				var prod_img = "";
 				var sub_total = 0;
 				var total_items = 0;
 				var prod_qty = 0;
 				var shipping_fee_w_mm = 0;
 				var shipping_fee_o_mm = 0;
+				var prod_id = "";
 
 				for (var i = 0; i < prod_dtls.length; i++) {
 					total_items++;
+					prod_id = prod_dtls[i].prod_id;
 
 					for (var a = 0; a < products.length; a++) {
 						if (prod_dtls[i].prod_id == products[a].prod_id){
@@ -569,10 +662,17 @@ function get_order_checkout(div_id){
 						}
 					}
 
-					$("#prod_dtls tbody").append("<tr><td>" + prod_dtls[i].product_name + 
-					"</td><td class='text-right prod_qty'>" + $.number(prod_qty) + 
-					"</td><td class='text-right prod_unit_price'>" + $.number(prod_dtls[i].product_unit_price, 2) + 
-					"</td><td class='text-right prod_total_price'>" + $.number((prod_qty * prod_dtls[i].product_unit_price), 2) + 
+					for (var b = 0; b < img_prod.length; b++) {
+						if (prod_id == img_prod[i].prod_id){
+							prod_img = img_prod[i].prod_img;
+						}
+					}
+					prod_img = base_url + "images/products/" + prod_img;
+
+					$("#prod_dtls tbody").append("<tr><td><img src='"+prod_img+"' style='width: 10%;'>" + prod_dtls[i].product_name + 
+					"</td><td class='text-right prod_qty' style='padding-top: 3%;'>" + $.number(prod_qty) + 
+					"</td><td class='text-right prod_unit_price' style='padding-top: 3%;'>" + $.number(prod_dtls[i].product_unit_price, 2) + 
+					"</td><td class='text-right prod_total_price' style='padding-top: 3%;'>" + $.number((prod_qty * prod_dtls[i].product_unit_price), 2) + 
 					"</td><td class='text-right prod_id' hidden>" + prod_dtls[i].id + 
 					"</td></tr>");
 
@@ -582,7 +682,7 @@ function get_order_checkout(div_id){
 					sub_total += (Number(prod_qty) * Number(prod_dtls[i].product_unit_price));
 				}
 
-				console.log($("#bill_province").attr("data-id"));
+				// console.log($("#bill_province").attr("data-id"));
 
 				if ($("#bill_province").attr("data-id") == "52"){
 					shipping_fee = shipping_fee_w_mm;
@@ -592,9 +692,9 @@ function get_order_checkout(div_id){
 					shipping_fee = shipping_fee_o_mm;
 				}
 
-				console.log(sub_total);
-				console.log(shipping_fee);
-				console.log("Total " + $.number((Number(sub_total) + Number(shipping_fee)), 2));
+				// console.log(sub_total);
+				// console.log(shipping_fee);
+				// console.log("Total " + $.number((Number(sub_total) + Number(shipping_fee)), 2));
 
 				$("#shipping_fee").text($.number(shipping_fee, 2));
 				$("#shipping_fee").attr("data-id", Number(shipping_fee));			
@@ -604,6 +704,9 @@ function get_order_checkout(div_id){
 				$("#total_amount").attr("data-id", (Number(sub_total) + Number(shipping_fee)));
 				$("#comp_total_items").text($.number(total_items));
 				$("#comp_total_amount").text($.number(sub_total, 2));
+
+				bank_list();
+				remittance_list();
 
 	    	}, error : function(err){
 	    		console.log(err.responseText);
@@ -618,6 +721,7 @@ function get_order_checkout(div_id){
 
 function cancel_order(){
 	$("#div-checkout-details").hide();
+	$("#div-order-summary").hide();
 
 	$("#prod_dtls tbody").empty();
 	$("#shipping_fee").text("0.00");
@@ -633,7 +737,80 @@ function cancel_order(){
 
 }
 
-function check_confirm_order(){
+function confirm_order(){
+
+$("#div-home").hide();
+$("#div-checkout-details").hide();
+$("#div-order-summary").show("slow");
+$("#div-remittance-payment").hide();
+$("#div-bank-payment").hide();
+get_bank();
+get_remittance();
+
+var payment_type = $("#payment_type").val();
+
+if (payment_type == "5"){
+	$("#div-bank-payment").show();
+	$("#summ-payment-type-list").val($("#bank_list :selected").text());
+}else{
+	$("#div-remittance-payment").show();
+	if (payment_type != "1"){
+		$("#summ-payment-type-list").val($("#remittance_list :selected").text());
+	}else{
+		$("#summ-payment-type-list").val("Cash on Delivery");		
+	}
+}
+
+}
+
+function get_bank(){
+
+	var bank_type = $("#bank_list").val();
+	var csrf_name = $("input[name=csrf_name]").val();
+	var id = $("#seller_id").val();
+
+	$.ajax({
+		data : {csrf_name : csrf_name, bank_type : bank_type, id : id},
+		type : "POST",
+		dataType : "JSON",
+		url : base_url + "Buyer/get_bank",
+		success : function(result){
+			$("input[name=csrf_name]").val(result.token);
+			$("#bank_name").text(result.account_name);
+			$("#bank_no").text(result.account_no);
+		}, error : function(err){
+			console.log(err.responseText);
+		}
+	})
+
+}
+
+function get_remittance(){
+	var csrf_name = $("input[name=csrf_name]").val();
+	var id = $("#seller_id").val();
+
+	$.ajax({
+		data : {csrf_name : csrf_name, id : id},
+		type : "POST",
+		dataType : "JSON",
+		url : base_url + "Buyer/get_remittance",
+		success : function(result){
+			$("input[name=csrf_name]").val(result.token);
+			$("#remittance_name").text(result.name);
+			$("#remittance_mobile").text("+63" + result.mobile);
+			$("#summ-bank-mobile").text("+63" + result.mobile);
+			$("#summ-remitt-mobile").text("+63" + result.mobile);
+			$("#remittance_email").text(result.email);
+			$("#summ-bank-email").text(result.email);
+			$("#summ-remitt-email").text(result.email);
+		}, error : function(err){
+			console.log(err.responseText);
+		}
+	})
+
+}
+
+function check_place_order(){
 
 	var bill_name = $("#bill_name").val();
 	var bill_address = $("#bill_address").val();
@@ -647,12 +824,12 @@ function check_confirm_order(){
 			title : "Please input all required fields"
 		})
 	}else{
-		confirm_order();
+		place_order();
 	}
 
 }
 
-function confirm_order(){
+function place_order(){
 
 	var csrf_name = $("input[name=csrf_name]").val();
 	var bill_name = $("#bill_name").val();
@@ -669,13 +846,24 @@ function confirm_order(){
 	var sched_time = $("#sched_time").val();
 	var sched_date = $("#sched_date").val();
 	var payment_type = $("#payment_type").val();
+	var payment_method = "";
 
 	var shipping_fee = $("#shipping_fee").attr("data-id");
 	var sub_total = $("#sub_total").attr("data-id");
 	var total_amount = $("#total_amount").attr("data-id");
 
+
 	var prod_id = [];
 	var sub = "";
+
+	if (payment_type == "5"){
+		payment_method = $("#bank_list").val();
+	}else if (payment_type == "6"){
+		payment_method = $("#remittance_list").val();
+	}else{
+		payment_method = "0";
+	}
+
     // $.each($("input[type='checkbox']:checked"), function(){
     // 	sub = {
     // 		"prod_id" : $(this).val()
@@ -706,6 +894,7 @@ function confirm_order(){
     	"contact_name" : bill_contact,
     	"notes" : bill_notes,
     	"payment_type" : payment_type,
+    	"payment_method" : payment_method,
     	"delivery_type" : delivery_type,
     	"scheduled_date" : sched_date,
     	"scheduled_time" : sched_time,

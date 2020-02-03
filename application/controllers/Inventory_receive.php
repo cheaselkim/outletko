@@ -379,7 +379,9 @@ class Inventory_receive extends CI_Controller {
 					'reference' => ($row->sales_reference == "0" ? "" : $row->reference)
 			); 
 		}
-		echo json_encode(array('trans_hdr' => $result,'trans_dtl' => $dtl_data, 'token' => $this->security->get_csrf_hash()));
+
+		$trans_dtl = inventory_dtl($result2->result());
+		echo json_encode(array('trans_hdr' => $result,'trans_dtl' => $trans_dtl, 'token' => $this->security->get_csrf_hash()));
     }
 
     public function cancel_receive(){

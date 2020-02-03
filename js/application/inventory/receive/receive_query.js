@@ -112,18 +112,36 @@ function index(){
   });
 }
 
-function view_receive(id){
+function view_receive(id, rcpt_type){
 
   $("#modal_query").modal("show");
   var csrf_name = $("input[name=csrf_name]").val();
 
   $.ajax({
-    data : {"id" : id, csrf_name : csrf_name},
-    url : base_url + "Inventory_receive/select_id",
+    data : {"id" : id, type : rcpt_type, csrf_name : csrf_name},
+    url : base_url + "Inventory_receive/get_receive",
     type : "POST",
     dataType : "JSON",
     success : function (result){
+      console.log(result);
       $("input[name=csrf_name]").val(result.token);
+
+      var trans_hdr = result.trans_hdr;
+
+      $("#mod_receive_no").val(trans_hdr[0].inv_no);
+      $("#mod_receive_date").val(trans_hdr[0].inv_date);
+      $("#mod_ref").val(trans_hdr[0].ref_trans_no);
+      $("#mod_ref_date").val(trans_hdr[0].ref_trans_date);
+      $("#mod_cust_code").val(trans_hdr[0].supplier_code2);
+      $("#mod_cust_name").val(trans_hdr[0].supplier_name);
+      $("#mod_trans_type").val(trans_hdr[0].inventory_ref_type);
+      $("#mod_ave_cost").val(trans_hdr[0].ave_cost);
+      $("#mod_tot_amount").val(trans_hdr[0].total_amount);
+      $("#mod_tot_vat").val(trans_hdr[0].total_vat);
+      $("#mod_net_vat").val(trans_hdr[0].total_net_vat);
+
+      $("#div_query_items").html(result.trans_dtl);
+
       $("#modal_query").modal("show");
     }, error : function(err){
       console.log(err.responseText);
@@ -168,16 +186,5 @@ function cancel_receive(id,key, ref_id){
 
 function edit_receive(id){
   $("body").empty();
-  setCookie("receive_id",id,5)
   $("body").load(base_url + "menu/edit_menu/3/1/2/"+id);
-}
-
-function setCookie(name,value,hours) {
-    var expires = "";
-    if (hours) {
-        var date = new Date();
-        date.setTime(date.getTime() + (hours*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }

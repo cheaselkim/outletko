@@ -17,7 +17,11 @@ $(document).ready(function(){
 		}
 
 	}else{
-		$("#modal_outlet").modal("hide");
+		var width = $(window).width();
+
+		if (width > 768){
+			$("#modal_outlet").modal("hide");
+		}
 	}
 
 	$("#btn_main_menu").click(function(){
@@ -32,7 +36,7 @@ $(document).ready(function(){
 		return false;
 	})
 
-	$("#total_sales_for_today").number(true, 2);
+	// $("#total_sales_for_today").number(true, 2);
 
 // 	report_menu();
 
@@ -46,10 +50,17 @@ function transaction(){
 		dataType : "JSON",
 		url :base_url + "header/get_transaction",
 		success: function(result){
+			var width = $(document).width();
 			$("input[name=csrf_name]").val(result.token);
-			$("#last_tran_no").text(result.last_trans);
-			$("#no_of_trans").text(result.no_of_trans);
-			$("#total_sales_for_today").text($.number(result.total_sales, 2));
+			if (width <= 768){
+				$("#last_tran_no_tab").text(result.last_trans);
+				$("#no_of_trans_tab").text(result.no_of_trans);
+				// $("#total_sales_for_today_tab").text($.number(result.total_sales, 2));
+			}else{
+				$("#last_tran_no").text(result.last_trans);
+				$("#no_of_trans").text(result.no_of_trans);
+				$("#total_sales_for_today").text($.number(result.total_sales, 2));				
+			}
 		}, error: function(err){
 			console.log(err.responseText);
 		}

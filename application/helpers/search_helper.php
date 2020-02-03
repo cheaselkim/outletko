@@ -13,7 +13,9 @@ if (!function_exists("tbl_query")){
 			$img = unserialize($value->loc_image);
 			$img_loc = base_url().'images/profile/'.$img[0];
 			// $href = base_url()."store/".str_replace(' ', '', strtolower($value->account_name))."";
-			$href = base_url().str_replace(' ', '', strtolower($value->account_name))."";
+			$link_name = str_replace(' ', '', strtolower($value->account_name));
+			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
+			$href = base_url().$value->link_name;
 
 			$address .= ($value->street == null ? "" : ($value->street == "" ? "" : $value->street.", "));
 			$address .= ($value->village == null ? "" : ($value->village == "" ? "" : $value->village.", "));

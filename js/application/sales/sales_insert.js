@@ -2,10 +2,10 @@ $(document).ready(function(){
 
 	var width = $(window).width();
 
-	// if (width <= 768){
-	// 	$("body").empty();
-	// 	$("body").load(base_url + "menu/tab_menu/1/0/1/"+width);
-	// }
+	if (width <= 768){
+		$("body").empty();
+		$("body").load(base_url + "menu/tab_menu/1/0/1/"+width);
+	}
 
 	// open_transaction();
 
@@ -37,20 +37,40 @@ $(document).ready(function(){
 	// $("#dep_bank").attr("disabled", true);
 	$("#mod-text-discount").prop("disabled", true);
 
-	max_transno();
-	customer();
-	currency();
-	payment_type();
-	payment_term();
-	bank_list();
-	item_type();
-	item_category();
-	item_class();
-	item_brand();
-	item_color();
-	item_size();
-	discount();
-	comp_bank();
+	if (width <= 768){
+		setTimeout(function(){
+			max_transno();
+			customer();
+			currency();
+			payment_type();
+			payment_term();
+			bank_list();
+			item_type();
+			item_category();
+			item_class();
+			item_brand();
+			item_color();
+			item_size();
+			discount();
+			comp_bank();
+		}, 2000);
+	}else{
+		max_transno();
+		customer();
+		currency();
+		payment_type();
+		payment_term();
+		bank_list();
+		item_type();
+		item_category();
+		item_class();
+		item_brand();
+		item_color();
+		item_size();
+		discount();
+		comp_bank();		
+	}
+
 
 	var d = new Date();
     var month = d.getMonth()+1;
@@ -311,7 +331,7 @@ $(document).ready(function(){
 					add_item_table();
 				}				
 
-			}else if (Number($("#qty").val()) > Number($("#stock_qty").val() + 0) && $("#stock_uom").val() != "" ){
+			}else if (Number($("#qty").val()) > Number($("#stock_qty").val() + 0) && $("#stock_uom").attr("data-stock") == "1" ){
 				swal({
 					type : "warning",
 					title : "Qty is greater than stock on hand. Proceed?",
@@ -365,8 +385,10 @@ $(document).ready(function(){
 	jQuery(document).on("click", ".edit_item_table", function(){
 		var row = $(this).closest("tr").index();
 		var id = $(this).closest("tr").find(".tbl_prod_id").text();
+		var agent_id = $(this).closest("tr").find(".tbl_agent_id").text();
 		select_item(id);
 		select_row_table(row);
+		// agent(agent_id);
 	});
 
 	$("#partner").keyup(function(){
@@ -957,6 +979,7 @@ function agent(id){
 }
 
 function search_item(){
+	console.log("item");
     
 	var item_type = $("#item_type").val();
 	var item_category = $("#item_category").val();
@@ -1021,8 +1044,9 @@ function select_item(id){
 			$("#prod_no").val(data.prod_no);
 			$("#prod_name").val(data.prod_name);
 			$("#stock_qty").val(qty);
-			$("#stock_uom").val(uom);
+			$("#stock_uom").val(data.uom);
 			$("#sel_price").attr("data-vat",data.vat);
+		    $("#stock_uom").attr("data-stock", data.stock);
 			
 			if ($("#tbl_item_row").val() != ""){
 			}else{
@@ -1070,6 +1094,8 @@ function compute_itemprice(){
 		item_price = reg_price;
 	}
 
+
+
 	total_price = item_price * qty;
 	total_selling_price = total_price - volume_discount;
 	share_amount = total_selling_price * (share_per / 100);
@@ -1080,7 +1106,7 @@ function compute_itemprice(){
 		$("#total_selling_price").val(total_selling_price);
 		$("#share_amount").val(share_amount);
 		$("#pay_total_amount").val(total_item_price);
-				
+		$("#volume_discount").val(total_price*(volume_discount_per/100));
 	}else{
 		$("#sel_price").val("0");
 		$("#qty").val("0");

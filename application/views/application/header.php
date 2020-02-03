@@ -227,19 +227,19 @@
 
           <div class="col-4 text-white pl-0 pr-1" >
 
-            <span class="font-weight-600 font-size-17"><span class="text-yellow">Last Trans No : </span><span class="last_tran_no" id="last_tran_no">00004</span></span>
+            <span class="font-weight-600 font-size-17"><span class="text-yellow">Last Trans No : </span><span class="last_tran_no_tab" id="last_tran_no_tab"></span></span>
 
           </div>
 
           <div class="col-3 text-white pl-0 pr-1">
 
-            <span class="font-weight-600 font-size-17"><span class="text-yellow">No. of Trans : </span><span>10</span></span>
+            <span class="font-weight-600 font-size-17"><span class="text-yellow">No. of Trans : </span><span class="no_of_trans_tab" id="no_of_trans_tab"></span></span>
 
           </div>
 
           <div class="col-5 text-white pl-0 pr-0">
 
-            <span class="font-weight-600 font-size-17"><span class="text-yellow">Total Sales : PHP </span><span class="last_tran_no" id="last_tran_no">100,000.00</span></span>
+            <span class="font-weight-600 font-size-17"><span class="text-yellow">Total Sales : PHP </span><span class="total_sales_for_today_tab" id="total_sales_for_today_tab"></span></span>
 
           </div>
 
@@ -315,10 +315,10 @@
             
             <div class='container'>
                 <div class='row'>
-                    <div class='col-lg-8 col-md-8 pl-0'>
+                    <div class='col-6 col-lg-8 col-md-8 pl-0'>
                         <h3 id="header-menu"></h3>
                     </div>
-                    <div class='col-lg-4 col-md-4 text-right pr-0'>
+                    <div class='col-6 col-lg-4 col-md-4 text-right pr-0'>
                         <a href="<?php echo base_url('/') ?>"><button class="btn btn-warning"><span class="font-weight-bold">Main Menu</span></button></a>
                     </div>
                 </div>

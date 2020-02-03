@@ -232,7 +232,7 @@ if (!function_exists("sales_transaction")){
 
                             <th style='width: 3%;' class='text-center'>Outlet</th>
 
-                            <th style='width: 3%;'>Status</th>
+                            <th style='width: 5%;'>Status</th>
 
 
 						</tr>
@@ -250,9 +250,12 @@ if (!function_exists("sales_transaction")){
 
 
 
-				if ($value->status == "1"){
+				if ($value->status == "2"){
 
-					$status = "Served";
+						$status = "Served";
+
+				}else if ($value->status){
+					$status = "Not Served";
 
 				}else{
 
@@ -604,7 +607,7 @@ if (!function_exists("sales_trans_per_agent")){
 							<td>".$value->trans_no."</td>
 							<td>".DATE('m/d/Y', strtotime($value->date_insert))."</td>
 							<td>".$value->product_name."</td>
-							<td class='text-right'>".number_format($value->total_amount, 2)."</td>
+							<td class='text-right'>".number_format($value->total_selling_price, 2)."</td>
 							<td class='text-right'>".number_format($value->share_amount, 2)."</td>
 						</tr>";
 		}
@@ -634,19 +637,19 @@ if (!function_exists("inventory_transaction")){
 
 						<tr>
 
-							<th style='width: 10%;'>Transaction No.</th>
+							<th style='width: 5%;'>Trans No.</th>
 
-                            <th style='width: 10%;'>Transaction Date</th>
+                            <th style='width: 5%;'>Trans Date</th>
 
-                            <th style='width: 12%;'>Vendor/Outlet Code</th>
+                            <th style='width: 5%;'>Code</th>
 
-                            <th style='width: 20%;'>Vendor/Outlet Name</th>
+                            <th style='width: 30%;'>Name</th>
 
-                            <th style='width: 15%;'>Trans Type</th>
+                            <th style='width: 10%;'>Trans Type</th>
 
                             <th style='width: 5%;'>Outlet</th>
 
-                            <th style='width: 2%;'>Action</th>
+                            <th style='width: 2%;' hidden>Action</th>
 
 						</tr>
 
@@ -676,9 +679,9 @@ if (!function_exists("inventory_transaction")){
 
 								<td>".$value->inventory_ref_type."</td>
 
-								<td>".$value->outlet."</td>
+								<td>".$value->outlet_code."</td>
 
-								<td><a href=''>View</a></td>
+								<td hidden><a href=''>View</a></td>
 
   						    </tr>";
 
@@ -851,7 +854,7 @@ if (!function_exists("end_of_day")){
 								<td class='text-center tbl_curr_code'>".$value->curr_code."</td>
 								<td class='text-right tbl_total_amount'>".number_format($value->total_amount, 2)."</td>
 								<td class='text-right tbl_total_vat'>".number_format($value->total_vat,2)."</td>
-								<td class='text-right tbl_total_net_vat'>".number_format($value->total_net_vat,2)."</td>
+								<td class='text-right tbl_total_net_vat'>".number_format(($value->total_amount - $value->total_vat),2)."</td>
 								<td class='text-left'>".$btn."</td>
 							</tr>";
 
@@ -866,7 +869,7 @@ if (!function_exists("end_of_day")){
 }
 
 if (!function_exists("sales_target_vs_actual")){
-	function sales_target_vs_actual($sales_target, $query){
+	function sales_target_vs_actual($year, $sales_target, $query){
 
 		$output = "";
 
@@ -884,12 +887,19 @@ if (!function_exists("sales_target_vs_actual")){
 
 		$total_sales_target = "0";
 		$actual_sales = "0";
+		$date_month = date('m');
 
 		foreach ($sales_target as $key => $value) {
 			$total_sales_target += $value->outlet_monthly_quota;
 		}
 
-		for ($i = 1; $i <= date("m"); $i++) { 
+		if ($year == date('Y')){
+			$date_month = date('m');
+		}else{
+			$date_month = 12;
+		}
+
+		for ($i = 1; $i <= $date_month; $i++) { 
 
 			$output .= "<tr>
 						<td>".date("F", mktime(0,0,0,$i, 10))."</td>

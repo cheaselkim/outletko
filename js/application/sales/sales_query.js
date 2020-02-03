@@ -46,11 +46,6 @@ $(document).ready(function(){
     $('#status').change(function() {
         search_query();
     });
-    
-    setTimeout(function(){
-        eraseCookie('sales_force_id');
-        location.reload();
-    }, 1000 * 60 *30);
 
 
 });
@@ -139,6 +134,8 @@ function view_query(id){
 
 function view_cancel(id,trans_no){
 	var csrf_name = $("input[name=csrf_name]").val();
+	console.log(trans_no);
+	console.log(id);
 
 	swal({
 		title: "Are you sure do you want to Cancel Transaction #"+pad(trans_no, 5)+" ?",
@@ -148,7 +145,7 @@ function view_cancel(id,trans_no){
 		confirmButtonText: 'Confirm',
 		closeOnConfirm: false,
 		closeOnCancel: false,
-		timer: 2000
+		// timer: 5000
 	},function(isConfirm){
 		if (isConfirm){
 			$.ajax({
@@ -175,16 +172,5 @@ function view_cancel(id,trans_no){
 
 function edit_sales(id){
 	$("body").empty();
-	setCookie("sales_id",id,5)
 	$("body").load(base_url + "menu/edit_menu/1/0/2/"+id);
-}
-
-function setCookie(name,value,hours) {
-    var expires = "";
-    if (hours) {
-        var date = new Date();
-        date.setTime(date.getTime() + (hours*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }

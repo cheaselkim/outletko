@@ -6,7 +6,6 @@ class Login extends CI_Controller {
 	public function __construct(){
 	    parent::__construct();
 	      	$this->load->model("login_model");
-	      	$this->load->helper("url");
 	}
 
 	public function login(){		
@@ -36,7 +35,11 @@ class Login extends CI_Controller {
 
 					if ($this->session->userdata("user_type") == "4"){
 						// redirect("store/".str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
-						redirect(str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
+						// $link_name = str_replace(' ', '', strtolower($this->session->userdata("link_name")));
+						// $link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
+
+						// redirect(str_replace(' ', '', strtolower($link_name)));
+						redirect($this->session->userdata("link_name"));
 					}else{
 						if (($this->session->userdata("login") == "1") && ($this->session->userdata("all_access") == "1") && ($this->session->userdata("user_type") == "2")){
 							$this->session->set_userdata("login", "0");

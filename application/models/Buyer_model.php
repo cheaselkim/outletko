@@ -14,6 +14,11 @@ class Buyer_model extends CI_Model {
                 }
     }
 
+    public function get_count_order(){
+        $result = $this->db2->query("SELECT COUNT(*) AS order_no FROM buyer_order_products WHERE order_id IS NULL AND comp_id = ? ", array($this->session->userdata('comp_id')))->row();
+        $this->session->set_userdata("order_no", $result->order_no);
+    }
+
     public function delivery_type($id){
         $query = $this->db2->query("
             SELECT 
@@ -32,14 +37,61 @@ class Buyer_model extends CI_Model {
             payment_type.*
             FROM payment_type
             INNER JOIN account_payment_type ON 
-            `account_payment_type`.`payment_type_id` = `payment_type`.`id`
-            WHERE account_id = ?
-        ", array($id))->result();
+            `account_payment_type`.`payment_type_id` = `payment_type`.`id` 
+            WHERE account_id = ? AND `payment_type`.`status` = ? AND payment_type_check = ?
+        ", array($id, "1", "1"))->result();
         return $query;
     }
 
     public function get_sched_time($comp_id){
         $query = $this->db2->query("SELECT * FROM account_appointment WHERE comp_id = ?", array($comp_id))->result();
+        return $query;
+    }
+
+    public function bank_list($id){
+        $query = $this->db2->query("
+            SELECT 
+            bank_list.*
+            FROM bank_list
+            INNER JOIN account_bank ON 
+            `account_bank`.`bank_id` = `bank_list`.`id` 
+            WHERE comp_id = ? AND `account_bank`.`status` = ? AND `bank_list`.`status` = ?
+        ", array($id, "1", "1"))->result();
+        return $query;        
+    }
+
+    public function remittance_list($id){
+        $query = $this->db2->query("
+            SELECT 
+            remittance_list.*
+            FROM remittance_list
+            INNER JOIN account_remittance ON 
+            `account_remittance`.`remittance_id` = `remittance_list`.`id` 
+            WHERE comp_id = ? AND `remittance_list`.`status` = ? AND `account_remittance`.`status` = ?
+        ", array($id, "1", "1"))->result();
+        return $query;                
+    }
+
+    public function get_bank($id){
+        $query = $this->db2->query("
+            SELECT 
+            bank_list.*, account_bank.*
+            FROM bank_list
+            INNER JOIN account_bank ON 
+            `account_bank`.`bank_id` = `bank_list`.`id` 
+            WHERE `account_bank`.`id` = ?
+        ", array($id))->result();
+        return $query;                
+    }
+
+    public function get_remittance($id){
+        $query = $this->db2->query("
+            SELECT 
+            CONCAT(`account`.`first_name`, ' ' , `account`.`last_name`) AS fullname,
+            `account`.`mobile_no`,
+            `account`.`email`
+            FROM account
+            WHERE id = ? ", array($id))->result();
         return $query;
     }
 
@@ -66,13 +118,26 @@ class Buyer_model extends CI_Model {
     }
 
     public function get_billing(){
-        $this->db2->select("account_buyer.*, province.province_desc, city.city_desc");
-        $this->db2->join("province", "province.id = account_buyer.province", "LEFT");
-        $this->db2->join("city", "city.id = account_buyer.city", "LEFT");
-        $this->db2->from("account_buyer");
-        $this->db2->where("account_buyer.id", $this->session->userdata("comp_id"));
-        $query = $this->db2->get();
-        return $query->result();
+        // $this->db2->select("account_buyer.*, province.province_desc, city.city_desc");
+        // $this->db2->join("province", "province.id = account_buyer.province", "LEFT");
+        // $this->db2->join("city", "city.id = account_buyer.city", "LEFT");
+        // $this->db2->from("account_buyer");
+        // $this->db2->where("account_buyer.id", $this->session->userdata("comp_id"));
+        // $query = $this->db2->get();
+        // return $query->result();
+
+        $query = $this->db2->query("
+            SELECT 
+            account_buyer.*, 
+            `province`.`province_desc`, 
+            `city`.`city_desc` 
+            FROM account_buyer 
+            LEFT JOIN province ON 
+            `province`.`id` = `account_buyer`.`province`
+            LEFT JOIN city ON
+            `city`.`id` = `account_buyer`.`city`    
+            WHERE `account_buyer`.`id` = ?", array($this->session->userdata("comp_id")))->result();
+        return $query;
     }
 
     public function get_order_checkout($prod_id){
@@ -142,7 +207,7 @@ class Buyer_model extends CI_Model {
         $this->db2->where("id", $id);
         $this->db2->delete("buyer_order_products");
 
-        $query_product = $this->db2->query("SELECT SUM(prod_qty) AS prod_no FROM buyer_order_products WHERE comp_id = ? AND (order_id IS NULL OR order_id = '')", array($this->session->userdata("comp_id")))->row();
+        $query_product = $this->db2->query("SELECT COUNT(*) AS prod_no FROM buyer_order_products WHERE comp_id = ? AND (order_id IS NULL OR order_id = '')", array($this->session->userdata("comp_id")))->row();
 
         if (!empty($query_product)){
           $this->session->set_userdata("order_no", $query_product->prod_no);
@@ -252,7 +317,7 @@ class Buyer_model extends CI_Model {
             `account_buyer`.`city` = `city`.`id`
             LEFT JOIN province ON 
             `account_buyer`.`province` = `province`.`id`
-            WHERE `account_buyer`.`id` ", array($this->session->userdata("comp_id")))->result();
+            WHERE `account_buyer`.`id` = ? ", array($this->session->userdata("comp_id")))->result();
         return $query;
     }
 

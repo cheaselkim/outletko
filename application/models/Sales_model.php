@@ -128,7 +128,7 @@ class Sales_model extends CI_Model {
   //new
   public function search_partner($partner){
     // $query = $this->db->query("SELECT id,CONCAT(first_name,' ',last_name) AS name, share FROM sales_force WHERE type != '2' AND comp_id IN ? AND first_name LIKE ? OR last_name LIKE ?", array( array($this->session->userdata("comp_id"), "0"), '%'.$partner.'%' , '%'.$partner.'%'))->result();
-    $query = $this->db->query("SELECT id,CONCAT(first_name,' ',last_name) AS name, share, account_id FROM sales_force WHERE type != '2' AND comp_id IN ? AND (first_name LIKE ? OR last_name LIKE ?)", array( array($this->session->userdata("comp_id"), "0"), '%'.$partner.'%' , '%'.$partner.'%'))->result();
+    $query = $this->db->query("SELECT id,CONCAT(first_name,' ',last_name) AS name, share, account_id FROM sales_force WHERE type != '2' AND comp_id IN ? AND outlet = ? AND (first_name LIKE ? OR last_name LIKE ?)", array( array($this->session->userdata("comp_id"), "0"), $this->session->userdata('outlet_id'), '%'.$partner.'%' , '%'.$partner.'%'))->result();
     return $query;
   }
 
@@ -183,6 +183,8 @@ class Sales_model extends CI_Model {
 
 
       // COALESCE(COALESCE((SUM(CASE WHEN (`inventory_hdr`.`inv_type` = '1' AND `inventory_hdr`.`status` != '0' AND `inventory_dtl`.`prod_grade` = '1') THEN `inventory_dtl`.`qty` END)), 0) - COALESCE((SUM(CASE WHEN (`inventory_hdr`.`inv_type` = '2' AND `inventory_hdr`.`status` != '0' AND `inventory_dtl`.`prod_grade` = '1') THEN `inventory_dtl`.`qty` END)), 0), 0) AS inventory_qty 
+
+
 
     $sql .= "SELECT 
       `products`.`id`,
@@ -239,9 +241,9 @@ class Sales_model extends CI_Model {
       FROM sales_transaction_hdr  
       INNER JOIN sales_transaction_dtl ON
       `sales_transaction_hdr`.`id` = `sales_transaction_dtl`.`sales_hdr_id`
-      WHERE outlet_id = ? AND `sales_transaction_hdr`.`status` = ?
+      WHERE outlet_id = ? AND `sales_transaction_hdr`.`status` != ?
       GROUP BY product_id
-      ORDER BY product_id", array($this->session->userdata("outlet_id"), "1"))->result();
+      ORDER BY product_id", array($this->session->userdata("outlet_id"), "0"))->result();
     return $query;
   }
 
@@ -298,13 +300,14 @@ class Sales_model extends CI_Model {
   }
 
   public function sales_qty($prod_id){
+
     $query = $this->db->query("
       SELECT SUM(`sales_transaction_dtl`.`qty`) AS sales_qty 
       FROM sales_transaction_hdr  
       INNER JOIN sales_transaction_dtl ON
       `sales_transaction_hdr`.`id` = `sales_transaction_dtl`.`sales_hdr_id`
-      WHERE product_id = ? AND outlet_id = ? AND status = ?", 
-      array($prod_id, $this->session->userdata("outlet_id"), "1"))->row();
+      WHERE product_id = ? AND outlet_id = ? AND status != ?", 
+      array($prod_id, $this->session->userdata("outlet_id"), "0"))->row();
     return $query->sales_qty;
   }
   

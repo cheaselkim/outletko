@@ -18,7 +18,7 @@
 
                     <div class="col-xs-6 col-md-6 pt-3">
 
-                        <h3 class="font-weight-bold">Outlet Information<?php echo $_COOKIE["outlet_id"];?></h3>
+                        <h3 class="font-weight-bold">Outlet Information</h3>
 
                     </div>
 

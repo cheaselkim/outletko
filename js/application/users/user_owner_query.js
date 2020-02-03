@@ -222,6 +222,8 @@ function get_data(){
 
 			$("#renewal_date").val(data.result[0].renewal_date);
 
+			$("#partner_id").val(data.result[0].recruited_by);
+
 			$("#recruited_by").val(data.result[0].recruited_by);
 
 			$("#no_outlet").val(data.result[0].outlet_no);

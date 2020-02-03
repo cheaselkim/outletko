@@ -5,15 +5,15 @@ if (!function_exists("table_issue")){
 
 		$output = "";
 
-		$output .= "<table style='width: 100%' class='table table-striped table-fixed fixed_header text-table table-hover table-sm' id='tbl-issue'>
+		$output .= "<table class='table table-striped table-fixed fixed_header text-table table-hover table-sm table-bordered' id='tbl-issue'>
 					<thead class='w-100'>
 						<tr>
 							<th class='text-left' style='width: 9%;'>Transfer No</th>
                             <th class='text-left' style='width: 10%;'>Transfer Date</th>
-                            <th class='text-left' style='width: 17%;'>Transaction Type</th>
+                            <th class='text-left' style='width: 15%;'>Transaction Type</th>
                             <th class='text-left' style='width: 43%;'>Outlet / Vendor Name</th>
                             <th class='text-left' style='width: 8%;'>Outlet</th>
-                            <th style='width: 5%;' class='text-center'>Action</th>
+                            <th style='width: 7%;' class='text-center'>Action</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -44,10 +44,10 @@ if (!function_exists("table_issue")){
 				$output .= "<tr>
 								<td class='text-left' style='width: 9%;'>".$value->inv_no."</td>
 								<td class='text-left' style='width: 10%;'>".date('m/d/Y', strtotime($value->inv_date))."</td>
-								<td class='text-left' style='width: 17%;'>".$value->inventory_ref_type."</td>
+								<td class='text-left' style='width: 15%;'>".$value->inventory_ref_type."</td>
 								<td class='text-left' style='width: 43%;'>".$value->recipient."</td>
 								<td class='text-left' style='width: 8%;'>".$value->recipient_code."</td>
-								<td style='width: 5%;' class='text-center'>".$btn."</td>
+								<td style='width: 7%;' class='text-center'>".$btn."</td>
   						    </tr>";
 
 			}
@@ -177,26 +177,26 @@ if (!function_exists("inventory_dtl")){
 		$output = "";
 
 		$output .= "<table class='table table-sm table-striped'>
-					<thead>
+					<thead class='w-100'>
 						<tr>
-							<th class='text-left'>Product No</th>
+							<th class='text-left' style='width:10%;'>Prod No</th>
 							<th class='text-left'>Product Name</th>
-							<th class='text-left'>Qty</th>
-							<th class='text-left'>Unit</th>
-							<th class='text-left'>Selling Price</th>
-							<th class='text-left'>Total Price</th>
+							<th class='text-left' style='width:7%;'>Qty</th>
+							<th class='text-left' style='width:7%;'>Unit</th>
+							<th class='text-left' style='width:9%;'> Price</th>
+							<th class='text-left' style='width:13%;'>Total Price</th>
 						</tr>
 					</thead>
 					<tbody>";
 
 		foreach ($query as $key => $value) {
 			$output .= "<tr>
-							<td class='text-left'>".$value->product_no."</td>
+							<td class='text-left' style='width:10%;'>".$value->product_no."</td>
 							<td class='text-left'>".$value->product_name."</td>
-							<td class='text-left'>".number_format($value->qty, 2)."</td>
-							<td class='text-left'>".$value->unit_code."</td>
-							<td class='text-left'>".number_format($value->reg_selling_price, 2)."</td>
-							<td class='text-left'>".number_format(($value->reg_selling_price * $value->qty), 2)."</td>
+							<td class='text-left' style='width:7%;'>".number_format($value->qty, 2)."</td>
+							<td class='text-left' style='width:7%;'>".$value->unit_code."</td>
+							<td class='text-left' style='width:9%;'>".number_format($value->cost, 2)."</td>
+							<td class='text-left' style='width:13%;'>".number_format(($value->cost * $value->qty), 2)."</td>
 						</tr>";
 		}
 

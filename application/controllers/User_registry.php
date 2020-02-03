@@ -158,8 +158,14 @@ class User_registry extends CI_Controller {
 			'all_access' => "1"  
 		);
 
+			$link_name = $this->input->post("account_name", TRUE);
+			$link_name = str_replace(' ', '', strtolower($link_name));
+			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
+			$link_name = substr($link_name, 0, 20);
+
 		$account_outletko=array(
 			'account_id'=>$this->input->post('account_id', TRUE),
+			'link_name' => $link_name,
 			'account_name'=> ucwords($this->input->post('account_name', TRUE)),
 			'account_status'=> 1,
 			'confirm_email' => 1,

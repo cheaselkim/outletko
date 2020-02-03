@@ -28,7 +28,6 @@
     <script src="<?php echo base_url('js/login.js') ?>"></script>
     <script src="<?php echo base_url('js/featured_outlet.js')?>"></script>
 
-
     <style type="text/css">
       option {
         max-height: 15px;
@@ -92,7 +91,7 @@
     </div>
   </div>
   <!-- https://images.pexels.com/photos/449559/pexels-photo-449559.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200/ -->
-  <div class="row header" style="min-height:50vh;">
+  <div class="row header">
     <div class="col-lg-12" >
       
       <div class="row" style="">
@@ -103,11 +102,11 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item py-1">
-                  <button class="btn btn-block btn-transparent" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
+                <li class="nav-item py-1 pad-right">
+                  <button class="btn btn-block bg-white" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-black"></i> <span class="text-black">Sign in</span></button>
                 </li>    
-                <li class="nav-item py-1">
-                  <button class="btn btn-block btn-transparent bd-orange" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>
+                <li class="nav-item py-1 pad-left" hidden>
+                  <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>
                 </li>
               </ul>
             </div>  
@@ -121,17 +120,20 @@
         </div>
       </div>
       
-      <div class="row pt-5">
+      <div class="row pt-5 pb-3">
         <div class="col-lg-8 mx-auto">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 text-center">
               <p class="line-1 anim-typewriter text-white text-shadow-white" hidden>Find Outlet Store Near You!</p>
-              <p class="line-1 anim-typewriter text-white text-shadow-black h4" >Connecting Stores and Service Providers to Community People</p>
+              <p class="line-1 anim-typewriter text-shadow-white h4 font-weight-600 text-white" >Connecting Stores and Service Providers to Community People</p>
+<!--   -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white; -->
             </div>
           </div>
           <form action="<?php echo base_url('Search/index') ?>" method="get">
-            <div class="row mt-2">
-              <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1">
+            <div class="row mt-2 div-search-box">
+              <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1" hidden>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
@@ -139,7 +141,7 @@
                   <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="location" placeholder="Search location" aria-label="location" aria-describedby="basic-addon1">
                 </div>    
               </div>
-              <div class="col-lg-7 col-md-6 col-sm-12 pad-center pt-1">
+              <div class="col-lg-9 col-md-9 col-sm-12 pad-center pt-1">
 
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -149,7 +151,7 @@
                 </div>
           
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-12 pad-left pt-1">
+              <div class="col-lg-3 col-md-3 col-sm-12 pad-left pt-1">
                 <button class="btn btn-orange btn-block font-weight-600">Search</button>
               </div>
             </div>
@@ -262,13 +264,18 @@
 
   <div class="row">
     <div class="col-lg-9 col-md-12 col-sm-8 mx-auto pt-3 px-0">
-      <div class="row">
+      <div class="row mb-0">
         <div class="col-lg-12 text-center">
-          <span class="font-weight-525 h3">Featured Stores for the Month</span>
-          <hr class="my-2" style="width: 25%;border-top: 3px solid orange;">
+          <span class="font-weight-525 h4">Featured Stores of the Month</span>
+          <hr class="my-2" style="width: 15%;border-top: 3px solid orange;">
         </div>
       </div>
-      <div class="row" id="div-featured-outlet" >
+      <div class="row" id="div-featured-outlet">
+      	<div class="col-md-12 col-md-offset-1" hidden>
+      		<div class="tile-container">
+      			
+      		</div>
+      	</div>
       </div>
       <div class="row my-4">
         <div class="col-6 col-lg-3 col-md-4 col-sm-6 text-center mx-auto">
@@ -278,8 +285,52 @@
     </div>
   </div>
 
+  <style type="text/css">
+  	.card{
+  		height: 150px;
+  	}
+
+  	.tile-container{
+	  position: relative;
+/*	  border: solid #BDBDBD 2px;*/
+	  margin: 5px 0px;
+	  width:100%;
+	}
+
+
+
+	.div-card-name{
+	    height: auto;
+	    min-height: 50px;
+	    border: 1px solid green;
+	    border-top: 0;
+	    border-bottom-left-radius: .25rem;
+	    border-bottom-right-radius: .25rem;
+	    text-align: center;
+	    line-height: 50px;
+	}
+
+	.div-card-name p{
+		display: inline-block;
+		vertical-align: middle;
+		line-height: normal;
+	}
+
+	.div-store-about{
+		height: 150px;
+		overflow: hidden;
+	}
+
+
+  </style>
+
 <script>
  $(document).ready(function () {          
+  $("#hideMe").hide();
+
+  setTimeout(function(){ 
+      $("#hideMe").show("slow");
+   }, 2000);
 
   // setInterval(function(){ 
   //   if ($("#hideMe").is(":visible")){
@@ -333,7 +384,7 @@
     //   change();
     //     $('#hideMe').hide();
     // }, 3000);  
-  }, 6000);
+  }, 10000);
 
 
   function change() {
@@ -372,27 +423,27 @@
 </div>
 
   <div class="row" style="background: rgb(119,147,60);">
-  <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2" style="padding-left: 100px; padding-right:100px;">
+  <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2 div-footer-1" >
     <div class="row">
-      <div class="col-4 text-center pr-5">
+      <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
         <img src="<?php echo base_url('assets/img/logo-10.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
         <p class="text-white font-size-14">Outletko is a complete digital platform exclusively designed for micro and small business</p>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-4 col-md-6 col-sm-12 pl-1">
         <div class="row">
-          <div class="col-6 text-white" style="line-height:30px;">
+          <div class="col-6 text-white pr-0" style="line-height:30px;">
             <a href="<?php echo base_url('aboutus') ?>" class="text-white">About Us</a><br>
             <a href="<?php echo base_url('terms') ?>" class="text-white">Terms and Conditions</a><br>
             <a href="<?php echo base_url('privacy'); ?>" class="text-white">Privacy Policy</a>
           </div>
-          <div class="col-6 text-white" style="line-height:30px;">
+          <div class="col-6 text-white pl-5" style="line-height:30px;">
             <a href="<?php echo base_url('reviews')?>" class="text-white">Reviews</a><br>
             <a href="<?php echo base_url('contactus')?>" class="text-white">Contact Us</a><br>
             <a href="" class="text-white">Be our Partner</a>
           </div>
         </div>
       </div>
-      <div class="col-4 text-right">
+      <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-right">
         <div class="mt-5 text-right">
           <span style="font-size: 25px;"><span class="text-white">Follow us on :</span> <i class="fab fa-facebook-f text-orange"></i>&nbsp;<i class="fab fa-twitter text-orange"></i>&nbsp;<i class="fab fa-youtube text-orange"></i>&nbsp;</span>
         </div>
@@ -408,17 +459,17 @@
 
 </div>
 
-<div class="modal" id="modal_signup_user">
+<div class="modal" id="modal_signup_user" style="z-index: 999999;">
     <div class="modal-dialog" style="max-width: 460px;">
       <div class="modal-content">
-        <div class="modal-header py-2" style="background: rgb(195, 214, 155);">
+        <div class="modal-header py-2" style="background: rgb(119,147,60);">
           <div class="container">
             <div class="row">
-              <div class="col-lg-2 pr-0">
+              <div class="col-3 col-lg-2 pr-0" hidden>
                 <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
               </div>
-              <div class="col-lg-10 text-left pl-0">
-                <span class="font-size-30"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-white">.com</span></span><br>                                
+              <div class="col-12 col-lg-12 text-center ">
+                <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                
               </div>
             </div>          
           </div>
@@ -432,6 +483,12 @@
               <div class="col-lg-12 pb-2" style="line-height: 25px;">
                 <span class="font-size-18" style="font-size: 18px !important;">Welcome! Please Login to continue. </span><br>
                 <!-- <small>New member? <a class="cursor-pointer" id="a_register"><u>Register here</u></a> </small> -->
+              </div>
+            </div>
+
+            <div class="row px-3">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 alert alert-danger py-1 px-2 mb-1" id="login-error">
+                <span>Invalid Username or Password</span>
               </div>
             </div>
                 
@@ -468,7 +525,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
 
-                    <input type="text" class="form-control" id="verify_code">
+                    <input type="text" class="form-control" id="verify_codex">
                 </div>
             </div>
 
@@ -486,16 +543,16 @@
 </div>
 
 <div class="modal" id="modal_signup">
-  <div class="modal-dialog" style="max-width: 460px;">
+  <div class="modal-dialog" style="max-width: 480px;">
     <div class="modal-content">
-      <div class="modal-header py-2" style="background: rgb(195, 214, 155);">
+      <div class="modal-header py-2" style="background:rgb(119,147,60);">
         <div class="container">
           <div class="row">
-            <div class="col-lg-2 pr-0">
+            <div class="col-lg-2 pr-0" hidden>
               <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
             </div>
-            <div class="col-lg-10 text-left pl-0">
-              <span class="font-size-30"><span class="text-white">Outlet</span><span class="text-yellow">ko</span><span class="text-white">.com</span></span><br>                                
+            <div class="col-lg-12 text-center">
+                <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                
             </div>
           </div>          
         </div>
@@ -731,8 +788,8 @@
 
           <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 text-center mx-auto pt-3">
-              <span>Please Check your inbox form confirmation email. Click the link in the email to confirm your email address.</span><br>
-              <button class="btn btn-orange mt-3" id="resend">Re-send confirmation email</button>
+              <span>An email has been sent to you. Please check your inbox and follow the instruction in the message.</span><br>
+              <button class="btn btn-orange mt-3" id="resend" hidden>Re-send confirmation email</button>
             </div>
           </div>
 

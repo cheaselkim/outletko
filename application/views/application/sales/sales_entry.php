@@ -1,3 +1,4 @@
+<body>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/application/header.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/application/sales.css') ?>">
 <script type="text/javascript" src="<?php echo base_url('js/application/sales/sales_insert.js') ?>"></script> 
@@ -14,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </head>
 
-<body>
+
 
 <div class="container-fluid pt-1">
     <div class="div-trans-header">
@@ -151,7 +152,7 @@
 <!--                                             <span class="cursor-pointer" id="dis-info" data-toggle="tooltip" data-placement="bottom"  title="Sr Citizen Discount"><i class="fa fa-info-circle"></i></span> -->
                                         </span>
                                         <div class="col-3">
-                                            <input class="form-control text-right vol-disc-text-size" id="volume_discount_per" type="text" placeholder="0.00" >
+                                            <input class="form-control text-right vol-disc-text-size" id="volume_discount_per px-2" type="text" placeholder="0.00" >
                                         </div>
                                         <div class="col-6">
                                             <input class="form-control text-right vol-disc-text-size" id="volume_discount" type="text" placeholder="0.00" >
@@ -167,7 +168,7 @@
                                     <div class="form-group row mb-0">
                                         <span class="col-3 col-form-label text-sales" for="text-input">Share %</span>
                                         <div class="col-3"> 
-                                            <input class="form-control text-right txt-box-text-size" id="share_per" type="text" placeholder="0.00" value="" >
+                                            <input class="form-control text-right txt-box-text-size px-2" id="share_per" type="text" placeholder="0.00" value="" >
                                         </div>
                                         <div class="col-6">
                                             <input class="form-control text-right txt-box-text-size" id="share_amount" type="text" placeholder="0.00" >
@@ -212,7 +213,7 @@
                                                       <th style='width: 4%;' class="d-xl-table-cell d-lg-none d-md-none d-sm-none">PN</th>
                                                       <th style='width: 14%;'>Product Name</th>
                                                       <th style='width: 3%;'>Qty.</th>
-                                                      <th style='width: 2.5%;'>UM</th>
+                                                      <th style='width: 2.5%;'t>UM</th>
                                                       <!--<th style='width: 2.5%;'>Curr</th>-->
                                                       <th hidden>Regular Price</th>
                                                       <th style='width: 6%;'>Selling Price</th>

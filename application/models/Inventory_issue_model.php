@@ -324,6 +324,8 @@ class Inventory_issue_model extends CI_Model {
             ".$str2." ".$str1."  
             ORDER BY `inventory_hdr`.`inv_no`
         ")->result();
+
+
         return $query;
   }
 

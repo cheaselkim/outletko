@@ -38,11 +38,12 @@ class Login_model extends CI_Model {
           				);
                 }else if($value->user_type == "4"){
                     $result = $this->db2->query("SELECT * FROM account WHERE account_id = ?", array($value->account_id))->num_rows();
-                    $result2 = $this->db2->query("SELECT account_name, id FROM account WHERE account_id = ?", array($value->account_id))->row();
+                    $result2 = $this->db2->query("SELECT account_name, id, link_name FROM account WHERE account_id = ?", array($value->account_id))->row();
                     $result3 = $this->db2->query("SELECT COUNT(*) AS order_no FROM buyer_order WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("1", $result2->id))->row();
 
               				$user_array = array(
                 				"user_id" => $value->id,
+                        "link_name" => $result2->link_name,
                         "account_name" => $result2->account_name,
                         "account_id" => $value->account_id,
                         "comp_id" => $result2->id,
@@ -103,7 +104,6 @@ class Login_model extends CI_Model {
       $query = "";
     }
 
-
   	if (!empty($query)){
   		return true;
   	}else{
@@ -118,7 +118,7 @@ class Login_model extends CI_Model {
   }
 
   public function featured_outlet(){
-    $query = $this->db2->query("SELECT * FROM account  WHERE account_status = ? LIMIT 8", array(1))->result();
+    $query = $this->db2->query("SELECT * FROM account  WHERE account_status = ? LIMIT 5", array(1))->result();
     return $query;
   }
 

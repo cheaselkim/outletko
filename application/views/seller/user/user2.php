@@ -267,7 +267,7 @@
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-12">
 										<textarea rows="5" class="form-control textbox-green2" id="textbox_aboutus"></textarea>
-										<small class="text-green" id="span-aboutus">The limit is 200 Characters</small>
+										<small class="text-green" id="span-aboutus">The limit is 400 Characters</small>
 									</div>
 								</div>
 

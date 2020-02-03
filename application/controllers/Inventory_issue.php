@@ -278,7 +278,9 @@ class Inventory_issue extends CI_Controller {
 		// 			''
 		// 		); 
 		// }
-		echo json_encode(array('trans_hdr' => $result,'trans_dtl' => $result2->result(), 'token' => $this->security->get_csrf_hash()));
+
+		$issue_dtl = inventory_dtl($result2->result());			
+		echo json_encode(array('trans_hdr' => $result,'trans_dtl' => $issue_dtl, 'token' => $this->security->get_csrf_hash()));
 		// echo json_encode($id);
     }
 

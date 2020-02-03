@@ -1,6 +1,6 @@
   $(document).ready(function(){
 
-  var id = getCookie('sales_force_id');
+  var id = $("#sales_force_id").val();
   $("#monthly_quota").number(true, 2);
   $("#share").number(true, 2);
   $("#salary").number(true, 2);
@@ -111,7 +111,7 @@ function sales_force_type(){
       for (var i = 0; i < result.length; i++) {
         $("#sales_force_type").append("<option value='"+result[i].id+"'>"+result[i].desc  +"</option>");
       }
-      var id = getCookie('sales_force_id');
+      var id = $("#sales_force_id").val();
       get_sales_force_dtl(id)
     }, error: function(err){
       console.log(err.responseText);
@@ -203,7 +203,7 @@ function open_transaction($account_id, $outlet_id){
 function save_data(){
       var csrf_name = $("input[name=csrf_name]").val();
 
-      var id = getCookie('sales_force_id');
+      var id = $("#sales_force_id").val();
 
       var account_id = $("#account_id").val();
       var status = $('#status').val();
@@ -329,7 +329,6 @@ function save_data(){
                 type : "success",
                 timer: 5000
               }, function(){
-                  eraseCookie('sales_force_id');
                 location.reload();
               });
             }, error: function(err) {
@@ -337,19 +336,4 @@ function save_data(){
             }
       });  
 };
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
-}
 

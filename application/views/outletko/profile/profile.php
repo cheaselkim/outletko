@@ -77,19 +77,19 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3 div-header-4">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4">
 	<div class="container">
 		<div class="row">
-			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-				<div class="div-store-img" id="div-store-img-1" >
+			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
+				<div class="div-store-img" id="div-store-img-1" style="height: 315px;">
 				</div>
 			</div>
-			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-				<div class="div-store-img" id="div-store-img-2" >
+			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
+				<div class="div-store-img" id="div-store-img-2" style="height: 315px;">
 				</div>
 			</div>
-			<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-				<div class="div-store-img" id="div-store-img-3" >
+			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
+				<div class="div-store-img" id="div-store-img-3" style="height: 315px;">
 				</div>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 	<hr class="mt-3 mb-1">
 </div>
 
-<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pb-3" id="div-display-products">
+<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center" id="div-display-products" style="padding-bottom: 80px;">
 	<div class="row">
 		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 			<div class="container">
@@ -134,7 +134,7 @@
 			<div class="col-lg-auto col-sm-12 mb-4">
 				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img">
 				</div>
-				<span class="font-size-25 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
+				<span class="font-size-30 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
 				<span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
 			</div>
 			<div class="col-lg-7 col-sm-12">
@@ -151,7 +151,7 @@
 							<span calss="font-size-16">Details : </span>
 						</div>
 						<div class="col-12 "> <!-- pl-4 -->
-							<span class="font-size-18 font-weight-600" id="prod-dtls"></span>
+							<span class="font-size-22 font-weight-600" id="prod-dtls" style="font-size: 22px;"></span>
 						</div>
 					</div>
 
@@ -231,15 +231,41 @@
 						</div>
 					</div>
 
-					<div class="row mt-3" id="div-btn-order">
-						<div class="col-12 col-lg-2 col-md-2 col-sm-12 pad-right pt-1">
-							<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
-						</div>
-						<div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-center pt-1">
-							<button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
-						</div>
-						<div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-left pt-1">
-							<button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
+					<div class="row">
+						<div class="col-12">
+							<div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2">
+								<p id="prod-other-details"></p>
+							</div>
+						</div>						
+					</div>
+
+
+					<div class="row mt-3 div-btn-order py-3" id="div-btn-order">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="row">
+                                <div class="col-3 col-lg-1 col-md-2 col-sm-3 pad-right">
+                                    <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+								<div class="col-2 col-lg-1 col-md-2 col-sm-2 pad-center">
+									<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
+								</div>								
+                                <div class="col-3 col-lg-1 col-md-2 col-sm-3 pad-left">
+                                    <button class="btn btn-orange btn-block px-0" id="btn_add"><i class="fas fa-plus"></i></button>
+                                </div>
+							</div>
+							<div class="row my-2">
+								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+									<span class="font-weight-600 font-size-20">Total Amount : <span id="cart_total_amount">0.00</span></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right">
+									<button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
+								</div>
+								<div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left">
+									<button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
+								</div>								
+							</div>
 						</div>
 					</div>
 
@@ -418,9 +444,9 @@
 										</div>
 									</div>
 
-									<div class="row mt-3" id="div-btn-order">
+									<div class="row mt-3" id="div-btn-order2">
 										<div class="col-12 col-lg-2 col-md-2 col-sm-12 pad-right pt-1">
-											<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
+											<input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty-1">
 										</div>
 										<div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-center pt-1">
 											<button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>

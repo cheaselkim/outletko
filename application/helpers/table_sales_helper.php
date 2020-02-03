@@ -8,12 +8,12 @@ if (!function_exists("table_item")){
 		$output .= "<table style='width: 100%' class='table table-striped table-sm table-bordered' id='table_item' style=''>
 					<thead class='w-100'>
 						<tr class='bg-success'>
-							<th style='width: 10%;font-size:16px;' class='text-left'>Product No</th>
+							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-lg-table-cell'>Product No</th>
 							<th style='width: 50%;font-size:16px;' class='text-left'>Product Name</th>
-							<th style='width: 7%;font-size:16px;' class='text-left'>Qty</th>
-							<th style='width: 5%;font-size:16px;' class='text-left'>Unit</th>
-							<th style='width: 10%;font-size:16px;' class='text-left'>Price</th>
-							<th style='width: 10%;font-size:16px;' class='text-left'>Discount</th>
+							<th style='width: 10%;font-size:16px;' class='text-left'>Qty</th>
+							<th style='width: 6%;font-size:16px;' class='text-left d-none d-lg-table-cell'>Unit</th>
+							<th style='width: 15%;font-size:16px;' class='text-left'>Price</th>
+							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-lg-table-cell'>Discount</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -33,9 +33,9 @@ if (!function_exists("table_item")){
                     //     var_dump($prod_no_tbl);
                     //     var_dump($prod_no_qry);
                     // }
-                    if ($prod_no_tbl == $prod_no_qry){
-                        unset($query[$key]);
-                    }
+                    // if ($prod_no_tbl == $prod_no_qry){
+                    //     unset($query[$key]);
+                    // }
                 }
 
             }
@@ -62,12 +62,12 @@ if (!function_exists("table_item")){
                 }
 
 				$output .= "<tr onclick='select_item(".$value->id.")' style='cursor:pointer'>
-								<td style='width: 10%;font-size:16px;'>".$value->product_no."</td>
+								<td style='width: 10%;font-size:16px;' class=' d-none d-lg-table-cell'>".$value->product_no."</td>
 								<td style='width: 50%;font-size:16px;'>".$value->product_name."</td>
-								<td style='width: 7%;font-size:16px;' class='text-right pr-1'>".$inv_qty."</td>
-								<td style='width: 5%;font-size:16px;'>".$unit."</td>
-								<td style='width: 10%;font-size:16px;' class='text-right pr-1'>".number_format($value->reg_selling_price, 2)."</td>
-								<td style='width: 10%;font-size:16px;' class='text-right pr-1'>".number_format($value->discount, 2)."</td>
+								<td style='width: 10%;font-size:16px;' class='text-right pr-1 '>".$inv_qty."</td>
+								<td style='width: 6%;font-size:16px;' class='d-none d-lg-table-cell'>".$unit."</td>
+								<td style='width: 15%;font-size:16px;' class='text-right pr-1'>".number_format($value->reg_selling_price, 2)."</td>
+								<td style='width: 10%;font-size:16px;' class='text-right pr-1 d-none d-lg-table-cell'>".number_format($value->discount, 2)."</td>
   						    </tr>";
 			}
 
@@ -140,12 +140,14 @@ if (!function_exists("table_query")){
 		if (!empty($query)){
 			foreach ($query as $key => $value) {
 
+				$trans_no = ltrim($value->trans_no,0);
+
 				if ($function == '2'){
 					$btn = "<button class='btn btn-primary py-0 btn-query btn-block' onclick='edit_sales(".$value->id.")'>Edit</button>";			
 				}else if ($function == "3"){
 					$btn = "<button class='btn btn-success py-0 btn-query btn-block' onclick='view_query(".$value->id.")'>View</button>";
 				}else{
-					$btn = "<button class='btn btn-danger py-0 btn-query btn-block' onclick='view_cancel(".$value->id.", ".$value->trans_no.")'>Cancel</button>";
+					$btn = "<button class='btn btn-danger py-0 btn-query btn-block' onclick='view_cancel(".$value->id.", ".$trans_no.")'>Cancel</button>";
 				}
 
 				$output .= "<tr>

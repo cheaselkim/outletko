@@ -59,6 +59,18 @@ class Outletko_profile extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function bank_list(){
+        $data['data'] = $this->outletko_profile_model->bank_list();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function remittance_list(){
+        $data['data'] = $this->outletko_profile_model->remittance_list();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
     public function search_city(){
 
         $city = $this->input->post("city", TRUE);
@@ -90,6 +102,8 @@ class Outletko_profile extends CI_Controller {
         $data['prod_category'] = $this->outletko_profile_model->get_prod_category();
         $data['warranty'] = $this->outletko_profile_model->get_warranty();
         $data['courier'] = $this->outletko_profile_model->get_courier();
+        $data['bank_list'] = $this->outletko_profile_model->get_bank_list();
+        $data['remittance_list'] = $this->outletko_profile_model->get_remittance_list();
         $store_img = $this->outletko_profile_model->get_store_img();
     	$data['products']="";
         
@@ -174,6 +188,7 @@ class Outletko_profile extends CI_Controller {
 
         $data = array(
             "account_name" => $this->input->post("business_name"),
+            "link_name" => $this->input->post("link_name"),
             "about_us" => $this->input->post("aboutus"),
             "business_category" => $this->input->post("business_category"),
             "street" => $this->input->post("bldg"),
@@ -513,6 +528,36 @@ class Outletko_profile extends CI_Controller {
 
     public function delete_ship(){
         $data['result'] = $this->outletko_profile_model->delete_ship($this->input->post("id"));
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function save_bank(){
+        $id = $this->input->post("bank_id");
+
+        $array = array(
+            "comp_id" => $this->session->userdata("comp_id"),
+            "bank_id" => $this->input->post("bank_name"),
+            "account_name" => $this->input->post("account_name"),
+            "account_no" => $this->input->post("account_no"),
+            "status" => $this->input->post("status")
+            );
+
+        $data['result'] = $this->outletko_profile_model->save_bank($array, $id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function delete_bank(){
+        $id = $this->input->post("id");
+        $data['result'] = $this->outletko_profile_model->delete_bank($id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function save_remittance(){
+        $array = $this->input->post("array");
+        $data['result'] = $this->outletko_profile_model->save_remittance($array);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }

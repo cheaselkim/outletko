@@ -207,16 +207,5 @@ function delete_sales_force(id,key){
 
 function edit_sales_force(id){
   $("body").empty();
-  setCookie("sales_force_id",id,5)
   $("body").load(base_url + "menu/edit_menu/5/0/2/"+id);
-}
-
-function setCookie(name,value,hours) {
-    var expires = "";
-    if (hours) {
-        var date = new Date();
-        date.setTime(date.getTime() + (hours*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }

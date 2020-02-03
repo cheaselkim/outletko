@@ -51,7 +51,7 @@
 			<!-- <?php echo form_open('Search/Search'); ?>-->
 			 <form action="<?php echo site_url('Search/index') ?>" method="GET"> 
 				<div class="row">
-					<div class="col-12 col-md-6 col-lg-5 pad-right">
+					<div class="col-12 col-md-9 col-lg-7 pad-right">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-md-3 col-lg-2 pad-center">
+					<div class="col-12 col-md-3 col-lg-2 pad-center" hidden>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>

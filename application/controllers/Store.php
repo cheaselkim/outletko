@@ -21,6 +21,7 @@ class Store extends CI_Controller {
 
 			if (!empty($data['id'])){
 				if ($this->session->userdata("validated") == true){
+					// $data['user_type'] = $this->session->userdata('user_type');
 					$result = $this->login_model->check_session();	
 					if ($result != true){
 						redirect("/");
@@ -30,9 +31,12 @@ class Store extends CI_Controller {
 				}else{
 					$data['user_type'] = 6;
 				}
-		
-				$this->template->load("0", $data);			
+				
+				// var_dump($this->session->userdata());
+
+					$this->template->load("0", $data);			
 			}else{
+				redirect("/");
 			}
 
 

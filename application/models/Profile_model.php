@@ -55,6 +55,7 @@ class Profile_model extends CI_Model {
         $this->db2->select('*');
         $this->db2->from('products');
         $this->db2->where('account_id', $id);
+        $this->db2->where("product_status", 1);
         // $this->db2->limit(6);
         $query = $this->db2->get();
         return $query->result();

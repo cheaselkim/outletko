@@ -90,25 +90,25 @@
 							</div>
 						</div>
 
-						<div class="row posted-store mt-3" id="posted_store" style="padding-left: 12px;padding-right:12px;">
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="div-store-img" id="div-store-img-1" >
+						<div class="row posted-store mt-2" id="posted_store" style="padding-left: 12px;padding-right:12px;">
+							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
+								<div class="div-store-img mt-1" id="div-store-img-1" >
 									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-1">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
 									</div>
 								</div>
 							</div>
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="div-store-img" id="div-store-img-2" >
+							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
+								<div class="div-store-img mt-1" id="div-store-img-2" >
 									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-2">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
 									</div>
 								</div>
 							</div>
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="div-store-img" id="div-store-img-3" >
+							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
+								<div class="div-store-img mt-1" id="div-store-img-3" >
 									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer" id="div-store-img-btn-3">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
@@ -198,12 +198,29 @@
 
 						<hr class="mt-2 mb-0 hr-green">
 
-						<div class="row">
+						<div class="row mt-2">
 							<div class="col-lg-3 col-md-4 col-sm-12">
 								<span class="text-capitalize">Business Name <span class="text-red">*</span></span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
 								<input type="text" class="form-control textbox-green2" id="input_businessname">
+							</div>
+						</div>
+
+						<div class="row mt-2">
+ 							<div class="col-lg-3 col-md-4 col-sm-12">
+								<span class="text-capitalize">Link Name <span class="text-red">*</span></span>
+							</div>
+							<div class="col-lg-9 col-md-8 col-sm-12">
+								<input type="text" class="form-control textbox-green2 text-lowercase" maxlength="15" onkeypress="avoidSplChars(event);" id="input_linkname">
+								<div class="row">
+									<div class="col-6">
+										<small class="text-green" id="span-linkname">The limit is 15 Characters</small>
+									</div>
+									<div class="col-6 text-right">
+										<small class="text-green"><span id="input_linkname_length">0</span> / 15</small>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -214,13 +231,13 @@
 								<span class="text-capitalize">About Us</span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
-								<textarea rows="5" class="form-control textbox-green2" id="input_aboutus" maxlength="200"></textarea>
+								<textarea rows="5" class="form-control textbox-green2" id="input_aboutus" maxlength="400"></textarea>
 								<div class="row">
 									<div class="col-6">
-										<small class="text-green" id="span-aboutus">The limit is 200 Characters</small>
+										<small class="text-green" id="span-aboutus">The limit is 400 Characters</small>
 									</div>
 									<div class="col-6 text-right">
-										<small class="text-green"><span id="input_aboutus_length"></span> / 200</small>
+										<small class="text-green"><span id="input_aboutus_length"></span> / 400</small>
 									</div>
 								</div>
 							</div>
@@ -426,6 +443,93 @@
 									</div>
 								</div>
 
+
+								<div class="row" id="div-bank-list">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<hr class="my-2 hr-green">								
+									</div>
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+										<div class="row ">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="font-size-18 font-weight-600">For Bank Deposit</span>
+												<input type="hidden" id="bank_id" value="0">
+											</div>
+										</div>
+										<div class="row mt-2">
+											<div class="col-12 col-lg-3 col-md-3 col-sm-12 pad-right">
+												<select class="form-control" id="bank_name">
+													
+												</select>
+											</div>
+											<div class="col-12 col-lg-4 col-md-3 col-sm-12 pad-center">
+												<input type="text" class="form-control" id="account_name" placeholder="Account Name">
+											</div>
+											<div class="col-12 col-lg-2 col-md-3 col-sm-12 pad-center">
+												<input type="texet" class="form-control" id="account_no" placeholder="Account Number">
+											</div>
+											<div class="col-12 col-lg-3 col-md-3 col-sm-12 pad-left">
+												<div class="row">
+													<div class="col-12 col-lg-6 col-md-6 col-sm-12 pad-right">												
+														<select class="form-control" id="bank_status">
+															<option value="" hidden>Status</option>
+															<option value="1">Active</option>
+															<option value="0">Inactive</option>
+														</select>
+													</div>
+													<div class="col-12 col-lg-6 col-md-6 col-sm-12 pad-left">												
+														<button class="btn btn-orange text-white btn-block font-weight-600" id="btn_save_bank">Save</button>
+													</div>													
+												</div>
+											</div>
+										</div>
+										<div class="row mt-2">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<table class="table table-sm table-bordered" id="tbl-bank">
+													<thead>
+														<tr>
+															<th style="width: 15%;">Bank Name</th>
+															<th style="width: 20%;">Account Name</th>
+															<th style="width: 10%;">Account No</th>
+															<th style="width: 5%;">Status</th>
+															<th style="width: 3%;" colspan="2" class="text-center">Action</th>
+														</tr>
+													</thead>
+													<tbody></tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row" id="div-remittance-list">
+									
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<hr class="my-2 hr-green">									
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+
+										<div class="row ">
+											<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+												<span class="font-size-18 font-weight-600">For Remittance</span>
+											</div>
+											<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right">
+												<button class="btn btn-orange px-5 text-white" id="btn_remitt_save">Save</button>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12" id="">
+												<div class="row" id="div-remitt-list">
+													
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
 								<hr class="my-2 hr-green">
 
 								<div class="row">
@@ -516,7 +620,7 @@
 								</div>
 
 
-								<div class="row" id="div-for-appointment">
+								<div class="row" id="div-for-appointment" hidden>
 
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<hr class="my-2 hr-green">
@@ -787,6 +891,16 @@
 								</div>
 							</div>
 
+
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Payment Method : </span>
+										<span id="po_payment_method">Cash on Delivery</span>
+										<input type="hidden" id="po_payment_method_id">
+									</div>
+								</div>
+							</div>
 							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3">
 								<div class="row">
 									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -1118,8 +1232,15 @@
 
 		                    <div class="form-group mb-0 row">
 		                        <div class="col-12 col-md-12 col-lg-12">
-		                            <span class="font-weight-600">Details <span class="text-red">*</span> </span>
-		                            <textarea class="form-control text-prod-desc textbox-green2" id="prod_desc" rows="5"></textarea>
+		                            <span class="font-weight-600">Short Description <span class="text-red">*</span> </span>
+		                            <textarea class="form-control text-prod-desc textbox-green2" id="prod_desc" rows="2" maxlength="200"></textarea>
+		                        </div>
+		                    </div>
+
+		                    <div class="form-group mb-0 row">
+		                        <div class="col-12 col-md-12 col-lg-12">
+		                            <span class="font-weight-600">Remarks / Other Details</span>
+		                            <textarea class="form-control text-prod-desc textbox-green2" id="prod_remarks" rows="4"></textarea>
 		                        </div>
 		                    </div>
 

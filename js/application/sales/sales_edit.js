@@ -1,11 +1,24 @@
 $(document).ready(function(){
-    
-    var from_input = $('#trans_id').val();
-    var from_cookie = getCookie('sales_id');
-    var BASE_URL = "http://www.eoutletsuite.com/";
-    if(from_input != from_cookie){
-        window.location.href = BASE_URL +"/logout";
-    }
+
+  var width = $(window).width();
+  var trans_id = $("#trans_id").val();
+
+  if (width <= 768){
+    $("body").empty();
+    $("body").load(base_url + "menu/edit_tab_menu/1/0/2/"+width+"/"+trans_id);
+  }else{
+
+    currency();
+    payment_type();
+    bank_list();
+    item_category();
+    get_sale_transaction($("#trans_id").val());
+    discount();
+    comp_bank();
+
+
+  }
+
 
   $("#stock_qty").number(true,2);
 	$("#reg_price").number(true,2);
@@ -27,13 +40,6 @@ $(document).ready(function(){
   // max_transno();
   //customer();
 
-	currency();
-	payment_type();
-	bank_list();
-	item_category();
-	get_sale_transaction(getCookie('sales_id'));
-  discount();
-  comp_bank();
 
   $("#span-discount").click(function(){
     $("#mod-select-discount").val($("#dis_id").val());
@@ -59,8 +65,7 @@ $(document).ready(function(){
   });
   
   $("#save_trans").click(function(){
-    //var trans_id = $('#trans_id').val();
-    var trans_id = getCookie('sales_id');
+    var trans_id = $('#trans_id').val();
     save_trans(trans_id);
   });
 
@@ -225,6 +230,7 @@ $(document).ready(function(){
 	});
 
   $("#add_item").click(function(){
+    console.log($("#stock_uom").attr("data-stock"));
     if ($("#qty").val() != 0 && $('#partner_id').val() != ""){
 
       if ($("#stock_qty").val() == ""){
@@ -233,7 +239,7 @@ $(document).ready(function(){
         }else{
           add_item_table();
         }       
-      }else if ($("#qty").val() > $("#stock_qty").val()){
+      }else if ($("#qty").val() > $("#stock_qty").val() && $("#stock_uom").attr("data-stock") == "1"){
         swal({
           type : "warning",
           title : "Qty is greater than stock on hand. Proceed?",
@@ -329,11 +335,6 @@ $(document).ready(function(){
             });
 		}
 	}); 
-	
-	setTimeout(function(){
-        eraseCookie('sales_id');
-        location.reload();
-    }, 1000 * 60 *30);
 
 
 
@@ -562,8 +563,9 @@ function select_item(id){
       $("#prod_no").val(data.prod_no);
       $("#prod_name").val(data.prod_name);
       $("#stock_qty").val(qty);
-      $("#stock_uom").val(uom);
+      $("#stock_uom").val(data.uom);
       $("#sel_price").attr("data-vat",data.vat);
+      $("#stock_uom").attr("data-stock", data.stock);
       
       if ($("#tbl_item_row").val() != ""){
       }else{
@@ -988,7 +990,6 @@ function save_trans(trans_id){
             }
             , success: function(result) {
                $("input[name=csrf_name]").val(result.token);
-                eraseCookie('sales_id');
                 swal.close();
                 modal_trans_data();
                 // setTimeout(function(){ 
@@ -1149,19 +1150,4 @@ function close_modal(){
 
 function close_trans_modal(){
 	location.reload();
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
 }

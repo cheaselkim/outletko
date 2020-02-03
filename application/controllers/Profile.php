@@ -68,6 +68,7 @@ class Profile extends CI_Controller {
             $data['products'][] = array(
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
+                "product_other_details" => $row->product_other_details,
                 "product_online" => $row->product_online,
                 "product_unit_price" => $row->product_unit_price,
                 "product_category" => $row->product_category,

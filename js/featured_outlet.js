@@ -18,10 +18,10 @@ function get_featured_outlet(){
     var csrf_name = $("input[name=csrf_name]").val();
 
     $.ajax({
-        type : "GET",
         data : {csrf_name : csrf_name},
+        type : "GET",
         dataType : "JSON",
-        url : base_url + "login/featured_outlet",
+        url : "Outletko/featured_outlet",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             var data = result.data;
@@ -40,7 +40,11 @@ function get_featured_outlet(){
                 }
                 
                 name = data[i].account_name;
-                href_url = base_url + (name.toLowerCase()).replace(/\s/g, '');
+                // href_url = base_url + (name.toLowerCase()).replace(/\s/g, '').replace(/'/g, '');
+                // link_name = $.trim(name.toLowerCase());
+                // link_name = link_name.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
+                link_name = data[i].link_name;
+                href_url = base_url + link_name;
                 
                 if (data[i].about_us == null){
                     span_about = "";
@@ -49,10 +53,10 @@ function get_featured_outlet(){
                 }else if (data[i].about_us.length <= 20){
                     span_about = data[i].about_us;
                 }else{
-                    span_about = data[i].about_us.substring(0, 180) + "....";
+                    span_about = data[i].about_us.substring(0, 80) + "....";
                 }
-
-                div = '<div class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-1 mt-5 px-4">' +
+                //class="col-6 col-lg-3 col-md-3 col-sm-6 px-2 pt-1 mt-5 px-4"
+                div = '<div class="tile px-3 pt-1 ">' +
                 '<a href="'+href_url+'">' +
                   '<div class="card" id="div-card-'+i+'">' +
                     '<div class="px-2 py-2 div-store-about">' +
@@ -62,8 +66,8 @@ function get_featured_outlet(){
                       '<h4 class="card-title text-green-white font-weight-600 text-capitalize align-middle">' + name + '</h4>' +
                     '</div>' +
                   '</div>' +
-                  '<div class="col-12 text-center px-2 div-card-name py-1">' +
-                      '<h5 class="card-title text-green-white font-weight-600 text-capitalize align-middle">' + name + '</h4>' +
+                  '<div class="col-12 text-center px-2 div-card-name">' +
+                      '<p class="card-title text-green-white font-weight-600 text-capitalize align-middle h6 mb-0">' + name + '</p>' +
                   '</div>'
                 '</a>' +
               '</div>';
@@ -81,17 +85,17 @@ function get_featured_outlet(){
                 $("#div-card-"+i).css("border", "1px solid green");
                 $("#div-card-"+i+" .div-store-about").hide();
 
-                $(".card").mouseout(function(){
-                    var id = this.id;
-                    $("#"+id+" .div-store-about").hide();
-                    $("#"+id+" .card-body").show();
-                })
+                // $(".card").mouseout(function(){
+                //     var id = this.id;
+                //     $("#"+id+" .div-store-about").hide();
+                //     $("#"+id+" .card-body").show();
+                // })
                 
-                $(".card").mouseover(function(){
-                    var id = this.id;
-                    $("#"+id+" .card-body").hide();
-                    $("#"+id+" .div-store-about").show();
-                });
+                // $(".card").mouseover(function(){
+                //     var id = this.id;
+                //     $("#"+id+" .card-body").hide();
+                //     $("#"+id+" .div-store-about").show();
+                // });
             
             }
 

@@ -22,15 +22,15 @@
         <div class="col-xs-12 col-md-12">
           <div class="container">
             <div class="form-group row my-0" >
-              <div class="col-xs-12 col-md-2 pr-1 pl-0">
+              <div class="col-xs-12 col-md-4 col-lg-2 pr-1 pl-0">
                 <label class="font-size-18">From</label>
                 <input type="date" class="form-control" value="<?php echo date('Y-m-01') ?>" id="fdate">
               </div>
-              <div class="col-xs-12 col-md-2 pr-1 pl-0">
+              <div class="col-xs-12 col-md-4 col-lg-2 pr-1 pl-0">
                 <label class="font-size-18">To</label>
                 <input type="date" class="form-control" value="<?php echo date('Y-m-d') ?>" id="tdate">
               </div>
-              <div class="col-xs-12 col-md-2 px-1">
+              <div class="col-xs-12 col-md-4 col-lg-2 px-1">
                 <label class="font-size-18">Status</label>
                 <select class="form-control" id="status">
                     <option value="1">Open</option>

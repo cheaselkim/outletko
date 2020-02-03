@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+  $("#prod_qty").number(true, 0);
   $("#div-product-details").hide();
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
@@ -22,24 +23,35 @@ $(document).ready(function(){
     check_session(2);
   });
 
+  $("#prod_qty").keyup(function(){
+    if ($(this).val() == "0"){
+      $(this).val(1);
+    }else if ($(this).val() == ""){
+      $(this).val(1);
+    }
+    compute_total_amount();
+  });
+
+  $("#btn_add").click(function(){
+    var val = Number($("#prod_qty").val()) + 1;
+    $("#prod_qty").val(val);
+    compute_total_amount();
+  });
+
+  $("#btn_minus").click(function(){
+    var val = Number($("#prod_qty").val()) - 1;
+    if (val == 0){
+      val = 1;
+    } 
+    $("#prod_qty").val(val);
+    compute_total_amount();
+  });
+
 });
 
 function get_profile(id){
 
  var csrf_name = $("input[name=csrf_name]").val();
-
-  // $.ajax({
-  //   data : {csrf_name : csrf_name, id : id},
-  //   type : "POST",
-  //   dataType : "JSON",
-  //   url : base_url + "Profile/profile",
-  //   dataType : "JSON",
-  //   success : function(result){
-  //     console.log(result);
-  //   }, error : function(err){
-  //     console.log(err.responseText);
-  //   }
-  // })
 
   $.ajax({
     data: {csrf_name : csrf_name, id : id}, 
@@ -59,8 +71,12 @@ function get_profile(id){
     //for text
         $(".div-header").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
         $(".div-header-2").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+        $(".div-profile-footer").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
+        $("#div-footer-img").css("background-image", "url('"+profile+"')");
+
+        $("#div-footer-img").css("background-size", "100% 100%");
 
         $("#account-post").text(result.result[0].account_post);
         $("#header_whats_new").text(result.result[0].account_post);
@@ -158,12 +174,25 @@ function get_profile(id){
     //products
         $('#posted_prod').empty();
         var posted_rows = (result.products.length/8).toFixed(0);
+        console.log("posted_rows raw " + posted_rows);
         var posted_rows2 = (result.products.length/ (8 * posted_rows)).toFixed(0);
+        console.log("posted_rows2 " + posted_rows2);
         posted_rows = Number(posted_rows) + Number(posted_rows2);
+        console.log("posted_rows final " + posted_rows);
         var $style = "";
         var i =1;
       	var a = 0;
       	var mod = 0;
+
+        console.log(posted_rows);
+        if (isFinite(posted_rows) == false){
+          posted_rows = 1;
+        }if (isNaN(posted_rows)){
+          posted_rows = 1;
+        }else if (posted_rows < 1){
+          posted_rows = 1;
+        }
+
 
         for (var i = 1; i <= posted_rows; i++) {
           if (i % 2 == 0){
@@ -177,6 +206,9 @@ function get_profile(id){
           $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
 
         }
+
+        console.log(result.products.length);
+
         for(var x = 0; x < result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location[0];
             var product_name = result.products[x].product_name;
@@ -230,6 +262,7 @@ function get_profile(id){
 
 
 	        index = Number(div_row) + Number(mod);
+            console.log("index " + index);
             $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
 
 
@@ -312,6 +345,7 @@ function get_product_info(id){
   $(".div-header-4").hide();
 
   $("#div-product-details").show();
+  $(window).scrollTop($('#div-product-details').offset().top - 40);
 
   $("#prod-name").text("");
   $("#prod-dtls").text("");
@@ -334,12 +368,15 @@ function get_product_info(id){
 
       $("#prod-name").text(data.products[0].product_name);
       $("#prod-dtls").text(data.products[0].product_description);
+      $("#prod-other-details").text(data.products[0].product_other_details);
       $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
+      $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
       $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Old"));
       $("#prod-stock").text("Stock : " + $.number(data.products[0].product_stock, 0));
       $("#prod-weight").text("Weight : " + $.number(data.products[0].product_weight, 2));
       $("#std_del").text(data.products[0].delivery_type);
       $("#prod_id").val(data.products[0].id);
+
 
       $("#prod_payment_type").text((data.payment_type[0].payment_type == null ? "None" : data.payment_type[0].payment_type));
       $("#prod_delivery_type").text((data.products[0].delivery_type == null ? "None" : data.products[0].delivery_type));
@@ -381,6 +418,23 @@ function get_product_info(id){
   })
 
 }   
+
+function compute_total_amount(){
+  
+  var prod_qty = $("#prod_qty").val(); 
+  var prod_price_raw = $("#prod-price").text();
+
+  var sd2 = prod_price_raw.replace(/[^\d.]/g, '');
+  var prod_price = parseInt(sd2, 10);
+
+  var total = prod_qty * prod_price;
+
+  console.log(sd2);
+  console.log(prod_price);
+
+  $("#cart_total_amount").text($.number(total, 2));
+
+}
 
 function check_session(type){
   var csrf_name = $("input[name=csrf_name]").val();
@@ -446,4 +500,26 @@ function add_to_cart(){
 
 function order_now(){
 
+
+  var order = Number($("#order_no").text());
+  var prod_id = $("#prod_id").val();
+  var prod_qty = $("#prod_qty").val();
+  var csrf_name = $("input[name=csrf_name]").val();
+
+  order = Number(order) + Number(prod_qty);
+
+  $.ajax({
+    data : {prod_id : prod_id, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+    type : "POST",
+    dataType : "JSON",
+    url : base_url  + "Profile/insert_prod",
+    success : function(result){
+      window.open(base_url + "my-order", "_self");
+      // $("#order_no").text(order);
+    }, error : function(err){
+      console.log(err.responseText);
+    }
+  })
+
 }
+

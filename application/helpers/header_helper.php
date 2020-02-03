@@ -223,7 +223,7 @@ if (!function_exists("menu_roles")){
 		                // </div>
 				if ($module == "1"){
 
-					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card' readonly>
+					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card mx-2' readonly>
 
 		              <div class='h-100".$disabled."w-100'>
 
@@ -322,7 +322,7 @@ if (!function_exists("menu_roles")){
 
  		                	<img src='".base_url()."/assets/icons/menu/post-icon.png' class='img-fluid mb-2'>  		                
 
-		                	<span class='mt-2 font-weight-bold px-1'>Post </span>
+		                	<span class='mt-2 font-weight-bold px-1'>Post</span>
 
 			              </div>
 

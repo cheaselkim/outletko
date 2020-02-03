@@ -220,28 +220,28 @@ if (!function_exists("inventory_dtl")){
 		$output = "";
 
 		$output .= "<table class='table table-sm table-striped'>
-					<thead>
+					<thead class='w-100'>
 						<tr>
-							<th class='text-left'>Product No</th>
+							<th class='text-left' style='width: 10%;'>Prod No</th>
 							<th class='text-left'>Product Name</th>
-							<th class='text-left'>Qty</th>
-							<th class='text-left'>Unit</th>
-							<th class='text-left'>Cost</th>
-							<th class='text-left'>VAT</th>
-							<th class='text-left'>Total Price</th>
+							<th class='text-left' style='width: 7%;'>Qty</th>
+							<th class='text-left' style='width: 7%;'>Unit</th>
+							<th class='text-left' style='width: 9%;'>Cost</th>
+							<th class='text-left' style='width: 9%;'>VAT</th>
+							<th class='text-left' style='width: 13%;'>Total Price</th>
 						</tr>
 					</thead>
 					<tbody>";
 
 		foreach ($query as $key => $value) {
 			$output .= "<tr>
-							<td class='text-left'>".$value->product_no."</td>
+							<td class='text-left' style='width: 10%;'>".$value->product_no."</td>
 							<td class='text-left'>".$value->product_name."</td>
-							<td class='text-left'>".number_format($value->qty, 2)."</td>
-							<td class='text-left'>".$value->unit_desc."</td>
-							<td class='text-left'>".number_format($value->cost, 2)."</td>
-							<td class='text-left'>".$value->cost."</td>
-							<td class='text-left'>".number_format(($value->cost * $value->qty), 2)."</td>
+							<td class='text-left' style='width: 7%;'>".number_format($value->qty, 2)."</td>
+							<td class='text-left' style='width: 7%;'>".$value->unit_code."</td>
+							<td class='text-left' style='width: 9%;'>".number_format($value->cost, 2)."</td>
+							<td class='text-left' style='width: 9%;'>".$value->cost."</td>
+							<td class='text-left' style='width: 13%;'>".number_format(($value->cost * $value->qty), 2)."</td>
 						</tr>";
 		}
 

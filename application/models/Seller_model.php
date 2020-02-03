@@ -42,7 +42,8 @@ class Seller_model extends CI_Model {
 				`delivery_type`.`delivery_type` AS `delivery_type_desc`,
 				`payment_type`.`payment_type` AS `payment_type_desc`,
 				`delivery_type`.`id` AS `delivery_type_id`,
-				`payment_type`.`id` AS `payment_type_id`
+				`payment_type`.`id` AS `payment_type_id`,
+				(CASE WHEN (`buyer_order`.`payment_type` = '5') THEN `bank_list`.`bank_name` ELSE `remittance_list`.`name` END) AS payment_method_desc
 			FROM 
 			buyer_order 
 			LEFT JOIN province ON 
@@ -55,6 +56,10 @@ class Seller_model extends CI_Model {
 			`delivery_type`.`id` = `buyer_order`.`delivery_type`
 			LEFT JOIN payment_type ON 
 			`payment_type`.`id` = `buyer_order`.`payment_type`
+			LEFT JOIN bank_list ON 
+			`bank_list`.`id` = `buyer_order`.`payment_method`
+			LEFT JOIN remittance_list ON 
+			`remittance_list`.`id` = `buyer_order`.`payment_method`
 			WHERE `buyer_order`.`id` = ?", array($id))->result();
 		return $result;
 	}

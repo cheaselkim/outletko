@@ -1,23 +1,14 @@
 $(document).ready(function(){
-    
-    var from_input = $('#trans_id').val();
-    var from_cookie = getCookie('outlet_id');
-    var BASE_URL = "http://www.eoutletsuite.com/";
-    if(from_input != from_cookie){
-        window.location.href = BASE_URL +"/logout";
-    }
 
   $("#outlet_quota").number(true, 2);
   $("#outlet_no").attr("readonly", true);   
   $("#currency").attr("readonly", true);
-  //console.log(document.cookie);
-  var outlet_id = getCookie('outlet_id');
-  //var outlet_id = $("#trans_id").val();
+
   outlet_type();
   currency();
 
-  //var id = getCookie('outlet_id');
-  //get_outlet_dtl(id);
+  var id = $("#outlet_id").val();
+  // get_outlet_dtl(id);
 
   $("#outlet_name").keyup(function(){
     $("#outlet_name").removeClass("error");
@@ -93,12 +84,6 @@ $(document).ready(function(){
     var outlet_no = $('#outlet_no').val();
     save_outlet(outlet_no);
   });
-  
-  setTimeout(function(){
-    
-    eraseCookie('outlet_id');
-    location.reload();
-  }, 1000 * 60 *30);
 
 });
 
@@ -116,8 +101,8 @@ function outlet_type(){
       for (var i = 0; i < result.length; i++) {
         $("#outlet_type").append("<option value='"+result[i].id+"'>"+result[i].outlet_type_name+"</option>");
       }
-       var id = getCookie('outlet_id');
-       get_outlet_dtl(id);
+      var id = $("#outlet_id").val();
+      get_outlet_dtl(id);
     }, error: function(err){
       console.log(err.responseText);
     }
@@ -173,7 +158,7 @@ function get_outlet_dtl(id){
 
 function save_outlet(outlet_no){
       var csrf_name = $("input[name=csrf_name]").val();
-      var outlet_id = getCookie('outlet_id');
+      var outlet_id = $("#trans_id").val();
       var outlet_code = $('#outlet_no').val();
       var outlet_name = $('#outlet_name').val();
       var outlet_location = $('#outlet_location').val();
@@ -225,9 +210,7 @@ function save_outlet(outlet_no){
             outlet_status : outlet_status, 
       } 
       var data = {outlet_hdr:outlet_hdr,outlet_id: outlet_id, csrf_name : csrf_name};
-      //console.log(data)
       //return false;
-      
       $.ajax({
 
             data : data
@@ -242,27 +225,11 @@ function save_outlet(outlet_no){
                 type : "success",
                 timer: 2000
               }, function(){
-                eraseCookie('outlet_id');
                 location.reload();
               });
             }, error: function(err) {
                 console.log(err.responseText);
             }
       });  
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
 }
 

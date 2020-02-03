@@ -20,13 +20,23 @@ class Outletko_profile_model extends CI_Model {
     }
 
     public function payment_type(){
-        $query = $this->db2->query("SELECT * FROM  payment_type")->result();
+        $query = $this->db2->query("SELECT * FROM  payment_type WHERE status = ?", array(1))->result();
         return $query;
     }
 
     public function delivery_type(){
-        $query = $this->db2->query("SELECT * FROM delivery_type")->result();
+        $query = $this->db2->query("SELECT * FROM delivery_type WHERE status = ?", array(1))->result();
         return $query;        
+    }
+
+    public function bank_list(){
+        $query = $this->db2->query("SELECT * FROM bank_list WHERE status = ? ORDER BY bank_name", array(1))->result();
+        return $query;
+    }
+
+    public function remittance_list(){
+        $query = $this->db2->query("SELECT * FROM remittance_list WHERE status = ? ORDER BY name", array(1))->result();
+        return $query;
     }
 
     public function search_city($city){
@@ -165,6 +175,36 @@ class Outletko_profile_model extends CI_Model {
     public function variation_type(){
         $query = $this->db2->query("SELECT * FROM account_variation_type WHERE comp_id = ?", array($this->session->userdata('comp_id')))->result();
         return $query;
+    }
+
+    public function get_bank_list(){
+        $query = $this->db2->query("SELECT
+            `account_bank`.`id`, 
+            `bank_list`.`id` AS bank_id,
+            `bank_list`.`bank_name`,
+            `account_bank`.`account_name`,
+            `account_bank`.`account_no`,
+            `account_bank`.`status`
+            FROM bank_list
+            INNER JOIN account_bank ON
+            `bank_list`.`id` = `account_bank`.`bank_id`
+            WHERE `account_bank`.`comp_id` = ? AND `bank_list`.`status` = ?
+            ORDER BY `bank_list`.`bank_name`", 
+        array($this->session->userdata('comp_id'), 1))->result();
+        return $query;
+    }
+
+    public function get_remittance_list(){
+        $query = $this->db2->query("SELECT 
+            `remittance_list`.`id`,
+            `remittance_list`.`name`
+            FROM remittance_list
+            INNER JOIN account_remittance ON
+            `remittance_list`.`id` = `account_remittance`.`remittance_id`
+            WHERE `account_remittance`.`comp_id` = ? AND `remittance_list`.`status` = ? AND `account_remittance`.`status` = ?
+            ORDER BY `remittance_list`.`name`", 
+        array($this->session->userdata('comp_id'), 1, 1))->result();
+        return $query;        
     }
 
     //SAVING
@@ -519,4 +559,84 @@ class Outletko_profile_model extends CI_Model {
         $this->db2->delete("account_courier");
     }
 
+    public function save_bank($data, $id){
+        $query = $this->db2->query("SELECT * FROM account_bank WHERE id = ?", $id)->result();
+
+        if (!empty($query)){
+            $data['date_update'] = date('Y-m-d H:i:s');
+            $this->db2->where("id", $id);
+            $this->db2->update("account_bank", $data);
+        }else{
+            $data['date_insert'] = date('Y-m-d H:i:s');
+            $this->db2->insert("account_bank", $data);
+        }
+
+    }
+
+    public function delete_bank($data, $id){
+        $this->db2->where("id", $id);
+        $this->db2->delete("account_bank");
+    }
+
+    public function save_remittance($data){
+
+        $array = "";
+
+        $this->db2->set("status", "0");
+        $this->db2->where("comp_id", $this->session->userdata('comp_id'));
+        $this->db2->update("account_remittance");
+
+        for ($i=0; $i < COUNT($data); $i++) { 
+
+            $array = array(
+                "comp_id" => $this->session->userdata("comp_id"),
+                "remittance_id" => $data[$i],
+                "status" => "1"
+            );
+
+
+            $query = $this->db2->query("SELECT * FROM account_remittance WHERE comp_id = ? AND  remittance_id = ?", array($this->session->userdata('comp_id'), $data[$i]))->result();
+
+            if (!empty($query)){
+                foreach ($query as $key => $value) {
+                    $this->db2->set("status", "1");
+                    $this->db2->where("id", $value->id);
+                    $this->db2->update("account_remittance");
+                }
+            }else{
+                $this->db2->insert("account_remittance", $array);
+            }
+
+        }
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

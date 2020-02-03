@@ -30,6 +30,9 @@
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 ml-auto">
                     <div class="row">
+                        <div class="col-xs-12 col-md-4 pr-1" id="div-date">
+                            
+                        </div>
                         <div class="col-xs-12 col-md-4 pr-1" id="div-month-date">
                             <span for="month" class="font-size-18">Month</span>
                             <select class="form-control" id="month_date">
@@ -43,6 +46,7 @@
                         <div class="col-xs-12 col-md-4 px-1" id="div-year-date">
                             <span for="year" class="font-size-18">Year</span>
                             <select class="form-control" id="year_date">
+                                <option value="<?php echo date('Y') ?>" hidden><?php echo date('Y'); ?></option>
                                 <?php 
                                     for ($i=2019; $i <= date("Y"); $i++) { 
                                  ?>
@@ -61,7 +65,11 @@
                         <div class="col-xs-12 col-md-4 pl-1" id="div-outlet">
                             <span for="outlet" class="font-size-18">Outlet</span>
                             <select class="form-control" id="outlet">
-                                <option value="0">All</option>
+                                <?php 
+                                    if ($this->session->userdata('all_access') == "1"){
+                                ?>
+                                    <option value="0">All</option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="col-xs-12 col-md-4 pl-1" id="div-agent">
@@ -236,7 +244,7 @@
                         <label class="font-size-18">Total Trans</label>                        
                     </div>
                     <div class="col-lg-4 pl-1 ml-auto">
-                        <input type="text" class="form-control text-right" id="total_trans" value="0">
+                        <input type="text" class="form-control text-right" id="total_trans" value="0" readonly>
                     </div>
                 </div>
             </div>

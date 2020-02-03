@@ -1,0 +1,314 @@
+.div-header-0{
+	height: 43px;
+	background: rgb(235, 241, 222);
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+
+/*Background*/
+
+.bg-dark-green{
+	background: rgb(119, 147, 60) !important;
+}
+
+.bg-light-green{
+	background: rgb(235, 241, 222);
+}
+
+/*BUTTON*/
+
+.btn-orange{
+	background: orange !important;
+	color: white !important;
+}
+
+.btn-light-green{
+	background: rgb(235, 241, 222) !important;
+	color: black !important;
+}
+
+.btn-light-green-2{
+	background: rgb(195, 214, 155) !important;
+	color: rgb(79, 98, 40) !important;
+}
+
+.btn-dark-green{
+	background: rgb(119, 147, 60) !important;
+	color: black !important;	
+}
+
+.btn-gray{
+	background: rgb(166, 166, 166) !important;
+	color: white !important;
+}
+
+.btn-height-35{
+	height: 33px !important;
+}
+
+
+/*FONT*/
+
+.font-weight-600{
+	font-weight: 600 !important;
+}
+
+
+/*TEXT*/
+
+.text-light-gray{
+	color: gray;
+}
+
+.text-gray{
+	color:#383838;
+}
+
+.text-yellow{
+	color: yellow;
+}
+
+.text-orange{
+	color: orange;
+}
+
+.text-green{
+	color: green;
+}
+
+.text-light-green{
+	color: rgb(235, 241, 222);
+}
+
+.text-light-green-2{
+	color: rgb(79, 98, 40) !important; 
+}
+
+.text-dark-green{
+	color: rgb(119. 147, 60) !important;
+}
+
+.text-dark-green2{
+	color: rgb(79, 98, 40) !important;
+}
+
+/*BORDER*/
+.border-dark-green{
+	border: 1px solid rgb(119, 147, 60) !important;
+}
+
+.border-light-green{
+	border: 1px solid rgb(215, 228, 189) !important;
+}
+
+.border-light-green-2{
+	border: 1px rgb(195, 214, 155) !important;
+}
+
+.border-gray{
+	border: 0.5px solid gray;
+}
+
+.border-right-0{
+	border-right: 0;
+}
+
+.border-bottom-blue{
+	border-bottom: 1px solid blue;
+}
+
+.border-bottom-light-green{
+	border-bottom: rgb(119, 147, 60);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+.font-size-20{
+	font-size: 20px;
+}
+
+.font-size-22{
+	font-size: 20px;
+}
+
+.font-size-24{
+	font-size: 20px;
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+.pad-left{
+	padding-left: 1rem;
+}
+
+.pad-right{
+	padding-right: 1rem;
+}
+
+.pad-center{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.font-size-30{
+	font-size: 24px;
+}
+
+.font-size-28{
+	font-size: 28px;
+}
+
+.font-size-26{
+	font-size: 26px;
+}
+
+.font-size-24{
+	font-size: 24px !important;
+}
+
+.font-size-22{
+	font-size: 22px !important;
+}
+
+.font-size-20{
+	font-size: 20px;
+}
+
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+.pad-left{
+	padding-left: 1rem;
+}
+
+.pad-right{
+	padding-right: 1rem;
+}
+
+.pad-center{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+.pad-left{
+	padding-left: 1rem;
+}
+
+.pad-right{
+	padding-right: 1rem;
+}
+
+.pad-center{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+/*.pad-left-5{
+	padding-left: 3rem;
+}*/
+
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+
+.font-size-30{
+	font-size: 30px;
+}
+
+.font-size-28{
+	font-size: 28px;
+}
+
+.font-size-24{
+	font-size: 24px !important;
+}
+
+.font-size-20{
+	font-size: 20px;
+}
+
+.font-size-18{
+	font-size: 18px !important;
+}
+
+.font-size-17{
+	font-size: 17px !important;
+}
+
+.font-size-16{
+	font-size: 16px;
+}
+
+.font-size-15{
+	font-size: 15px;
+}
+
+.font-size-13{
+	font-size: 13px;
+}
+
+.font-size-12{
+	font-size: 12px;
+}
+
+.pad-left{
+	padding-left: 1rem;
+}
+
+.pad-right{
+	padding-right: 1rem;
+}
+
+.pad-center{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.pad-left-1{
+	padding-left: .25rem !important;
+}
+
+.pad-right-1{
+	padding-right: .25rem !important;
+}
+
+.pad-center-1{
+	padding-right: .25rem !important;
+	padding-left: .25rem !important;
+}
+
+.pad-right-0{
+	padding-right: 0 !important;
+}
+
+.pad-left-0{
+	padding-left: 0 !important;
+}
+
+.pad-center-0{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+/*.pad-left-5{
+	padding-left: 3rem;
+}*/
+
+}

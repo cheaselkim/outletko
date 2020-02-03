@@ -162,8 +162,9 @@
                         <div class="col-xs-12 col-md-4 col-lg-2 pl-1 pr-0">
 
                             <span class="font-size-18">Partner's ID</span>
+                            <input class="form-control" id="recruited_by" type="text" readonly>
 
-                            <input class="form-control" id="partner_id" readonly>
+                            <input class="form-control" id="partner_id" type="hidden" readonly>
 
                         </div>
 

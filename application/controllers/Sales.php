@@ -118,7 +118,7 @@ class Sales extends CI_Controller {
 	}
 
 	public function agent(){
-		$data = "";
+		$data = array();
 		$id = $this->input->post("id", TRUE);
 		$result = $this->sales_model->agent($id);
 		$data['id'] = $result->id;

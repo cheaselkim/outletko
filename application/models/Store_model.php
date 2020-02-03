@@ -15,8 +15,83 @@ class Store_model extends CI_Model {
 		id
 		FROM 
 		account 
-		WHERE LOWER(REPLACE(account.account_name, ' ', '')) = ? ", array($store))->row();
-		return $query->id;
+		WHERE link_name = ? AND account_status = ? ", array($store, 1))->row();
+
+        if (empty($query->id)){
+            return NULL;
+        }else{
+            return $query->id;
+        }
+
+
+		// $query = $this->db2->query("SELECT id FROM account WHERE 
+		// LOWER(    REPLACE(
+  //       REPLACE(
+  //           REPLACE(
+  //               REPLACE(
+  //                   REPLACE(
+  //                       REPLACE(
+  //                           REPLACE(
+  //                               REPLACE(
+  //                                   REPLACE(
+  //                                       REPLACE(
+  //                                           REPLACE(
+  //                                               REPLACE(
+  //                                                   REPLACE(
+  //                                                       REPLACE(
+  //                                                           REPLACE(
+  //                                                               REPLACE(
+  //                                                                   REPLACE(
+  //                                                                       REPLACE(
+  //                                                                           REPLACE(
+  //                                                                               REPLACE(
+  //                                                                                   REPLACE(
+  //                                                                                       REPLACE(
+  //                                                                                           REPLACE(
+  //                                                                                               REPLACE(
+  //                                                                                                   REPLACE(
+  //                                                                                                       REPLACE(
+  //                                                                                                           REPLACE(
+  //                                                                                                               REPLACE(
+  //                                                                                                                   REPLACE(
+  //                                                                                                                       REPLACE(
+  //                                                                                                                           REPLACE(
+  //                                                                                                                               REPLACE(
+  //                                                                                                                                   REPLACE(account_name, '', ''),
+  //                                                                                                                               '.', ''),
+  //                                                                                                                           '?', ''),
+  //                                                                                                                       '`', ''),
+  //                                                                                                                   '<', ''),
+  //                                                                                                               '=', ''),
+  //                                                                                                           '{', ''),
+  //                                                                                                       '}', ''),
+  //                                                                                                   '[', ''),
+  //                                                                                               ']', ''),
+  //                                                                                           '|', ''),
+  //                                                                                       '\'', ''),
+  //                                                                                   ':', ''),
+  //                                                                               ';', ''),
+  //                                                                           '~', ''),
+  //                                                                       '!', ''),
+  //                                                                   '@', ''),
+  //                                                               '#', ''),
+  //                                                           '$', ''),
+  //                                                       '%', ''),
+  //                                                   '^', ''),
+  //                                               '&', ''),
+  //                                           '*', ''),
+  //                                       '_', ''),
+  //                                   '+', ''),
+  //                               ',', ''),
+  //                           '/', ''),
+  //                       '(', ''),
+  //                   ')', ''),
+  //               '-', ''),
+  //           '>', ''),
+  //       ' ', ''),
+  //   '--', '-')) = ?
+		// ", array($store))->row();
+
 	}
 
 }

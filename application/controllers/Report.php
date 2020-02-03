@@ -61,7 +61,7 @@ class Report extends CI_Controller {
 			$result = $this->Report_model->monthly_sales_summary($month, $year, $outlet);
 			$tbl = monthly_sales_summary($month, $year, $result);
 		}else if ($report == "3"){
-			$result = $this->Report_model->sales_transaction($fdate, $tdate, $outlet,"1");
+			$result = $this->Report_model->sales_transaction($fdate, $tdate, $outlet,"2");
 			$tbl = sales_transaction($result);
 		}else if ($report == "4"){
 			$result = $this->Report_model->sales_transaction($fdate, $tdate, $outlet,"0");
@@ -106,7 +106,7 @@ class Report extends CI_Controller {
 		}else if ($report == "18"){
 			$result = $this->Report_model->sales_target_vs_actual($year, $outlet);
 			$sales_target = $this->Report_model->get_sales_target($outlet);
-			$tbl = sales_target_vs_actual($sales_target, $result);						
+			$tbl = sales_target_vs_actual($year, $sales_target, $result);						
 
 		}
 

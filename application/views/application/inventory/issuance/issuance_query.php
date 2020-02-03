@@ -130,18 +130,18 @@
           </div>
         </div>
         <div class="row pt-2">
-          <div class="col-lg-8 col-md-6 col-sm-12 mr-auto">
+          <div class="col-lg-8 col-md-6 col-sm-12 mr-auto ">
             <label class="font-size-modal">Outlet/Supplier/Customer</label>
             <div class="row">
-              <div class="col-lg-4">
+              <div class="col-lg-4 pr-1">
                 <input type="text" class="form-control" id="mod_cust_code" readonly>
               </div>
-              <div class="col-lg-8">
+              <div class="col-lg-8 px-1">
                 <input type="text" class="form-control" id="mod_cust_name" readonly>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 ml-auto">
+          <div class="col-lg-4 ml-auto pl-1">
             <label class="font-size-modal">Transaction Type</label>
             <input type="text" class="form-control" id="mod_trans_type" readonly>
           </div>
@@ -149,11 +149,11 @@
         <div class="row pt-2">
           <div class="col-lg-6">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-6 pr-1">
                 <label class="font-size-modal">Average Selling Cost</label>
                 <input type="text" class="form-control text-right" id="mod_ave_cost" value="0.00" readonly>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 pl-1">
                 <label class="font-size-modal">Total Amount</label>
                 <input type="text" class="form-control text-right" id="mod_tot_amount" value="0.00"  readonly>
               </div>

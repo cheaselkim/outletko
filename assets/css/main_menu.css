@@ -56,7 +56,10 @@ a.card:hover label{
 
 @media only screen and (max-width: 500px) {
 
-	
+	.div-menu{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 
 	.card-body-menu{
 
@@ -64,7 +67,9 @@ a.card:hover label{
 
 	}
 
-
+	.img-fluid{
+		max-width: 10% !important;
+	}
 
 	.card-body-menu img{
 
@@ -107,8 +112,11 @@ a.card:hover label{
 	}
 
 
-
-	#menu_1, #menu_2, #menu_3, #menu_4, #menu_5{
+/*	#menu_1{
+		order: 3;
+	}*/
+	
+	#menu_2, #menu_3, #menu_4, #menu_5{
 
 		cursor: not-allowed;
 
@@ -119,8 +127,8 @@ a.card:hover label{
 	}
 
 
-
-	#menu_1 > .div-list-menu,#menu_2 > .div-list-menu,#menu_3 > .div-list-menu,#menu_4 > .div-list-menu,#menu_5 > .div-list-menu{
+	/*#menu_1 > .div-list-menu,*/
+	#menu_2 > .div-list-menu,#menu_3 > .div-list-menu,#menu_4 > .div-list-menu,#menu_5 > .div-list-menu{
 
 		pointer-events: none;
 
@@ -160,7 +168,11 @@ a.card:hover label{
 
 @media only screen and (min-width: 599px) {
 
-	
+	.img-fluid{
+		max-width: 10% !important;
+	}
+
+
 
 /*	.card{
 
@@ -438,7 +450,9 @@ a.card:hover label{
 
 @media only screen and (min-width: 768px) {
 
-	
+	.img-fluid{
+		max-width: 100% !important;
+	}	
 
 	.card-body-menu{
 
@@ -500,6 +514,9 @@ a.card:hover label{
 
 @media only screen and (min-width: 992px) {
 
+	.img-fluid{
+		max-width: 100% !important;
+	}	
 	
 
 	.card-body-menu img{
@@ -541,11 +558,14 @@ a.card:hover label{
 
 @media only screen and (min-width: 1200px) {
 
+	.img-fluid{
+		max-width: 100% !important;
+	}	
 	
 
 	.card-body-menu{
 
-		height: 250px;
+		height: 181px;
 
 		width: auto;
 
@@ -716,6 +736,10 @@ a.card:hover label{
 
 @media only screen and (min-width: 1400px) {
 
+	
+	.img-fluid{
+		max-width: 100% !important;
+	}	
 	
 
 	.div-list-menu{

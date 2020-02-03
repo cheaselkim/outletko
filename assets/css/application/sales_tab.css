@@ -8,6 +8,10 @@
 /*  border-radius: 0!important;*/
 /*}*/
 
+#tbl-products tbody{
+  height: 300px;
+}
+
 button{
     height: 35px !important;
   }
@@ -134,7 +138,7 @@ a.disabled img{
 
 tbody {
     display:block;
-    height:200px;
+    height:100%;
     overflow:auto;
 }
 
@@ -179,6 +183,19 @@ tbody td{
   /*    height: 50px !important;*/
   /*    border: 1px solid black !important;*/
   /*  }*/
+
+  th{
+    font-size: 14px !important;
+  }
+
+  td{
+    font-size: 12px !important;
+  }
+
+  input[type='text'], button, select{
+    height: 35px !important;
+    font-size: 16px;
+  }
 
   .text-sales{
     font-size: 22px !important;

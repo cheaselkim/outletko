@@ -747,7 +747,7 @@
                             <h4>Trans No : <span id="trasaction_trans_no"></span></h4>
                         </div>
                         <div class="col-xs-6 col-lg-6">
-                            <h4>Date : <?php echo date("m/d/Y"); ?></h4>
+                            <h4 id="transaction_date">Date : <?php echo date("m/d/Y"); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -885,7 +885,7 @@
 
 
 <!-- The Modal -->
-<div class="modal" id="modal_date" style="top: 20%;">
+<div class="modal" id="modal_date">
   <div class="modal-dialog" style="max-width: 350px;">
     <div class="modal-content">
 

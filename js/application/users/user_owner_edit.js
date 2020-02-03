@@ -223,6 +223,8 @@ function get_data(){
 
 			$("#recruited_by").val(data.result[0].recruited_by);
 
+			$("#partner_id").val(data.result[0].recruited_by);
+
 			$("#no_outlet").val(data.result[0].outlet_no);
 
 			$("#vat").val(data.result[0].vat);

@@ -9,6 +9,7 @@ $(document).ready(function(){
 	$("#btn_confirm").hide();
 	$("#btn_confirm2").hide();
 	$("#div-form").hide();
+	$("#login-error").hide();
 
 	$("#a_login").click(function(){
 		$("#div-signup-form").hide();
@@ -81,6 +82,19 @@ $(document).ready(function(){
 		check_login_field();
 	});
 
+	$("#login_email").on('keypress',function(e) {
+	    if(e.which == 13) {
+			check_login_field();
+	    }
+	});
+
+	$("#login_password").on('keypress',function(e) {
+	    if(e.which == 13) {
+			check_login_field();
+	    }
+	});
+
+
 	$('#verify_code').bind("cut copy paste",function(e) {
 		e.preventDefault();
     });
@@ -109,20 +123,37 @@ function check_login(){
 	var username = $("#login_email").val();
 	var password = $("#login_password").val();
 
+	var href_url = "";
+	var link_url = document.location.href;
+	console.log("base_url  " + document.location.href);
+
+	if (document.location.href == base_url){
+		href_url = "Signup/check_login";
+	}else{
+		href_url = base_url +  "Signup/check_login";
+	}
+
+	console.log("href_url " + href_url);
+
 	$.ajax({
 		data : { csrf_name : csrf_name, username : username, password : password },
 		type : "POST",
 		dataType : "JSON",
-		url : base_url + "Signup/check_login",
+		url : href_url,
 		success : function(result){	
 			$("input[name=csrf_name]").val(result.token);
 			console.log(result);
 
-			if (result.user_type == "5"){
-				location.reload();
+			if (result.login == "1"){
+				if (result.user_type == "5"){
+					location.reload();
+				}else{
+					window.open(base_url, "_self");
+				}				
 			}else{
-				window.open(base_url, "_self");
+				$("#login-error").show();
 			}
+
 
 			// window.open(base_url + "my-order", "_self");
 		}, error : function(err){
@@ -195,7 +226,7 @@ function insert_user(){
 			$("#acc_id").val(result.comp_id);
 			$("input[name=csrf_name]").val(result.token);
 			$("#div-signup-form").hide();
-			$("#btn_signup").hide();
+			$("#btn_signup2").hide();
 			$("#div-confirm-email2").show();
 			$("#btn_confirm2").show();
 		}, error : function(err){
@@ -207,12 +238,12 @@ function insert_user(){
 
 function confirm_account(){
 
-	var code = $("#verify_code").val();
+	var verify_code = $("#verify_code").val();
 	var acc_id = $("#acc_id").val();
 	var csrf_name = $("input[name=csrf_name]").val();
 
 	$.ajax({
-		data : {verify_code : code, csrf_name : csrf_name, id : acc_id},
+		data : {verify_code : verify_code, csrf_name : csrf_name, id : acc_id},
 		type : "POST",
 		dataType : "JSON",
 		url : base_url + "Signup/confirm_account",
@@ -233,6 +264,8 @@ function confirm_account(){
 					type : "success",
 					title : "Congratulations!",
 					text : "You can start buying products"
+				}, function(){
+					location.reload();
 				})
 			}else{
 

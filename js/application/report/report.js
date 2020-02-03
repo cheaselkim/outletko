@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 	$("#div-agent").hide();
 	$("#btn_month").hide();
+	$("#div-date").hide();
 	$('#div-month-date').hide();
 	$("#div-year-date").hide();
 	$("#month_date").val((date_today.getMonth() + 1));
@@ -293,6 +294,7 @@ function change_reports(){
 
 	var reports = $("#reports").val();
 	var mobile_reports = $("#mobile_reports").val();
+	$("#div-date").hide();
 
 	if (reports == "2"){
 		$("#div-fdate").hide();
@@ -301,7 +303,8 @@ function change_reports(){
 		$("#div-year-date").show();
 		$("#div-outlet").show();
 		$("#div-agent").hide();
-	}else if (reports == "17"){
+	}else if (reports == "17" || reports == "18"){
+		$("#div-date").show();
 		$("#div-fdate").hide();
 		$("#div-tdate").hide();
 		$("#div-month-date").hide();
@@ -330,7 +333,7 @@ function change_reports(){
 		$("#btn_month").show();
 		$("#div-mobile-date").hide();
 		$("#div-mobile-month-date").show();
-	}else if (reports == "17"){
+	}else if (reports == "17" || reports == "18"){
 		$("#btn_date").hide();
 		$("#btn_month").show();
 		$("#div-mobile-date").hide();

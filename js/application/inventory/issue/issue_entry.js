@@ -542,6 +542,7 @@ function trans_type(){
         url : base_url + "inventory_issue/trans_type",
         success : function(data){
             $("input[name=csrf_name]").val(data.token);
+            console.log(data.token);
             var result = data.data;
             for (var i = 0; i < result.length; i++) {
                 $("#trans_type").append("<option value='"+result[i].id+"'>"+result[i].inventory_ref_type+"</option>");
@@ -556,6 +557,9 @@ function trans_type(){
 function max_transno(){
     var csrf_name = $("input[name=csrf_name]").val();
     var trans_type = $("#trans_type").val();
+
+    console.log(csrf_name);
+    console.log(trans_type);
 
     $.ajax({
         data : {trans_type : trans_type, csrf_name : csrf_name},
@@ -818,7 +822,7 @@ function add_item_table(){
             "</td><td class='tbl-date-replace text-left' hidden>"+  
             "</td><td class='tbl-prod-grade text-left' hidden>"+  $("#prod_grade").val() + 
 
-            "</td><td class='tbl-prod-id-replace text-left' hidden>"+ $("#prod_no").data("id") + 
+            "</td><td class='tbl-prod-id-replace text-left' hidden>"+ $("#prod_no").attr("data-id") + 
             "</td><td class='tbl-id text-left' hidden>"+  
 
             "</td><td class='text-center text-red remove_item' style='width: 1%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" +
@@ -836,7 +840,7 @@ function add_item_table(){
             "</td><td class='tbl_price text-left' style='width: 2%;'>"+ $.number($("#prod_price").val(),2) + 
             "</td><td class='tbl_total_price text-left' style='width: 2%;'>"+ $.number($("#prod_total_price").val(),2) + 
             "</td><td class='tbl_prod_grade text-left' style='width: 7%;' hidden>" + $("#prod_grade").val() +
-            "</td><td class='tbl_prod_id text-left' hidden>"+ $("#prod_no").data("id") + 
+            "</td><td class='tbl_prod_id text-left' hidden>"+ $("#prod_no").attr("data-id") + 
             "</td><td class='text-center text-red remove_item' style='width: 1%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" +
             "</td></tr>");
 
@@ -1234,7 +1238,7 @@ function data_saving(){
 
       }
 
-
+      console.log(dtl_data);
       var data = {issue_hdr:issue_hdr, issue_dtl: dtl_data, issue_no : issue_no, csrf_name : csrf_name};
 
       $.ajax({

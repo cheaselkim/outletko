@@ -293,7 +293,7 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
 
     <footer class="font-text-footer">
-        <p style="float: right;">Copyright @ 2019 EPGM COMPANY</p>
+        <p style="float: right;">Copyright @ 2019 Zugriff Corporation</p>
     </footer>
 
 </div>

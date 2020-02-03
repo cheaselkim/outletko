@@ -18,6 +18,14 @@ $(document).ready(function(){
         }
     });
 
+    $("#btn_mod_signin").click(function(){
+        $("#modal_signup").modal("hide");
+    });
+
+    $("#btn_mod_signup").click(function(){
+        $("#modal_signup_user").modal("hide");
+    });
+
 	business_category();
 	$("#ads-2").hide();	
 	$("#error_message").hide();
@@ -288,7 +296,7 @@ $(document).ready(function(){
     });    
 
     $("#signup_close").click(function(){
-        window.open("http://www.eoutletsuite.com/", "_self");
+        window.open(base_url, "_self");
     });
 
     $('#signup_save').click(function() {
@@ -448,10 +456,19 @@ function save_signup(){
     var email = $("#signup_email").val()
     var business_type = $("#signup_bussiness_category").val()
     var business_name = $("#signup_businessname").val()
+
+    var city_id = $("#signup_town").attr("data-id");
+    var prov_id = $("#signup_town").attr("data-prov");
+
+    var link_name = business_name;
+    link_name = $.trim(link_name.toString().toLowerCase());
+    link_name = link_name.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
+
     
     var info_outletko = {
             account_id : "",
             account_name : business_name,
+            link_name : link_name,
             account_status : 0,
             confirm_email : 0,
             business_category : business_type,
@@ -461,9 +478,9 @@ function save_signup(){
             middle_name : mname,
             last_name : lname,
             address : address,
-            city : town,
+            city : city_id,
             user_id : "0",
-            province : "",
+            province : prov_id,
             email : email,
             mobile_no  : mobile
     }

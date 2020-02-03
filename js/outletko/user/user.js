@@ -4,6 +4,8 @@ $(document).ready(function(){
   payment_type();
   delivery_type();
   get_del_type();
+  bank_list();
+  remittance_list();
 
   $("#colorpicker").ColorPicker({
     color: '#77933c',
@@ -133,7 +135,6 @@ $(document).ready(function(){
     $("#"+id+" .div-img-update").hide();
   });
 
-
 	$("#span_setting").click(function(){
     index();
 		$("#div-home").hide();
@@ -190,6 +191,20 @@ $(document).ready(function(){
     var length = $(this).val().length;
     $("#input_aboutus_length").text(length);
   });
+
+  $("#input_linkname").focus(function(){
+    $("#span-linkname").show("slow");
+  });
+
+  $("#input_linkname").focusout(function(){
+    $("#span-linkname").hide();
+  });
+
+  $("#input_linkname").keyup(function(){
+    var length = $(this).val().length;
+    $("#input_linkname_length").text(length);
+  });
+
 
 	/* TEXTBOX */
 
@@ -565,9 +580,31 @@ $(document).ready(function(){
 
   }); 
 
+  $("#btn_save_bank").click(function(){
+    check_save_bank();
+  });
+
+  $("#btn_remitt_save").click(function(){
+    check_remitt_save();
+  });
+
 });
 
 /* GENERAL FUNCTION */
+function avoidSplChars(e) {
+ e = e || window.event;
+ var bad = /[^\sa-z\d]/i,
+ key = String.fromCharCode( e.keyCode || e.which );
+ 
+    if ( e.which !== 0 && e.charCode !== 0 && bad.test(key) ) {
+      e.returnValue = false;
+      if ( e.preventDefault ) {
+        e.preventDefault(); 
+      }
+    } 
+}
+
+
 function copyToClipboard(element) {
   var $temp = $("<input>");
   $("body").append($temp);
@@ -706,6 +743,58 @@ function payment_type(){
   });
 }
 
+function bank_list(){
+  var csrf_name = $("input[name=csrf_name]").val();
+
+  $.ajax({
+    data : {csrf_name : csrf_name},
+    type : "GET",
+    dataType : "JSON",
+    url : base_url + "Outletko_profile/bank_list",
+    success : function(result){
+      $("input[name=csrf_name]").val(result.token);
+      var data = result.data;
+      for (var i = 0; i < data.length; i++) {
+        $("#bank_name").append("<option value='"+data[i].id+"'>"+data[i].bank_name  +"</option>");
+      }
+
+    }, error : function(err){
+      console.log(err.responseText);
+    }
+  })
+
+}
+
+function remittance_list(){
+  var csrf_name = $("input[name=csrf_name]").val();
+
+  $.ajax({
+    data : {csrf_name : csrf_name},
+    type : "GET",
+    dataType : "JSON",
+    url : base_url + "Outletko_profile/remittance_list",
+    success : function(result){
+      $("input[name=csrf_name]").val(result.token);
+
+      var data = result.data;
+
+      for (var i = 0; i < data.length; i++) {
+        $("#div-remitt-list").append("<div class='col-12 col-lg-3 col-md-4 col-sm-12'>"+
+                            "<div class='custom-control custom-checkbox'>"+
+                                "<input type='checkbox' class='custom-control-input remitt_check' id='remitt_"+data[i].id+"' name='remitt_"+i+"' value='"+data[i].id+"'>"+
+                                "<label class='custom-control-label' for='remitt_"+data[i].id+"'>"+ data[i].name +"</label>"+
+                            "</div>"+                          
+                          "</div>");
+      }
+      console.log(result.data);
+    }, error : function(err){
+      console.log(err.responseText);
+    }
+  })
+
+}
+
+
 function btn_day(type){
   var btn = "#btn-day-"+type;
 
@@ -795,11 +884,13 @@ function index(){
 
     //for inputs
         $("#input_businessname").val(result.result[0].account_name);
+        $("#input_linkname").val(result.result[0].link_name);
+        $("#input_linkname_length").text(result.result[0].link_name.length);
         $("#input_aboutus").val(result.result[0].about_us.substring(0, 400));
         $("#input_aboutus_length").text(aboutus_length.length);
         $("#input_bussinesscategory").val(result.result[0].business_category);
 
-        $("#input_bldg").val(result.result[0].address);
+        $("#input_bldg").val((result.result[0].street == null ? result.result[0].address : result.result[0].street));
         $("#input_subdivision").val();
         $("#input_barangay").val();
         $("#input_city").val(result.result[0].city_desc);
@@ -912,10 +1003,7 @@ function index(){
         $("#ttime").timepicker({
           startTime : result.appointment[0].startTime
         });
-
-
       }
-
       // console.log(result.warranty);
       if (result.warranty.length != 0){
         $("#inp_warranty").val(result.warranty[0].account_warranty);
@@ -924,6 +1012,28 @@ function index(){
         $("#prod_return").val(result.warranty[0].account_return);
       }
 
+      var bank_list = result.bank_list;
+      $("#tbl-bank tbody").empty();
+ 
+      for(var i = 0; i < bank_list.length; i++){
+
+        $("#tbl-bank tbody").append("<tr><td class='bank_name'>" + bank_list[i].bank_name + 
+          "</td><td class='account_name'>" + bank_list[i].account_name + 
+          "</td><td class='account_no'>" + bank_list[i].account_no +
+          "</td><td class='status'>" + (bank_list[i].status == "1" ? "Active" : "Inactive") + 
+          "</td><td class='bank_id' hidden>" + bank_list[i].bank_id +
+          "</td><td class='status_id' hidden>" + bank_list[i].status +
+          "</td><td>" + "<button class='btn btn-sm btn-block btn-primary' onclick='edit_bank("+bank_list[i].id+", "+i+")'><i class='far fa-edit'></i></button>" +
+          "</td><td>" + "<button class='btn btn-sm btn-block btn-danger' onclick='delete_bank("+bank_list[i].id+")'><i class='fas fa-trash-alt'></i></button>" +
+          "</td></tr>");
+
+      }
+
+      var remittance_list = result.remittance_list;
+
+      for(var i = 0; i < remittance_list.length; i++){      
+        $("#remitt_"+remittance_list[i].id).prop("checked", true);
+      }      
 
     //products
         var pad = "";
@@ -1030,33 +1140,35 @@ function index(){
             "</td><td class='tbl-sf-luz'>" + courier[i].sf_luz +
             "</td><td class='tbl-sf-vis'>" + courier[i].sf_vis + 
             "</td><td class='tbl-sf-min'>" + courier[i].sf_min +  
-            "</td><td><button class='btn btn-success py-0' onclick='edit_ship("+courier[i].id+", "+i+")'><i class='far fa-edit'></i></button>" +  
+            "</td><td><button class='btn btn-primary py-0' onclick='edit_ship("+courier[i].id+", "+i+")'><i class='far fa-edit'></i></button>" +  
             "</td><td><button class='btn btn-danger py-0' onclick='delete_ship("+courier[i].id+")'><i class='far fa-trash-alt'></i></button>" +  
             "</td></tr>");
           }
 
         }
 
-        var store = result.store_img;
-        var store_img = "";
+        if (result.store_img.length != 0){
+          var store = result.store_img;
+          var store_img = "";
 
-        for (var i = 0; i < store.length; i++) {
-          store_img = base_url + "images/store/" + store[i].image;
-          if (store[i].img_order == "1"){
-            $("#div-store-img-1").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-1').css('background-size', "100% 100%");
-            $('#div-store-img-1').css('background-repeat', "no-repeat");
-            $('#div-store-img-1').css('background-position', "center center");    
-          }else if (store[i].img_order == "2"){
-            $("#div-store-img-2").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-2').css('background-size', "100% 100%");
-            $('#div-store-img-2').css('background-repeat', "no-repeat");
-            $('#div-store-img-2').css('background-position', "center center");    
-          }else{
-            $("#div-store-img-3").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-3').css('background-size', "100% 100%");
-            $('#div-store-img-3').css('background-repeat', "no-repeat");
-            $('#div-store-img-3').css('background-position', "center center");    
+          for (var i = 0; i < store.length; i++) {
+            store_img = base_url + "images/store/" + store[i].image;
+            if (store[i].img_order == "1"){
+              $("#div-store-img-1").css("background-image", "url('"+store_img+"')");
+              $('#div-store-img-1').css('background-size', "100% 100%");
+              $('#div-store-img-1').css('background-repeat', "no-repeat");
+              $('#div-store-img-1').css('background-position', "center center");    
+            }else if (store[i].img_order == "2"){
+              $("#div-store-img-2").css("background-image", "url('"+store_img+"')");
+              $('#div-store-img-2').css('background-size', "100% 100%");
+              $('#div-store-img-2').css('background-repeat', "no-repeat");
+              $('#div-store-img-2').css('background-position', "center center");    
+            }else{
+              $("#div-store-img-3").css("background-image", "url('"+store_img+"')");
+              $('#div-store-img-3').css('background-size', "100% 100%");
+              $('#div-store-img-3').css('background-repeat', "no-repeat");
+              $('#div-store-img-3').css('background-position', "center center");    
+            }
           }
         }
 
@@ -1127,6 +1239,14 @@ function order_table(id){
       $("#po_payment_type").text(data[0].payment_type_desc);
       $("#po_delivery_type_id").val(data[0].delivery_type_id);
       $("#po_payment_type_id").val(data[0].payment_type_id);
+
+      if (data[0].payment_type_id == "5" || data[0].payment_type_id == "6"){
+        $("#po_payment_method").text(data[0].payment_method_desc);
+        $("#po_payment_method_id").text(data[0].payment_method_id);
+      }else{
+        $("#po_payment_method").text(data[0].payment_type_desc);
+        $("#po_payment_method_id").text(data[0].payment_method_id);
+      }
 
       for (var i = 0; i < products.length; i++) {
 
@@ -1556,6 +1676,7 @@ function save_store_img(){
 function check_aboutus(){
 
   var business_name = $("#input_businessname").val();
+  var link_name = $("#input_linkname").val();
   var aboutus = $("#input_aboutus").val();
   var business_category = $("#input_bussinesscategory").val();
 
@@ -1575,7 +1696,7 @@ function check_aboutus(){
   var instagram = $("#input_instagram").val();
   var shoppee = $("#input_shopee").val();
 
-  if(jQuery.trim(business_name).length <= 0 || jQuery.trim(business_category).length <= 0 || jQuery.trim(bldg).length <= 0 
+  if(jQuery.trim(business_name).length <= 0 || jQuery.trim(link_name).length <= 0 || jQuery.trim(business_category).length <= 0 || jQuery.trim(bldg).length <= 0 
     || jQuery.trim(city).length <= 0 || jQuery.trim(province).length <= 0 || jQuery.trim(email).length <= 0 || jQuery.trim(mobile).length <= 0) {
         swal("Please fill up required fields.", "", "warning")
         return false;
@@ -1635,7 +1756,19 @@ function check_product(){
   var imgInp = $("#imgInp").val();
   product_category = 1;
 
-  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == "" || prod_category == "" || prod_condition == "" || prod_del_opt == "" || prod_return == "" || prod_warranty == ""){
+  var error = 0;
+
+  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == "" || prod_category == "" || prod_condition == ""){
+    error++;
+  }
+
+  if (prod_online == "1"){
+    if (prod_del_opt == "" || prod_return == "" || prod_warranty == ""){
+      error++;
+    }
+  }
+
+  if (error > 0){
     swal({
       type : "error",
       title : "Please input all required fields"
@@ -1650,6 +1783,7 @@ function check_product(){
 function save_aboutus(){
 
   var business_name = $("#input_businessname").val();
+  var link_name = $("#input_linkname").val().toLowerCase();
   var aboutus = $("#input_aboutus").val();
   var business_category = $("#input_bussinesscategory").val();
 
@@ -1674,6 +1808,7 @@ function save_aboutus(){
 
   var data = {
     business_name : business_name,
+    link_name : link_name,
     aboutus : aboutus,
     business_category : business_category,
     bldg : bldg,
@@ -1713,8 +1848,9 @@ function save_aboutus(){
         type : "success",
         title : "Successfully Updated!"
       }, function(){
-        index();
-        home();
+        location.reload();
+        // index();
+        // home();
       })
     }, error : function(err){
       console.log(err.responseText);
@@ -1808,6 +1944,7 @@ function save_product(){
 
   var prod_name = $("#prod_name").val();
   var prod_desc = $("#prod_desc").val();
+  var prod_remarks = $("#prod_remarks").val();
   var prod_online = $("#prod_online").val();
   var prod_unit = $("#prod_price").val();
   var prod_cat = $("#prod_category").val();
@@ -1830,6 +1967,7 @@ function save_product(){
   var product = {
     product_name : prod_name,
     product_description : prod_desc,
+    product_other_details : prod_remarks,
     product_online : prod_online,
     product_unit_price : prod_unit,
     product_category : prod_cat, 
@@ -2032,12 +2170,15 @@ function delete_product(){
 function clear_prod_model(){
     $("#prod_desc").val("");
     $("#prod_name").val("");
+    $("#prod_remarks").val("");
     $("#prod_id").val("");
     $("#prod_ship_fee_w_mm").val(0);
     $("#prod_ship_fee_o_mm").val(0);
     $("#unserialized_files").val("");
     $("#imgInp").val("");
     $("#img-upload").attr("src", "images/products/a.png");
+    $("#prod_price").val(0);
+    $("#prod_price2").val(0);
 }
 
 function get_product_info(id){
@@ -2511,8 +2652,174 @@ function delete_ship(id){
 
 }
 
+function check_save_bank(){
+  var bank_name = $("#bank_name").val();
+  var account_name = $("#account_name").val();
+  var account_no = $("#account_no").val();
+  var status = $("#bank_status").val();
+
+  if (bank_name == "" || account_name == "" || account_no == "" || status == ""){
+    swal({
+      type : "warning",
+      title : "Please input all required fields"
+    })
+
+  }else{
+    swal({
+      type : "warning",
+      title : "Save?",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }, function(isConfirm){
+      if (isConfirm){
+        save_bank();
+      }
+    })
+  }
+
+}
+
+function save_bank(){
+  var csrf_name = $("input[name=csrf_name]").val();
+  var bank_id = $("#bank_id").val();
+  var bank_name = $("#bank_name").val();
+  var account_name = $("#account_name").val();
+  var account_no = $("#account_no").val();
+  var status = $("#bank_status").val();
+
+  $.ajax({
+    data : {csrf_name : csrf_name, bank_id : bank_id, bank_name : bank_name, account_name : account_name, account_no : account_no, status : status},
+    type : "POST",
+    dataType : "JSON",
+    url : base_url + "Outletko_profile/save_bank",
+    success : function(result){
+      $("input[name=csrf_name]").val(result.token);
+      $("#bank_id").val("0");
+      swal({
+        type : "success",
+        title : "Successfully Saved"
+      })
+      index();
+    }, error : function(err){
+      console.log(err.responseText);
+    }
+  })
+
+}
+
+function edit_bank(id, row){
+  var bank_name = $("#tbl-bank tbody tr:eq("+row+")").find(".bank_id").text();
+  var account_name = $("#tbl-bank tbody tr:eq("+row+")").find(".account_name").text();
+  var account_no = $("#tbl-bank tbody tr:eq("+row+")").find(".account_no").text();
+  var status = $("#tbl-bank tbody tr:eq("+row+")").find(".status_id").text();
+
+  console.log(id);
+
+  $("#bank_id").val(id);
+  $("#bank_name").val(bank_name);
+  $("#account_name").val(account_name);
+  $("#account_no").val(account_no);
+  $("#bank_status").val(status);
+}
+
+function delete_bank(id){
+  var csrf_name = $("input[name=csrf_name]").val();
+
+  swal({
+    type : "warning",
+    title : "Delete?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
+  }, function(isConfirm){
+    if (isConfirm){
+      $.ajax({
+        data : {csrf_name : csrf_name, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/delete_bank",
+        success : function(result){
+          $("input[name=csrf_name]").val(result.token);
+          swal({
+            type : "success",
+            title : "Successfully Deleted"
+          })
+          index();
+        }, error : function(err){
+          console.log(err.responseText);
+        }
+      })
+    }
+  });
+
+}
+
+function check_remitt_save(){
+
+  var count = 0;
+
+  $.each($(".remitt_check:checked"), function(){
+    count++;
+  });
 
 
+  if (count == 0){
+    swal({
+      type : "warning",
+      title : "Please check atleast one remittance"
+    })
+  }else{
+    swal({
+      type : "warning",
+      title : "Save?",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }, function(isConfirm){
+      if (isConfirm){
+        save_remittance();
+      }
+    })
+
+  }
+
+}
+
+function save_remittance(){
+
+var array = [];
+var csrf_name = $("input[name=csrf_name]").val();
+
+$.each($(".remitt_check:checked"), function(){
+  // var sub = {
+  //   id : $(this).val(),
+  //   status : "1"
+  // }
+
+  array.push($(this).val());
+});
+
+$.ajax({
+  data : {csrf_name : csrf_name, array : array},
+  type : "POST",
+  dataType : "JSON",
+  url : base_url + "Outletko_profile/save_remittance",
+  success : function(result){
+    $("input[name=csrf_name]").val(result.token);
+    swal({
+      type : "success",
+      title : "Successfully Saved"
+    })
+  }, error : function(err){
+    console.log(err.responseText);
+  }
+})
+
+}
 
 
 

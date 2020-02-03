@@ -61,7 +61,7 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-md-3 col-lg-2 pad-center">
+					<div class="col-12 col-md-3 col-lg-2 pad-center" hidden>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>

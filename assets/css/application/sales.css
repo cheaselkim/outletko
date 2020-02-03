@@ -194,10 +194,6 @@ tbody td{
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  #pay_hdr_type{
-    margin-top: 10px;
-  }
-
   .text-sales{
     font-size: 16px;
   }
@@ -209,9 +205,9 @@ tbody td{
   }
 
   .span-prodno{
-/*    text-align: right;
+    text-align: right;
     float: right;
-    padding-right: 28px;*/
+    padding-right: 28px;
   }
 
   .span-stockqty{
@@ -283,9 +279,9 @@ tbody td{
   }
 
   .span-prodno{
-/*    text-align: right;
+    text-align: right;
     float: right;
-    padding-right: 28px;*/
+    padding-right: 28px;
   }
 
   .span-stockqty{
@@ -346,12 +342,8 @@ tbody td{
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
-  #pay_hdr_type{
-    margin-top: 10px;
-  }
-
   .text-sales{
-    font-size: 16px !important;
+    font-size: 16px;
   }
 
   .span-customer{
@@ -361,9 +353,9 @@ tbody td{
   }
 
   .span-prodno{
-/*    text-align: right;
+    text-align: right;
     float: right;
-    padding-right: 28px;*/
+    padding-right: 28px;
   }
 
   .prod_name{
@@ -375,8 +367,8 @@ tbody td{
   }
 
   .div-prod-img{
-    height: 131px;
-    width: 155px;
+    height: 190px;
+    width: 200px;
     border: 1px solid black;
   }
 
@@ -406,10 +398,6 @@ tbody td{
     padding-left: 30px;
   }
 
-  .font-total{
-    font-size: 15px !important;
-  }
-
   /*.display-hidden-div{
     display: none;
   }*/
@@ -419,11 +407,11 @@ tbody td{
 @media only screen and (min-width: 992px) {
 
   .text-sales{
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
   .text-date{
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .cust-text{
@@ -442,9 +430,9 @@ tbody td{
   }
 
   .span-prodno{
-/*    text-align: right;
+    text-align: right;
     float: right;
-    padding-right: 28px;*/
+    padding-right: 28px;
   }
 
   .prod_name{
@@ -456,7 +444,7 @@ tbody td{
   }
 
   .div-prod-img{
-    height: 132px;
+    height: 150px;
     width: 150px;
     border: 1px solid black;
   }
@@ -490,17 +478,12 @@ tbody td{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
-  #pay_hdr_type{
-    margin-top: 0px;
-  }
-
   .span-eoutletsuite{
     font-size: 45px;
   }
 
   .text-sales{
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
   .text-date{
@@ -529,29 +512,21 @@ tbody td{
   .span-customer{
     text-align: right;
     float: right;
-    padding-right: 50px;
+    padding-right: 25px;
   }
 
   .span-prodno{
-/*    text-align: right;
+    text-align: right;
     float: right;
     padding-right: 28px;
-    padding-left: 9px;*/
+    padding-left: 9px;
   }
 
   .span-prod-name{
-/*    text-align: right;
+    text-align: right;
     float: right;
     padding-right: 6px;
-    padding-left: 9px;*/
-  }
-
-  #div-input-prod-name{
-    padding-right: 20px;
-  }
-
-  #div-input-prod-no{
-    padding-left: 12px;
+    padding-left: 9px;
   }
 
   .span-date{

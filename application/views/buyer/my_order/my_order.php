@@ -8,7 +8,7 @@
 <div class="container pt-3 pb-4">
 	<div class="row">
 
-		<div class="col-12 col-sm-12 col-md-12 col-lg-10">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 
 			<!-- DIV HOME -->
 			<div class="row" id="div-home">
@@ -335,6 +335,7 @@
 			<div class="row pt-2" id="div-checkout-details">
 				
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white py-3">
+					
 					<div class="row">
 
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -397,20 +398,20 @@
 						<div class="col-12">
 							<span class="font-weight-600">Delivery & Payment</span>
 							<div class="row">
-								<div class="col-12 col-lg-6">
+								<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 									<span>Delivery Type</span>
 									<select class="form-control" id="delivery_type">
-										<option></option>
+										<option hidden></option>
 									</select>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" hidden>
 								<div class="col-12 col-lg-6">
 									<span>Scheduled Date <span>(Available Days : <i id="sched_day">M,T,W,TH,F,S,SU</i> )</span> </span>
 									<input type="date" class="form-control" id="sched_date" readonly>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" hidden>
 								<div class="col-12 col-lg-6">
 									<span>Scheduled Time</span>
 									<!-- <select class="form-control bg-white" id="sched_time" disabled>
@@ -419,15 +420,27 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12 col-lg-6">
+								<div class="col-12 col-lg-6" hidden>
 									<hr class="my-2" style="border-top: 1px solid gray;">
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12 col-lg-6">
+								<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 									<span>Payment Type</span>
-									<select class="form-control" id="payment_type" disabled>
-										<option></option>
+									<select class="form-control" id="payment_type" >
+										<option hidden></option>
+									</select>
+								</div>
+								<div class="col-12 col-lg-4 col-md-6 col-sm-12" id="div-bank-list">
+									<span>Bank List</span>
+									<select class="form-control" id="bank_list">
+										<option hidden></option>
+									</select>
+								</div>
+								<div class="col-12 col-lg-4 col-md-6 col-sm-12" id="div-remittance-list">
+									<span>Remittance List</span>
+									<select class="form-control" id="remittance_list">
+										<option hidden></option>
 									</select>
 								</div>
 							</div>
@@ -443,7 +456,10 @@
 							<span class="font-weight-600">Order Summary</span>
 							<div class="row">
 								<div class="col-12 py-3">
-									<div class="row px-3">
+									<div class="row">
+										
+									</div>
+									<div class="row px-3" hidden>
 										<div class="col-2 d-none d-md-block">
 											<span class="font-weight-600">Order No</span>
 										</div>
@@ -460,7 +476,7 @@
 											<span class="font-weight-600">Total Amount</span>
 										</div>
 									</div>
-									<div class="row px-3 cursor-pointer" data-toggle="collapse" data-target="#div_order_1">
+									<div class="row px-3 cursor-pointer" data-toggle="collapse" data-target="#div_order_1" hidden>
 										<div class="col-2 border-1 d-none d-md-block">
 											<span></span>
 										</div>
@@ -477,19 +493,26 @@
 											<span id="comp_total_amount"></span>
 										</div>
 									</div>
-									<div class="row px-3 collapse" id="div_order_1">
-										<div style="overflow: auto;">
-											<table class="table table-sm table-bordered" id="prod_dtls">
+
+
+									<div class="row px-3 " id="div_order_1">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+											<table class="table table-sm " id="prod_dtls" style="width: 100%;">
 												<thead>
 													<tr>
-														<th class="col-6">Product</th>
-														<th class="col-1">Qty</th>
-														<th class="col-2">Unit Price</th>
-														<th class="col-3">Total Amount</th>
+														<th class="" style="width: 70%;background: white !important;color: black;">Product</th>
+														<th class="text-right" style="width: 5%;background: white !important;color: black;">Qty</th>
+														<th class="text-right" style="width: 10%;background: white !important;color: black;">Unit Price</th>
+														<th class="text-right" style="width: 15%;background: white !important;color: black;">Total Amount</th>
 													</tr>												
 												</thead>
 												<tbody></tbody>
 											</table>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<hr class="my-3" style="border-top: 1px solid gray;">																										
 										</div>
 									</div>
 									<div class="row">
@@ -521,6 +544,16 @@
 											<span class="font-weight-600" id="total_amount">PHP 0.00</span>
 										</div>
 									</div>
+									<div class="row pt-5">
+										<div class="col-12 text-right py-2 div-checkout">
+											<div class="row">
+												<div class="col-12 text-right">
+													<button class="btn btn-danger font-weight-600" id="btn_cancel_order">Cancel</button>									
+													<button class="btn btn-orange font-weight-600" id="btn_confirm_order">Confirm my Order</button>									
+												</div>
+											</div>
+										</div>
+									</div>
 
 
 								</div>
@@ -529,14 +562,102 @@
 
 					</div>
 
-					<div class="row  px-4 pt-5">
-						<div class="col-12 text-right py-2 div-checkout">
-							<div class="row">
-								<div class="col-12 text-right">
-									<button class="btn btn-danger font-weight-600" id="btn_cancel_order">Cancel</button>									
-									<button class="btn btn-orange font-weight-600" id="btn_confirm_order">Confirm Order</button>									
-								</div>
-							</div>
+
+				</div>
+			</div>
+
+			<div class="row pt-2" id="div-order-summary">
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+					
+					<div class="row">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<span class="h2">Instructions</span>
+						</div>
+					</div>
+
+					<div class="row mt-2">
+						<div class="col-12 col-lg-4 col-md-12 col-sm-12">
+							<input type="text" class="form-control bg-white" id="summ-payment-type-list" readonly>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<p class="mb-0">Please click <span class="font-weight-600">"Place my order" button to place your order</span></p>							
+						</div>						
+					</div>
+
+					<div class="row mt-3" id="div-bank-payment">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<table class="table table-sm table-bordered">
+								<thead>
+									<tr>
+										<th colspan="2"></th>
+									</tr>
+									<tr>
+										<td colspan="2" class="font-weight-600">Please make your payment/deposit to : </td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="width: 10%;">Account Name</td>
+										<td style="width: 80%;" id="bank_name">Account Name</td>
+									</tr>
+									<tr>
+										<td style="width: 10%;">Account No</td>
+										<td style="width: 80%;" id="bank_no">0-1234-5-5612-12</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2">After payment/deposit, please send your copy of deposit slip through email or sms: <span class="font-weight-600 text-blue" id="summ-bank-email">email@email.com</span> / <span class="font-weight-600 text-blue" id="summ-bank-mobile">09123456789</span></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+
+					<div class="row" id="div-remittance-payment">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<table class="table table-sm table-bordered">
+								<thead>
+									<tr>
+										<th colspan="2"></th>
+									</tr>
+									<tr>
+										<td colspan="2" class="font-weight-600">Please make your payment/deposit to : </td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="width: 10%;">Name</td>
+										<td style="width: 80%;" id="remittance_name">Name</td>
+									</tr>
+									<tr>
+										<td style="width: 10%;">Mobile No</td>
+										<td style="width: 80%;" id="remittance_mobile">09123456789</td>
+									</tr>
+									<tr>
+										<td style="width: 10%;">Email</td>
+										<td style="width: 80%;" id="remittance_email">email@email.com</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2">After payment/deposit, please send your copy of deposit slip through email or sms: <span class="font-weight-600 text-blue" id="summ-remitt-email">email@email.com</span> / <span class="font-weight-600 text-blue" id="summ-remitt-mobile">09123456789</span></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-lg-6 col-md-6 col-sm-6">
+							<button class="btn btn-primary" id="btn_order_payment">Other Payment Method</button>
+						</div>
+						<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right">
+							<button class="btn btn-danger" id="btn_cancel_place">Cancel</button>
+							<button class="btn btn-orange" id="btn_place_order">Place my Order</button>
 						</div>
 					</div>
 
@@ -546,15 +667,12 @@
 		</div>
 
 		<!-- ADS -->
-		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1 d-none d-lg-block">
+<!-- 		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1 d-none d-lg-block" >
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 " >
 					<div class="div-ads px-2 pt-2">
 						<span class="text-green">Ads Space</span>
-
-						<!-- ADS IMAGES -->
 						<div class="row">
-
 							<div class="col-lg-12 col-md-4 pt-3">
 								<div class="div-ads-img">	
 									<img src="https://5d973bb52ee8692cdb78-ae7e48b6a1da5e36e0a688675ec574a6.ssl.cf1.rackcdn.com/34/56/78/34567836/ad_34567836_c4edf44e26169131_web.jpg" class="img-fluid">
@@ -572,16 +690,11 @@
 									<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
 								</div>	
 							</div>
-
-
-
 						</div>
-						<!-- END ADS IMAGES -->
-
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- ADS -->
 	</div>
 

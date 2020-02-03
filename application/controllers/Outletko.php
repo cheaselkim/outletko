@@ -8,6 +8,23 @@ class Outletko extends CI_Controller {
         $this->load->model("outletko_model");
     }
 
+	public function featured_outlet(){
+		$result = $this->outletko_model->featured_outlet();
+
+		foreach ($result as $key => $value) {
+			$data['data'][$key] = array(
+				"account_name" => $value->account_name,
+				"link_name" => $value->link_name,
+				"about_us" => $value->about_us,
+				"loc_image" => ($value->loc_image == null ? null : unserialize($value->loc_image))
+ 			);
+		}
+
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
+	}
+
+
     public function menu($menu){
 
 		$data['id'] = "";

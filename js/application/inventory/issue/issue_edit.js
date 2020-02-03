@@ -1,11 +1,4 @@
 $(document).ready(function(){
-    
-    var from_input = $('#trans_id').val();
-    var from_cookie = getCookie('issue_id');
-    var BASE_URL = "http://www.eoutletsuite.com/";
-    if(from_input != from_cookie){
-        window.location.href = BASE_URL +"/logout";
-    }
 
     currency();
     trans_type();
@@ -32,11 +25,6 @@ $(document).ready(function(){
             $(".prod_entry").collapse('show');            
         }
     });
-    
-    setTimeout(function(){
-        eraseCookie('issue_id');
-        location.reload();
-    }, 1000 * 60 *30);
 
     $(".btn-exit").click(function(){
         $(".btn-enter").hide();
@@ -553,7 +541,7 @@ function trans_type(){
             for (var i = 0; i < result.length; i++) {
                 $("#trans_type").append("<option value='"+result[i].id+"'>"+result[i].inventory_ref_type+"</option>");
             }
-            get_issue(getCookie('issue_id'));
+            get_issue($("#trans_id").val());
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -901,7 +889,7 @@ function check_required_fields(){
     var purpose = $('#purpose').val();
     var issue_outlet = $('#issue_outlet').data('id');
     var trans_date = $('#trans_date').val();
-    var id = getCookie('issue_id');
+    var id = $("#trans_id").val();
 
 
     if (trans_type == "5"){
@@ -980,7 +968,7 @@ function data_saving(id){
       var purpose = $('#purpose').val();
       var issue_outlet = $('#issue_outlet').data('id');
       var trans_date = $('#ref_trans_date').val();
-      var id = getCookie('issue_id');
+      var id = $("#trans_id").val();
       var sum = 0;
         $(".tbl_qty").each(function () {
             var num = $(this).text().replace(/,/g, "");
@@ -1181,7 +1169,6 @@ function data_saving(id){
                     title : "Successfully Updated",
                     timer : 2000
                 }, function(){
-                    eraseCookie('issue_id');
                     location.reload();
                 })
             }, error: function(err) {
@@ -1280,20 +1267,4 @@ function preview(){
     $("#mod_total_amount").text($.number(total_amount, 2));
 
     $("#preview_modal").modal("show");
-}
-
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
 }

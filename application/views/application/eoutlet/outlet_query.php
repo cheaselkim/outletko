@@ -52,8 +52,7 @@
                             </select>
                         </div>
                         <div class="col-xs-12 col-md-8 px-1">
-                            <span class="font-size-18">Search <?php //print_r($_COOKIE);
-                            //echo $_COOKIE['cookie_name'];?></span>
+                            <span class="font-size-18">Search</span>
                             <input type="text" class="form-control txt-box-text-size" placeholder="Search Outlet Code, Outlet Name..." aria-label="Recipient's username" aria-describedby="basic-addon2" id="search_box">
                         </div>
                         <div class="col-xs-12 col-md-2 pl-1" id="div-outlet-status">

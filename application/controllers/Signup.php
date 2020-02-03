@@ -51,8 +51,16 @@ class Signup extends CI_Controller {
         $account_id = $year.'1'.$account_id_result;
     
         $hashed_password = password_hash($pass, PASSWORD_DEFAULT);  
+        $link_name = $info_outletko['link_name'];
+    		// $link_name = str_replace(' ', '', strtolower($link_name));
+    		// $link_name = preg_replace("/[^a-zA-Z0-9]/", "", $link_name);
+    		// $link_name = substr($link_name, 0, 20);
+
         $account=array(
           'account_id'=>$account_id,
+          'link_name' => $link_name,
+          'account_status' => 1,
+          'about_us' => "",
           'account_name'=>$info_outletko['account_name'],
           'account_status'=>$info_outletko['account_status'],
           'business_category'=>$info_outletko['business_category'],
@@ -61,8 +69,10 @@ class Signup extends CI_Controller {
           'middle_name'=>$info_outletko['middle_name'],
           'last_name'=>$info_outletko['last_name'],
           'address'=>$info_outletko['address'],
+          'street' => $info_outletko['address'],
           'confirm_email'=>$info_outletko['confirm_email'],
           'city'=>$info_outletko['city'],
+          'province' => $info_outletko['province'],
           'email'=>$info_outletko['email'],
           'mobile_no'=>$info_outletko['mobile_no'],
           'date_insert'=>date("Y-m-d H:i:s")
@@ -91,6 +101,7 @@ class Signup extends CI_Controller {
           'username'=>$info_outletko['username'],
           'account_type' => "0",
           'otp' => "0",
+          "status" => "1",
           'all_access' => "1"
         );
 
@@ -109,6 +120,7 @@ class Signup extends CI_Controller {
           "account_status" => '1',
           "account_class" => '1',
           "account_type" => '1',
+          "recruited_by" => "000001",
           "business_type" => $info_outletko['business_category'],
           "subscription_type" => "1",
           "subscription_date" => date('Y-m-d'),
@@ -122,7 +134,8 @@ class Signup extends CI_Controller {
           );
     
           $user_app_result = $this->signup_model->insert_account($user_app);
-    
+          $randomPass = $this->randomString();
+
         $users = array(
           "comp_id" => $user_app_result,
           "account_id" => $account_id,
@@ -131,8 +144,10 @@ class Signup extends CI_Controller {
           "middle_name" => strtoupper($info_outletko['middle_name']),
           "last_name" => strtoupper($info_outletko['last_name']),
           "username" => $account_id,
+          "password" => password_hash($randomPass, PASSWORD_DEFAULT),
           "email" => $info_outletko['email'],
           "user_type" => "2",
+          "status" => "1",
           "all_access" => "1",
           "status" => "0"
         );
@@ -144,7 +159,7 @@ class Signup extends CI_Controller {
         $sales_discount = $this->signup_model->insert_sales_discount($user_app_result);
         $customer = $this->signup_model->insert_customer($user_app_result);
     
-        // $send_email =  $this->send_email($email,$res,$uname,$pass);
+        $send_email =  $this->send_email($email,$account_id,$uname,$randomPass);
     // }else{
     //   $error = 'Email Already Exist !';
     //   $send_email = false;
@@ -215,33 +230,44 @@ class Signup extends CI_Controller {
         $this->load->library("email");
         $status = 0;
         $hashed_email = password_hash($email, PASSWORD_DEFAULT);
-        $data = "";
+        $data = array();
     
         $data['account_id'] = $account_id;
         $data['uname'] = $uname;
         $data['password'] = $pass;
-        $data['email'] = $hashed_email;
+        $data['email'] = $email;
 
-        $message = $this->load->view("admin/email/email_activate", $data, TRUE);
+        $message = $this->load->view("admin/email/email2", $data, TRUE);
+
+          // $config = array(
+          //             'protocol' => 'mail',
+          //             'mail_type' => 'html',
+          //             'smtp_host' => 'secure203.servconfig.com',
+          //             'smtp_port' => 465,
+          //             'smtp_user' => 'epgmcompany@eoutletsuite.com',
+          //             'smtp_pass' => 'epgmcompany101',
+          //             'charset' => 'iso-8859-1',
+          //             'wordwrap' => TRUE
+
+          //         );
 
           $config = array(
-                      'protocol' => 'mail',
-                      'mail_type' => 'html',
-                      'smtp_host' => 'secure203.servconfig.com',
-                      'smtp_port' => 465,
-                      'smtp_user' => 'epgmcompany@eoutletsuite.com',
-                      'smtp_pass' => 'epgmcompany101',
-                      'charset' => 'iso-8859-1',
-                      'wordwrap' => TRUE
-
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
                   );
 
 
           $this->email->initialize($config)
                       ->set_newline("\r\n")
-                      ->from('noreply@epgmcompany.com', 'Outletko Business Application')
+                      ->from('noreply@outletko.com', 'OutletSuite Application')
                       ->to($email)
-                      ->subject('Outletko Account Verification')
+                      ->subject('Outletko Account Register')
                       ->message($message);
 
           if($this->email->send()) {
@@ -287,6 +313,16 @@ class Signup extends CI_Controller {
          }
     }
 
+  public function randomString($length = 6) {
+    $str = "";
+    $characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+    $max = count($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+      $rand = mt_rand(0, $max);
+      $str .= $characters[$rand];
+    }
+    return $str;
+  }
 
     /* Outletko Buyer */
 
@@ -350,15 +386,26 @@ class Signup extends CI_Controller {
       //   'wordwrap' => TRUE
       // );
 
+          // $config = array(
+          //             'protocol' => 'smtp',
+          //             'mail_type' => 'html',
+          //             'smtp_host' => 'ssl://smtp.gmail.com',
+          //             'smtp_port' => '465',
+          //             'smtp_user' => 'epgmcompany@gmail.com',
+          //             'smtp_pass' => 'epgmcompany101',
+          //             'charset' => 'iso-8859-1',
+          //             'wordwrap' => TRUE
+          //         );
+
           $config = array(
-                      'protocol' => 'smtp',
-                      'mail_type' => 'html',
-                      'smtp_host' => 'ssl://smtp.gmail.com',
-                      'smtp_port' => '465',
-                      'smtp_user' => 'epgmcompany@gmail.com',
-                      'smtp_pass' => 'epgmcompany101',
-                      'charset' => 'iso-8859-1',
-                      'wordwrap' => TRUE
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
                   );
 
 
@@ -422,6 +469,15 @@ class Signup extends CI_Controller {
     $data['result'] = $this->signup_model->check_login($username, $password);
     $data['token'] = $this->security->get_csrf_hash();
     $data['user_type'] = $this->session->userdata("user_type");
+
+    if (empty($data['result'])){
+      $data['login'] = "0";
+    }else{
+      $data['login'] = "1";
+    }
+
+    // var_dump($data);
+
     echo json_encode($data);
   }
 

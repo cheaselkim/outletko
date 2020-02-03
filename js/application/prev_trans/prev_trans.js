@@ -1,10 +1,9 @@
 var prev_date = "";
 
-
 $(document).ready(function(){
 
 
-  $("#modal_date").modal("show");
+	$("#modal_date").modal("show");
   var modal_date = $("#modal_prev_date").val();
 
   $("#modal_prev_date").datepicker({
@@ -14,8 +13,8 @@ $(document).ready(function(){
     maxDate : new Date(modal_date)
   });
 
-  $("#save_prev_date").click(function(){
-    var modal_prev_date = $("#modal_prev_date").val();
+	$("#save_prev_date").click(function(){
+		var modal_prev_date = $("#modal_prev_date").val();
     prev_date = $("#modal_prev_date").val();
     var date_today = $.datepicker.formatDate('mm/dd/yy', new Date());
 
@@ -34,23 +33,23 @@ $(document).ready(function(){
       }
 
     // $.datepicker.formatDate('mm/dd/yy', new Date())
-  });
+	});
 
-  $("#save_prev_trans").click(function(){
+	$("#save_prev_trans").click(function(){
 
-    swal({
-      type : "warning",
-      title : "Save?",
-      text : "",
+		swal({
+			type : "warning",
+			title : "Save?",
+			text : "",
             showCancelButton: true
-    }, function(isConfirm){
+		}, function(isConfirm){
             if (isConfirm){
-        $(this).prop("disabled", true);
-        save_prev_trans();
+				$(this).prop("disabled", true);
+				save_prev_trans();
             }
           })
 
-  });
+	});
 
 
 function save_prev_trans(){
@@ -130,7 +129,7 @@ function save_prev_trans(){
        }); 
 
       var payment_data = {
-          payment_date : payment_date,
+      		payment_date : payment_date,
             payment_type_id : payment_type_id,
             payment_term : payment_term,
             bank_id : bank_id,
@@ -144,7 +143,7 @@ function save_prev_trans(){
       }
       
       dtl_data.shift();
-    var csrf_name = $("input[name=csrf_name]").val();
+	  var csrf_name = $("input[name=csrf_name]").val();
       var data = {sales_hdr:sales_hdr, sales_dtl: dtl_data,payment_dtl:payment_data, csrf_name : csrf_name};
       // console.log(data);
       //modal_trans_data();
@@ -163,20 +162,20 @@ function save_prev_trans(){
                     })
                 }
                 , success: function(result) {
-          $("input[name=csrf_name]").val(result.token);
-                  swal.close();
-                  modal_trans_data();
-                  // setTimeout(function(){ 
-                  //   location.reload();
-                  // }, 5000);              
+					$("input[name=csrf_name]").val(result.token);
+                	swal.close();
+                	modal_trans_data();
+	                // setTimeout(function(){ 
+	                //   location.reload();
+	                // }, 5000);              
 
-                // swal({
-                //  title: "Successfully Insert",
-                //  type: "success",
-                //  timer: 2000
-                // }, function(){
-                //  location.reload();
-                // });
+            		// swal({
+            		// 	title: "Successfully Insert",
+            		// 	type: "success",
+            		// 	timer: 2000
+            		// }, function(){
+            		// 	location.reload();
+            		// });
                 }, error: function(err) {
                     console.log(err.responseText);
                 }

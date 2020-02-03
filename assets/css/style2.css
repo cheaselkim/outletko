@@ -18493,7 +18493,7 @@ a.text-dark:hover, a.text-dark:focus {
 
   border: 0;
 
-/*  border-top: 1px solid #c8ced3;*/
+  border-top: 1px solid #c8ced3;
 
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
@@ -22979,7 +22979,7 @@ canvas {
 
   background: #fff;
 
-/*  border: 1px solid #c8ced3;*/
+  border: 1px solid #c8ced3;
 
 }
 

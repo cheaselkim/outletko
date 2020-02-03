@@ -95,7 +95,7 @@ class Report_model extends CI_Model {
 	public function sales_summary($fdate, $tdate, $outlet){
 
 		$outlet_query = "";
-
+        $session_query = "";
 
 
 		if ($outlet == "0"){
@@ -107,6 +107,12 @@ class Report_model extends CI_Model {
 			$outlet_query = "AND sales_transaction_hdr.outlet_id = '".$outlet."'";
 
 		}
+
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
 
 
 
@@ -156,7 +162,11 @@ class Report_model extends CI_Model {
 
 			".$outlet_query."
 
+            ".$session_query."
+
 			GROUP BY `outlet`.`id`")->result();
+
+        
 
 		return $query;
 
@@ -164,10 +174,18 @@ class Report_model extends CI_Model {
 
     public function monthly_sales_summary($month, $year, $outlet){
         $outlet_query = "";
+        $session_query = "";
 
         if ($outlet != "0" || $outlet == ""){
             $outlet_query = "AND `sales_transaction_hdr`.`outlet_id` = '".$outlet."'";
         }
+
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
+
 
         $query = $this->db->query("
             SELECT  
@@ -183,6 +201,7 @@ class Report_model extends CI_Model {
                 AND `sales_transaction_hdr`.`comp_id` = ?
                 AND `sales_transaction_hdr`.`status` != '0'
                 ".$outlet_query."
+                ".$session_query."
                 GROUP BY DATE(date_insert)", array($month, $year, $this->session->userdata("comp_id")))->result();
 
         return $query;
@@ -195,6 +214,8 @@ class Report_model extends CI_Model {
     	$status_query = "";
 
     	$outlet_query = "";
+
+        $session_query = "";
 
         $comp_id = $this->session->userdata('comp_id');
 
@@ -222,6 +243,11 @@ class Report_model extends CI_Model {
 
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
 
 
         $query = $this->db->query("
@@ -242,9 +268,13 @@ class Report_model extends CI_Model {
 
             AND (DATE(hdr.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
 
+            ".$session_query."
+
             ORDER BY trans_no, outlet.id ASC
 
             ")->result();
+
+        
 
         return $query;
 
@@ -259,11 +289,18 @@ class Report_model extends CI_Model {
             $outlet_query = "";
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
+
+
         $query = $this->db->query("
             SELECT 
             SUM(`sales_transaction_dtl`.`qty`) AS total_qty,
             SUM(`sales_transaction_dtl`.`vat`) AS total_vat, 
-            SUM(`sales_transaction_dtl`.`total_amount`) as total_amount,
+            SUM(`sales_transaction_dtl`.`total_selling_price`) as total_amount,
             `product_category`.`category_code`,
             `product_category`.`category_name`
             FROM sales_transaction_hdr
@@ -275,7 +312,7 @@ class Report_model extends CI_Model {
             `product_category`.`id` = `products`.`category_id`
             WHERE `products`.`comp_id` = ? AND `sales_transaction_hdr`.`status`!= '0'
             AND (DATE(`sales_transaction_hdr`.`date_insert`) BETWEEN '".$fdate."' AND '".$tdate."' )
-            ".$outlet_query."
+            ".$outlet_query." ".$session_query."
             GROUP BY `product_category`.`id`", array($this->session->userdata("comp_id")))->result();
 
         return $query;
@@ -292,11 +329,18 @@ class Report_model extends CI_Model {
             $outlet_query = "";
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
+
+
         $query = $this->db->query("
             SELECT 
             SUM(`sales_transaction_dtl`.`qty`) AS total_qty,
             SUM(`sales_transaction_dtl`.`vat`) AS total_vat, 
-            SUM(`sales_transaction_dtl`.`total_amount`) as total_amount,
+            SUM(`sales_transaction_dtl`.`total_selling_price`) as total_amount,
             `product_class`.`class_code`,
             `product_class`.`class_name`,
             `product_category`.`category_name`
@@ -311,6 +355,7 @@ class Report_model extends CI_Model {
             `product_class`.`class_category` = `product_category`.`id`
             WHERE `products`.`comp_id` = ? AND `sales_transaction_hdr`.`status` != '0'
             AND (DATE(`sales_transaction_hdr`.`date_insert`) BETWEEN '".$fdate."' AND '".$tdate."' )
+            ".$session_query."
             GROUP BY `product_class`.`id`", array($this->session->userdata("comp_id")))->result();
         return $query;
 
@@ -320,7 +365,7 @@ class Report_model extends CI_Model {
     public function sales_per_product($from_date,$to_date,$outlet_no,$status){
 
         $comp_id = $this->session->userdata('comp_id');
-
+        $session_query = "";
 
 
         if ($outlet_no != "0"){
@@ -333,6 +378,11 @@ class Report_model extends CI_Model {
 
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
 
 
         $query = $this->db->query("
@@ -365,9 +415,13 @@ class Report_model extends CI_Model {
 
             AND (DATE(hdr.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
 
+            ".$session_query."
+
             GROUP BY dtl.product_id
 
             ")->result();
+
+
 
         return $query;
 
@@ -380,11 +434,11 @@ class Report_model extends CI_Model {
 
         $outlet_query = "";
 
-
+        $session_query = "";
 
         if ($outlet_no != "0"){
 
-        	$outlet_query = "AND `hdr`.outlet_id = '".$outlet_no."'";
+        	$outlet_query = "AND `sale`.outlet_id = '".$outlet_no."'";
 
         }else{
 
@@ -392,6 +446,11 @@ class Report_model extends CI_Model {
 
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sale.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
 
 
         $query = $this->db->query("
@@ -406,27 +465,31 @@ class Report_model extends CI_Model {
 
 	            SUM(`dtl`.total_selling_price) AS total_amount,
 
-	            SUM(share_amount)AS share 
+	            SUM(`dtl`.share_amount)AS share 
 
             FROM sales_transaction_hdr AS sale
 
+                LEFT JOIN sales_transaction_dtl AS dtl
+
+                    ON `dtl`.sales_hdr_id = `sale`.id
+
 	            LEFT JOIN sales_force AS agent
 
-		            ON `agent`.id = `sale`.agent_id
-
-	            LEFT JOIN sales_transaction_dtl AS dtl
-
-	    	        ON `dtl`.sales_hdr_id = `sale`.id
+		            ON `agent`.id = `dtl`.agent_id
 
 	            WHERE `sale`.comp_id = '".$comp_id."' and sale.status > 0 ".$outlet_query."
 
 	        	    AND (date(`sale`.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
+                    ".$session_query."
 
-            	GROUP BY `sale`.agent_id
+            	GROUP BY `dtl`.agent_id
 
 	            ORDER BY `sale`.id DESC
 
             ")->result();
+
+        
+
 
         return $query;
 
@@ -437,9 +500,16 @@ class Report_model extends CI_Model {
 /*        var_dump($fdate." ".$tdate);*/
 
         $agent_qry = "";
+        $session_query = "";
 
         if ($agent != "0"){
             $agent_qry = " AND `sales_force`.`id` = '".$agent."'";
+        }
+
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
         }
         // $agent_qry = "";
 
@@ -451,6 +521,7 @@ class Report_model extends CI_Model {
                 `sales_transaction_hdr`.`trans_no`,
                 `sales_transaction_hdr`.`date_insert`,
                 `products`.`product_name`,
+                `sales_transaction_dtl`.`total_selling_price`,
                 `sales_transaction_dtl`.`total_amount`,
                 `sales_transaction_dtl`.`share_amount`
                 FROM sales_transaction_hdr
@@ -462,7 +533,9 @@ class Report_model extends CI_Model {
                 `sales_transaction_dtl`.`product_id` = `products`.`id`
                 WHERE `sales_transaction_hdr`.`comp_id` = '".$this->session->userdata("comp_id")."' AND `sales_transaction_hdr`.`status`  != '0'
                 AND (date(`sales_transaction_hdr`.date_insert) BETWEEN '".$fdate."' AND '".$tdate."' )
+                ".$session_query."
                 ".$agent_qry." ")->result();
+        
         return $query;
     }
 
@@ -497,7 +570,9 @@ class Report_model extends CI_Model {
 
             inventory_hdr.outlet_id,
 
-		    `outlet2`.outlet_name AS outlet
+		    `outlet2`.outlet_name AS outlet,
+
+            `outlet2`.outlet_code AS outlet_code
 
             FROM inventory_hdr 
 
@@ -604,6 +679,7 @@ class Report_model extends CI_Model {
     public function end_of_day($fdate, $tdate, $outlet){
         $comp_outlet = "";
         $comp_outlet_id = "";
+        $session_query = "";
         $user = "";
         $user_id = "";
 
@@ -613,6 +689,12 @@ class Report_model extends CI_Model {
         }else{
           $comp_outlet = "outlet_id";
           $comp_outlet_id = $outlet;
+        }
+
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
         }
 
 
@@ -638,6 +720,7 @@ class Report_model extends CI_Model {
           `users`.`id` = `sales_transaction_hdr`.`user`
           WHERE  (DATE(`sales_transaction_hdr`.`date_insert`) >= ? AND DATE(`sales_transaction_hdr`.`date_insert`) <= ?)
           AND `sales_transaction_hdr`.`".$comp_outlet."` = ?
+          ".$session_query."
           GROUP BY DATE(`sales_transaction_hdr`.`date_insert`), `sales_transaction_hdr`.`user`
         ", array($fdate, $tdate, $comp_outlet_id))->result();
 
@@ -651,6 +734,11 @@ class Report_model extends CI_Model {
             $outlet_query = "AND `sales_transaction_hdr`.`outlet_id` = '".$outlet."'";
         }
 
+        if ($this->session->userdata('all_access') == 0){
+            $session_query = "AND sales_transaction_hdr.outlet_id = '".$this->session->userdata('outlet_id')."'";
+        }else{
+            $session_query = "";
+        }
 
         $query = $this->db->query("
         SELECT 
@@ -661,7 +749,7 @@ class Report_model extends CI_Model {
             FROM sales_transaction_hdr 
             WHERE YEAR(`sales_transaction_hdr`.`date_insert`) = ? AND `sales_transaction_hdr`.`comp_id` = ?
             AND `sales_transaction_hdr`.`status` != '0'
-            ".$outlet_query."
+            ".$outlet_query." ".$session_query."
             GROUP BY MONTH(`sales_transaction_hdr`.`date_insert`)", array($year, $this->session->userdata("comp_id")))->result();
 
         return $query;

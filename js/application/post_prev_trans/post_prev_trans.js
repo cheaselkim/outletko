@@ -76,9 +76,9 @@ function closed($key){
 	var user_id = $("#end_day_tbl tbody tr:eq("+$key+")").find(".tbl_user_id").text();
 	var outlet_id = $("#end_day_tbl tbody tr:eq("+$key+")").find(".tbl_outlet_id").text();
 
-	// console.log(csrf_name);
-	// console.log(base_url + "Sales_prev/end_day_payment_transaction");
-	// console.log(trans_date + " " + user_id + " " + outlet_id + " " + csrf_name);
+	console.log(csrf_name);
+	console.log(base_url + "Sales_prev/end_day_payment_transaction");
+	console.log(trans_date + " " + user_id + " " + outlet_id + " " + csrf_name);
 
 	$.ajax({
 		data : {trans_date : trans_date, user_id : user_id , outlet_id : outlet_id, csrf_name : csrf_name},

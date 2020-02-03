@@ -1,12 +1,4 @@
 $(document).ready(function(){
-    
-    
-    var from_input = $('#trans_id').val();
-    var from_cookie = getCookie('receive_id');
-    var BASE_URL = "http://www.eoutletsuite.com/";
-    if(from_input != from_cookie){
-        window.location.href = BASE_URL +"/logout";
-    }
 
     trans_type();
     get_receive();
@@ -35,11 +27,6 @@ $(document).ready(function(){
          }, 2000);
         
     });
-    
-    setTimeout(function(){
-        eraseCookie('receive_id');
-        location.reload();
-    }, 1000 * 60 *30);
 
     $(".btn-add").click(function(){
         if ($(".prod_entry").is(":visible") == true){
@@ -446,7 +433,7 @@ $(document).ready(function(){
 })
     
 function get_receive(){
-    var id = getCookie('receive_id');
+    var id = $("#trans_id").val();
     var csrf_name = $("input[name=csrf_name]").val();
 
     $.ajax({
@@ -1215,7 +1202,7 @@ function check_required_fields(){
     var outlet_type = $('#outlet_code').attr('data-type_1');
     var trans_no = $('#trans_no').val();
     var trans_date = $('#trans_date').val();
-    var id = getCookie('receive_id');
+    var id = $("#trans_id").val();
     var total_tr = "";
 
     if (trans_type == "1"){
@@ -1284,7 +1271,7 @@ function check_required_fields(){
 
 function data_saving(){
       var csrf_name = $("input[name=csrf_name]").val();
-      var id = getCookie('receive_id');
+      var id = $("#trans_id").val();
       var receive_no =  $('#receive_no').val();
       var receive_date =  $('#receive_date').val();
       var trans_type =  $('#trans_type').val();
@@ -1441,7 +1428,6 @@ function data_saving(){
                     timer : 2000,
                     title : "Successfully Updated"
                 }, function(){
-                    eraseCookie('receive_id');
                     location.reload();
                 });
             }, error: function(err) {
@@ -1449,18 +1435,3 @@ function data_saving(){
             }
       });  
 };
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
-}
