@@ -97,6 +97,31 @@ class Menu extends CI_Controller {
 		}		
 	}
 
+	public function edit_tab_menu($menu = null, $sub_module = null, $function = null, $width = null, $trans_id = null){
+		$all_access = $this->header_model->all_access();
+
+		if ($all_access == "1"){
+			$result = 1;
+		}else{
+			$result = $this->menu_model->check_menu($menu, $sub_module, $function);
+		}
+				
+		if ($result > 0){
+			$data['function'] = $function;
+			$data['sub_module'] = $sub_module;
+			$data['user_type'] = $this->session->userdata('user_type');
+			$data['menu_module'] = $menu;
+			$data['edit'] = 1;
+			$data['account_id'] = $this->session->userdata("account_id");
+			$data['width'] = $width;
+			$data['trans_id'] = $trans_id;
+			$data['owner'] = $this->menu_model->check_owner();
+			$this->template->load($menu, $data);						
+		}else{
+			redirect("/logout");
+		}		
+	}
+
 	public function store($store){
 		var_dump($store);
 		$menu = null; 

@@ -671,18 +671,18 @@ function add_item_table(){
 
   $("#tbl-products tbody").append("<tr class='item_row_table'>"+
       "<td class='tbl_prod_no' style='width: 4%;' hidden>"+ $("#prod_no").val() +
-    "</td><td class='tbl_prod_name' style='width: 19.5%;'>"+ $("#prod_name").val() +
-    "</td><td class='tbl_qty text-center' style='width: 3.3%;'>"+ $.number($("#qty").val()) +
+    "</td><td class='tbl_prod_name' style='width: 30%;'>"+ $("#prod_name").val() +
+    "</td><td class='tbl_qty text-center' style='width: 10%;'>"+ $.number($("#qty").val()) +
     "</td><td class='tbl_stock_uom text-center' style='width: 2.5%;' hidden>"+ $("#stock_uom").val() +
     "</td><td class='tbl_reg_price' hidden>"+ $.number($("#reg_price").val(), 2) +
-    "</td><td class='tbl_sel_price text-right px-2' style='width: 3.2%;'>"+ $.number($("#sel_price").val(), 2) +
+    "</td><td class='tbl_sel_price text-right px-2' style='width: 15%;'>"+ $.number($("#sel_price").val(), 2) +
     "</td><td class='tbl_total_price text-right' hidden>"+ $.number($("#total_price").val(), 2) +
     "</td><td class='tbl_volume_discount'  hidden>"+ $("#volume_discount").val() +
-    "</td><td class='tbl_total_selling_price text-right px-2'  style='width: 3.3%;'>"+ $.number($("#total_selling_price").val(), 2) +
+    "</td><td class='tbl_total_selling_price text-right px-2'  style='width: 20%;'>"+ $.number($("#total_selling_price").val(), 2) +
     "</td><td class='tbl_share_per' hidden>"+ $("#share_per").val() +
     "</td><td class='tbl_share_amount' hidden>"+ $("#share_amount").val() +
     "</td><td class='tbl_total_amount' hidden>"+ $.number($("#total_price").val(), 2) +
-    "</td><td class='text-center text-red remove_item' style='width: 3.3%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" 
+    "</td><td class='text-center text-red remove_item' style='width: 10%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" 
     +"<i class='fa fa-edit edit_item_table' style='color:red;cursor:pointer;' id='edit_item_table'></i>" +
     "</td><td class='tbl_prod_id' hidden>"+ $("#prod_id").val() +
     "</td><td class='tbl_volume_discount_per'  hidden>"+ $("#volume_discount_per").val() +
@@ -772,7 +772,7 @@ function reset_input(){
 
 //get sale data
 function get_sale_transaction(id){
-  console.log(id);
+  // console.log(id);
   var csrf_name = $("input[name=csrf_name]").val();
 
   $.ajax({
@@ -781,7 +781,7 @@ function get_sale_transaction(id){
     type : "POST",
     dataType : "JSON",
     success : function(data){
-      console.log(data);
+      // console.log(data);
       $("input[name=csrf_name]").val(data.token);
         
       //For Header
@@ -835,18 +835,18 @@ function get_sale_transaction(id){
 
 
         $("#tbl-products tbody").append("<tr class='item_row_table'><td class='tbl_prod_no'  style='width: 4%;' hidden>"+ data.trans_dtl[x]['product_no'] +
-          "</td><td class='tbl_prod_name' style='width: 19.5%;'>"+  data.trans_dtl[x]['product_name'] +
-          "</td><td class='tbl_qty text-center' style='width: 3.3%;'>"+ data.trans_dtl[x]['qty'] +
+          "</td><td class='tbl_prod_name' style='width: 30%;'>"+  data.trans_dtl[x]['product_name'] +
+          "</td><td class='tbl_qty text-center' style='width: 10%;'>"+ data.trans_dtl[x]['qty'] +
           "</td><td class='tbl_stock_uom text-center' style='width: 2.5%;' hidden>"+ data.trans_dtl[x]['unit_desc'] +
           "</td><td class='tbl_reg_price' hidden>"+ data.trans_dtl[x]['reg_selling_price'] +
-          "</td><td class='tbl_sel_price text-right px-2' style='width: 3.2%;'>"+ data.trans_dtl[x]['selling_price'] +
+          "</td><td class='tbl_sel_price text-right px-2' style='width: 15%;'>"+ data.trans_dtl[x]['selling_price'] +
           "</td><td class='tbl_total_price' hidden>"+ data.trans_dtl[x]['total_price'] +
           "</td><td class='tbl_volume_discount'  hidden>"+ data.trans_dtl[x]['volume_discount'] +
-          "</td><td class='tbl_total_selling_price text-right px-2'  style='width: 3.3%;'>"+ data.trans_dtl[x]['total_selling_price'] +
+          "</td><td class='tbl_total_selling_price text-right px-2'  style='width: 20%;'>"+ data.trans_dtl[x]['total_selling_price'] +
           "</td><td class='tbl_share_per' hidden>"+ data.trans_dtl[x]['share'] +
           "</td><td class='tbl_share_amount' hidden>"+ data.trans_dtl[x]['share_amount'] +
           "</td><td class='tbl_total_amount' hidden>"+ data.trans_dtl[x]['total_amount'] +
-          "</td><td class='text-center text-red remove_item' style='width: 3.3%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" 
+          "</td><td class='text-center text-red remove_item' style='width: 10%;'>"+ "<i class='fa fa-minus-circle remove_item_table' style='color:red;cursor:pointer;' id='remove_item_table'></i>" 
           +"<i class='fa fa-edit edit_item_table' style='color:red;cursor:pointer;' id='edit_item_table'></i>" +
           "</td><td class='tbl_prod_id' hidden>"+ data.trans_dtl[x]['product_id'] +
           "</td><td class='tbl_volume_discount_per'  hidden>"+ data.trans_dtl[x]['volume_discount_per'] +

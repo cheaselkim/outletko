@@ -53,7 +53,8 @@
                 </div>
 
                 <div class="col-6 col-md-6">
-                    <input type="text" class="form-control txt-box-text-size" id="partner"  placeholder="Agent">
+                    <input type="hidden" id="partner_id">
+                    <input type="text" class="form-control txt-box-text-size" id="partner"  data-id = "" data-id2 = "" data-share="" placeholder="Agent">
                 </div>
             </div>
 

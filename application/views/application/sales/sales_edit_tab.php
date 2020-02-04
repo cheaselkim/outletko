@@ -17,14 +17,22 @@
 </head>
 
 <style type="text/css">
-    input[type='text'], select, button{
+    /* input[type='text'], select, button{
         height: 45px !important;
         font-size: 25px !important;
     }
 
     .btn{
         height: 45px !important;
-    }
+    } */
+
+    th{
+    font-size: 14px !important;
+  }
+
+  td{
+    font-size: 12px !important;
+  }
 
 </style>
 
@@ -198,13 +206,13 @@
             <thead class="w-100">
                 <tr>
                     <th class="d-xl-table-cell d-lg-none d-md-none d-none">PN</th>
-                    <th style="width: 50%;" class="th-table-wd">Product Name</th>
-                    <th style="width: 10%;">Qty.</th>
+                    <th style="width: 30%;" class="th-table-wd text-center">Product Name</th>
+                    <th style="width: 10%;" class="text-center px-0">Qty</th>
                     <th hidden="">UM</th>
                     <th class="d-xl-table-cell d-lg-none d-md-none d-none">Curr</th>
-                    <th style="width: 10%;">Unit Price</th>
-                    <th style="width: 15%;">Total Price</th>
-                    <th  class="text-center text-red"><span class="fa fa-minus-circle"></span></th>
+                    <th style="width: 15%;" class="text-center">Unit Price</th>
+                    <th style="width: 20%;" class="text-center">Total Price</th>
+                    <th style="width: 10%" class="text-center text-red"><span class="fa fa-minus-circle"></span></th>
                 </tr>
             </thead>
             <tbody>                                                  

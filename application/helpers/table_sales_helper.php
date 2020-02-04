@@ -8,12 +8,12 @@ if (!function_exists("table_item")){
 		$output .= "<table style='width: 100%' class='table table-striped table-sm table-bordered' id='table_item' style=''>
 					<thead class='w-100'>
 						<tr class='bg-success'>
-							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-lg-table-cell'>Product No</th>
+							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-md-table-cell'>Product No</th>
 							<th style='width: 50%;font-size:16px;' class='text-left'>Product Name</th>
 							<th style='width: 10%;font-size:16px;' class='text-left'>Qty</th>
-							<th style='width: 6%;font-size:16px;' class='text-left d-none d-lg-table-cell'>Unit</th>
+							<th style='width: 6%;font-size:16px;' class='text-left d-none d-md-table-cell'>Unit</th>
 							<th style='width: 15%;font-size:16px;' class='text-left'>Price</th>
-							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-lg-table-cell'>Discount</th>
+							<th style='width: 10%;font-size:16px;' class='text-left  d-none d-md-table-cell'>Discount</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -65,9 +65,9 @@ if (!function_exists("table_item")){
 								<td style='width: 10%;font-size:16px;' class=' d-none d-lg-table-cell'>".$value->product_no."</td>
 								<td style='width: 50%;font-size:16px;'>".$value->product_name."</td>
 								<td style='width: 10%;font-size:16px;' class='text-right pr-1 '>".$inv_qty."</td>
-								<td style='width: 6%;font-size:16px;' class='d-none d-lg-table-cell'>".$unit."</td>
+								<td style='width: 6%;font-size:16px;' class='d-none d-md-table-cell'>".$unit."</td>
 								<td style='width: 15%;font-size:16px;' class='text-right pr-1'>".number_format($value->reg_selling_price, 2)."</td>
-								<td style='width: 10%;font-size:16px;' class='text-right pr-1 d-none d-lg-table-cell'>".number_format($value->discount, 2)."</td>
+								<td style='width: 10%;font-size:16px;' class='text-right pr-1 d-none d-md-table-cell'>".number_format($value->discount, 2)."</td>
   						    </tr>";
 			}
 
@@ -128,9 +128,9 @@ if (!function_exists("table_query")){
 						<tr>
 							<th style='width: 5%;'>Trans No</th>
 							<th style='width: 5%;'>Trans Date</th>
-							<th style='width: 23.5%;'>Customer</th>
-							<th style='width: 10%;'>Total Amount</th>
-							<th style='width: 10%;'>Sales Discount</th>
+							<th style='width: 23.5%;' class='d-none d-md-table-cell'>Customer</th>
+							<th style='width: 10%;' class='d-none d-md-table-cell'>Total Amount</th>
+							<th style='width: 10%;' class='d-none d-md-table-cell'>Sales Discount</th>
 							<th style='width: 9.8%;'>Grand Total</th>
 							<th class='text-center' style='width: 5%;'>Action</th>
 						</tr>
@@ -153,9 +153,9 @@ if (!function_exists("table_query")){
 				$output .= "<tr>
 								<td>".$value->trans_no."</td>
 								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
-								<td>".$value->cust_name."</td>
-								<td class='text-right'>".number_format(($value->total_amount - $value->sales_discount), 2)."</td>
-								<td class='text-right'>".number_format($value->sales_discount, 2)."</td>
+								<td class='d-none d-md-table-cell'>".$value->cust_name."</td>
+								<td class='text-right d-none d-md-table-cell'>".number_format(($value->total_amount - $value->sales_discount), 2)."</td>
+								<td class='text-right d-none d-md-table-cell'>".number_format($value->sales_discount, 2)."</td>
 								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
 								<td>".$btn."</td>
 							</tr>";

@@ -107,7 +107,11 @@
 							if ($edit == "0"){
 								$data['page'] = 'application/sales/sales_query';														
 							}else if ($edit == "1"){
-								$data['page'] = 'application/sales/sales_edit';														
+								if ($width <= "768"){
+									$data['page'] = 'application/sales/sales_edit_tab';														
+								}else{
+									$data['page'] = 'application/sales/sales_edit';														
+								}
 							}
 						}else if ($function == "3"){
 							$data['page'] = 'application/sales/sales_query';														
