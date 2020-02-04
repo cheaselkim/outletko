@@ -75,8 +75,10 @@ $route['terms'] = 'outletko/menu/2';
 $route['privacy'] = 'outletko/menu/3';
 $route['contactus'] = 'outletko/menu/4';
 $route['reviews'] = 'outletko/menu/5';
+$route['blog'] = 'outletko/menu/6';
+$route['blog/(:any)/(:any)'] = 'outletko/get_blog/$1/$2';
 
 $route['sukifresh'] = 'sukifresh/homepage';
-$route['sukifresh/(:any)'] = 'sukifresh/page/$1';
- 
+$route['sukifresh/(:any)'] = 'sukifresh/page/$1'; 
+
 $route['(:any)'] = 'store/store/$1';    

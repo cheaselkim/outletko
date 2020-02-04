@@ -524,7 +524,7 @@
 				
 				
 				}else if ($user_type == "7"){
-					$data['header'] = 'outletko/header';
+					$data['header'] = 'website/header';
 
 					if ($menu == "1"){
 						$data['page'] = 'website/aboutus';
@@ -536,8 +536,11 @@
 						$data['page'] = 'website/contactus';
 					}else if ($menu == "5"){
 						$data['page'] = 'website/reviews';
+					}else if ($menu == "6"){
+						$data['page'] = 'website/blog';
+					}else if ($menu == "7"){
+						$data['page'] = 'website/blog_page';
 					}
-
 
 				}else{
 

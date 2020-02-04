@@ -7,7 +7,8 @@ class Outletko_model extends CI_Model {
     parent::__construct();
     $CI = &get_instance(); 
     $this->load->database();
-	$this->db2 = $CI->load->database('outletko', TRUE);
+    $this->db2 = $CI->load->database('outletko', TRUE);
+    $this->db3 = $CI->load->database('admin', TRUE);
   }
 
   public function featured_outlet(){
@@ -15,5 +16,14 @@ class Outletko_model extends CI_Model {
     return $query;
   }
 
+  public function blog(){
+    $query = $this->db3->query("SELECT * FROM blog ")->result();
+    return $query;
+  }
+
+  public function get_blog($id){
+    $query = $this->db3->query("SELECT * FROM blog WHERE id = ? ", array($id))->result();
+    return $query;
+  }
 
 }

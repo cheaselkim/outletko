@@ -38,8 +38,76 @@ class Outletko extends CI_Controller {
 		$data['width'] = 1366;
 
 		$this->template->load($menu, $data);	
+	}
+	
+	public function blog(){
+		$result = $this->outletko_model->blog();
+
+		if (!empty($result)){
+			foreach($result as $key => $value){
+				$data['result'][$key] = array(
+					"id" => $value->id,
+					"title" => $value->title,
+					"content" => (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."..."),
+					"img" => unserialize($value->img_path)
+				);
+ 			}
+		}
+
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
 
 
-    }
+	}
+
+	public function blog_title(){
+
+	}
+
+	public function get_blog($id, $title){
+
+		$id_content = substr($id, 0, 7);
+		$id = substr($id, 7);
+		
+		if ($id_content == "4579328"){
+			$menu = 7;
+
+			$data['id'] = $id;
+			$data['function'] = 0;
+			$data['sub_module'] = 0;
+			$data['user_type'] = 7;
+			$data['menu_module'] = 0;
+			$data['account_id'] = 0;
+			$data['owner'] = 0;
+			$data['edit'] = 0;
+			$data['width'] = 1366;
+
+			$this->template->load($menu, $data);	
+		}else{
+			redirect("/");
+		}
+
+	}
+
+	public function get_page_blog(){
+		$id = $this->input->post("id");
+		$result = $this->outletko_model->get_blog($id);
+
+		if (!empty($result)){
+			foreach($result as $key => $value){
+				$data['result'][$key] = array(
+					"title" => $value->title,
+					"content" => $value->content,
+					"blog_date" => date("F d, Y", strtotime($value->date_insert)),
+					"img" => unserialize($value->img_path)
+				);
+			}
+		}else{
+			$data['result'] = "";
+		}
+
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
+	}
 
 }

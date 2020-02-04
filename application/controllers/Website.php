@@ -22,4 +22,6 @@ class Website extends CI_Controller {
 		$this->load->view("admin/email/email_register.php", $data);
 	}
 
+	
+
 }
