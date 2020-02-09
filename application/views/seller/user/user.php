@@ -431,7 +431,35 @@
 					<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white pt-2 pb-3" id="div-payment">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 pt-2 pb-5 bg-white">
-								
+
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="font-size-18 font-weight-600 text-uppercase font-weight-600">Delivery Types <span class="text-red">*</span> </span>									
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="custom-control custom-switch cursor-pointer">
+													<input type="checkbox" class="custom-control-input cursor-pointer" id="cust_del_date">
+													<label class="custom-control-label cursor-pointer" for="cust_del_date">Customer allowed to choose delivery date?</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div id="div-delivery-type">
+												
+												</div>
+	
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<hr class="my-2 hr-green">								
+
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<span class="font-size-18 font-weight-600 text-uppercase font-weight-600">Payment Types <span class="text-red">*</span> </span>									
@@ -477,7 +505,7 @@
 														</select>
 													</div>
 													<div class="col-12 col-lg-6 col-md-6 col-sm-12 pad-left">												
-														<button class="btn btn-orange text-white btn-block font-weight-600" id="btn_save_bank">Save</button>
+														<button class="btn btn-orange text-white btn-block font-weight-600" id="btn_save_bank">Add</button>
 													</div>													
 												</div>
 											</div>
@@ -514,7 +542,7 @@
 											<div class="col-12 col-lg-6 col-md-6 col-sm-12">
 												<span class="font-size-18 font-weight-600">For Remittance</span>
 											</div>
-											<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right">
+											<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right" hidden>
 												<button class="btn btn-orange px-5 text-white" id="btn_remitt_save">Save</button>
 											</div>
 										</div>
@@ -530,20 +558,6 @@
 									</div>
 								</div>
 
-								<hr class="my-2 hr-green">
-
-								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12">
-										<span class="font-size-18 font-weight-600 text-uppercase font-weight-600">Delivery Types <span class="text-red">*</span> </span>									
-										
-										<div id="div-delivery-type">
-											
-										</div>
-
-									</div>
-								</div>
-
-
 								<div class="row" id="div-for-delivery">
 
 									<div class="col-lg-12 col-md-12 col-sm-12">
@@ -557,8 +571,17 @@
 												<input type="text" class="form-control textbox-green2" id="std_del">
 											</div>
 										</div>
+
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="custom-control custom-checkbox cursor-pointer">
+													<input type="checkbox" class="custom-control-input free_shipping cursor-pointer" id="free_shipping" name="free_shipping" value="0">
+													<label class="custom-control-label cursor-pointer" for="free_shipping">Free Shipping?</label>
+												</div>											
+											</div>
+										</div>
 										
-										<div class="row pt-3">
+										<div class="row" id="div-shipping-fee">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right">
 												<button class="btn btn-outline-success px-5 ml-auto mb-2" id="btn_add_ship" data-toggle="modal" data-target="#modal_ship">Add Shipping Fee</button>
 											</div>
@@ -762,9 +785,32 @@
 											<span class="h4">Status : For Acknowledgement</span>							
 										</div>
 
-										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
 											<div class="row">
-												<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Order No : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_order_no"></span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Order Date : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_order_date"></span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Customer : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_from"></span>
+												</div>
+											</div>
+												<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12">
 													<table class="table table-sm table-bordered">
 														<thead>
 															<tr>
@@ -781,10 +827,78 @@
 															</tr>
 														</tbody>
 													</table>
+												</div> -->
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<hr class="my-1" style="border-top: 1px dashed #77933c">
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div class="row">
+												<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Delivery Type : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_type">For Delivery</span>
+															<input type="hidden" id="po_delivery_type_id">												
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Delivery Date : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_date"></span>
+															<input type="hidden" id="po_delivery_date">												
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Courier : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_courier">For Delivery</span>
+															<input type="hidden" id="po_delivery_courier_id">												
+														</div>
+													</div>
+													
+												</div>
+												<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+													
+													<div class="row">
+														<div class="col-6 col-lg-5 col-md-6 col-sm-6">
+															<span class="font-weight-600">Payment Type : </span>
+														</div>
+														<div class="col-6 col-lg-7 col-md-6 col-sm-6">
+															<span id="po_payment_type">Cash on Delivery</span>
+															<input type="hidden" id="po_payment_type_id">
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-5 col-md-6 col-sm-6">
+															<span class="font-weight-600">Payment Method : </span>
+														</div>
+														<div class="col-6 col-lg-7 col-md-6 col-sm-6">
+															<span id="po_payment_method">Cash on Delivery</span>
+															<input type="hidden" id="po_payment_method_id">
+														</div>
+													</div>
+
 												</div>
 											</div>
 										</div>
-										
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<hr class="my-1" style="border-top: 1px dashed #77933c">
+										</div>										
+
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 											<div style="height: 300px; overflow: auto;">
 
@@ -832,7 +946,7 @@
 								<div class="col-lg-4 col-md-4 col-sm-12">
 									<div class="row">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span class="h4">Address</span>
+											<span class="h4">Information</span>
 										</div>
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 											<span>House no., Building and Street Name</span>
@@ -851,8 +965,21 @@
 											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_prov" readonly>
 										</div>
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Zip Code</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_zip" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 											<span>Mobile Number</span>
-											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_mobile" readonly>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text bg-white" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+												</div>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_mobile" readonly>
+											</div>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>PHONE Number</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_phone" readonly>
 										</div>
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 											<span>Email Address</span>
@@ -862,7 +989,10 @@
 											<span>Contact Person</span>
 											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_contact_person" readonly>
 										</div>
-
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Delivery Instructions</span>
+											<textarea class="form-control textbox-green2 textbox-readonly" rows="3" id="addr_notes" readonly></textarea>
+										</div>
 									</div>
 								</div>
 
@@ -871,12 +1001,32 @@
 						
 						<div class="col-lg-12 col-md-12 col-sm-12">
 
-							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+							<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
 								<div class="row">
 									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 										<span>Delivery Type : </span>
 										<span id="po_delivery_type">For Delivery</span>
 										<input type="hidden" id="po_delivery_type_id">												
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Delivery Date : </span>
+										<span id="po_delivery_date"></span>
+										<input type="hidden" id="po_delivery_date">												
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Courier : </span>
+										<span id="po_delivery_courier">For Delivery</span>
+										<input type="hidden" id="po_delivery_courier_id">												
 									</div>
 								</div>
 							</div>
@@ -891,8 +1041,7 @@
 								</div>
 							</div>
 
-
-							<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 								<div class="row">
 									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 										<span>Payment Method : </span>
@@ -900,7 +1049,8 @@
 										<input type="hidden" id="po_payment_method_id">
 									</div>
 								</div>
-							</div>
+							</div> -->
+
 							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3">
 								<div class="row">
 									<div class="col-12 col-lg-12 col-md-12 col-sm-12">

@@ -37,6 +37,9 @@ $(document).ready(function(){
   $("#div-store-img-btn-2").hide();
   $("#div-store-img-btn-3").hide();
 
+  $("#div-remittance-list").hide();
+  $("#div-bank-list").hide();
+
   $("#ship_w_mm").number(true, 2);
   $("#ship_o_mm").number(true, 2);
   $("#prod_price").number(true, 2);
@@ -62,6 +65,7 @@ $(document).ready(function(){
 
   $("#delete_product").hide();
 
+  $("#div-shipping-fee").hide();
 
   $("#div-prod-img").mouseover(function(){
     $("#div-update-button").show();
@@ -289,6 +293,14 @@ $(document).ready(function(){
       dynamic: false,
       dropdown: true,
       scrollbar: true
+  });
+
+  $("#free_shipping").change(function(){
+    if ($(this).is(":checked")){
+      $("#div-shipping-fee").hide("slow");
+    }else{
+      $("#div-shipping-fee").show("slow");
+    }
   });
 
 
@@ -580,6 +592,23 @@ $(document).ready(function(){
 
   }); 
 
+  $("#payment_6").change(function(){
+    if ($(this).is(":checked")){
+      $("#div-remittance-list").show("slow");
+    }else{
+      $("#div-remittance-list").hide("slow");
+    }
+  });
+
+  $("#payment_5").change(function(){
+    if ($(this).is(":checked")){
+      $("#div-bank-list").show("slow");
+    }else{
+      $("#div-bank-list").hide("slow");
+    }
+  });
+
+
   $("#btn_save_bank").click(function(){
     check_save_bank();
   });
@@ -848,6 +877,12 @@ function index(){
           color: '#'+ result.result[0].bg_color,
         });
 
+        if (result.result[0].del_date == "1"){
+          $("#cust_del_date").prop("checked", true);
+        }else{
+
+        }
+
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
         $("#div-img-prof").css("background-image", "url('"+profile+"')");
         $('#div-img-prof').css('background-size', "100% 100%");
@@ -908,6 +943,13 @@ function index(){
         $("#input_instagram").val(result.result[0].instagram);
         $("#input_shopee").val(result.result[0].shoppee);
     //for inputs
+
+        if (result.result[0].free_shipping == 0){
+          $("#div-shipping-fee").show();
+        }else{
+          $("#free_shipping").prop("checked", true);
+          $("#div-shipping-fee").hide();
+        }
     
     //for prod_cat_list
         $('#prod_cat_list ul').empty();
@@ -922,6 +964,14 @@ function index(){
 
         if (check == 1){
           $("#payment_"+ (i + 1) ).prop("checked", true);
+        }
+
+        if (payment_type_id == "5" && check == 1){
+          $("#div-bank-list").show();
+        }
+
+        if (payment_type_id == "6" && check == 1){
+          $("#div-remittance-list").show();
         }
 
         if (i == 0){
@@ -1234,8 +1284,13 @@ function order_table(id){
       $("#addr_mobile").val(data[0].contact_no);
       $("#addr_email").val(data[0].email);
       $("#addr_contact_person").val(data[0].contact_name);
+      $("#addr_notes").val(data[0].notes);
+      $("#addr_zip").val(data[0].zip_code);
+      $("#addr_phone").val(data[0].phone_no);
 
       $("#po_delivery_type").text(data[0].delivery_type_desc);
+      $("#po_delivery_date").text((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
+      $("#po_delivery_courier").text(data[0].courier_name);
       $("#po_payment_type").text(data[0].payment_type_desc);
       $("#po_delivery_type_id").val(data[0].delivery_type_id);
       $("#po_payment_type_id").val(data[0].payment_type_id);
@@ -1715,6 +1770,13 @@ function check_payment(){
   var delivery_type = 0;
   var inp_return = jQuery.trim($("#inp_return").val()).length;
   var inp_warranty = jQuery.trim($("#inp_warranty").val()).length;
+  var switchbox = "";
+
+  if ($("#cust_del_date").is(":checked")){
+    switchbox = 1;
+  }else{
+    switchbox = 0;
+  }
 
   $('.payment_type').each(function () {
    if (this.checked) {
@@ -1728,6 +1790,7 @@ function check_payment(){
    }
   });
 
+  console.log(switchbox);
 
   if (payment_type == 0 || delivery_type == 0 || inp_return == 0 || inp_warranty == 0){
     swal({
@@ -1735,6 +1798,7 @@ function check_payment(){
       title : "Please input all required Fields"
     })
   }else{
+    save_remittance();
     save_payment();
   }
 
@@ -1868,8 +1932,23 @@ function save_payment(){
   var appointment = new Array();
   var inp_return = $("#inp_return").val();
   var inp_warranty = $("#inp_warranty").val();
+  var cust_del_date = "";
+  var shipping_fee = "";
   var sub = "";
   var i = 0;
+
+  if ($("#cust_del_date").is(":checked")){
+    cust_del_date = 1;
+  }else{
+    cust_del_date = 0;
+  }
+
+  if ($("#free_shipping").is(":checked")){
+    shipping_fee = 1;
+  }else{
+    shipping_fee = 0;
+  }
+
 
   $('.payment_type').each(function () {
     if (this.checked) {
@@ -1921,8 +2000,10 @@ function save_payment(){
   var ship_w_mm = $("#ship_w_mm").val();
   var ship_o_mm = $("#ship_o_mm").val();
 
+  console.log("shipping_fee " + shipping_fee);
+
   $.ajax({
-    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty},
+    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Outletko_profile/save_payment",
@@ -2698,11 +2779,16 @@ function save_bank(){
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
       $("#bank_id").val("0");
+      $("#bank_name").val("2");
+      $("#account_name").val("");
+      $("#account_no").val("");
+      $("#bank_status").val("1");
       swal({
         type : "success",
         title : "Successfully Saved"
       })
       index();
+      $("#btn_save_bank").text("Add");
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -2716,7 +2802,7 @@ function edit_bank(id, row){
   var account_no = $("#tbl-bank tbody tr:eq("+row+")").find(".account_no").text();
   var status = $("#tbl-bank tbody tr:eq("+row+")").find(".status_id").text();
 
-  console.log(id);
+  $("#btn_save_bank").text("Update");
 
   $("#bank_id").val(id);
   $("#bank_name").val(bank_name);

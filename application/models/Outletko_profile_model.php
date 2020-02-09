@@ -40,9 +40,10 @@ class Outletko_profile_model extends CI_Model {
     }
 
     public function search_city($city){
-        $query = $this->db->query("SELECT 
+        $query = $this->db2->query("SELECT 
             province_desc,
             city_desc,
+            island_group,
              `city`.`province_id` AS prov_id,
              `city`.`id` AS city_id
             FROM province 
@@ -312,7 +313,12 @@ class Outletko_profile_model extends CI_Model {
 
     }
 
-
+    public function save_cust_del_date($save_cust_del_date, $shipping_fee){
+        $this->db2->set("free_shipping", $shipping_fee);
+        $this->db2->set("del_date", $save_cust_del_date);
+        $this->db2->where("id", $this->session->userdata("comp_id"));
+        $this->db2->update("account");
+    }
 
     public function update_profile($account_hdr,$account_id) {
         $this->db2->where('account_id',$account_id);

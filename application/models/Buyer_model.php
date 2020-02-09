@@ -19,6 +19,11 @@ class Buyer_model extends CI_Model {
         $this->session->set_userdata("order_no", $result->order_no);
     }
 
+    public function cust_del_date($id){
+        $query = $this->db2->query("SELECT * FROM account WHERE id = ? ", array($id))->result();
+        return $query;
+    }
+
     public function delivery_type($id){
         $query = $this->db2->query("
             SELECT 
@@ -26,8 +31,8 @@ class Buyer_model extends CI_Model {
             FROM delivery_type
             INNER JOIN account_delivery_type ON 
             `account_delivery_type`.`delivery_type_id` = `delivery_type`.`id`
-            WHERE account_id = ?
-        ", array($id))->result();
+            WHERE account_id = ? AND `account_delivery_type`.`delivery_type_check` = ?
+        ", array($id, 1))->result();
         return $query;
     }
 
@@ -40,6 +45,23 @@ class Buyer_model extends CI_Model {
             `account_payment_type`.`payment_type_id` = `payment_type`.`id` 
             WHERE account_id = ? AND `payment_type`.`status` = ? AND payment_type_check = ?
         ", array($id, "1", "1"))->result();
+        return $query;
+    }
+
+    public function courier($id, $total_weight){
+        $query = $this->db2->query("SELECT 
+            account_courier.*,
+            `courier`.`courier`
+            FROM account_courier
+            INNER JOIN courier ON 
+            `account_courier`.`courier_id` = `courier`.`id`
+            WHERE comp_id = ? AND `account_courier`.`ship_kg` >= ?
+            GROUP BY courier_id", array($id, $total_weight))->result();
+        return $query;    
+    }
+
+    public function get_courier($id){
+        $query = $this->db2->query("SELECT * FROM account_courier WHERE id = ?", array($id))->result();
         return $query;
     }
 
@@ -72,15 +94,15 @@ class Buyer_model extends CI_Model {
         return $query;                
     }
 
-    public function get_bank($id){
+    public function get_bank($id, $seller_id){
         $query = $this->db2->query("
             SELECT 
             bank_list.*, account_bank.*
             FROM bank_list
             INNER JOIN account_bank ON 
             `account_bank`.`bank_id` = `bank_list`.`id` 
-            WHERE `account_bank`.`id` = ?
-        ", array($id))->result();
+            WHERE `bank_list`.`id` = ? AND `account_bank`.`comp_id` = ?
+        ", array($id, $seller_id))->result();
         return $query;                
     }
 
@@ -129,6 +151,7 @@ class Buyer_model extends CI_Model {
         $query = $this->db2->query("
             SELECT 
             account_buyer.*, 
+            `province`.`island_group`, 
             `province`.`province_desc`, 
             `city`.`city_desc` 
             FROM account_buyer 

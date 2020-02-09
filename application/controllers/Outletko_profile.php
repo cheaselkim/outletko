@@ -81,7 +81,7 @@ class Outletko_profile extends CI_Controller {
 		if (!empty($result)){
 			$data['response'] = "true";
 			foreach ($result as $key => $value) {
-				$data['result'][] = array("label" => ($value->city_desc.", ".$value->province_desc), "province" => $value->province_desc, "prov_id" => $value->prov_id, "city_id" => $value->city_id);
+				$data['result'][] = array("label" => ($value->city_desc.", ".$value->province_desc), "province" => $value->province_desc, "prov_id" => $value->prov_id, "city_id" => $value->city_id, "island_group" => $value->island_group);
 			}
 		}
 
@@ -220,6 +220,8 @@ class Outletko_profile extends CI_Controller {
         $appointment = $this->input->post("appointment");
         $return = $this->input->post("inp_return");
         $warranty = $this->input->post("inp_warranty");
+        $cust_del_date = $this->input->post("cust_del_date");
+        $shipping_fee = $this->input->post("shipping_fee");
 
         $data = array(
                 "std_delivery" => $std_del,
@@ -232,7 +234,7 @@ class Outletko_profile extends CI_Controller {
         $result_ship = $this->outletko_profile_model->save_ship($data);
         $result_appointment = $this->outletko_profile_model->save_appointment($appointment);
         $result_warranty = $this->outletko_profile_model->save_warranty($warranty, $return);
-
+        $result_cust_del_date = $this->outletko_profile_model->save_cust_del_date($cust_del_date, $shipping_fee);
         echo json_encode(1);
     }
 

@@ -70,6 +70,18 @@ class Buyer extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function courier(){
+		$data['result'] = $this->buyer_model->courier($this->input->post("id"), $this->input->post("total_weight"));
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
+	}
+
+	public function get_courier(){
+		$data['result'] = $this->buyer_model->get_courier($this->input->post("id"));
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
+	}
+
 	public function get_orders(){
 
 		$query = $this->buyer_model->get_orders();
@@ -100,12 +112,14 @@ class Buyer extends CI_Controller {
  	}
 
  	public function get_bank(){
- 		$id = $this->input->post("id");
- 		$result = $this->buyer_model->get_bank($id);
+		$id = $this->input->post("bank_type");
+		$seller_id = $this->input->post("id");
+ 		$result = $this->buyer_model->get_bank($id, $seller_id);
 
  		foreach ($result as $key => $value) {
- 			$data['account_name'] = $value->bank_name;
- 			$data['account_no'] = $value->bank_no;
+			$data['bank_name'] = $value->bank_name;
+			$data['account_name'] = $value->account_name;			
+ 			$data['account_no'] = $value->account_no;
  		}
 
  		$data['token'] = $this->security->get_csrf_hash();
@@ -140,6 +154,7 @@ class Buyer extends CI_Controller {
 		}
 
 		$data['prod_img'] = $product;
+		$data['cust_del_date'] = $this->buyer_model->cust_del_date($data['result'][0]->account_id);
 		$data['delivery_type'] = $this->buyer_model->delivery_type($data['result'][0]->account_id);
 		$data['payment_type'] = $this->buyer_model->payment_type($data['result'][0]->account_id);
 		$data['sched_time'] = $this->buyer_model->get_sched_time($data['result'][0]->account_id);
@@ -161,6 +176,10 @@ class Buyer extends CI_Controller {
 		// foreach ($prod_id as $row) {
 		// 	var_dump($row['prod_id']);
 		// }
+
+		if ($this->input->post("save_info") == "1"){
+			$data['result_profile']  = $this->buyer_model->update_account($this->input->post("data_profile"));
+		}
 
 		$data['result'] = $this->buyer_model->confirm_order($order, $order_no['id']);
 		$data['result2'] = $this->buyer_model->insert_order_no_product($prod_id, $order_no['id']);

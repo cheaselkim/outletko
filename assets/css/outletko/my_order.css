@@ -1,14 +1,32 @@
+.ui-datepicker{
+	margin: 0 auto;
+}
+
 .text-blue{
 	color: blue;
 }
 
+.btn-light-green-2{
+	background: rgb(195, 214, 155);
+	color: rgb(79, 98, 40);
+}
+
+.btn-gray{
+	background: rgb(166, 166, 166);
+	color: white;
+}
 
 .bg-white-smoke{
 	background: #f5f5f5;
 }
 
+
 .border-1{
 	border: 1px solid gray;
+}
+
+.border-bottom-light-green{
+	border-bottom: 1px solid rgb(119, 147, 60);
 }
 
 .btn-append{
@@ -54,7 +72,7 @@
 .div-img-prod{
 	height: 150px;
 	width: 150px;
-	background-size: 100% 100%
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -103,7 +121,7 @@
 	.div-img-prod{
 		height: 150px;
 		width: 150px;
-		background-size: 100% 100%
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-position: center;
 	}
@@ -150,7 +168,7 @@
 	.div-img-prod{
 		height: 150px;
 		width: 150px;
-		background-size: 100% 100%
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-position: center;
 	}
@@ -199,7 +217,7 @@
 .div-img-prod{
 	height: 150px;
 	width: 150px;
-	background-size: 100% 100%
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -222,9 +240,93 @@
 	font-size: 30px;
 }
 
+.font-size-24{
+	font-size: 24px;
+}
+
+.font-size-20{
+	font-size: 20px;
+}
+
+
+.font-size-18{
+	font-size: 18px;
+}
+
+.font-size-17{
+	font-size: 17px;
+}
+
+.font-size-16{
+	font-size: 16px;
+}
+
 .css-label{
 	margin-left: 0px;
 }
 
+.div-checkout-details-1{
+	border-top: 10px solid rgb(119, 147, 60);
+	border-bottom: 10px solid rgb(119, 147, 60);
+	height: 250px;
+	background: rgb(235, 241, 222);
+}
+
+.div-process-btn{
+	padding-top: 7%;
+}
+
+.div-process-btn button{
+	height: 50px;
+}
+
+.div-deliver{
+	height: 150px;
+	border-left: 1px solid rgb(119, 147, 60);
+	border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-arrive{
+	height: 150px;
+	border-left: 1px solid rgb(119, 147, 60);
+	border-right: 1px solid rgb(119, 147, 60);
+	border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-payment{
+	height: 150px;
+	border-right: 1px solid rgb(119, 147, 60);
+	border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-modal-payment-type{
+	border: 1px solid rgb(119, 147, 60);
+	height: 100px;
+}
+
+.div-modal-payment-type:hover{
+	background: rgb(235, 241, 222);
+}
+
+.div-modal-payment-type .active{
+	background: yellowgreen;
+}
+
+.div-checkout-footer{
+	height: 90px;
+}
+
+.div-checkout-footer-fee{
+	border-left: 1px solid rgb(119, 147, 60);
+}
+
+.div-checkout-footer-total{
+	border-left: 1px solid rgb(119, 147, 60);
+	border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-checkout-footer-button{
+	border-right: 1px solid rgb(119, 147, 60);	
+}
 
 }

@@ -8,6 +8,7 @@ $(document).ready(function(){
 	$("#div-order-dtls").hide();
 	$("#div-checkout-details").hide();
 	$("#div-order-summary").hide();
+	$("#div-order-confirm").hide();
 	// delivery_type();
 	// payment_type();
 
@@ -28,11 +29,24 @@ $(document).ready(function(){
 	// 	get_order_checkout();
 	// });
 
+	// disabled datepicker
+	// $("#datepicker").datepicker().datepicker('disable');
+
+	$(function(){
+		$('#datepicker').datepicker({
+		  inline: true,
+		  showOtherMonths: true,
+		  dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+		  changeMonth: true,
+		  changeYear : true
+		});
+	  });
+
 	$("#payment_type").change(function(){
 		$("#div-bank-list").hide();
 		$("#div-remittance-list").hide();
 		if ($(this).val() == "5"){
-			$("#div-bank-list").show(	);			
+			$("#div-bank-list").show();			
 		}else if ($(this).val() == "6"){
 			$("#div-remittance-list").show();
 		}
@@ -46,21 +60,26 @@ $(document).ready(function(){
 		cancel_order();
 	});
 
-	$("#btn_order_payment").click(function(){
-		$("#div-home").hide();
-		$("#div-checkout-details").hide();
-	});
-
 	$("#btn_cancel_place").click(function(){
 		cancel_order();
 	});
 
 	$("#btn_order_payment").click(function(){
 		$("#div-home").hide();
-		$("#div-checkout-details").show("slow");
-		$("#div-order-summary").hide();
+		$("#div-order-confirm").hide();
+		$("#div-order-summary").show("slow");
 	});
 
+	$("#btn_confirm_order_2").click(function(){
+		$("#oc-payment-method").val($("#summ-payment-method").text());
+		$("#div-order-summary").hide();
+		$("#div-order-confirm").show("slow");
+	});
+
+	$("#btn_cancel_place_2").click(function(){
+		$("#div-order-confirm").hide();
+		cancel_order();
+	});
 
 	$("#btn_place_order").click(function(){
 		swal({
@@ -102,7 +121,6 @@ $(document).ready(function(){
 		var val = $(this).val();
 		prod_operation(val, "+");
 	});
-
 
 	$(document).on("click", ".btn_minus", function(){
 		var val = $(this).val();
@@ -176,7 +194,8 @@ $(document).ready(function(){
 			$("#bill_province").val(ui.item.province);
 			$("#bill_city").attr("data-id", ui.item.city_id);
 			$("#bill_province").attr("data-id", ui.item.prov_id);
-			get_order_checkout($("#div_id").val());
+			$("#bill_province").attr("data-island", ui.item.island_group);
+			// get_order_checkout($("#div_id").val());
 		},
 		source: function(req, add){
 		    var csrf_name = $("input[name=csrf_name]").val();
@@ -195,6 +214,7 @@ $(document).ready(function(){
               $("#bill_province").val("");
               $("#bill_city").attr("data-id", "0");
               $("#bill_province").attr("data-id", "0");
+			  $("#bill_province").attr("data-island", "0");
               add('');
             }
           }, error: function(err){
@@ -204,6 +224,51 @@ $(document).ready(function(){
 		}
 	});
 
+	// $('#btn_save_delivery_address').click(function(){
+	// 	check_delivery_address();
+	// });
+
+	// $("#btn_save_delivery_details").click(function(){
+	// 	check_delivery_details();
+	// });
+
+	// $("#btn_payment_type").click(function(){
+	// 	check_payment_type();
+	// });
+
+	$("#summ-payment-type-list").change(function(){
+		var payment_type = $("#payment_type_id").val();
+		$("#div-bank-payment").hide();
+		$("#div-remittance-payment").hide();
+		$("#summ-payment-method").text($("#summ-payment-type-list :selected").text());
+		if (payment_type == "1"){
+			$("#div-remittance-payment").show();
+			get_remittance();
+		}else if (payment_type == "5"){
+			$("#div-bank-payment").show();
+			get_bank();
+			get_remittance();
+		}else if (payment_type == "6"){
+			$("#div-remittance-payment").show();
+			get_remittance();
+		}
+	});
+
+	$("#btn-modal-delivery").click(function(){
+		get_courier();
+	});
+
+	$("#delivery_type").change(function(){
+		if ($(this).val() == "3"){
+			$("#div-courier").show();
+		}else{
+			$("#div-courier").hide();
+		}
+	});
+	
+	$("#courier").change(function(){
+		get_courier();
+	});
 
 });
 
@@ -219,8 +284,10 @@ function bank_list(){
 		success : function(result){
 			$("input[name='csrf_name']").val(result.token);
 			for (var i = 0; i < result.result.length; i++) {
-				$("#bank_list").append("<option value='"+result.result[i].id+"'> Pay via "+result.result[i].bank_name+"</option>");
+				$("#summ-payment-type-list").append("<option value='"+result.result[i].id+"'> Pay via "+result.result[i].bank_name+"</option>");
+				// $("#bank_list").append("<option value='"+result.result[i].id+"'> Pay via "+result.result[i].bank_name+"</option>");
 			}
+			get_bank();
 		}, error : function(err){
 			console.log(err.responseText);
 		}
@@ -240,8 +307,8 @@ function remittance_list(){
 		url : base_url + "Buyer/remittance_list",
 		success : function(result){
 			$("input[name='csrf_name']").val(result.token);
-			console.log(result.result);
 			for (var i = 0; i < result.result.length; i++) {
+				$("#summ-payment-type-list").append("<option value='"+result.result[i].id+"'>Pay via "+result.result[i].name+"</option>");
 				$("#remittance_list").append("<option value='"+result.result[i].id+"'>Pay via "+result.result[i].name+"</option>");
 			}
 		}, error : function(err){
@@ -265,8 +332,12 @@ function get_billing(){
 			$("#bill_barangay").val(data.barangay);
 			$("#bill_city").val(data.city_desc);
 			$("#bill_province").val(data.province_desc);
-			$("#bill_city").attr("data-id", data.citry);
+			$("#bill_city").attr("data-id", data.city);
 			$("#bill_province").attr("data-id", data.province);
+			$("#bill_province").attr("data-island", data.island_group);
+			$("#bill_contact").val(data.contact_person);
+			$("#bill_zip").val(data.zip_code);
+			$("#bill_phone").val(data.phone_no);
 			$("#bill_mobile").val(data.mobile_no);
 			$("#bill_email").val(data.email);
 
@@ -276,7 +347,6 @@ function get_billing(){
 	})
 
 }
-
 
 function delivery_type(){
 	var csrf_name = $("input[name=csrf_name]").val();
@@ -288,9 +358,9 @@ function delivery_type(){
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 
-			for (var i = 0; i < result.result.length; i++) {
-				$("#delivery_type").append("<option value='"+result.result[i].id+"'>"+result.result[i].delivery_type+"</option>");
-			}
+			// for (var i = 0; i < result.result.length; i++) {
+			// 	$("#delivery_type").append("<option value='"+result.result[i].id+"'>"+result.result[i].delivery_type+"</option>");
+			// }
 
 		}, error : function(err){
 			console.log(err.responseText);
@@ -317,6 +387,44 @@ function payment_type(){
 	})
 
 }
+
+function courier(){
+	var id = $("#seller_id").val();
+	var csrf_name = $("input[name=csrf_name]").val();
+	var total_weight = "";
+	$("#courier").empty();
+
+
+	$("#prod_dtls tbody").each(function(row, tr){
+		var weight = $(tr).find(".prod_weight").text();
+		var qty = $(tr).find(".prod_qty").text();
+		var weight_qty = weight * qty;
+
+		total_weight += weight_qty;
+	})
+
+	$.ajax({
+		data : {id : id, csrf_name : csrf_name, total_weight : total_weight},
+		type : "POST",
+		dataType : "JSON",
+		url : base_url + "Buyer/courier",
+		success : function(result){
+			$("input[name=csrf_name]").val(result.token);
+			$("#courier").empty();
+
+			for (var i = 0; i < result.result.length; i++) {
+				$("#courier").append("<option value='"+result.result[i].id+"'>"+result.result[i].courier+"</option>");
+			}
+
+			get_courier();
+
+		}, error : function(err){
+			console.log(err.responseText);
+		}
+	})
+
+}
+
 
 function prod_operation(val, oper){
 
@@ -550,10 +658,26 @@ function delete_item(id){
 
 }
 
+function payment_selected(id){
+
+	$("#summ-payment-type-list").empty();
+
+	if (id == "5"){
+		bank_list();
+	}else if (id == "6"){
+		remittance_list();
+	}
+
+	$("#payment_type_id").val(id);
+	$("#payment_type_id").attr("data-name", $("#div-modal-payment-type-" + id).find("span").text());
+	$(".div-modal-payment-type").css("background", "white");
+	$('#div-modal-payment-type-'+id).css("background", "yellowgreen");
+}
 
 function get_order_checkout(div_id){
 	$("#div_id").val(div_id);
 
+	$("#div-payment").empty();
 
 	var csrf_name = $("input[name=csrf_name]").val();
 	var shipping_fee = "";
@@ -592,14 +716,61 @@ function get_order_checkout(div_id){
 	    		// console.log(result.seller_id);
 	    		$("#seller_id").val(result.seller_id);
 				$("input[name=csrf_name]").val(result.token);
+				$("#delivery_type").empty();
+				var img_src = "";
+
+				$("#datepicker").attr("data-deldate", result.cust_del_date[0].del_date);
+
+				if (result.cust_del_date[0].del_date == "1"){
+					$('#datepicker').datepicker('enable');
+				}else{
+					$('#datepicker').datepicker('disable');
+				}
+
+				if (result.cust_del_date[0].free_shipping == "1"){
+					$("#courier").empty();
+					$("#courier").attr("disabled", true);
+					$("#courier").append("<option value='0'>Free Delivery</option>");
+					$("#delivery_fee").val("0.00");
+				}else{
+					$("#courier").empty();
+					$("#courier").attr("disabled", false);
+					courier();
+				}
 
 				for (var i = 0; i < result.payment_type.length; i++) {
-					$("#payment_type").append("<option value='"+result.payment_type[i].id+"'>"+result.payment_type[i].payment_type+"</option>");
+					// $("#payment_type").append("<option value='"+result.payment_type[i].id+"'>"+result.payment_type[i].payment_type+"</option>");
+					
+					if (result.payment_type[i].id == "1"){
+						img_src = base_url + "assets/images/payment_type/cash.png";
+					}else if (result.payment_type[i].id == "2"){
+						img_src = base_url + "assets/images/payment_type/visa.png";
+					}else if (result.payment_type[i].id == "3"){
+						img_src = base_url + "assets/images/payment_type/visa.png";
+					}else if (result.payment_type[i].id == "4"){
+						img_src = base_url + "assets/images/payment_type/visa.png";						
+					}else if (result.payment_type[i].id == "5"){
+						img_src = base_url + "assets/images/payment_type/bank.png";
+					}else if (result.payment_type[i].id == "6"){
+						img_src = base_url + "assets/images/payment_type/remittance.png";
+					}else{
+						img_src = base_url + "assets/images/payment_type/visa.png";
+					}
+
+
+
+					$("#div-payment").append(
+					"<div class='col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-2 py-3 div-modal-payment-type cursor-pointer' id='div-modal-payment-type-"+result.payment_type[i].id+"' onclick='payment_selected("+result.payment_type[i].id+")'>"+
+						"<img class='img-fluid' style='height: 70px;' src='"+img_src+"'>" +
+						"<span hidden class='payment-name'>"+result.payment_type[i].payment_type+"</span>" +
+					"</div>");
+
 				}
 
 				for (var i = 0; i < result.delivery_type.length; i++) {
 					$("#delivery_type").append("<option value='"+result.delivery_type[i].id+"'>"+result.delivery_type[i].delivery_type+"</option>");
 				}
+
 
 				// console.log(result.sched_time);
 				// console.log(Number(result.sched_time[0].start_time.substring(0, 2)));
@@ -674,6 +845,7 @@ function get_order_checkout(div_id){
 					"</td><td class='text-right prod_unit_price' style='padding-top: 3%;'>" + $.number(prod_dtls[i].product_unit_price, 2) + 
 					"</td><td class='text-right prod_total_price' style='padding-top: 3%;'>" + $.number((prod_qty * prod_dtls[i].product_unit_price), 2) + 
 					"</td><td class='text-right prod_id' hidden>" + prod_dtls[i].id + 
+					"</td><td class='text-right prod_weight' hidden>" + prod_dtls[i].product_weight + 
 					"</td></tr>");
 
 					shipping_fee_w_mm += Number(prod_dtls[i].ship_fee_w_mm);
@@ -696,6 +868,7 @@ function get_order_checkout(div_id){
 				// console.log(shipping_fee);
 				// console.log("Total " + $.number((Number(sub_total) + Number(shipping_fee)), 2));
 
+				$("#vw_total_order").text($.number(sub_total, 2));
 				$("#shipping_fee").text($.number(shipping_fee, 2));
 				$("#shipping_fee").attr("data-id", Number(shipping_fee));			
 				$("#sub_total").text($.number(sub_total, 2));
@@ -705,9 +878,10 @@ function get_order_checkout(div_id){
 				$("#comp_total_items").text($.number(total_items));
 				$("#comp_total_amount").text($.number(sub_total, 2));
 
-				bank_list();
-				remittance_list();
-
+				// bank_list();
+				// remittance_list();
+				$("#delivery_type").val("3");
+				courier();
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
@@ -739,35 +913,120 @@ function cancel_order(){
 
 function confirm_order(){
 
-$("#div-home").hide();
-$("#div-checkout-details").hide();
-$("#div-order-summary").show("slow");
 $("#div-remittance-payment").hide();
 $("#div-bank-payment").hide();
-get_bank();
 get_remittance();
 
-var payment_type = $("#payment_type").val();
+var payment_type = $("#payment_type_id").val();
 
-if (payment_type == "5"){
-	$("#div-bank-payment").show();
-	$("#summ-payment-type-list").val($("#bank_list :selected").text());
-}else{
+if (payment_type == "1"){
 	$("#div-remittance-payment").show();
-	if (payment_type != "1"){
-		$("#summ-payment-type-list").val($("#remittance_list :selected").text());
-	}else{
-		$("#summ-payment-type-list").val("Cash on Delivery");		
-	}
+	$("#summ-payment-type-list").append("<option>Cash on Delivery</option>");
+}else if (payment_type == "5"){
+	$("#div-bank-payment").show();
+	// bank_list();
+	// get_bank();
+	// get_remittance();
+}else if (payment_type == "6"){
+	$("#div-remittance-payment").show();
+	// remittance_list();
+	// get_remittance();
 }
 
+var address = $("#bill_address").val() + ", " + ($("#bill_barangay").val() == "" ? "" : ", ") + $("#bill_city").val() + ", " + $("#bill_province").val() + " " + $("#bill_zip").val();
+
+$("#summ-address").text(address);
+$("#summ-contact-no").text($("#bill_mobile").val());
+$("#summ-contact-person").text($("#bill_contact").val());
+$("#summ-notes").text($("#bill_notes").val());
+
+$("#summ-delivery").text($("#delivery_type :selected").text());
+$("#summ-courier").text($("#courier :selected").text());
+$("#summ-payment-type").text($("#payment_type_id").attr("data-name"));
+$("#summ-payment-method").text($("#summ-payment-type-list :selected").text());
+
+if (payment_type != "0"){
+	$("#div-home").hide();
+	$("#div-checkout-details").hide();
+	$("#div-order-summary").show("slow");
+}else{
+
+	swal({
+		type : "warning",
+		title : "Please Complete all required fields",
+	})
+
+}
+
+// if (payment_type == "5"){
+// 	$("#div-bank-payment").show();
+// 	$("#summ-payment-type-list").val($("#bank_list :selected").text());	
+// }else{
+// 	$("#div-remittance-payment").show();
+// 	if (payment_type != "1"){
+// 		$("#summ-payment-type-list").val($("#remittance_list :selected").text());
+// 	}else{
+// 		$("#summ-payment-type-list").val("Cash on Delivery");		
+// 	}
+// }
+
+}
+
+function get_courier(){
+	var id = $("#courier").val();
+	var csrf_name = $("input[name=csrf_name]").val();
+	var island_group = $("#bill_province").attr("data-island");
+	var total_order = $("#vw_total_order").text().replace(/,/g, '');
+	var shipping_fee = "";
+
+	if (id != "0"){
+		$.ajax({
+			data : {id : id, csrf_name : csrf_name},
+			type : "POST",
+			dataType : "JSON",
+			url : base_url + "Buyer/get_courier",
+			success : function(result){
+				$("input[name=csrf_name]").val(result.token);
+
+				if (island_group == "1"){
+					shipping_fee = result.result[0].sf_mm;
+				}else if (island_group == "2"){
+					shipping_fee = result.result[0].sf_luz;				
+				}else if (island_group == "3"){
+					shipping_fee = result.result[0].sf_vis;
+				}else if (island_group == "4"){
+					shipping_fee = result.result[0].sf_min;
+				}else{
+					shipping_fee = "0";
+				}
+
+				var grand_total = Number(total_order) + Number(shipping_fee);
+
+				$("#delivery_fee").val($.number(shipping_fee, 2));			
+				$("#shipping_fee").text($.number(shipping_fee, 2));
+				$("#total_amount").text($.number(grand_total, 2));
+				$("#vw_delivery_fee").text($.number(shipping_fee, 2));			
+				$("#vw_grand_total").text($.number(grand_total, 2));			
+				$("#summ-total-order").text($.number(total_order, 2));			
+				$("#summ-shipping-fee").text($.number(shipping_fee, 2));
+				$("#summ-delivery-fee").text($.number(shipping_fee, 2));			
+				$("#summ-grand-total").text($.number(grand_total, 2));		
+
+
+			}, error : function(err){
+				console.log(err.responseText);
+			}
+		})
+	}
 }
 
 function get_bank(){
 
-	var bank_type = $("#bank_list").val();
+	var bank_type = $("#summ-payment-type-list").val();
 	var csrf_name = $("input[name=csrf_name]").val();
 	var id = $("#seller_id").val();
+
+	console.log(bank_type);
 
 	$.ajax({
 		data : {csrf_name : csrf_name, bank_type : bank_type, id : id},
@@ -775,6 +1034,7 @@ function get_bank(){
 		dataType : "JSON",
 		url : base_url + "Buyer/get_bank",
 		success : function(result){
+			console.log(result);
 			$("input[name=csrf_name]").val(result.token);
 			$("#bank_name").text(result.account_name);
 			$("#bank_no").text(result.account_no);
@@ -818,6 +1078,12 @@ function check_place_order(){
 	var bill_province = $("#bill_province").attr("data-id");
 	var bill_mobile = $("#bill_mobile").val();
 
+	console.log(bill_name);
+	console.log(bill_address);
+	console.log(bill_city);
+	console.log(bill_province);
+	console.log(bill_mobile);
+
 	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 ){
 		swal({
 			type : "warning",
@@ -837,31 +1103,46 @@ function place_order(){
 	var bill_barangay = $("#bill_barangay").val();
 	var bill_city = $("#bill_city").attr("data-id");
 	var bill_province = $("#bill_province").attr("data-id");
+	var bill_zipcode = $("#bill_zip").val();
+	var bill_phone = $("#bill_phone").val();
 	var bill_mobile = $("#bill_mobile").val();
 	var bill_email = $("#bill_email").val();
 	var bill_contact = $("#bill_contact").val();
 	var bill_notes = $("#bill_notes").val();
 
 	var delivery_type = $("#delivery_type").val();
+	var delivery_date = "";
 	var sched_time = $("#sched_time").val();
 	var sched_date = $("#sched_date").val();
-	var payment_type = $("#payment_type").val();
+	var payment_type = $("#payment_type_id").val();
+	var courier = $("#courier").val();
 	var payment_method = "";
 
-	var shipping_fee = $("#shipping_fee").attr("data-id");
+	// var shipping_fee = $("#shipping_fee").attr("data-id");
+	var shipping_fee = $("#delivery_fee").val();
 	var sub_total = $("#sub_total").attr("data-id");
 	var total_amount = $("#total_amount").attr("data-id");
 
-
 	var prod_id = [];
 	var sub = "";
+	var save_info = 0;
 
-	if (payment_type == "5"){
-		payment_method = $("#bank_list").val();
-	}else if (payment_type == "6"){
-		payment_method = $("#remittance_list").val();
+	if ($("#datepicker").attr("data-deldate")){
+		delivery_date = "0000-00-00";
 	}else{
+		delivery_date = $("#datepicker").val();
+	}
+
+	if (payment_type == "0"){
 		payment_method = "0";
+	}else{
+		payment_method = $("#summ-payment-type-list").val();
+	}
+
+	if ($("#save_info").is(":checked")){
+		save_info = 1;
+	}else{
+		save_info = 0;
 	}
 
     // $.each($("input[type='checkbox']:checked"), function(){
@@ -882,26 +1163,41 @@ function place_order(){
 
     var seller_id = $("#seller_id").val();
 
-    console.log(prod_id);
+    // console.log(prod_id);
 
     var data = {
     	"delivery_address" : bill_address,
-    	"seller_id" : seller_id,
+		"seller_id" : seller_id,
+		"zip_code" : bill_zipcode,
     	"barangay" : bill_barangay,
     	"city" : bill_city,
-    	"province" : bill_province,
+		"province" : bill_province,
+		"phone_no" : bill_phone,
     	"contact_no" : bill_mobile,
     	"contact_name" : bill_contact,
     	"notes" : bill_notes,
     	"payment_type" : payment_type,
     	"payment_method" : payment_method,
-    	"delivery_type" : delivery_type,
+		"delivery_type" : delivery_type,
+		"delivery_date" : delivery_date,
     	"scheduled_date" : sched_date,
     	"scheduled_time" : sched_time,
     	"shipping_fee" : shipping_fee,
     	"sub_total" : sub_total,
-    	"total_amount" : total_amount
-    }
+		"total_amount" : total_amount,
+		"courier" : courier
+	}
+	
+	var data_profile = {
+		"phone_no" : bill_phone,
+		"mobile_no" : bill_mobile,
+		"address" : bill_address,
+		"barangay" : bill_barangay,
+		"city" : bill_city,
+		"province" : bill_province,
+		"zip_code" : bill_zipcode,
+		"contact_person" : bill_contact
+	}
 
     // 	beforeSend : function(){
     // 		swal({
@@ -912,11 +1208,12 @@ function place_order(){
     // 	},
 
     $.ajax({
-    	data : {csrf_name : csrf_name, prod_id : prod_id, data : data},
+    	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},
     	type : "POST",
     	dataType : "JSON",
     	url : base_url + "Buyer/confirm_order",
 		success : function(result){
+			console.log(result);
 			$("input[name=csrf_name]").val(result.token);
 			swal({
 				type : "success",

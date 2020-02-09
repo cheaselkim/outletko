@@ -35,7 +35,9 @@ class Seller_model extends CI_Model {
 			SELECT 
 				`province`.`province_desc`,
 				`city`.`city_desc`,
+				`courier`.`courier` AS courier_name,
 				DATE_FORMAT(`buyer_order`.`date_insert`, '%m/%d/%Y') AS order_date,
+				DATE_FORMAT(`buyer_order`.`delivery_date`, '%m/%d/%Y') AS delivery_date_format,
 				buyer_order.*,
 				CONCAT(`account_buyer`.`first_name`, ' ', `account_buyer`.`last_name`) AS buyer_name,
 				`account_buyer`.`email`,
@@ -60,6 +62,10 @@ class Seller_model extends CI_Model {
 			`bank_list`.`id` = `buyer_order`.`payment_method`
 			LEFT JOIN remittance_list ON 
 			`remittance_list`.`id` = `buyer_order`.`payment_method`
+			LEFT JOIN account_courier ON 
+			`account_courier`.`id` = `buyer_order`.`courier`
+			LEFT JOIN courier ON 
+			`courier`.`id` = `account_courier`.`courier_id`
 			WHERE `buyer_order`.`id` = ?", array($id))->result();
 		return $result;
 	}
