@@ -13,11 +13,18 @@ class Blog extends CI_Controller {
 			}
     }
 
+    public function check_display_images(){
+        $data['result'] = $this->blog_model->check_display_images();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
     public function insert_blog(){
 
         $array = array(
             "title" => $this->input->post("title"),
             "content" => $this->input->post("content"),
+            "display" => $this->input->post("display"),
             "date_insert" => date("Y-m-d H:i:s")
         );
 
@@ -34,7 +41,9 @@ class Blog extends CI_Controller {
             foreach($result as $key => $value){
                 $data['img'] = unserialize($value->img_path);
                 $data['title'] = $value->title;
+                $data['display'] = $value->display;
                 $data['content'] = $value->content;
+                $data['status'] = $value->status;
             }    
         }
 
@@ -47,6 +56,8 @@ class Blog extends CI_Controller {
         $array = array(
             "title" => $this->input->post("title"),
             "content" => $this->input->post("content"),
+            "display" => $this->input->post("display"),
+            "status" => $this->input->post("status"),
             "date_update" => date("Y-m-d H:i:s")
         );
 
@@ -85,6 +96,7 @@ class Blog extends CI_Controller {
                 $data['img'] = unserialize($value->img_path);
                 $data['title'] = $value->title;
                 $data['content'] = $value->content;
+                $data['display'] = $value->display;
             }    
         }
 

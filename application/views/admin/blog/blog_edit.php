@@ -26,15 +26,24 @@
                                     Upload Image
                                     <input type="file" id="UploadImgBlog" class="img-upload-modal btn btn-success">
                             </button>
+                            <label for="display" class="cursor-pointer mt-3" id="lbl-display"><input type="checkbox" id="display"> Display Image to Background header?</label>
+                            <i class="text-red ml-4">Note : Only 6 images are allowed to display</i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row mt-4">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-10 col-md-10 col-sm-12">
                     <span class="font-weight-600 font-size-18">Title : </span>
                     <input type="text" class="form-control" placeholder="Title" id="title">
+                </div>
+                <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                    <span class="font-weight-600 font-size-18">Status</span>
+                    <select class="form-control" id="status">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
                 </div>
             </div>
 

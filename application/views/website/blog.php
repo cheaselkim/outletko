@@ -11,26 +11,26 @@
             <div class="d-none d-md-block">
                 <div class="row mt-4">
                     <div class="col-12 col-lg-9 col-md-12 col-sm-12 ">
-                        <div class="row">
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1 div-img-header-1">
+                        <div class="row" id="div-img-header-row-1">
+                            <!-- <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1-img div-img-header-1">
                             </div>
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1 div-img-header-2">
+                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1-img div-img-header-2">
                             </div>
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1 div-img-header-3">
-                            </div>
+                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-1-img div-img-header-3">
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center my-2">
                                 <span class="font-weight-600 font-size-35">Small Businesss Owner Ako</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2 div-img-header-4">
+                        <div class="row" id="div-img-header-row-2">
+                            <!-- <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2-img div-img-header-4">
                             </div>
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2 div-img-header-5">
+                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2-img div-img-header-5">
                             </div>
-                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2 div-img-header-6">
-                            </div>
+                            <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-img-header-row-2-img div-img-header-6">
+                            </div> -->
                         </div>
                         <div class="row my-1">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center px-0">

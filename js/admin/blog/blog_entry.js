@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+check_display_images();
+
 $('#summernote').summernote({
     height: 300,
     tabsize: 2,
@@ -32,6 +34,29 @@ $("#btn_save").click(function(){
 
 
 });
+
+function check_display_images(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "GET",
+        dataType : "JSON",
+        url : base_url + "Blog/check_display_images",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            if (result.result == "6"){
+                $("#lbl-display").css("background", "lightgray");
+                $("#display").prop("checked", false);
+                $("#display").attr("disabled", true);
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -79,9 +104,16 @@ function save_blog(){
     var title = $("#title").val();
     var content = $("#summernote").summernote("code");
     var csrf_name = $("input[name=csrf_name]").val();
-    
+    var display = "";
+
+    if ($("#display").is(":checked")){
+        display = "1";
+    }else{
+        display = "0";
+    }
+
     $.ajax({
-        data : {title : title, content : content, csrf_name : csrf_name},
+        data : {title : title, content : content, display : display, csrf_name : csrf_name},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/insert_blog",

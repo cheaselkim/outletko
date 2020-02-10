@@ -17,7 +17,7 @@ class Outletko_model extends CI_Model {
   }
 
   public function blog(){
-    $query = $this->db3->query("SELECT * FROM blog ")->result();
+    $query = $this->db3->query("SELECT * FROM blog WHERE `blog`.`status` = ?", array(1))->result();
     return $query;
   }
 

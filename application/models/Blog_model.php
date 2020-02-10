@@ -14,6 +14,11 @@ class Blog_model extends CI_Model {
                 }
     }
 
+    public function check_display_images(){
+        $query = $this->db2->query("SELECT COUNT(*) AS count_diplay FROM blog WHERE display = ? ", array(1))->row();
+        return $query->count_diplay;
+    }
+
     public function get_blog($id){
         $query = $this->db2->query("SELECT * FROM blog WHERE id = ? ", array($id))->result();
         return $query;
