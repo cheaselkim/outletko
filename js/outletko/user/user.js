@@ -1222,6 +1222,22 @@ function index(){
           }
         }
 
+        $("#payment_6").change(function(){
+          if ($(this).is(":checked")){
+            $("#div-remittance-list").show("slow");
+          }else{
+            $("#div-remittance-list").hide("slow");
+          }
+        });
+      
+        $("#payment_5").change(function(){
+          if ($(this).is(":checked")){
+            $("#div-bank-list").show("slow");
+          }else{
+            $("#div-bank-list").hide("slow");
+          }
+        });
+
     }, error: function(err){
       console.log(err.responseText);
     }
