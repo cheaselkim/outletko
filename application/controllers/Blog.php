@@ -22,6 +22,11 @@ class Blog extends CI_Controller {
             "date_insert" => date("Y-m-d H:i:s")
         );
 
+        if ($this->input->post("display") == "1"){
+            $result = $this->blog_model->update_display();
+        }
+
+
         $data['id'] = $this->blog_model->insert_blog($array);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
@@ -54,6 +59,10 @@ class Blog extends CI_Controller {
             "status" => $this->input->post("status"),
             "date_update" => date("Y-m-d H:i:s")
         );
+
+        if ($this->input->post("display") == "1"){
+            $result = $this->blog_model->update_display();
+        }
 
         $data['result'] = $this->blog_model->update_blog($array, $id);
         $data['token'] = $this->security->get_csrf_hash();

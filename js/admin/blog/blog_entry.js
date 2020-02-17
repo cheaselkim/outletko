@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-check_display_images();
+// check_display_images();
 
 $('#summernote').summernote({
     height: 300,
@@ -32,6 +32,11 @@ $("#btn_save").click(function(){
     check_required_fields();
 });
 
+$("#display").change(function(){
+    if ($(this).is(":checked")){
+        check_display_images();
+    }
+});
 
 });
 
@@ -46,11 +51,28 @@ function check_display_images(){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             console.log(result.result);
+
             if (result.result == "1"){
-                $("#lbl-display").css("background", "lightgray");
-                $("#display").prop("checked", false);
-                $("#display").attr("disabled", true);
+                swal({
+                    type : "warning",
+                    title : "Overwrite?",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                  }, function(isConfirm){
+                    if (!isConfirm){
+                        $("#display").prop("checked", false);
+                    }
+                  })        
+        
             }
+
+            // if (result.result == "1"){
+            //     $("#lbl-display").css("background", "lightgray");
+            //     $("#display").prop("checked", false);
+            //     $("#display").attr("disabled", true);
+            // }
 
         }, error : function(err){
             console.log(err.responseText);
@@ -157,15 +179,16 @@ function save_img(img, id){
     processData: false,
     success : function(result) {
         $("input[name=csrf_name]").val(result.token);
-        if(result.status == "success") {
-            $("#save_product").removeAttr('disabled');
-            swal({
+        swal({
             title : "Successfully Save",
             type : "success",
             timer: 2000
             }, function(){
                 location.reload();
             });
+
+        if(result.status == "success") {
+            $("#save_product").removeAttr('disabled');
         }else {
             console.log(result.status);
         }

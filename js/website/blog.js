@@ -26,6 +26,8 @@ function header_blog(){
     var csrf_name = $("input[name=csrf_name]").val();
     var width = $(document).width();
 
+    console.log("width " + width);
+
     $.ajax({
         data : {csrf_name : csrf_name, width : width},
         type : "POST",

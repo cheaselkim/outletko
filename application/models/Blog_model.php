@@ -34,6 +34,11 @@ class Blog_model extends CI_Model {
         $this->db2->delete("blog");
     }
 
+    public function update_display(){
+        $this->db2->set("display", "0");
+        $this->db2->update("blog");
+    }
+
     public function query_data($blog_date, $blog_title, $blog_status){
         $query_date = "";
         $query_title = "";

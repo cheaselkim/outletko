@@ -32,6 +32,12 @@ $("#status").change(function(){
     }else{
         $("#lbl-display").css("background", "white");
         $("#display").attr("disabled", false);
+        // check_display_images();
+    }
+});
+
+$("#display").change(function(){
+    if ($(this).is(":checked") == "1"){
         check_display_images();
     }
 });
@@ -78,7 +84,7 @@ function get_blog(){
                 $("#display").attr("disabled", true);
             }
 
-            check_display_images();
+            // check_display_images();
 
         }, error : function(err){
             console.log(err.responseText);
@@ -97,13 +103,29 @@ function check_display_images(){
         url : base_url + "Blog/check_display_images",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
+
+            console.log($("#display").attr("data-id"));
                 
             if ($("#display").attr("data-id") == "0"){
-                if (result.result == "1"){
-                    $("#lbl-display").css("background", "lightgray");
-                    $("#display").prop("checked", false);
-                    $("#display").attr("disabled", true);
-                }    
+                swal({
+                    type : "warning",
+                    title : "Overwrite?",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                  }, function(isConfirm){
+                    if (!isConfirm){
+                        $("#display").prop("checked", false);
+                    }
+                  })        
+
+
+                // if (result.result == "1"){
+                //     $("#lbl-display").css("background", "lightgray");
+                //     $("#display").prop("checked", false);
+                //     $("#display").attr("disabled", true);
+                // }    
             }else{
                 $("#lbl-display").css("background", "white");
                 $("#display").attr("disabled", false);
