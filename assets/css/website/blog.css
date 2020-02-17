@@ -67,6 +67,10 @@
         height: 200px;
     }
 
+    .div-blog-header-img{
+        height: 200px;
+    }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -138,6 +142,11 @@
     .div-img-blog{
         height: 275px;
     }    
+
+    .div-blog-header-img{
+        height: 300px;
+    }
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -214,7 +223,13 @@
     .div-img-blog{
         height: 275px;
     }    
-    
+
+    .div-blog-header-img{
+        height: 300px;
+    }
+    .pad-left-0{
+        padding-left: 0;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -289,6 +304,14 @@
         
     .div-img-blog{
         height: 275px;
+    }    
+
+    .div-blog-header-img{
+        height: 500px;
+    }
+
+    .pad-left-0{
+        padding-left: 0;
     }    
 }
 
@@ -366,5 +389,12 @@
     height: 350px;
 }
 
+.div-blog-header-img{
+    height: 400px;
+}
+
+.pad-left-0{
+    padding-left: 0;
+}
 
 }

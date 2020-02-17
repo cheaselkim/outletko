@@ -18,6 +18,7 @@ class Blog extends CI_Controller {
         $array = array(
             "title" => $this->input->post("title"),
             "content" => $this->input->post("content"),
+            "display" => $this->input->post("display"),
             "date_insert" => date("Y-m-d H:i:s")
         );
 
@@ -35,6 +36,8 @@ class Blog extends CI_Controller {
                 $data['img'] = unserialize($value->img_path);
                 $data['title'] = $value->title;
                 $data['content'] = $value->content;
+                $data['display'] = $value->display;
+                $data['status'] = $value->status;
             }    
         }
 
@@ -47,6 +50,8 @@ class Blog extends CI_Controller {
         $array = array(
             "title" => $this->input->post("title"),
             "content" => $this->input->post("content"),
+            "display" => $this->input->post("display"),
+            "status" => $this->input->post("status"),
             "date_update" => date("Y-m-d H:i:s")
         );
 

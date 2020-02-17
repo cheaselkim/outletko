@@ -72,6 +72,12 @@ function get_blog(){
                 $("#display").attr("checked", true);
             }
 
+            if (result.status == "0"){
+                $("#lbl-display").css("background", "lightgray");
+                $("#display").prop("checked", false);
+                $("#display").attr("disabled", true);
+            }
+
             check_display_images();
 
         }, error : function(err){
@@ -91,9 +97,9 @@ function check_display_images(){
         url : base_url + "Blog/check_display_images",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
-            
+                
             if ($("#display").attr("data-id") == "0"){
-                if (result.result == "6"){
+                if (result.result == "1"){
                     $("#lbl-display").css("background", "lightgray");
                     $("#display").prop("checked", false);
                     $("#display").attr("disabled", true);

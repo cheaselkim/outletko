@@ -6,9 +6,9 @@
 
 <div class="container  mt-3 mb-3" style="min-height: 87vh;">
     <div class="row">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pad-left pad-right">
 
-            <div class="d-none d-md-block">
+            <!-- <div class="d-none d-md-block">
                 <div class="row mt-4">
                     <div class="col-12 col-lg-9 col-md-12 col-sm-12 ">
                         <div class="row">
@@ -46,11 +46,42 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="font-size-40 font-weight-600" id="blog-title">Let Customers Come to You</span>
+                </div>
             </div>
 
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="row" id="div-blog-content">
+                    <hr class="my-1" style="border-top: 1px solid rgb(195, 214, 155)">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right">
+                    <span class="text-gray font-size-20" id="blog-date"><?php echo date("F d, Y");?></span>
+                </div>
+            </div>
+
+
+            <div class="row pt-3">
+                <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+                    <div class="div-blog-header-img" id="div-blog-header-img">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-left-0">
+                    <div id="div-blog-header-text" class="mb-2">
+                    </div>
+                    <a id="blog-url">Read More >>></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="row px-2" id="div-blog-content">
                     
                     </div>
                 </div>

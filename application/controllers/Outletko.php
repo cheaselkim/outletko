@@ -42,20 +42,32 @@ class Outletko extends CI_Controller {
 	
 	public function blog(){
 		$result = $this->outletko_model->blog();
+		$width = $this->input->post("width");
+		$heeader_content = "";
 
 		if (!empty($result)){
 			foreach($result as $key => $value){
+
+				if ($width <= 768){
+					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 420)."...");
+				}else{
+					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 980)."...");
+				}
+
 				$data['result'][$key] = array(
 					"id" => $value->id,
 					"title" => $value->title,
 					"content" => (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."..."),
+					"header_content" => $heeader_content,
 					"img" => unserialize($value->img_path),
-					"display" => $value->display
+					"display" => $value->display,
+					"blog_date" => date("F d, Y", strtotime($value->date_insert)),
 				);
  			}
 		}
 
 		$data['token'] = $this->security->get_csrf_hash();
+		$data['width'] = $width;
 		echo json_encode($data);
 
 
@@ -100,7 +112,8 @@ class Outletko extends CI_Controller {
 					"title" => $value->title,
 					"content" => $value->content,
 					"blog_date" => date("F d, Y", strtotime($value->date_insert)),
-					"img" => unserialize($value->img_path)
+					"img" => unserialize($value->img_path),
+					"display" => $value->display
 				);
 			}
 		}else{
