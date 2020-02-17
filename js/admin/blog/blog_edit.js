@@ -24,6 +24,18 @@ $('#summernote').summernote({
 $('#summernote').summernote('fontName', 'Arial');
 $('.note-editable').css('font-family','Arial');
 
+$("#status").change(function(){
+    if ($(this).val() == "0"){
+        $("#lbl-display").css("background", "lightgray");
+        $("#display").prop("checked", false);
+        $("#display").attr("disabled", true);
+    }else{
+        $("#lbl-display").css("background", "white");
+        $("#display").attr("disabled", false);
+        check_display_images();
+    }
+});
+
 $("#UploadImgBlog").change(function(){
     readURL(this);
 }); 
@@ -52,7 +64,15 @@ function get_blog(){
             $('#div-img-blog').css('background-position', "center center");            
 
             $("#title").val(result.title);
+            $("#status").val(result.status);
+            $("#display").attr("data-id", result.display);
             $("#summernote").summernote("code", result.content);
+
+            if (result.display == "1"){
+                $("#display").attr("checked", true);
+            }
+
+            check_display_images();
 
         }, error : function(err){
             console.log(err.responseText);
@@ -60,6 +80,36 @@ function get_blog(){
     })
 
 }
+
+function check_display_images(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "GET",
+        dataType : "JSON",
+        url : base_url + "Blog/check_display_images",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            
+            if ($("#display").attr("data-id") == "0"){
+                if (result.result == "6"){
+                    $("#lbl-display").css("background", "lightgray");
+                    $("#display").prop("checked", false);
+                    $("#display").attr("disabled", true);
+                }    
+            }else{
+                $("#lbl-display").css("background", "white");
+                $("#display").attr("disabled", false);
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -109,16 +159,23 @@ function save_blog(){
     var content = $("#summernote").summernote("code");
     var csrf_name = $("input[name=csrf_name]").val();
     var id = $("#trans_id").val();
-    
+    var status = $("#status").val();
+    var display = "";
+
+    if ($("#display").is(":checked")){
+        display = "1";
+    }else{
+        display = "0";
+    }
+
     $.ajax({
-        data : {title : title, content : content, csrf_name : csrf_name, id : id},
+        data : {title : title, content : content, csrf_name : csrf_name, id : id, display : display, status : status},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/update_blog",
         success : function(result){
             console.log(result);
             $("input[name=csrf_name]").val(result.token);
-            console.log(img);
             if (img != ""){
                 save_img(img, result.id);        
             }else{

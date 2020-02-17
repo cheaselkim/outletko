@@ -49,7 +49,8 @@ class Outletko extends CI_Controller {
 					"id" => $value->id,
 					"title" => $value->title,
 					"content" => (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."..."),
-					"img" => unserialize($value->img_path)
+					"img" => unserialize($value->img_path),
+					"display" => $value->display
 				);
  			}
 		}

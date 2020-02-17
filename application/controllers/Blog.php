@@ -134,4 +134,10 @@ class Blog extends CI_Controller {
 
     }
 
+    public function check_display_images(){
+        $data['result'] = $this->blog_model->check_display_images();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 }
