@@ -68,11 +68,11 @@
 
 
             <div class="row pt-3">
-                <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+                <div class="col-12 col-lg-6 col-md-7 col-sm-12">
                     <div class="div-blog-header-img" id="div-blog-header-img">
                     </div>
                 </div>
-                <div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-left-0">
+                <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left-0">
                     <div id="div-blog-header-text" class="mb-2">
                     </div>
                     <a id="blog-url">Read More >>></a>
