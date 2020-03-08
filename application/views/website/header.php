@@ -3,9 +3,9 @@
 <nav class="navbar navbar-expand-md " style="height: 70px;background: rgb(192, 219, 136);">
 	<div class="collapse navbar-collapse justify-content-start " id="collapsibleNavbar" >
 		<ul class="navbar-nav">
-		<li class="nav-item">
-			<button class="btn text-white" style="background:rgb(79, 98, 40);">Entrepreneur Blog Articles</button>
-		</li>
+			<li class="nav-item">
+				<button class="btn text-white" style="background:rgb(79, 98, 40);">Entrepreneur Blog Articles</button>
+			</li>
 			<!-- <li class="nav-item" >
 				<a class="nav-link font-small" href="<?php echo base_url('aboutus') ?>"><span class="text-white font-bahaus-93">About Us</span></a>
 			</li>

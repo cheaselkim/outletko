@@ -154,9 +154,9 @@ class Report_model extends CI_Model {
 
 			WHERE outlet.comp_id = '".$this->session->userdata('comp_id')."' 
 
-			AND DATE(sales_transaction_hdr.date_insert) >= '".$fdate."' 
+			AND DATE(sales_transaction_hdr.trans_date) >= '".$fdate."' 
 
-			AND DATE(sales_transaction_hdr.date_insert) <= '".$tdate."'
+			AND DATE(sales_transaction_hdr.trans_date) <= '".$tdate."'
 
 			AND sales_transaction_hdr.status != '0'
 
@@ -189,20 +189,20 @@ class Report_model extends CI_Model {
 
         $query = $this->db->query("
             SELECT  
-                DATE(date_insert) AS trans_date,
+                DATE(trans_date) AS trans_date,
                 COUNT(id) AS total_trans,
                 SUM(sales_discount) AS trans_sales_discount,
                 SUM(vat_amount) AS trans_vat,
                 SUM(net_vat) As trans_net_vat,
                 SUM(total_amount) AS trans_total
                 FROM sales_transaction_hdr
-                WHERE MONTH(date_insert) = ? 
-                AND YEAR(date_insert) = ?
+                WHERE MONTH(trans_date) = ? 
+                AND YEAR(trans_date) = ?
                 AND `sales_transaction_hdr`.`comp_id` = ?
                 AND `sales_transaction_hdr`.`status` != '0'
                 ".$outlet_query."
                 ".$session_query."
-                GROUP BY DATE(date_insert)", array($month, $year, $this->session->userdata("comp_id")))->result();
+                GROUP BY DATE(trans_date)", array($month, $year, $this->session->userdata("comp_id")))->result();
 
         return $query;
 
@@ -252,7 +252,7 @@ class Report_model extends CI_Model {
 
         $query = $this->db->query("
 
-            SELECT trans_no ,DATE(hdr.date_insert) as date_insert, cust_name,'PHP' AS currency, total_amount,outlet_code,status
+            SELECT trans_no ,DATE(hdr.trans_date) as date_insert, cust_name,'PHP' AS currency, total_amount,outlet_code,status
 
             FROM sales_transaction_hdr AS hdr 
 
@@ -266,7 +266,7 @@ class Report_model extends CI_Model {
 
             WHERE `hdr`.comp_id = '".$comp_id."' ".$status_query." ".$outlet_query."
 
-            AND (DATE(hdr.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
+            AND (DATE(hdr.trans_date) BETWEEN '".$from_date."' AND '".$to_date."' )
 
             ".$session_query."
 
@@ -311,7 +311,7 @@ class Report_model extends CI_Model {
             lEFT JOIN product_category ON
             `product_category`.`id` = `products`.`category_id`
             WHERE `products`.`comp_id` = ? AND `sales_transaction_hdr`.`status`!= '0'
-            AND (DATE(`sales_transaction_hdr`.`date_insert`) BETWEEN '".$fdate."' AND '".$tdate."' )
+            AND (DATE(`sales_transaction_hdr`.`trans_date`) BETWEEN '".$fdate."' AND '".$tdate."' )
             ".$outlet_query." ".$session_query."
             GROUP BY `product_category`.`id`", array($this->session->userdata("comp_id")))->result();
 
@@ -354,7 +354,7 @@ class Report_model extends CI_Model {
             LEFT JOIN `product_category` ON
             `product_class`.`class_category` = `product_category`.`id`
             WHERE `products`.`comp_id` = ? AND `sales_transaction_hdr`.`status` != '0'
-            AND (DATE(`sales_transaction_hdr`.`date_insert`) BETWEEN '".$fdate."' AND '".$tdate."' )
+            AND (DATE(`sales_transaction_hdr`.`trans_date`) BETWEEN '".$fdate."' AND '".$tdate."' )
             ".$session_query."
             GROUP BY `product_class`.`id`", array($this->session->userdata("comp_id")))->result();
         return $query;
@@ -413,7 +413,7 @@ class Report_model extends CI_Model {
 
             WHERE `hdr`.comp_id = '".$comp_id."' ".$outlet_query."  and hdr.status != '0'
 
-            AND (DATE(hdr.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
+            AND (DATE(hdr.trans_date) BETWEEN '".$from_date."' AND '".$to_date."' )
 
             ".$session_query."
 
@@ -479,7 +479,7 @@ class Report_model extends CI_Model {
 
 	            WHERE `sale`.comp_id = '".$comp_id."' and sale.status > 0 ".$outlet_query."
 
-	        	    AND (date(`sale`.date_insert) BETWEEN '".$from_date."' AND '".$to_date."' )
+	        	    AND (date(`sale`.trans_date) BETWEEN '".$from_date."' AND '".$to_date."' )
                     ".$session_query."
 
             	GROUP BY `dtl`.agent_id
@@ -519,7 +519,7 @@ class Report_model extends CI_Model {
                 `sales_force`.`account_id`,
                 CONCAT(`sales_force`.`first_name`, ' ', `sales_force`.`last_name`, ' ', `sales_force`.`middle_name`) As agent_name,
                 `sales_transaction_hdr`.`trans_no`,
-                `sales_transaction_hdr`.`date_insert`,
+                `sales_transaction_hdr`.`trans_date AS date_insert`,
                 `products`.`product_name`,
                 `sales_transaction_dtl`.`total_selling_price`,
                 `sales_transaction_dtl`.`total_amount`,
@@ -532,7 +532,7 @@ class Report_model extends CI_Model {
                 LEFT JOIN products ON
                 `sales_transaction_dtl`.`product_id` = `products`.`id`
                 WHERE `sales_transaction_hdr`.`comp_id` = '".$this->session->userdata("comp_id")."' AND `sales_transaction_hdr`.`status`  != '0'
-                AND (date(`sales_transaction_hdr`.date_insert) BETWEEN '".$fdate."' AND '".$tdate."' )
+                AND (date(`sales_transaction_hdr`.trans_date) BETWEEN '".$fdate."' AND '".$tdate."' )
                 ".$session_query."
                 ".$agent_qry." ")->result();
         
@@ -701,7 +701,7 @@ class Report_model extends CI_Model {
         $query = $this->db->query("
           SELECT 
           `sales_transaction_hdr`.`status`,
-          DATE(`sales_transaction_hdr`.`date_insert`) AS trans_date, 
+          DATE(`sales_transaction_hdr`.`trans_date`) AS trans_date, 
           `outlet`.`outlet_code`,
           COUNT(`sales_transaction_hdr`.`id`) AS total_trans,
           `currency`. `curr_code`,
@@ -718,10 +718,10 @@ class Report_model extends CI_Model {
           `currency`.`id` = `account_application`.`currency`
           LEFT JOIN users ON
           `users`.`id` = `sales_transaction_hdr`.`user`
-          WHERE  (DATE(`sales_transaction_hdr`.`date_insert`) >= ? AND DATE(`sales_transaction_hdr`.`date_insert`) <= ?)
+          WHERE  (DATE(`sales_transaction_hdr`.`trans_date`) >= ? AND DATE(`sales_transaction_hdr`.`trans_date`) <= ?)
           AND `sales_transaction_hdr`.`".$comp_outlet."` = ?
           ".$session_query."
-          GROUP BY DATE(`sales_transaction_hdr`.`date_insert`), `sales_transaction_hdr`.`user`
+          GROUP BY DATE(`sales_transaction_hdr`.`trans_date`), `sales_transaction_hdr`.`user`
         ", array($fdate, $tdate, $comp_outlet_id))->result();
 
         return $query;
@@ -742,15 +742,15 @@ class Report_model extends CI_Model {
 
         $query = $this->db->query("
         SELECT 
-            MONTH(`sales_transaction_hdr`.`date_insert`) AS month_date,
+            MONTH(`sales_transaction_hdr`.`trans_date`) AS month_date,
             SUM(`sales_transaction_hdr`.`total_amount`) AS total_amount,
             SUM(`sales_transaction_hdr`.`net_vat`) AS total_net_vat,
             SUM(`sales_transaction_hdr`.`vat_amount`) AS total_vat
             FROM sales_transaction_hdr 
-            WHERE YEAR(`sales_transaction_hdr`.`date_insert`) = ? AND `sales_transaction_hdr`.`comp_id` = ?
+            WHERE YEAR(`sales_transaction_hdr`.`trans_date`) = ? AND `sales_transaction_hdr`.`comp_id` = ?
             AND `sales_transaction_hdr`.`status` != '0'
             ".$outlet_query." ".$session_query."
-            GROUP BY MONTH(`sales_transaction_hdr`.`date_insert`)", array($year, $this->session->userdata("comp_id")))->result();
+            GROUP BY MONTH(`sales_transaction_hdr`.`trans_date`)", array($year, $this->session->userdata("comp_id")))->result();
 
         return $query;
     }

@@ -105,8 +105,8 @@
                 <li class="nav-item py-1 pad-right">
                   <button class="btn btn-block bg-white" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-black"></i> <span class="text-black">Sign in</span></button>
                 </li>    
-                <li class="nav-item py-1 pad-left" hidden>
-                  <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>
+                <li class="nav-item py-1 pad-left" >
+                  <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-white"></i> <span class="text-white">Sign Up</span></button>
                 </li>
               </ul>
             </div>  
@@ -552,7 +552,7 @@
               <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
             </div>
             <div class="col-lg-12 text-center">
-                <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                
+                <p class="h1 text-white font-bauhaus-93 mb-0">Outletko</p>                             
             </div>
           </div>          
         </div>
@@ -565,7 +565,8 @@
           <div class="row">
             <div class="col-lg-12 pb-2" style="line-height: 25px;">
               <span class="font-size-18" style="font-size: 18px !important;">Create your Outletko Account. </span><br>
-              <small>Register you store? <a class="cursor-pointer" id="a_register_store"><u>Register here</u></a> </small>
+              <small> Register your store? <a class="cursor-pointer text-black" href="<?php echo base_url('register-store'); ?>" ><u>Register here</u></a> </small> 
+              <!-- id="a_register_store" -->
             </div>
           </div>
 

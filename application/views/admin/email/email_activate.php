@@ -234,11 +234,11 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
     <header style="margin-top: 10px;">
 
-        <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">eOutlet</span><span class="span-eprocurement">Suite</span></h2>
+        <h2 style="margin-top: 10px;"><span style="color: green;">Outlet</span><span style="color: red;">ko</span></h2>        
 
         <div class="header-right" >
 
-          <h2 style="margin-top: 10px;"><span style="color: green;">Outlet</span><span style="color: red;">ko</span></h2>        
+          <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">eOutlet</span><span class="span-eprocurement">Suite</span></h2>
 
         </div>
 
@@ -248,7 +248,7 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
     <section style="background: #EDA634;height: 50px;width: 100%;text-align: center;padding: 20px;">
 
-        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to eOutletSuite!</h1>
+        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to Outletko!</h1>
     </section>
 
 
@@ -261,7 +261,7 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
             <p style="font-size: 18px;">You're almost ready to start your business in outletko - but first, click the link below to verify your email address</p>
             <br>
-            <p style="padding-right: 37px;font-size: 18px;"><a href="http://www.eoutletsuite.com/Signup/verify?id=<?php echo $account_id; ?>&hash=<?php echo $email; ?>" class='btn btn-orange' style="text-decoration: none;color: white;" target="_blank" >Click Here to Verify Email Addresss</a></p>
+            <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com/Store_register/verify?hash=<?php echo $email; ?>&emailid=<?php echo $account_id; ?>" class='btn btn-orange' style="text-decoration: none;color: white;" target="_blank" >Click Here to Verify Email Addresss</a></p>
 
             <br><br>
 
@@ -292,7 +292,7 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
 
     <footer class="font-text-footer">
-        <p style="float: right;">Copyright @ 2019 EPGM COMPANY</p>
+        <p style="float: right;">Copyright @ <?php echo date('Y')?> Outletko</p>
     </footer>
 
 </div>

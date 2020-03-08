@@ -81,4 +81,8 @@ $route['blog/(:any)/(:any)'] = 'outletko/get_blog/$1/$2';
 $route['sukifresh'] = 'sukifresh/homepage';
 $route['sukifresh/(:any)'] = 'sukifresh/page/$1'; 
 
+$route['register-store'] = 'Store_register/page';
+
+$route['invoice'] = 'Store_register/invoice';
+
 $route['(:any)'] = 'store/store/$1';    

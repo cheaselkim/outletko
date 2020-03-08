@@ -473,7 +473,11 @@
 							}
 						}else if ($function == "6"){
 							$data['page'] = 'application/users/user_change_password';							
-						}						
+						}else if ($function == "7"){
+							$data['page'] = 'application/prev_trans/prev_trans';							
+						}else if ($function == "8"){
+							$data['page'] = 'application/post_prev_trans/post_prev_trans';							
+						}					
 					}
 
 				}else if ($user_type == "3"){

@@ -367,6 +367,7 @@ class Sales extends CI_Controller {
         $sales_hdr['comp_id'] = $this->session->userdata("comp_id");
         $sales_hdr['outlet_id'] = $this->session->userdata("outlet_id");
         $sales_hdr['user'] = $this->session->userdata("user_id");
+		$sales_hdr['trans_date'] = date("Y-m-d");
         $sales_hdr['date_insert'] = date("Y-m-d H:i:s");        
         $this->db->trans_begin();
         $hdr_id = $this->sales_model->save_transaction_hdr($sales_hdr);

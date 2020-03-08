@@ -412,8 +412,8 @@ class Sales_model extends CI_Model {
 
   // SAVING OF TRANSACTION
   public function save_transaction_hdr($sales_hdr) {
-        $this->db->insert('sales_transaction_hdr', $sales_hdr);
-        return ($this->db->affected_rows() == 1) ? $this->db->insert_id() : false;
+    $this->db->insert('sales_transaction_hdr', $sales_hdr);
+    return ($this->db->affected_rows() == 1) ? $this->db->insert_id() : false;
   }
 
   public function save_transaction_dtl($data,$hdr_id) {

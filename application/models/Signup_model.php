@@ -7,7 +7,8 @@ class Signup_model extends CI_Model {
 		parent::__construct();
 		$CI = &get_instance(); 
 		$this->load->database();
-		$this->db2 = $CI->load->database('outletko', TRUE);
+    $this->db2 = $CI->load->database('outletko', TRUE);
+    $this->db3 = $CI->load->database('admin', TRUE);
 	}	
 
 	public function business_category(){
@@ -16,13 +17,36 @@ class Signup_model extends CI_Model {
 	}
 	
   public function search_city_prov($city){
-    $query = $this->db->query("SELECT city.*, `province`.`province_desc` FROM city INNER JOIN province ON `city`.`province_id` = `province`.`id` WHERE city_desc LIKE ? LIMIT 20", array("%".$city."%"))->result();
+    $query = $this->db->query("SELECT city.*, `province`.`province_desc` FROM city INNER JOIN province ON `city`.`province_id` = `province`.`id` WHERE city_desc LIKE ? LIMIT 20", array($city."%"))->result();
+    return $query;
+  }
+
+  public function search_partner($partner){
+    $query = $this->db->query("
+    SELECT
+    id AS partner_id,
+    CONCAT(last_name, ', ', first_name, ' ', middle_name) AS partner_name,
+    account_id 
+    FROM account_application
+    WHERE last_name LIKE ? OR account_id LIKE ?    
+    LIMIT 20
+    ", array("%".$partner."%", "%".$partner."%"))->result();
+    return $query;
+  }
+
+  public function country(){
+    $query = $this->db->query("SELECT * FROM country")->result();
     return $query;
   }
 
 	public function account_id(){
-        $result = $this->db2->query("SELECT account_id FROM account ORDER BY id DESC LIMIT 1")->row();
-		return str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT); 		
+    $result = $this->db->query("SELECT account_id FROM account_application ORDER BY id DESC LIMIT 1")->row();
+    $data['account_id'] = date("y").'1'.str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT);
+    
+    $this->db->insert("account_application", $data);
+    $data['comp_id'] = $this->db->insert_id();
+
+    return $data; 		
 	}
     
     public function email_check($email){
@@ -53,26 +77,49 @@ class Signup_model extends CI_Model {
     }
     
     function get_hash_value($id){
-      	$this->db2->select('*');
-      	$this->db2->from('account');
-      	$this->db2->where('id',$id);
-      	$query = $this->db2->get();
-      	if($query->num_rows()>0){
-      		return $query->result_array();
-      	}else{
-      		return false;
-      	}
+      	// $this->db2->select('*');
+      	// $this->db2->from('account');
+      	// $this->db2->where('account_id',$id);
+      	// $query = $this->db2->get();
+      	// if($query->num_rows()>0){
+      	// 	return $query->result_array();
+      	// }else{
+      	// 	return false;
+        // }
+        
+        $query = $this->db->query("SELECT * FROM users ORDER BY id DESC LIMIT 200");
+        $status = false;
+        $account_id = "";
+        if ($query->num_rows() > 0 ){
+            foreach ($query->result() as $key => $value) {
+                if (password_verify($value->account_id, $id)){
+                    $status = true;
+                    $account_id = $value->account_id;
+                }
+            }  
+            
+          
+            if ($status == true){
+                return $this->db->query("SELECT * FROM users WHERE account_id = ? AND user_type = ?", array($account_id, 2))->result_array();
+            }else{
+                return false;
+            }
+        
+        } 
 
     } 
     
     function verify_user($id) {
-        $data = array('confirm_email' => 1);
-        $this->db2->where('id', $id);
-        $this->db2->update('account', $data);
+        // $data = array('confirm_email' => 1);
+        // $this->db2->where('id', $id);
+        // $this->db2->update('account', $data);
         
-        $data = array('status' => 1);
-        $this->db->where('comp_id', $id);
-        $this->db->update('users', $data);
+        // $data = array('status' => 1);
+        // $this->db->where('comp_id', $id);
+        // $this->db->update('users', $data);
+      $this->db->where("account_id", $id);
+      $this->db->set("status", "1");
+      $this->db->update("users");
         return true;
     }
     
@@ -197,9 +244,10 @@ class Signup_model extends CI_Model {
       return $query;
     }
 
-    public function insert_account($user_app){
-      $this->db->insert("account_application", $user_app);
-      return ($this->db->affected_rows() > 0) ? $this->db->insert_id() : 0;		
+    public function insert_account($user_app, $comp_id){
+      $this->db->where("id", $comp_id);
+      $this->db->update("account_application", $user_app);
+      return ($this->db->affected_rows() > 0) ? 1 : 0;		
     }
 
     public function insert_users($users){
@@ -267,5 +315,27 @@ class Signup_model extends CI_Model {
 
       $this->db->insert("customer", $data);
     }    
+
+    public function insert_invoice(){
+      $result = $this->db3->query("SELECT invoice_no FROM account_invoice ORDER BY id DESC LIMIT 1")->row();
+
+      if (!empty($result)){
+        $invoice_no = date("y").str_pad((substr($result->invoice_no, -4) + 1), 5, '0', STR_PAD_LEFT);
+      }else{
+        $invoice_no = date("y")."00001";
+      }
+
+      $data['invoice_no'] = $invoice_no;
+
+      $this->db3->insert("account_invoice", $data);
+
+      return $this->db3->insert_id();
+
+    }
+
+    public function update_invoice($data, $id){
+      $this->db3->where("id", $id);
+      $this->db3->update("account_invoice", $data);
+    }
 
 }

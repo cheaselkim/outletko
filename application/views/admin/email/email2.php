@@ -231,13 +231,13 @@
                 <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $account_id; ?></p>
             </div>
             <div class="row col-12">
-                <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $password; ?></p>
+                <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $eoutletsuite_pass; ?></p>
             </div>
 
             <div class="row col-12">
               <h3 style="margin: 0;margin-top: 10px;">Oulteko Page Account</h3>
-              <p style="padding-right: 37px;"><b>Your Username is:</b>  your registered username</p>
-              <p style="padding-right: 20px;"><b>Your Password is:</b>  your registered password</p>
+              <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $email; ?></p>
+              <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $outletko_pass?></p>
             </div>
 
         </article>

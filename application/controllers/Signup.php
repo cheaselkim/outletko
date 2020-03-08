@@ -25,11 +25,36 @@ class Signup extends CI_Controller {
         $data['response'] = "true";
 
         foreach ($result as $key => $value) {
-          $data['result'][] = array("label" => ($value->city_desc.", ".$value->province_desc), "city_id" => $value->id, "prov_id" => $value->province_id);
+          $data['result'][] = array("label" => ($value->city_desc.", ".$value->province_desc), "city_id" => $value->id, "prov_id" => $value->province_id, "province" => $value->province_desc);
         }
 
       }
 
+      $data['token'] = $this->security->get_csrf_hash();
+      echo json_encode($data);
+    }
+
+    public function search_partner(){
+      $partner = $this->input->post("partner", TRUE);
+      $result = $this->signup_model->search_partner($partner);
+
+      $data['response'] = "false";
+
+      if (!empty($result)){
+        $data['response'] = "true";
+
+        foreach ($result as $key => $value) {
+          $data['result'][] = array("label" => ($value->partner_name." (".$value->account_id.")"), "partner_id" => $value->partner_id);
+        }
+
+      }
+
+      $data['token'] = $this->security->get_csrf_hash();
+      echo json_encode($data);
+    }
+
+    public function country(){
+      $data['result'] = $this->signup_model->country();
       $data['token'] = $this->security->get_csrf_hash();
       echo json_encode($data);
     }
@@ -292,14 +317,15 @@ class Signup extends CI_Controller {
   }
     
     function verify(){
-         $result = $this->signup_model->get_hash_value($_GET['id']); //get the hash value which belongs t
+         $result = $this->signup_model->get_hash_value($_GET['emailid']); //get the hash value which belongs t
          if($result){ 
             if (password_verify($result[0]['email'], $_GET['hash'])) { //check whether the input hash value matches the hash value retrieved from the database
-            $verified =  $this->signup_model->verify_user($_GET['id']); //update the status of the user as verified
+            $verified =  $this->signup_model->verify_user($_GET['emailid']); //update the status of the user as verified
 
                if($verified){
                 //echo "Your account is verified!";
-                header('Location:http://www.eoutletsuite.com/');
+                $this->send_email();
+                // header('Location:localhost/outletko');
                 
                }else {
                 /*---Now you can redirect the user to whatever page you want---*/

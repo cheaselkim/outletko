@@ -99,9 +99,9 @@ class Header_model extends CI_Model {
   public function get_no_of_trans_for_today(){
 
     if (strlen($this->session->userdata("account_id")) == 7){
-      $result = $this->db->query("SELECT COUNT(id) AS total_trans FROM sales_transaction_hdr WHERE DATE(date_insert) = ? AND comp_id = ?", array(date("Y-m-d"), $this->session->userdata('comp_id')))->row();
+      $result = $this->db->query("SELECT COUNT(id) AS total_trans FROM sales_transaction_hdr WHERE DATE(trans_date) = ? AND comp_id = ?", array(date("Y-m-d"), $this->session->userdata('comp_id')))->row();
     }else{
-      $result = $this->db->query("SELECT COUNT(id) AS total_trans FROM sales_transaction_hdr WHERE DATE(date_insert) = ? AND outlet_id = ? AND user = ? ", array(date("Y-m-d"), $this->session->userdata('outlet_id'), $this->session->userdata('user_id')))->row();
+      $result = $this->db->query("SELECT COUNT(id) AS total_trans FROM sales_transaction_hdr WHERE DATE(trans_date) = ? AND outlet_id = ? AND user = ? ", array(date("Y-m-d"), $this->session->userdata('outlet_id'), $this->session->userdata('user_id')))->row();
     }
 
     return $result->total_trans;
@@ -109,9 +109,9 @@ class Header_model extends CI_Model {
 
   public function get_total_sales_for_today(){
     if (strlen($this->session->userdata("account_id")) == 7){
-      $result = $this->db->query("SELECT SUM(total_amount) AS total_sales FROM sales_transaction_hdr WHERE DATE(date_insert) = ? AND comp_id = ? AND status != '0' ", array(date("Y-m-d"),$this->session->userdata('comp_id')))->row();      
+      $result = $this->db->query("SELECT SUM(total_amount) AS total_sales FROM sales_transaction_hdr WHERE DATE(trans_date) = ? AND comp_id = ? AND status != '0' ", array(date("Y-m-d"),$this->session->userdata('comp_id')))->row();      
     }else{
-      $result = $this->db->query("SELECT SUM(total_amount) AS total_sales FROM sales_transaction_hdr WHERE DATE(date_insert) = ? AND outlet_id = ? AND user = ? AND status != '0' ", array(date("Y-m-d"),$this->session->userdata('outlet_id'), $this->session->userdata("user_id")))->row();            
+      $result = $this->db->query("SELECT SUM(total_amount) AS total_sales FROM sales_transaction_hdr WHERE DATE(trans_date) = ? AND outlet_id = ? AND user = ? AND status != '0' ", array(date("Y-m-d"),$this->session->userdata('outlet_id'), $this->session->userdata("user_id")))->row();            
     }
 
     return $result->total_sales;
