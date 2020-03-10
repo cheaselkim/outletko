@@ -120,6 +120,7 @@ class Signup_model extends CI_Model {
       $this->db->where("account_id", $id);
       $this->db->set("status", "1");
       $this->db->update("users");
+
         return true;
     }
     
@@ -336,6 +337,20 @@ class Signup_model extends CI_Model {
     public function update_invoice($data, $id){
       $this->db3->where("id", $id);
       $this->db3->update("account_invoice", $data);
+    }
+
+    public function update_password($account_id, $eoutletsuite_pass, $outletko_pass){
+
+      $this->db->set("password", $eoutletsuite_pass);
+      $this->db->where("account_id", $account_id);
+      $this->db->where("user_type", "2");
+      $this->db->update("users");
+
+      $this->db->set("password", $outletko_pass);
+      $this->db->where("account_id", $account_id);
+      $this->db->where("user_type", "4");
+      $this->db->update("users");
+
     }
 
 }

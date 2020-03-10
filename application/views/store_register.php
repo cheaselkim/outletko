@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>">
+<!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/store_register.css') ?>">
@@ -574,7 +574,28 @@
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                 <div class=row>
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    	<table class="table table-sm table-bordered">
+                                    		<thead>
+                                    			<tr>
+                                    				<th>Bank Name</th>
+                                    				<th>Account Number</th>
+                                    				<th>Account Name</th>
+                                    			</tr>
+                                    		</thead>
+                                    		<tbody>
+                                    			<tr>
+                                    				<td>BDO Unibank</td>
+                                    				<td>0000 0000 0000 0000 </td>
+                                    				<td>Outletko Corporation</td>
+                                    			</tr>
+                                    		</tbody>
+                                    	</table>
                                     </div>
+                                </div>
+                                <div class="row">
+                                	<div class="col-12 col-lg-4 col-md-12 col-sm-12 mx-auto">
+                                		<button class="btn btn-orange btn-block" id="btn-bank-payment">Continue</button>
+                                	</div>
                                 </div>
                             </div>
                         </div>

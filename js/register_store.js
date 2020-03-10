@@ -203,6 +203,10 @@ $(document).ready(function(){
         $("#div-payment").show();
     });
 
+    $("#btn-bank-payment").click(function(){
+        check_payment_details();
+    });
+
     
 });
 
@@ -402,24 +406,43 @@ function check_bill(){
 }
 
 function check_payment(){
-    div_hide();
-    $("#div-payment-details").show();
-    $("#div-card-payment-details").hide();
-    $("#div-bank-payment-details").hide();
 
-    // if ($("#payment-type").val() == "1"){
-    //     card_payment();
-    // }else{
-    //     bank_payment();
-    // }
+    if ($("#payment-type").val() != ""){
 
-    check_payment_details();
+        div_hide();
+        $("#div-payment-details").show();
+        $("#div-card-payment-details").hide();
+        $("#div-bank-payment-details").hide();
+
+        if ($("#payment-type").val() == "1"){
+            card_payment();
+        }else{
+            bank_payment();
+        }
+
+    }else{
+        swal({
+            type : "warning",
+            title : "No Payment Method Selected",
+            text : "Please select payment method"
+        })
+    }
+
+    // check_payment_details();
 
 }
 
 function card_payment(){
     $("#div-card-payment-details").show();
     var total_amount = $("#total_amount").val();
+
+    swal({
+    	type : "warning",
+    	title : "Payment Loading",
+    	timer : 3000,
+		showCancelButton: false,
+		showConfirmButton: false
+    })
 
     paypal.Buttons({
         createOrder: function(data, actions) {
@@ -588,6 +611,13 @@ function check_payment_details(){
         url : base_url + "Store_register/save_account",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
+            swal({
+                type : "success",
+                title : "Account Registration Completed",
+                text : "Please see your email for further instructions"
+            }, function(){
+                location.reload();
+            })    
         }, error : function(err){
             console.log(err.responseText);
         }

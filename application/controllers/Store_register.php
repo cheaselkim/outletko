@@ -16,6 +16,10 @@ class Store_register extends CI_Controller {
         $this->load->view("admin/email/invoice");
     }
 
+    public function verification(){
+      $this->load->view("verification");
+    }
+
     public function save_account(){
         $info_user = $this->input->post("info_user");
         $info_bill = $this->input->post("info_bill");
@@ -278,7 +282,7 @@ class Store_register extends CI_Controller {
             $status = $this->email->print_debugger();
           }       
         
-          var_dump($status);
+          // var_dump($status);
 
           return $status;
 
