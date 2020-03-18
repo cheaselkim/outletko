@@ -9,10 +9,11 @@
 
 <input type="hidden" id="comp_id" value="<?php echo $this->session->userdata('comp_id') ?>">
 
-<input type="hidden" id="outelt_id" value="<?php echo $this->session->userdata('outelt_id') ?>">
+<input type="hidden" id="outlet_id" value="<?php echo $this->session->userdata('outelt_id') ?>">
 
 <input type="hidden" id="user_all_access" value="<?php echo $this->session->userdata('all_access') ?>">
 
+<input type="hidden" id="user_menu" value="0">
 
 <div class="container-fluid px-0 mx-0">
 
@@ -334,7 +335,7 @@
 
       </div>
 
-      <div class="modal-footer py-2">
+      <div class="modal-footer py-2" hidden>
 
 
       </div>
@@ -345,7 +346,74 @@
 
 </div>
 
+<div class="modal fade" id="user_modal" role="dialog">
 
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header pt-2 pb-0" style="background: rgb(235,241,222);">
+            
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-6 col-lg-8 col-md-8 pl-0'>
+                        <h3 >My Account Menu</h3>
+                    </div>
+                    <div class='col-6 col-lg-4 col-md-4 text-right pr-0'>
+                        <a href="<?php echo base_url('/') ?>"><button class="btn btn-warning"><span class="font-weight-bold">Main Menu</span></button></a>
+                    </div>
+                </div>
+            </div>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div id="menu-content">
+
+            <div class='card-deck'>
+                <a onclick='menu(8)' class='card mx-2' readonly>
+                    <div class='h-100".$disabled."w-100'>
+                        <div class=' menu-img-box  text-center pt-3'>
+                        <img src='<?php echo base_url("/assets/icons/menu/user-details.png") ?>' class='img-fluid mb-2'>  		                
+                            <span class='mt-2 font-weight-bold'>Outletko Details</span>
+                        </div>
+                    </div>             
+                </a>
+
+                <a onclick='select_function(0, 9)' class='card mx-2' readonly>
+                    <div class='h-100".$disabled."w-100'>
+                        <div class=' menu-img-box  text-center pt-3'>
+                        <img src='<?php echo base_url("/assets/icons/menu/subscription.png") ?>' class='img-fluid mb-2'>  		                
+                            <span class='mt-2 font-weight-bold'>Subscription</span>
+                        </div>
+                    </div>             
+                </a>
+
+                <a onclick='select_function(0, 10)' class='card mx-2' readonly>
+                    <div class='h-100".$disabled."w-100'>
+                        <div class=' menu-img-box  text-center pt-3'>
+                        <img src='<?php echo base_url("/assets/icons/menu/commission.png") ?>' class='img-fluid mb-2'>  		                
+                            <span class='mt-2 font-weight-bold'>Commission</span>
+                        </div>
+                    </div>             
+                </a>
+            </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer py-2" hidden>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <div class="modal fade" id="prod_modal" role="dialog" hidden>
 

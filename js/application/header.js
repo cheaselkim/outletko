@@ -175,11 +175,19 @@ function all_access(){
 }
 
 function select_function($sub_module, $function){
-	var $module = $("#menu_module").val();
+    var $module = "";
+    
+    if ($("#main_menu_module").val() == "8"){
+        $module = 8;
+    }else{
+        $module = $("#menu_module").val();
+    }
+
 	window.open(base_url + "app/" + $module + "/" + $sub_module + "/" + $function, "_self");
 }
 
 function main_menu($module){
+    $("#main_menu_module").val($module);
 
 	if ($module == "1" || $module == "3"){
 		if ($("#span_outlet_id").text() == "ALL" || $("#span_outlet_id").text() == ""){
@@ -197,7 +205,15 @@ function main_menu($module){
 				}else{					
 					window.open(base_url + "app/8/0/6", "_self");
 				}
-			}
+            }
+        }else if ($module == "8"){
+            if ($("#user_menu").val() == "0"){
+                $("#user_modal").modal("show");
+                $("#user_modal .modal-dialog").css("max-width", "600px");
+                // $("#menu_module").val(8);
+            }else{
+                menu($module);
+            }
 		}else{
 			menu($module);
 		}
@@ -206,7 +222,9 @@ function main_menu($module){
 
 function menu($module){
 	var	csrf_name = $("input[name=csrf_name]").val();
-	$.ajax({
+    $("#user_modal").modal("hide");
+
+    $.ajax({
 		data : {"module" : $module, "sub_module" : "0", csrf_name : csrf_name},
 		type : "POST",
 		dataType : "JSON",
