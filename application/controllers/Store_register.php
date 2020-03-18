@@ -124,6 +124,8 @@ class Store_register extends CI_Controller {
                 "account_type" => '1',
                 "account_class" => '1',
                 "recruited_by" => $info_user['info_partner'],
+                "level_2" => $info_user['info_level_2'],
+                "level_3" => $info_user['info_level_3'],
                 "business_type" => $info_user['info_business_category'],
                 "subscription_type" => $info_user['plan_type'],
                 "subscription_date" => date('Y-m-d'),

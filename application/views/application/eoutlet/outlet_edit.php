@@ -129,7 +129,7 @@
                             <span>Outlet Status. <span class="required">*</span></span>
                             <select class="form-control" id="outlet_status">
                                 <option value="1">Operational</option>
-                                <option value="2">Close</option>
+                                <option value="0">Close</option>
                             </select>
 
                         </div>

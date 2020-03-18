@@ -4,6 +4,7 @@ $(document).ready(function(){
   $("#outlet_no").attr("readonly", true);   
   $("#currency").attr("readonly", true);
 
+  outlet_available();
   outlet_type();
   currency();
 
@@ -76,6 +77,10 @@ $(document).ready(function(){
     }
   });
 
+  $("#outlet_status").change(function(){
+    check_outlet_status();
+  });
+
   $("#cancel").click(function(){
     window.open(base_url, "_self");
   });
@@ -138,7 +143,7 @@ function get_outlet_dtl(id){
     type : "POST",
     dataType : "JSON",
     success : function(data){
-      console.log(Number(data.outlet_dtl[0]['outlet_monthly_quota']));
+    //   console.log(Number(data.outlet_dtl[0]['outlet_monthly_quota']));
       $("input[name=csrf_name]").val(data.token);
       $('#outlet_no').val(data.outlet_dtl[0]['outlet_code']);
       $('#outlet_name').val(data.outlet_dtl[0]['outlet_name']);
@@ -154,6 +159,59 @@ function get_outlet_dtl(id){
       console.log(err.responseText);
     }
   });
+}
+
+function outlet_available(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+      url : base_url + "Outlet/outlet_available",
+      type: "GET",
+      dataType : "JSON",
+      data : {csrf_name : csrf_name},
+      success : function(result){
+        $("input[name=csrf_name]").val(result.token);
+        if (result.result == "0"){
+          swal({
+            type : "warning",
+            title : "This Account have reach the no. of Outlet.",
+            text : "Please contact Customer Support."
+          }, function(){
+            window.open(base_url, "_self");
+          });
+        }
+      }, error : function(err){
+        console.log(err.responseText);
+      }
+    })
+}
+
+function check_outlet_status(){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var id = $("#outlet_id").val();
+
+    // $.ajax({
+    //     data : {csrf_name : csrf_name, id : id},
+    //     type : "POST",
+    //     dataType : "JSON",
+    //     url : base_url + "Outlet/check_outlet_status",
+    //     success : function(data){
+    //         $("#result").val(data.token);
+
+    //         if (data.result == "1"){
+    //             swal({
+    //                 type : "warning",
+    //                 title : "Outlet is not allowed to be operational",
+    //                 text : "This Account have reach the no. of Outlet to be operational"
+    //             })
+    //         }
+
+    //     }, error : function(err){
+    //         console.log(err.responseText);
+    //     }
+    // })
+
 }
 
 function save_outlet(outlet_no){

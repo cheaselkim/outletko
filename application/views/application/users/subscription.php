@@ -1,69 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Outletko</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="eoutletsuite, eoutletsuite, eoutletsuite.com, outletko">
-    <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
 
-    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
-<!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>"> -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/store_register.css') ?>">
+<script type="text/javascript" src="<?php echo base_url() ?>js/application/users/subscription.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/css/store_register.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css')?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css')?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
+<input type="hidden" id="total_amount" value="0">
+<input type="hidden" id="active-outlet">
 
-    <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
-
-    <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/all.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/style.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.number.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/node_modules/parsleyjs/dist/parsley.js')?>"></script>
-
-    <script src="<?php echo base_url('assets/vendors/creditcardvalidator/creditCardValidator.js')?>"></script>
-    <script src="<?php echo base_url('js/credit_card.js') ?>"></script>
-    <script src="<?php echo base_url('js/register_store.js') ?>"></script>    
-
-</head>
-<body>
-
-<div class="container-fluid pb-4">
-    <div class="row">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
-            <div class="row" style="background-color:rgb(78, 98, 42)">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-md">
-                        <button class="navbar-toggler p-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
-                            <span class="fas fa-bars" style="font-size: 25px;"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                   <a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-10.png')?>" class="border img-header-website" alt=""></a>
-                                </li>                    
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item py-1 pad-right">
-                                    <button class="btn btn-block bg-white" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-black"></i> <span class="text-black">Sign in</span></button>
-                                </li>    
-                                <li class="nav-item py-1 pad-left" >
-                                    <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-white"></i> <span class="text-white">Sign Up</span></button>
-                                </li>
-                            </ul>
-                        </div>  
-                    </nav>
+<div class="container-fluid pt-2" id="account_query">
+    <div class="container-fluid">
+    
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 pt-3">
+                        <h3 class="font-weight-bold">Outletko.com Subscription Renewal</h3>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid px-0" id="div-plan">
+        <hr style="color: black;" class="mt-0 mb-2">
+        
+        <div class="row pt-2" id="div-info">
+            <div class="col-12 col-lg-9 col-md-12 col-sm-12">
+
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>First Name</span>
+                        <input type="text" class="form-control" id="info-fname">
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Last Name</span>
+                        <input type="text" class="form-control" id="info-lname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Business Name</span>
+                        <input type="text" class="form-control" id="info-business-name">
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Business Category</span>
+                        <select class="form-control" id="info-business-category"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Registration Date</span>
+                        <input type="date" class="form-control" id="info-registration-date">
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Renewal Date</span>
+                        <input type="date" class="form-control" id="info-renewal-date">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Partner </span>
+                        <input type="text" class="form-control" id="info-partner">
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <span>Plan</span>
+                        <input type="text" class="form-control" id="info-plan">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 co-lg-12 col-md-12 col-sm-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <button class="btn btn-success btn-block" id="btn-next-info">Continue</button>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                        <button class="btn btn-orange btn-block" >Cancel</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row pt-2" id="div-plan">
+            <div class="container-fluid px-0">
                 <input type="hidden" class="form-control" id="plan-type">
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-plan-header">
@@ -119,153 +140,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>        
+        </div>
 
-            <div class="container-fluid navbar pt-3 " id="div-info"> 
-                <div class="row w-100">
-                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        
-                        <div class="row">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                <span class="font-weight-600 font-size-30">Outletko.com Account Information</span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                <hr class="my-1" style="border-top: 1px solid rgb(195, 214, 155)">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-lg-8 col-md-12 col-sm-12">
-                                <form id="info-form" >
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>First Name <span class="text-red">*</span> </span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-fname" data-parsley-trigger="focusin focusout"  required>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Last Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-lname" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Gender <span class="text-red">*</span></span><br>
-                                            <div class="form-check-inline mt-2 ml-5">
-                                                <input type="radio" class="form-check-input info-gender" name="gender" id="info-gender-male" value="M" >Male
-                                                <input type="radio" class="form-check-input info-gender ml-3" name="gender" id="info-gender-female" value="F" required>Female
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Birthday <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green readonly bg-white cursor-pointer" id="info-bday" data-parsley-trigger="focusin focusout change" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <hr class="mt-2 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Business Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-name" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Business Category <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-business-category" data-parsley-trigger="focusin focusout" required>
-                                                <option value="" selected hidden></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <span>Business Address <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-address" placeholder="Number/Street/Village/" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Town / City <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-town" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Province <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-province" data-parsley-trigger="focusin focusout" required readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Zip Code</span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-zipcode" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Country <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-country" data-parsley-trigger="focusin focusout" required>
-                                                <option value="" selected hidden></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Email Address <span class="text-red">*</span></span>
-                                            <input type="email" class="form-control form-control-sm textbox-green" id="info-email" data-parsley-trigger="focusin focusout" data-parsley-type="email" required>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Mobile No <span class="text-red">*</span></span>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend" style="height: 31px;">
-                                                    <span class="input-group-text textbox-green text-black bg-white">+63</span>
-                                                </div>
-                                                <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-mobile" data-parsley-type="number" data-parsley-trigger="focusin focusout" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Phone No</span>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend" style="height: 31px;">
-                                                    <input type="text" class="form-control form-control-sm textbox-green text-center" value="02" style="width:40px;" id="info-phone-code" data-parsley-trigger="focusin focusout" data-parsley-type="number">
-                                                </div>
-                                                <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-phone" data-parsley-type="number" data-parsley-trigger="focusin focusout">
-                                            </div>                                        
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Partner <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-partner" data-parsley-trigger="focusin focusout" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <hr class="mt-3 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                                            <button class="btn btn-success btn-block" id="btn-next-info" type="button">Continue</button>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                                            <button class="btn btn-orange btn-block" id="btn-back-info" type="button">Back</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
-                                            <button class="btn btn-danger btn-block" onclick="window.location.reload();">Cancel</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-fluid px-0" id="div-cart">
-                <input type="hidden" id="plan-price">
+        <div class="row" id="div-cart">
+            <div class="container-fluid px-0" >
+            <input type="hidden" id="plan-price">
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-cart-header">
                         <div class="row">
@@ -280,7 +160,7 @@
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="row navbar w-100">
                             <div class="col-12 col-lg-8 col-md-12 col-sm-12 table-responsive pt-3 d-none d-md-block" >
-                                <table class="table border-green">
+                                <table class="table border-green table-sm">
                                     <thead class="bg-gray border-bottom">
                                         <tr>
                                             <th>ITEM</th>
@@ -352,8 +232,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid navbar pt-2" id="div-bill">
+        <div class="row" id="div-bill">
+            <div class="container-fluid navbar pt-2">
                 <div class="row w-100">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="row">
@@ -382,7 +264,7 @@
                                                     <input type="text" class="form-control form-control-sm textbox-green" id="bill-lname" data-parsley-trigger="focusin focusout"  required>
                                                 </div>
                                             </div>    
-                                            <div class="row">
+                                            <div class="row" hidden>
                                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                     <span>Company (optional)</span>
                                                     <input type="text" class="form-control form-control-sm textbox-green" id="bill-company">
@@ -424,8 +306,8 @@
                                                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                                     <span>Mobile No <span class="text-red">*</span></span>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend" style="height: 31px;">
-                                                            <span class="input-group-text textbox-green text-black bg-white">+63</span>
+                                                        <div class="input-group-prepend" style="height: 35px;">
+                                                            <span class="input-group-text textbox-green text-black bg-white" style="border-radius: 0;">+63</span>
                                                         </div>
                                                         <input class="form-control form-control-sm textbox-green w-75" id="bill-mobile" data-parsley-trigger="focusin focusout"  required>
                                                     </div>
@@ -435,7 +317,7 @@
                                                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                                     <span>Phone No</span>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend" style="height: 31px;">
+                                                        <div class="input-group-prepend" style="height: 35px;">
                                                             <input type="text" class="form-control form-control-sm textbox-green text-center" value="02" id="bill-phone-code" style="width:40px;">
                                                         </div>
                                                         <input type="password" class="form-control form-control-sm textbox-green" id="bill-phone">
@@ -471,8 +353,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid px-0" id="div-payment">
+        <div class="row" id="div-payment">
+            <div class="container-fluid px-0">
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-payment-header">
                         <div class="row">
@@ -525,52 +409,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <script src="https://www.paypal.com/sdk/js?client-id=ASjHWK-MMBPqa9sv1TtpRIruH_OiCph7pWvgnWO0DNE2plWjIAOMHHff7TRRH9Gd7j0R5mKQFSWjMho9&currency=PHP&locale=en_PH"></script>
-            <div class="container-fluid navbar" id="div-payment-details">
-                <!-- <div class="row pt-5 w-100" id="div-card-details">
-                    <div class="col-12 col-lg-4 col-md-7 col-sm-12 mx-auto">
-                        <div class="row py-1">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                <span>Card Number</span>
-                                <input type="text" class="form-control form-control-sm textbox-green" id="card_number" maxlength="20">
-                            </div>
-                        </div>
-                        <div class="row py-1">
-                            <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                                <span>Month</span>
-                                <input type="text" class="form-control form-control-sm textbox-green" placeholder="MM" id="expiry_month" maxlength="2">
-                            </div>
-                            <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                                <span>Year</span>
-                                <input type="text" class="form-control form-control-sm textbox-green" placeholder="YYYY" id="expiry_year" maxlength="4">
-                            </div>
-                            <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                                <span>CVV</span>
-                                <input type="text" class="form-control form-control-sm textbox-green" placeholder="123" id="cvv" maxlength="3">
-                            </div>
-                        </div>
-                        <div class="row py-1">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                <span>Name on Card</span>
-                                <input type="text" class="form-control form-control-sm textbox-green" placeholder="Juan Dela Cruz" id="name_on_card">
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
-                                <button class="btn btn-success btn-block" id="btn-next-payment-details">Proceed to Payment</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                                <button class="btn btn-warning btn-block" id="btn-back-payment-details">Back</button>
-                            </div>
-                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                                <button class="btn btn-danger btn-block" onclick="window.location.reload();">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+        <script src="https://www.paypal.com/sdk/js?client-id=ASjHWK-MMBPqa9sv1TtpRIruH_OiCph7pWvgnWO0DNE2plWjIAOMHHff7TRRH9Gd7j0R5mKQFSWjMho9&currency=PHP&locale=en_PH"></script>
+        <div class="row" id="div-payment-details">
+            <div class="container-fluid navbar">
                 <div class="row w-100">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="row" id="div-card-payment-details">
@@ -610,18 +453,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
+
     </div>
 </div>
-
-<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-<input type="hidden" id="total_amount">
-
-</body>
-</html>

@@ -1,9 +1,13 @@
 $(document).ready(function(){
 
+    get_data();
     div_hide();
     country();
     category();
-    $("#div-plan").show();
+    $("#div-info").show();
+    $("#div-info").find(":input").attr("disabled", true);
+    $("#div-info").find("button").attr("disabled", false);
+
     $("#info-mobile").mobilenumber();
     $("#info-phone").mobilenumber();
     $("#bill-mobile").mobilenumber();
@@ -96,8 +100,6 @@ $(document).ready(function(){
     $("#info-partner").autocomplete({
         select: function(event, ui){
             $("#info-partner").attr("data-id", ui.item.partner_id);
-            $("#info-partner").attr("data-lvl-2", ui.item.lvl_2);
-            $("#info-partner").attr("data-lvl-3", ui.item.lvl_3);
         },
         source: function(req, add){
             var csrf_name = $("input[name=csrf_name]").val();
@@ -123,13 +125,13 @@ $(document).ready(function(){
         }
     });    
     
-    $('#info-form').parsley({
-        errors: {
-            container: function ( elem ) {
-                return $( elem ).parent();
-            }
-        }
-    });
+    // $('#info-form').parsley({
+    //     errors: {
+    //         container: function ( elem ) {
+    //             return $( elem ).parent();
+    //         }
+    //     }
+    // });
 
     $('#bill-form').parsley({
         errors: {
@@ -140,11 +142,27 @@ $(document).ready(function(){
     });    
 
     $("#cart-plan-outlet-qty").keyup(function(){
+        var active_outlet = $("#active-outlet").val() - 3;
+        var plan_outlet = $(this).val();
+
+        console.log("active " + active_outlet);
+        console.log("plan" + plan_outlet);
+
         if ($(this).val() == ""){
             $(this).val("0");
             $("#cart-pan-outlet-qty").val("0");
         }else{
-            cart_outlet();
+            if (plan_outlet < active_outlet){
+                $(this).val(active_outlet);
+                swal({
+                    type : "warning",
+                    title : "All plan Outlet is active",
+                    text : "Please inactive the outlet that you no longer needed"
+                })
+            }else{
+                cart_outlet();
+            }
+
         }
         $("#cart-pan-outlet-qty").val($(this).val());
     });
@@ -155,7 +173,7 @@ $(document).ready(function(){
 
         if ($(this).attr("id") == "div-card-payment"){
             $("#payment-type").val("1");
-        }else{s
+        }else{
             $("#payment-type").val("2");
         }
         check_payment();
@@ -185,14 +203,9 @@ $(document).ready(function(){
         check_payment_details();
     });
 
-    $("#btn-back-info").click(function(){
-        div_hide();
-        $("#div-plan").show();
-    });
-
     $("#btn-back-cart").click(function(){
         div_hide();
-        $("#div-info").show();
+        $("#div-plan").show();
     });
 
     $("#btn-back-bill").click(function(){
@@ -281,7 +294,7 @@ function category(){
 
     $.ajax({
         type : "GET",
-        url : "Signup/business_category",
+        url : base_url + "Signup/business_category",
         dataType : "JSON",
         data : {csrf_name : csrf_name},
         success : function(data){
@@ -296,6 +309,56 @@ function category(){
 
 }
 
+function get_data(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        type : "GET",
+        url : base_url + "Subscription/get_data",
+        dataType : "JSON",
+        data : {csrf_name : csrf_name},
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            console.log(result.outlet);
+            var data = result.data;
+            console.log(data[0]);
+            $("#info-fname").val(data[0].first_name);
+            $("#info-lname").val(data[0].last_name);
+            $("#info-business-name").val(data[0].account_name);
+            $("#info-business-category").val(data[0].business_type);
+            $("#info-registration-date").val($.datepicker.formatDate( "yy-mm-dd", new Date(data[0].subscription_date)));
+            $("#info-renewal-date").val($.datepicker.formatDate( "yy-mm-dd", new Date(data[0].renewal_date)));
+            $("#info-partner").attr("data-id", data[0].recruited_by);
+            $("#info-partner").attr("data-lvl-2", data[0].level_2);
+            $("#info-partner").attr("data-lvl-3", data[0].level_3);
+            $("#info-partner").val(result.partner);
+            $("#info-plan").val(result.plan);
+            
+            $("#bill-fname").val(data[0].first_name);
+            $("#bill-lname").val(data[0].last_name);
+            $("#bill-address").val(data[0].address);
+            $("#bill-town").val(data[0].city_desc);
+            $("#bill-province").val(data[0].province_desc);
+            $("#bill-town").attr("data-id", data[0].city);
+            $("#bill-province").attr("data-id", data[0].prov_id);
+            $("#bill-zipcode").val(data[0].zip_code);
+            $("#bill-country").val(data[0].country);
+            $("#bill-email").val(data[0].email);
+            $("#bill-mobile").val(data[0].mobile_no);
+            $("#bill-phone-code").val((data[0].phone_code == null ? "02" : data[0].phone_code));
+            $("#bill-phone").val(data[0].telephone_no);
+
+            $("#cart-plan-outlet-qty").val(Number(data[0].outlet_no) - 3);
+            $("#cart-plan-outlet-qty-dp").val(Number(data[0].outlet_no) - 3);
+            $("#active-outlet").val(result.outlet);
+        
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
 function cart_outlet(){
     var qty = $("#cart-plan-outlet-qty").val();
     var plan = $("#plan-type").val();
@@ -305,13 +368,13 @@ function cart_outlet(){
 
     if (qty > 0){
         if (plan == "1"){
-            price = 1000;
-        }else if (plan == "2"){
-            price = 650;
-        }else if (plan == "3"){
-            price = 375;
-        }else if (plan == "4"){
             price = 150;
+        }else if (plan == "2"){
+            price = 375;
+        }else if (plan == "3"){
+            price = 650;
+        }else if (plan == "4"){
+            price = 1000;
         }else{
 
         }
@@ -331,21 +394,21 @@ function cart_outlet(){
 
 function check_info(){
     div_hide();
-    $("#div-cart").show();            
+    $("#div-plan").show();            
 
-    if ($("#info-form").parsley().isValid()){
-    }else{
-        swal({
-            type : "warning",
-            title : "Please input all required fields"
-        })
-    }
+    // if ($("#info-form").parsley().isValid()){
+    // }else{
+    //     swal({
+    //         type : "warning",
+    //         title : "Please input all required fields"
+    //     })
+    // }
 
 }
 
 function check_plan(plan){
     div_hide();
-    $("#div-info").show();
+    $("#div-cart").show();
     $("#plan-type").val(plan);
 
     var plan_name = "";
@@ -380,21 +443,23 @@ function check_plan(plan){
 
 function check_cart(){
     div_hide();
-    $("#div-payment").show();
+    // $("#div-bill").show();
+    $("#div-payment").show();            
     $("#payment-grand-total").text("PHP " + $.number($("#total_amount").val(), 2));
+    console.log($("#total_amount").val());
 
-    $("#bill-fname").val($("#info-fname").val());
-    $("#bill-lname").val($("#info-lname").val());
-    $("#bill-address").val($("#info-business-address").val());
-    $("#bill-town").val($("#info-town").val());
-    $("#bill-province").val($("#info-province").val());
-    $("#bill-town").attr("data-id", $("#info-town").attr("data-id"));
-    $("#bill-town").attr("data-prov", $("#info-town").attr("data-prov"));
-    $("#bill-zipcode").val($("#info-zipcode").val());
-    $("#bill-email").val($("#info-email").val());
-    $("#bill-mobile").val($("#info-mobile").val());
-    $("#bill-phone").val($("#info-phone").val());
-    $("#bill-phone-code").val($("#info-phone-code").val());
+    // $("#bill-fname").val($("#info-fname").val());
+    // $("#bill-lname").val($("#info-lname").val());
+    // $("#bill-address").val($("#info-business-address").val());
+    // $("#bill-town").val($("#info-town").val());
+    // $("#bill-province").val($("#info-province").val());
+    // $("#bill-town").attr("data-id", $("#info-town").attr("data-id"));
+    // $("#bill-town").attr("data-prov", $("#info-town").attr("data-prov"));
+    // $("#bill-zipcode").val($("#info-zipcode").val());
+    // $("#bill-email").val($("#info-email").val());
+    // $("#bill-mobile").val($("#info-mobile").val());
+    // $("#bill-phone").val($("#info-phone").val());
+    // $("#bill-phone-code").val($("#info-phone-code").val());
 
 }
 
@@ -442,6 +507,9 @@ function check_payment(){
 function card_payment(){
     $("#div-card-payment-details").show();
     var total_amount = $("#total_amount").val();
+    // total_amount = 0;
+
+    // console.log(total_amount);
 
     swal({
     	type : "warning",
@@ -468,22 +536,11 @@ function card_payment(){
             // This function shows a transaction success message to your buyer.
             // alert('Transaction completed by ' + details.payer.name.given_name);
 
-            check_payment_details();
+            // check_payment_details();
 
           });
         }
-      }).render('#paypal-button-container'); 
-    //   $(".paypal-button-number-0").css("display", "none !important");
-
-    //   function(n) {
-    //     n.preventDefault(), n.stopPropagation();
-    //     var t = P({
-    //       payment: o
-    //     });
-    //     e.payPromise = t
-    //   }
-
-      //   $(".paypal-button-number-0").hide();
+      }).render('#paypal-button-container');    
 
 }
 
@@ -493,26 +550,6 @@ function bank_payment(){
 }
 
 function check_payment_details(){
-
-    var info_fname = $("#info-fname").val();
-    var info_lname = $("#info-lname").val();
-    var info_gender = $(".info-gender:checked").val();
-    var info_bday = $("#info-bday").val();
-    
-    var info_business_name = $("#info-business-name").val();
-    var info_business_category = $("#info-business-category").val();
-    var info_address = $("#info-business-address").val();
-    var info_town = $("#info-town").attr("data-id");
-    var info_province = $("#info-town").attr("data-prov");
-    var info_zipcode = $("#info-zipcode").val();
-    var info_country = $("#info-country").val();
-    var info_email = $("#info-email").val();
-    var info_mobile = $("#info-mobile").val();
-    var info_phone = $("#info-phone").val();
-    var info_phone_area = $("#info-phone-code").val();
-    var info_partner = $("#info-partner").attr("data-id");
-    var info_partner_2 = $("#info-partner").attr("data-lvl-2");
-    var info_partner_3 = $("#info-partner").attr("data-lvl-3");
 
     var plan_type = $("#plan-type").val();
     var plan_price = $("#plan-price").val();
@@ -526,7 +563,7 @@ function check_payment_details(){
     var bill_company = $("#bill-company").val();
     var bill_address = $("#bill-address").val();
     var bill_town = $("#bill-town").attr("data-id");
-    var bill_province = $("#bill-town").attr("data-prov");
+    var bill_province = $("#bill-province").attr("data-id");
     var bill_zipcode = $("#bill-zipcode").val();
     var bill_country = $("#bill-country").val();
     var bill_email = $("#bill-email").val();
@@ -535,37 +572,7 @@ function check_payment_details(){
     var bill_phone_code = $("#bill-phone-code").val();
 
     var payment_type = $("#payment-type").val();
-
-    var link_name = info_business_name;
-    link_name = $.trim(link_name.toString().toLowerCase());
-    link_name = link_name.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
-
-    var info_user  = {
-        info_fname : info_fname,
-        info_lname : info_lname,
-        info_gender : info_gender,
-        info_bday : info_bday,
-        info_business_name : info_business_name,
-        info_business_category : info_business_category,
-        info_address : info_address,
-        info_town : info_town,
-        info_province : info_province,
-        info_zipcode : info_zipcode,
-        info_country : info_country,
-        info_email : info_email,
-        info_mobile : info_mobile,
-        info_phone : info_phone,
-        info_phone_area : info_phone_area,
-        info_partner : info_partner,
-        info_level_2 : info_partner_2,
-        info_level_3 : info_partner_3,
-        plan_type : plan_type,
-        plan_price : plan_price,
-        plan_outlet_qty : plan_outlet_qty,
-        plan_outlet_price : plan_outlet_price,
-        plan_total_amount : plan_total_amount
-
-    }
+    var renew_date = $("#info-renewal-date").val();
 
     var info_bill = {
         bill_fname : bill_fname,
@@ -589,54 +596,19 @@ function check_payment_details(){
         payment_type : payment_type
     }
     
-    var info_outletko = {
-            account_id : "",
-            account_name : info_business_name,
-            link_name : link_name,
-            account_status : 0,
-            confirm_email : 0,
-            business_category : info_business_category,
-            username : info_email,
-            password : "password",
-            first_name : info_fname,
-            last_name : info_lname,
-            address : info_address,
-            city : info_town,
-            user_id : "0",
-            province : info_province,
-            email : info_email,
-            mobile_no  : info_mobile,
-            gender : info_gender,
-            birthday : info_bday
-    }
-    
-    var info_outletsuite = {
-            
-            account_id : "",
-            status : 0,
-            first_name : info_fname,
-            last_name : info_lname,
-            username : info_email,
-            password : "password",
-            email : info_email,
-            birthday : info_bday,
-            gender : info_gender
-    } 
 
     var csrf_name = $("input[name=csrf_name]").val();
-    console.log(info_user);
 
     $.ajax({
-        data : {csrf_name : csrf_name, info_user : info_user, info_bill : info_bill, info_outletko : info_outletko, info_outletsuite : info_outletsuite},
+        data : {csrf_name : csrf_name, info_bill : info_bill, renew_date : renew_date},
         type : "POST",
         dataType : "JSON",
-        url : base_url + "Store_register/save_account",
+        url : base_url + "Subscription/update_account",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             swal({
                 type : "success",
-                title : "Account Registration Completed",
-                text : "Please see your email for further instructions"
+                title : "Account Subscription Completed"
             }, function(){
                 location.reload();
             })    

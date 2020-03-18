@@ -44,7 +44,7 @@ class Signup extends CI_Controller {
         $data['response'] = "true";
 
         foreach ($result as $key => $value) {
-          $data['result'][] = array("label" => ($value->partner_name." (".$value->account_id.")"), "partner_id" => $value->partner_id);
+          $data['result'][] = array("label" => ($value->partner_name." (".$value->account_id.")"), "partner_id" => $value->partner_id, "lvl_2" => $value->lvl_2, "lvl_3" => $value->lvl_3);
         }
 
       }

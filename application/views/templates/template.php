@@ -28,6 +28,7 @@
     <script src="<?php echo base_url('assets/js/popper.min.js') ?>"></script>
     <script src="<?php echo base_url('js/template.js') ?>"></script>
     <script src="<?php echo base_url('assets/vendors/summernote/js/summernote-bs4.js') ?>"></script>  
+    <script src="<?php echo base_url('assets/node_modules/parsleyjs/dist/parsley.js')?>"></script>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

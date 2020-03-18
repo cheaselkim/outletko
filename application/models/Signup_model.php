@@ -26,6 +26,8 @@ class Signup_model extends CI_Model {
     SELECT
     id AS partner_id,
     CONCAT(last_name, ', ', first_name, ' ', middle_name) AS partner_name,
+    recruited_by as lvl_2,
+    level_2 as lvl_3,
     account_id 
     FROM account_application
     WHERE last_name LIKE ? OR account_id LIKE ?    

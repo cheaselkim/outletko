@@ -477,7 +477,11 @@
 							$data['page'] = 'application/prev_trans/prev_trans';							
 						}else if ($function == "8"){
 							$data['page'] = 'application/post_prev_trans/post_prev_trans';							
-						}					
+						}else if ($function == "9"){
+                            $data['page'] = 'application/users/subscription';
+                        }else if ($function == "10"){
+                            $data['page'] = 'application/users/commission';
+                        }
 					}
 
 				}else if ($user_type == "3"){

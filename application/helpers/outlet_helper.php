@@ -61,7 +61,7 @@ if (!function_exists("table_outlet")){
 
 				if ($function == '2'){
 
-					$btn = "<button class='btn btn-primary btn-block py-0 btn-query' onclick='edit_outlet(".$value->id.")' ".$disabled.">Edit</button>";					
+					$btn = "<button class='btn btn-primary btn-block py-0 btn-query' onclick='edit_outlet(".$value->id.")'>Edit</button>";					
 
 				}else if ($function == "3"){
 
