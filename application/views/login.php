@@ -92,21 +92,30 @@
   </div>
   <!-- https://images.pexels.com/photos/449559/pexels-photo-449559.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200/ -->
   <div class="row header">
-    <div class="col-lg-12" >
+    <div class="col-lg-12">
       
-      <div class="row" style="">
-        <div class="col-lg-12">
-          <nav class="navbar navbar-expand-md">
+      <div class="row" style="border-bottom: 0.1px solid #F8DE7E;">
+        <div class="col-lg-12 pl-4">
+          <nav class="navbar navbar-expand-md py-0 my-0">
+            <div class=" py-0 my-0">
+                <div class="navbar-header py-0 my-0">
+                    <a href="#" class="navbar-brand font-weight-bold text-white font-size-35 my-0 py-0">Outletko</a>
+                    <span class="btn text-yellow bg-transparent border-white py-0 span-partner" hidden><span class="font-weight-600">PARTNER </span> NG MGA <span class="font-weight-600">MICRO BUSINESS & SMALL BUSINESS</span></span>
+                </div>
+            </div>
             <button class="navbar-toggler p-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
-              <span class="fas fa-bars" style="font-size: 25px;"></span>
+              <span class="fas fa-bars text-orange" style="font-size: 25px;"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
               <ul class="navbar-nav ml-auto">
+              <li class="nav-item py-1 pad-right">
+                  <a href="<?php echo base_url('/blog'); ?>" class="btn btn-block bg-transparent text-white" style="font-size:17px;"><i class="fas fa-rss"></i> <span class="text-white">News & Insights</span></a>
+                </li>    
                 <li class="nav-item py-1 pad-right">
-                  <button class="btn btn-block bg-white" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-black"></i> <span class="text-black">Sign in</span></button>
+                  <button class="btn btn-block bg-transparent text-white" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
                 </li>    
                 <li class="nav-item py-1 pad-left" >
-                  <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-white"></i> <span class="text-white">Sign Up</span></button>
+                  <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-black"></i> <span class="text-black">Sign Up</span></button>
                 </li>
               </ul>
             </div>  
@@ -114,50 +123,54 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" hidden>
         <div class="col-lg-2 col-md-2 col-sm-4 mx-auto pt-3 text-center">
           <img src="<?php echo base_url('/assets/img/logo-10.png') ?>" alt="logo" class="img-logo">
         </div>
       </div>
-      
-      <div class="row pt-5 pb-3">
-        <div class="col-lg-8 mx-auto">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-              <p class="line-1 anim-typewriter text-white text-shadow-white" hidden>Find Outlet Store Near You!</p>
-              <p class="line-1 anim-typewriter text-shadow-white h4 font-weight-600 text-white" >Connecting Stores and Service Providers to Community People</p>
-<!--   -webkit-text-fill-color: black; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white; -->
-            </div>
-          </div>
-          <form action="<?php echo base_url('Search/index') ?>" method="get">
-            <div class="row mt-2 div-search-box">
-              <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1" hidden>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
-                  </div>
-                  <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="location" placeholder="Search location" aria-label="location" aria-describedby="basic-addon1">
-                </div>    
-              </div>
-              <div class="col-lg-9 col-md-9 col-sm-12 pad-center pt-1">
 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
-                  </div>
-                  <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="product_outlet" placeholder="Search Products or Outlet" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-          
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-12 pad-left pt-1">
-                <button class="btn btn-orange btn-block font-weight-600">Search</button>
-              </div>
+        <div class="navbar">      
+            <div class="container-fluid pl-4">
+                <div class="row pt-5 pb-3">
+                    <div class="col-lg-12 mr-auto div-body pl-0" >
+                        <div class="row">
+                            <div class="col-12 col-xl-8 col-lg-8 col-md-8 col-sm-12 text-left">
+                            <p class="text-shadow-white font-weight-600 text-white text-community" >Connecting Stores and Service Providers to Community.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-xl-7 col-lg-7 col-md-8 col-sm-12">
+                                <form action="<?php echo base_url('Search/index') ?>" method="get">
+                                    <div class="row mt-2 div-search-box">
+                                        <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1" hidden>
+                                            <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="location" placeholder="Search location" aria-label="location" aria-describedby="basic-addon1">
+                                            </div>    
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-12 pad-right pt-1">
+
+                                            <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="product_outlet" placeholder="Search Products or Outlet" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                    
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12 pad-left pt-1">
+                                            <button class="btn btn-orange btn-block font-weight-600 "> <span class="text-black">Search</span> </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
             </div>
-          </form>
         </div>
-      </div>
 
     </div>
   </div>
@@ -263,7 +276,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-9 col-md-12 col-sm-8 mx-auto pt-3 px-0">
+    <div class="col-12 col-xl-9 col-lg-10 col-md-12 col-sm-8 mx-auto pt-3 px-0">
       <div class="row mb-0">
         <div class="col-lg-12 text-center">
           <span class="font-weight-525 h4">Featured Stores of the Month</span>
@@ -402,7 +415,7 @@
 });
 </script>
 
-<div class="row px-3" id="hideMe" style="position:fixed;margin-top:-28%;z-index:9999;">
+<div class="row px-3" id="hideMe" style="position:fixed;margin-top:-25%;z-index:9999;">
   <div class="col-7 py-2" style="background: rgb(192, 219, 136);">
     <div class="row">
       <div class="col-auto">
@@ -452,7 +465,7 @@
   </div>
 </div>
 
-  <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;">
+  <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;" hidden>
     <span>© Copyright Outletko • <?php echo date('Y') ?> • All Rights Reserved</span>
   </footer>
 

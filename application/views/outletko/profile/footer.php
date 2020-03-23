@@ -10,6 +10,6 @@
   </div>
 </div>
 
-  <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;">
+  <footer class="text-center fixed-bottom py-1" style="background: #F5F5F5;" hidden>
     <span>© Copyright Outletko • <?php echo date('Y') ?> • All Rights Reserved</span>
   </footer>

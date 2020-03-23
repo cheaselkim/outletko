@@ -49,9 +49,9 @@ class Outletko extends CI_Controller {
 			foreach($result as $key => $value){
 
 				if ($width <= 768){
-					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 420)."...");
+					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 380)."...");
 				}else{
-					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 980)."...");
+					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 850)."...");
 				}
 
 				$data['result'][$key] = array(

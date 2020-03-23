@@ -110,6 +110,8 @@
 <?php 
     $this->load->view($header); 
     $this->load->view($page);    
+    //   var_dump("template 2");
+    //   var_dump($header);
 
     if ($page == "outletko/profile/profile"){
       $this->load->view("outletko/profile/footer");

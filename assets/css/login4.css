@@ -192,11 +192,12 @@ a:hover{
         rgba(20,20,20, .8)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); */
 /*    background: url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg');*/
 /*    background: url('http://www.rightfashion.us/wp-content/uploads/2018/07/Ideas-For-Buying-Gold-Earrings.jpg');*/
-    background: linear-gradient(
+    /* background: linear-gradient(
         rgba(20,20,20, .3), 
-        rgba(20,20,20, .3)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg'); 
+        rgba(20,20,20, .3)), url('https://i.pinimg.com/originals/72/dc/4e/72dc4e345520467efc23f15419f86694.jpg');  */
+    background: url('../img/bg.png');
     background-repeat:no-repeat; 
-    background-size: 100%;
+    background-size: 100% 100%;
     min-height: 50vh;
 }
 
@@ -249,10 +250,22 @@ body{
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    
+
+.header{
+        background: url('../img/bg-phone-2.png');
+        background-repeat:no-repeat; 
+        background-size: 100% 100%;
+        min-height: 30vh;
+}       
+
 .img-logo{
     height: 100%; 
     width:30%;
+}
+
+.text-community{
+    line-height: 1.2;
+    font-size: 25px;
 }
 
 .tile{
@@ -263,13 +276,11 @@ body{
   margin: 5px;
 }
 
-.header{
-    background-size: 100% 100%;
-}
-
 .div-search-box{
     padding-left: 0px;
     padding-right: 0px;
+    margin-top: 25% !important;
+    margin-bottom: 20% !important;
 }
 
 
@@ -277,7 +288,20 @@ body{
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    
+
+.header{
+    background: url('../img/bg.png');
+    background-repeat:no-repeat; 
+    background-size: 100%;
+    min-height: 50vh;
+}       
+
+
+.text-community{
+    line-height: 1.2;
+    font-size: 25px;
+}        
+
 .img-logo{
     height: 100%; 
     width:80%;
@@ -328,9 +352,11 @@ body{
 }
 
 .header{
+    background: url('../img/bg.png');
+    background-repeat:no-repeat; 
+    background-size: 120% 100%;
     min-height: 40vh;
-    background-size: 100%;
-}
+}       
 
 #div-featured-outlet{
     padding-left: 20px;
@@ -345,8 +371,9 @@ body{
 }
 
 .div-search-box{
-    padding-left: 70px;
-    padding-right: 70px;
+    /* padding-left: 70px;
+    padding-right: 70px; */
+    margin-top: 10% !important;
 }
 
 .card{
@@ -357,7 +384,19 @@ body{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
- 
+
+.header{
+    background: url('../img/bg.png');
+    background-repeat:no-repeat; 
+    background-size: 100% 100%;
+    min-height: 60vh;
+}       
+        
+.text-community{
+    line-height: 1.2;
+    font-size: 35px;
+}
+
 .pad-right{
     padding-right: 3px;
 }   
@@ -382,6 +421,7 @@ body{
 }
 
 .div-search-box{
+    margin-top: 15% !important;
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -390,6 +430,24 @@ body{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+
+.header{
+    min-height: 70vh;
+    background-size: 100% 100%;
+}
+
+.span-partner{
+    margin-top: -2%;
+}
+
+.text-community{
+    line-height: 1.2;
+    font-size: 40px;
+}
+
+.div-search-box{
+    margin-top: 18% !important;
+}
 
 .pad-center{
     padding-left: 3px;
@@ -423,7 +481,17 @@ body{
 }
 
 .card{
-    height: 150px !important;
+    height: 100px !important;
+    width: 120px !important;
+}
+
+.div-card-name{
+    width: 120px !important;
+}
+
+.div-card-name p{
+    font-size: 14px !important;
+
 }
 
 }
