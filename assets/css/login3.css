@@ -207,6 +207,28 @@
     margin-top: 100px;
 }
 
+#search-header-title{
+    margin-top: -5%;
+    font-size: 25px;
+}
+
+.div-search-bar{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.div-buss-contact-no{
+    text-align: center;
+}
+
+.div-buss-email{
+    text-align: center;
+}
+
+.div-buss-address{
+    margin-top: 5px;
+}
+
 } 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -220,6 +242,15 @@
 .font-size-36{
     font-size: 23px;
 }
+
+.div-buss-contact-no{
+    text-align: center;
+}
+
+.div-buss-email{
+    text-align: center;
+}
+
 
 } 
 
@@ -262,6 +293,14 @@
     padding-bottom: 50px;
 }
 
+.div-buss-contact-no{
+    text-align: right;
+}
+
+.div-buss-email{
+    text-align: left;
+}
+
 
 } 
 
@@ -270,6 +309,14 @@
 
 .img-header-website{
     height: 50px;
+}
+
+.div-buss-contact-no{
+    text-align: right;
+}
+
+.div-buss-email{
+    text-align: left;
 }
 
 } 
@@ -341,5 +388,16 @@
     background: white;
 }
 
+.div-buss-contact-no{
+    text-align: right;
+}
+
+.div-buss-email{
+    text-align: left;
+}
+
+.div-buss-address{
+    margin-top: -5px;
+}
 
 }

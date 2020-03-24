@@ -16,7 +16,7 @@
 		<div class="container">
 			
 			<div class="row">
-				<div class="col-12 col-lg-12 d-none d-lg-block py-1 pad-left text-center">
+				<div class="col-12 col-lg-12 d-lg-block py-1 pad-left text-center">
 					<div class="div-prod-img cursor-pointer div-prof-pic mx-auto" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic" style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 					</div>
 				</div>
@@ -31,15 +31,15 @@
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
 								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 							</div>
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center" style="margin-top: -5px;">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center div-buss-address" >
 								<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="row">
-									<div class="col-lg-6 col-md-6 col-sm-12 text-right" style="margin-top: -0.5%;">
+									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-contact-no" style="margin-top: -0.5%;">
 										<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
 									</div>
-									<div class="col-lg-6 col-md-6 col-sm-12" style="margin-top: -0.5%;">
+									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-email" style="margin-top: -0.5%;">
 										<span class="text-white text-buss-address" id="text-buss-email"></span>												
 										<span class="text-white text-buss-address" id="text-buss-tel-no" hidden></span>												
 									</div>
@@ -49,7 +49,7 @@
 								</div>
 							</div>
 							<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: -0.75%;">
-								<span class="text-white text-buss-address" id="text-buss-email"></span>												
+								<span class="text-white text-buss-address" id="text-buss-email2"></span>												
 							</div>
 						</div>	
 					</div>
@@ -59,7 +59,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2 pb-2" style="margin-top: -5px;">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2 pb-2 d-none d-lg-block" style="margin-top: -5px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5">
@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4 d-none d-lg-block">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">

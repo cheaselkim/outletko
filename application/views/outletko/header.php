@@ -1,7 +1,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
 
 <nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white font-bauhaus-93">Outletko</span></a>
+	<a class="navbar-brand font-small" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white font-bauhaus-93">Outletko</span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -33,8 +33,8 @@
 
 			<!-- <?php echo form_open('Search/Search'); ?>-->
 			<form action="<?php echo site_url('Search/index') ?>" method="GET">
-				<div class="row">
-					<div class="col-12 col-md-10 col-lg-6 pad-right">
+				<div class="row div-search-bar">
+					<div class="col-12 col-md-10 col-lg-6 pad-center pt-1">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-md-2 col-lg-2 pad-left">
+					<div class="col-12 col-md-2 col-lg-2 pad-left pt-1">
 						<button class="btn btn-block btn-warning font-small font-weight-600" type="submit">Search</button>
 					</div>
 				</div>

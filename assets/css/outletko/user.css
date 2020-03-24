@@ -113,13 +113,14 @@ textarea{
 }
 
 .div-header{
-	height: 200px;
-	background: #77933c;
+	min-height: 200px;
+    background: #77933c;
+    padding-bottom: 20px;
 }
 
 .div-prof-pic{
-	height: 140px;
-	width: 200px;
+	height: 100px;
+	width: 130px;
 	background: white;
 }
 
