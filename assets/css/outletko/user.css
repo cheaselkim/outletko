@@ -325,6 +325,15 @@ textarea{
 	padding-top: 200px;
 }
 
+.div-store-img-btn{
+    display: block;
+    margin-top: -70px;
+}
+
+#modal_store_img .modal-body{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 
 }
 

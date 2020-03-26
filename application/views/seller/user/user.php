@@ -93,7 +93,7 @@
 						<div class="row posted-store mt-2" id="posted_store" style="padding-left: 12px;padding-right:12px;">
 							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
 								<div class="div-store-img mt-1" id="div-store-img-1" >
-									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-1">
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer div-store-img-btn"  id="div-store-img-btn-1">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
 									</div>
@@ -101,7 +101,7 @@
 							</div>
 							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
 								<div class="div-store-img mt-1" id="div-store-img-2" >
-									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer"  id="div-store-img-btn-2">
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer div-store-img-btn"  id="div-store-img-btn-2">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
 									</div>
@@ -109,7 +109,7 @@
 							</div>
 							<div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0">
 								<div class="div-store-img mt-1" id="div-store-img-3" >
-									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer" id="div-store-img-btn-3">
+									<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2 cursor-pointer div-store-img-btn" id="div-store-img-btn-3">
 										<i class="fas fa-camera text-white"></i><br>
 										<span class="text-white font-weight-bold font-size-18">Update</span>
 									</div>
@@ -135,19 +135,16 @@
 
 									<div class="col-lg-12 col-md-4 pt-3">
 										<div class="div-ads-img">	
-											<img src="https://5d973bb52ee8692cdb78-ae7e48b6a1da5e36e0a688675ec574a6.ssl.cf1.rackcdn.com/34/56/78/34567836/ad_34567836_c4edf44e26169131_web.jpg" class="img-fluid">
 										</div>	
 									</div>
 
 									<div class="col-lg-12 col-md-4 pt-3">
 										<div class="div-ads-img">	
-											<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a41d8529540325.5732a809bcc1b.png" class="img-fluid">
 										</div>	
 									</div>
 
 									<div class="col-lg-12 col-md-4 pt-3">
 										<div class="div-ads-img">	
-											<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
 										</div>	
 									</div>
 
@@ -546,6 +543,20 @@
 												<button class="btn btn-orange px-5 text-white" id="btn_remitt_save">Save</button>
 											</div>
 										</div>
+
+                                        <div class="row my-2">
+                                            <div class="col-12 col-lg-8 col-md-7 col-sm-12">
+                                                <input type="text" class="form-control" id="remitt_acct_name" placeholder="Account Name">
+                                            </div>
+                                            <div class="col-12 col-lg-4 col-md-5 col-sm-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-white" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="remitt_contact_no" placeholder="Contact No" onkeypress="return isNumber(event)">
+                                                </div>
+                                            </div>
+                                        </div>
 
 										<div class="row">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12" id="">
@@ -1272,19 +1283,16 @@
 
 							<div class="col-lg-12 col-md-4 pt-3">
 								<div class="div-ads-img">	
-									<img src="https://5d973bb52ee8692cdb78-ae7e48b6a1da5e36e0a688675ec574a6.ssl.cf1.rackcdn.com/34/56/78/34567836/ad_34567836_c4edf44e26169131_web.jpg" class="img-fluid">
 								</div>	
 							</div>
 
 							<div class="col-lg-12 col-md-4 pt-3">
 								<div class="div-ads-img">	
-									<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a41d8529540325.5732a809bcc1b.png" class="img-fluid">
 								</div>	
 							</div>
 
 							<div class="col-lg-12 col-md-4 pt-3">
 								<div class="div-ads-img">	
-									<img src="http://www.wheninmanila.com/wp-content/uploads/2016/05/FA_Vikings_Dress-like-a-Viking-Promo-promo_5x5-01-e1462723075238.jpg" class="img-fluid">
 								</div>	
 							</div>
 
@@ -1425,7 +1433,7 @@
 	                    		</div>
 		                    </div>
 
-		                    <div class="form-group mb-0 row">
+		                    <div class="form-group mb-0 row" >
 		                    	<div class="col-6 col-md-6 col-lg-6">
 		                    		<span class="font-weight-600">Stock</span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_stock">
@@ -1771,19 +1779,24 @@
 <div class="modal" id="modal_ship">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header py-1">
         <h4 class="modal-title">Shipping Fee</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
 	  <input type="hidden" id="ship_id">
 	  	<div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-2">
+                    <span class="text-red font-italic">Note: Search "My Store Shipping" for personal courier service</span>
+                </div>
+            </div>
 			<div class="row">
 				<div class="col-4">
-					<span class="font-weight-600">Courier</span>
+					<span class="font-weight-600">Courier <span class="text-red">*</span></span>
 				</div>
 				<div class="col-8">
-					<input type="text" class="form-control" id="ship_courier" data-id = "">
+					<input type="text" class="form-control" id="ship_courier" data-id = "" placeholder="Search Courier Service">
 				</div>
 			</div> 
 			<div class="row mt-1">
@@ -1796,7 +1809,7 @@
 			</div>
 			<div class="row mt-1">
 				<div class="col-4">
-					<span class="font-weight-600">Metro Manila</span>
+					<span class="font-weight-600">Metro Manila <span class="text-red">*</span></span>
 				</div>
 				<div class="col-8">
 					<input type="text" class="form-control text-right" value="0" id="ship_mm">
@@ -1804,7 +1817,7 @@
 			</div>
 			<div class="row mt-1">
 				<div class="col-4">
-					<span class="font-weight-600">Luzon</span>
+					<span class="font-weight-600">Luzon <span class="text-red">*</span></span>
 				</div>
 				<div class="col-8">
 					<input type="text" class="form-control text-right" value="0" id="ship_luz">
@@ -1812,7 +1825,7 @@
 			</div>
 			<div class="row mt-1">
 				<div class="col-4">
-					<span class="font-weight-600">Visayas</span>
+					<span class="font-weight-600">Visayas <span class="text-red">*</span></span>
 				</div>
 				<div class="col-8">
 					<input type="text" class="form-control text-right" value="0" id="ship_vis">
@@ -1820,7 +1833,7 @@
 			</div>
 			<div class="row mt-1">
 				<div class="col-4">
-					<span class="font-weight-600">Mindanao</span>
+					<span class="font-weight-600">Mindanao <span class="text-red">*</span></span>
 				</div>
 				<div class="col-8">
 					<input type="text" class="form-control text-right" value="0" id="ship_min">

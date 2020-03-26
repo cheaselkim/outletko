@@ -83,12 +83,23 @@ class Buyer extends CI_Controller {
 	}
 
 	public function get_orders(){
-
+        $total = 0;
 		$query = $this->buyer_model->get_orders();
-		$data['result'] = tbl_products_no_order($query);
-		$data['token'] = $this->security->get_csrf_hash();
 
-		echo json_encode($data);
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $total += ($value->product_unit_price * $value->prod_qty);
+            }
+        }
+
+		$data['result'] = tbl_products_no_order($query);
+        $data['order_no'] = COUNT($this->buyer_model->get_orders());
+        $data['cart_total'] = $total;
+        $data['token'] = $this->security->get_csrf_hash();
+        $this->session->set_userdata('order_no', $data['order_no']);
+        $this->session->set_userdata('cart_total', $total);
+
+        echo json_encode($data);
 	}
 
 	public function get_billing(){
@@ -133,7 +144,9 @@ class Buyer extends CI_Controller {
  		foreach ($result as $key => $value) {
  			$data['name'] = $value->fullname;
  			$data['mobile'] = $value->mobile_no;
- 			$data['email'] = $value->email;
+            $data['email'] = $value->email;
+            $data['remitt_name'] = $value->remitt_name;
+            $data['remitt_contact'] = $value->remitt_contact;
  		}
 
  		$data['token'] = $this->security->get_csrf_hash();

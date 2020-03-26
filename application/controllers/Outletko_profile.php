@@ -222,6 +222,8 @@ class Outletko_profile extends CI_Controller {
         $warranty = $this->input->post("inp_warranty");
         $cust_del_date = $this->input->post("cust_del_date");
         $shipping_fee = $this->input->post("shipping_fee");
+        $remitt_contact_no = $this->input->post("remitt_contact_no");
+        $remitt_acct_name = $this->input->post("remitt_acct_name");
 
         $data = array(
                 "std_delivery" => $std_del,
@@ -229,12 +231,19 @@ class Outletko_profile extends CI_Controller {
                 "sf_o_mm" => $ship_o_mm
             );
 
+        $account_data = array(
+            "remitt_name" => $remitt_acct_name,
+            "remitt_contact" => $remitt_contact_no
+        );
+
+        $result_account = $this->outletko_profile_model->update_aboutus($account_data);            
         $result_payment = $this->outletko_profile_model->save_payment_type($payment_type);
         $result_delivery = $this->outletko_profile_model->save_delivery_type($delivery_type);
         $result_ship = $this->outletko_profile_model->save_ship($data);
         $result_appointment = $this->outletko_profile_model->save_appointment($appointment);
         $result_warranty = $this->outletko_profile_model->save_warranty($warranty, $return);
         $result_cust_del_date = $this->outletko_profile_model->save_cust_del_date($cust_del_date, $shipping_fee);
+
         echo json_encode(1);
     }
 

@@ -110,6 +110,8 @@ class Buyer_model extends CI_Model {
         $query = $this->db2->query("
             SELECT 
             CONCAT(`account`.`first_name`, ' ' , `account`.`last_name`) AS fullname,
+            `account`.`remitt_name`,
+            `account`.`remitt_contact`,
             `account`.`mobile_no`,
             `account`.`email`
             FROM account

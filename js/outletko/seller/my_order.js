@@ -298,7 +298,7 @@ function bank_list(){
 function remittance_list(){
 	var csrf_name = $("input[name=csrf_name]").val();
 	var id = $("#seller_id").val();
-	console.log("id " + id);
+	// console.log("id " + id);
 
 	$.ajax({
 		data : {csrf_name : csrf_name, id : id},
@@ -462,7 +462,9 @@ function get_orders(){
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 			$("#div-list-prod").html(result.result);
-			$(".prod_qty").number(true, 0);
+            $(".prod_qty").number(true, 0);
+            $("#order_no").text(result.order_no);
+            $("#total-cart").text($.number(result.cart_total, 2));
 		}, error : function(err){
 			console.log(err.responseText);
 		}	
@@ -829,7 +831,7 @@ function get_order_checkout(div_id){
 					for (var a = 0; a < products.length; a++) {
 						if (prod_dtls[i].prod_id == products[a].prod_id){
 							prod_qty = products[a].prod_qty;
-							console.log(products[a].prod_qty);
+							// console.log(products[a].prod_qty);
 						}
 					}
 
@@ -988,17 +990,19 @@ function get_courier(){
 			success : function(result){
 				$("input[name=csrf_name]").val(result.token);
 
-				if (island_group == "1"){
-					shipping_fee = result.result[0].sf_mm;
-				}else if (island_group == "2"){
-					shipping_fee = result.result[0].sf_luz;				
-				}else if (island_group == "3"){
-					shipping_fee = result.result[0].sf_vis;
-				}else if (island_group == "4"){
-					shipping_fee = result.result[0].sf_min;
-				}else{
-					shipping_fee = "0";
-				}
+                if (result.result.length != 0){
+                    if (island_group == "1"){
+                        shipping_fee = result.result[0].sf_mm;
+                    }else if (island_group == "2"){
+                        shipping_fee = result.result[0].sf_luz;				
+                    }else if (island_group == "3"){
+                        shipping_fee = result.result[0].sf_vis;
+                    }else if (island_group == "4"){
+                        shipping_fee = result.result[0].sf_min;
+                    }else{
+                        shipping_fee = "0";
+                    }    
+                }
 
 				var grand_total = Number(total_order) + Number(shipping_fee);
 
@@ -1026,7 +1030,7 @@ function get_bank(){
 	var csrf_name = $("input[name=csrf_name]").val();
 	var id = $("#seller_id").val();
 
-	console.log(bank_type);
+	// console.log(bank_type);
 
 	$.ajax({
 		data : {csrf_name : csrf_name, bank_type : bank_type, id : id},
@@ -1034,7 +1038,7 @@ function get_bank(){
 		dataType : "JSON",
 		url : base_url + "Buyer/get_bank",
 		success : function(result){
-			console.log(result);
+			// console.log(result);
 			$("input[name=csrf_name]").val(result.token);
 			$("#bank_name").text(result.account_name);
 			$("#bank_no").text(result.account_no);
@@ -1056,8 +1060,8 @@ function get_remittance(){
 		url : base_url + "Buyer/get_remittance",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
-			$("#remittance_name").text(result.name);
-			$("#remittance_mobile").text("+63" + result.mobile);
+			$("#remittance_name").text(result.remitt_name);
+			$("#remittance_mobile").text("+63" + result.remitt_contact);
 			$("#summ-bank-mobile").text("+63" + result.mobile);
 			$("#summ-remitt-mobile").text("+63" + result.mobile);
 			$("#remittance_email").text(result.email);
@@ -1078,11 +1082,11 @@ function check_place_order(){
 	var bill_province = $("#bill_province").attr("data-id");
 	var bill_mobile = $("#bill_mobile").val();
 
-	console.log(bill_name);
-	console.log(bill_address);
-	console.log(bill_city);
-	console.log(bill_province);
-	console.log(bill_mobile);
+	// console.log(bill_name);
+	// console.log(bill_address);
+	// console.log(bill_city);
+	// console.log(bill_province);
+	// console.log(bill_mobile);
 
 	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 ){
 		swal({
@@ -1213,7 +1217,7 @@ function place_order(){
     	dataType : "JSON",
     	url : base_url + "Buyer/confirm_order",
 		success : function(result){
-			console.log(result);
+			// console.log(result);
 			$("input[name=csrf_name]").val(result.token);
 			swal({
 				type : "success",

@@ -210,21 +210,41 @@ class Signup_model extends CI_Model {
                           "validated" => true
                     );
                   }else if ($value->user_type == "5"){
-                      $result = $this->db2->query("SELECT * FROM account_buyer WHERE account_id = ?", array($value->account_id))->num_rows();
-                      $result2 = $this->db2->query("SELECT id FROM account_buyer WHERE account_id = ?", array($value->account_id))->row();
-                  
-                        $user_array = array(
-                          "user_id" => $value->id,
-                          "account_id" => $value->account_id,
-                          "comp_id" => $result2->id,
-                          "user_uname" => $value->username,
-                          "user_fullname" => ($value->first_name." ".$value->last_name),
-                          "user_status" => $value->status,
-                          "user_type" => $value->user_type,
-                          "all_access" => $value->all_access,
-                          "owner" => $result,
-                          "login" => 1,
-                          "validated" => true
+                        $result = $this->db2->query("SELECT * FROM account_buyer WHERE account_id = ?", array($value->account_id))->num_rows();
+                        $result2 = $this->db2->query("SELECT id FROM account_buyer WHERE account_id = ?", array($value->account_id))->row();
+                        $buyer_query = $this->db2->query("SELECT products.*, buyer_order_products.*, `products`.`id` as prod_id, `buyer_order_products`.`id` AS item_id,`account`.`account_name`
+                        FROM buyer_order_products 
+                        LEFT JOIN products ON 
+                        `buyer_order_products`.`prod_id` = `products`.`id`            
+                        LEFT JOIN account ON 
+                        `account`.`id` = `products`.`account_id`
+                        WHERE 
+                        comp_id = ? AND 
+                        (order_id = '' OR order_id IS NULL )
+                        ORDER BY `account`.`account_name`, `products`.`product_name`
+                        ", array($result2->id))->result();                  
+                        $total = 0;
+                        if (!empty($buyer_query)){
+                            foreach ($buyer_query as $key => $value3) {
+                                $total += ($value3->product_unit_price * $value3->prod_qty);
+                            }
+                        }
+
+
+                    $user_array = array(
+                        "user_id" => $value->id,
+                        "account_id" => $value->account_id,
+                        "comp_id" => $result2->id,
+                        "user_uname" => $value->username,
+                        "user_fullname" => ($value->first_name." ".$value->last_name),
+                        "user_status" => $value->status,
+                        "user_type" => $value->user_type,
+                        "all_access" => $value->all_access,
+                        "owner" => $result,
+                        "cart_total" => $total,
+                        "order_no" => COUNT($buyer_query),
+                        "login" => 1,
+                        "validated" => true
                     );
 
                   }

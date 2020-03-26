@@ -24,120 +24,123 @@ $(document).ready(function(){
     }
   });
 
-	$("#div-setting").hide();
-	$("#div-my-orders").hide();
-	$("#div_order").hide();
-	$("#div-my-deliver").hide();
-  $("#div-for-appointment").hide();
-  $("#div-for-delivery").hide();
-  $("#div-prod-ship-fee").hide();
-  $("#div-update-button").hide();
-
-  $("#div-store-img-btn-1").hide();
-  $("#div-store-img-btn-2").hide();
-  $("#div-store-img-btn-3").hide();
-
-  $("#div-remittance-list").hide();
-  $("#div-bank-list").hide();
-
-  $("#ship_w_mm").number(true, 2);
-  $("#ship_o_mm").number(true, 2);
-  $("#prod_price").number(true, 2);
-  $("#prod_stock").number(true, 0);
-  $("#prod_weight").number(true, 2);
-  $(".div-img-update").hide();
-
-  $("#ship_kg").number(true,2);
-  $("#ship_mm").number(true,2);
-  $("#ship_luz").number(true,2);
-  $("#ship_vis").number(true,2);
-  $("#ship_min").number(true,2);
-
-  $("#prod_ship_fee_w_mm").number(true, 2);
-  $("#prod_ship_fee_o_mm").number(true, 2);
-  	
-	$("#span-aboutus").hide();
-  $("#div-card-variation").hide();
-  $("#div_variation_type").hide();
-
-  $("#prod_price2").hide();
-  $("#prod_stock2").hide();
-
-  $("#delete_product").hide();
-
-  $("#div-shipping-fee").hide();
-
-  $("#div-prod-img").mouseover(function(){
-    $("#div-update-button").show();
-  });
-
-  $("#div-prod-img").mouseout(function(){
+    $("#div-setting").hide();
+    $("#div-my-orders").hide();
+    $("#div_order").hide();
+    $("#div-my-deliver").hide();
+    $("#div-for-appointment").hide();
+    $("#div-for-delivery").hide();
+    $("#div-prod-ship-fee").hide();
     $("#div-update-button").hide();
-  });
 
-  $("#div-store-img-1").mouseover(function(){
-    $("#div-store-img-btn-1").show();
-  });
+    if ($(document).width() > 700){
+        $("#div-store-img-btn-1").hide();
+        $("#div-store-img-btn-2").hide();
+        $("#div-store-img-btn-3").hide();    
+    }
 
-  $("#div-store-img-1").mouseout(function(){
-    $("#div-store-img-btn-1").hide();
-  });
 
-  $("#div-store-img-2").mouseover(function(){
-    $("#div-store-img-btn-2").show();
-  });
+    $("#div-remittance-list").hide();
+    $("#div-bank-list").hide();
 
-  $("#div-store-img-2").mouseout(function(){
-    $("#div-store-img-btn-2").hide();
-  });
+    $("#ship_w_mm").number(true, 2);
+    $("#ship_o_mm").number(true, 2);
+    $("#prod_price").number(true, 2);
+    $("#prod_stock").number(true, 0);
+    $("#prod_weight").number(true, 2);
+    $(".div-img-update").hide();
 
-  $("#div-store-img-3").mouseover(function(){
-    $("#div-store-img-btn-3").show();
-  });
+    $("#ship_kg").number(true,2);
+    $("#ship_mm").number(true,2);
+    $("#ship_luz").number(true,2);
+    $("#ship_vis").number(true,2);
+    $("#ship_min").number(true,2);
 
-  $("#div-store-img-3").mouseout(function(){
-    $("#div-store-img-btn-3").hide();
-  });
+    $("#prod_ship_fee_w_mm").number(true, 2);
+    $("#prod_ship_fee_o_mm").number(true, 2);
+        
+    $("#span-aboutus").hide();
+    $("#div-card-variation").hide();
+    $("#div_variation_type").hide();
 
-  $("#div-store-img-btn-1").click(function(){
-    $("#store_id").val(1);
-    $("#modal_store_img").modal("show");
-    var bg = $("#div-store-img-1").css("background-image");
-    $("#div-img-store").css("background-image", bg);
-    $("#div-img-store").css("background-size", "100% 100%");
-    $("#div-img-store").css("background-repeat", "no-repeat");
-    $("#div-img-store").css("background-position", "center center");
-  });
+    $("#prod_price2").hide();
+    $("#prod_stock2").hide();
 
-  $("#div-store-img-btn-2").click(function(){
-    $("#store_id").val(2);
-    $("#modal_store_img").modal("show");
-    var bg = $("#div-store-img-2").css("background-image");
-    $("#div-img-store").css("background-image", bg);
-    $("#div-img-store").css("background-size", "100% 100%");
-    $("#div-img-store").css("background-repeat", "no-repeat");
-    $("#div-img-store").css("background-position", "center center");
-  });
+    $("#delete_product").hide();
 
-  $("#div-store-img-btn-3").click(function(){
-    $("#store_id").val(3);
-    $("#modal_store_img").modal("show");
-    var bg = $("#div-store-img-3").css("background-image");
-    $("#div-img-store").css("background-image", bg);
-    $("#div-img-store").css("background-size", "100% 100%");
-    $("#div-img-store").css("background-repeat", "no-repeat");
-    $("#div-img-store").css("background-position", "center center");
-  });
+    $("#div-shipping-fee").hide();
 
-  $(".div-list-img").mouseover(function(){
-    var id = this.id
-    $("#"+id+" .div-img-update").show();
-  });
+    $("#div-prod-img").mouseover(function(){
+        $("#div-update-button").show();
+    });
 
-  $(".div-list-img").mouseout(function(){
-    var id = this.id
-    $("#"+id+" .div-img-update").hide();
-  });
+    $("#div-prod-img").mouseout(function(){
+        $("#div-update-button").hide();
+    });
+
+    $("#div-store-img-1").mouseover(function(){
+        $("#div-store-img-btn-1").show();
+    });
+
+    $("#div-store-img-1").mouseout(function(){
+        $("#div-store-img-btn-1").hide();
+    });
+
+    $("#div-store-img-2").mouseover(function(){
+        $("#div-store-img-btn-2").show();
+    });
+
+    $("#div-store-img-2").mouseout(function(){
+        $("#div-store-img-btn-2").hide();
+    });
+
+    $("#div-store-img-3").mouseover(function(){
+        $("#div-store-img-btn-3").show();
+    });
+
+    $("#div-store-img-3").mouseout(function(){
+        $("#div-store-img-btn-3").hide();
+    });
+
+    $("#div-store-img-btn-1").click(function(){
+        $("#store_id").val(1);
+        $("#modal_store_img").modal("show");
+        var bg = $("#div-store-img-1").css("background-image");
+        $("#div-img-store").css("background-image", bg);
+        $("#div-img-store").css("background-size", "100% 100%");
+        $("#div-img-store").css("background-repeat", "no-repeat");
+        $("#div-img-store").css("background-position", "center center");
+    });
+
+    $("#div-store-img-btn-2").click(function(){
+        $("#store_id").val(2);
+        $("#modal_store_img").modal("show");
+        var bg = $("#div-store-img-2").css("background-image");
+        $("#div-img-store").css("background-image", bg);
+        $("#div-img-store").css("background-size", "100% 100%");
+        $("#div-img-store").css("background-repeat", "no-repeat");
+        $("#div-img-store").css("background-position", "center center");
+    });
+
+    $("#div-store-img-btn-3").click(function(){
+        $("#store_id").val(3);
+        $("#modal_store_img").modal("show");
+        var bg = $("#div-store-img-3").css("background-image");
+        $("#div-img-store").css("background-image", bg);
+        $("#div-img-store").css("background-size", "100% 100%");
+        $("#div-img-store").css("background-repeat", "no-repeat");
+        $("#div-img-store").css("background-position", "center center");
+    });
+
+    $(".div-list-img").mouseover(function(){
+        var id = this.id
+        $("#"+id+" .div-img-update").show();
+    });
+
+    $(".div-list-img").mouseout(function(){
+        var id = this.id
+        $("#"+id+" .div-img-update").hide();
+    });
 
 	$("#span_setting").click(function(){
     index();
@@ -815,7 +818,7 @@ function remittance_list(){
                             "</div>"+                          
                           "</div>");
       }
-      console.log(result.data);
+    //   console.log(result.data);
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -942,7 +945,12 @@ function index(){
         $("#input_twitter").val(result.result[0].twitter);
         $("#input_instagram").val(result.result[0].instagram);
         $("#input_shopee").val(result.result[0].shoppee);
-    //for inputs
+   
+        $("#remitt_acct_name").val(result.result[0].remitt_name);
+        $("#remitt_contact_no").val(result.result[0].remitt_contact);
+
+        
+        //for inputs
 
         if (result.result[0].free_shipping == 0){
           $("#div-shipping-fee").show();
@@ -1948,6 +1956,8 @@ function save_payment(){
   var appointment = new Array();
   var inp_return = $("#inp_return").val();
   var inp_warranty = $("#inp_warranty").val();
+  var remitt_acct_name = $("#remitt_acct_name").val();
+  var remitt_contact_no = $("#remitt_contact_no").val();
   var cust_del_date = "";
   var shipping_fee = "";
   var sub = "";
@@ -2019,7 +2029,7 @@ function save_payment(){
   console.log("shipping_fee " + shipping_fee);
 
   $.ajax({
-    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee},
+    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee, remitt_contact_no : remitt_contact_no, remitt_acct_name : remitt_acct_name},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Outletko_profile/save_payment",

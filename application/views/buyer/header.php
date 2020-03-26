@@ -8,12 +8,19 @@
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
 		<span class="fas fa-bars"></span>
 	</button>
-	<div class="collapse navbar-collapse justify-content-end px-3" id="collapsibleNavbar" style="background : rgb(79, 98, 40);margin-left:-15px; margin-right: -15px;z-index: 1;">
+    <!-- background : rgb(79, 98, 40); -->
+	<div class="collapse navbar-collapse justify-content-end px-3" id="collapsibleNavbar" style="margin-left:-15px; margin-right: -15px;z-index: 1;">
 
 		<ul class="navbar-nav">
 			<li class="nav-item" hidden>
 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">Outlet</span><span class="text-red">Ko</span></a>
 			</li>
+            <li class="nav-item" hidden>
+                <span class='nav-link font-small text-white'><?php echo $this->session->userdata('user_fullname'); ?></span>
+            </li>
+            <li class="nav-item">
+                <span class='nav-link font-small text-yellow' style="color: yellow;">Cart Total : PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
+            </li>
 			<li class="nav-item">
 				<a class="nav-link font-small cursor-pointer" href="<?php echo base_url('/my-order') ?>"><span class="text-uppercase text-white">My Orders <span class="badge badge-light" id="order_no">
 					<?php 
@@ -28,7 +35,7 @@
 			<li class="nav-item">
 				<div class="dropdown">
 					<a class="nav-link font-small cursor-pointer text-uppercase text-white dropdown-toggle" data-toggle="dropdown">
-						My Account
+                        <?php echo $this->session->userdata('user_fullname'); ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item py-0 cursor-pointer" href="<?php echo base_url('/my-account') ?>" id="user_settings">Settings</a>

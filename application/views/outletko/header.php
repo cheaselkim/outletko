@@ -33,7 +33,7 @@
 
 			<!-- <?php echo form_open('Search/Search'); ?>-->
 			<form action="<?php echo site_url('Search/index') ?>" method="GET">
-				<div class="row div-search-bar">
+				<div class="row  ">
 					<div class="col-12 col-md-10 col-lg-6 pad-center pt-1">
 						<div class="input-group">
 							<div class="input-group-prepend">

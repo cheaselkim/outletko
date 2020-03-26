@@ -59,7 +59,7 @@ function get_profile(id){
     url : base_url +  "Profile/profile",
     dataType : "JSON",
     success : function(result){
-    console.log(result);
+    // console.log(result);
     $("input[name=csrf_name]").val(result.token);
     var profile = base_url + "images/profile/" + result.profile;    
     var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
@@ -174,17 +174,17 @@ function get_profile(id){
     //products
         $('#posted_prod').empty();
         var posted_rows = (result.products.length/8).toFixed(0);
-        console.log("posted_rows raw " + posted_rows);
+        // console.log("posted_rows raw " + posted_rows);
         var posted_rows2 = (result.products.length/ (8 * posted_rows)).toFixed(0);
-        console.log("posted_rows2 " + posted_rows2);
+        // console.log("posted_rows2 " + posted_rows2);
         posted_rows = Number(posted_rows) + Number(posted_rows2);
-        console.log("posted_rows final " + posted_rows);
+        // console.log("posted_rows final " + posted_rows);
         var $style = "";
         var i =1;
       	var a = 0;
       	var mod = 0;
 
-        console.log(posted_rows);
+        // console.log(posted_rows);
         if (isFinite(posted_rows) == false){
           posted_rows = 1;
         }if (isNaN(posted_rows)){
@@ -207,7 +207,7 @@ function get_profile(id){
 
         }
 
-        console.log(result.products.length);
+        // console.log(result.products.length);
 
         for(var x = 0; x < result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location[0];
@@ -262,7 +262,7 @@ function get_profile(id){
 
 
 	        index = Number(div_row) + Number(mod);
-            console.log("index " + index);
+            // console.log("index " + index);
             $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
 
 
@@ -301,7 +301,7 @@ function get_profile(id){
         var store = result.store_img;
         var store_img = "";
 
-        console.log(result);
+        // console.log(result);
 
         for (var i = 0; i < store.length; i++) {
           store_img = base_url + "images/store/" + store[i].image;
@@ -362,8 +362,8 @@ function get_product_info(id){
     dataType : "JSON",
     url : base_url + "Profile/get_product_info",
     success : function(data){
-      console.log(data.products[0]);
-      console.log(data.payment_type[0]);
+    //   console.log(data.products[0]);
+    //   console.log(data.payment_type[0]);
       $("input[name=csrf_name]").val(data.token);
 
       $("#prod-name").text(data.products[0].product_name);
@@ -429,8 +429,8 @@ function compute_total_amount(){
 
   var total = prod_qty * prod_price;
 
-  console.log(sd2);
-  console.log(prod_price);
+//   console.log(sd2);
+//   console.log(prod_price);
 
   $("#cart_total_amount").text($.number(total, 2));
 
@@ -482,7 +482,7 @@ function add_to_cart(){
   var prod_qty = $("#prod_qty").val();
   var csrf_name = $("input[name=csrf_name]").val();
 
-  order = Number(order) + Number(prod_qty);
+  order = Number(order) + 1;
 
   $.ajax({
     data : {prod_id : prod_id, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
@@ -490,6 +490,7 @@ function add_to_cart(){
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",
     success : function(result){
+      $("input[name=csrf_name]").val(result.token);
       $("#order_no").text(order);
     }, error : function(err){
       console.log(err.responseText);
