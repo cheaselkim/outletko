@@ -172,7 +172,7 @@ class Signup_model extends CI_Model {
       if (!empty($query)){
         foreach ($query as $key => $value) {
           if (password_verify($pword, $value->password)){
-                  if($value->user_type == "2" || $value->user_type == "1"){
+                  if($value->user_type == "2" || $value->user_type == "1" || $value->user_type == "3"){
                       $result = $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($value->account_id))->num_rows();
                       
                        $user_array = array(

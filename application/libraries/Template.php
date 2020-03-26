@@ -489,7 +489,7 @@
 					$data['header'] = 'partner/header';
 
 					if ($menu == "0"){
-						$data['page'] = 'partner/menu';
+						$data['page'] = 'partner/report/query';
 					}else if ($menu == "1"){
 						$data['page'] = 'partner/portfolio/portfolio_query';
 					}

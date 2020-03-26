@@ -9,7 +9,7 @@
         <div class="div-header">
             <div class="row">
                 <div class="col-3">
-                    <span class="span-eoutletsuite"><span class="span-eoutlet">eOutlet</span><span class="span-suite">Suite</span></span>
+                    <span class="span-eoutletsuite"><span class="span-eoutlet">Outletko</span><span class="span-suite"></span></span>
                 </div>
                 <div class="col-3"></div>
                 <div class="col-6">
@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-2">
                     <ul class="list-inline float-right my-0">
-                        <li class="list-inline-item"><a href="<?php echo base_url('/') ?>"><button class="btn btn-light btn-block"><i class="fas fa-user"></i></button></a></li>
-                        <li class="list-inline-item"><button class="btn btn-light btn-block" id="btn_main_menu"><i class="fas fa-lock"></i></button></li>
+                        <!-- <li class="list-inline-item"><a href="<?php echo base_url('/') ?>"><button class="btn btn-light btn-block"><i class="fas fa-user"></i></button></a></li>
+                        <li class="list-inline-item"><button class="btn btn-light btn-block" id="btn_main_menu"><i class="fas fa-lock"></i></button></li> -->
                         <li class="list-inline-item"><a href="<?php echo base_url('/logout') ?>"><button class="btn btn-light btn-block"><i class="fas fa-power-off" ></i></button></a></li>
                     </ul>
                 </div>

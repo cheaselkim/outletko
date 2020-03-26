@@ -44,8 +44,8 @@ class Login extends CI_Controller {
 						if (($this->session->userdata("login") == "1") && ($this->session->userdata("all_access") == "1") && ($this->session->userdata("user_type") == "2")){
 							$this->session->set_userdata("login", "0");
 							redirect('app/6/17/0');
-						}else if ($this->session->userdata("user_type") == "3"){
-							redirect('partner/1/0/1');
+						// }else if ($this->session->userdata("user_type") == "3"){
+						// 	redirect('/');
 						}else{
 							$data['sub_module'] = 0;
 							$data['menu_module'] = 0;
