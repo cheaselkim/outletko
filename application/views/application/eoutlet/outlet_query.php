@@ -9,7 +9,7 @@
       <div class="row">
           <div class="col-xs-12 col-md-12 col-lg-12">
               <div class="row">
-                  <div class="col-xs-6 col-md-6 pt-3">
+                  <div class="col-8 col-xs-6 col-md-6 pt-3">
                       <h3 class="font-weight-bold">
                         <?php 
                           if ($function == "2"){
@@ -22,11 +22,11 @@
                          ?>                                                
                       </h3>
                   </div>
-                  <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                  <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                       <h3 class="font-weight-bold">
                         <?php 
                           if ($function == "2"){
-                            echo "Edit / Update";
+                            echo "Edit";
                           }else if ($function == "3"){
                             echo "Query";
                           }else if ($function == "4"){
@@ -45,17 +45,17 @@
             <div class="col-xs-12 col-md-12 px-0 pb-0">
                 <div class="container mb-0 pb-0">
                     <div class="form-group row text-sales mb-0">
-                        <div class="col-xs-12 col-md-2 pr-1">
+                        <div class="col-xs-12 col-md-2 pad-right">
                             <span class="font-size-18">Type</span>
                             <select class="form-control txt-box-text-size" type="text" id="outlet_type">
                                 <option value="">All</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-8 px-1">
+                        <div class="col-xs-12 col-md-8 pad-center">
                             <span class="font-size-18">Search</span>
                             <input type="text" class="form-control txt-box-text-size" placeholder="Search Outlet Code, Outlet Name..." aria-label="Recipient's username" aria-describedby="basic-addon2" id="search_box">
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1" id="div-outlet-status">
+                        <div class="col-xs-12 col-md-2 pad-left" id="div-outlet-status">
                             <span class="font-size-18">Status</span>
                             <select class="form-control txt-box-text-size" type="text" id="outlet_status">
                                 <option value="1">Operational</option>
@@ -69,7 +69,7 @@
                         <div class="col-xs-12 col-md-12">
                           <div class="container">
                             <div class="form-group row bg-button my-0">
-                              <div class="col-xs-12 col-md-12 col-lg-2 py-1 ml-auto pr-1">
+                              <div class="col-xs-12 col-md-12 col-lg-2 py-1 ml-auto pad-right">
                                 <button class="btn btn-success btn-height-30 btn-block p-0" id="search">Search</button>
                               </div>
                             </div>
@@ -81,10 +81,10 @@
                         <div class="col-xs-12 col-md-12">
                           <div class="container">
                             <div class="form-group row my-0">
-                              <div class="col-lg-10 text-right pt-1 pr-0">
+                              <div class="col-8 col-lg-10 text-right pt-1 pr-0">
                                 <label class="font-size-18">No. of Outlets : </label>
                               </div>
-                              <div class="col-lg-2 text-right pr-0 pl-3">
+                              <div class="col-4 col-lg-2 text-right pr-0 pl-3">
                                 <input type="text" class="form-control text-center ml-auto" value="0" id="no_trans" readonly>
                               </div>
                             </div>              
@@ -104,7 +104,7 @@
 
 
 
-<div class="modal" id="modal_query">
+<div class="modal" id="modal_query" style="top: -0.5%;">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
     <div class="modal-header py-1">
@@ -113,45 +113,45 @@
     <div class="modal-body">
         <div class="container px-0">
             <div class="form-group row mb-0">
-                <div class="col-xs-12 col-md-3 col-lg-2 pr-1">
+                <div class="col-xs-12 col-md-3 col-lg-2 pad-right">
                     <span>Outlet No.</span>
                     <input type="text" class="form-control" id="mod_no" >
                 </div>
-                <div class="col-xs-12 col-md-9 col-lg-10 pl-1">
+                <div class="col-xs-12 col-md-9 col-lg-10 pad-left">
                     <span>Outlet Name</span>
                     <input type="text" class="form-control" id="mod_name" >
                 </div>
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-xs-12 col-md-6 col-lg-6 pr-1">
+                <div class="col-xs-12 col-md-6 col-lg-6 pad-right">
                     <span>Location</span>
                     <input type="text" class="form-control" id="mod_loc" >
                 </div>
-                <div class="col-xs-12 col-md-3 col-lg-3 px-1">
+                <div class="col-xs-12 col-md-3 col-lg-3 pad-center">
                     <span>City/Town</span>
                     <input type="text" class="form-control" id="mod_city" >
                 </div>
-                <div class="col-xs-12 col-md-3 col-lg-3 pl-1">
+                <div class="col-xs-12 col-md-3 col-lg-3 pad-left">
                     <span>Province</span>
                     <input type="text" class="form-control" id="mod_province" >
                 </div>
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-xs-12 col-md-3 col-lg-3 pr-1">
+                <div class="col-xs-12 col-md-3 col-lg-3 pad-right">
                     <span>Outlet Status</span>
                     <input type="text" class="form-control" id="mod_status" >
                 </div>
-                <div class="col-xs-12 col-md-4 col-lg-4 px-1">
+                <div class="col-xs-12 col-md-4 col-lg-4 pad-center">
                     <span>Outlet Type</span>
                     <input type="text" class="form-control" id="mod_type" >
                 </div>
-                <div class="col-xs-12 col-md-2 col-lg-2 px-1">
+                <div class="col-xs-12 col-md-2 col-lg-2 pad-center">
                     <span>Currency</span>
                     <input type="text" class="form-control txt-box-text-size" id="mod_currency" value="PHP" >
                 </div>
-                <div class="col-xs-12 col-md-3 col-lg-3 pl-1">
+                <div class="col-xs-12 col-md-3 col-lg-3 pad-left">
                     <span>Monthly Quota</span>
                     <input type="text" class="form-control text-right txt-box-text-size" id="mod_quota" placeholder="0.00" >
                 </div>

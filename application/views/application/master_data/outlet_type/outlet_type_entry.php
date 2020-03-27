@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12 pr-4">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 col-sm-6 pt-3">
                         <h3 class="font-weight-bold">Outlet Type</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Entry</h3>
                     </div>
                 </div>
@@ -48,11 +48,12 @@
                                 <label class="text-prod">Product Color Description</label>
                                 <input type="text" class="form-control text-uppercase" id="outlet_type_desc">
                             </div>
-                            <div class="form-group row my-3">
-                                <div class="col-lg-6 col-md-6 col-sm-12 pad-right">
+                            <div class="form-group row mt-1 mb-3cls
+                            ">
+                                <div class="col-lg-6 col-md-6 col-sm-12 pad-right mt-2">
                                     <button type="button" class="btn btn-block btn-success cust-text font-weight-bold btn-height-35 py-0" id="save">Save</button>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 pad-left">
+                                <div class="col-lg-6 col-md-6 col-sm-12 pad-left mt-2">
                                     <button type="button" class="btn btn-block btn-orange cust-text font-weight-bold btn-height-35 py-0" id="cancel">Cancel</button>
                                 </div>
                             </div>                        

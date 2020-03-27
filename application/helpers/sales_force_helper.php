@@ -20,17 +20,17 @@ if (!function_exists("table_sales_force")){
 
 						<tr>
 
-							<th style='width: 5%;'>User ID</th>
+							<th style='width: 5%;' class='d-none d-lg-table-cell'>User ID</th>
 
                             <th style='width: 35%;'>Name</th>
 
-                            <th style='width: 13%;'>Position</th>
+                            <th style='width: 13%;' class='d-none d-lg-table-cell'>Position</th>
 
                             <th style='width: 10%;'>Type</th>
 
 							<th style='width: 5%;'>Outlet</th>
 
-							<th style='width: 8%;'>All Access</th>
+							<th style='width: 8%;' class='d-none d-lg-table-cell'>All Access</th>
 
                             <th style='width: 5%;'>Status</th>
 
@@ -88,17 +88,17 @@ if (!function_exists("table_sales_force")){
 
 				$output .= "<tr>
 
-								<td>".$value->account_id."</td>
+								<td class='d-none d-lg-table-cell'>".$value->account_id."</td>
 
 								<td>".$value->name."</td>
 
-								<td>".$value->position."</td>
+								<td class='d-none d-lg-table-cell'>".$value->position."</td>
 
 								<td>".$value->sales_force_type."</td>
 
 								<td>".$value->outlet_code."</td>
 
-								<td>".$all_access."</td>
+								<td class='d-none d-lg-table-cell'>".$all_access."</td>
 
 								<td>".$status."</td>
 
@@ -160,17 +160,17 @@ if (!function_exists("sales_force_list")){
 
 						<tr>
 
-							<th style='width: 5%;'>User ID</th>
+							<th style='width: 5%;' class='d-none d-lg-table-cell'>User ID</th>
 
                             <th style='width: 35%;'>Name</th>
 
-                            <th style='width: 17%;'>Position</th>
+                            <th style='width: 17%;' class='d-none d-lg-table-cell'>Position</th>
 
                             <th style='width: 10%;'>Type</th>
 
 							<th style='width: 5%;'>Outlet</th>
 
-							<th style='width: 8%;'>All Access</th>
+							<th style='width: 8%;' class='d-none d-lg-table-cell'>All Access</th>
 
                             <th style='width: 5%;'>Status</th>
 
@@ -208,17 +208,17 @@ if (!function_exists("sales_force_list")){
 
 				$output .= "<tr>
 
-								<td>".$value->account_id."</td>
+								<td class='d-none d-lg-table-cell'>".$value->account_id."</td>
 
 								<td>".$value->name."</td>
 
-								<td>".$value->position."</td>
+								<td class='d-none d-lg-table-cell'>".$value->position."</td>
 
 								<td>".$value->sales_force_type."</td>
 
 								<td>".$value->outlet_code."</td>
 
-								<td>".$all_access."</td>
+								<td class='d-none d-lg-table-cell'>".$all_access."</td>
 
 								<td>".$status."</td>
 

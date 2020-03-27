@@ -415,6 +415,11 @@ input[type="checkbox"]{
 }
 
 
+@media only screen and (max-width: 500px) {
+    #img-upload{
+        max-width: 65% !important;
+    }
+}
 
 /* Extra small devices (phones, 600px and down) */
 

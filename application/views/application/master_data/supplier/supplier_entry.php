@@ -8,10 +8,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Supplier Information</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Entry</h3>
                     </div>
                 </div>
@@ -30,15 +30,15 @@
                                 <option value="0">All</option>
                             </select>
                         </div>                        
-                        <div class="col-xs-12 col-md-2 pr-1">
+                        <div class="col-xs-12 col-md-2 pad-right">
                             <span>Supplier No </span>
                             <input type="text" class="form-control" id="supp_code">
                         </div>
-                        <div class="col-xs-12 col-md-7 px-1">
+                        <div class="col-xs-12 col-md-7 pad-center">
                             <span>Supplier Name <span class="required">*</span></span>
                             <input type="text" class="form-control" id="supp_name">
                         </div>
-                        <div class="col-xs-12 col-md-3 pl-1">
+                        <div class="col-xs-12 col-md-3 pad-left">
                             <span>Supplier Status</span>
                             <select class="form-control" id="supp_status">
                                 <option value="1">Active</option>
@@ -55,28 +55,28 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span>City </span>
                             <input type="text" class="form-control" id="supp_city">
                             <input type="hidden" class="form-control" id="supp_city_id" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
                             <span>Province</span>
                             <input type="text" class="form-control" id="supp_province" readonly>
                             <input type="hidden" class="form-control" id="supp_province_id" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Country</span>
                             <input type="text" class="form-control" id="supp_country" value="Philippines">
                         </div>                
                     </div>
 
                     <div class="form-group row mb-0"> 
-                        <div class="col-xs-12 col-md-6 pr-1">
+                        <div class="col-xs-12 col-md-6 pad-right">
                             <span>Supplier Type</span>
                             <select class="form-control" id="supp_type"></select>
                         </div>
-                        <div class="col-xs-12 col-md-6 pl-1">
+                        <div class="col-xs-12 col-md-6 pad-left">
                             <span>Contact No. </span>
                             <input type="text" class="form-control" id="contact_no" onkeypress="return isNumber(event)">
                         </div>
@@ -84,15 +84,15 @@
                     </div>
 
                     <div class="form-group row mb-0" hidden>
-                        <div class="col-xs-12 col-md-6 pr-1">
+                        <div class="col-xs-12 col-md-6 pad-right">
                             <span>Factory Address</span>
                             <input type="text" class="form-control" id="factory_add">
                         </div>    
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pad-center">
                             <span>Region</span>
                             <input type="text" class="form-control" id="supp_region">
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1">
+                        <div class="col-xs-12 col-md-2 pad-left">
                             <span>Zip Code</span>
                             <input type="text" class="form-control" id="supp_zip_code">
                         </div>
@@ -101,45 +101,45 @@
 
                 <div class="col-xs-12 col-md-12" hidden>
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-3 pr-1">
+                        <div class="col-xs-12 col-md-3 pad-right">
                             <span>Nature of Business</span>
                             <select class="form-control" id="nat_bus"></select>
                         </div>
-                        <div class="col-xs-12 col-md-3 px-1">
+                        <div class="col-xs-12 col-md-3 pad-center">
                             <span>Form of Organization</span>
                             <select class="form-control" id="form_org"></select>
                         </div>
-                        <div class="col-xs-12 col-md-3 px-1">
+                        <div class="col-xs-12 col-md-3 pad-center">
                             <span>Classification</span>
                             <select class="form-control" id="classif"></select>
                         </div>
-                        <div class="col-xs-12 col-md-3 pl-1">
+                        <div class="col-xs-12 col-md-3 pad-left">
                             <span>Date Organized <span class="required">*</span></span>
                             <input type="date" class="form-control" id="date_org">
                         </div>
                     </div>
 
                     <div class="form-group row mb-0" hidden>
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span>Contact Person <span class="required">*</span></span>
                             <input type="text" class="form-control" id="contact_person">
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Email Address</span>
                             <input type="text" class="form-control" id="email_add">
                         </div>
                     </div>
 
                     <div class="form-group row mb-0" hidden>
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span>Fax No.</span>
                             <input type="text" class="form-control" id="fax">
                         </div>
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
                             <span>Facebook</span>
                             <input type="text" class="form-control" id="facebook">
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Website</span>
                             <input type="text" class="form-control" id="website">
                         </div>
@@ -167,16 +167,16 @@
         </div>
         <!-- END Entry Supplier Information -->
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-xs-12 col-md-12">
                 <div class="container">
                     <br>
                     <div class="form-group row">
                         <div class="col-xs-12 col-md-2"></div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-success btn-height-35 cust-text font-weight-bold" id="save">Save</button>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-orange btn-height-35 cust-text font-weight-bold" id="cancel">Cancel</button>
                         </div>
                         <div class="col-xs-12 col-md-2"></div>

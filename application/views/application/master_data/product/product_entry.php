@@ -17,13 +17,13 @@
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
 
                         <h3 class="font-weight-bold">Product Master Data</h3>
 
                     </div>
 
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
 
                         <h3 class="font-weight-bold">Entry</h3>
 
@@ -65,7 +65,7 @@
 
                                 <div class="col-xs-12 col-md-2 col-lg-4"></div>
 
-                                <div class="col-xs-12 col-md-3 col-lg-2 pr-1">
+                                <div class="col-xs-12 col-md-3 col-lg-2 pad-right">
 
                                     <span>Outlet No. <span class="required">*</span></span>
 
@@ -77,7 +77,7 @@
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-3 col-lg-2 pl-1">
+                                <div class="col-xs-12 col-md-3 col-lg-2 pad-left">
 
                                     <span>Status <span class="required">*</span></span>
 
@@ -129,9 +129,9 @@
 
 
 
-                        <div class="col-xs-12 col-md-3 col-lg-2 pl-0 ">
+                        <div class="col-xs-12 col-md-3 col-lg-2 pad-left">
 
-                            <img id='img-upload' class="img-fluid img-thumbnail mx-auto d-block p-1 float-right text-center img-prod" />                            
+                            <img id='img-upload' class="img-fluid img-thumbnail mx-auto d-block p-1 text-center img-prod" />                            
 
                             <div class="input-group">
 
@@ -167,11 +167,11 @@
 
                     <div class="form-group row py-0 my-1">
 
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
 
                             <div class="row">
 
-                                <div class="col-md-6 col-sm-12 pr-1">
+                                <div class="col-md-6 col-sm-12 pad-right">
 
                                     <span>Product Type <span class="required">*</span></span>
 
@@ -183,7 +183,7 @@
 
                                 </div>
 
-                                <div class="col-md-6 col-sm-12 pl-1">
+                                <div class="col-md-6 col-sm-12 pad-left">
 
                                     <span> Unit <span class="required">*</span></span>
 
@@ -205,7 +205,7 @@
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-right">
 
                                     <span>Brand</span>
 
@@ -219,7 +219,7 @@
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-left">
 
                                     <span>Model</span>
                                     <input type="text" class="form-control" id="product_model">
@@ -230,11 +230,11 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-right">
 
                                     <span>Cost Price (Average) </span>
 
@@ -242,7 +242,7 @@
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-left">
 
                                     <span>Sales Tax (VAT) %</span>
 
@@ -266,7 +266,7 @@
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-12 pr-1">
+                                <div class="col-xs-12 col-md-12 pad-right">
 
                                     <span>Category <span class="required">*</span></span>
 
@@ -288,7 +288,7 @@
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-right">
 
                                     <span>Color </span>
 
@@ -302,7 +302,7 @@
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-left">
 
                                     <span>Size </span>
 
@@ -319,11 +319,11 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-right">
 
                                     <span>Selling Price <span class="required">*</span></span>
 
@@ -331,7 +331,7 @@
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-left">
 
                                     <span>Discount </span>
 
@@ -353,7 +353,7 @@
 
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-12 pr-1">
+                                <div class="col-xs-12 col-md-12 pad-right">
 
                                     <span>Class <span class="required">*</span></span>
 
@@ -375,7 +375,7 @@
                             
                             <div class="row">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-right">
 
                                     <span>Re Order Level </span>
 
@@ -383,7 +383,7 @@
 
                                 </div>                                
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-left">
 
                                     <span>Stock Item <span class="required">*</span></span>
 
@@ -454,13 +454,13 @@
 
                         <div class="col-xs-12 col-md-2"></div>
 
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
 
                             <button type="button" class="btn btn-block btn-success" id="save_product">Save</button>
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
 
                             <a href="<?php echo base_url('/') ?>"><button type="button" class="btn btn-block btn-orange">Cancel</button></a>
 

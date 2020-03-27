@@ -21,13 +21,13 @@
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
 
                         <h3 class="font-weight-bold">Supplier Type </h3>
 
                     </div>
 
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
 
                         <h3 class="font-weight-bold">Edit</h3>
 
@@ -100,7 +100,6 @@
 
 
 
-        <br>    
 
         <div class="row">
 
@@ -110,13 +109,13 @@
 
                     <div class="form-group row">
 
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
 
                             <button type="button" class="btn btn-block py-0 cust-text btn-success font-weight-bold" id="update">Save</button>
 
                         </div>
 
-                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
 
                             <button type="button" class="btn btn-block btn-orange cust-text py-0 font-weight-bold" id="cancel">Cancel</button>
 

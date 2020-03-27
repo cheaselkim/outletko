@@ -29,12 +29,12 @@
                     </div>
 
                 </div>
-                <div class="row py-5">
+                <div class="row mt-3 mb-5">
                     <div class="col-lg-2 col-md-2"></div>
-                    <div class="col-lg-4 col-md-4 pl-0">
+                    <div class="col-lg-4 col-md-4 pad-left mt-2">
                         <button id="save" class="btn btn-block btn-success btn-height-30 font-size-18 p-0 font-weight-bold">Save</button>
                     </div>                     
-                    <div class="col-lg-4 col-md-4">
+                    <div class="col-lg-4 col-md-4 pad-right mt-2">
                         <a href="<?php echo base_url(); ?>" class="btn btn-block btn-orange btn-height-30 font-size-18 p-0 font-weight-bold">Cancel</a>
                     </div>
                 </div>

@@ -10,11 +10,11 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12 pr-4">
-                <div class="row">
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3">
+                <div class="row"> 
+                    <div class="col-8 col-xs-6 col-md-6 col-sm-6 pt-3">
                         <h3 class="font-weight-bold">Product Brand</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Entry</h3>
                     </div>
                 </div>

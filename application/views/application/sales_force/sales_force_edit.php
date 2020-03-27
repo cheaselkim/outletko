@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Sales Force</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Edit</h3>
                     </div>
                 </div>
@@ -38,12 +38,12 @@
                                 <option value="1">Yes</option>
                             </select>                            
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-12 px-1">
+                        <div class="col-lg-2 col-md-3 col-sm-12 pad-center">
                             <span class="font-size-18">Type <span class="required">*</span></span>
                             <select class="form-control px-0" id="sales_force_type">
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-12 pl-1">
+                        <div class="col-lg-2 col-md-3 col-sm-12 pad-left">
                             <span class="font-size-18">Status</span>
                             <select class="form-control" id="status">
                                 <option value="1">Active</option>
@@ -52,57 +52,57 @@
                         </div>
                     </div>                            
                     <div class="form-group row mb-0">
-                        <div class="col-lg-4 col-md-4 col-sm-12 pr-1">
+                        <div class="col-lg-4 col-md-4 col-sm-12 pad-right">
                             <span class="font-size-18">Last Name <span class="required">*</span></span>
                             <input class="form-control text-uppercase" id="last_name">
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 px-1">
+                        <div class="col-lg-4 col-md-4 col-sm-12 pad-center">
                             <span class="font-size-18">First Name <span class="required">*</span></span>
                             <input class="form-control text-uppercase" id="first_name">
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 pl-1">
+                        <div class="col-lg-4 col-md-4 col-sm-12 pad-left">
                             <span class="font-size-18">Middle Name <span class="required">*</span></span>
                             <input class="form-control text-uppercase" id="mid_name">
                         </div>
                     </div>                            
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span class="font-size-18">Position</span>
                             <input class="form-control" id="position">
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pad-center">
                             <span class="font-size-18">Date Hired</span>
                             <input type="date" class="form-control" id="date_hired">
                         </div>
-                        <div class="col-md-2 col-sm-12 px-1">
+                        <div class="col-md-2 col-sm-12 pad-center">
                             <span class="font-size-18">Mobile No </span>
                             <input class="form-control" id="mobile">
                         </div>
-                        <div class="col-md-4 col-sm-12 pl-1">
+                        <div class="col-md-4 col-sm-12 pad-left">
                             <span class="font-size-18">Email <span class="required">*</span></span>
                             <input class="form-control" id="email">
                         </div>
                     </div>                            
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span class="font-size-18">Outlet No/Area <span class="required">*</span></span>
                             <select class="form-control" id="outlet">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pad-center">
                             <span class="font-size-18">Start Date</span>
                             <input type="date" class="form-control" id="date_start">
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pad-center">
                             <span class="font-size-18">End Date</span>
                             <input type="date" class="form-control" id="date_end">
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pad-center">
                             <span class="font-size-18">Monthly Quota</span>
                             <input type="text" class="form-control text-right" id="monthly_quota" value="0">
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1">
+                        <div class="col-xs-12 col-md-2 pad-left">
                             <span class="font-size-18">% of Share (PHP)  </span>
                             <input type="text" class="form-control text-right" id="share" value="0">
                         </div>
@@ -135,10 +135,10 @@
                 <div class="container">
                     <div class="form-group row">
                         <div class="col-xs-12 col-md-2"></div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-success btn-height-30 font-size-18 p-0 font-weight-bold" id="update">Save</button>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-orange btn-height-30 font-size-18 p-0 font-weight-bold" id="cancel">Cancel</button>
                         </div>
                         <div class="col-xs-12 col-md-2"></div>

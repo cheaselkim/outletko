@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="keyword" content="Outletko, eoutletsuite, outletko, zugriff products, zugriff outletko">
-    <meta property="og:image" content="X" />
-    <meta property="og:type" content="X" />
-    <meta property="og:url" content="X" />
-    <meta property="og:title" content="X" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="<?php echo base_url()?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<?php echo base_url()?>" />
+    <meta property="og:title" content="blog" />
     <meta property="og:description" content="X" />
     <title>Outletko</title>
 

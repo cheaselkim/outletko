@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Customer Information</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Entry</h3>
                     </div>
                 </div>
@@ -34,15 +34,15 @@
                                 <option value="0">All</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-3 pr-1">
+                        <div class="col-xs-12 col-md-3 pad-right">
                             <span>Customer No. </span>
                             <input type="text" class="form-control" id="cust_id">
                         </div>
-                        <div class="col-xs-12 col-md-6 px-1">
+                        <div class="col-xs-12 col-md-6 pad-center">
                             <span>Customer Name <span class="required">*</span></span>
                             <input type="text" class="form-control" id="cust_name">
                         </div>
-                        <div class="col-xs-12 col-md-3 pl-1">
+                        <div class="col-xs-12 col-md-3 pad-left">
                             <span>Customer Status</span>
                             <select class="form-control" id="cust_status">
                                 <option value="1">Active</option>
@@ -59,34 +59,34 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span>Town/City </span>
                             <input type="text" class="form-control" id="cust_city">
                             <input type="hidden" class="form-control" id="cust_city_id" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
                             <span>Province</span>
                             <input type="text" class="form-control" id="cust_province" readonly>
                             <input type="hidden" class="form-control" id="cust_province_id" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Country </span>
                             <input type="text" class="form-control" id="cust_country" value="Philippines" >
                         </div>                                
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
                             <span>Contact No. </span>
                             <input type="text" class="form-control" id="contact_no" onkeypress="return isNumber(event)">
                         </div>
 
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
                             <span>Customer Type </span>
                             <select class="form-control" id="cust_type">
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Credit Limit</span>
                             <input type="text" class="form-control text-right" id="credit_limit" value="0">
                         </div>
@@ -104,11 +104,11 @@
                         <input type="text" class="form-control" id="industry">
                     </div>
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
                             <span>Contact Person <span class="required">*</span></span>
                             <input type="text" class="form-control" id="contact_person">
                         </div>
-                        <div class="col-xs-12 col-md-4 pl-1">
+                        <div class="col-xs-12 col-md-4 pad-left">
                             <span>Email Address</span>
                             <input type="text" class="form-control" id="email_add">
                         </div>
@@ -151,15 +151,15 @@
         </div>
         <!-- END Entry Customer Information -->
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-xs-12 col-md-12">
                 <div class="container">
                     <div class="form-group row">
                         <div class="col-xs-12 col-md-2"></div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-success btn-height-35 cust-text font-weight-bold" id="save">Save</button>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <a href="<?php echo base_url('/') ?>"><button type="button" class="btn btn-block btn-orange cust-text font-weight-bold btn-height-35">Cancel</button></a>
                         </div>
                         <div class="col-xs-12 col-md-2"></div>

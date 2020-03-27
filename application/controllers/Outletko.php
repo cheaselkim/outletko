@@ -109,6 +109,7 @@ class Outletko extends CI_Controller {
 		if (!empty($result)){
 			foreach($result as $key => $value){
 				$data['result'][$key] = array(
+                    "id" => $value->id,
 					"title" => $value->title,
 					"content" => $value->content,
 					"blog_date" => date("F d, Y", strtotime($value->date_insert)),

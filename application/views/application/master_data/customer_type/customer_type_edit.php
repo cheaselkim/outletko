@@ -20,13 +20,13 @@
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
 
                         <h3 class="font-weight-bold">Customer Type Data</h3>
 
                     </div>
 
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
 
                         <h3 class="font-weight-bold">Edit</h3>
 
@@ -98,8 +98,6 @@
 
 
 
-        <br>    
-
         <div class="row">
 
             <div class="col-xs-12 col-md-12">
@@ -108,13 +106,13 @@
 
                     <div class="form-group row">
 
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
 
                             <button type="button" class="btn btn-block btn-success py-0 cust-text font-weight-bold" id="update">Save</button>
 
                         </div>
 
-                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
 
                             <button type="button" class="btn btn-block btn-orange py-0 cust-text font-weight-bold" id="cancel">Cancel</button>
 

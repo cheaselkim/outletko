@@ -18,15 +18,15 @@ if (!function_exists("table_outlet")){
 
 						<tr>
 
-							<th style='width: 8%;' class='text-left'>Outlet No</th>
+							<th style='width: 8%;' class='text-left d-none d-lg-table-cell'>Outlet No</th>
 
                             <th style='width: 15%;' class='text-left'>Outlet Name</th>
 
-                            <th style='width: 22%;' class='text-left'>Address</th>
+                            <th style='width: 22%;' class='text-left d-none d-lg-table-cell'>Address</th>
 
                             <th style='width: 10%;'  class='text-left'>Type</th>
 
-                            <th style='width: 11%;' class='text-left'>Montly Quota</th>
+                            <th style='width: 11%;' class='text-left d-none d-lg-table-cell'>Montly Quota</th>
 
                             <th style='width: 5%;'  class='text-left'>Status</th>
 
@@ -76,15 +76,15 @@ if (!function_exists("table_outlet")){
 
 				$output .= "<tr>
 
-								<td style='width: 6%;'>".$value->outlet_code."</td>
+								<td style='width: 6%;' class='d-none d-lg-table-cell'>".$value->outlet_code."</td>
 
 								<td style='width: 20%;'>".$value->outlet_name."</td>
 
-								<td style='width: 20%;'>".$value->outlet_location."</td>
+								<td style='width: 20%;' class='d-none d-lg-table-cell'>".$value->outlet_location."</td>
 
 								<td style='width: 10%;'>".$value->outlet_type_desc."</td>
 
-								<td style='width: 8%;' class='text-right'>".number_format($value->outlet_monthly_quota, 2)."</td>
+								<td style='width: 8%;' class='text-right d-none d-lg-table-cell'>".number_format($value->outlet_monthly_quota, 2)."</td>
 
 								<td style='width: 5%;'>".$status."</td>
 
@@ -144,15 +144,15 @@ if (!function_exists("list_outlet")){
 
 						<tr>
 
-							<th style='width: 12%;' class='text-left'>Outlet No</th>
+							<th style='width: 12%;' class='text-left d-none d-lg-table-cell'>Outlet No</th>
 
                             <th style='width: 35%;' class='text-left'>Outlet Name</th>
 
                             <th style='width: 10%;' class='text-left'> Outlet Status</th>
 
-                            <th style='width: 20%;' class='text-left'>City / Province</th>
+                            <th style='width: 20%;' class='text-left d-none d-lg-table-cell'>City / Province</th>
 
-                            <th style='width: 10%;' class='text-left'>Sales Target</th>
+                            <th style='width: 10%;' class='text-left d-none d-lg-table-cell'>Sales Target</th>
 
 						</tr>
 
@@ -182,15 +182,15 @@ if (!function_exists("list_outlet")){
 
 				$output .= "<tr>
 
-								<td class='text-left' style='width: 12%;'>".$value->outlet_code."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 12%;'>".$value->outlet_code."</td>
 
 								<td class='text-left' style='width: 35%;'>".$value->outlet_name."</td>
 
 								<td class='text-left' style='width: 10%;'>".$status."</td>
 
-								<td class='text-left' style='width: 20%;'>".$value->city_desc.", ".$value->province_desc."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 20%;'>".$value->city_desc.", ".$value->province_desc."</td>
 
-								<td class='text-left' style='width: 10%;' class='text-right'>".number_format($value->outlet_monthly_quota, 2)."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 10%;' class='text-right'>".number_format($value->outlet_monthly_quota, 2)."</td>
 
   						    </tr>";
 

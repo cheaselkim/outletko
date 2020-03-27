@@ -11,10 +11,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12 pr-4">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 col-sm-6 pt-3">
                         <h3 class="font-weight-bold">Product Color</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 col-sm-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Edit</h3>
                     </div>
                 </div>
@@ -54,15 +54,14 @@
             </div>
         </div>
 
-        <br>    
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="container">
                     <div class="form-group row">
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
                             <button type="button" class="btn btn-block btn-success cust-text font-weight-bold py-0" id="save">Save</button>
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
+                        <div class="col-xs-12 col-md-2 pad-center mt-2">
                             <button type="button" class="btn btn-block btn-orange cust-text font-weight-bold py-0" id="cancel">Cancel</button>
                         </div>
                     </div>

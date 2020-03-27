@@ -21,13 +21,13 @@
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
 
                         <h3 class="font-weight-bold">Outlet Information</h3>
 
                     </div>
 
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
 
                         <h3 class="font-weight-bold">Entry</h3>
 
@@ -47,13 +47,13 @@
 
         <div class="row text-sales">
 
-            <div class="col-xs-12 col-md-8 col-lg-9 pr-5 pl-0">
+            <div class="col-xs-12 col-md-8 col-lg-9  pad-left">
 
                 <div class="container">
 
                     <div class="form-group row mb-0">
 
-                        <div class="col-xs-12 col-md-4 pr-1">
+                        <div class="col-xs-12 col-md-4 pad-right">
 
                             <span>Outlet No. <span class="required">*</span></span>
 
@@ -61,7 +61,7 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-md-8 px-1">
+                        <div class="col-xs-12 col-md-8 pad-center">
 
                             <span>Outlet Name <span class="required">*</span></span>
 
@@ -75,7 +75,7 @@
 
                     <div class="form-group row mb-0">
 
-                        <div class="col-xs-12 col-md-12 pr-1">
+                        <div class="col-xs-12 col-md-12 pad-right">
 
                             <span>Location <span class="required">*</span></span>
 
@@ -89,7 +89,7 @@
 
                     <div class="form-group row mb-0">
 
-                        <div class="col-xs-12 col-md-4 col-md-3 pr-1">
+                        <div class="col-xs-12 col-md-4 col-md-3 pad-right">
 
                             <span>City/Town <span class="required">*</span></span>
 
@@ -99,7 +99,7 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
 
                             <span>Province <span class="required">*</span></span>
 
@@ -109,7 +109,7 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-4 pad-center">
 
                             <span>Country <span class="required">*</span></span>
 
@@ -123,15 +123,15 @@
 
             </div>
 
-            <div class="col-xs-12 col-md-4 col-lg-3 px-0">
+            <div class="col-xs-12 col-md-4 col-lg-3 pad-right">
 
                 <div class="container">
 
                     <div class="form-group row mb-0">
 
-                        <div class="col-xs-12 col-md-12 pl-1">
+                        <div class="col-xs-12 col-md-12 pad-left">
 
-                            <span>Outlet Status. <span class="required">*</span></span>
+                            <span>Outlet Status <span class="required">*</span></span>
                             <select class="form-control" id="outlet_status">
                                 <option value="1">Operational</option>
                                 <option value="2">Close</option>
@@ -143,7 +143,7 @@
 
                     <div class="form-group row mb-0">
 
-                        <div class="col-xs-12 col-md-12 pl-1">
+                        <div class="col-xs-12 col-md-12 pad-left">
 
                             <span>Outlet Type <span class="required">*</span></span>
 
@@ -161,7 +161,7 @@
                     <div class="form-group row mb-0">
 
                         <input type="hidden" class="form-control" id="currency" value="" readonly>
-                        <div class="col-xs-12 col-md-12 col-sm-12 pl-1">
+                        <div class="col-xs-12 col-md-12 col-sm-12 pad-left">
 
                             <span>Monthly Sales Target <span class="required"></span></span>
 
@@ -186,7 +186,6 @@
 
 
 
-        <br>    
 
         <div class="row text-sales">
 
@@ -198,13 +197,13 @@
 
                         <div class="col-xs-12 col-md-2"></div>
 
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
 
                             <button type="button" class="btn btn-block btn-success cust-text font-weight-bold btn-height-35" id="save_outlet">Save</button>
 
                         </div>
 
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
 
                             <button type="button" class="btn btn-block btn-orange cust-text font-weight-bold btn-height-35" id="cancel">Cancel</button>
 

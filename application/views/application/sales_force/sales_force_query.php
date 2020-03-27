@@ -9,10 +9,10 @@
       <div class="row">
           <div class="col-xs-12 col-md-12 col-lg-12">
               <div class="row">
-                  <div class="col-xs-6 col-md-6 pt-3">
+                  <div class="col-8 col-xs-6 col-md-6 pt-3">
                       <h3 class="font-weight-bold">Sales Force</h3>
                   </div>
-                  <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                  <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                       <h3 class="font-weight-bold">
                         <?php 
                           if ($function == "2"){
@@ -35,23 +35,23 @@
             <div class="col-xs-12 col-md-12 px-0">
                 <div class="container">
                     <div class="form-group row mb-0">
-                        <div class="col-xs-12 col-md-2 col-lg-2 pr-1">
+                        <div class="col-xs-12 col-md-2 col-lg-2 pad-right">
                             <span class="font-size-18">Outlet</span>
                             <select class="form-control" id="outlet">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-3 col-lg-2 px-1">
+                        <div class="col-xs-12 col-md-3 col-lg-2 pad-center">
                             <span class="font-size-18">Sales Force Type</span>
                             <select class="form-control" id="type">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-5 col-lg-6 px-1">
+                        <div class="col-xs-12 col-md-5 col-lg-6 pad-center">
                             <span class="font-size-18">Keyword</span>
                             <input type="text" class="form-control" id="search_box">
                         </div>
-                        <div class="col-xs-12 col-md-2 col-lg-2 pl-1">
+                        <div class="col-xs-12 col-md-2 col-lg-2 pad-left">
                             <span class="font-size-18">Status</span>
                             <select class="form-control" id="status">
                                 <option value="1">Active</option>
@@ -80,10 +80,10 @@
             <div class="col-xs-12 col-md-12">
               <div class="container">
                 <div class="form-group row my-0">
-                  <div class="col-lg-10 col-md-10 text-right pt-1 pr-0">
+                  <div class="col-8 col-lg-10 col-md-10 text-right pt-1 pr-0">
                     <label class="font-size-18">No. of Sales Force : </label>
                   </div>
-                  <div class="col-lg-2 col-md-2 text-right pr-0 pl-3">
+                  <div class="col-4 col-lg-2 col-md-2 text-right pr-0 pl-3">
                     <input type="text" class="form-control text-center ml-auto" value="0" id="no_sales_force" readonly>
                   </div>
                 </div>              

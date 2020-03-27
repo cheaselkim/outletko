@@ -19,13 +19,13 @@
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
 
                         <h3 class="font-weight-bold">Supplier Type</h3>
 
                     </div>
 
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
 
                         <h3 class="font-weight-bold">Entry</h3>
 
@@ -89,15 +89,15 @@
 
                             </div>
 
-                            <div class="form-group row my-3">
+                            <div class="form-group row mt-1 mb-3">
 
-                                <div class="col-xs-12 col-md-6 pr-1">
+                                <div class="col-xs-12 col-md-6 pad-center mt-2">
 
                                     <button type="button" class="btn btn-block btn-success cust-text font-weight-bold py-0" id="save">Save</button>
 
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 pl-1">
+                                <div class="col-xs-12 col-md-6 pad-center mt-2">
 
                                     <button type="button" class="btn btn-block btn-orange cust-text font-weight-bold py-0" id="cancel">Cancel</button>
 
