@@ -11,7 +11,7 @@ if (!function_exists("tbl_query")){
 		$output .= "<table class='table table-striped table-sm table-bordered' id='tbl-data'>
 					<thead>
 						<tr>
-							<th style='width: 20%;'>Sales Discount Code</th>
+							<th style='width: 20%;' class='d-none d-lg-table-cell'>Sales Discount Code</th>
 							<th style='width: 50%;'>Sales Discount Name</th>
 							<th style='width: 20%;'>Percent / Amount </th>
 							<th style='width: 10%;'>Outlet</th>
@@ -41,7 +41,7 @@ if (!function_exists("tbl_query")){
 			}
 
 			$output .= "<tr>
-							<td>".$value->sales_discount_code."</td>
+							<td class='d-none d-lg-table-cell'>".$value->sales_discount_code."</td>
 							<td>".$value->sales_discount_name."</td>
 							<td class='text-right'>".$amount."</td>
 							<td>".$value->outlet_desc."</td>

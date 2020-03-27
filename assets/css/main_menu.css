@@ -112,17 +112,17 @@ a.card:hover label{
 	}
 
 
-/*	#menu_1{
-		order: 3;
-	}*/
+	/* #menu_1{
+		order: 1;
+	} */
 	
 	#menu_2, #menu_3, #menu_4, #menu_5{
 
-		cursor: not-allowed;
+		/* cursor: not-allowed;
 
 		opacity: 0.5;
 
-		background: #CCC;		
+		background: #CCC;		 */
 
 	}
 
@@ -130,7 +130,7 @@ a.card:hover label{
 	/*#menu_1 > .div-list-menu,*/
 	#menu_2 > .div-list-menu,#menu_3 > .div-list-menu,#menu_4 > .div-list-menu,#menu_5 > .div-list-menu{
 
-		pointer-events: none;
+		/* pointer-events: none; */
 
 	}
 
@@ -158,7 +158,18 @@ a.card:hover label{
 
 	}
 
+    .menu-title{
+        font-size: 1.25rem;
+        margin-top: 4px;
+        font-weight: 600;
+    }
 
+    #header-menu{
+        font-size: 1.25rem;
+        margin-top: 4px;
+        font-weight: 600;
+
+    }
 
 } 
 

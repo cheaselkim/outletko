@@ -11,7 +11,7 @@ if (!function_exists("tbl_query")){
 						<tr>
 							<th style='width: 7%;'> Category Code</th>
 							<th style='width: 15%;'> Category Name</th>
-							<th style='width: 30%;'> Category Description</th>
+							<th style='width: 30%;' class='d-none d-lg-table-cell'> Category Description</th>
 							<th style='width: 7%;'>Outlet</th>";
 
 							if ($app_func != "3"){
@@ -36,7 +36,7 @@ if (!function_exists("tbl_query")){
 			$output .= "<tr>
 							<td>".$value->category_code."</td>
 							<td>".$value->category_name."</td>
-							<td>".$value->category_desc."</td>
+							<td class='d-none d-lg-table-cell'>".$value->category_desc."</td>
 							<td>".$value->outlet_desc."</td>
 							";
 	

@@ -9,9 +9,9 @@ if (!function_exists("tbl_query")){
 		$output .= "<table class='table table-striped table-sm table-bordered' id='tbl-data'>
 					<thead>
 						<tr>
-							<th style='width: 10%;'> Model Code</th>
+							<th style='width: 10%;' class='d-none d-lg-table-cell'> Model Code</th>
 							<th style='width: 20%;'> Model Name</th>
-							<th style='width: 30%;'> Model Description</th>
+							<th style='width: 30%;' class='d-none d-lg-table-cell'> Model Description</th>
 							<th style='width: 10%;'>Outlet</th>
 							";
 							if ($app_func != "3"){
@@ -33,9 +33,9 @@ if (!function_exists("tbl_query")){
 			}
 
 			$output .= "<tr>
-							<td>".$value->model_code."</td>
+							<td class='d-none d-lg-table-cell'>".$value->model_code."</td>
 							<td>".$value->model_name."</td>
-							<td>".$value->model_desc."</td>
+							<td class='d-none d-lg-table-cell'>".$value->model_desc."</td>
 							<td>".$value->outlet_desc."</td>
 							";
 	

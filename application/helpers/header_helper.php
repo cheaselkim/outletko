@@ -96,7 +96,7 @@ if (!function_exists("menu_roles")){
 
 			$output .= "<div class='card-deck'>
 
-				<input type='hidden' id='menu_module' value='".$module."'>
+                    <input type='hidden' id='menu_module' value='".$module."'>
 
 				<input type='hidden' id='menu_sub_module' value='".$submodule."' readonly>";	
 
@@ -172,9 +172,9 @@ if (!function_exists("menu_roles")){
 
 
 
-					$output .= "<a onclick='select_function(".$submodule.", ".$function.")' class='card mx-2".$disabled."' readonly>
+					$output .= "<a onclick='select_function(".$submodule.", ".$function.")' class='card mx-2 cursor-pointer ".$disabled."' readonly>
 
-		              <div class='h-100".$disabled."w-100'>
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
@@ -223,15 +223,15 @@ if (!function_exists("menu_roles")){
 		                // </div>
 				if ($module == "1"){
 
-					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card mx-2' readonly>
+					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card mx-2 cursor-pointer' readonly>
 
-		              <div class='h-100".$disabled."w-100'>
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
 		                	<img src='".base_url()."/assets/icons/menu/clock.png' class='img-fluid mb-2'>  		                
 
-		                  	<span class='mt-2 font-weight-bold'>End of Day</span>
+		                  	<span class='mt-2 font-weight-bold mx-auto'>End of Day</span>
 
 			              </div>
 
@@ -243,9 +243,9 @@ if (!function_exists("menu_roles")){
 
 				}else if ($module == "5"){
 
-					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card' readonly>
+					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card mx-2 cursor-pointer' readonly>
 
-		              <div class='h-100".$disabled."w-100'>
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
@@ -262,9 +262,9 @@ if (!function_exists("menu_roles")){
 
 				}else if ($module == "8"){
 
-					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card' readonly hidden>
+					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card cursor-pointer mx-2' readonly hidden>
 
-		              <div class='h-100".$disabled."w-100'>
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
@@ -279,9 +279,11 @@ if (!function_exists("menu_roles")){
 
 		            </a>";										
 
-					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card' id='menu_config' hidden readonly>
 
-		              <div class='h-100".$disabled."w-100'>
+                    
+					$output .= "<a onclick='select_function(".$submodule.", 6)' class='card cursor-pointer mx-2' id='menu_config' hidden readonly>
+
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
@@ -297,15 +299,15 @@ if (!function_exists("menu_roles")){
 		            </a>";										
 
 
-					$output .= "<a onclick='select_function(0, 7)' class='card' >
+					$output .= "<a onclick='select_function(0, 7)' class='card mx-2 cursor-pointer' >
 
-		              <div class='h-100".$disabled."w-100'>
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3' style='line-height: 23px;'>
 
  		                	<img src='".base_url()."/assets/icons/menu/back-icon.png' class='img-fluid mb-2'>  		                
 
- 			                <span class='mt-2 font-weight-bold'>Data Entry</span>
+ 			                <span class='mt-2 font-weight-bold mx-auto'>Data Entry</span>
 
 			              </div>
 
@@ -314,9 +316,10 @@ if (!function_exists("menu_roles")){
 
 		            </a>";										
 
-					$output .= "<a onclick='select_function(0, 8)' class='card' id=''  style='line-height: 23px;'>
 
-		              <div class='h-100".$disabled."w-100'>
+					$output .= "<a onclick='select_function(0, 8)' class='card mx-2 cursor-pointer' id=''  style='line-height: 23px;'>
+
+		              <div class='h-100 ".$disabled." w-100'>
 
 			              <div class=' menu-img-box  text-center pt-3'>
 
@@ -521,9 +524,9 @@ if (!function_exists("menu_roles_with_submodule")){
 
 
 
-				$output .= '<div class="'.$col.' '.$pt_5.' mx-0 px-2" style=""> 
+				$output .= '<div class="'.$col.' '.$pt_5.' mx-0 px-2 mt-1 cursor-pointer" style="" > 
 
-              <div class="flip-card" style="height: 140px;width: 100%;">
+              <div class="flip-card" id="'.str_replace(' ', '', $submodule_title).'" style="height: 140px;width: 100%;" onclick="flip(event)">
 
                 <div class="flip-card-inner">
 

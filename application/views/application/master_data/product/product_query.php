@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Product Master Data</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">
                             <?php 
                                 if ($function == "2"){
@@ -37,16 +37,16 @@
                 <div class="container pb-0">
                     
                     <div class="form-group row my-0">
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Product Type</span>
                             <select class="form-control"type="text" id="product_type_query">
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-6 px-1">
+                        <div class="col-xs-12 col-md-6 pl-0 pad-right">
                             <span class="font-size-18">Keyword</span>
                             <input type="text" class="form-control" placeholder="Search Product No, Product Name" id="search_box">
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Status</span>
                             <select class="form-control" id="status">
                                 <option value="1">Active</option>
@@ -54,7 +54,7 @@
                                 <option value="4">Phase Out</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Outlet</span>
                             <select class="form-control" id="outlet">
                                 <option value="0">All</option>
@@ -64,35 +64,35 @@
                 
                     <div class="form-group row my-0">
 
-                        <div class="col-xs-12 col-md-3 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-3 pl-0 pad-right">
                             <span class="font-size-18">Product Category</span>
                             <select class="form-control"type="text" id="product_category_query">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
 
-                        <div class="col-xs-12 col-md-3 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-3 pl-0 pad-right">
                             <span class="font-size-18">Product Class</span>
                             <select class="form-control"type="text" id="product_class_query">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
 
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Product Brand</span>
                             <select class="form-control"type="text" id="product_brand_query">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
 
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Product Color</span>
                             <select class="form-control"type="text" id="product_color_query">
                                 <option value="0">ALL</option>
                             </select>
                         </div>
 
-                        <div class="col-xs-12 col-md-2 pl-0 pr-1">
+                        <div class="col-xs-12 col-md-2 pl-0 pad-right">
                             <span class="font-size-18">Product Size</span>
                             <select class="form-control"type="text" id="product_size_query">
                                 <option value="0">ALL</option>
@@ -121,10 +121,10 @@
         <div class="col-xs-12 col-md-12">
           <div class="container">
             <div class="form-group row my-0">
-              <div class="col-lg-10 col-md-10 text-right pt-1">
+              <div class="col-8 col-lg-10 col-md-10 text-right pt-1">
                 <label class="font-size-18">No. of Products : </label>
               </div>
-              <div class="col-lg-2 col-md-2 text-right px-0">
+              <div class="col-4 col-lg-2 col-md-2 text-right px-0">
                 <input type="text" class="form-control text-center ml-auto" id="no_of_prod" value="0" readonly>
               </div>
             </div>              

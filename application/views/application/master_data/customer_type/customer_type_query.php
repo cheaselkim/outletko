@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Customer Type</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">
                             <?php 
                                 if ($function == "2"){
@@ -33,13 +33,13 @@
         <hr style="color: black;" class="mt-0 mb-2">
 
         <div class="row">
-            <div class="col-lg-2 col-md-3 col-sm-12 pr-1">
+            <div class="col-lg-2 col-md-3 col-sm-12 pad-right">
                 <span class="font-size-18">Outlet</span>
                 <select class="form-control" id="cust_type_outlet">
                     <option value="0">ALL</option>
                 </select>
             </div>
-            <div class="col-lg-10 col-md-9 col-sm-12 pl-1">
+            <div class="col-lg-10 col-md-9 col-sm-12 pad-left">
                 <span class="font-size-18">Keyword</span>
                 <input type="text" class="form-control" placeholder="Search Product Type..." id="cust_type_desc">
             </div>
@@ -61,10 +61,10 @@
             <div class="col-xs-12 col-md-12">
                 <div class="container">
                     <div class="form-group row my-0">
-                        <div class="col-lg-10 col-md-10 text-right pt-1">
+                        <div class="col-8 col-lg-10 col-md-10 text-right pt-1">
                             <label class="font-size-18">No. of Outlets : </label>
                         </div>
-                        <div class="col-lg-2 col-md-2 text-right px-0">
+                        <div class="col-4 col-lg-2 col-md-2 text-right px-0">
                             <input type="text" class="form-control text-center ml-auto" id="count" value="0" readonly>
                         </div>
                     </div>              

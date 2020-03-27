@@ -315,11 +315,11 @@
       <div class="modal-header pt-2 pb-0" style="background: rgb(235,241,222);">
             
             <div class='container'>
-                <div class='row'>
-                    <div class='col-6 col-lg-8 col-md-8 pl-0'>
+                <div class='row pb-1'>
+                    <div class='col-7 col-lg-8 col-md-8 pl-0'>
                         <h3 id="header-menu"></h3>
                     </div>
-                    <div class='col-6 col-lg-4 col-md-4 text-right pr-0'>
+                    <div class='col-5 col-lg-4 col-md-4 text-right pr-0'>
                         <a href="<?php echo base_url('/') ?>"><button class="btn btn-warning"><span class="font-weight-bold">Main Menu</span></button></a>
                     </div>
                 </div>
@@ -356,10 +356,10 @@
             
             <div class='container'>
                 <div class='row'>
-                    <div class='col-6 col-lg-8 col-md-8 pl-0'>
-                        <h3 >My Account Menu</h3>
+                    <div class='col-7 col-lg-8 col-md-8 pl-0 pb-1'>
+                        <h3 class="menu-title">My Account Menu</h3>
                     </div>
-                    <div class='col-6 col-lg-4 col-md-4 text-right pr-0'>
+                    <div class='col-5 col-lg-4 col-md-4 text-right pr-0'>
                         <a href="<?php echo base_url('/') ?>"><button class="btn btn-warning"><span class="font-weight-bold">Main Menu</span></button></a>
                     </div>
                 </div>
@@ -372,7 +372,7 @@
         <div id="menu-content">
 
             <div class='card-deck'>
-                <a onclick='menu(8)' class='card mx-2' readonly>
+                <a onclick='menu(8)' class='card mx-2 cursor-pointer' readonly>
                     <div class='h-100".$disabled."w-100'>
                         <div class=' menu-img-box  text-center pt-3'>
                         <img src='<?php echo base_url("/assets/icons/menu/user-details.png") ?>' class='img-fluid mb-2'>  		                
@@ -381,7 +381,7 @@
                     </div>             
                 </a>
 
-                <a onclick='select_function(0, 9)' class='card mx-2' readonly>
+                <a onclick='select_function(0, 9)' class='card mx-2 cursor-pointer' readonly>
                     <div class='h-100".$disabled."w-100'>
                         <div class=' menu-img-box  text-center pt-3'>
                         <img src='<?php echo base_url("/assets/icons/menu/subscription.png") ?>' class='img-fluid mb-2'>  		                
@@ -390,7 +390,7 @@
                     </div>             
                 </a>
 
-                <a onclick='select_function(0, 10)' class='card mx-2' readonly>
+                <a onclick='select_function(0, 10)' class='card mx-2 cursor-pointer' readonly>
                     <div class='h-100".$disabled."w-100'>
                         <div class=' menu-img-box  text-center pt-3'>
                         <img src='<?php echo base_url("/assets/icons/menu/commission.png") ?>' class='img-fluid mb-2'>  		                

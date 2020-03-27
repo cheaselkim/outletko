@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <meta name="keyword" content="Outletko, eoutletsuite, outletko, zugriff products, zugriff outletko">
+    <meta property="og:image" content="X" />
+    <meta property="og:type" content="X" />
+    <meta property="og:url" content="X" />
+    <meta property="og:title" content="X" />
+    <meta property="og:description" content="X" />
     <title>Outletko</title>
 
     <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">

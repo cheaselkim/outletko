@@ -8,10 +8,10 @@ if (!function_exists("table_customer")){
 		$output .= "<table style='width: 100%' class='table table-striped table-sm table-bordered' id='tbl-customer'>
 					<thead>
 						<tr>
-							<th style='width: 7%;'>Customer No</th>
+							<th style='width: 9%;' class='d-none d-lg-table-cell'>Customer No</th>
                             <th style='width: 35%;'>Customer Name</th>
-                            <th style='width: 10%;'>Town / City</th>
-                            <th style='width: 5%;'>Type</th>
+                            <th style='width: 10%;' class='d-none d-lg-table-cell'>Town / City</th>
+                            <th style='width: 5%;' class='d-none d-lg-table-cell'>Type</th>
                             <th style='width: 5%;'>Status</th>
                             <th style='width: 3%;'>Action</th>
 						</tr>
@@ -39,10 +39,10 @@ if (!function_exists("table_customer")){
 				}
 
 				$output .= "<tr>
-								<td style='width: 7%;'>".$value->cust_code."</td>
+								<td style='width: 7%;' class='d-none d-lg-table-cell'>".$value->cust_code."</td>
 								<td style='width: 35%;'>".$value->cust_name."</td>
-								<td style='width: 10%;'>".$value->city_desc."</td>
-								<td style='width: 5%;'>".$value->customer_type."</td>
+								<td style='width: 10%;' class='d-none d-lg-table-cell'>".$value->city_desc."</td>
+								<td style='width: 5%;' class='d-none d-lg-table-cell'>".$value->customer_type."</td>
 								<td style='width: 5%;'>".$status."</td>
 								<td style='width: 3%;'>".$btn."</td>
   						    </tr>";

@@ -9,7 +9,7 @@ if (!function_exists("tbl_query")){
 		$output .= "<table class='table table-striped table-sm table-bordered' id='tbl-data'>
 					<thead>
 						<tr>
-							<th style='width: 20%;'>Bank Code</th>
+							<th style='width: 20%;' class='d-none d-lg-table-cell'>Bank Code</th>
 							<th style='width: 60%;'>Bank Name</th>
 							<th style='width: 10%;'>Account No</th>
 							<th style='width: 10%;'>Outlet</th>
@@ -33,7 +33,7 @@ if (!function_exists("tbl_query")){
 			}
 
 			$output .= "<tr>
-							<td>".$value->bank_code."</td>
+							<td class='d-none d-lg-table-cell'>".$value->bank_code."</td>
 							<td>".$value->bank_name."</td>
 							<td>".$value->account_no."</td>
 							<td>".$value->outlet_desc."</td>

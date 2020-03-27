@@ -8,10 +8,10 @@ if (!function_exists("table_supplier")){
 		$output .= "<table style='width: 100%' class='table table-striped table-sm table-bordered' id='tbl-supplier'>
 					<thead>
 						<tr>
-							<th style='width: 10%;'>Supplier No</th>
+							<th style='width: 10%;'  class='d-none d-lg-table-cell'>Supplier No</th>
                             <th style='width: 35%;'>Supplier Name</th>
-                            <th style='width: 10%;'>Town / City</th>
-                            <th style='width: 10%;'>Type</th>
+                            <th style='width: 10%;'  class='d-none d-lg-table-cell'>Town / City</th>
+                            <th style='width: 10%;'  class='d-none d-lg-table-cell'>Type</th>
                             <th style='width: 5%;'>Status</th>
                             <th style='width: 3%;'>Action</th>
 						</tr>
@@ -32,10 +32,10 @@ if (!function_exists("table_supplier")){
 				}
 
 				$output .= "<tr>
-								<td>".$value->supp_code."</td>
+								<td  class='d-none d-lg-table-cell'>".$value->supp_code."</td>
 								<td>".$value->supp_name."</td>
-								<td>".$value->city_desc."</td>
-								<td>".$value->supplier_name_type."</td>
+								<td  class='d-none d-lg-table-cell'>".$value->city_desc."</td>
+								<td  class='d-none d-lg-table-cell'>".$value->supplier_name_type."</td>
 								<td>".$value->status."</td>
 								<td>".$btn."</td>
   						    </tr>";

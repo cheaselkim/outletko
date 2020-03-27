@@ -42,6 +42,23 @@ $(document).ready(function(){
 
 });
 
+function flip(event){
+    var element = event.currentTarget;
+    var id = element.id;
+    // console.log(element.className);
+    // console.log(element.id);
+
+    $("#"+id + " .flip-card-inner").css("transform", "rotateY(180deg)");
+
+    // if (element.className === "flip-card") {
+    //     if(element.style.transform == "rotateY(180deg)") {
+    //         element.style.transform = "rotateY(0deg)";
+    //     }else {
+    //         element.style.transform = "rotateY(180deg)";
+    //     }
+    // }
+};
+
 function transaction(){
 	var	csrf_name = $("input[name=csrf_name]").val();
 	$.ajax({
@@ -85,7 +102,7 @@ function count_outlet(){
 						$(".modal-dialog").css("max-width", "350px");				
 					}
 				}else{				
-					console.log(result.count);
+					// console.log(result.count);
 					if (result.count == "1"){
 						$(".modal-dialog").css("max-width", "250px");				
 					}else if (result.count == "2"){
@@ -189,6 +206,8 @@ function select_function($sub_module, $function){
 function main_menu($module){
     $("#main_menu_module").val($module);
 
+    // console.log($module);
+
 	if ($module == "1" || $module == "3"){
 		if ($("#span_outlet_id").text() == "ALL" || $("#span_outlet_id").text() == ""){
 			count_outlet();
@@ -231,6 +250,7 @@ function menu($module){
 		url : base_url + "header/roles",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
+            // console.log(result.menu);
 
 			if ($module == "7" || $module == "6"){
 				if ($("#div-query").is(":visible") == true){

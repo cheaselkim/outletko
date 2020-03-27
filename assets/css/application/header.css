@@ -2,6 +2,10 @@ input.error, select.error{
     border: 1px solid #d0011b !important;
 }
 
+.div-menu .card{
+    cursor: pointer;
+}
+
 .border-black{
   border: 0.5px solid black !important;
 }
@@ -245,18 +249,18 @@ a.disabled img{
   }
 
   #div-menu-1{
-    order: 2;
+    /* order: 1; */
   }
 
   #div-menu-1{
-    order: 1;
+    /* order: 2; */
     display: flex;
     flex-direction: column;
   }
 
-  #menu_5{
+  /* #menu_5{
     order: 8;
-  }
+  } */
 
 
   #icon-menu{

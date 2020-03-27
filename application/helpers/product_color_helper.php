@@ -9,7 +9,7 @@ if (!function_exists("tbl_query")){
 		$output .= "<table class='table table-striped table-sm table-bordered' id='tbl-data'>
 					<thead>
 						<tr>
-							<th style='width: 20%;'> Color Code</th>
+							<th style='width: 20%;' class='d-none d-lg-table-cell'> Color Code</th>
 							<th style='width: 70%;'> Color Name</th>
 							<th style='width: 10%;'>Outlet</th>
 							";
@@ -32,7 +32,7 @@ if (!function_exists("tbl_query")){
 			}
 
 			$output .= "<tr>
-							<td>".$value->color_code."</td>
+							<td class='d-none d-lg-table-cell'>".$value->color_code."</td>
 							<td>".$value->color_name."</td>
 							<td>".$value->outlet_desc."</td>
 							";
