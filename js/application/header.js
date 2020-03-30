@@ -252,6 +252,7 @@ function menu($module){
 			$("input[name=csrf_name]").val(result.token);
             // console.log(result.menu);
 
+            var window_width = $(window).width();
 			if ($module == "7" || $module == "6"){
 				if ($("#div-query").is(":visible") == true){
 					window.open(base_url, "_self");
@@ -268,10 +269,25 @@ function menu($module){
 					$("#menu-content").html(result.roles);
 					$("#sales_modal").modal("show");
 					$("#Entry").css("background-image", base_url + 'assets/icons/menu_2/entry.png');
-					if ($module == "4"){
-						$("#sales_modal").css("margin-top", "-10%");
+                    
+                    if ($module == "3"){
+                        if (window_width < 768){
+                            $("#sales_modal").css("margin-top", "-20%");
+                        }else{
+                            $("#sales_modal").css("margin-top", "-3%");
+                        }
+                    }else if ($module == "4"){
+                        if (window_width < 768){
+                            $("#sales_modal").css("margin-top", "-35%");
+                        }else{
+                            $("#sales_modal").css("margin-top", "-10%");
+                        }
 					}else{
-						$("#sales_modal").css("margin-top", "3%");						
+                        if (window_width < 768){
+                            $("#sales_modal").css("margin-top", "-7%");						
+                        }else{
+                            $("#sales_modal").css("margin-top", "3%");						
+                        }
 					}
 
 					if ($module == "5" || $module == "1"){

@@ -2,9 +2,8 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/application/master_data/supplier/supplier_edit.js"></script>
 <input type="hidden" id="supplier_id" value="<?php echo $trans_id; ?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
-<body>
 
-<div class="container-fluid">
+<div class="container-fluid pb-3">
     <div class="container">
 
         <div class="row">
@@ -148,6 +147,21 @@
                     </div>
 
                 </div>
+
+                <div class="col-xs-12 col-md-12 pt-3">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-md-2"></div>
+                        <div class="col-xs-12 col-md-4 mt-2">
+                            <button type="button" class="btn btn-block btn-success btn-height-35 cust-text font-weight-bold" id="save">Save</button>
+                        </div>
+                        <div class="col-xs-12 col-md-4 mt-2">
+                            <button type="button" class="btn btn-block btn-orange btn-height-35 cust-text font-weight-bold" id="cancel">Cancel</button>
+                        </div>
+                        <div class="col-xs-12 col-md-2"></div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="col-xs-12 col-md-5" hidden>   
@@ -171,22 +185,8 @@
         <!-- END Entry Supplier Information -->
 
         <div class="row mt-3">
-            <div class="col-xs-12 col-md-12">
-                <div class="container">
-                    <br>
-                    <div class="form-group row">
-                        <div class="col-xs-12 col-md-2"></div>
-                        <div class="col-xs-12 col-md-4 mt-2">
-                            <button type="button" class="btn btn-block btn-success btn-height-35 cust-text font-weight-bold" id="save">Save</button>
-                        </div>
-                        <div class="col-xs-12 col-md-4 mt-2">
-                            <button type="button" class="btn btn-block btn-orange btn-height-35 cust-text font-weight-bold" id="cancel">Cancel</button>
-                        </div>
-                        <div class="col-xs-12 col-md-2"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
 </div>
 
@@ -212,4 +212,3 @@
 </div>
 <!-- END Modal for Save Supplier Info -->
 
-</body>

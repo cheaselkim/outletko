@@ -18,13 +18,15 @@ class Header_model extends CI_Model {
       $result = $this->db->query("
         SELECT         
         `outlet`.`id` AS outlet_id,
-        `outlet`.`outlet_code` AS outlet_code
+        `outlet`.`outlet_code` AS outlet_code,
+        `outlet`.`outlet_name` AS outlet_name
          FROM outlet
          WHERE comp_id = ? ", array($this->session->userdata("comp_id")));
     }else{
       $result = $this->db->query("SELECT 
         `outlet`.`id` AS outlet_id,
-        `outlet`.`outlet_code` AS outlet_code
+        `outlet`.`outlet_code` AS outlet_code,
+        `outlet`.`outlet_name` AS outlet_name
         FROM user_outlet
         INNER JOIN outlet ON 
         `user_outlet`.`outlet_id` = `outlet`.`id`
@@ -37,7 +39,8 @@ class Header_model extends CI_Model {
     $result = $this->db->query("
       SELECT 
       `outlet`.`id` AS outlet_id,
-      `outlet`.`outlet_code` AS outlet_code
+      `outlet`.`outlet_code` AS outlet_code,
+      `outlet`.`outlet_name` AS outlet_name
       FROM user_outlet
       INNER JOIN outlet ON 
       `user_outlet`.`outlet_id` = `outlet`.`id`
@@ -50,7 +53,8 @@ class Header_model extends CI_Model {
     $result = $this->db->query("
       SELECT       
       `outlet`.`id` AS outlet_id,
-      `outlet`.`outlet_code` AS outlet_code
+      `outlet`.`outlet_code` AS outlet_code,
+      `outlet`.`outlet_name` AS outlet_name
       FROM outlet WHERE comp_id = ?" , 
       array($this->session->userdata('comp_id')))->result();
     return $result;

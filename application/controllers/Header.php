@@ -19,7 +19,7 @@ class Header extends CI_Controller {
 			foreach ($result->result() as $key => $value) {
 				$data['outlet_no'] = $value->outlet_id;
 				if ($value->outlet_id == "0"){
-					$result2 = $this->header_model->all_outlet();
+                    $result2 = $this->header_model->all_outlet();
 					$data['outlet'] = list_outlet($result2);	
 				}else{
 					$data['outlet'] = $value->outlet_id;
@@ -40,8 +40,8 @@ class Header extends CI_Controller {
 			$result = $this->header_model->all_outlet();
 		}else{
 			$result = $this->header_model->find_user_outlet();
-		}
-
+        }
+        
 		$data['result'] = list_outlet($result);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);

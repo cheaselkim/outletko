@@ -24,15 +24,15 @@ if (!function_exists("list_outlet")){
 
                 } 
 
-        $output .= "<div class='card' onclick='select_outlet(".$value->outlet_id.")'>
+        $output .= "<div class='card cursor-pointer' onclick='select_outlet(".$value->outlet_id.")'>
 
               <div class='card-block'>
 
-                <div class='card-body card-body-menu text-center pt-1' style='height: 181px;'>	
+                <div class='card-body  text-center pt-2 div-card-outlet'>	
 
                    <img src='".$url."' class='img-fluid'>
 
-                  <span class='mt-3	 font-weight-bold'>".$value->outlet_code."</span>
+                  <span class='mt-3	 font-weight-bold'>".$value->outlet_name."</span>
 
                 </div>              
 
