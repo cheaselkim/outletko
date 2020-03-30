@@ -23,6 +23,26 @@ $(document).ready( function() {
     currency();
     account_currency();
 
+    var window_width = $(document).width();
+
+    if (window_width < 800){
+        $("#rtn_qty").text("Rtn Qty");
+        $("#iss_qty").text("Qty Iss");
+        $("#rcvd_qty").text("Qty Rcvd");
+        $("#pre-rtn-qty").text("Rtn Qty");
+        $("#pre-iss-qty").text("Qty Iss");
+        $("#pre-rcvd-qty").text("Qty Rcvd");
+        $("#div-receive-inventory").css("padding-left", "0px");
+        $("#div-receive-inventory").css("padding-right", "0px");
+    }else{
+        $("#rtn_qty").text("Returned Qty");
+        $("#iss_qty").text("Qty Issued");
+        $("#rcvd_qty").text("Qty Received");
+        $("#pre-rtn-qty").text("Returned Qty");
+        $("#pre-iss-qty").text("Qty Issued");
+        $("#pre-rcvd-qty").text("Qty Received");
+    }
+
     $("#btn_outlet").click(function(){
 
         setTimeout(function(){ 
@@ -692,7 +712,7 @@ function sales_returns(){
         $("#div-type-action").show();
         $("#div-sales-register").show();
         $("#div-btn-item").removeClass("col-md-6");
-        $("#div-btn-item").addClass("col-md-4");
+        $("#div-btn-item").addClass("col-md-2");
     }else{
         $("#div-type-action").hide();
         $("#div-sales-register").hide();
@@ -737,6 +757,7 @@ function sales_register(){
 function sales_register_products(id){
     var arr_id = new Array();
     var csrf_name = $("input[name=csrf_name]").val();
+    var window_width = $(document).width();
 
     $('#tbl-sales-products tbody tr').each(function (row, tr){
         arr_id[row] = $(tr).find(".tbl-id").text();
@@ -751,6 +772,9 @@ function sales_register_products(id){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             $("#sales_register_dtl").html(result.result);
+            if (window_width < 800){
+                $(document).find("#sales-rtn").text("Rtn");
+            }
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -840,15 +864,15 @@ function sales_register_add_table(){
 
             $("#tbl-sales-products").append("<tr class='sales_row_table cursor-pointer'>"+
                 "<td style='width: 2.5%;' class='tbl-prod-no'>" + $(tr).find(".tbl-prod-no").text() + 
-                "</td><td style='width: 7%;' class='tbl-prod-name'>" + $(tr).find(".tbl-prod-name").text() + 
+                "</td><td style='width: 7%;' class='tbl-prod-name d-none d-lg-table-cell'>" + $(tr).find(".tbl-prod-name").text() + 
                 "</td><td style='width: 2%;' class='tbl-qty-return'>" + $(tr).find(".tbl-qty-return").text() + 
-                "</td><td style='width: 1.5%;' class='tbl-unit'>" + $(tr).find(".tbl-unit").text() + 
-                "</td><td style='width: 1.5%;' class='tbl-reference'>" + $(tr).find(".tbl-reference").text() + 
+                "</td><td style='width: 1.5%;' class='tbl-unit  d-none d-lg-table-cell'>" + $(tr).find(".tbl-unit").text() + 
+                "</td><td style='width: 1.5%;' class='tbl-reference  d-none d-lg-table-cell'>" + $(tr).find(".tbl-reference").text() + 
                 "</td><td style='width: 1.5%;' class='tbl-date-return' hidden>" + $(tr).find(".tbl-date-return").text() + 
                 "</td><td style='width: 1.5%;'class='tbl-prod-grade' hidden>" + $(tr).find(".tbl-prod-grade").text() + 
                 "</td><td style='width: 1.5%;' class='tbl-reason' hidden>" + $(tr).find(".tbl-reason").text() + 
     
-                "</td><td style='width: 1%;' class='tbl_curr text-left' hidden data-id = '"+ $("#account_currency").val() +"'>"+ $("#account_currency").val() +
+                "</td><td style='width: 1%;' class='tbl_curr text-left  d-none d-lg-table-cell' hidden data-id = '"+ $("#account_currency").val() +"'>"+ $("#account_currency").val() +
                 "</td><td style='width: 1%;' class='tbl_purchase text-left' hidden>"+ $(tr).find(".tbl-unit-price").text() +
                 "</td><td style='width: 1%;' class='tbl_vat text-center' hidden data-id = '"+vat+"'>"+ vat +
                 "</td><td style='width: 2%;' class='tbl_total_price text-left' hidden>"+ $.number((qty * unit_price), 2) +
@@ -878,10 +902,10 @@ function add_item_table(){
     if (tran_type == "1"){
         $("#tbl-sales-products tbody").append("<tr class='sales_row_table cursor-pointer'>"+
             "<td style='width: 2.5%;' class='tbl-prod-no'>" + $("#prod_no").val() + 
-            "</td><td style='width: 7%;' class='tbl-prod-name'>" + $("#prod_name").val() + 
+            "</td><td style='width: 7%;' class='tbl-prod-name d-none d-lg-table-cell'>" + $("#prod_name").val() + 
             "</td><td style='width: 2%;' class='tbl-qty-return'>" + $("#qty").val() + 
-            "</td><td style='width: 1.5%;' class='tbl-unit'>" + $("#prod_unit").val() + 
-            "</td><td style='width: 1.5%;' class='tbl-reference'>" +  
+            "</td><td style='width: 1.5%;' class='tbl-unit d-none d-lg-table-cell'>" + $("#prod_unit").val() + 
+            "</td><td style='width: 1.5%;' class='tbl-reference d-none d-lg-table-cell'>" +  
             "</td><td style='width: 1.5%;' class='tbl-date-return' hidden>" +  
             "</td><td style='width: 1.5%;'class='tbl-prod-grade' hidden>" + $("#prod_grade").val() + 
             "</td><td style='width: 1.5%;' class='tbl-reason' hidden>" +  
@@ -901,10 +925,10 @@ function add_item_table(){
     }else if (tran_type == "2"){
         $("#tbl-transfer-products tbody").append("<tr class='item_row_table cursor-pointer'>"+
             "<td style='width: 2.5%;' class='tbl_prod_no text-left'>"+ $("#prod_no_transfer").val() +
-            "</td><td style='width: 7%;' class='tbl_prod_name text-left'>"+ $("#prod_name_transfer").val() +
+            "</td><td style='width: 7%;' class='tbl_prod_name text-left d-none d-lg-table-cell'>"+ $("#prod_name_transfer").val() +
             "</td><td style='width: 2%;' class='tbl_qty_issue text-left'>"+ $.number($("#prod_qty_issued_transfer").val(), 2) +
             "</td><td style='width: 2%;' class='tbl_qty text-left'>"+ $.number($("#prod_qty_received_transfer").val(), 2) +
-            "</td><td style='width: 1.5%;' class='tbl_unit text-left'>"+ $("#prod_unit_transfer").val() +
+            "</td><td style='width: 1.5%;' class='tbl_unit text-left d-none d-lg-table-cell'>"+ $("#prod_unit_transfer").val() +
             "</td><td style='width: 1%;' class='tbl_curr text-left' data-id = '"+ $("#prod_curr_transfer :selected").val() +"' hidden>"+ $("#prod_curr_transfer :selected").text() +
             "</td><td style='width: 1.5%;' class='tbl_purchase text-left'>"+ $.number($("#prod_unit_price_transfer").val(), 2) +
             "</td><td style='width: 1%;' class='tbl_vat text-center' data-id = '"+ $("#vat :selected").val() +"' hidden>"+ $("#vat :selected").text() +
@@ -922,12 +946,12 @@ function add_item_table(){
 
         $("#tbl-products tbody").append("<tr class='item_row_table'>" + 
             "<td style='width: 2%;' class='tbl_prod_no text-left'>"+ $("#prod_no").val() +
-            "</td><td style='width: 8%;' class='tbl_prod_name text-left'>"+ $("#prod_name").val() +
+            "</td><td style='width: 8%;' class='tbl_prod_name text-left d-none d-lg-table-cell'>"+ $("#prod_name").val() +
             "</td><td style='width: 1%;' class='tbl_qty text-left'>"+ $.number($("#qty").val(), 2) +
-            "</td><td style='width: 1%;' class='tbl_unit text-left'>"+ $("#prod_unit").val() +
-            "</td><td style='width: 1%;' class='tbl_curr text-left' data-id = '"+ $("#currency :selected").val() +"'>"+ $("#currency :selected").text() +
-            "</td><td style='width: 1%;' class='tbl_purchase text-left'>"+ $.number($("#cost").val(), 2) +
-            "</td><td style='width: 1%;' class='tbl_vat text-center' data-id = '"+ $("#vat :selected").val() +"'>"+ $("#vat :selected").text() +
+            "</td><td style='width: 1%;' class='tbl_unit text-left  d-none d-lg-table-cell'>"+ $("#prod_unit").val() +
+            "</td><td style='width: 1%;' class='tbl_curr text-left  d-none d-lg-table-cell' data-id = '"+ $("#currency :selected").val() +"'>"+ $("#currency :selected").text() +
+            "</td><td style='width: 1%;' class='tbl_purchase text-left  d-none d-lg-table-cell'>"+ $.number($("#cost").val(), 2) +
+            "</td><td style='width: 1%;' class='tbl_vat text-center  d-none d-lg-table-cell' data-id = '"+ $("#vat :selected").val() +"'>"+ $("#vat :selected").text() +
             "</td><td style='width: 2%;' class='tbl_total_price text-left'>"+ $.number(prod, 2) +
             "</td><td style='width: 1%;' class='tbl_net_vat text-left' hidden>"+ $.number($("#net_vat").val(), 2) +
             "</td><td style='width: 1%;' class='tbl_w_vat text-center' hidden>"+ $.number($("#tot_w_vat").val(), 2) +
@@ -1089,6 +1113,8 @@ function reset_input(){
 function transaction_type(){
     var tran_type = $("#trans_type").val();
     var trans_no = $("#trans_no").val();
+    var window_width = $(document).width();
+
     $("#create_recipient").show();
     $("#div-prod-tran-type-1").hide();
     $("#div-prod-tran-type-2").hide();
@@ -1185,12 +1211,12 @@ function get_product_transfer(issuance_no){
                 for (var i = 0; i < dtl.length; i++) {
                     $("#tbl-transfer-products tbody").append("<tr class='item_row_table'>"+
                         "<td style='width: 2.5%;' class='tbl_prod_no text-left'>"+ dtl[i].product_no +
-                        "</td><td style='width: 7%;' class='tbl_prod_name text-left'>"+ dtl[i].product_name +
+                        "</td><td style='width: 7%;' class='tbl_prod_name text-left d-none d-lg-table-cell'>"+ dtl[i].product_name +
                         "</td><td style='width: 2%;' class='tbl_qty_issue text-left'>"+ $.number(dtl[i].qty, 2) +
                         "</td><td style='width: 2%;' class='tbl_qty text-left'>"+ $.number(dtl[i].qty, 2) +
-                        "</td><td style='width: 1.5%;' class='tbl_unit text-left'>"+ dtl[i].unit_code +
-                        "</td><td style='width: 1%;' class='tbl_curr text-left' data-id='"+dtl[i].currency+"' hidden>"+ dtl[i].curr_code +
-                        "</td><td style='width: 1.5%;' class='tbl_purchase text-left'>"+ $.number(dtl[i].cost, 2) +
+                        "</td><td style='width: 1.5%;' class='tbl_unit text-left  d-none d-lg-table-cell'>"+ dtl[i].unit_code +
+                        "</td><td style='width: 1%;' class='tbl_curr text-left ' data-id='"+dtl[i].currency+"' hidden>"+ dtl[i].curr_code +
+                        "</td><td style='width: 1.5%;' class='tbl_purchase text-left  d-none d-lg-table-cell'>"+ $.number(dtl[i].cost, 2) +
                         "</td><td style='width: 1%;' class='tbl_vat text-center' data-id='"+dtl[i].vat+"' hidden>"+ (dtl[i].vat == "1" ? "Yes" : "No") +
                         "</td><td style='width: 2%;' class='tbl_total_price text-left'>"+ $.number(dtl[i].total_cost, 2) +
                         "</td><td style='width: 1%;' class='tbl_net_vat text-left' hidden>"+ dtl[i].net_vat +
@@ -1319,10 +1345,10 @@ function preview(){
         $('#tbl-sales-products tbody tr').each(function (row, tr){
             $("#mod-tbl-sales-products").append("<tr class='sales_row_table cursor-pointer'>"+
                 "<td style='width: 2.5%;'>" + $(tr).find(".tbl-prod-no").text() + 
-                "</td><td style='width: 7%;'>" + $(tr).find(".tbl-prod-name").text() + 
+                "</td><td style='width: 7%;' class='d-none d-lg-table-cell'>" + $(tr).find(".tbl-prod-name").text() + 
                 "</td><td style='width: 2%;' class='tbl-qty-return'>" + $(tr).find(".tbl-qty-return").text() + 
-                "</td><td style='width: 1.5%;' class='tbl-unit'>" + $(tr).find(".tbl-unit").text() + 
-                "</td><td style='width: 1.5%;' class='tbl-reference'>" + $(tr).find(".tbl-reference").text() + 
+                "</td><td style='width: 1.5%;' class='tbl-unit d-none d-lg-table-cell'>" + $(tr).find(".tbl-unit").text() + 
+                "</td><td style='width: 1.5%;' class='tbl-reference d-none d-lg-table-cell'>" + $(tr).find(".tbl-reference").text() + 
                 "</td><td style='width: 1.5%;' class='tbl-date-return' hidden>" + $(tr).find(".tbl-date-return").text() + 
                 "</td><td style='width: 1.5%;'class='tbl-prod-grade' hidden>" + $(tr).find(".tbl-prod-grade").text() + 
                 "</td><td style='width: 1.5%;' class='tbl-reason' hidden>" + $(tr).find(".tbl-reason").text() + 
@@ -1338,12 +1364,12 @@ function preview(){
         $('#tbl-transfer-products tbody tr').each(function (row, tr){
             $("#mod-tbl-transfer-products tbody").append("<tr class='item_row_table'>" + 
             "<td style='width: 2.5%;' class='tbl_prod_no text-left'>"+ $(tr).find(".tbl_prod_no").text() +
-            "</td><td style='width: 7%;' class='tbl_prod_name text-left'>"+ $(tr).find(".tbl_prod_name").text() +
+            "</td><td style='width: 7%;' class='tbl_prod_name text-left d-none d-lg-table-cell'>"+ $(tr).find(".tbl_prod_name").text() +
             "</td><td style='width: 2%;' class='tbl_qty_issue text-left'>"+ $.number($(tr).find(".tbl_qty_issue").text(), 2) +
             "</td><td style='width: 2%;' class='tbl_qty text-left'>"+ $.number($(tr).find(".tbl_qty").text(), 2) +
-            "</td><td style='width: 1.5%;' class='tbl_unit text-left' >"+ $(tr).find(".tbl_unit").text() +
+            "</td><td style='width: 1.5%;' class='tbl_unit text-left d-none d-lg-table-cell' >"+ $(tr).find(".tbl_unit").text() +
             "</td><td style='width: 1%;' class='tbl_curr text-left' hidden>"+ $(tr).find(".tbl_curr").text() +
-            "</td><td style='width: 1.5%;' class='tbl_purchase text-left' >"+ $.number($(tr).find(".tbl_purchase").text(), 2) +
+            "</td><td style='width: 1.5%;' class='tbl_purchase text-left d-none d-lg-table-cell' >"+ $.number($(tr).find(".tbl_purchase").text(), 2) +
             "</td><td style='width: 1%;' class='tbl_vat text-center' hidden>"+ $(tr).find(".tbl_vat").text() +
             "</td><td style='width: 2%;' class='tbl_total_price text-left'>"+ $.number($(tr).find(".tbl_total_price").text(), 2) +
             "</td><td style='width: 1%;' class='tbl_net_vat text-left' hidden>"+ $.number($(tr).find(".tbl_net_vat").text(), 2) +
@@ -1359,12 +1385,12 @@ function preview(){
         $('#tbl-products tbody tr').each(function (row, tr){
             $("#mod-tbl-products tbody").append("<tr class='item_row_table'>" + 
             "<td style='width: 2.5%;' class='tbl_prod_no text-left'>"+ $(tr).find(".tbl_prod_no").text() +
-            "</td><td style='width: 8%;' class='tbl_prod_name text-left'>"+ $(tr).find(".tbl_prod_name").text() +
+            "</td><td style='width: 8%;' class='tbl_prod_name text-left d-none d-lg-table-cell'>"+ $(tr).find(".tbl_prod_name").text() +
             "</td><td style='width: 1%;' class='tbl_qty text-left'>"+ $.number($(tr).find(".tbl_qty").text(), 2) +
-            "</td><td style='width: 1%;' class='tbl_unit text-left'>"+ $(tr).find(".tbl_unit").text() +
-            "</td><td style='width: 1%;' class='tbl_curr text-left'>"+ $(tr).find(".tbl_curr").text() +
-            "</td><td style='width: 1%;' class='tbl_purchase text-left'>"+ $.number($(tr).find(".tbl_purchase").text(), 2) +
-            "</td><td style='width: 1%;' class='tbl_vat text-center'>"+ $(tr).find(".tbl_vat").text() +
+            "</td><td style='width: 1%;' class='tbl_unit text-left d-none d-lg-table-cell'>"+ $(tr).find(".tbl_unit").text() +
+            "</td><td style='width: 1%;' class='tbl_curr text-left d-none d-lg-table-cell'>"+ $(tr).find(".tbl_curr").text() +
+            "</td><td style='width: 1%;' class='tbl_purchase text-left d-none d-lg-table-cell'>"+ $.number($(tr).find(".tbl_purchase").text(), 2) +
+            "</td><td style='width: 1%;' class='tbl_vat text-center d-none d-lg-table-cell'>"+ $(tr).find(".tbl_vat").text() +
             "</td><td style='width: 2%;' class='tbl_total_price text-left'>"+ $.number($(tr).find(".tbl_total_price").text(), 2) +
             "</td><td style='width: 1%;' class='tbl_net_vat text-left' hidden>"+ $.number($(tr).find(".tbl_net_vat").text(), 2) +
             "</td><td style='width: 1%;' class='tbl_w_vat text-center' hidden>"+ $.number($(tr).find(".tbl_w_vat").text(), 2) +

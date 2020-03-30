@@ -6,7 +6,13 @@ $(document).ready(function(){
 
 	product_type();
 	product_class();
-	adjustment_type();
+    adjustment_type();
+    
+    var window_width = $(document).width();
+
+    if (window_width < 800){
+        $(".modal").css("top", "1%");
+    }
 
 	$("#search").click(function(){
 		query();

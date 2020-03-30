@@ -8,10 +8,10 @@ if (!function_exists("product_transfer")){
 					<thead style='width: 100%;'>
 						<tr>
 							<th class='text-left' style='width: 15%;'>Issuance No</th>
-                            <th class='text-left' style='width: 15%;'>Transfer Date</th>
-                            <th class='text-left' style='width: 15%;'>From (Oultet)</th>
-                            <th class='text-left' style='width: 15%;'>To (Outlet)</th>
-                            <th class='text-left' style='width: 30%;'>Transferred By</th>
+                            <th class='text-left' style='width: 15%;'>Issuance Date</th>
+                            <th class='text-left' style='width: 15%;'>From (Outlet)</th>
+                            <th class='text-left d-none d-lg-table-cell' style='width: 15%;'>To (Outlet)</th>
+                            <th class='text-left d-none d-lg-table-cell' style='width: 30%;'>Transferred By</th>
 						</tr>
 					</thead>
 					<tbody >";
@@ -23,8 +23,8 @@ if (!function_exists("product_transfer")){
 								<td class='text-left' style='width: 15%;'>".$value->inv_no."</td>
 								<td class='text-left' style='width: 15%;'>".date('m/d/Y', strtotime($value->inv_date))."</td>
 								<td class='text-left' style='width: 15%;'>".$value->comp_outlet_code."</td>
-								<td class='text-left' style='width: 15%;'>".$value->recipient_outlet_code."</td>
-								<td class='text-left' style='width: 30%;'>".$value->created_name."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 15%;'>".$value->recipient_outlet_code."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 30%;'>".$value->created_name."</td>
   						    </tr>";
 			}
 		}else{
@@ -54,9 +54,9 @@ if (!function_exists("sales_register")){
 						<tr>
 							<th class='text-left' style='width: 8%;'>Trans No</th>
 							<th class='text-left' style='width: 10%;'>Trans Date</th>
-							<th class='text-left' style='width: 10%;'>Cust Code</th>
-							<th class='text-left' style='width: 30%;'>Cust Name</th>
-							<th class='text-left' style='width: 5%;'>Outlet</th>
+							<th class='text-left d-none d-lg-table-cell' style='width: 10%;'>Cust Code</th>
+							<th class='text-left d-none d-lg-table-cell' style='width: 30%;'>Cust Name</th>
+							<th class='text-left d-none d-lg-table-cell' style='width: 5%;'>Outlet</th>
 							<th class='text-left' style='width: 10%;'>Total Amount</th>
 						</tr>
 					</thead>
@@ -68,9 +68,9 @@ if (!function_exists("sales_register")){
 				$output .= "<tr class='cursor-pointer' onclick='sales_register_products(".$value->id.")'>
 								<td class='text-left' style='width: 8%;'>".$value->trans_no."</td>
 								<td class='text-left' style='width: 10%;'>".date('m/d/Y', strtotime($value->trans_date))."</td>
-								<td class='text-left' style='width: 10%;'>".$value->cust_code."</td>
-								<td class='text-left' style='width: 30%;'>".$value->cust_name."</td>
-								<td class='text-left' style='width: 5%;'>".$outlet_code."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 10%;'>".$value->cust_code."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 30%;'>".$value->cust_name."</td>
+								<td class='text-lef d-none d-lg-table-cellt' style='width: 5%;'>".$outlet_code."</td>
 								<td class='text-left' style='width: 10%;'>".number_format($value->total_amount, 2)."</td>
 							</tr>";
 			}
@@ -94,12 +94,12 @@ if (!function_exists("sales_register_products")){
 					<thead class='w-100'>
 						<tr>
 							<th class='text-left ' style='width: 10%;'>Product No</th>
-							<th class='text-left ' style='width: 43%;'>Product Name</th>
+							<th class='text-left d-none d-lg-table-cell' style='width: 43%;'>Product Name</th>
 							<th class='text-left ' style='width: 5%;'>Qty Sold</th>
-							<th class='text-left ' style='width: 5%;'>Returned</th>
+							<th class='text-left ' style='width: 5%;' id='sales-rtn'>Returned</th>
 							<th class='text-left ' style='width: 7%;'>For Return</th>
-							<th class='text-left ' style='width: 5%;'>Unit</th>
-							<th class='text-left ' style='width: 5%;'>Action</th>
+							<th class='text-left d-none d-lg-table-cell' style='width: 5%;'>Unit</th>
+							<th class='text-left ' style='width: 6%;'>Action</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -118,12 +118,12 @@ if (!function_exists("sales_register_products")){
 				}
 
 				$output .= "<tr class='cursor-pointer'>
-								<td style='width :10%;'class='tbl-prod-no'>".$value->product_no."</td>
-								<td style='width :43%;'class='tbl-prod-name'>".$value->product_name."</td>
+								<td style='width :10%;'class='tbl-prod-no '>".$value->product_no."</td>
+								<td style='width :43%;'class='tbl-prod-name d-none d-lg-table-cell'>".$value->product_name."</td>
 								<td style='width :5%;' class='tbl-qty'>".number_format($value->qty, 2)."</td>
 								<td style='width :5%;' class='tbl-qty-returned'>".number_format($return_qty, 2)."</td>
 								<td style='width :7%;' class='tbl-qty-return'></td>
-								<td style='width :5%;' class='tbl-unit'>".$value->unit_code."</td>
+								<td style='width :5%;' class='tbl-unit d-none d-lg-table-cell'>".$value->unit_code."</td>
 								<td style='width :5%;' class='tbl-unit-price' hidden>".$value->selling_price."</td>
 								<td style='width :5%;' class='tbl-prod-grade' hidden></td>
 								<td style='width :5%;' class='tbl-date-return' hidden></td>
@@ -132,7 +132,7 @@ if (!function_exists("sales_register_products")){
 								<td style='width :5%;' class='tbl-vat' hidden>".$value->vat."</td>
 								<td style='width :5%;' class='tbl-prod-id' hidden>".$value->prod_id."</td>
 								<td style='width :5%;' class='tbl-id' hidden>".$value->id."</td>
-								<td style='width :5%;'><button class='btn btn-orange btn-block btn-query px-0 py-0' onclick='return_sales(".$value->id.", ".$key.")'>Return</button></td>
+								<td style='width :6%;'><button class='btn btn-orange btn-block btn-query px-0 py-0' onclick='return_sales(".$value->id.", ".$key.")'>Return</button></td>
 							</tr>";
 			}
 		}else{
@@ -157,11 +157,11 @@ if (!function_exists("table_receive")){
 					<thead style='width: 100%;'>
 						<tr>
 							<th class='text-left' style='width: 12%;'>Receive No</th>
-                            <th class='text-left' style='width: 15%;'>Receive Date</th>
-                            <th class='text-left d-none d-lg-block w-100' style='width: 12%;'>Transaction Type</th>
-                            <th class='text-left' style='width: 40%;'>Outlet / Vendor Name</th>
-                            <th class='text-left' style='width: 8%;'>Outlet</th>
-                            <th style='width: 7%;' class='text-center'>Action</th>
+                            <th class='text-left d-none d-lg-table-cell' style='width: 15%;'>Receive Date</th>
+                            <th class='text-left d-none d-lg-table-cell' style='width: 12%;'>Transaction Type</th>
+                            <th class='text-left' style='width: 20%;'>Outlet / Vendor Name</th>
+                            <th class='text-left d-none d-lg-table-cell' style='width: 8%;'>Outlet</th>
+                            <th style='width: 9%;' class='text-center'>Action</th>
 						</tr>
 					</thead>
 					<tbody >";
@@ -190,11 +190,11 @@ if (!function_exists("table_receive")){
 
 				$output .= "<tr>
 								<td class='text-left' style='width: 12%;'>".$value->inv_no."</td>
-								<td class='text-left' style='width: 15%;'>".date('m/d/Y', strtotime($value->inv_date))."</td>
-								<td class='text-left d-none d-lg-block w-100' style='width: 12%;'>".$value->inventory_ref_type."</td>
-								<td class='text-left' style='width: 40%;'>".$value->supplier_name2."</td>
-								<td class='text-left' style='width: 8%;'>".$outlet_code."</td>
-								<td style='width: 7%;' class='text-center'>".$btn."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 15%;'>".date('m/d/Y', strtotime($value->inv_date))."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 12%;'>".$value->inventory_ref_type."</td>
+								<td class='text-left' style='width: 20%;'>".$value->supplier_name2."</td>
+								<td class='text-left d-none d-lg-table-cell' style='width: 8%;'>".$outlet_code."</td>
+								<td style='width: 9%;' class='text-center'>".$btn."</td>
   						    </tr>";
 			}
 		}else{

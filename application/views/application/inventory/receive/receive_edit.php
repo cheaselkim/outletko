@@ -5,7 +5,7 @@
 <input type="hidden" id="trans_id" value="<?php echo $trans_id ?>" readonly>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 
-<style type="text/css">
+<!-- <style type="text/css">
 body { display:block; }
 
 
@@ -46,7 +46,7 @@ body { display:block; }
   }
 
 }
-</style>
+</style> -->
 
 <div class="container-fluid pt-2">
     <div class="container">
@@ -54,10 +54,10 @@ body { display:block; }
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 pt-3">
+                    <div class="col-8 col-xs-6 col-md-6 pt-3">
                         <h3 class="font-weight-bold">Receive Inventory</h3>
                     </div>
-                    <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                    <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                         <h3 class="font-weight-bold">Edit</h3>
                     </div>
                 </div>
@@ -73,17 +73,17 @@ body { display:block; }
                 <div class="container text-sales">
 
                     <div class="row mb-0">
-                        <div class="col-8">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-8">
                             <div class="form-group row mb-0">
-                                <div class="col-xs-12 col-md-3 px-1">
+                                <div class="col-6 col-xs-12 col-md-3 px-1">
                                     <span>Receive No. <span class="required">*</span></span>
                                     <input class="form-control txt-box-text-size" id="receive_no">
                                 </div>
-                                <div class="col-xs-12 col-md-3 px-1">
+                                <div class="col-6 col-xs-12 col-md-3 px-1">
                                     <span>Receive Date <span class="required">*</span></span>
                                     <input type="Date" class="form-control txt-box-text-size" id="receive_date" value="<?php echo date("Y-m-d") ?>">
                                 </div>
-                                <div class="col-xs-12 col-md-6 px-1">
+                                <div class="col-12 col-xs-12 col-md-6 px-1">
                                     <span>Transaction Type</span>
                                     <select class="form-control txt-box-text-size" id="trans_type">
                                     </select>
@@ -91,7 +91,7 @@ body { display:block; }
                             </div>    
                         </div>
                         
-                        <div class="col-4">
+                        <div class="col-12 col-xs-12 col-md-12 col-lg-4">
                             <div class="form-group row mb-0">  
                                 <div class="col-xs-12 col-md-6 px-1" id="div-type-action">
                                     <span>Type of Action</span>
@@ -100,7 +100,7 @@ body { display:block; }
                                         <option value="2">For Replacement</option>
                                     </select>
                                 </div>
-                                <div class="col-xs-12 col-md-6 px-1 ml-auto">
+                                <div class="col-12 col-xs-12 col-md-6 px-1 ml-auto">
                                     <span>Receiving Outlet</span>
                                     <input type="text" class="form-control txt-box-text-size" id="outlet_rec" value="<?php echo $this->session->userdata('outlet_code') ?>" readonly>   
                                 </div> 
@@ -109,25 +109,25 @@ body { display:block; }
                     </div>
 
                     <div class="row mb-0">
-                        <div class="col-8">   
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-8">   
                             <div class="form-group row mb-0">
-                                <div class="col-xs-12 col-md-3 px-1">
+                                <div class="col-12 col-xs-12 col-md-3 px-1">
                                     <span id="span_recipient_code">Customer Code <span class="required">*</span></span>
                                     <input class="form-control txt-box-text-size" id="outlet_code" data-type_1="0" data-id = "">
                                 </div>
-                                <div class="col-xs-12 col-md-9 px-1">
+                                <div class="col-12 col-xs-12 col-md-9 px-1">
                                     <span id="span_recipient_name">Customer Name <span class="required">*</span></span>
                                     <input class="form-control txt-box-text-size" id="outlet_name">
                                 </div>
                             </div>
                         </div>   
-                        <div class="col-4"> 
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-4"> 
                             <div class="form-group row mb-0"> 
-                                <div class="col-xs-12 col-md-6 px-1">
+                                <div class="col-6 col-xs-12 col-md-6 px-1">
                                     <span>Ref Trans No.</span>
                                     <input class="form-control txt-box-text-size" id="trans_no">
                                 </div>
-                                <div class="col-xs-12 col-md-6 px-1">
+                                <div class="col-6 col-xs-12 col-md-6 px-1">
                                     <span>Ref Trans Date</span>
                                     <input type="Date" class="form-control txt-box-text-size" id="trans_date">
                                 </div>                              
@@ -154,19 +154,19 @@ body { display:block; }
             <div  class="col-xs-12 col-md-12 p-0 m-0">
                 <div class="container">
                     <hr style="color: black;" class="my-2">
-                    <div class="form-group row py-1 my-0 mx-0 bg-button">
-                        <div class="col-xs-12 col-md-8" id="div-btn-item"></div>
-                        <div class="col-xs-12 col-md-2 px-1" id="div-sales-register" hidden>
+                    <div class="form-group row my-0 mx-0 bg-button">
+                        <div class="col-xs-12 col-md-2 col-lg-3" id="div-btn-item"></div>
+                        <div class="col-xs-12 col-md-4 col-lg-3 pad-center my-1" id="div-sales-register" hidden>
                             <button class="btn btn-block btn-warning p-0 btn-prod font-weight-600 btn-sales" id="sales_register">Select Sales Register</button>
                         </div>
-                        <div class="col-xs-12 col-md-2 ml-auto pl-1" hidden>
+                        <div class="col-xs-12 col-md-2 col-lg-2 ml-auto pad-left my-1" hidden>
                             <button class="btn btn-block btn-add btn-success p-0 btn-prod">Add Item</button>
                         </div>
-                        <div class="col-xs-12 col-md-2 pr-1">
-                            <button class="btn btn-block btn-danger btn-exit p-0 btn-prod">Exit</button>
+                        <div class="col-xs-12 col-md-2 col-lg-2 pad-right">
+                            <button class="btn btn-block btn-danger btn-exit p-0 my-1 btn-prod">Exit</button>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
-                            <button class="btn btn-block btn-primary btn-enter p-0 btn-prod" id="enter_item">Enter</button>
+                        <div class="col-xs-12 col-md-2 col-lg-2 pad-center">
+                            <button class="btn btn-block btn-primary btn-enter my-1 p-0 btn-prod" id="enter_item">Enter</button>
                         </div>
                     </div>                                    
 
@@ -199,43 +199,43 @@ body { display:block; }
                 <div class="col-xs-12 col-md-12">
 
                     <div class="form-group row mb-0" id="div-prod-tran-type-1">
-                        <div class="col-xs-12 col-md-2 pad-center">
+                        <div class="col-12 col-xs-12 col-md-2 col-lg-2 px-1">
                             <span>Product No.</span>
                             <input class="form-control txt-box-text-size" id="prod_no" data-unit="" data-id = "0s">
                         </div>
-                        <div class="col-xs-12 col-md-8 pad-center">
+                        <div class="col-12 col-xs-12 col-md-6 col-lg-8 px-1">
                             <span>Product Name</span>
                             <input class="form-control txt-box-text-size" id="prod_name">
                         </div>
-                        <div class="col-xs-12 col-md-2 pad-center" hidden>
+                        <div class="col-12 col-xs-12 col-md-2 col-lg-2 px-1" hidden>
                             <span>Product Quality</span>
                             <select class="form-control" id="prod_grade">
                                 <option value="1">Good Stock</option>
                                 <option value="2">Damaged / B.O.</option>
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-1 pad-center">
+                        <div class="col-6 col-xs-12 col-md-2 col-lg-1 px-1">
                             <span>Qty</span>
                             <input class="form-control text-right txt-box-text-size" id="qty">
                         </div>
-                        <div class="col-xs-12 col-md-1 pad-center">
+                        <div class="col-6 col-xs-12 col-md-2 col-lg-1 px-1">
                             <span>Unit</span>
                             <input class="form-control txt-box-text-size" id="prod_unit" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row mb-0" id="div-prod-tran-type-2">
-                        <div class="col-xs-12 col-md-1 pad-center">
+                        <div class="col-6 col-xs-12 col-md-2 col-lg-1 px-1">
                             <span>Cur</span>
                             <select class="form-control txt-box-text-size" id="currency">
                                 
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-2 pad-center">
+                        <div class="col-6 col-xs-12 col-md-4 col-lg-2 px-1">
                             <span>Unit Price</span>
                             <input class="form-control txt-box-text-size text-right" id="cost" >
                         </div>
-                        <div class="col-xs-12 col-md-1 pad-center">
+                        <div class="col-xs-12 col-md-2 col-lg-1 px-1">
                             <span>VAT</span>
                             <select class="form-control txt-box-text-size" id="vat">
                                 <option value="1">Yes</option>
@@ -246,19 +246,19 @@ body { display:block; }
                             <span>Total VAT</span>
                             <input class="form-control text-right txt-box-text-size" id="net_vat" value="0" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-4 col-lg-2 px-1">
                             <span>U.C. w/o Vat</span>
                             <input type="text" class="form-control text-right txt-box-text-size" id="uc_w_o_vat" value="0" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-4 col-lg-2 px-1">
                             <span>U.C. w/ Vat</span>
                             <input type="text" class="form-control text-right txt-box-text-size" id="uc_w_vat" value="0" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-4 col-lg-2 px-1">
                             <span>Total (w/o VAT)</span>
                             <input class="form-control text-right txt-box-text-size" id="tot_w_o_vat" value="0" readonly>
                         </div>
-                        <div class="col-xs-12 col-md-2 px-1">
+                        <div class="col-xs-12 col-md-4 col-lg-2 px-1">
                             <span>Total (w/VAT)</span>
                             <input class="form-control text-right txt-box-text-size" id="tot_w_vat" value="0" readonly>
                         </div>
@@ -266,51 +266,51 @@ body { display:block; }
                     </div>
 
                     <div class="form-group row mb-0" id="div-prod-transfer-dtl-1" >
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Product No</span>
                             <input type="text" class="form-control" id="prod_no_transfer" data-id="0">
                         </div>
-                        <div class="col-lg-10 col-md-10 col-xs-12 pad-center">
+                        <div class="col-lg-10 col-md-10 col-xs-12 px-1">
                             <span>Product Name</span>
                             <input type="text" class="form-control" id="prod_name_transfer">
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center" hidden>
+                        <div class="col-lg-2 col-md-2 col-xs-12 px-1" hidden>
                             <span>Product Quality</span>
                             <input type="text" class="form-control" id="prod_quality_transfer" value="Good Stock" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row mb-0" id="div-prod-transfer-dtl-2" >
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-6 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Qty Issued</span>
                             <input type="text" class="form-control text-right" id="prod_qty_issued_transfer" value="0" readonly>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-6 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Qty Received</span>
                             <input type="text" class="form-control text-right" id="prod_qty_received_transfer">
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-6 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Unit</span>
                             <input type="text" class="form-control" id="prod_unit_transfer" readonly>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-6 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Currency</span>
                             <select class="form-control" id="prod_curr_transfer" disabled> 
                                 <option value="121">PHP</option>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12" hidden>
+                        <div class="col-6 col-lg-2 col-md-2 col-xs-12" hidden>
                             <span>VAT</span>
                             <select class="form-control" id="prod_vat_transfer">
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-12 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Unit Price</span>
                             <input type="text" class="form-control text-right" id="prod_unit_price_transfer" readonly>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 pad-center">
+                        <div class="col-12 col-lg-2 col-md-2 col-xs-12 px-1">
                             <span>Total Amount</span>
                             <input type="text" class="form-control text-right" id="prod_total_amount_transfer" readonly>
                         </div>
@@ -372,14 +372,14 @@ body { display:block; }
                             <thead style="width: 100%;">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 7%;" class="text-left">Product Name</th>
+                                    <th style="width: 7%;" class="text-left d-none d-lg-table-cell">Product Name</th>
                                     <th style="width: 1%;" class="text-left">Qty</th>
-                                    <th style="width: 1%;" class="text-left">Unit</th>
-                                    <th style="width: 1%;" class="text-left">Cur</th>
-                                    <th style="width: 1%;" class="text-left">Cost</th>
-                                    <th style="width: 1%;" class="text-center">VAT</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Cur</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Cost</th>
+                                    <th style="width: 1%;" class="text-center d-none d-lg-table-cell">VAT</th>
                                     <th style="width: 2%;" class="text-left">Total Price</th>
-                                    <th style="width: 1%;" class="text-left">Action</th>
+                                    <th style="width: 1%;" class="text-center"><i class='fa fa-minus-circle' style='color:red;'></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -390,11 +390,11 @@ body { display:block; }
                             <thead style="width: 100%;">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 7%;" class="text-left">Product Name</th>
+                                    <th style="width: 7%;" class="text-left d-none d-lg-table-cell">Product Name</th>
                                     <th style="width: 2%;" class="text-left">Returned Qty</th>
-                                    <th style="width: 1.5%;" class="text-left">Unit</th>
-                                    <th style="width: 1.5%;" class="text-left">Reference</th>
-                                    <th style="width: 1%;" class="text-left">Action</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Reference</th>
+                                    <th style="width: 1%;" class="text-center"><i class='fa fa-minus-circle' style='color:red;'></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -405,13 +405,13 @@ body { display:block; }
                             <thead class="w-100">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 7%;" class="text-left">Product Name</th>
+                                    <th style="width: 7%;" class="text-left d-none d-lg-table-cell">Product Name</th>
                                     <th style="width: 2%;" class="text-left">Qty Issued</th>
                                     <th style="width: 2%;" class="text-left">Qty Received</th>
-                                    <th style="width: 1.5%;" class="text-left">Unit</th>
-                                    <th style="width: 1.5%;" class="text-left">UC</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">UC</th>
                                     <th style="width: 2%;" class="text-left">Total Price</th>
-                                    <th style="width: 1%;" class="text-left">Action</th>
+                                    <th style="width: 1%;" class="text-center"><i class='fa fa-minus-circle' style='color:red;'></i></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -428,13 +428,13 @@ body { display:block; }
             <div class="col-xs-12 col-md-12">
                 <div class="container">
                     <div class="form-group row">
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-warning cust-text font-weight-bold"  id="preview">Preview</button>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-success cust-text font-weight-bold"  id="save">Save</button>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-4 mt-2">
                             <button type="button" class="btn btn-block btn-orange cust-text font-weight-bold" id="cancel">Cancel</button>
                         </div>
                     </div>
@@ -701,12 +701,12 @@ body { display:block; }
                             <thead class="w-100">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 8%;" class="text-left">Product Name</th>
+                                    <th style="width: 8%;" class="text-left d-none d-lg-table-cell">Product Name</th>
                                     <th style="width: 1%;" class="text-left">Qty</th>
-                                    <th style="width: 1%;" class="text-left">Unit</th>
-                                    <th style="width: 1%;" class="text-left">Curr</th>
-                                    <th style="width: 1%;" class="text-left">Cost</th>
-                                    <th style="width: 1%;" class="text-center">VAT</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Curr</th>
+                                    <th style="width: 1%;" class="text-left d-none d-lg-table-cell">Cost</th>
+                                    <th style="width: 1%;" class="text-center d-none d-lg-table-cell">VAT</th>
                                     <th style="width: 2%;" class="text-left">Total Price</th>
                                 </tr>
                             </thead>
@@ -718,10 +718,10 @@ body { display:block; }
                             <thead style="width: 100%;">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 7%;" class="text-left">Product Name</th>
-                                    <th style="width: 2%;" class="text-left">Returned Qty</th>
-                                    <th style="width: 1.5%;" class="text-left">Unit</th>
-                                    <th style="width: 1.5%;" class="text-left">Reference</th>
+                                    <th style="width: 7%;" class="text-left d-none d-lg-table-cell">Product Name</th>
+                                    <th style="width: 2%;" class="text-left" id='pre-rtn-qty'>Returned Qty</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Reference</th>
                                     <th style="width: 1%;" class="text-left">Action</th>
                                 </tr>
                             </thead>
@@ -733,11 +733,11 @@ body { display:block; }
                             <thead class="w-100">
                                 <tr>
                                     <th style="width: 2.5%;" class="text-left">Product No</th>
-                                    <th style="width: 7%;" class="text-left">Product Name</th>
-                                    <th style="width: 2%;" class="text-left">Qty Issued</th>
-                                    <th style="width: 2%;" class="text-left">Qty Received</th>
-                                    <th style="width: 1.5%;" class="text-left">Unit</th>
-                                    <th style="width: 1.5%;" class="text-left">UC</th>
+                                    <th style="width: 7%;" class="text-left d-none d-lg-table-cell">Product Name</th>
+                                    <th style="width: 2%;" class="text-left" id='pre-iss-qty'>Qty Issued</th>
+                                    <th style="width: 2%;" class="text-left" id='pre-rcvd-qty'>Qty Received</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">Unit</th>
+                                    <th style="width: 1.5%;" class="text-left d-none d-lg-table-cell">UC</th>
                                     <th style="width: 2%;" class="text-left">Total Price</th>
                                 </tr>
                             </thead>

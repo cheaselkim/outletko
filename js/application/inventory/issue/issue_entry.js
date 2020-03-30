@@ -21,6 +21,12 @@ $(document).ready( function() {
     input.trigger('fileselect', [label]);
     });
 
+    var window_width = $(document).width();
+
+    if (window_width < 800){
+        $(".modal").css("top", "2%");
+    }
+
     $('.btn-file :file').on('fileselect', function(event, label) {
         
         var input = $(this).parents('.input-group').find('.text-img'),
@@ -753,10 +759,10 @@ function sales_register_add_table(){
             $("#tbl-sales-products").append("<tr class='sales_row_table cursor-pointer'>"+
 
                 "<td class='tbl-prod-no-replace text-left' style='width: 2.5%;'>" + $(tr).find(".tbl-prod-no-replace").text() +
-                "</td><td class='tbl-prod-name-replace text-left' style='width: 7%;'>" + $(tr).find(".tbl-prod-name-replace").text() +
+                "</td><td class='tbl-prod-name-replace text-left d-none d-lg-table-cell' style='width: 7%;'>" + $(tr).find(".tbl-prod-name-replace").text() +
                 "</td><td class='tbl-qty-replace text-left' style='width: 2%;'>" + $.number($(tr).find(".tbl-qty-replace").text(), 2) +
-                "</td><td class='tbl-unit-replace text-left' style='width: 1%;'>" + $(tr).find(".tbl-unit-replace").text() + 
-                "</td><td class='tbl-unit-price-replace text-left' style='width: 1.5%;'>"+ $.number($(tr).find(".tbl-unit-price-replace").text(),2) + 
+                "</td><td class='tbl-unit-replace text-left  d-none d-lg-table-cell' style='width: 1%;'>" + $(tr).find(".tbl-unit-replace").text() + 
+                "</td><td class='tbl-unit-price-replace text-left  d-none d-lg-table-cell' style='width: 1.5%;'>"+ $.number($(tr).find(".tbl-unit-price-replace").text(),2) + 
                 "</td><td class='tbl-total-price-replace text-left' style='width: 2%;'>"+ $.number(total,2) + 
 
                 "</td><td class='tbl-date-replace text-left' hidden>"+ $(tr).find(".tbl-date-replace").text() +
@@ -813,10 +819,10 @@ function add_item_table(){
     if (tran_type == "5"){
         $("#tbl-sales-products tbody").append("<tr class='sales_row_table cursor-pointer'>"+
             "<td class='tbl-prod-no-replace text-left' style='width: 2.5%;'>" + $("#prod_no").val() +
-            "</td><td class='tbl-prod-name-replace text-left' style='width: 7%;'>" + $("#prod_name").val() +
+            "</td><td class='tbl-prod-name-replace text-left  d-none d-lg-table-cell' style='width: 7%;'>" + $("#prod_name").val() +
             "</td><td class='tbl-qty-replace text-left' style='width: 2%;'>" + $.number($("#qty").val(), 2) +
-            "</td><td class='tbl-unit-replace text-left' style='width: 1%;'>" + $("#prod_unit").val() + 
-            "</td><td class='tbl-unit-price-replace text-left' style='width: 1.5%;'>"+ $.number($("#prod_price").val(),2) + 
+            "</td><td class='tbl-unit-replace text-left  d-none d-lg-table-cell' style='width: 1%;'>" + $("#prod_unit").val() + 
+            "</td><td class='tbl-unit-price-replace text-left  d-none d-lg-table-cell' style='width: 1.5%;'>"+ $.number($("#prod_price").val(),2) + 
             "</td><td class='tbl-total-price-replace text-left' style='width: 2%;'>"+ $.number($("#prod_total_price").val(),2) + 
 
             "</td><td class='tbl-date-replace text-left' hidden>"+  
@@ -832,12 +838,12 @@ function add_item_table(){
 
         $("#tbl-products tbody").append("<tr class='item_row_table cursor-pointer'>"+
             "<td class='tbl_prod_no text-left' style='width: 2.5%;'>" + $("#prod_no").val() +
-            "</td><td class='tbl_prod_name text-left' style='width: 7%;'>" + $("#prod_name").val() +
+            "</td><td class='tbl_prod_name text-left  d-none d-lg-table-cell' style='width: 7%;'>" + $("#prod_name").val() +
             "</td><td class='tbl_qty_onhand text-left' style='width: 2%;'>" + $.number($("#qty_on_hand").val(), 2) +
             "</td><td class='tbl_qty text-left' style='width: 2%;'>" + $.number($("#qty").val(), 2) +
-            "</td><td class='tbl_unit text-left' style='width: 1%;'>" + $("#prod_unit").val() + 
+            "</td><td class='tbl_unit text-left  d-none d-lg-table-cell' style='width: 1%;'>" + $("#prod_unit").val() + 
             "</td><td class='tbl_currency text-left' style='width: 1.5%;' hidden>" + $("#currency :selected").text() +
-            "</td><td class='tbl_price text-left' style='width: 2%;'>"+ $.number($("#prod_price").val(),2) + 
+            "</td><td class='tbl_price text-left  d-none d-lg-table-cell' style='width: 2%;'>"+ $.number($("#prod_price").val(),2) + 
             "</td><td class='tbl_total_price text-left' style='width: 2%;'>"+ $.number($("#prod_total_price").val(),2) + 
             "</td><td class='tbl_prod_grade text-left' style='width: 7%;' hidden>" + $("#prod_grade").val() +
             "</td><td class='tbl_prod_id text-left' hidden>"+ $("#prod_no").attr("data-id") + 

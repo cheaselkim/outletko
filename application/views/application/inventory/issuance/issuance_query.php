@@ -5,20 +5,20 @@
 
 
 
-<div class="container-fluid pt-3">
+<div class="container-fluid pt-3 px-0">
     <div class="container">
       
       <div class="row">
           <div class="col-xs-12 col-md-12 col-lg-12">
               <div class="row">
-                  <div class="col-xs-6 col-md-6 pt-3">
+                  <div class="col-8 col-xs-6 col-md-6 pt-3">
                       <h3 class="font-weight-bold">Issuance Inventory</h3>
                   </div>
-                  <div class="col-xs-6 col-md-6 pt-3 text-right" >
+                  <div class="col-4 col-xs-6 col-md-6 pt-3 text-right" >
                       <h3 class="font-weight-bold">
                         <?php 
                           if ($function == "2"){
-                            echo "Edit / Update";
+                            echo "Edit";
                           }else if ($function == "3"){
                             echo "Query";
                           }else if ($function == "4"){
@@ -74,7 +74,7 @@
         <div class="col-xs-12 col-md-12">
           <div class="container">
             <div class="form-group row bg-button my-0">
-              <div class="col-xs-12 col-md-12 col-lg-2 py-1 ml-auto pl-0 pr-1">
+              <div class="col-xs-12 col-md-12 col-lg-2 py-1 ml-auto pad-center">
                 <button class="btn btn-success btn-prod btn-block p-0" id="search">Search</button>
               </div>
             </div>
@@ -86,10 +86,10 @@
         <div class="col-xs-12 col-md-12">
           <div class="container">
             <div class="form-group row my-0">
-              <div class="col-lg-10 text-right pt-1">
+              <div class="col-9 col-lg-10 text-right pt-1 pl-0">
                 <label class="text-sales">No. of Issued Transaction : </label>
               </div>
-              <div class="col-lg-2 text-right px-0">
+              <div class="col-3 col-lg-2 text-right px-0">
                 <input type="text" class="form-control text-center ml-auto" id="issue_trans" value="0" readonly>
               </div>
             </div>              

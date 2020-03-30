@@ -147,10 +147,6 @@ body{
   top: 20%;
 }
 
-.modal-xl{
-  width: 1200px;
-}
-
 .div-header{
   display: block;
   height:7.5vh !important;
@@ -535,6 +531,11 @@ a.disabled img{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+   .modal-xl{
+    width: 1200px;
+   }   
+
   .div-account{
     visibility: visible;
   }
@@ -622,6 +623,10 @@ a.disabled img{
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 
+.modal-xl{
+    width: 1200px;
+}
+    
 .div-card-outlet{
     height: 181px;
 }
