@@ -309,10 +309,12 @@ class Outletko_profile extends CI_Controller {
         if($prod_id == ""){
             $product['date_insert'] = date("Y-m-d h:i:sa");
             $product['account_id'] = $this->session->userdata("comp_id");
+            $product['comp_id'] = $this->session->userdata("comp_id");
             $id = $this->outletko_profile_model->save_product($product);
         }else{
             $product['date_update'] = date("Y-m-d h:i:sa");
             $product['account_id'] = $this->session->userdata("comp_id");
+            $product['comp_id'] = $this->session->userdata("comp_id");
             $id = $this->outletko_profile_model->update_product($product);
         }
         

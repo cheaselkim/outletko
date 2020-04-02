@@ -105,6 +105,7 @@ class Product extends CI_Controller {
         $product_hdr = $this->input->post('product_hdr', TRUE);
         $product_hdr['comp_id'] =  $this->session->userdata('comp_id');
         $product_hdr['date_insert'] =  date('Y-m-d H:i:s');
+        $product_hdr['user'] = $this->session->userdata("user_id");
         $this->activity_model->insert_activity("4", "5", "1");
         $query = $this->product_model->save_product($product_hdr);
 
