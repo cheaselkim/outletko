@@ -31,6 +31,8 @@
     <script src="<?php echo base_url('js/credit_card.js') ?>"></script>
     <script src="<?php echo base_url('js/register_store.js') ?>"></script>    
 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 <body>
 
@@ -236,6 +238,9 @@
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Partner <span class="text-red">*</span></span>
                                             <input type="text" class="form-control form-control-sm textbox-green" id="info-partner" data-parsley-trigger="focusin focusout" required>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                                            <div class="g-recaptcha" data-sitekey="6Lceu-UUAAAAAIEI5p99WGEi9w5EH8AMnNo4AZg0"></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -610,9 +615,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
 
 

@@ -126,6 +126,7 @@ $(document).ready(function(){
     $('#info-form').parsley({
         errors: {
             container: function ( elem ) {
+                console.log(elem);
                 return $( elem ).parent();
             }
         }
@@ -330,16 +331,26 @@ function cart_outlet(){
 }
 
 function check_info(){
-    div_hide();
-    $("#div-cart").show();            
 
-    if ($("#info-form").parsley().isValid()){
+    if (grecaptcha && grecaptcha.getResponse().length !== 0){
+        if ($("#info-form").parsley().isValid()){
+            div_hide();
+            $("#div-cart").show();                    
+        }else{
+            swal({
+                type : "warning",
+                title : "Please input all required fields"
+            })
+        }
+
     }else{
         swal({
             type : "warning",
-            title : "Please input all required fields"
+            title : "Please Check reCAPTCHA"
         })
+
     }
+
 
 }
 
