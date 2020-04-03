@@ -496,37 +496,37 @@
 				}else if ($user_type == "4"){
 					/*outletko*/
 
-					$data['header'] = 'seller/header';
+					$data['header'] = 'ecommerce/seller/header';
 
 					if ($menu == "0"){
-						$data['page'] = 'seller/user/user.php';
+						$data['page'] = 'ecommerce/seller/user';
 					}else if ($menu == "1"){
 						$data['page'] = 'partner/portfolio/portfolio_query';
 					}
 
 				}else if ($user_type == "5"){
 					/*outletko user*/
-					$data['header'] = 'buyer/header';
+					$data['header'] = 'ecommerce/buyer/header';
 
 					if ($menu == "1"){
 						$data['page'] = 'login_search';
 					}else if ($menu == "2"){
-						$data['page'] = 'buyer/my_order/my_order';
+						$data['page'] = 'ecommerce/buyer/my_order';
 					}else if ($menu == "3"){
-						$data['page'] = 'buyer/user/user';
+						$data['page'] = 'ecommerce/buyer/my_order';
 					}else{
-						$data['page'] = 'outletko/profile/profile';
+						$data['page'] = 'ecommerce/profile/profile';
 					}
 
 
 				}else if ($user_type == "6"){
 					/* no user */
-					$data['header'] = 'outletko/header';
+					$data['header'] = 'ecommerce/profile/header';
 					
 					if ($menu == "1"){
 						$data['page'] = 'login_search';
 					}else{
-						$data['page'] = 'outletko/profile/profile';
+						$data['page'] = 'ecommerce/profile/profile';
 					}
 
 				

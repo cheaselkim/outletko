@@ -219,7 +219,7 @@ class Signup_model extends CI_Model {
                         LEFT JOIN account ON 
                         `account`.`id` = `products`.`account_id`
                         WHERE 
-                        comp_id = ? AND 
+                        `buyer_order_products`.`comp_id` = ? AND 
                         (order_id = '' OR order_id IS NULL )
                         ORDER BY `account`.`account_name`, `products`.`product_name`
                         ", array($result2->id))->result();                  

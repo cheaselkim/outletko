@@ -327,22 +327,23 @@ function get_billing(){
 		url : base_url + "Buyer/get_billing",
 		success : function(result){
 			var data = result.result[0];
-			$("input[name=csrf_name]").val(result.token);
-			$("#bill_address").val(data.address);
-			$("#bill_barangay").val(data.barangay);
-			$("#bill_city").val(data.city_desc);
-			$("#bill_province").val(data.province_desc);
-			$("#bill_city").attr("data-id", data.city);
-			$("#bill_province").attr("data-id", data.province);
-			$("#bill_province").attr("data-island", data.island_group);
-			$("#bill_contact").val(data.contact_person);
-			$("#bill_zip").val(data.zip_code);
-			$("#bill_phone").val(data.phone_no);
-			$("#bill_mobile").val(data.mobile_no);
-			$("#bill_email").val(data.email);
-
+            $("input[name=csrf_name]").val(result.token);
+            if (data.length > 0){
+                $("#bill_address").val(data.address);
+                $("#bill_barangay").val(data.barangay);
+                $("#bill_city").val(data.city_desc);
+                $("#bill_province").val(data.province_desc);
+                $("#bill_city").attr("data-id", data.city);
+                $("#bill_province").attr("data-id", data.province);
+                $("#bill_province").attr("data-island", data.island_group);
+                $("#bill_contact").val(data.contact_person);
+                $("#bill_zip").val(data.zip_code);
+                $("#bill_phone").val(data.phone_no);
+                $("#bill_mobile").val(data.mobile_no);
+                $("#bill_email").val(data.email);    
+            }
 		}, error : function(err){
-			console.log(err.responseText);
+			console.log(err.status);
 		}
 	})
 

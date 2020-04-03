@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/outletko/user.css') ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/outletko/header.css') ?>">
-<script type="text/javascript" src="<?php echo base_url('js/outletko/user/user.js') ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/user.css') ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
+<script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/user.js') ?>"></script>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 
 <div class="container pt-3 pb-4">

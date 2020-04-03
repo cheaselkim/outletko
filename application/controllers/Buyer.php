@@ -103,7 +103,7 @@ class Buyer extends CI_Controller {
 	}
 
 	public function get_billing(){
-		$data['result'] = $this->buyer_model->get_billing();
+        $data['result'] = $this->buyer_model->get_billing();
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}

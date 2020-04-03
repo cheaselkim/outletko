@@ -1,15 +1,15 @@
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css') ?>"> -->
 
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/outletko/profile.css') ?>"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>"> -->
 
-<script type="text/javascript" src="<?php echo base_url('js/outletko/seller/header.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/header.js') ?>"></script>
 <!-- NAVRBAR -->
-<nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
+<nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
 	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-		<span class="navbar-toggler-icon"></span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
+		<span class="fas fa-bars"></span>
 	</button>
-	<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+	<div class="collapse navbar-collapse justify-content-end px-3" id="collapsibleNavbar" style="background : rgb(79, 98, 40);margin-left:-15px; margin-right: -15px;">
 
 		<ul class="navbar-nav">
 			<li class="nav-item" hidden>
@@ -49,7 +49,7 @@
 <!-- END NAVBAR -->
 
 <!-- SEARCH -->
-<div class="container pt-2 ">
+<div class="container pt-2 " hidden>
 	<div class="row">
 		<div class="col-12 col-md-12 px-0">
 			<div class="row">
