@@ -215,7 +215,13 @@ class Outletko_profile_model extends CI_Model {
             FROM store_association
             WHERE id = ? ", 
         array($id))->row();
-        return $query->store_assoc_name;        
+
+        if (empty($query)){
+            return NULL;
+        }else{
+            return $query->store_assoc_name;        
+        }
+
     }
 
     //SAVING
