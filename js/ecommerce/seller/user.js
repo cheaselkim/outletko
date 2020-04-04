@@ -949,6 +949,8 @@ function index(){
         $("#remitt_acct_name").val(result.result[0].remitt_name);
         $("#remitt_contact_no").val(result.result[0].remitt_contact);
 
+        $("#input_store_assoc").val(result.store_assoc);
+   
         
         //for inputs
 
@@ -1894,6 +1896,8 @@ function save_aboutus(){
 
   var bgcolor = $("#color-val").val();
 
+  var store_assoc = $("#input_store_assoc").val();
+
   var data = {
     business_name : business_name,
     link_name : link_name,
@@ -1912,8 +1916,9 @@ function save_aboutus(){
     twitter : twitter,
     instagram : instagram, 
     shoppee : shoppee,
-    csrf_name : csrf_name,
-    bgcolor : bgcolor
+    bgcolor : bgcolor,
+    store_assoc : store_assoc,
+    csrf_name : csrf_name
   }
 
   $.ajax({

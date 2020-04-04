@@ -109,6 +109,7 @@ class Outletko_profile extends CI_Controller {
         
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
+            $data['store_assoc'] = $this->outletko_profile_model->get_store_assoc($value->store_assoc);
         }
 
         foreach ($store_img as $key => $value) {
@@ -206,6 +207,10 @@ class Outletko_profile extends CI_Controller {
             "shoppee" => $this->input->post("shoppee"),
             "bg_color" => $this->input->post("bgcolor")
         );
+
+        if (!empty($this->input->post("store_assoc"))){
+            $store_data = $this->outletko_profile_model->update_store_assoc($this->input->post("store_assoc"));
+        }
 
         $query = $this->outletko_profile_model->update_aboutus($data);
         echo json_encode(array("status" => $query, "token" => $this->security->get_csrf_hash()));

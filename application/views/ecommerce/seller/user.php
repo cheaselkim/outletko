@@ -253,6 +253,15 @@
 							</div>
 						</div>
 
+                        <div class="row pt-2">
+                            <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+                                <span class="text-capitalize">Store Association</span>
+                            </div>
+                            <div class="col-12 col-lg-9 col-md-8 col-sm-12">
+                                <input type="text" class="form-control textbox-green2 text-capitalize" id="input_store_assoc">
+                            </div>
+                        </div>
+
 						<hr class="mt-2 mb-0 hr-green">
 
 						<div class="row my-2">

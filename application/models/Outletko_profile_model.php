@@ -208,11 +208,38 @@ class Outletko_profile_model extends CI_Model {
         return $query;        
     }
 
+    public function get_store_assoc($id){
+        $query = $this->db2->query("SELECT 
+            `store_association`.`id`,
+            `store_association`.`name` AS store_assoc_name
+            FROM store_association
+            WHERE id = ? ", 
+        array($id))->row();
+        return $query->store_assoc_name;        
+    }
+
     //SAVING
     public function update_aboutus($data){
         $this->db2->where('account_id',$this->session->userdata("account_id"));
         $this->db2->update('account',$data);
         return ($this->db2->affected_rows() > 0) ? true : false;
+    }
+
+    public function update_store_assoc($store_assoc){
+
+        $query = $this->db2->query("SELECT `store_association`.`id` FROM `store_association` WHERE `store_association`.`name` = ? ", array($store_assoc))->row();
+
+        if (empty($query->id)){
+            $this->db2->insert("store_association", array("name" => ucwords($store_assoc)));
+            $store_id = $this->db2->insert_id();
+        }else{
+            $store_id = $query->id;
+        }
+
+        $this->db2->where("id", $this->session->userdata("comp_id"));
+        $this->db2->set("store_assoc", $store_id);
+        $this->db2->update("account");
+
     }
 
     public function save_payment_type($payment_type){
