@@ -200,7 +200,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Zip Code</span>
+                                            <span>Zip Code <span class="text-red">*</span> </span>
                                             <input type="text" class="form-control form-control-sm textbox-green" id="info-zipcode" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
@@ -531,7 +531,7 @@
                 </div>
             </div>
 
-            <script src="https://www.paypal.com/sdk/js?client-id=ASjHWK-MMBPqa9sv1TtpRIruH_OiCph7pWvgnWO0DNE2plWjIAOMHHff7TRRH9Gd7j0R5mKQFSWjMho9&currency=PHP&locale=en_PH"></script>
+            <script src="https://www.paypal.com/sdk/js?client-id=AWTIdNavxpjfG_d_VIoMCzm0BOBEORPY9hHbUOAQtc7Oh8a1qXrAgUb72lU7TxQwmoQ-6X0gHz3rTqrP&currency=PHP&locale=en_PH"></script>
             <div class="container-fluid navbar" id="div-payment-details">
                 <!-- <div class="row pt-5 w-100" id="div-card-details">
                     <div class="col-12 col-lg-4 col-md-7 col-sm-12 mx-auto">
