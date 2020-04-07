@@ -1514,7 +1514,7 @@
 								</div>
 							</div>
 
-							<div class="form-group mb-0 row">
+							<div class="form-group mb-3 row">
 								<div class="col-12 col-md-12 col-lg-12">
 									<span class="font-weight-600">Returns & Warranty <span class="text-red">*</span></span>
 									<input type="text" class="form-control textbox-green2" id="prod_return" placeholder="7 Days Return">

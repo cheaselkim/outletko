@@ -508,11 +508,11 @@ $(document).ready(function(){
   });
 
   $("#prod_std_delivery").change(function(){
-    if ($(this).val() == "3"){
-      $("#div-prod-ship-fee").show("slow");
-    }else{
-      $("#div-prod-ship-fee").hide("slow");
-    }
+    // if ($(this).val() == "3"){
+    //   $("#div-prod-ship-fee").show("slow");
+    // }else{
+    //   $("#div-prod-ship-fee").hide("slow");
+    // }
   });
 
   $("#save_category").click(function(){
@@ -1000,11 +1000,13 @@ function index(){
 
         if (check == 1){
             $("#delivery_"+ delivery_type_id ).prop("checked", true);
-          $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
+            $("#prod_std_delivery").val("3");
+            $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
         }
       }
 
       if (result.shipping_fee.length != 0){
+        $("#prod_del_opt").val(result.shipping_fee[0].std_delivery);
         $("#std_del").val(result.shipping_fee[0].std_delivery);
         $("#ship_w_mm").val(result.shipping_fee[0].sf_w_mm);
         $("#ship_o_mm").val(result.shipping_fee[0].sf_o_mm);        
@@ -1266,6 +1268,7 @@ function get_del_type(){
     dataType : "JSON",
     url : base_url + "Outletko_profile/get_del_type",
     success : function(result){
+        console.log(result.data);
       $("input[name=csrf_name]").val(result.token);
       $("#prod_std_delivery").append("<option hidden></option>");
       for (var i = 0; i < result.data.length; i++) {
@@ -2304,6 +2307,7 @@ function get_product_info(id){
         dataType : "JSON",
         data : {'id' : id ,'csrf_name' : csrf_name},
         success : function(data){
+            console.log(data.products);
             $("#img_upload").modal("show");
             $("input[name=csrf_name]").val(data.token);
             $("#prod_name").val(data.products[0].product_name);
@@ -2315,14 +2319,17 @@ function get_product_info(id){
             $("#prod_stock").val(data.products[0].product_stock);
             $("#prod_weight").val(data.products[0].product_weight);
             $("#prod_std_delivery").val(data.products[0].product_delivery);
+            $("#prod_del_opt").val(data.products[0].product_del_opt);
+            $("#prod_return").val(data.products[0].product_return);
+            $("#prod_warranty").val(data.products[0].product_warranty);
             $("#prod_id").val(data.products[0].id);
             $("#unserialized_files").val(data.products[0].img_location[0]);
             var href_url = base_url +'images/products/'+data.products[0].img_location[0];
             $("#img-upload").attr("src", href_url);
             
-            if (data.products[0].product_delivery == "3"){
-              $("#div-prod-ship-fee").show("slow");
-            }
+            // if (data.products[0].product_delivery == "3"){
+            //   $("#div-prod-ship-fee").show("slow");
+            // }
 
             $("#prod_ship_fee_w_mm").val(data.products[0].ship_fee_w_mm);
             $("#prod_ship_fee_o_mm").val(data.products[0].ship_fee_o_mm);
