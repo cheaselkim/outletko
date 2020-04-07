@@ -3,7 +3,7 @@ $(document).ready(function(){
   business_category();
   payment_type();
   delivery_type();
-  get_del_type();
+//   get_del_type();
   bank_list();
   remittance_list();
 
@@ -1000,13 +1000,13 @@ function index(){
 
         if (check == 1){
             $("#delivery_"+ delivery_type_id ).prop("checked", true);
-            $("#prod_std_delivery").val("3");
-            $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
+            // $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
         }
       }
 
       if (result.shipping_fee.length != 0){
-        $("#prod_del_opt").val(result.shipping_fee[0].std_delivery);
+        // $("#prod_del_opt").val(result.shipping_fee[0].std_delivery);
+        $("#prod_std_delivery").val(result.shipping_fee[0].std_delivery);
         $("#std_del").val(result.shipping_fee[0].std_delivery);
         $("#ship_w_mm").val(result.shipping_fee[0].sf_w_mm);
         $("#ship_o_mm").val(result.shipping_fee[0].sf_o_mm);        
@@ -1097,6 +1097,64 @@ function index(){
       for(var i = 0; i < remittance_list.length; i++){      
         $("#remitt_"+remittance_list[i].id).prop("checked", true);
       }      
+
+      if (result.area_coverage.length != 0){
+        $("#prod_del_opt").empty();
+
+        $("#cov_mm").prop("checked", (result.area_coverage[0].cov_mm == "1" ? true : false));
+        $("#cov_luz").prop("checked", (result.area_coverage[0].cov_luz == "1" ? true : false));
+        $("#cov_vis").prop("checked", (result.area_coverage[0].cov_vis == "1" ? true : false));
+        $("#cov_min").prop("checked", (result.area_coverage[0].cov_min == "1" ? true : false));
+
+        var cov_mm = result.area_coverage[0].cov_mm;
+        var cov_luz = result.area_coverage[0].cov_luz;
+        var cov_vis = result.area_coverage[0].cov_vis;
+        var cov_min = result.area_coverage[0].cov_mm;
+
+        if (cov_mm == "1" && cov_luz == "1" && cov_vis == "1" && cov_min == "1"){
+            $("#prod_del_opt").append("<option value='0'>Nationwide</option>");
+        }
+
+        if (cov_mm == "1"){
+            $("#prod_del_opt").append("<option value='1'>Metro Manila Only</option>");
+        }
+
+        if (cov_luz == "1" ){
+            $("#prod_del_opt").append("<option value='2'>Luzon Only</option>");
+        }
+
+        if (cov_vis == "1"){
+            $("#prod_del_opt").append("<option value='3'>Visayas Only</option>");
+        }
+
+        if (cov_min == "1"){
+            $("#prod_del_opt").append("<option value='4'>Mindanao Only</option>");
+        }
+
+        if (cov_mm == "1" && cov_luz == "0" && cov_vis == "1"){
+            $("#prod_del_opt").append("<option value='5'>Metro Manila & Visayas</option>");
+        }
+
+        if (cov_mm == "1" && cov_luz == "0" && cov_min == "1"){
+            $("#prod_del_opt").append("<option value='6'>Metro Manila & Mindanao</option>");
+        }
+
+        if (cov_luz == "1" && cov_vis == "1"){
+            $("#prod_del_opt").append("<option value='7'>Luzon & Visayas</option>");
+        }
+
+        if (cov_luz == "1" && cov_min == "1"){
+            $("#prod_del_opt").append("<option value='8'>Luzon & Mindanao</option>");
+        }
+
+        if (cov_vis == "1" && cov_min == "1"){
+            $("#prod_del_opt").append("<option value='9'>Visayas & Mindanao</option>");
+        }
+
+        $("#prod_del_opt").val("00");
+
+      }
+
 
     //products
         var pad = "";
@@ -1268,7 +1326,6 @@ function get_del_type(){
     dataType : "JSON",
     url : base_url + "Outletko_profile/get_del_type",
     success : function(result){
-        console.log(result.data);
       $("input[name=csrf_name]").val(result.token);
       $("#prod_std_delivery").append("<option hidden></option>");
       for (var i = 0; i < result.data.length; i++) {
@@ -2031,20 +2088,28 @@ function save_payment(){
     "end_time" : $("#ttime").val(),
   }
 
+  var cov_area = {
+      "cov_mm" : ($("#cov_mm").is(":checked") == true ? 1 : 0),
+      "cov_luz" : ($("#cov_luz").is(":checked") == true ? 1 : 0),
+      "cov_vis" : ($("#cov_vis").is(":checked") == true ? 1 : 0),
+      "cov_min" : ($("#cov_min").is(":checked") == true ? 1 : 0)
+  }
+
   var std_del = $("#std_del").val();
   var ship_w_mm = $("#ship_w_mm").val();
   var ship_o_mm = $("#ship_o_mm").val();
 
-  console.log("shipping_fee " + shipping_fee);
+//   console.log(cov_area);
 
   $.ajax({
-    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee, remitt_contact_no : remitt_contact_no, remitt_acct_name : remitt_acct_name},
+    data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee, remitt_contact_no : remitt_contact_no, remitt_acct_name : remitt_acct_name, cov_area : cov_area},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Outletko_profile/save_payment",
     beforeSend : function(){
 
     }, success : function(result){
+        index();
       swal({
         type : "success",
         title : "Successfully Saved"
@@ -2067,7 +2132,8 @@ function save_product(){
   var prod_condition = $("#prod_condition").val();
   var prod_stock = $("#prod_stock").val();
   var prod_weight = $("#prod_weight").val();
-  var prod_del = $("#prod_std_delivery").val();
+  var prod_std_delivery = $("#prod_std_delivery").val();
+  var prod_del = "";
   var prod_del_opt = $("#prod_del_opt").val();
   var prod_return = $("#prod_return").val();
   var prod_warranty = $("#prod_warranty").val();
@@ -2090,7 +2156,8 @@ function save_product(){
     product_condition : prod_condition,
     product_stock : prod_stock,
     product_weight : prod_weight,
-    product_delivery : prod_del,
+    product_std_delivery : prod_std_delivery,    
+    // product_delivery : prod_del,
     product_del_opt : prod_del_opt,
     product_return : prod_return,
     product_warranty : prod_warranty,
@@ -2123,7 +2190,7 @@ function save_product(){
                         }, function(){
                             clear_prod_model()
                             index()
-                            get_product_info(prod_id);
+                            // get_product_info(prod_id);
                         });
                     }else{    
                         image_update($('#imgInp').prop('files')[0],result.id,unserialized_files);
@@ -2176,6 +2243,7 @@ function image_file(img,id){
                     }, function(){
                         clear_prod_model()
                         index()
+                        $("#img_upload").modal("hide");
                     });
                 }else {
                     console.log(result.status);
@@ -2238,6 +2306,7 @@ function image_update(img,id,unserialized_files){
                     }, function(){
                         clear_prod_model()
                         index()
+                        $("#img_upload").modal("hide");
                     });
             }else {
                   console.log(result.status);
@@ -2301,13 +2370,12 @@ function clear_prod_model(){
 function get_product_info(id){
     var csrf_name = $("input[name=csrf_name]").val();
     $("#delete_product").show();
-     $.ajax({
+    $.ajax({
         url : base_url + "Outletko_profile/get_product_info",
         type : "POST",
         dataType : "JSON",
         data : {'id' : id ,'csrf_name' : csrf_name},
         success : function(data){
-            console.log(data.products);
             $("#img_upload").modal("show");
             $("input[name=csrf_name]").val(data.token);
             $("#prod_name").val(data.products[0].product_name);
@@ -2318,7 +2386,6 @@ function get_product_info(id){
             $("#prod_condition").val(data.products[0].product_condition);
             $("#prod_stock").val(data.products[0].product_stock);
             $("#prod_weight").val(data.products[0].product_weight);
-            $("#prod_std_delivery").val(data.products[0].product_delivery);
             $("#prod_del_opt").val(data.products[0].product_del_opt);
             $("#prod_return").val(data.products[0].product_return);
             $("#prod_warranty").val(data.products[0].product_warranty);
@@ -2326,7 +2393,13 @@ function get_product_info(id){
             $("#unserialized_files").val(data.products[0].img_location[0]);
             var href_url = base_url +'images/products/'+data.products[0].img_location[0];
             $("#img-upload").attr("src", href_url);
-            
+
+            if (data.products[0].product_std_delivery != null){
+                $("#prod_std_delivery").val(data.products[0].product_std_delivery);
+            }else{
+                index();
+            }
+
             // if (data.products[0].product_delivery == "3"){
             //   $("#div-prod-ship-fee").show("slow");
             // }
@@ -2528,7 +2601,6 @@ function save_prod_variation(){
   });
 
   var data = {csrf_name : csrf_name, prod_id : prod_id, var_name_1 : var_name_1, var_name_2 : var_name_2, var_type_1 : var_type_1, var_type_2 : var_type_2};
-  console.log(data);
 
   $.ajax({
     data : {csrf_name : csrf_name, prod_id : prod_id, var_name_1 : var_name_1, var_name_2 : var_name_2, var_type_1 : var_type_1, var_type_2 : var_type_2},
@@ -2630,7 +2702,6 @@ function save_category(){
 
 function edit_category(id, key){
   $("#prod_cat_id").val(id);
-  console.log(key);
   $("#prod_cat").val($("#prod_cat_tbl tbody tr:eq("+key+")").find("td:eq(0)").text());
 
 }
@@ -2638,7 +2709,6 @@ function edit_category(id, key){
 
 function delete_category(id){
   var csrf_name = $("input[name=csrf_name]").val();
-  console.log(id);
   $.ajax({
     data : {csrf_name : csrf_name, id : id},
     type : "POST",

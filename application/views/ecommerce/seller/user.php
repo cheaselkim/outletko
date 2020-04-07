@@ -600,6 +600,40 @@
 												</div>											
 											</div>
 										</div>
+
+                                        <div class="row">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
+                                                <span class="font-size-16 font-weight-600 ">Delivery Coverage Area</span>			                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="row">	
+
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
+                                                    <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-control custom-checkbox cursor-pointer">
+                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_luz" name="cov_2" value="6">
+                                                    <label class="custom-control-label cursor-pointer" for="cov_luz">Luzon</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-control custom-checkbox cursor-pointer">
+                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_vis" name="cov_3" value="6">
+                                                    <label class="custom-control-label cursor-pointer" for="cov_vis">Visayas</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-control custom-checkbox cursor-pointer">
+                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_min" name="cov_4" value="6">
+                                                    <label class="custom-control-label cursor-pointer" for="cov_min">Mindanao</label>
+                                                </div>
+                                            </div>
+                                        </div>
 										
 										<div class="row" id="div-shipping-fee">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right">
@@ -1364,7 +1398,8 @@
 
             <div class="modal-body text-modal-size">
                 <div class="col-12 col-md-12 col-lg-12">
-                	<div class="row">
+                	
+                    <div class="row">
 
 		                <div class="col-12 col-md-5 col-lg-5">
 		                    <div class="form-group mb-0 row">
@@ -1411,47 +1446,49 @@
 		                        </div>
 		                    </div>
 
-		                    <div class="form-group mb-0 row">
-		                    	<div class="col-6 col-md-6 col-lg-6">
-		                    		<span class="font-weight-600">For Online Sale?</span>
+		                </div>
+
+
+		            </div>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group mb-0 row">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
+		                    		<span class="font-weight-600">For Online Sale? <span class="text-red">*</span></span>
 		                    		<select class="form-control textbox-green2" id="prod_online">
 		                    			<option value="1">Yes</option>
 		                    			<option value="0">No</option>
 		                    		</select>
 		                    	</div>
-		                    	<div class="col-6 col-md-6 col-lg-6">
-		                    		<span class="font-weight-600">Unit Price</span>
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
+		                    		<span class="font-weight-600">Unit Price <span class="text-red">*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price">
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price2" readonly>
 		                    	</div>
-		                    </div>
-
-		                    <div class="form-group mb-0 row">
-		                    	<div class="col-6 col-md-6 col-lg-6">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
 			                    	<span class="font-weight-600">Category <span class="text-red">*</span></span>
 			                    	<select class="form-control textbox-green2" id="prod_category">
 			                    		<option></option>
 			                    	</select>
 		                    	</div>
-		                    	<div class="col-6 col-md-6 col-lg-6">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
 		                    		<span class="font-weight-600">Condition <span class="text-red">*</span></span>
 		                    		<select class="form-control textbox-green2" id="prod_condition">
 		                    			<option value="1">New</option>
 		                    			<option value="2">Used</option>
 		                    		</select>
 	                    		</div>
-		                    </div>
-
-		                    <div class="form-group mb-0 row" >
-		                    	<div class="col-6 col-md-6 col-lg-6">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
+		                    		<span class="font-weight-600">Weight <span class="text-red">*</span></span>
+		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_weight">
+		                    	</div>
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
 		                    		<span class="font-weight-600">Stock</span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_stock">
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_stock2" readonly>
 		                    	</div>
-		                    	<div class="col-6 col-md-6 col-lg-6">
-		                    		<span class="font-weight-600">Weight</span>
-		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_weight">
-		                    	</div>
+
 		                    </div>
 
 		                    <div class="form-group mb-0 mt-2 row" hidden>
@@ -1461,13 +1498,20 @@
 		                    </div>
 
 		                    <div class="form-group mb-0 row" >
-		                    	<div class="col-12 col-md-12 col-lg-12">
+		                    	<div class="col-12 col-md-6 col-lg-6 mt-1">
 		                    		<span class="font-weight-600">Standard Delivery</span>
-		                    		<!-- <input type="text" class="form-control textbox-green2" id=""> -->
-		                    		<select class="form-control textbox-green2" id="prod_std_delivery">
+		                    		<input type="text" class="form-control textbox-green2" id="prod_std_delivery">
+		                    		<!-- <select class="form-control textbox-green2" id="prod_std_delivery">
 		                    			
-		                    		</select>
+		                    		</select> -->
 		                    	</div>
+								<div class="col-12 col-md-6 col-lg-6 mt-1">
+									<span class="font-weight-600">Delivery Options <span class="text-red">*</span> </span>
+                                    <select class="form-control" id="prod_del_opt">
+                                        <option value="00" selected hidden></option>
+                                    </select>
+									<!-- <input type="text" class="form-control textbox-green2" id="prod_del_opt" placeholder="1 to 3 days Delivery"> -->
+								</div>
 		                    </div>
 
 		                    <div class="form-group mb-0 row mt-2" id="div-prod-ship-fee">
@@ -1508,24 +1552,24 @@
 
 
 							<div class="form-group mb-0 row">
-								<div class="col-12 col-md-12 col-lg-12">
-									<span class="font-weight-600">Delivery Options <span class="text-red">*</span> </span>
-									<input type="text" class="form-control textbox-green2" id="prod_del_opt" placeholder="1 to 3 days Delivery">
-								</div>
 							</div>
 
 							<div class="form-group mb-3 row">
 								<div class="col-12 col-md-12 col-lg-12">
 									<span class="font-weight-600">Returns & Warranty <span class="text-red">*</span></span>
-									<input type="text" class="form-control textbox-green2" id="prod_return" placeholder="7 Days Return">
-									<input type="text" class="form-control textbox-green2 mt-1" id="prod_warranty" placeholder="30 Days Warranty">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1">
+                                            <input type="text" class="form-control textbox-green2" id="prod_return" placeholder="7 Days Return">    
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1">
+        									<input type="text" class="form-control textbox-green2" id="prod_warranty" placeholder="30 Days Warranty">
+                                        </div>
+                                    </div>
 								</div>
 							</div>
+                        </div>
+                    </div>
 
-		                </div>
-
-
-		            </div>
                 </div>
             </div>
 

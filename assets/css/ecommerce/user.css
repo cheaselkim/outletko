@@ -290,7 +290,7 @@ textarea{
 
 .img-upload-modal {
 	opacity: 0;
-	margin-left: -120px;
+	/* margin-left: -120px; */
 }
 
 /* MODAL PRODUCTS */
@@ -529,7 +529,7 @@ textarea{
 
 .img-upload-modal {
 	opacity: 0;
-	margin-left: -120px;
+	/* margin-left: -120px; */
 }
 
 /* MODAL PRODUCTS */
@@ -755,7 +755,7 @@ textarea{
 
 .img-upload-modal {
 	opacity: 0;
-	margin-left: -120px;
+	/* margin-left: -120px; */
 }
 
 /* MODAL PRODUCTS */
@@ -989,7 +989,7 @@ textarea{
 
 .img-upload-modal {
 	opacity: 0;
-	margin-left: -120px;
+	/* margin-left: -120px; */
 }
 
 /* MODAL PRODUCTS */
@@ -1216,21 +1216,21 @@ textarea{
 }
 
 .btn-modal-img-upload {
-	margin-left: 16px;
+	margin-left: 15px;
 	justify-content: center;
 	background: #E7E7E7;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
-	width: 85%;
+	width: 255px;
 	border-radius: 0px !important;
 	text-align: center;
-	height: 40px !important;
+    height: 40px !important;
 }
 
 .img-upload-modal {
 	opacity: 0;
-	margin-left: -120px;
+	/* margin-left: -120px; */
 }
 
 /* MODAL PRODUCTS */

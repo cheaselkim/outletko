@@ -62,9 +62,10 @@ class Profile_model extends CI_Model {
     }
     
     public function get_product_info($id){
-        $this->db2->select('products.*, delivery_type.delivery_type');
+        $this->db2->select('products.*, delivery_type.delivery_type, `area_coverage`.`coverage`');
         $this->db2->from('products');
         $this->db2->join("delivery_type", "products.product_delivery = delivery_type.id", "LEFT");
+        $this->db2->join("area_coverage", "products.product_del_opt = area_coverage.id", "LEFT");
         $this->db2->where('products.id', $id);
         $this->db2->limit(6);
         $query = $this->db2->get();

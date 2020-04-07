@@ -120,8 +120,8 @@
     //   var_dump("template 2");
     //   var_dump($header);
 
-    if ($page == "outletko/profile/profile"){
-      $this->load->view("outletko/profile/footer");
+    if ($page == "ecommerce/profile/profile"){
+      $this->load->view("ecommerce/profile/footer");
     }else{
       $this->load->view("templates/footer");
     }

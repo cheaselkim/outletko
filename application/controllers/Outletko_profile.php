@@ -104,6 +104,7 @@ class Outletko_profile extends CI_Controller {
         $data['courier'] = $this->outletko_profile_model->get_courier();
         $data['bank_list'] = $this->outletko_profile_model->get_bank_list();
         $data['remittance_list'] = $this->outletko_profile_model->get_remittance_list();
+        $data['area_coverage'] = $this->outletko_profile_model->get_coverage_area();
         $store_img = $this->outletko_profile_model->get_store_img();
         $data['products']="";
         
@@ -162,6 +163,7 @@ class Outletko_profile extends CI_Controller {
                 "product_del_opt" => $row->product_del_opt,
                 "product_return" => $row->product_return,
                 "product_warranty" => $row->product_warranty,
+                "product_std_delivery" => $row->product_std_delivery,
                 "ship_fee_w_mm" => $row->ship_fee_w_mm,
                 "ship_fee_o_mm" => $row->ship_fee_o_mm,
                 "img_location" => $unserialized_files,
@@ -232,6 +234,7 @@ class Outletko_profile extends CI_Controller {
         $shipping_fee = $this->input->post("shipping_fee");
         $remitt_contact_no = $this->input->post("remitt_contact_no");
         $remitt_acct_name = $this->input->post("remitt_acct_name");
+        $cov_area = $this->input->post("cov_area");
 
         $data = array(
                 "std_delivery" => $std_del,
@@ -251,6 +254,7 @@ class Outletko_profile extends CI_Controller {
         $result_appointment = $this->outletko_profile_model->save_appointment($appointment);
         $result_warranty = $this->outletko_profile_model->save_warranty($warranty, $return);
         $result_cust_del_date = $this->outletko_profile_model->save_cust_del_date($cust_del_date, $shipping_fee);
+        $result_cov_area = $this->outletko_profile_model->save_cov_area($cov_area);
 
         echo json_encode(1);
     }

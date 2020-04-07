@@ -175,10 +175,19 @@
 
 					<div class="row">
 						<div class="col-12">
-							<span class="font-size-16">Standard Delivery : </span>
+							<span class="font-size-16">Area Coverage : </span>
 						</div>
 						<div class="col-12 pl-4">
 							<span id="prod_del_opt" class="font-size-18 font-weight-600"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<span class="font-size-16">Standard Delivery : </span>
+						</div>
+						<div class="col-12 pl-4">
+							<span id="prod_del_std" class="font-size-18 font-weight-600"></span>
 						</div>
 					</div>
 

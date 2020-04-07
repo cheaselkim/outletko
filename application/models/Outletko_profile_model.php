@@ -224,6 +224,11 @@ class Outletko_profile_model extends CI_Model {
 
     }
 
+    public function get_coverage_area(){
+        $query = $this->db2->query("SELECT * FROM account_coverage WHERE comp_id =? ", array($this->session->userdata('comp_id')))->result();
+        return $query;
+    }
+
     //SAVING
     public function update_aboutus($data){
         $this->db2->where('account_id',$this->session->userdata("account_id"));
@@ -351,6 +356,20 @@ class Outletko_profile_model extends CI_Model {
         $this->db2->set("del_date", $save_cust_del_date);
         $this->db2->where("id", $this->session->userdata("comp_id"));
         $this->db2->update("account");
+    }
+
+    public function save_cov_area($data){
+        $data['comp_id'] = $this->session->userdata("comp_id");
+
+        $query = $this->db2->query("SELECT * FROM account_coverage WHERE comp_id = ? ", array($this->session->userdata('comp_id')))->result();
+
+        if (!empty($query)){
+            $this->db2->where("comp_id", $this->session->userdata('comp_id'));
+            $this->db2->update("account_coverage", $data);
+        }else{
+            $this->db2->insert("account_coverage", $data);
+        }
+
     }
 
     public function update_profile($account_hdr,$account_id) {

@@ -174,8 +174,15 @@ function get_profile(id){
     //products
         $('#posted_prod').empty();
         var posted_rows = (result.products.length/8).toFixed(0);
-        // console.log("posted_rows raw " + posted_rows);
-        var posted_rows2 = (result.products.length/ (8 * posted_rows)).toFixed(0);
+        console.log("posted_rows raw " + posted_rows);
+        var posted_rows2 = (result.products.length/ (8 * posted_rows));
+
+        if (posted_rows2 <= 1){
+            posted_rows2 = 0;
+        }else{
+            posted_rows2 = posted_rows2.toFixed(0);
+        }
+
         // console.log("posted_rows2 " + posted_rows2);
         posted_rows = Number(posted_rows) + Number(posted_rows2);
         // console.log("posted_rows final " + posted_rows);
@@ -200,6 +207,7 @@ function get_profile(id){
           }else{
             $style = "background:white";
           }
+
           // $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
           $("#div-posted-prod").append("<div class='col-12 div-row-prod-"+i+" pb-2' id='div-row-prod-"+i+"' "+$style+"></div>");
           $("#div-posted-prod .div-row-prod-"+i+"").append("<div class='container mx-auto'></div>");
@@ -340,9 +348,16 @@ function get_product_info(id){
   $("#div-btn-order").hide();
   $("#std_lbl").hide();
   $("#std_del").hide();
-  $(".div-header-2").hide();
   $(".div-header-3").hide();
-  $(".div-header-4").hide();
+ 
+  var window_width = $(document).width();
+
+  if (window_width > 768){
+    $(".div-header-2").removeClass("d-none d-lg-block");
+    $(".div-header-4").removeClass("d-none d-lg-block");
+    $(".div-header-2").hide();
+    $(".div-header-4").hide();  
+  }
 
   $("#div-product-details").show();
   $(window).scrollTop($('#div-product-details').offset().top - 40);
@@ -381,6 +396,7 @@ function get_product_info(id){
       $("#prod_payment_type").text((data.payment_type[0].payment_type == null ? "None" : data.payment_type[0].payment_type));
       $("#prod_delivery_type").text((data.products[0].delivery_type == null ? "None" : data.products[0].delivery_type));
       $("#prod_del_opt").text((data.products[0].product_del_opt == null ? "None" : data.products[0].product_del_opt));
+      $("#prod_del_std").text((data.products[0].product_std_delivery == null ? "None" : data.products[0].product_std_delivery));
       $("#prod_return").text((data.products[0].product_return == null ? "None" : data.products[0].product_return));
       $("#prod_warranty").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));
 
