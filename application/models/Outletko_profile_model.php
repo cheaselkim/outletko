@@ -625,27 +625,29 @@ class Outletko_profile_model extends CI_Model {
         $this->db2->where("comp_id", $this->session->userdata('comp_id'));
         $this->db2->update("account_remittance");
 
-        for ($i=0; $i < COUNT($data); $i++) { 
+        if (!empty($data)){
+            for ($i=0; $i < COUNT($data); $i++) { 
 
-            $array = array(
-                "comp_id" => $this->session->userdata("comp_id"),
-                "remittance_id" => $data[$i],
-                "status" => "1"
-            );
+                $array = array(
+                    "comp_id" => $this->session->userdata("comp_id"),
+                    "remittance_id" => $data[$i],
+                    "status" => "1"
+                );
 
 
-            $query = $this->db2->query("SELECT * FROM account_remittance WHERE comp_id = ? AND  remittance_id = ?", array($this->session->userdata('comp_id'), $data[$i]))->result();
+                $query = $this->db2->query("SELECT * FROM account_remittance WHERE comp_id = ? AND  remittance_id = ?", array($this->session->userdata('comp_id'), $data[$i]))->result();
 
-            if (!empty($query)){
-                foreach ($query as $key => $value) {
-                    $this->db2->set("status", "1");
-                    $this->db2->where("id", $value->id);
-                    $this->db2->update("account_remittance");
+                if (!empty($query)){
+                    foreach ($query as $key => $value) {
+                        $this->db2->set("status", "1");
+                        $this->db2->where("id", $value->id);
+                        $this->db2->update("account_remittance");
+                    }
+                }else{
+                    $this->db2->insert("account_remittance", $array);
                 }
-            }else{
-                $this->db2->insert("account_remittance", $array);
-            }
 
+            }
         }
 
     }

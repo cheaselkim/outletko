@@ -872,6 +872,8 @@ function index(){
     			  (result.result[0].city_desc == null ? "" : (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ") ) + 
     			  (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
+        console.log(result.delivery_type);
+
     //for text
         $(".div-header").css("background", "#"+result.result[0].bg_color);
         $("#colorpicker").css("background", "#"+result.result[0].bg_color);
@@ -990,10 +992,12 @@ function index(){
 
       }
 
+      console.log(result.delivery_type);
 
       for (var i = 0; i < result.delivery_type.length; i++) {
         var delivery_type_id = result.delivery_type[i].delivery_type_id;
         var check = result.delivery_type[i].delivery_type_check;
+
 
         if (check == 1){
           $("#delivery_"+ (i + 1) ).prop("checked", true);

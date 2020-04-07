@@ -997,8 +997,9 @@ function index(){
         var delivery_type_id = result.delivery_type[i].delivery_type_id;
         var check = result.delivery_type[i].delivery_type_check;
 
+
         if (check == 1){
-          $("#delivery_"+ (i + 1) ).prop("checked", true);
+            $("#delivery_"+ delivery_type_id ).prop("checked", true);
           $("#prod_std_delivery").find(".del_"+(Number(i) + 1)).removeClass("opt-hide");
         }
       }

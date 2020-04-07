@@ -105,7 +105,7 @@ class Outletko_profile extends CI_Controller {
         $data['bank_list'] = $this->outletko_profile_model->get_bank_list();
         $data['remittance_list'] = $this->outletko_profile_model->get_remittance_list();
         $store_img = $this->outletko_profile_model->get_store_img();
-    	$data['products']="";
+        $data['products']="";
         
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
