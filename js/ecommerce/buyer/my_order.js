@@ -242,8 +242,8 @@ $(document).ready(function(){
 		$("#div-remittance-payment").hide();
 		$("#summ-payment-method").text($("#summ-payment-type-list :selected").text());
 		if (payment_type == "1"){
-			$("#div-remittance-payment").show();
-			get_remittance();
+			// $("#div-remittance-payment").show();
+			// get_remittance();
 		}else if (payment_type == "5"){
 			$("#div-bank-payment").show();
 			get_bank();
@@ -328,7 +328,7 @@ function get_billing(){
 		success : function(result){
 			var data = result.result[0];
             $("input[name=csrf_name]").val(result.token);
-            if (data.length > 0){
+            if (result.result.length > 0){
                 $("#bill_address").val(data.address);
                 $("#bill_barangay").val(data.barangay);
                 $("#bill_city").val(data.city_desc);
@@ -768,6 +768,9 @@ function get_order_checkout(div_id){
 						"<span hidden class='payment-name'>"+result.payment_type[i].payment_type+"</span>" +
 					"</div>");
 
+                    if (i == 0){
+                        payment_selected(result.payment_type[i].id);
+                    }
 				}
 
 				for (var i = 0; i < result.delivery_type.length; i++) {
@@ -884,7 +887,7 @@ function get_order_checkout(div_id){
 				// bank_list();
 				// remittance_list();
 				$("#delivery_type").val("3");
-				courier();
+                courier();
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
@@ -923,7 +926,7 @@ get_remittance();
 var payment_type = $("#payment_type_id").val();
 
 if (payment_type == "1"){
-	$("#div-remittance-payment").show();
+	// $("#div-remittance-payment").show();
 	$("#summ-payment-type-list").append("<option>Cash on Delivery</option>");
 }else if (payment_type == "5"){
 	$("#div-bank-payment").show();
@@ -934,6 +937,9 @@ if (payment_type == "1"){
 	$("#div-remittance-payment").show();
 	// remittance_list();
 	// get_remittance();
+}else{
+    $("#div-remittance-payment").hide();
+    $("#div-bank-payment").hide();    
 }
 
 var address = $("#bill_address").val() + ", " + ($("#bill_barangay").val() == "" ? "" : ", ") + $("#bill_city").val() + ", " + $("#bill_province").val() + " " + $("#bill_zip").val();
@@ -981,6 +987,7 @@ function get_courier(){
 	var island_group = $("#bill_province").attr("data-island");
 	var total_order = $("#vw_total_order").text().replace(/,/g, '');
 	var shipping_fee = "";
+
 
 	if (id != "0"){
 		$.ajax({
@@ -1148,8 +1155,8 @@ function place_order(){
 		save_info = 1;
 	}else{
 		save_info = 0;
-	}
-
+    }
+    
     // $.each($("input[type='checkbox']:checked"), function(){
     // 	sub = {
     // 		"prod_id" : $(this).val()
@@ -1211,6 +1218,9 @@ function place_order(){
 				// showConfirmButton: false
     // 		})
     // 	},
+
+    // console.log("save_info " + save_info);
+    // console.log(data_profile);
 
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},

@@ -22,7 +22,6 @@
     <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
 
-    <script src="<?php echo base_url('js/login.js') ?>"></script>
 
     <style type="text/css">
         
@@ -90,6 +89,7 @@
 <!-- <div class="container py-5">
   <?php echo $tbl; ?>
 </div> -->
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
 </body>
 </html>

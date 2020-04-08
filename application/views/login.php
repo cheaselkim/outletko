@@ -4,8 +4,19 @@
     <title>Outletko</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="eoutletsuite, eoutletsuite, eoutletsuite.com, outletko">
+    <meta name="description" content="Outletko is a digital platform technology and service that enables enterprises to connect to people and the community, and gives growth to business. It provides facility for full digital transformation for micro and small enterprises.">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163137526-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163137526-1');
+    </script>
+
 
     <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
@@ -140,7 +151,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-xl-7 col-lg-7 col-md-8 col-sm-12">
-                                <form action="<?php echo base_url('Search/index') ?>" method="get">
+                                <form action="<?php echo base_url('Search/query ') ?>" method="get">
                                     <div class="row mt-2 div-search-box">
                                         <div class="col-lg-3 col-md-4 col-sm-12 pad-right pt-1" hidden>
                                             <div class="input-group">
@@ -452,7 +463,7 @@
           <div class="col-6 text-white pl-5" style="line-height:30px;">
             <a href="<?php echo base_url('reviews')?>" class="text-white">Reviews</a><br>
             <a href="<?php echo base_url('contactus')?>" class="text-white">Contact Us</a><br>
-            <a href="" class="text-white">Be our Partner</a>
+            <a href="<?php echo base_url('blog')?>" class="text-white">Blog</a>
           </div>
         </div>
       </div>

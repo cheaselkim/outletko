@@ -6,7 +6,7 @@ class Profile extends CI_Controller {
 	public function __construct(){
 	    parent::__construct();
 	    $this->load->model("profile_model");
-	}
+    }
 
     public function check_session(){
         $data['result'] = $this->login_model->check_session();
@@ -59,9 +59,10 @@ class Profile extends CI_Controller {
 	}
 
 	public function get_product_info(){
-
+        // $id = 63;
 	    $id = $this->input->post('id', TRUE);
-		$result = $this->profile_model->get_product_info($id);
+        $result = $this->profile_model->get_product_info($id);
+        // var_dump($result);
 		foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
             $data['payment_type'] = $this->profile_model->get_payment_type($row->account_id);
@@ -87,6 +88,9 @@ class Profile extends CI_Controller {
                 "id" => $row->id);
             }
         $data['token'] = $this->security->get_csrf_hash();
+
+            // var_dump($data);
+
 		echo json_encode($data);
 	}
 

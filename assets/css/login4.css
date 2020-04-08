@@ -19,7 +19,7 @@
 
 
 .font-bauhaus-93{
-    font-family: "Bauhaus 93";
+    font-family: "Bauhaus 93" !important;
 }
 
 .font-weight-400{

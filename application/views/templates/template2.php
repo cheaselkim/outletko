@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyword" content="Outletko, eoutletsuite, outletko, zugriff products, zugriff outletko">
-
+    <meta name="description" content="Outletko is a digital platform technology and service that enables enterprises to connect to people and the community, and gives growth to business. It provides facility for full digital transformation for micro and small enterprises.">
+    
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="<?php echo base_url()?>" />
     <meta property="og:type" content="article" />
@@ -14,6 +15,17 @@
     <meta property="og:title" content="blog" />
     <meta property="og:description" content="X" />
     <title>Outletko</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163137526-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163137526-1');
+    </script>
+
 
     <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"> -->
@@ -35,12 +47,11 @@
     <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/popper.min.js') ?>"></script>
-    <script src="<?php echo base_url('js/outletko/signup_login.js') ?>"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="<?php echo base_url('js/outletko/signup_login.js') ?>"></script>
+    <script src="<?php echo base_url('js/login.js') ?>"></script>
     <script src="<?php echo base_url('js/template_login2.js') ?>"></script>
 
     <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">

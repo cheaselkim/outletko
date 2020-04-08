@@ -4,7 +4,7 @@
 	<div class="collapse navbar-collapse justify-content-start " id="collapsibleNavbar" >
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<button class="btn text-white" style="background:rgb(79, 98, 40);">Entrepreneur Blog Articles</button>
+				<a href="<?php echo base_url('/blog')?>" class="btn text-white" style="background:rgb(79, 98, 40);">Entrepreneur Blog Articles</a>
 			</li>
 			<!-- <li class="nav-item" >
 				<a class="nav-link font-small" href="<?php echo base_url('aboutus') ?>"><span class="text-white font-bahaus-93">About Us</span></a>

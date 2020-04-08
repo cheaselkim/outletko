@@ -228,7 +228,8 @@ function get_page_blog(){
             $('meta[property="og:image"]').attr('content', (base_url + "images/blog/" + data[0].img ));
             $('meta[property="og:type"]').attr('content', 'blog');
             $('meta[property="og:url"]').attr('content', base_url + "blog/4579328" + data[0].id + "/" + title.replace(/\s+/g, '-').toLowerCase());
-            $('meta[property="og:description"]').attr('content', blog_desc);
+            $('meta[property="og:description"]').attr('content', blog_desc.substring(0, 100));
+            console.log(blog_desc.substring(0, 100));
 
             if ($(window).width() <= 1220){
                 $("#div-img-blog").css("background-size", "100% 100%");

@@ -31,8 +31,7 @@
 	<div class="row">
 		<div class="col-12 col-md-11 col-lg-12 mx-auto px-0">
 
-			<!-- <?php echo form_open('Search/Search'); ?>-->
-			<form action="<?php echo site_url('Search/index') ?>" method="GET">
+			<form action="<?php echo site_url('Search/query') ?>" method="GET">
 				<div class="row  ">
 					<div class="col-12 col-md-10 col-lg-6 pad-center pt-1">
 						<div class="input-group">
@@ -40,8 +39,8 @@
 								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
 							</div>
 							<input type="text" class="form-control textbox-orange border-left-0 pl-1" name="product_outlet" id="searchbox" aria-describedby="basic-addon1" style="border-top-right-radius: .35rem; border-bottom-right-radius: .35rem;">
-							<input type="hidden" name="city_id" value="">
-                            <input type="hidden" name="prov_id" value="">
+							<!-- <input type="hidden" name="city_id" value="">
+                            <input type="hidden" name="prov_id" value=""> -->
 						</div>
 					</div>
 

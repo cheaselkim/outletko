@@ -1462,7 +1462,7 @@
 		                    		</select>
 		                    	</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
-		                    		<span class="font-weight-600">Unit Price <span class="text-red">*</span></span>
+		                    		<span class="font-weight-600">Unit Price <span class="text-red" hidden>*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price">
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price2" readonly>
 		                    	</div>
@@ -1480,7 +1480,7 @@
 		                    		</select>
 	                    		</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
-		                    		<span class="font-weight-600">Weight <span class="text-red">*</span></span>
+		                    		<span class="font-weight-600">Weight <span class="text-red" hidden>*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_weight">
 		                    	</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">

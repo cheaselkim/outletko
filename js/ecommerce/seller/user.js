@@ -1109,13 +1109,13 @@ function index(){
         var cov_mm = result.area_coverage[0].cov_mm;
         var cov_luz = result.area_coverage[0].cov_luz;
         var cov_vis = result.area_coverage[0].cov_vis;
-        var cov_min = result.area_coverage[0].cov_mm;
+        var cov_min = result.area_coverage[0].cov_min;
 
         if (cov_mm == "1" && cov_luz == "1" && cov_vis == "1" && cov_min == "1"){
             $("#prod_del_opt").append("<option value='0'>Nationwide</option>");
         }
 
-        if (cov_mm == "1"){
+        if (cov_mm == "1" || cov_luz == "1"){
             $("#prod_del_opt").append("<option value='1'>Metro Manila Only</option>");
         }
 
@@ -1909,7 +1909,7 @@ function check_product(){
 
   var error = 0;
 
-  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == "" || prod_category == "" || prod_condition == ""){
+  if (prod_name == "" || prod_desc == "" || prod_online == "" || prod_unit == ""  || prod_condition == ""){ //|| prod_category == ""
     error++;
   }
 

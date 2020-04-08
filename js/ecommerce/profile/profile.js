@@ -5,9 +5,12 @@ $(document).ready(function(){
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
-  get_profile($id);
+//   get_profile($id);
+    setTimeout(function(){ 
+        get_profile($id);    
+    }, 1000);
 
-  $("#btn_back").click(function(){
+$("#btn_back").click(function(){
     $("#div-display-products").show();
     $(".div-header-2").show();
     $(".div-header-3").show();
@@ -59,8 +62,8 @@ function get_profile(id){
     url : base_url +  "Profile/profile",
     dataType : "JSON",
     success : function(result){
-    // console.log(result);
     $("input[name=csrf_name]").val(result.token);
+
     var profile = base_url + "images/profile/" + result.profile;    
     var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
             (result.result[0].village == "" ? "" : result.result[0].village + ", ")  + 
@@ -174,7 +177,7 @@ function get_profile(id){
     //products
         $('#posted_prod').empty();
         var posted_rows = (result.products.length/8).toFixed(0);
-        console.log("posted_rows raw " + posted_rows);
+        // console.log("posted_rows raw " + posted_rows);
         var posted_rows2 = (result.products.length/ (8 * posted_rows));
 
         if (posted_rows2 <= 1){
@@ -370,7 +373,6 @@ function get_product_info(id){
   $("#prod-weight").val("Weight : ");
   $("#div-product-details-img").css("background-image", "url('"+img_url+"')");
 
-
   $.ajax({
     data : {id : id, csrf_name : csrf_name},
     type : "POST",
@@ -435,6 +437,7 @@ function get_product_info(id){
 
 }   
 
+
 function compute_total_amount(){
   
   var prod_qty = $("#prod_qty").val(); 
@@ -496,9 +499,12 @@ function add_to_cart(){
   var order = Number($("#order_no").text());
   var prod_id = $("#prod_id").val();
   var prod_qty = $("#prod_qty").val();
+  var prod_price = $("#cart_total_amount").text().replace(/,/g, '');
+  var cart = $("#total-cart").text().replace(/,/g, '');
   var csrf_name = $("input[name=csrf_name]").val();
 
   order = Number(order) + 1;
+  var total_cart = Number(prod_price) + Number(cart);
 
   $.ajax({
     data : {prod_id : prod_id, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
@@ -508,6 +514,12 @@ function add_to_cart(){
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
       $("#order_no").text(order);
+      $("#total-cart").text($.number(total_cart, 2));
+      swal({
+          type : "success",
+          title : "Item has been added to your Cart",
+          timer : 1000
+      })
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -531,7 +543,8 @@ function order_now(){
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",
     success : function(result){
-      window.open(base_url + "my-order", "_self");
+        $("input[name=csrf_name]").val(result.token);
+        window.open(base_url + "my-order", "_self");
       // $("#order_no").text(order);
     }, error : function(err){
       console.log(err.responseText);

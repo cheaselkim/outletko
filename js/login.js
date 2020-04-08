@@ -413,10 +413,17 @@ function isEmail(email) {
 }
 
 function business_category(){
+    var href_url = "";
+
+	if (document.location.href == base_url){
+		href_url = "Signup/business_category";
+	}else{
+		href_url = base_url +  "Signup/business_category";
+	}
 
 $.ajax({
 	type : "GET",
-	url : "Signup/business_category",
+	url : href_url,
 	dataType : "JSON",
 	success : function(data){
 	 
@@ -452,7 +459,7 @@ function check_login(){
 
 	var href_url = "";
 	var link_url = document.location.href;
-	console.log("base_url  " + document.location.href);
+	// console.log("base_url  " + document.location.href);
 
 	if (document.location.href == base_url){
 		href_url = "Signup/check_login";
@@ -460,7 +467,7 @@ function check_login(){
 		href_url = base_url +  "Signup/check_login";
 	}
 
-	console.log("href_url " + href_url);
+	// console.log("href_url " + href_url);
 
 	$.ajax({
 		data : { csrf_name : csrf_name, username : username, password : password },
