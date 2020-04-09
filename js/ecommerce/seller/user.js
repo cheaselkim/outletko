@@ -972,8 +972,9 @@ function index(){
         var payment_type_id = result.payment_type[i].payment_type_id;
         var check = result.payment_type[i].payment_type_check;
 
+
         if (check == 1){
-          $("#payment_"+ (i + 1) ).prop("checked", true);
+          $("#payment_"+ payment_type_id ).prop("checked", true);
         }
 
         if (payment_type_id == "5" && check == 1){

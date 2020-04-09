@@ -357,7 +357,7 @@
 											<span class="font-weight-600 font-size-24">2. Arrive by <span class="text-red font-size-16 font-weight-400 font-italic">(required)</span></span>
 										</div>
 										<div class="col-10 col-lg-8 col-md-10 col-sm-10 mx-auto div-process-btn">
-											<button class="btn btn-light-green-2 btn-block" data-toggle="modal" data-target="#modal_delivery" id="btn-modal-delivery">Select Type</button>
+											<button class="btn btn-yellow-gold btn-block" data-toggle="modal" data-target="#modal_delivery" id="btn-modal-delivery">Select Type</button>
 										</div>
 									</div>
 								</div>
@@ -720,11 +720,11 @@
 							<input type="text" class="form-control" id="bill_phone">
 						</div>
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-							<span class="font-size-16 mb-1">Email</span>
+							<span class="font-size-16 mb-1">Email <span class="text-red">*</span> </span>
 							<input type="text" class="form-control" id="bill_email">
 						</div>
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-							<span class="font-size-16 mb-1">Contact Person</span>
+							<span class="font-size-16 mb-1">Contact Person <span class="text-red">*</span> </span>
 							<input type="text" class="form-control" id="bill_contact" value="<?php echo $this->session->userdata('user_fullname'); ?>">
 						</div>
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">

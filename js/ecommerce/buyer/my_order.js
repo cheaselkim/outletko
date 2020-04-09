@@ -92,7 +92,9 @@ $(document).ready(function(){
 			cancelButtonText: "No",
 		}, function(isConfirm){
 			if (isConfirm){
-				check_place_order();
+                setTimeout(function(){ 
+                    check_place_order();
+                }, 500);				
 			}
 		})
 
@@ -671,6 +673,7 @@ function payment_selected(id){
 		remittance_list();
 	}
 
+    $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
 	$("#payment_type_id").val(id);
 	$("#payment_type_id").attr("data-name", $("#div-modal-payment-type-" + id).find("span").text());
 	$(".div-modal-payment-type").css("background", "white");
@@ -741,11 +744,16 @@ function get_order_checkout(div_id){
 					courier();
 				}
 
+                var font_color = "";
+
+                console.log(result.payment_type.length);
+
 				for (var i = 0; i < result.payment_type.length; i++) {
 					// $("#payment_type").append("<option value='"+result.payment_type[i].id+"'>"+result.payment_type[i].payment_type+"</option>");
 					
 					if (result.payment_type[i].id == "1"){
-						img_src = base_url + "assets/images/payment_type/cash.png";
+                        img_src = base_url + "assets/images/payment_type/cash.png";
+                        font_color = "blue";
 					}else if (result.payment_type[i].id == "2"){
 						img_src = base_url + "assets/images/payment_type/visa.png";
 					}else if (result.payment_type[i].id == "3"){
@@ -753,22 +761,23 @@ function get_order_checkout(div_id){
 					}else if (result.payment_type[i].id == "4"){
 						img_src = base_url + "assets/images/payment_type/visa.png";						
 					}else if (result.payment_type[i].id == "5"){
-						img_src = base_url + "assets/images/payment_type/bank.png";
+                        img_src = base_url + "assets/images/payment_type/bank.png";
+                        font_color = "green";
 					}else if (result.payment_type[i].id == "6"){
-						img_src = base_url + "assets/images/payment_type/remittance.png";
+                        img_src = base_url + "assets/images/payment_type/remittance.png";
+                        font_color = "orange";
 					}else{
 						img_src = base_url + "assets/images/payment_type/visa.png";
 					}
 
 
-
 					$("#div-payment").append(
-					"<div class='col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-2 py-3 div-modal-payment-type cursor-pointer' id='div-modal-payment-type-"+result.payment_type[i].id+"' onclick='payment_selected("+result.payment_type[i].id+")'>"+
-						"<img class='img-fluid' style='height: 70px;' src='"+img_src+"'>" +
-						"<span hidden class='payment-name'>"+result.payment_type[i].payment_type+"</span>" +
+					"<div class='col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-2 py-3 div-modal-payment-type cursor-pointer' id='div-modal-payment-type-"+result.payment_type[i].id+"' onclick='payment_selected("+result.payment_type[i].id+")' style='border: 1px solid "+font_color+"'>"+
+						// "<img class='img-fluid' style='height: 70px;' src='"+img_src+"'>" +
+						"<span class='payment-name font-weight-600 font-size-30' style='color: "+font_color+"'>"+result.payment_type[i].payment_type+"</span>" +
 					"</div>");
 
-                    if (i == 0){
+                    if (result.payment_type.length == 1){
                         payment_selected(result.payment_type[i].id);
                     }
 				}
@@ -888,14 +897,42 @@ function get_order_checkout(div_id){
 				// remittance_list();
 				$("#delivery_type").val("3");
                 courier();
+                check_delivery_address();
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
 	    })
-
-
 	}
 
+}
+
+function check_delivery_address(){
+    // console.log("check_del_address");
+
+	var bill_name = $("#bill_name").val();
+	var bill_address = $("#bill_address").val();
+	var bill_city = $("#bill_city").attr("data-id");
+	var bill_province = $("#bill_province").attr("data-id");
+    var bill_mobile = $("#bill_mobile").val();
+    var bill_email = $("#bill_email").val();
+    var bill_contact = $("#bill_contact").val();
+
+	// console.log(bill_name);
+	// console.log(bill_address);
+	// console.log(bill_city);
+	// console.log(bill_province);
+    // console.log(bill_mobile);
+    // console.log(bill_email);
+    // console.log(bill_contact);
+
+	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 ){
+		swal({
+			type : "warning",
+			title : "Please input all required fields"
+        })
+    }else{
+        $(".div-deliver").css("background-color", "rgb(0, 128, 0, 0.2)");
+    }
 
 }
 
@@ -1024,6 +1061,8 @@ function get_courier(){
 				$("#summ-delivery-fee").text($.number(shipping_fee, 2));			
 				$("#summ-grand-total").text($.number(grand_total, 2));		
 
+                $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+
 
 			}, error : function(err){
 				console.log(err.responseText);
@@ -1088,7 +1127,9 @@ function check_place_order(){
 	var bill_address = $("#bill_address").val();
 	var bill_city = $("#bill_city").attr("data-id");
 	var bill_province = $("#bill_province").attr("data-id");
-	var bill_mobile = $("#bill_mobile").val();
+    var bill_mobile = $("#bill_mobile").val();
+    var bill_email = $("#bill_email").val();
+    var bill_contact = $("#bill_contact").val();
 
 	// console.log(bill_name);
 	// console.log(bill_address);
@@ -1096,7 +1137,7 @@ function check_place_order(){
 	// console.log(bill_province);
 	// console.log(bill_mobile);
 
-	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 ){
+	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 || jQuery.trim(bill_contact).length <= 0){
 		swal({
 			type : "warning",
 			title : "Please input all required fields"
@@ -1222,6 +1263,8 @@ function place_order(){
     // console.log("save_info " + save_info);
     // console.log(data_profile);
 
+    console.log(save_info);
+
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},
     	type : "POST",
@@ -1259,24 +1302,30 @@ function complete_order(id){
 	}, function(isConfirm){
 		if (isConfirm){
 
-			$.ajax({
-				data : {csrf_name : csrf_name, id : id},
-				type : "POST",
-				dataType : "JSON",
-				url : base_url + "Buyer/complete_order",
-				success : function(result){
-					$("input[name=csrf_name]").val(result.token);
-					swal({
-						type : "success",
-						title : "Successfully Completed the order"
-					}, function(){
-						get_complete_orders();
-					})
-				}, error : function(err){
-					console.log(err.responseText);
-				}
-			})
+            insert_order(id);
 
 		}
 	})
+}
+
+function insert_order(id){
+    console.log("id " + id);
+    $.ajax({
+        data : {csrf_name : csrf_name, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Buyer/complete_order",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            swal({
+                type : "success",
+                title : "Successfully Completed the order"
+            }, function(){
+                get_complete_orders();
+            })
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
 }

@@ -16,6 +16,7 @@ $("#btn_back").click(function(){
     $(".div-header-3").show();
     $(".div-header-4").show();
     $("#div-product-details").hide();    
+  $(window).scrollTop($('#div-posted-prod').offset().top);    
   });
 
   $("#btn_cart").click(function(){
@@ -363,7 +364,8 @@ function get_product_info(id){
   }
 
   $("#div-product-details").show();
-  $(window).scrollTop($('#div-product-details').offset().top - 40);
+//   $(window).scrollTop($('#div-product-details').offset().top);
+  $(window).scrollTop(0);
 
   $("#prod-name").text("");
   $("#prod-dtls").text("");
@@ -384,11 +386,11 @@ function get_product_info(id){
       $("input[name=csrf_name]").val(data.token);
 
       $("#prod-name").text(data.products[0].product_name);
-      $("#prod-dtls").text(data.products[0].product_description);
-      $("#prod-other-details").text(data.products[0].product_other_details);
+      $("#prod-desc").text(data.products[0].product_description);
+      $("#prod-other-details").text((data.products[0].product_other_details == null ? "No Other Details" : (data.products[0].product_other_details == "" ? "No Other Details " : data.products[0].product_other_details)));
       $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
       $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
-      $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Old"));
+      $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Used"));
       $("#prod-stock").text("Stock : " + $.number(data.products[0].product_stock, 0));
       $("#prod-weight").text("Weight : " + $.number(data.products[0].product_weight, 2));
       $("#std_del").text(data.products[0].delivery_type);
