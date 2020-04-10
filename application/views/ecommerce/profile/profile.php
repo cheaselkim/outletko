@@ -132,7 +132,7 @@
 				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img">
 				</div>
 			</div>
-			<div class="col-lg-auto col-sm-12 px-0" id="div-details">
+			<div class="col-lg-auto col-sm-12 px-0" id="div-details" >
 				
 				<div class="col-12 mb-2 div-prod-dtls" >
 					<span class="font-weight-600 font-size-25" hidden>Product Description</span>
@@ -295,6 +295,39 @@
 				</div>
 
 			</div>
+            <div class="col-lg-auto col-sm-12 px-0" id="div-details-2">
+                
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                        <span class="font-size-30 font-weight-600">Now in Cart</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                        <span id="cart-prod-name" class="font-size-22 font-weight-600"></span><br>
+                        <span class="font-size-18">Quantity : <span id="cart-prod-qty"></span></span><br>
+                        <span class="font-size-18 font-weight-500">Unit Price : PHP <span id="cart-prod-price"></span></span><br>
+                        <span class="font-size-22">Total Order : PHP <span id="cart-prod-total-price" ></span></span><br>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                        <a href="<?php echo base_url('my-order')?>" class="btn btn-outline-secondary px-5">View Cart</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
+                        <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
+                        <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
+                    </div>
+                </div>
+
+            </div>
 			<div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto">
 				<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
 			</div>
