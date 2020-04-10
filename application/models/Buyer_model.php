@@ -19,6 +19,22 @@ class Buyer_model extends CI_Model {
         $this->session->set_userdata("order_no", $result->order_no);
     }
 
+    public function check_pass($user_pass){
+        $query = $this->db->query("SELECT * FROM users WHERE id = ? ", array($this->session->userdata("user_id")))->result();
+        
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                if (password_verify($user_pass, $value->password)){ 
+                    return 1;
+                }else{
+                    return 0;
+                }           
+            }
+        }else{
+            return 0;
+        }
+    }
+
     public function cust_del_date($id){
         $query = $this->db2->query("SELECT * FROM account WHERE id = ? ", array($id))->result();
         return $query;

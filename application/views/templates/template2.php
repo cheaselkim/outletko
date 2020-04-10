@@ -126,7 +126,10 @@
 
 
 <?php 
-    $this->load->view($header); 
+
+    if ($header != ""){
+        $this->load->view($header); 
+    }
     $this->load->view($page);    
     //   var_dump("template 2");
     //   var_dump($header);

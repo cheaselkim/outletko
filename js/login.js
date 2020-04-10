@@ -480,7 +480,11 @@ function check_login(){
 
 			if (result.login == "1"){
 				if (result.user_type == "5"){
-					location.reload();
+                    if (base_url == document.location.href){
+                        window.open(base_url + "my-order", "_self");
+                    }else{
+                        location.reload();
+                    }
 				}else{
 					window.open(base_url, "_self");
 				}				

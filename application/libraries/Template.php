@@ -506,14 +506,20 @@
 
 				}else if ($user_type == "5"){
 					/*outletko user*/
-					$data['header'] = 'ecommerce/buyer/header';
-
-					if ($menu == "1"){
+                    $data['header'] = 'ecommerce/buyer/header';
+                    
+                    if ($menu == NULL){
+                        $data['page'] = 'login';
+                        $data['header'] = "";
+                    }else if ($menu == ""){
+                        $data['page'] = 'login';
+                        $data['header'] = "";
+                    }else if ($menu == "1"){
 						$data['page'] = 'login_search';
 					}else if ($menu == "2"){
 						$data['page'] = 'ecommerce/buyer/my_order';
 					}else if ($menu == "3"){
-						$data['page'] = 'ecommerce/buyer/my_order';
+						$data['page'] = 'ecommerce/buyer/my_account';
 					}else{
 						$data['page'] = 'ecommerce/profile/profile';
 					}

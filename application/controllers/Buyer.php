@@ -259,6 +259,13 @@ class Buyer extends CI_Controller {
  		echo json_encode($data);
  	}
 
+    public function check_pass(){
+        $user_pass = $this->input->post("user_pass");
+        $data['result'] = $this->buyer_model->check_pass($user_pass);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
  	public function update_account(){
  		$data = array(
  				"first_name" => $this->input->post("user_fname"),
@@ -280,7 +287,7 @@ class Buyer extends CI_Controller {
  				"first_name" => $this->input->post("user_fname"),
  				"middle_name" => $this->input->post("user_mname"),
  				"last_name" => $this->input->post("user_lname"),
- 				"username" => $this->input->post("user_uname"),
+ 				"username" => $this->input->post("username"),
  				"email" => $this->input->post("user_email"),
  				"password" => password_hash($this->input->post("user_new_pass"), PASSWORD_DEFAULT)
  				);
@@ -289,7 +296,7 @@ class Buyer extends CI_Controller {
  				"first_name" => $this->input->post("user_fname"),
  				"middle_name" => $this->input->post("user_mname"),
  				"last_name" => $this->input->post("user_lname"),
- 				"username" => $this->input->post("user_uname"),
+ 				"username" => $this->input->post("username"),
  				"email" => $this->input->post("user_email")
  				);
  		}

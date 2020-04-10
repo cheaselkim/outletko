@@ -18,9 +18,9 @@ class Login extends CI_Controller {
 		}else{
 			$result = $this->login_model->check_otp();
 			
-			if ($this->session->userdata("user_type") == "5"){
-				redirect('/my-order');
-			}else{
+			// if ($this->session->userdata("user_type") == "5"){
+			// 	redirect('/my-order');
+			// }else{
 				if ($result > 0){
 					$this->load->view("website/otp_password");
 				}else{
@@ -54,14 +54,19 @@ class Login extends CI_Controller {
 							$data['width'] = 1366;
 							$data['user_type'] = $this->session->userdata('user_type');
 							$data['account_id'] = $this->session->userdata("account_id");
-							$data['owner'] = 0;
-							$this->template->load("0", $data);							
+                            $data['owner'] = 0;
+
+                            if ($this->session->userdata("user_type") == "5"){
+                                $this->template->load("", $data);							
+                            }else{
+                                $this->template->load("0", $data);							
+                            }
 						}					
 					}				
 
 				}
 
-			}
+			// }
 
 		}
 	}

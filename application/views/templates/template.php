@@ -66,8 +66,10 @@
 
 <?php 
     if ($this->session->userdata("validated") == true){
-      $this->load->view($header); 
-      $this->load->view($page);    
+        if ($header != ""){
+            $this->load->view($header);       
+        }
+        $this->load->view($page);    
     }else{
       $this->load->view("login");
     }
