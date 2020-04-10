@@ -746,7 +746,7 @@ function get_order_checkout(div_id){
 
                 var font_color = "";
 
-                console.log(result.payment_type.length);
+                // console.log(result.payment_type.length);
 
 				for (var i = 0; i < result.payment_type.length; i++) {
 					// $("#payment_type").append("<option value='"+result.payment_type[i].id+"'>"+result.payment_type[i].payment_type+"</option>");
@@ -867,7 +867,19 @@ function get_order_checkout(div_id){
 					shipping_fee_o_mm += Number(prod_dtls[i].ship_fee_o_mm);
 
 					sub_total += (Number(prod_qty) * Number(prod_dtls[i].product_unit_price));
-				}
+
+                    if (prod_dtls.length == "1"){
+                        if (prod_dtls[i].product_std_delivery == ""){
+                            $("#std_delivery").val(result.std_delivery);
+                        }else{
+                            $("#std_delivery").val(prod_dtls[i].product_std_delivery);
+                        }
+                    }else{
+                        $("#std_delivery").val(result.std_delivery);
+                    }
+
+                }
+                
 
 				// console.log($("#bill_province").attr("data-id"));
 

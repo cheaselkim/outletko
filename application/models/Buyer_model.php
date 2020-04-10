@@ -180,6 +180,19 @@ class Buyer_model extends CI_Model {
         return $query;
     }
 
+    public function get_std_delivery($id){
+        $query = $this->db2->query("SELECT * FROM account_shipping_fee WHERE account_id = ? ", array($id));
+
+        if (!empty($query->result())){
+            $query = $query->row();            
+            return $query->std_delivery;
+        }else{
+            return "";
+        }
+        // var_dump($query);
+        // return $query->std_delivery;
+    }
+
     public function insert_order(){
         $id = "";
         $order_no = "";

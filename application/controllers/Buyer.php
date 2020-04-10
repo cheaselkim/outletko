@@ -161,7 +161,8 @@ class Buyer extends CI_Controller {
 
 		foreach ($data['result'] as $key => $value) {
 			$product[$key] = array(
-				"prod_id" => $value->prod_id,
+                "prod_id" => $value->prod_id,
+                
 				"prod_img" => unserialize($value->img_location)
 			);
 		}
@@ -170,7 +171,8 @@ class Buyer extends CI_Controller {
 		$data['cust_del_date'] = $this->buyer_model->cust_del_date($data['result'][0]->account_id);
 		$data['delivery_type'] = $this->buyer_model->delivery_type($data['result'][0]->account_id);
 		$data['payment_type'] = $this->buyer_model->payment_type($data['result'][0]->account_id);
-		$data['sched_time'] = $this->buyer_model->get_sched_time($data['result'][0]->account_id);
+        $data['sched_time'] = $this->buyer_model->get_sched_time($data['result'][0]->account_id);
+        $data['std_delivery'] = $this->buyer_model->get_std_delivery($data['result'][0]->account_id);
 		$data['token'] = $this->security->get_csrf_hash();
 		$data['seller_id'] = $data['result'][0]->account_id;
 
