@@ -390,11 +390,11 @@
 									<p class="mb-0 font-weight-600 font-size-20">PHP <span id="vw_grand_total">0.00</span></p>
 								</div>
 								<div class="col-12 col-lg-4 col-md-4 col-sm-12 pt-2 div-checkout-footer-button">
-									<div class="row pt-2">
-										<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+									<div class="row">
+										<div class="col-12 col-lg-6 col-md-6 col-sm-12 pt-2">
 											<button class="btn btn-danger btn-block font-size-24" id="btn_cancel_order">Cancel</button>
 										</div>
-										<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+										<div class="col-12 col-lg-6 col-md-6 col-sm-12 pt-2">
 											<button class="btn btn-gray btn-block font-size-24" id="btn_confirm_order">Place Order</button>
 										</div>
 									</div>
@@ -405,7 +405,7 @@
 					</div>
 
 					<div class="row mt-3">
-						<div class="col-12 col-sm-12 col-md-12 col-lg-12 px-0">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12" id="div-order-details">
 							<span class="font-weight-600">Order Summary</span>
 							<div class="row">
 								<div class="col-12 py-2">
@@ -657,7 +657,7 @@
 						<div class="col-12 col-lg-6 col-md-6 col-sm-6">
 							<button class="btn btn-primary" id="btn_order_payment">Other Payment Method</button>
 						</div>
-						<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right">
+						<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right pt-4">
 							<button class="btn btn-danger" id="btn_cancel_place_2">Cancel</button>
 							<button class="btn btn-orange" id="btn_place_order">Place my Order</button>
 						</div>

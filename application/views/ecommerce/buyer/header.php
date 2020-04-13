@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="<?php echo base_url('assets/ecommerce/buyer/header.css')?>">
+
 <script type="text/javascript">
 	$("#order_no").number(true,0);
 
@@ -5,10 +8,19 @@
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
 	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
+    <span class='nav-link font-small text-yellow d-block d-sm-none' style="color: yellow;">Cart: PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -12px;">
 		<span class="fas fa-bars"></span>
 	</button>
     <!-- background : rgb(79, 98, 40); -->
+    <!-- <div class="ml-auto">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <span class='nav-link font-small text-yellow' style="color: yellow;">Cart Total : PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
+            </li>
+        </ul> -->
+    </div>
+
 	<div class="collapse navbar-collapse justify-content-end px-3" id="collapsibleNavbar" style="margin-left:-15px; margin-right: -15px;z-index: 1;">
 
 		<ul class="navbar-nav">
@@ -18,7 +30,7 @@
             <li class="nav-item" hidden>
                 <span class='nav-link font-small text-white'><?php echo $this->session->userdata('user_fullname'); ?></span>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-none d-sm-block">
                 <span class='nav-link font-small text-yellow' style="color: yellow;">Cart Total : PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
             </li>
 			<li class="nav-item">
@@ -51,17 +63,17 @@
 <!-- END NAVBAR -->
 
 <!-- SEARCH -->
-<div class="container pt-2 ">
+<div class="container pt-1 ">
 	<div class="row">
-		<div class="col-12 col-md-12 px-0">
+		<div class="col-12 col-md-12 buyer-search-box">
 
 			<!-- <?php echo form_open('Search/Search'); ?>-->
 			 <form action="<?php echo site_url('Search/query') ?>" method="GET"> 
 				<div class="row">
-					<div class="col-12 col-md-9 col-lg-7 pad-right">
+					<div class="col-12 col-md-9 col-lg-7 pad-right pt-2">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text textbox-orange bg-white" id="basic-addon1"><i class="fa fa-search"></i></span>
+								<span class="input-group-text textbox-orange bg-white" id="basic-addon1" ><i class="fa fa-search"></i></span>
 							</div>
 							<input type="text" class="form-control textbox-orange border-left-0 pl-1" name="product_outlet" id="searchbox" aria-describedby="basic-addon1">
 							<!-- <input type="hidden" name="city_id" value="1024">
@@ -78,7 +90,7 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-md-2 col-lg-2 pad-left">
+					<div class="col-12 col-md-2 col-lg-2 pad-left pt-2">
 						<button class="btn btn-block btn-warning font-small font-weight-600" type="submit">Search</button>
 					</div>
 				</div>

@@ -129,7 +129,8 @@
                     </li>
                 <?php }else {?>
                     <li class="nav-item py-1 pad-right">
-                        <button class="btn btn-block bg-transparent text-white" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
+                        <button class="btn btn-block bg-transparent text-white d-none d-sm-block" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
+                        <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('login')?>" style="border: 1px solid white;"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
                     </li>    
                     <li class="nav-item py-1 pad-left" >
                             <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-black"></i> <span class="text-black">Sign Up</span></button>
@@ -168,7 +169,7 @@
                                             <input type="text" class="form-control textbox-orange border-left-0 pl-1" name="location" placeholder="Search location" aria-label="location" aria-describedby="basic-addon1">
                                             </div>    
                                         </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-12 pad-right pt-1">
+                                        <div class="col-lg-9 col-md-9 col-sm-12 pad-right pt-2">
 
                                             <div class="input-group">
                                             <div class="input-group-prepend">
@@ -178,7 +179,7 @@
                                             </div>
                                     
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-12 pad-left pt-1">
+                                        <div class="col-lg-3 col-md-3 col-sm-12 pad-left pt-2">
                                             <button class="btn btn-orange btn-block font-weight-600 "> <span class="text-black">Search</span> </button>
                                         </div>
                                     </div>

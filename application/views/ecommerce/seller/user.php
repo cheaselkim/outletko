@@ -9,8 +9,8 @@
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header pr-0">
 					<div class="row">
-						<div class="col-3 col-lg-auto d-none d-lg-block py-1 pad-left">
-							<div class="div-prod-img cursor-pointer div-prof-pic" id="div-prod-img"  style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
+						<div class="col-12 col-lg-auto py-1 pad-left">
+							<div class="div-prod-img cursor-pointer div-prof-pic mx-auto" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic"  style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 								<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2" id="div-update-button" data-toggle="modal" data-target="#modal_prof_pic">
 									<i class="fas fa-camera text-white"></i><br>
 									<span class="text-white font-weight-bold font-size-18">Update</span>
@@ -359,7 +359,7 @@
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
 	                            <div class="input-group">
-									<input type="text" class="form-control textbox-green2 text-lowercase" value="<?php echo base_url().'store/'.str_replace(' ', '',$this->session->userdata("account_name")) ?>" id="input_outletko" readonly>
+									<input type="text" class="form-control textbox-green2 text-lowercase" value="<?php echo base_url().str_replace(' ', '',$this->session->userdata("link_name")) ?>" id="input_outletko" readonly>
 	                            	<div class="input-group-append" onclick="copyToClipboard('#input_outletko')">
 	                            		<span class="input-group-text bg-white border px-1 textbox-green2 px-3 cursor-pointer"><i class="far fa-copy"></i></span>
 		                            </div>
@@ -1361,13 +1361,13 @@
       <div class="modal-body" style="background: transparent;">
 
       	<div class="row">
-      		<div class="col-5 col-md-5 col-lg-5 px-4">
+      		<div class="col-12 col-md-5 col-lg-5 px-4" id="div-img-process-order">
 				<img src="<?php echo base_url() ?>assets/images/process_order.png" id="img_process_order" class='img-fluid cursor-pointer'>
       		</div>
 
       		<div class="col-2 col-md-2 col-lg-2"></div>
 
-      		<div class="col-5 col-md-5 col-lg-5 px-4">      			
+      		<div class="col-12 col-md-5 col-lg-5 px-4" id="div-img-close-order">      			
 				<img src="<?php echo base_url() ?>assets/images/close_order.png" id="img_close_order" class='img-fluid cursor-pointer' >
       		</div>
       	</div>
@@ -1384,13 +1384,13 @@
 
 <!-- Modal for Image Upload -->
 <div class="modal" id="img_upload">
-    <div class="modal-dialog modal-dialog-scrollable modal-half">
+    <div class="modal-dialog modal-lg"> <!-- modal-dialog-scrollable modal-half -->
         <div class="modal-content">
             <div class="modal-header modal-hdr-bg pt-2 pb-0">
                 <div class="col-xs-12 col-md-12">
                     <div class="form-group row mb-0">
                         <div class="col-12 col-lg-12 text-center">
-                            <h3>Enter your Products and Services</h3>
+                            <h4>Products/Services Entry</h4f>
                         </div>
                     </div>
                 </div>
@@ -1422,7 +1422,7 @@
 		                    </div>
 		                </div>
 
-	                	<div class="col-12 col-md-7 col-lg-7 pl-0">
+	                	<div class="col-12 col-md-7 col-lg-7 pad-left">
 		                    <div class="form-group mb-0 row">
 		                        <div class="col-12 col-md-12 col-lg-12">
 		                            <span class="font-weight-600">Product Name <span class="text-red">*</span></span>
@@ -1603,9 +1603,9 @@
       </div>
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0" id="div-img-prof" style="height: 230px;border: 1px solid black;baclgro">
+      		<div class="col-10 col-lg-8 col-md-8 col-sm-12 mx-auto px-0" id="div-img-prof" style="height: 230px;border: 1px solid #28a745;">
       		</div>
-      		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0 cursor-pointer">
+      		<div class="col-10 col-lg-8 col-md-8 col-sm-12 mx-auto px-0 cursor-pointer">
 				<button class="btn btn-block btn-outline-success " style="border-top: 0;border-radius: 0;">
 			    	Choose Image
 			    	<input type="file" id="imgProf" class="img-upload-modal">
@@ -1796,11 +1796,11 @@
 			<div class="modal-body">
 				<input type="hidden" id="prod_cat_id">
 				<div class="row">
-					<div class="col-10">
+					<div class="col-8 col-lg-10 col-md-8 col-sm-8 pr-1">
 						<input type="text" class="form-control" id="prod_cat">
 					</div>
-					<div class="col-2">
-						<button class="btn btn-orange btn-block" id="save_category">Add</button>
+					<div class="col-4 col-lg-2 col-md-4 col-sm-4 pl-1">
+						<button class="btn btn-orange btn-block" style="height: 35px;" id="save_category">Add</button>
 					</div>
 				</div>
 

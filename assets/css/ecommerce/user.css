@@ -90,6 +90,47 @@ textarea{
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
+#img_upload .modal-body{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.modal-dialog{
+    max-width: 360px;
+}
+
+.modal-body{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#div-img-process-order{
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+#div-img-close-order{
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+#img_process_order{
+    width: 50%;
+}
+
+#img_close_order{
+    width: 50%;
+}
+
+/* #img_upload{
+    top: 4%;
+    bottom: 4%;
+} */
+
+.modal-ftr-bg{
+    padding-bottom: 5%;
+}
 /* DIV ADS */
 
 .div-ads{
@@ -263,9 +304,9 @@ textarea{
 
 .modal-img-upload {
 	margin-top: 8px;
-	margin-left: 15px;
+	margin-left: 55px;
 	height: 200px;
-	width: 255px;
+	width: 220px;
 	border: 1px solid #AEDCBF;
 	background: white;
 }
@@ -276,13 +317,13 @@ textarea{
 }
 
 .btn-modal-img-upload {
-	margin-left: 16px;
+	margin-left: 55px;
 	justify-content: center;
 	background: #E7E7E7;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
-	width: 85%;
+	width: 220px;
 	border-radius: 0px !important;
 	text-align: center;
 	height: 40px !important;
@@ -312,8 +353,8 @@ textarea{
 /* PRODUCT DETAILS */
 
 .div-product-details-img{
-	height: 150px;
-	width: 50%;
+	height: 180px;
+	width: 70%;
 	margin: auto;
 }
 
@@ -362,6 +403,7 @@ textarea{
 	height: 150px;
 	background: #77933c;
 }
+
 
 .div-prof-pic{
 	height: 140px;

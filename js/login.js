@@ -476,13 +476,19 @@ function check_login(){
 		url : href_url,
 		success : function(result){	
 			$("input[name=csrf_name]").val(result.token);
-			console.log(result);
-
+            // console.log(document.location.href);
+            // console.log(base_url + "login");
+            // console.log(result.user_type);
 			if (result.login == "1"){
 				if (result.user_type == "5"){
                     if (base_url == document.location.href){
+                        // console.log(base_url);
+                        window.open(base_url + "my-order", "_self");
+                    }else if (document.location.href == base_url + "login"){
+                        // console.log(base_url + "my-order");
                         window.open(base_url + "my-order", "_self");
                     }else{
+                        // console.log("location");
                         location.reload();
                     }
 				}else{

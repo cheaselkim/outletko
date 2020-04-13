@@ -20,6 +20,15 @@ $(document).ready(function(){
     $(window).scrollTop($('#div-posted-prod').offset().top);    
   });
 
+  $("#btn_back2").click(function(){
+    $("#div-display-products").show();
+    $(".div-header-2").show();
+    $(".div-header-3").show();
+    $(".div-header-4").show();
+    $("#div-product-details").hide();    
+    $(window).scrollTop($('#div-posted-prod').offset().top);    
+  })
+
   $("#btn-sel-prod").click(function(){
     $("#div-display-products").show();
     $(".div-header-2").show();

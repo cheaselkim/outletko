@@ -16,7 +16,6 @@
 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">Outlet</span><span class="text-red">Ko</span></a>
 			</li>
 			<li class="nav-item">
-<!-- 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">eOutlet</span><span class="span-suite">Suite</span></a> -->
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_myorders"><span class="text-uppercase text-white">My Orders </span> <span class="badge badge-light" id="order_no">
 					<?php 
 						if (!empty($this->session->userdata("order_no"))){
@@ -28,7 +27,6 @@
 				</span></span></a></a>
 			</li>
 			<li class="nav-item">
-<!--  				<a class="nav-link font-small cursor-pointer" id="a_account"><span class="text-uppercase text-white">Account</span></a> -->
 				<div class="dropdown">
 					<a class="nav-link font-small cursor-pointer text-uppercase text-white dropdown-toggle" data-toggle="dropdown">
 						My Account
@@ -39,8 +37,6 @@
 						<a class="dropdown-item py-0" href="<?php echo base_url('/logout') ?>">Logout</a>
 					</div>
 				</div>
-
-<!--  				<a class="nav-link font-small" href="<?php echo base_url('/logout') ?>"><span class="text-uppercase text-white">Logout</span></a>  -->
 			</li>    
 		</ul>
 	</div>  

@@ -54,7 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['login'] = 'login/login';
+// $route['login'] = 'login/login';
+$route['login'] = 'login/loginpage';
 $route['logout'] = 'login/logout';
 
 $route['app/(:num)/(:num)/(:num)'] = 'menu/menu/$1/$2/$3';

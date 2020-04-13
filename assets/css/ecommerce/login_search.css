@@ -682,6 +682,14 @@ background: rgb(119, 147, 60, 0.3);
 	}
 }
 
+@media screen and (max-width: 600px){
+    .img-prof{
+        height: 90px;
+        width: 100px;
+
+    }
+}
+
 @media screen and (max-width: 767px) {
 	.div-header {
 		display: none;
@@ -2721,8 +2729,15 @@ background: rgb(119, 147, 60, 0.3);
 	.img-upload {
 		opacity: 0;
 		margin-left: -30px;
-	}
+    }
+    
+    .img-prof{
+        height: 100px;
+        width: 100px;
+
+    }    
 }
+
 
 @media screen and (min-width: 1334px) {
 	.btn-modal-img-upload {
@@ -2935,7 +2950,13 @@ background: rgb(119, 147, 60, 0.3);
 	.img-upload {
 		opacity: 0;
 		margin-left: -30px;
-	}
+    }
+    
+    .img-prof{
+        height: 100px;
+        width: 100px;
+
+    }        
 }
 
 @media screen and (min-width: 1365px) {
@@ -3156,5 +3177,12 @@ background: rgb(119, 147, 60, 0.3);
 	.img-upload {
 		opacity: 0;
 		margin-left: -30px;
-	}
+    }
+    
+    .img-prof{
+        height: 100px;
+        width: 100px;
+
+    }        
 }
+

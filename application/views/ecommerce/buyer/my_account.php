@@ -15,14 +15,14 @@
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-body pt-4 pb-5">
 
 					<div class="row">
-						<div class="col-4">
+						<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 							<span class="font-weight-600">Username</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_uname" value="<?php echo $this->session->userdata('user_uname') ?>">
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-4">
+						<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 							<span class="font-weight-600">Password</span>
 							<div class="input-group">
 								<input type="password" class="form-control form-control-sm textbox-green" id="user_pass">
@@ -37,7 +37,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-4">
+						<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 							<span class="font-weight-600">New Password</span>
 							<div class="input-group">
 								<input type="password" class="form-control form-control-sm textbox-green" id="user_new_pass">
@@ -51,7 +51,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-4">
+						<div class="col-12 col-lg-4 col-md-6 col-sm-12">
 							<span class="font-weight-600">Confirm Password</span>
 							<div class="input-group">
 								<input type="password" class="form-control form-control-sm textbox-green" id="user_conf_pass">
@@ -73,15 +73,15 @@
 					</div>
 
 					<div class="row">
-						<div class="col-4 pad-right">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-right">
 							<span class="font-weight-600">First Name</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_fname">
 						</div>
-						<div class="col-4 pad-center">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-center">
 							<span class="font-weight-600">Middle Name</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_mname">
 						</div>
-						<div class="col-4 pad-left">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-left">
 							<span class="font-weight-600">Last Name</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_lname">
 						</div>
@@ -95,22 +95,22 @@
 					</div>
 
 					<div class="row">
-						<div class="col-4 pad-right">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-right">
 							<span class="font-weight-600">Barangay</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_barangay">
 						</div>
-						<div class="col-4 pad-center">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-center">
 							<span class="font-weight-600">City</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_city" data-id = "0">
 						</div>
-						<div class="col-4 pad-left">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-left">
 							<span class="font-weight-600">Province</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_province" data-id = "0" readonly>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-4 pad-right">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-right">
 							<span class="font-weight-600">Mobile</span>
 							<div class="input-group">
 								<div class="input-group-prepend" style="height: 31px;"  >
@@ -121,19 +121,19 @@
 								<input type="text" class="form-control form-control-sm textbox-green border-left-0" id="user_mobile">
 							</div>							
 						</div>
-						<div class="col-4 pad-center">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-center">
 							<span class="font-weight-600">Email</span>
 							<input type="text"  class="form-control form-control-sm textbox-green" id="user_email">
 						</div>
 					</div>
 
-					<div class="row pt-5">
+					<div class="row pt-3">
 						<div class="col-2"></div>
-						<div class="col-4">
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pt-2">
 							<button class="btn btn-orange btn-block btn-sm font-weight-600" id="save">Save</button>
 						</div>
-						<div class="col-4">
-							<button class="btn btn-danger btn-block btn-sm font-weight-600" id="cancel">Cancel</button>
+						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pt-2">
+							<a href="<?php echo base_url('my-order')?>"><button class="btn btn-danger btn-block btn-sm font-weight-600" id="cancel">Cancel</button></a>
 						</div>
 						<div class="col-2"></div>
 					</div>

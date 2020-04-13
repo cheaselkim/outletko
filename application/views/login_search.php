@@ -22,17 +22,17 @@
     <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
 
+    <style>
 
-    <style type="text/css">
-        
-      .img-prof{
-        height: 100px;
-        width: 100px;
-
-      }
-
+    @media only screen and (min-width: 1200px) {
+        .img-prof{
+            height: 100px !important;
+            width: 120px !important;
+        }    
+    }    
     </style>
 
+    
 </head>
 <body>
 

@@ -263,13 +263,13 @@
                             <div class="row mt-3 div-btn-order py-3 mx-1" id="div-btn-order">
                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="row">
-                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pad-right">
+                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
                                             <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
                                         </div>
-                                        <div class="col-2 col-lg-1 col-md-2 col-sm-2 pad-center">
+                                        <div class="col-3 col-lg-1 col-md-2 col-sm-2 px-1">
                                             <input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
                                         </div>								
-                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pad-left">
+                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pl-1">
                                             <button class="btn btn-orange btn-block px-0" id="btn_add"><i class="fas fa-plus"></i></button>
                                         </div>
                                     </div>
@@ -279,11 +279,14 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right">
+                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
                                             <button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
                                         </div>
-                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left">
+                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
                                             <button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
+                                        </div>								
+                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
+                                            <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
                                         </div>								
                                     </div>
                                 </div>
@@ -295,7 +298,7 @@
 				</div>
 
 			</div>
-            <div class="col-lg-auto col-sm-12 px-0" id="div-details-2">
+            <div class="col-lg-auto col-sm-12" id="div-details-2">
                 
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -318,17 +321,30 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row ">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2">
+                        <div class="row mx-0 px-1 div-btn-order pb-3 pt-1">
+                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
+                                <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
+                                <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
+                            </div>								
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
                         <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
                         <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
-			<div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto">
+			<div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-md-block">
 				<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
 			</div>
 		</div>

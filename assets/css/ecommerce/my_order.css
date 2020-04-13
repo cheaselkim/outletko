@@ -113,16 +113,16 @@
 }
 
 .div-img-prod{
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .img-prod{
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 }
 
 .div-checkout{
@@ -142,7 +142,45 @@
 	border-top: 1px solid black;
 }
 
+.div-deliver{
+	height: 100px;
+	border: 1px solid rgb(119, 147, 60);
+    border-bottom: 0;
+}
 
+.div-arrive{
+	height: 100px;
+    border: 1px solid rgb(119, 147, 60);
+    border-bottom: 0;
+}
+
+.div-payment{
+	height: 100px;
+    border: 1px solid rgb(119, 147, 60);
+    border-bottom: 0;
+}
+
+.div-checkout-footer{
+    border: 1px solid rgb(119, 147, 60);
+    padding-bottom: 10px;    
+}
+
+.div-process-btn{
+	padding-top: 5.5%;
+}
+
+.div-process-btn button{
+	height: 40px;
+}
+
+.border-bottom-light-green{
+    border-bottom: 0px;
+}
+
+.div-checkout-details-1{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 
 }
 
@@ -370,6 +408,11 @@
 
 .div-checkout-footer-button{
 	border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-order-details{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 }

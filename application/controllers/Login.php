@@ -71,6 +71,16 @@ class Login extends CI_Controller {
 		}
 	}
 
+	public function loginpage(){		
+        $result = $this->login_model->check_session();
+
+		if ($result != true){
+            $this->load->view("login2");
+		}else{
+            redirect("/");
+		}
+	}
+
 	public function nologin(){
 		// $this->load->view("admin/email/email");
 			$this->load->library("email");
