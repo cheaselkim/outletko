@@ -50,7 +50,7 @@
         font-family: 'Arial' !important;
       }
 
-      #modal_signup  .container  span{
+      #modal_signup  .modal-body .container  span{
         font-size: 15px;
         font-family: 'Arial' !important;
       }
@@ -501,7 +501,8 @@
                 <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
               </div>
               <div class="col-12 col-lg-12 text-center ">
-                <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                
+                <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
+                <!-- <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                 -->
               </div>
             </div>          
           </div>
@@ -584,7 +585,8 @@
               <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
             </div>
             <div class="col-lg-12 text-center">
-                <p class="h1 text-white font-bauhaus-93 mb-0">Outletko</p>                             
+                <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
+                <!-- <p class="h1 text-white font-bauhaus-93 mb-0">Outletko</p>                              -->
             </div>
           </div>          
         </div>

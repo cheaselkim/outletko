@@ -7,7 +7,7 @@
     <meta name="description" content="eoutletsuite, eoutletsuite, eoutletsuite.com, outletko">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
 
-    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
@@ -49,7 +49,7 @@
                         <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                   <a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-10.png')?>" class="border img-header-website" alt=""></a>
+                                   <a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-13.png')?>" class="border img-header-website" alt=""></a>
                                 </li>                    
                             </ul>
                             <ul class="navbar-nav ml-auto">
