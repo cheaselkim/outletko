@@ -447,10 +447,12 @@ function get_product_info(id){
       $("#prod-name").attr("data-ol", data.products[0].product_online);
 
       if (data.products[0].product_online == "1"){
+        $("#div-btn-back > .row").removeClass("pt-1");
         $("#div-btn-order").show();
         $("#std_lbl").show();
         $("#std_del").show();
       }else{
+        $("#div-btn-back > .row").addClass("pt-1");
         $("#div-btn-order").hide();
         $("#std_lbl").hide();
         $("#std_del").hide();
@@ -508,7 +510,11 @@ function check_session(type){
             order_now();
           }
         }else{
-          $("#modal_signup_user").modal("show");        
+            if ($(document).width() < 768){
+                window.open(base_url + "login", "_self");
+            }else{
+                $("#modal_signup_user").modal("show");        
+            }
         }
       }, error : function(err){
         console.log(err.responseText);

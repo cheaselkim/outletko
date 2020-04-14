@@ -1,9 +1,9 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
 
 <nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white font-bauhaus-93">Outletko</span></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-		<span class="navbar-toggler-icon"></span>
+	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="margin-top: -2%;">
+        <span class="fas fa-bars text-orange" style="font-size: 25px;"></span>
 	</button>
 	<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 
@@ -15,7 +15,8 @@
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_signup"><span class=" text-white">Register your Store</span></a>
 			</li>
 			<li class="nav-item">
-              <button class="btn btn-block btn-transparent" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
+              <button class="btn btn-block btn-transparent d-none d-md-block" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
+              <a class="btn btn-block btn-transparent d-block d-sm-none" href="<?php echo base_url('login')?>"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
 			</li>    
 			<li class="nav-item" hidden>
                   <button class="btn btn-block btn-transparent bd-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>
@@ -29,7 +30,7 @@
 <!-- SEARCH -->
 <div class="container pt-2 ">
 	<div class="row">
-		<div class="col-12 col-md-11 col-lg-12 mx-auto px-0">
+		<div class="col-12 col-md-11 col-lg-12 mx-auto ">
 
 			<form action="<?php echo site_url('Search/query') ?>" method="GET">
 				<div class="row  ">

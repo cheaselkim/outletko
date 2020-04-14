@@ -110,7 +110,7 @@
           <nav class="navbar navbar-expand-md py-0 my-0">
             <div class=" py-0 my-0">
                 <div class="navbar-header py-0 my-0">
-                    <a href="#" class="navbar-brand font-weight-bold text-white font-size-35 my-0 py-0">Outletko</a>
+                    <a href="#" class="navbar-brand font-weight-bold text-white font-size-35 my-0 py-0">Outlet<span class="text-yellow">Ko</span> </a>
                     <span class="btn text-yellow bg-transparent border-white py-0 span-partner" hidden><span class="font-weight-600">PARTNER </span> NG MGA <span class="font-weight-600">MICRO BUSINESS & SMALL BUSINESS</span></span>
                 </div>
             </div>
@@ -458,7 +458,7 @@
   <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2 div-footer-1" >
     <div class="row">
       <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
-        <img src="<?php echo base_url('assets/img/logo-10.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
+        <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid white;"><br>
         <p class="text-white font-size-14">Outletko is a complete digital platform exclusively designed for micro and small business</p>
       </div>
       <div class="col-12 col-lg-4 col-md-6 col-sm-12 pl-1">

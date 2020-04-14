@@ -10,8 +10,15 @@ if (!function_exists("tbl_query")){
 										// </div>
 		$address = "";
 		foreach ($query as $key => $value) {
-			$img = unserialize($value->loc_image);
-			$img_loc = base_url().'images/profile/'.$img[0];
+            $img_alt = base_url().'assets/images/no-image.jpg';
+
+            if (!empty($value->loc_image)){
+                $img = unserialize($value->loc_image);
+                $img_loc = base_url().'images/profile/'.$img[0];
+            }else{
+                $img_loc = $img_alt;
+            }
+
 			// $href = base_url()."store/".str_replace(' ', '', strtolower($value->account_name))."";
 			$link_name = str_replace(' ', '', strtolower($value->account_name));
 			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
@@ -27,7 +34,7 @@ if (!function_exists("tbl_query")){
 							<div class='col-12 pr-0'>
 								<div class='row'>
 									<div class='col-3 col-sm-auto px-0'>
-										<img src='".$img_loc."' class='img-prof img-thumbnail'>
+										<img src='".$img_loc."' alt='logo' class='img-prof img-thumbnail'>
 									</div>
 									<div class='col-9 col-sm-10 pr-0'>
 										<span class='text-black h5'>".$value->account_name."</span><br>
@@ -39,7 +46,8 @@ if (!function_exists("tbl_query")){
 							</div>
 						</a>";
 
-		}
+            $address = "";
+        }
 
 		return $output;
 

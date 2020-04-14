@@ -1,3 +1,6 @@
+.text-black{
+    color: black !important;
+}
 
 .checkbox-xl .custom-control-label::before, 
 .checkbox-xl .custom-control-label::after {

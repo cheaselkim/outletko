@@ -42,19 +42,19 @@
 <body>
 
 <nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white font-bauhaus-93">Outletko</span></a>
+	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet<span class="text-yellow">Ko</span></span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 </nav>
 
-<div class="container">
-    <div class="row">
+<div class="container mb-5 pb-5">
+    <div class="row mb-5 pb-5">
         <div class="col-9 col-lg-12 col-md-12 col-sm-12 mx-auto">
             
             <div class="row mt-4 mb-5">
                 <div class="col-6 col-lg-12 col-md-12 col-sm-12 mx-auto">
-                    <img src="assets/img/logo-10.png" alt="logo" class="img-fluid">
+                    <img src="assets/img/logo-13.png" alt="logo" class="img-fluid">
                 </div>
             </div>
 
@@ -70,6 +70,12 @@
                 </div> 
             </div>
 
+            <div classs="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right pr-0 pt-2">
+                    <a href="<?php echo base_url('forgot_password')?>" class="text-red">Forgot Password?</a>
+                </div>
+            </div>
+
             <div class="row mt-2">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                     <button class="btn btn-orange btn-block" id="btn_login">Sign In</button>
@@ -83,10 +89,11 @@
             </div>
 
 
-
         </div>
     </div>
 </div>
+
+<?php $this->load->view("templates/footer"); ?>
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 </body>

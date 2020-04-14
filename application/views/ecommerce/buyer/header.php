@@ -7,8 +7,8 @@
 </script>
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
-    <span class='nav-link font-small text-yellow d-block d-sm-none' style="color: yellow;">Cart: PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
+	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
+    <a href="<?php echo base_url('my-order')?>"><span class='nav-link font-small text-yellow d-block d-sm-none' style="color: yellow;">Cart: PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -12px;">
 		<span class="fas fa-bars"></span>
 	</button>

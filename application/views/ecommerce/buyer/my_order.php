@@ -452,7 +452,7 @@
 									</div>
 									<div class="row">
 										<div class="col-6 col-lg-8">
-											<span class="font-weight-600">Total</span> 
+											<span class="font-weight-600">Total (PHP)</span> 
 										</div>
 										<div class="col-6 col-lg-4 text-right">
 											<span class="font-weight-600" id="total_amount">PHP 0.00</span>
@@ -789,7 +789,12 @@
 							<div class="row">
 								<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 									<span>Delivery Fee</span>
-									<input type="text" class="form-control text-right" id="delivery_fee" readonly>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-black">PHP</span>
+                                        </div>
+                                            <input type="text" class="form-control text-right" id="delivery_fee" readonly>
+                                    </div>
 								</div>
 							</div>
 							<div class="row px-0">

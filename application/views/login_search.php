@@ -30,6 +30,7 @@
             width: 120px !important;
         }    
     }    
+
     </style>
 
     

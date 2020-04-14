@@ -260,7 +260,7 @@
 
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                            <div class="row mt-3 div-btn-order py-3 mx-1" id="div-btn-order">
+                            <div class="row mt-3 div-btn-order pt-3 mx-1" id="div-btn-order">
                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="row">
                                         <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
@@ -285,15 +285,21 @@
                                         <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
                                             <button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
                                         </div>								
-                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
-                                            <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
-                                        </div>								
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-btn-order" id="div-btn-back">
+                            <div class="row pb-3 mx-1">
+                                <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
+                                    <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
+                                </div>								
+                            </div>
+                        </div>
+                    </div>
 
 				</div>
 

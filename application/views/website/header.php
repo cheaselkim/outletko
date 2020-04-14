@@ -27,8 +27,8 @@
 		</ul>
 	</div>  
 
-	<span class="font-size-25 mt-3 font-weight-600" style="text-shadow: 2px 2px rgb(169,169,169);color:rgb(79, 98, 40); ">A big business starts small. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-10.png')?>" class="border img-header-website" alt=""></a>
+	<span class="font-size-25 mt-3 font-weight-600 d-none d-md-block" style="text-shadow: 2px 2px rgb(169,169,169);color:rgb(79, 98, 40); ">A big business starts small. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-13.png')?>" class="border img-header-website" alt=""></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		<span class="fas fa-bars " style="color: orange;"></span>
 	</button>

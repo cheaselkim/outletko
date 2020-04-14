@@ -5,7 +5,7 @@
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/header.js') ?>"></script>
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
+	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
 		<span class="fas fa-bars"></span>
 	</button>

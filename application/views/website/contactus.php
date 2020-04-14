@@ -26,7 +26,7 @@ input[type="text"],textarea{
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-1">
             <span class="text-white font-weight-600 h4">Leave us a message below.</span>
         </div>
-        <div class="col-6 mt-4">
+        <div class="col-12 col-lg-6 col-md-8 col-sm-12 mt-4">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-1">
                     <input type="text" class="form-control textbox-40 textbox-orange text-capitalize" placeholder="Name">
