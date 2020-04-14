@@ -9,7 +9,7 @@ class Password extends CI_Controller {
 	}
 
 	public function forgot_password() {
-		$this->load->view("email/email"); 
+		$this->load->view("forgot_password"); 
 	} 
 
 	public function send_email(){

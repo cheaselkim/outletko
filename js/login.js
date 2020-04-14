@@ -480,20 +480,24 @@ function check_login(){
             // console.log(base_url + "login");
             // console.log(result.user_type);
 			if (result.login == "1"){
-				if (result.user_type == "5"){
-                    if (base_url == document.location.href){
-                        // console.log(base_url);
-                        window.open(base_url + "my-order", "_self");
-                    }else if (document.location.href == base_url + "login"){
-                        // console.log(base_url + "my-order");
-                        window.open(base_url + "my-order", "_self");
+                if (result.otp == "1"){
+                    window.open(base_url, "_self");
+                }else{
+                    if (result.user_type == "5"){
+                        if (base_url == document.location.href){
+                            // console.log(base_url);
+                            window.open(base_url + "my-order", "_self");
+                        }else if (document.location.href == base_url + "login"){
+                            // console.log(base_url + "my-order");
+                            window.open(base_url + "my-order", "_self");
+                        }else{
+                            // console.log("location");
+                            location.reload();
+                        }
                     }else{
-                        // console.log("location");
-                        location.reload();
-                    }
-				}else{
-					window.open(base_url, "_self");
-				}				
+                        window.open(base_url, "_self");
+                    }				    
+                }
 			}else{
 				$("#login-error").show();
 			}

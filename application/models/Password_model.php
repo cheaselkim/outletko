@@ -20,6 +20,7 @@ class Password_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+    
     public function find_accountid($account_no, $randomPass){
 //         $account_id = $account_no;
 // 		$query = $this->db->query("SELECT * FROM users WHERE username = ?", array(account_id));
@@ -39,7 +40,8 @@ class Password_model extends CI_Model {
 		$this->db->set("otp", "0");
 		$this->db->set("password", password_hash($password, PASSWORD_DEFAULT));
 		$this->db->where("id", $this->session->userdata("user_id"));
-		$this->db->update("users");
+        $this->db->update("users");
+        $this->session->unset_userdata("otp");
 		return ($this->db->affected_rows() > 0) ? 1 : 0;
 	}
 	

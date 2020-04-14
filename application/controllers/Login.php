@@ -24,6 +24,7 @@ class Login extends CI_Controller {
 				if ($result > 0){
 					$this->load->view("website/otp_password");
 				}else{
+                    $this->session->unset_userdata("otp");
 					// $data['edit'] = 0;
 					// $data['function'] = 0;
 					// $data['sub_module'] = "";

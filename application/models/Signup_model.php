@@ -182,6 +182,7 @@ class Signup_model extends CI_Model {
                           "user_uname" => $value->username,
                           "user_fullname" => ($value->first_name." ".$value->last_name),
                           "user_status" => $value->status,
+                          "otp" => $value->otp,
                           "user_type" => $value->user_type,
                           "all_access" => $value->all_access,
                           "owner" => $result,
@@ -206,6 +207,7 @@ class Signup_model extends CI_Model {
                           "all_access" => $value->all_access,
                           "owner" => $result,
                           "order_no" => $result3->order_no,
+                          "otp" => $value->otp,
                           "login" => 1,
                           "validated" => true
                     );
@@ -243,6 +245,7 @@ class Signup_model extends CI_Model {
                         "owner" => $result,
                         "cart_total" => $total,
                         "order_no" => COUNT($buyer_query),
+                        "otp" => $value->otp,
                         "login" => 1,
                         "validated" => true
                     );

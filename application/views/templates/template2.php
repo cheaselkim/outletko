@@ -27,7 +27,7 @@
     </script>
 
 
-    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css') ?>">  
 <!--     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->

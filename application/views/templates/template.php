@@ -20,7 +20,7 @@
     </script>
 
 
-    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
 
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css') ?>">  

@@ -2,6 +2,46 @@ $(document).ready(function(){
 	$("#alert-danger").hide();
 	$("#alert-success").hide();
 
+	$("#new_pass").on('keypress',function(e) {
+	    if(e.which == 13) {
+            var new_pass = $("#new_pass").val();
+            var conf_pass = $("#conf_pass").val();
+    
+            if (new_pass.length < 6){
+                $("#alert-danger").show();
+                $("#alert-success").hide();			
+                $("#alert-danger span").text("Password Length should be greater than 6");
+            }else if (new_pass != conf_pass){
+                $("#alert-danger").show();
+                $("#alert-success").hide();
+                $("#alert-danger span").text("Password does not match");
+            }else{
+                change_password();
+            }
+
+        }
+	});
+
+	$("#conf_pass").on('keypress',function(e) {
+	    if(e.which == 13) {
+            var new_pass = $("#new_pass").val();
+            var conf_pass = $("#conf_pass").val();
+    
+            if (new_pass.length < 6){
+                $("#alert-danger").show();
+                $("#alert-success").hide();			
+                $("#alert-danger span").text("Password Length should be greater than 6");
+            }else if (new_pass != conf_pass){
+                $("#alert-danger").show();
+                $("#alert-success").hide();
+                $("#alert-danger span").text("Password does not match");
+            }else{
+                change_password();
+            }
+        }
+	});
+
+
 	$("#reset_pass").click(function(){
 		var email = $("#email").val();
 		$("#reset_pass").prop("disabled", true);
@@ -92,7 +132,8 @@ function forgot_password(){
 
 function change_password(){
 	var password = $("#new_pass").val();
-	var csrf_name = $("input[name=csrf_name]").val();
+    var csrf_name = $("input[name=csrf_name]").val();
+    var user_type = $("#user_type").val();
 
 	$.ajax({
 		data : {"password" : password, csrf_name : csrf_name},
@@ -109,8 +150,16 @@ function change_password(){
 				$("#alert-danger").show();
 			}
 	
-			startTimer(4, "");
-			setTimeout(function(){ window.open(base_url, "_self"); }, 4000);
+			startTimer(5, "");
+			setTimeout(function(){ 
+
+                if (user_type == "5"){
+                    window.open(base_url + "my-order", "_self");
+                }else{
+                    window.open(base_url, "_self");
+                }                
+
+             }, 3000);
 		}, error : function(err){
 			console.log(err.responseText);
 		}

@@ -53,37 +53,44 @@
         <div class="col-9 col-lg-12 col-md-12 col-sm-12 mx-auto">
             
             <div class="row mt-4 mb-5">
-                <div class="col-6 col-lg-12 col-md-12 col-sm-12 mx-auto">
+                <div class="col-6 col-lg-2 col-md-3 col-sm-12 mx-auto">
                     <img src="assets/img/logo-13.png" alt="logo" class="img-fluid">
                 </div>
             </div>
 
             <div class="row mt-2">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="col-12 col-sm-4 col-md-6 col-lg-12 alert alert-danger mx-auto" id="login-error">
+                <span>Invalid Username or Password</span>
+              </div>
+            </div>
+
+
+            <div class="row mt-2">
+                <div class="col-12 col-lg-4 col-md-6 col-sm-12 mx-auto">
                     <input type="text" class="form-control textbox-orange" name="username" id="login_email" placeholder="username">
                 </div> 
             </div>
 
             <div class="row mt-2">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-6 col-sm-12 mx-auto">
                     <input type="password" class="form-control textbox-orange" name="password" id="login_password" placeholder="password">
                 </div> 
             </div>
 
             <div classs="row">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right pr-0 pt-2">
+                <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-right pr-0 pt-2  mx-auto">
                     <a href="<?php echo base_url('forgot_password')?>" class="text-red">Forgot Password?</a>
                 </div>
             </div>
 
             <div class="row mt-2">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-6 col-sm-12 mx-auto">
                     <button class="btn btn-orange btn-block" id="btn_login">Sign In</button>
                 </div> 
             </div>
 
             <div class="row mt-2">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-6 col-sm-12 mx-auto">
                     <a href="<?php echo base_url() ?>"><button class="btn btn-danger btn-block">Cancel</button></a>
                 </div> 
             </div>

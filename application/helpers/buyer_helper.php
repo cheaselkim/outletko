@@ -71,10 +71,10 @@ if (!function_exists("tbl_products_no_order")){
 										<div class="col-12">
 											<div class="row">
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Price : <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
+													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
 												</div>
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Total Price : <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
+													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
 												</div>
 											</div>
 										</div>
@@ -125,10 +125,10 @@ if (!function_exists("tbl_products_no_order")){
 										<div class="col-12">
 											<div class="row">
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Price : <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
+													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
 												</div>
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Total Price : <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
+													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
 												</div>
 											</div>
 										</div>

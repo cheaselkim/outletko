@@ -18,7 +18,7 @@
     </script>
 
 
-    <link rel="icon" href="assets/img/logo-10.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
@@ -144,7 +144,7 @@
 
       <div class="row" hidden>
         <div class="col-lg-2 col-md-2 col-sm-4 mx-auto pt-3 text-center">
-          <img src="<?php echo base_url('/assets/img/logo-10.png') ?>" alt="logo" class="img-logo">
+          <img src="<?php echo base_url('/assets/img/logo-13.png') ?>" alt="logo" class="img-logo">
         </div>
       </div>
 
@@ -438,7 +438,7 @@
   <div class="col-7 py-2" style="background: rgb(192, 219, 136);">
     <div class="row">
       <div class="col-auto">
-        <img src="<?php echo base_url('assets/img/logo-10.png');?>" alt="logo" style="height:56px; width:60px;border:1px solid white;"><br>
+        <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:56px; width:60px;border:1px solid white;"><br>
       </div>
       <div class="col-8 pl-0 pr-1">
         <div class="row">
@@ -534,7 +534,7 @@
                     <input type="password" class="form-control form-control-sm textbox-green" id="login_password">
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                    <span class="text-red">Forgot Password?</span>
+                    <a href="<?php echo base_url('forgot_password')?>"><span class="text-red">Forgot Password?</span></a>
                 </div>
             </div>
 

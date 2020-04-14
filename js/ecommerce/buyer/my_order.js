@@ -67,7 +67,8 @@ $(document).ready(function(){
 	$("#btn_order_payment").click(function(){
 		$("#div-home").hide();
 		$("#div-order-confirm").hide();
-		$("#div-order-summary").show("slow");
+		$("#div-checkout-details").show("slow");
+		// $("#div-order-summary").show("slow");
 	});
 
 	$("#btn_confirm_order_2").click(function(){
@@ -858,8 +859,10 @@ function get_order_checkout(div_id){
                     
                     if ($(document).width() < 768){
                         img_width = "12%;";
+                        $("#div-order-summary table").find("td:eq(0)").css("width", "50%");
                     }else{  
                         img_width = "6%;";
+                        $("#div-order-summary table").find("td:eq(0)").css("width", "20%");
                     }
 
 					$("#prod_dtls tbody").append("<tr><td><img src='"+prod_img+"' style='width: "+img_width+"'>&nbsp;&nbsp;" + prod_dtls[i].product_name + 

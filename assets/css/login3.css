@@ -9,7 +9,7 @@
 }
 
 .text-black{
-    color: black;
+    color: black !important;
 }
 
 .text-white{

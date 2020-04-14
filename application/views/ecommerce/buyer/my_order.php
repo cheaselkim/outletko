@@ -526,7 +526,7 @@
 										<td id="summ-courier"></td>
 									</tr>
 									<tr>
-										<td style="width: 15%;" class="font-weight-600">Shipping Fee</td>
+										<td style="width: 15%;" class="font-weight-600">Shipping Fee (PHP)</td>
 										<td id="summ-shipping-fee"></td>
 									</tr>
 									<tr>
@@ -547,15 +547,15 @@
 							<table class="table table-sm table-bordered">
 								<tbody>
 									<tr>
-										<td style="width: 15%;" class="font-weight-600">Total Order</td>
+										<td style="width: 15%;" class="font-weight-600">Total Order (PHP)</td>
 										<td id="summ-total-order"></td>
 									</tr>
 									<tr>
-										<td style="width: 15%;" class="font-weight-600">Shipping Fee</td>
+										<td style="width: 15%;" class="font-weight-600">Shipping Fee (PHP)</td>
 										<td id="summ-delivery-fee"></td>
 									</tr>
 									<tr>
-										<td style="width: 15%;" class="font-weight-600">Grand Total</td>
+										<td style="width: 15%;" class="font-weight-600">Grand Total (PHP)</td>
 										<td id="summ-grand-total"></td>
 									</tr>
 								</tbody>
@@ -655,7 +655,7 @@
 
 					<div class="row">
 						<div class="col-12 col-lg-6 col-md-6 col-sm-6">
-							<button class="btn btn-primary" id="btn_order_payment">Other Payment Method</button>
+							<button class="btn btn-primary" id="btn_order_payment">Other Payment Type</button>
 						</div>
 						<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right pt-4">
 							<button class="btn btn-danger" id="btn_cancel_place_2">Cancel</button>
