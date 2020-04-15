@@ -557,7 +557,7 @@ $(document).ready(function(){
 			$("#ship_courier").attr("data-id", ui.item.id);
 		},
 		source: function(req, add){
-      var csrf_name = $("input[name=csrf_name]").val();
+            var csrf_name = $("input[name=csrf_name]").val();
 			var ship_courier = $("#ship_courier").val();
         $.ajax({
           url: base_url + "Outletko_profile/search_courier/", 
@@ -1222,9 +1222,9 @@ function index(){
     
         var e2 = $('<div class="col col-6 col-md-4 col-lg-3 mt-4 '+pad+' ">' +
 						'<div class="div-list-img">' +
-								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" data-target="#img_upload" class=" cursor-pointer">' +
+								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +
 						'</div>' +
-						'<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" data-toggle="modal" data-target="#img_upload">' +
+						'<div class="bd-green text-center cursor-pointer div-list-img-btn py-1"  onclick="clear_prod_model();" id="btn-img-upload-2" data-toggle="modal" data-target="#img_upload">' +
 							'<span class="font-weight-600 font-size-16">Add Product</span><br>' +
 							'<span class="font-weight-600 font-size-14 text-red">PHP 0.00</span>' +
 						'</div>' +
@@ -2342,11 +2342,14 @@ function delete_product(){
     dataType : "JSON",
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
-      index();
-      swal({
-        type : "success",
-        title : "Succesfully Deleted"
-      })
+    //   index();
+        swal({
+            type : "success",
+            title : "Succesfully Deleted",
+            timer : 3000
+        }, function(){
+            location.reload();
+        })
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -2355,17 +2358,25 @@ function delete_product(){
 }
 
 function clear_prod_model(){
+    $("#prod_id").val("");
     $("#prod_desc").val("");
     $("#prod_name").val("");
     $("#prod_remarks").val("");
-    $("#prod_id").val("");
+    $("#prod_online").val("1");
+    $("#prod_condition").val("1");
     $("#prod_ship_fee_w_mm").val(0);
     $("#prod_ship_fee_o_mm").val(0);
     $("#unserialized_files").val("");
     $("#imgInp").val("");
-    $("#img-upload").attr("src", "images/products/a.png");
+    $("#img-upload").attr("src", base_url + "assets/images/add_pic.png");
     $("#prod_price").val(0);
     $("#prod_price2").val(0);
+    $("#prod_stock").val(0);
+    $("#prod_weight").val(0);
+    $("#prod_std_delivery").val($("#std_del").val());
+    $("#prod_return").val($("#inp_return").val());
+    $("#prod_warranty").val($("#inp_warranty").val());
+    $("#delete_product").hide();
 }
 
 function get_product_info(id){

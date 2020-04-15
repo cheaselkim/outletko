@@ -519,7 +519,7 @@ class Outletko_profile extends CI_Controller {
 		$data = array();
 		$data['response'] = "false";
 
-		$result = $this->outletko_profile_model->search_courier($courier);
+        $result = $this->outletko_profile_model->search_courier($courier);
 		if (!empty($result)){
 			$data['response'] = "true";
 			foreach ($result as $key => $value) {

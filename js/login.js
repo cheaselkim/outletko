@@ -27,6 +27,15 @@ $(document).ready(function(){
         }
     });
 
+    $('.navbar-nav > li > a').on('click', function(){
+        $('.navbar-collapse').collapse('hide');
+    });
+
+    $('.navbar-nav > li > button').on('click', function(){
+        $('.navbar-collapse').collapse('hide');
+    });
+
+
     $("#btn_mod_signin").click(function(){
         $("#modal_signup").modal("hide");
     });

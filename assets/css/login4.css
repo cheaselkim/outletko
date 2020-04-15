@@ -364,7 +364,8 @@ body{
 }
 
 .tile{
-  width: 20%;
+  /* width: 20%; */
+  width: 16%;
   min-height:22px;
 /*    border: 1px #BDBDBD solid;*/
   display: inline-block;

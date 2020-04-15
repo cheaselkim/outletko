@@ -1047,7 +1047,6 @@ function get_courier(){
 	var total_order = $("#vw_total_order").text().replace(/,/g, '');
 	var shipping_fee = "";
 
-
 	if (id != "0"){
 		$.ajax({
 			data : {id : id, csrf_name : csrf_name},
