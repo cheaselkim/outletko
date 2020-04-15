@@ -2342,11 +2342,11 @@ function delete_product(){
     dataType : "JSON",
     success : function(result){
       $("input[name=csrf_name]").val(result.token);
+      $("body").removeClass("stop-scrolling");
     //   index();
         swal({
             type : "success",
             title : "Succesfully Deleted",
-            timer : 3000
         }, function(){
             location.reload();
         })

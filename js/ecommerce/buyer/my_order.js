@@ -469,6 +469,7 @@ function get_orders(){
             $(".prod_qty").number(true, 0);
             $("#order_no").text(result.order_no);
             $("#total-cart").text($.number(result.cart_total, 2));
+            $("#total-cart-2").text($.number(result.cart_total, 2));
 		}, error : function(err){
 			console.log(err.responseText);
 		}	

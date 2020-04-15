@@ -432,10 +432,35 @@ class Outletko_profile_model extends CI_Model {
     }
     
     public function delete_product($id){
-        $this->db2->where("id", $id);
-        $this->db2->set("product_status", 0);
-        $this->db2->update("products");
-        // $this->db2->delete("products");
+
+        $status = true;
+
+        $query = $this->db2->query("SELECT * FROM products WHERE id = ?", array($id))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $product = unserialize($value->img_location);
+            }
+        }else{
+            $product = "";
+        }
+
+
+        if (!empty($product)){
+            $file = './images/products/'.$product[0];
+            if (file_exists($file)){
+                unlink($file);
+            }
+        }else{
+            $status = false;
+        }
+
+        if ($status == true){
+            $this->db2->where("id", $id);
+            // $this->db2->set("product_status", 0);
+            // $this->db2->update("products");
+            $this->db2->delete("products");    
+        }
 
         if($this->db2->trans_status() === FALSE){
             $db_error = "";

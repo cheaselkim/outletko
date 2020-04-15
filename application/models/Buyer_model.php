@@ -149,9 +149,9 @@ class Buyer_model extends CI_Model {
             `account`.`id` = `products`.`account_id`
             WHERE 
             `buyer_order_products`.`comp_id` = ? AND 
-            (order_id = '' OR order_id IS NULL )
+            (order_id = '' OR order_id IS NULL ) AND `products`.`product_status` = ? 
             ORDER BY `account`.`account_name`, `products`.`product_name`
-            ", array($this->session->userdata("comp_id")))->result();
+            ", array($this->session->userdata("comp_id"), "1"))->result();
 
         return $query;
 
