@@ -31,12 +31,12 @@ $(document).ready(function(){
     $("#div-for-appointment").hide();
     $("#div-for-delivery").hide();
     $("#div-prod-ship-fee").hide();
-    $("#div-update-button").hide();
 
     if ($(document).width() > 700){
         $("#div-store-img-btn-1").hide();
         $("#div-store-img-btn-2").hide();
         $("#div-store-img-btn-3").hide();    
+        $("#div-update-button").hide();
     }
 
 

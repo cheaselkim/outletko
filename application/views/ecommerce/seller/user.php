@@ -10,8 +10,8 @@
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header pr-0">
 					<div class="row">
 						<div class="col-12 col-lg-auto py-1 pad-left">
-							<div class="div-prod-img cursor-pointer div-prof-pic mx-auto" id="div-prod-img" data-toggle="modal" data-target="#modal_prof_pic"  style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
-								<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2" id="div-update-button" data-toggle="modal" data-target="#modal_prof_pic">
+							<div class="div-prod-img cursor-pointer div-prof-pic mx-auto" id="div-prod-img"   style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
+								<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2" id="div-update-button" data-toggle="modal" data-target="#modal_prof_pic"> <!-- data-toggle="modal" data-target="#modal_prof_pic" -->
 									<i class="fas fa-camera text-white"></i><br>
 									<span class="text-white font-weight-bold font-size-18">Update</span>
 								</div>
@@ -1412,12 +1412,14 @@
 
 		                    <div class="form-group mb-0 row">
 		                    	<div class="col-12 col-md-12 col-lg-12">
-									<button class="btn btn-modal-img-upload btn-success bg-white">
+									<!-- <button class="btn  btn-success bg-white"> -->
+                                    <span class="btn btn-block btn-success btn-file btn-modal-img-upload bg-white" style="border-top: 0;border-radius: 0;">
 									<!--    <i class="fa fa-camera" aria-hidden="true">-->
 									    	Choose Image
 									    	<input type="file" id="imgInp" class="img-upload-modal btn btn-success">
 									<!--  	</i>-->
-									</button>
+                                    </span>
+									<!-- </button> -->
 								</div>
 		                    </div>
 		                </div>
@@ -1606,10 +1608,10 @@
       		<div class="col-10 col-lg-8 col-md-8 col-sm-12 mx-auto px-0" id="div-img-prof" style="height: 230px;border: 1px solid #28a745;">
       		</div>
       		<div class="col-10 col-lg-8 col-md-8 col-sm-12 mx-auto px-0 cursor-pointer">
-				<button class="btn btn-block btn-outline-success " style="border-top: 0;border-radius: 0;">
-			    	Choose Image
+				<span class="btn btn-block btn-outline-success btn-file" style="border-top: 0;border-radius: 0;">
+                    Browse
 			    	<input type="file" id="imgProf" class="img-upload-modal">
-				</button>      			
+				</span>      			
       		</div>
       	</div>
 
@@ -1635,10 +1637,10 @@
       		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0" id="div-img-store" style="height: 270px;border: 1px solid black;">
       		</div>
       		<div class="col-lg-8 col-md-8 col-sm-12 mx-auto px-0 cursor-pointer">
-				<button class="btn btn-block btn-outline-success " style="border-top: 0;border-radius: 0;">
-			    	Choose Image
+              <span class="btn btn-block btn-outline-success btn-file" style="border-top: 0;border-radius: 0;">
+                    Browse
 			    	<input type="file" id="imgStore" class="img-upload-modal">
-				</button>      			
+				</span>      			
       		</div>
       	</div>
 
