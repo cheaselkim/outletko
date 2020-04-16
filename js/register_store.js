@@ -156,7 +156,7 @@ $(document).ready(function(){
 
         if ($(this).attr("id") == "div-card-payment"){
             $("#payment-type").val("1");
-        }else{s
+        }else{
             $("#payment-type").val("2");
         }
         check_payment();
