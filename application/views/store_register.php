@@ -121,8 +121,9 @@
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-plan-header">
                         <div class="row">  
-                            <div class="col-11 col-lg-6 col-md-8 col-sm-10 text-center text-white mx-auto div-plan-discount">
-                                <span class="font-header-discount font-weight-600"><u>60% Discount</u> to those who will subscribe on or before MAY 31, 2020</span>
+                            <div class="col-11 col-lg-7 col-md-9 col-sm-10 text-center text-white mx-auto div-plan-discount">
+                                <span class="font-header-discount font-weight-600"><u>Special Subscription Fee for One (1) Year</u></span><br>
+                                <span class="font-header-discount-2 font-weight-600">to those who will subscribe <br> before June 30, 2020</span>
                             </div>
                         </div>
                         <div class="row" hidden>
@@ -133,7 +134,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-subheader">
-                                <span class="font-subheader">Choose Payment Plan for your outletko.com</span>
+                                <span class="font-subheader">Choose Payment Plan</span>
                             </div>
                         </div>
                     </div>
@@ -145,7 +146,7 @@
                                 <div class="mx-auto text-center div-plan-d div-plan" id="div-plan-b">
                                     <p class="font-size-25 font-weight-600 mb-0">Plan D : Annually</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">5,750.00</span></span><br>
-                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">2,300.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">2,300.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-d" value="1"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
@@ -153,7 +154,7 @@
                                 <div class="mx-auto text-center div-plan-c div-plan" id="div-plan-c">
                                     <p class="font-size-25 font-weight-600 mb-0">Plan C : Semi - Annual</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">3,000.00</span></span><br>
-                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">1,170.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">1,170.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-c" value="2"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
@@ -161,7 +162,7 @@
                                 <div class="mx-auto text-center div-plan-b div-plan" id="div-plan-b">
                                     <p class="font-size-25 font-weight-600 mb-0">Plan B : Quarterly</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">1,500.00</span></span><br>
-                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">585.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">585.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-b" value="3"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
@@ -169,7 +170,7 @@
                                 <div class="mx-auto text-center div-plan-a div-plan" id="div-plan-a">
                                     <p class="font-size-25 font-weight-600 mb-0">Plan A : Monthly</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">500.00</span></span><br>
-                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">195.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">195.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-a" value="4"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>

@@ -70,7 +70,7 @@ table tbody td, .table tbody th{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 .font-size-25{
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .div-plan-header{
@@ -78,11 +78,19 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 30px;
+    padding-top: 20px;
+}
+
+.div-plan-discount{
+    padding: 16px;
 }
 
 .font-header-discount{
     font-size: 17px;
+}
+
+.font-header-discount-2{
+    font-size: 15px;
 }
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
@@ -127,6 +135,10 @@ table tbody td, .table tbody th{
     margin-left: 0;
 }
 
+.plan-discount-price{
+    font-size: 25px;
+}
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -150,6 +162,18 @@ table tbody td, .table tbody th{
 
 .div-plan-subheader{
     padding-top: 50px;
+}
+
+.div-plan-discount{
+    padding: 20px;
+}
+
+.font-header-discount{
+    font-size: 27px;
+}
+
+.font-header-discount-2{
+    font-size: 22px;
 }
 
 .div-bill-total{
@@ -176,21 +200,22 @@ table tbody td, .table tbody th{
     font-size: 30px;
 }
 
-.font-header-discount{
-    font-size: 25px;
-}
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
     border: 1px solid gray;
     margin-top: 15px;
     padding-top: 10px;
     padding-bottom: 15px;
+    width: 300px;
 }
 
 .div-cart-total{
     margin-left: 1rem;
     margin-right: 1rem;
     max-width: 95.5%;
+}
+
+.div-plan{
 }
 
 }
@@ -208,6 +233,18 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+.font-header-discount{
+    font-size: 30px;
+}
+
+.font-header-discount-2{
+    font-size: 22px;
+}
+
+.div-plan-subheader{
+    padding-top: 40px;
 }
 
 .div-bill-total{
@@ -228,6 +265,11 @@ table tbody td, .table tbody th{
 .div-payment-divider{
     height: 200px;
 }
+
+.plan-discount-price{
+    font-size: 38px;
+}
+
 
 
 }
@@ -253,6 +295,11 @@ table tbody td, .table tbody th{
     background-repeat: no-repeat;
 }
 
+.div-plan{
+    width: auto;
+}
+
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -266,7 +313,11 @@ table tbody td, .table tbody th{
 }
 
 .font-header-discount{
-    font-size: 2rem;
+    font-size: 40px;
+}
+
+.font-header-discount-2{
+    font-size: 30px;
 }
 
 .div-plan-header{
@@ -275,11 +326,11 @@ table tbody td, .table tbody th{
     background-size: 100% 100%;
     background-repeat: no-repeat;
     /* padding-top: 75px; */
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 .div-plan-subheader{
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 .div-plan-font-header{
@@ -334,6 +385,10 @@ table tbody td, .table tbody th{
 .font-subheader{
     font-size: 20px;
     font-weight: 300;
+}
+
+.plan-discount-price{
+    font-size: 43px;
 }
 
 }
