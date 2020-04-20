@@ -62,6 +62,11 @@ table tbody td, .table tbody th{
     background: #ffa812;
 }
 
+.div-plan-discount{
+    background: black;
+    padding: 30px;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 .font-size-25{
@@ -69,11 +74,15 @@ table tbody td, .table tbody th{
 }
 
 .div-plan-header{
-    height:230px;
+    height:200px;
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 10px;
+    padding-top: 30px;
+}
+
+.font-header-discount{
+    font-size: 17px;
 }
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
@@ -136,7 +145,11 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 20px;
+    padding-top: 50px;
+}
+
+.div-plan-subheader{
+    padding-top: 50px;
 }
 
 .div-bill-total{
@@ -164,10 +177,8 @@ table tbody td, .table tbody th{
 }
 
 .font-header-discount{
-    font-size: 20px;
+    font-size: 25px;
 }
-
-
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
     border: 1px solid gray;
@@ -265,6 +276,10 @@ table tbody td, .table tbody th{
     background-repeat: no-repeat;
     /* padding-top: 75px; */
     padding-top: 40px;
+}
+
+.div-plan-subheader{
+    padding-top: 60px;
 }
 
 .div-plan-font-header{

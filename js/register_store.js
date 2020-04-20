@@ -364,16 +364,16 @@ function check_plan(plan){
     var plan_price = "";
 
     if (plan == "1"){
-        plan_name = "Payment Plan A : Annually";
+        plan_name = "Payment Plan D : Annually";
         plan_price = "2300.00";
     }else if (plan == "2"){
-        plan_name = "Payment Plan B : Semi - Annual";
+        plan_name = "Payment Plan C : Semi - Annual";
         plan_price = "1170.00";
     }else if (plan == "3"){
-        plan_name = "Payment Plan C : Quarterly";
+        plan_name = "Payment Plan B : Quarterly";
         plan_price = "585.00"
     }else if (plan == "4"){
-        plan_name = "Payment Plan D : Monthly";
+        plan_name = "Payment Plan A : Monthly";
         plan_price = "195.00"
     }else{
 

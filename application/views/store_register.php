@@ -121,18 +121,18 @@
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-plan-header">
                         <div class="row">  
-                            <div class="col-12 col-lg-8 col-md-10 col-sm-10 text-center text-yellow mx-auto">
-                                <span class="font-header-discount font-weight-600"><u>60% Discount</u> for One (1) year subscription of Outletko to those who will register on or before MAY 31, 2020</span>
+                            <div class="col-11 col-lg-6 col-md-8 col-sm-10 text-center text-white mx-auto div-plan-discount">
+                                <span class="font-header-discount font-weight-600"><u>60% Discount</u> to those who will subscribe on or before MAY 31, 2020</span>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" hidden>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-font-header">
                                 <span class="font-header">Start using Outletko.com </span><br>
                                 <span class="font-header">in your business</span>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-subheader">
                                 <span class="font-subheader">Choose Payment Plan for your outletko.com</span>
                             </div>
                         </div>
@@ -141,33 +141,33 @@
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="row pt-2">
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2">
+                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-4">
                                 <div class="mx-auto text-center div-plan-d div-plan" id="div-plan-b">
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan A : Annually</p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Plan D : Annually</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">5,750.00</span></span><br>
-                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">2300.00</span></span><br>
+                                    <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">2,300.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-d" value="1"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2">
+                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-3">
                                 <div class="mx-auto text-center div-plan-c div-plan" id="div-plan-c">
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan B : Semi - Annual</p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Plan C : Semi - Annual</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">3,000.00</span></span><br>
                                     <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">1,170.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-c" value="2"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2">
+                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-2">
                                 <div class="mx-auto text-center div-plan-b div-plan" id="div-plan-b">
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan C : Quarterly</p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Plan B : Quarterly</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">1,500.00</span></span><br>
                                     <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">585.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-b" value="3"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2">
+                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-1">
                                 <div class="mx-auto text-center div-plan-a div-plan" id="div-plan-a">
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan D : Monthly</p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Plan A : Monthly</p>
                                     <span class="font-size-36 font-weight-600">PHP <span class="text-decoration-line">500.00</span></span><br>
                                     <span class="font-size-36 font-weight-600">PHP <span class="span-plan-price">195.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-a" value="4"><span class="text-black">Select</span></button><br>
