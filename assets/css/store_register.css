@@ -18,6 +18,12 @@ table tbody td, .table tbody th{
     border-bottom:0;
 }
 
+.text-decoration-line{
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 10%;
+}
+
 .parsley-errors-list{
     list-style: none !important;
     padding: 0 !important;
@@ -63,10 +69,11 @@ table tbody td, .table tbody th{
 }
 
 .div-plan-header{
-    height:200px;
+    height:230px;
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    padding-top: 10px;
 }
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
@@ -101,7 +108,8 @@ table tbody td, .table tbody th{
 }
 
 .div-plan-font-header{
-    padding-top: 30px;
+    /* padding-top: 30px; */
+    padding-top: 10px;
     font-size: 25px;
 }
 
@@ -128,6 +136,7 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    padding-top: 20px;
 }
 
 .div-bill-total{
@@ -149,9 +158,16 @@ table tbody td, .table tbody th{
 }
 
 .div-plan-font-header{
-    padding-top: 60px;
-    font-size: 40px;
+    /* padding-top: 60px; */
+    padding-top: 20px;
+    font-size: 30px;
 }
+
+.font-header-discount{
+    font-size: 20px;
+}
+
+
 
 .div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
     border: 1px solid gray;
@@ -238,12 +254,21 @@ table tbody td, .table tbody th{
     height: 178px;
 }
 
+.font-header-discount{
+    font-size: 2rem;
+}
+
 .div-plan-header{
     height:325px;
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 75px;
+    /* padding-top: 75px; */
+    padding-top: 40px;
+}
+
+.div-plan-font-header{
+    padding-top: 20px;
 }
 
 .div-cart-header{

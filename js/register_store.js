@@ -305,6 +305,7 @@ function cart_outlet(){
     var total = "";
 
     if (qty > 0){
+        price = $().find().text();
         if (plan == "1"){
             price = 1000;
         }else if (plan == "2"){
@@ -364,24 +365,30 @@ function check_plan(plan){
 
     if (plan == "1"){
         plan_name = "Payment Plan A : Annually";
-        plan_price = "9500.00";
+        plan_price = "2300.00";
     }else if (plan == "2"){
         plan_name = "Payment Plan B : Semi - Annual";
-        plan_price = "5250.00";
+        plan_price = "1170.00";
     }else if (plan == "3"){
         plan_name = "Payment Plan C : Quarterly";
-        plan_price = "2875.00"
+        plan_price = "585.00"
     }else if (plan == "4"){
         plan_name = "Payment Plan D : Monthly";
-        plan_price = "995.00"
+        plan_price = "195.00"
     }else{
 
     }
 
     $("#plan-price").val(plan_price);
+
     $("#cart-plan-name").text(plan_name);
     $("#cart-plan-price").text("PHP " + $.number(plan_price, 2));
     $("#cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+
+    $("#sml-cart-plan-name").text(plan_name);
+    $("#sml-cart-plan-price").text("PHP " + $.number(plan_price, 2));
+    $("#sml-cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+
     $("#cart-grand-total").text("PHP " + $.number(plan_price, 2));
     $("#total_amount").val(plan_price);
 
