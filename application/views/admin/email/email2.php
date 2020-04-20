@@ -220,17 +220,17 @@
 
         <article class="" style="padding-left: 70px;">
 
-            <h2 style="color: black;margin-bottom: 0;">Thank you so much for subscribing! You have Ten (10) days free trial. </h2>
-            <p style="font-size: 18px">Our Sales Team will be contacting you shortly.</p><br>
+            <h2 style="color: black;margin-bottom: 0;">Thank you so much for subscribing! </h2>
+            <p style="font-size: 18px" hidden>Our Sales Team will be contacting you shortly.</p><br>
 
             <p style="font-size: 18px;">Get started by logging into your Outletko account at </p>
             <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com" target="_blank">https://www.outletko.com</a></p>
 
-            <div class="row col-12">
+            <div class="row col-12" hidden>
                 <h3 style="margin: 0;margin-top: 10px;">OutletkoSuite Account</h3>
                 <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $account_id; ?></p>
             </div>
-            <div class="row col-12">
+            <div class="row col-12" hidden>
                 <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $eoutletsuite_pass; ?></p>
             </div>
 

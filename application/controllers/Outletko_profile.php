@@ -26,7 +26,50 @@ class Outletko_profile extends CI_Controller {
 		 */
 	}
 
-    
+    public function check_subscription(){
+        if ($this->session->userdata("check_subscription") == "1"){
+            $check_subs = "0";
+        }else{
+            $this->session->set_userdata("check_subscription", "1");
+            $check_subs = "1";
+        }
+        
+        $result = $this->outletko_profile_model->check_subscription();
+        $renewal_date = "";
+        $status = "";
+        $now_date = "";
+        $end_date = "";
+
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $renewal_date = date("m/d/Y", strtotime($value->renewal_date));
+                $now_date = strtotime(date("Y-m-d"));
+                $end_date = strtotime($value->renewal_date);
+            }
+        }
+
+        $datediff = $end_date - $now_date;
+        $datediff = round($datediff / (60 * 60 * 24));
+
+        if ($datediff <= 30){
+            $status = "1";
+        }else{
+            $status = "0";
+        }
+
+        if ($check_subs == "1"){
+            $data['now_date'] = $now_date;
+            $data['end_date'] = $end_date;
+            $data['datediff'] = $datediff;
+            $data['date'] = $renewal_date;            
+            $data['result'] = $status;
+        }else{
+            $data['result'] = "0";
+        }
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
     public function business_type(){
         $data['data'] = $this->outletko_profile_model->business_type();

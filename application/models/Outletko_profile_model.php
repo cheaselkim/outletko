@@ -14,6 +14,11 @@ class Outletko_profile_model extends CI_Model {
                 }
     }
 
+    public function check_subscription(){
+        $query = $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($this->session->userdata("account_id")))->result();
+        return $query;
+    }
+
     public function business_type(){
         $query = $this->db->query("SELECT * FROM business_type")->result();
         return $query;

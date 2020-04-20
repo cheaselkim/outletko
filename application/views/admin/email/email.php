@@ -226,11 +226,11 @@
             <p style="font-size: 18px;">Get started by logging into your Outletko account at </p>
             <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com" target="_blank">https://www.outletko.com</a></p>
 
-            <div class="row col-12">
+            <div class="row col-12" hidden>
                 <h3 style="margin: 0;margin-top: 10px;">OutletkoSuite Account</h3>
                 <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $account_id; ?></p>
             </div>
-            <div class="row col-12">
+            <div class="row col-12" hidden>
                 <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $password; ?></p>
             </div>
 

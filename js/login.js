@@ -13,6 +13,16 @@ $(document).ready(function(){
 	$("#div-form").hide();
 	$("#login-error").hide();
 
+	$("#signup_next").hide();
+	$("#signup_back").hide();
+	$("#btn_signup").hide();
+	$("#div-confirm-email2").hide();
+	$("#div-confirm-email").hide();
+	$("#btn_confirm").hide();
+	$("#btn_confirm2").hide();
+	$("#div-form").hide();
+	$("#login-error").hide();
+
     $("#go").click(function(){
         var password = $("#website_password").val();
 

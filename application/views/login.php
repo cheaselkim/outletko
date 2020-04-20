@@ -599,7 +599,7 @@
           <div class="row">
             <div class="col-lg-12 pb-2" style="line-height: 25px;">
               <span class="font-size-18" style="font-size: 18px !important;">Create your Outletko Account. </span><br>
-              <small> Register your store? <a class="cursor-pointer text-black" href="<?php echo base_url('register-store'); ?>" ><u>Register here</u></a> </small> 
+              <small class="text-red font-weight-600" style="font-size-15px;"> Register your store? <a class="cursor-pointer text-red" href="<?php echo base_url('register-store'); ?>" ><u>Register here</u></a> </small> 
               <!-- id="a_register_store" -->
             </div>
           </div>

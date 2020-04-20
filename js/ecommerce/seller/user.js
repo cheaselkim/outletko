@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+  check_subscription();
   business_category();
   payment_type();
   delivery_type();
@@ -686,6 +687,31 @@ function readURL(input, type) {
 }
 
 /* GENERAL FUNCTION */
+
+function check_subscription(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/check_subscription",
+        success : function(data){
+            $("input[name=csrf_name]").val(data.token);
+
+            if (data.result == "1"){
+                swal({
+                    type : "warning",
+                    title : "Friendly Reminder : Your Subscription will end on " + data.date + ". Please feel free to contact us 24/7 if you need any assistance."
+                })
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
 
 function business_category(){
   var csrf_name = $("input[name=csrf_name]").val();
