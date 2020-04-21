@@ -110,6 +110,11 @@ textarea{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
+.colorpicker{
+    left: 0 !important;
+    z-index: 9999;
+}
+
 #img_upload .modal-body{
     padding-left: 0;
     padding-right: 0;
@@ -186,7 +191,7 @@ textarea{
 }
 
 .div-prof-details{
-	height: 140px;
+	height: 160px;
 }
 
 .text-buss-name{

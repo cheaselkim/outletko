@@ -54,8 +54,16 @@
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
     <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>     -->
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
-    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>    
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
+    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>     -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/> <!-- 'monolith' theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/> <!-- 'nano' theme -->
+
+    <!-- Modern or es5 bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
 
     <script>var base_url = '<?php echo base_url() ?>';</script>
 

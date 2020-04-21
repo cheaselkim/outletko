@@ -17,7 +17,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-9 pad-left py-1 pr-0">
+						<div class="col-12 col-lg-9 col-md-12 col-sm-12 pad-left py-1 pr-0">
 							<div class="div-prof-details">
 								<div class="row">
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -31,7 +31,7 @@
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right pt-2 text-span-header-clickable pr-0">
 										<span class="text-white font-weight-bold mr-2 cursor-pointer" id="span_home">Home</span>
-										<span class="text-yellow font-weight-bold cursor-pointer" id="span_setting">Setting</span>
+										<span class="text-yellow font-weight-bold cursor-pointer" id="span_setting">Settings</span>
 									</div>
 								</div>	
 							</div>
@@ -189,6 +189,7 @@
 							<div class="col-lg-9 col-md-8 col-sm-12">
 								<div style="height: 35px; width: 50px;border: 1px solid black; background-color: #77933c;" class="cursor-pointer" id="colorpicker">
 								</div>
+                                <!-- <input id="demo" type="text" class="form-control" value="rgb(255, 128, 0)" /> -->
 								<input type="hidden" id="color-val">
 							</div>
 						</div>

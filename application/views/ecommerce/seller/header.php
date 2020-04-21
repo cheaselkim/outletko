@@ -32,7 +32,7 @@
 						My Account
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item py-0 cursor-pointer" id="user_settings" data-toggle="modal" data-target="#modal-setting">Settings</a>
+						<a class="dropdown-item py-0 cursor-pointer" id="user_settings" data-toggle="modal" data-target="#modal-setting">Change Password</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item py-0" href="<?php echo base_url('/logout') ?>">Logout</a>
 					</div>

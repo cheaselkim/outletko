@@ -8,22 +8,60 @@ $(document).ready(function(){
   bank_list();
   remittance_list();
 
-  $("#colorpicker").ColorPicker({
-    color: '#77933c',
-    onShow: function (colpkr) {
-      $(colpkr).fadeIn(500);
-      return false;
-    },
-    onHide: function (colpkr) {
-      $(colpkr).fadeOut(500);
-      return false;
-    },
-    onChange: function (hsb, hex, rgb) {
-      $("#color-val").val(hex);
-      $("#colorpicker").css('background', "#" + hex);
-      $('.div-header').css('background', '#' + hex);
+    //   $("#colorpicker").ColorPicker({
+    //     color: '#77933c',
+    //     onShow: function (colpkr) {
+    //       $(colpkr).fadeIn(500);
+    //       return false;
+    //     },
+    //     onHide: function (colpkr) {
+    //       $(colpkr).fadeOut(500);
+    //       return false;
+    //     },
+    //     onChange: function (hsb, hex, rgb) {
+    //       $("#color-val").val(hex);
+    //       $("#colorpicker").css('background', "#" + hex);
+    //       $('.div-header').css('background', '#' + hex);
+    //     }
+    //   });
+const pickr = Pickr.create({
+    el: '#colorpicker',
+    theme: 'nano', // or 'monolith', or 'nano'
+    default : "#77933c",
+    components: {
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+            hex: false,
+            rgba: false,
+            hsla: false,
+            hsva: false,
+            cmyk: false,
+            input: true,
+            clear: true,
+            save: true
+        }
     }
-  });
+});
+
+pickr.on('init', instance => {
+    console.log('init', instance);
+}).on('save', (color, instance) => {
+    // console.log('save', color.toHEXA().toString());
+    $(".pcr-app").removeClass("visible");
+    $("#color-val").val(color.toHEXA().toString());
+    $(".div-header").css("background", color.toHEXA().toString());
+}).on('clear', (color, instance) => {
+    $("#color-val").val("#77933c");
+    $(".div-header").css("background", "#77933c");
+    $(".pcr-app").removeClass("visible");
+    // console.log('clear', instance);
+});
+
 
     $("#div-setting").hide();
     $("#div-my-orders").hide();
@@ -899,12 +937,15 @@ function index(){
     			  (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
     //for text
-        $(".div-header").css("background", "#"+result.result[0].bg_color);
-        $("#colorpicker").css("background", "#"+result.result[0].bg_color);
+        $(".div-header").css("background", result.result[0].bg_color);
+        $("#colorpicker").css("background", result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
-        $("#colorpicker").ColorPicker({
-          color: '#'+ result.result[0].bg_color,
-        });
+        console.log(result.result[0].bg_color);
+
+        // Pickr.setColorRepresentation("#" + result.result[0].bg_color);
+        // $("#colorpicker").ColorPicker({
+        //   color: '#'+ result.result[0].bg_color,
+        // });
 
         if (result.result[0].del_date == "1"){
           $("#cust_del_date").prop("checked", true);
