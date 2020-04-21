@@ -16,7 +16,8 @@ class Outletko extends CI_Controller {
 				"account_name" => $value->account_name,
 				"link_name" => $value->link_name,
 				"about_us" => $value->about_us,
-				"loc_image" => ($value->loc_image == null ? null : unserialize($value->loc_image))
+                // "loc_image" => ($value->loc_image == null ? null : unserialize($value->loc_image))
+                "loc_image" => unserialize($value->loc_image)
  			);
 		}
 

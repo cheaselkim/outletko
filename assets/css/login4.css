@@ -1,26 +1,4 @@
-/*@import url(//db.onlinewebfonts.com/c/89d11a443c316da80dcb8f5e1f63c86e?family=Bauhaus+93);
-@font-face {
-    font-family: "Bauhaus 93"; 
-    src: url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.eot"); 
-    src: url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.eot?#iefix") format("embedded-opentype"), 
-    url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.woff") format("woff"), 
-    url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.svg#Bauhaus 93") format("svg"); 
-}
-*/
 
-@import url(../fonts/89d11a443c316da80dcb8f5e1f63c86e?family=Bauhaus+93);
-@font-face {
-    font-family: "Bauhaus 93"; 
-    src: url("../fonts/89d11a443c316da80dcb8f5e1f63c86e.eot"); 
-    src: url("../fonts/89d11a443c316da80dcb8f5e1f63c86e.eot?#iefix") format("embedded-opentype"), 
-    url("../fonts/89d11a443c316da80dcb8f5e1f63c86e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.woff") format("woff"), 
-    url("../fonts/89d11a443c316da80dcb8f5e1f63c86e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/89d11a443c316da80dcb8f5e1f63c86e.svg#Bauhaus 93") format("svg"); 
-}
-
-
-.font-bauhaus-93{
-    font-family: "Bauhaus 93" !important;
-}
 
 .font-weight-400{
     font-weight: 400;

@@ -19,25 +19,21 @@
 
 
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
 
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
 
-    <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/all.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/style.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
+    <script async src="<?php echo base_url('assets/js/jquery.min.js') ?>" ></script>
+    <script async src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" async></script>
 
-    <script src="<?php echo base_url('js/outletko/signup_login.js') ?>"></script>
-    <script src="<?php echo base_url('js/login.js') ?>"></script>
-    <script src="<?php echo base_url('js/featured_outlet.js')?>"></script>
+
+    <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
 
     <style type="text/css">
       option {
@@ -498,7 +494,7 @@
           <div class="container">
             <div class="row">
               <div class="col-3 col-lg-2 pr-0" hidden>
-                <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
+                <img src="<?php echo base_url('assets/img/logo-13.png') ?>" alt="logo" style='height: 50px;'>
               </div>
               <div class="col-12 col-lg-12 text-center ">
                 <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
@@ -582,7 +578,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-2 pr-0" hidden>
-              <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
+              <img src="<?php echo base_url('assets/img/logo-13.png') ?>" alt="logo" style='height: 50px;'>
             </div>
             <div class="col-lg-12 text-center">
                 <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
