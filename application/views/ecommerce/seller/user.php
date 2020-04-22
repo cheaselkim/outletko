@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 div-header pr-0">
 					<div class="row">
-						<div class="col-12 col-lg-auto py-1 pad-left">
+						<div class="col-12 col-lg-auto col-md-auto py-1 pad-left">
 							<div class="div-prod-img cursor-pointer div-prof-pic mx-auto" id="div-prod-img"   style="background-image: url('<?php echo base_url('assets/images/add_pic.png') ?>'); background-size: 100% 100%;">
 								<div style="background: rgb(0,0,0,0.5);height: 70px;" class="text-center pt-2" id="div-update-button" data-toggle="modal" data-target="#modal_prof_pic"> <!-- data-toggle="modal" data-target="#modal_prof_pic" -->
 									<i class="fas fa-camera text-white"></i><br>
@@ -17,7 +17,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-lg-9 col-md-12 col-sm-12 pad-left py-1 pr-0">
+						<div class="col-12 col-lg-9 col-md-9 col-sm-8 pad-left py-1 pad-right">
 							<div class="div-prof-details">
 								<div class="row">
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">

@@ -71,10 +71,32 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
+.div-header{
+    height: 215px;
+}
+
+.div-list-img{
+    height: 140px;
+}
+
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+.div-header{
+    height: 215px;
+}
+
+.div-prod-img{
+    height: 100px;
+    width: 120px;
+}
+
+.div-list-img{
+    height: 200px;
+}
 
 
 }

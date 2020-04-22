@@ -6,10 +6,10 @@ $(document).ready(function(){
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
-//   get_profile($id);
-    setTimeout(function(){ 
-        get_profile($id);    
-    }, 1000);
+  get_profile($id);
+    // setTimeout(function(){ 
+    //     get_profile($id);    
+    // }, 500);
 
   $("#btn_back").click(function(){
     $("#div-display-products").show();
@@ -92,9 +92,9 @@ function get_profile(id){
             (result.result[0].province_desc == "" ? "" : result.result[0].province_desc) ;
 
     //for text
-        $(".div-header").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
-        $(".div-header-2").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
-        $(".div-profile-footer").css("background", "#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+        $(".div-header").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+        $(".div-header-2").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+        $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
         $("#div-footer-img").css("background-image", "url('"+profile+"')");
@@ -226,7 +226,7 @@ function get_profile(id){
 
         for (var i = 1; i <= posted_rows; i++) {
           if (i % 2 == 0){
-            $style = ("style='background:#"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color)+"'");
+            $style = ("style='background:"+ (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color)+"'");
           }else{
             $style = "background:white";
           }
@@ -258,7 +258,13 @@ function get_profile(id){
               margin_plus_image = "";
             }
 
-            var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
+            if (product_name.length <= 55){
+                product_name = product_name;
+            }else{
+                product_name = product_name.substring(0, 45) + "....";
+            }
+
+            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
               // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
                 '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
@@ -266,8 +272,8 @@ function get_profile(id){
                 '</div>'+
             '</div>'+
             '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
-              '<span class="font-weight-600 font-size-16">'+product_name+'</span><br>' + 
-              '<span class="font-weight-600 font-size-16 text-red">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
+              '<span class="font-weight-600 font-size-16 list-prod-name">'+product_name+'</span><br>' + 
+              '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
             '</div>' +
           '</div>');
 
@@ -378,8 +384,8 @@ function get_product_info(id){
   var window_width = $(document).width();
 
   if (window_width > 768){
-    $(".div-header-2").removeClass("d-none d-lg-block");
-    $(".div-header-4").removeClass("d-none d-lg-block");
+    $(".div-header-2").removeClass("d-none d-md-block");
+    $(".div-header-4").removeClass("d-none d-md-block");
     $(".div-header-2").hide();
     $(".div-header-4").hide();  
   }

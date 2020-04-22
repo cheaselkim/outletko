@@ -19,14 +19,14 @@
 
 
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
-    <link async rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
+    <link    rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
     <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
 
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
 
-    <script async src="<?php echo base_url('assets/js/jquery.min.js') ?>" ></script>
+    <script  src="<?php echo base_url('assets/js/jquery.min.js') ?>" ></script>
     <script async src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" async></script>

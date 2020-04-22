@@ -1,7 +1,7 @@
+<script  type="text/javascript" src="<?php echo base_url('js/ecommerce/profile/profile.js') ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/user.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
-<script type="text/javascript" src="<?php echo base_url('js/ecommerce/profile/profile.js') ?>"></script>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 <input type="hidden" id="id" value="<?php echo $id ?>">
 
@@ -59,7 +59,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2 pb-2 d-none d-lg-block" style="margin-top: -5px;">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-2 pb-2 d-none d-md-block" style="margin-top: -5px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 text-center mb-3 px-5">
@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4 d-none d-lg-block">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4 d-none d-md-block">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
@@ -292,8 +292,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-btn-order" id="div-btn-back">
-                            <div class="row pb-3 mx-1">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back">
+                            <div class="row pb-3 mx-1 div-btn-order">
                                 <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
                                     <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
                                 </div>								

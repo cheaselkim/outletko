@@ -24,43 +24,7 @@ $(document).ready(function(){
     //       $('.div-header').css('background', '#' + hex);
     //     }
     //   });
-const pickr = Pickr.create({
-    el: '#colorpicker',
-    theme: 'nano', // or 'monolith', or 'nano'
-    default : "#77933c",
-    components: {
-        // Main components
-        preview: true,
-        opacity: true,
-        hue: true,
 
-        // Input / output Options
-        interaction: {
-            hex: false,
-            rgba: false,
-            hsla: false,
-            hsva: false,
-            cmyk: false,
-            input: true,
-            clear: true,
-            save: true
-        }
-    }
-});
-
-pickr.on('init', instance => {
-    console.log('init', instance);
-}).on('save', (color, instance) => {
-    // console.log('save', color.toHEXA().toString());
-    $(".pcr-app").removeClass("visible");
-    $("#color-val").val(color.toHEXA().toString());
-    $(".div-header").css("background", color.toHEXA().toString());
-}).on('clear', (color, instance) => {
-    $("#color-val").val("#77933c");
-    $(".div-header").css("background", "#77933c");
-    $(".pcr-app").removeClass("visible");
-    // console.log('clear', instance);
-});
 
 
     $("#div-setting").hide();
@@ -71,7 +35,7 @@ pickr.on('init', instance => {
     $("#div-for-delivery").hide();
     $("#div-prod-ship-fee").hide();
 
-    if ($(document).width() > 700){
+    if ($(document).width() > 1200){
         $("#div-store-img-btn-1").hide();
         $("#div-store-img-btn-2").hide();
         $("#div-store-img-btn-3").hide();    
@@ -692,6 +656,49 @@ function copyToClipboard(element) {
   $temp.remove();
 }
 
+function createColorPicker(color){
+
+    const pickr = Pickr.create({
+        el: '#colorpicker',
+        theme: 'nano', // or 'monolith', or 'nano'
+        default : color,
+        components: {
+            // Main components
+            preview: true,
+            opacity: true,
+            hue: true,
+    
+            // Input / output Options
+            interaction: {
+                hex: false,
+                rgba: false,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+    });
+    
+    pickr.on('init', instance => {
+        console.log('init', instance);
+    }).on('save', (color, instance) => {
+        // console.log('save', color.toHEXA().toString());
+        $(".pcr-app").removeClass("visible");
+        $("#color-val").val(color.toHEXA().toString());
+        $(".div-header").css("background", color.toHEXA().toString());
+    }).on('clear', (color, instance) => {
+        $("#color-val").val("#77933c");
+        $(".div-header").css("background", "#77933c");
+        $(".pcr-app").removeClass("visible");
+        // console.log('clear', instance);
+    });
+    
+
+}
+
 function readURL(input, type) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -940,7 +947,16 @@ function index(){
         $(".div-header").css("background", result.result[0].bg_color);
         $("#colorpicker").css("background", result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
-        console.log(result.result[0].bg_color);
+
+        if (result.result[0].bg_color == null){
+            createColorPicker("#77933c");
+        }else if (result.result[0].bg_color == ""){
+            createColorPicker("#77933c");
+        }else{
+            createColorPicker(result.result[0].bg_color);
+        }
+
+        // console.log(result.result[0].bg_color);
 
         // Pickr.setColorRepresentation("#" + result.result[0].bg_color);
         // $("#colorpicker").ColorPicker({
@@ -1246,9 +1262,37 @@ function index(){
               margin_plus_image = "";
             }
 
+
+            if ($(document).width() <= 600){
+                if (product_name.length <= 25){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 25) + "....";
+                }    
+            }else if ($(document).width() <= 768 ){
+                if (product_name.length <= 40){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 40) + "....";
+                }    
+            }else if ($(document).width() <= 1024 ){
+                if (product_name.length <= 30){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 30) + "....";
+                }    
+            }else{
+                if (product_name.length <= 45){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 45) + "....";
+                }    
+            }
+
+
             // pad = "pad-center";
             pad = "";
-            var e = $('<div class="col col-6 col-md-4 col-lg-3 '+margin+' '+pad+' "   >'+
+            var e = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' "   >'+
                         '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
         						// '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
             					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
@@ -1260,8 +1304,8 @@ function index(){
                       '</div>' +
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
-                    '<span class="font-weight-600 font-size-16" >'+product_name+'</span><br>' + 
-                    '<span class="font-weight-600 font-size-14 text-red">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
+                    '<span class="font-weight-600 font-size-16 list-prod-name" >'+ product_name +'</span><br>' + 
+                    '<span class="font-weight-600 font-size-14 text-red  list-prod-price">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
                     '</div>' +
         				'</div>');
 
@@ -1287,13 +1331,13 @@ function index(){
         }
     //products
     
-        var e2 = $('<div class="col col-6 col-md-4 col-lg-3 mt-4 '+pad+' ">' +
+        var e2 = $('<div class="col col-6 col-md-6 col-lg-3 mt-4 '+pad+' ">' +
 						'<div class="div-list-img">' +
 								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +
 						'</div>' +
 						'<div class="bd-green text-center cursor-pointer div-list-img-btn py-1"  onclick="clear_prod_model();" id="btn-img-upload-2" data-toggle="modal" data-target="#img_upload">' +
-							'<span class="font-weight-600 font-size-16">Add Product</span><br>' +
-							'<span class="font-weight-600 font-size-14 text-red">PHP 0.00</span>' +
+							'<span class="font-weight-600 font-size-16 list-prod-name">Add Product</span><br>' +
+							'<span class="font-weight-600 font-size-14 text-red list-prod-price">PHP 0.00</span>' +
 						'</div>' +
       				'</div>'  );
 
