@@ -1304,7 +1304,7 @@ function index(){
                       '</div>' +
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
-                    '<span class="font-weight-600 font-size-16 list-prod-name" >'+ product_name +'</span><br>' + 
+                    '<span class="font-weight-600 list-prod-name" >'+ product_name +'</span><br>' + 
                     '<span class="font-weight-600 font-size-14 text-red  list-prod-price">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
                     '</div>' +
         				'</div>');

@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // $("#div-body").hide();
     // $("#website_modal").modal("show");
+
     $("#wrong_pass").hide();
     $("#div-body").css("display", "block");
 	$("#signup_next").hide();

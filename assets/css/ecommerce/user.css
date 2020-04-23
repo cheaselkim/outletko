@@ -304,6 +304,7 @@ textarea{
     min-height: 30px;
     display: inline-flex;
     align-items: center;
+    font-size: 13px;
 }
 
 .list-prod-price{
@@ -799,6 +800,7 @@ textarea{
     min-height: 30px;
     display: inline-flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .list-prod-price{
@@ -1306,6 +1308,7 @@ textarea{
     min-height: 30px;
     display: inline-flex;
     align-items: center;
+    font-size: 16px;
 }
 
 .list-prod-price{

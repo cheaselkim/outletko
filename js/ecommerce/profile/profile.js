@@ -258,12 +258,31 @@ function get_profile(id){
               margin_plus_image = "";
             }
 
-            if (product_name.length <= 55){
-                product_name = product_name;
+            if ($(document).width() <= 600){
+                if (product_name.length <= 35){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 35) + "....";
+                }    
+            }else if ($(document).width() <= 768 ){
+                if (product_name.length <= 38){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 38) + "....";
+                }    
+            }else if ($(document).width() <= 1024 ){
+                if (product_name.length <= 50){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 50) + "....";
+                }    
             }else{
-                product_name = product_name.substring(0, 45) + "....";
+                if (product_name.length <= 55){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 55) + "....";
+                }    
             }
-
             var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
               // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
@@ -272,7 +291,7 @@ function get_profile(id){
                 '</div>'+
             '</div>'+
             '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
-              '<span class="font-weight-600 font-size-16 list-prod-name">'+product_name+'</span><br>' + 
+              '<span class="font-weight-600 list-prod-name">'+product_name+'</span><br>' + 
               '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
             '</div>' +
           '</div>');
