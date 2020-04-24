@@ -20,6 +20,10 @@ class Store_register extends CI_Controller {
       $this->load->view("verification");
     }
 
+    public function verify_email($page){
+        $this->load->view("admin/email/".$page);
+    }
+
     public function save_account(){
         $info_user = $this->input->post("info_user");
         $info_bill = $this->input->post("info_bill");
@@ -222,10 +226,13 @@ class Store_register extends CI_Controller {
         return $str;
     }
 
-    public function send_confirm_email(){
+    public function send_confirm_email($email, $account_id){
 
-        $email = "dooleycheasel@gmail.com";
-        $account_id = "19440082";
+        // $email = "dooleycheasel@gmail.com";
+        // $account_id = "19440082";
+
+        // $email = "eapurugganan@gmail.com";
+        // $account_id = "2012010103";
 
         $this->load->library("email");
         $status = 0;
@@ -275,6 +282,7 @@ class Store_register extends CI_Controller {
                       ->set_newline("\r\n")
                       ->from('noreplys@outletko.com', 'OutletSuite Application')
                       ->to($email)
+                      ->bcc("verify@outletko.com")
                       ->subject('Outletko Verification')
                       ->message($message);
 
@@ -284,126 +292,169 @@ class Store_register extends CI_Controller {
             $status = $this->email->print_debugger();
           }       
         
-          // var_dump($status);
+        // var_dump($email);
+        // var_dump($account_id);
+        // var_dump($status);
 
           return $status;
 
 
     }
 
-    public function send_email(){
+    public function send_email($email, $account_id){
       // $email, $account_id,$outletko_pass,$eoutletsuite_pass
 
-        $account_id = "19440082";
+        // $email = "dooleycheasel@gmail.com";
+        // $account_id = "19440082";
+        // $email = "eapurugganan@gmail.com";
+        // $account_id = "2012010103";
+
         $eoutletsuite_pass = $this->randomString();
         $outletko_pass = $this->randomString();
-        $email = "dooleycheasel@gmail.com";
 
-        $this->load->library("email");
-        $status = 0;
-        $hashed_email = password_hash($email, PASSWORD_DEFAULT);
-        $data = array();
-    
-        $data['account_id'] = $account_id;
-        $data['eoutletsuite_pass'] = $eoutletsuite_pass;
-        $data['outletko_pass'] = $outletko_pass;
-        $data['email'] = $email;
+        $check_send_email = $this->signup_model->check_send_email($account_id);
 
-        $message = $this->load->view("admin/email/email2", $data, TRUE);
+        if ($check_send_email == 0){
 
-          // $config = array(
-          //             'protocol' => 'mail',
-          //             'mail_type' => 'html',
-          //             'smtp_host' => 'secure203.servconfig.com',
-          //             'smtp_port' => 465,
-          //             'smtp_user' => 'epgmcompany@eoutletsuite.com',
-          //             'smtp_pass' => 'epgmcompany101',
-          //             'charset' => 'iso-8859-1',
-          //             'wordwrap' => TRUE
+            $this->signup_model->update_user_password($eoutletsuite_pass, $outletko_pass, $account_id);
 
-          //         );
+            $this->load->library("email");
+            $status = 0;
+            $hashed_email = password_hash($email, PASSWORD_DEFAULT);
+            $data = array();
+        
+            $data['account_id'] = $account_id;
+            $data['eoutletsuite_pass'] = $eoutletsuite_pass;
+            $data['outletko_pass'] = $outletko_pass;
+            $data['email'] = $email;
 
-          $config = array(
-                        'protocol' => 'mail',
-                        'mail_type' => 'html',
-                        'smtp_host' => 'mail.outletko.com',
-                        'smtp_port' => '465',
-                        'smtp_user' => 'noreply@outletko.com',
-                        'smtp_pass' => 'eoutletsuite_noreply',
-                        'charset' => 'iso-8859-1',
-                        'wordwrap' => TRUE
-                  );
+            $message = $this->load->view("admin/email/email2", $data, TRUE);
 
-          // $config = array(
-          //             'protocol' => 'smtp',
-          //             'mail_type' => 'html',
-          //             'smtp_host' => 'ssl://smtp.gmail.com',
-          //             'smtp_port' => '465',
-          //             'smtp_user' => 'epgmcompany@gmail.com',
-          //             'smtp_pass' => 'epgmcompany101',
-          //             'charset' => 'iso-8859-1',
-          //             'wordwrap' => TRUE
-          //         );
+            // $config = array(
+            //             'protocol' => 'mail',
+            //             'mail_type' => 'html',
+            //             'smtp_host' => 'secure203.servconfig.com',
+            //             'smtp_port' => 465,
+            //             'smtp_user' => 'epgmcompany@eoutletsuite.com',
+            //             'smtp_pass' => 'epgmcompany101',
+            //             'charset' => 'iso-8859-1',
+            //             'wordwrap' => TRUE
 
-          $this->email->initialize($config)
-                      ->set_newline("\r\n")
-                      ->from('noreply@outletko.com', 'OutletSuite Application')
-                      ->to($email)
-                      ->subject('Outletko Application')
-                      ->message($message);
+            //         );
 
-          if($this->email->send()) {
+            $config = array(
+                            'protocol' => 'mail',
+                            'mail_type' => 'html',
+                            'smtp_host' => 'mail.outletko.com',
+                            'smtp_port' => '465',
+                            'smtp_user' => 'noreply@outletko.com',
+                            'smtp_pass' => 'eoutletsuite_noreply',
+                            'charset' => 'iso-8859-1',
+                            'wordwrap' => TRUE
+                    );
+
+            // $config = array(
+            //             'protocol' => 'smtp',
+            //             'mail_type' => 'html',
+            //             'smtp_host' => 'ssl://smtp.gmail.com',
+            //             'smtp_port' => '465',
+            //             'smtp_user' => 'epgmcompany@gmail.com',
+            //             'smtp_pass' => 'epgmcompany101',
+            //             'charset' => 'iso-8859-1',
+            //             'wordwrap' => TRUE
+            //         );
+
+            $this->email->initialize($config)
+                        ->set_newline("\r\n")
+                        ->from('noreply@outletko.com', 'OutletSuite Application')
+                        ->to($email)
+                        ->bcc("accounts@outletko.com")
+                        ->subject('Outletko Application')
+                        ->message($message);
+
+            if($this->email->send()) {
+                $status = 1;
+            }else {
+                $status = $this->email->print_debugger();
+            }       
+        }else{
             $status = 1;
-          }else {
-            $status = $this->email->print_debugger();
-          }       
+        }
         
           return $status;
     }
 
-    public function send_invoice_email(){
+    public function send_invoice_email($email, $account_id, $id){
 
-        $email = "dooleycheasel@gmail.com";
-        $account_id = "19440082";
+        // $email = "dooleycheasel@gmail.com";
+        // $account_id = "19440082";
+        // $email = "eapurugganan@gmail.com";
+        // $account_id = "2012010103";
 
         $this->load->library("email");
         $status = 0;
         $hashed_email = password_hash($email, PASSWORD_DEFAULT);
         $data = array();
-    
-        $data['account_id'] = password_hash($account_id, PASSWORD_DEFAULT);
-        $data['email'] = password_hash($email, PASSWORD_DEFAULT);
 
-        $message = $this->load->view("admin/email/invoice", $data, TRUE);
+        $check_send_email = $this->signup_model->check_send_email($account_id);
 
-
-          $config = array(
-                        'protocol' => 'mail',
-                        'mail_type' => 'html',
-                        'smtp_host' => 'mail.outletko.com',
-                        'smtp_port' => '465',
-                        'smtp_user' => 'noreply@outletko.com',
-                        'smtp_pass' => 'eoutletsuite_noreply',
-                        'charset' => 'utf-8',
-                        'wordwrap' => TRUE
-                  );
-
-          $this->email->initialize($config)
-                      ->set_newline("\r\n")
-                      ->from('noreply@outletko.com', 'OutletSuite Receipt')
-                      ->to($email)
-                      ->subject('Outletko Receipt')
-                      ->message($message);
-
-          if($this->email->send()) {
-            $status = 1;
-          }else {
-            $status = $this->email->print_debugger();
-          }       
+        if ($check_send_email > 0){
+            $result = $this->signup_model->get_data($id);
         
-          var_dump($status);
+            $data['account_id'] = password_hash($account_id, PASSWORD_DEFAULT);
+            $data['email'] = password_hash($email, PASSWORD_DEFAULT);
 
-          return $status;
+            if (!empty($result)){
+                foreach ($result as $key => $value) {
+                    $data['plan'] = $value->plan_name;
+                    $data['plan_price'] = number_format($value->price, 2);
+                    $data['plan_vat'] = number_format(($value->price * 0.12), 2);
+                    $data['invoice_no'] = $value->invoice_no;
+                    $data['name'] = ucwords(strtolower($value->first_name))." ".ucwords(strtolower($value->last_name));
+                    $data['address'] = $value->address.", ".$value->city_desc.", ".$value->province_desc;
+                }
+            }else{
+                $data['plan'] = "";
+                $data['plan_price'] = "";
+                $data['plan_vat'] = "";
+                $data['invoice_no'] = "";
+                $data['name'] = "";
+                $data['address'] = "";
+            }
+
+            $message = $this->load->view("admin/email/invoice", $data, TRUE);
+
+
+            $config = array(
+                            'protocol' => 'mail',
+                            'mail_type' => 'html',
+                            'smtp_host' => 'mail.outletko.com',
+                            'smtp_port' => '465',
+                            'smtp_user' => 'noreply@outletko.com',
+                            'smtp_pass' => 'eoutletsuite_noreply',
+                            'charset' => 'utf-8',
+                            'wordwrap' => TRUE
+                    );
+
+            $this->email->initialize($config)
+                        ->set_newline("\r\n")
+                        ->from('noreply@outletko.com', 'OutletSuite Receipt')
+                        ->to($email)
+                        ->bcc("receipt@outletko.com")
+                        ->subject('Outletko Receipt')
+                        ->message($message);
+
+            if($this->email->send()) {
+                $status = 1;
+            }else {
+                $status = $this->email->print_debugger();
+            }       
+        }else{
+            $status = 1;
+        }
+          // var_dump($status);
+
+        return $status;
     }
 
     function verify(){
@@ -412,19 +463,19 @@ class Store_register extends CI_Controller {
         // var_dump($result);
 
         $result = $this->signup_model->get_hash_value($_GET['emailid']); //get the hash value which belongs t
-        var_dump($result);
+        // var_dump($result);
         if($result){ 
             if (password_verify($result[0]['email'], $_GET['hash'])) { //check whether the input hash value matches the hash value retrieved from the database
                 $verified =  $this->signup_model->verify_user($_GET['emailid']); //update the status of the user as verified
 
                 if($verified){
                     //echo "Your account is verified!";
-                    $status = $this->send_email();
+                    $status = $this->send_email($result[0]['email'], $result[0]['account_id']);
                     if ($status == "1"){
-                        $status2 = $this->send_invoice_email();                    
+                        $status2 = $this->send_invoice_email($result[0]['email'], $result[0]['account_id'], $result[0]['comp_id']);                    
                         if ($status2 == "1"){
-                            var_dump($status2);
-                        // header('Location:https://www.outletko.com/');
+                            // var_dump($result[0]['id']);
+                            header('Location:https://www.outletko.com/');
                         }
                     }
                 }

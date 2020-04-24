@@ -378,4 +378,41 @@ class Signup_model extends CI_Model {
 
     }
 
+    public function check_send_email($account_id){
+        $query = $this->db->query("SELECT * FROM users WHERE account_id = ? AND `users`.`status` = ? ", array($account_id, "1"))->num_rows();
+        return $query;
+    }
+
+    public function update_user_password($eoutletsuite_pass, $outletko_pass, $account_id){
+
+        $this->db->set("password", password_hash($eoutletsuite_pass, PASSWORD_DEFAULT));
+        $this->db->set("status", "1");
+        $this->db->where("account_id", $account_id);
+        $this->db->where("user_type", "2");
+        $this->db->update("users");
+
+        $this->db->set("password", password_hash($outletko_pass, PASSWORD_DEFAULT));
+        $this->db->set("status", "1");
+        $this->db->where("account_id", $account_id);
+        $this->db->where("user_type", "4");
+        $this->db->update("users");
+
+    }
+
+    public function get_data($id){
+        $query = $this->db->query("SELECT plan_type.*, account_application.* , city.city_desc, province.province_desc
+        FROM account_application 
+        LEFT JOIN plan_type ON 
+        account_application.subscription_type = plan_type.id
+        LEFT JOIN invoice ON 
+        account_application.id = invoice.comp_id
+        LEFT JOIN city ON 
+        account_application.city = city.id
+        LEFT JOIN province ON
+        city.province_id = province.id
+        WHERE `account_application`.`id` = ? ", array($id))->result();
+        
+        return $query;
+    }
+
 }

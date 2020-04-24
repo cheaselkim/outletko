@@ -1,304 +1,555 @@
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/application/email.css') ?>"> -->
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
+        <title>
+          
+        </title>
+        <!--[if !mso]><!-- -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--<![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+          #outlook a { padding:0; }
+          .ReadMsgBody { width:100%; }
+          .ExternalClass { width:100%; }
+          .ExternalClass * { line-height:100%; }
+          body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
+          table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt; }
+          img { border:0;height:auto;line-height:100%; outline:none;text-decoration:none;-ms-interpolation-mode:bicubic; }
+          p { display:block;margin:13px 0; }
+        </style>
+        <!--[if !mso]><!-->
+        <style type="text/css">
+          @media only screen and (max-width:480px) {
+            @-ms-viewport { width:320px; }
+            @viewport { width:320px; }
+          }
+        </style>
+        <!--<![endif]-->
+        <!--[if mso]>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        <![endif]-->
+        <!--[if lte mso 11]>
+        <style type="text/css">
+          .outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]-->
+        
+      <!--[if !mso]><!-->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet" type="text/css">
+        <style type="text/css">
+          @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Cabin:400,700);
+@import url(https://fonts.googleapis.com/css?family=Arial);
+        </style>
+      <!--<![endif]-->
 
-
-
-
-
-
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-    <title>eOutletSuite</title>
-
+    
+        
     <style type="text/css">
-
-    body{
-
-      background: gray;
-
-      font-family: Arial;
-
-    }
-
-    .email-body{
-
-      width: 60%;
-
-      margin: auto;
-
-/*      padding-left: 250px;*/
-
-    }
-
-
-
-    header{
-
-      height: 40px;
-
-      width: 100%;
-
-/*      border: 1px solid gray;*/
-
-/*      background: #45914E;*/
-
-      background: #f8f9fa!important;
-
-      padding-left: 20px;
-
-      padding-right: 20px;
-
-    }
-
-
-
-    h2{
-
-      font-family: Arial;
-
-      color: white;
-
-    }
-
-
-
-    h1{
-
-      color: white; 
-
-    }    
-
-
-
-/*    nav{
-
-      background: #EDA634;
-
-      height: 150px;
-
-      width: 100%;
-
-      text-align: center;
-
-      padding: 20px;
-
-    }*/
-
-
-
-    p{
-
-      padding: 0px;
-
-      margin: 0px;
-
-      line-height: 20px;
-
-      font-size: 15px;
-
-    }
-
-
-
-    .font-text-footer{
-
-      font-size: 13px !important;
-
-    }
-
-
-
-    section{
-
-      background: #EDEDED;
-
-      padding: 20px;
-
-      width: 100%;
-
-      height: 325px;
-
-    }
-
-
-
-    footer{
-
-      height: 30px;
-
-      /*padding: 10px 10px 10px 10px;*/
-
-      padding-left: 20px;
-
-      padding-right: 20px;
-
-      padding-top: 5px;
-
-      background: #45914E;
-
-      color: white;
-
-      width: 100%;
-
-    }        
-
- 
-
-     .span-eprocurement{
-
-        color: orange;
-
-    }
-
-
-
-    .span-suite{
-
-        color:green;
-
-    }
-
-
-
-    .header-right {
-
-      float: right;
-
-    }
-
-
-
-    .header-left {
-
-      float: left;
-
-      color: black;
-
-      text-align: center;
-
-      text-decoration: none;
-
-    }
-
-
-.btn:not(:disabled):not(.disabled) {
-    cursor: pointer;
-}
-input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submit"].btn-block {
-    width: 100%;
-}
-.btn:focus, .btn:hover {
-    text-decoration: none;
-}
-.btn-orange {
-    background: orange;
-    color: white;
-}
-.btn-block {
-    display: block;
-    width: 100%;
-}
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-
-
+      @media only screen and (min-width:480px) {
+        .mj-column-per-40 { width:40% !important; max-width: 40%; }
+.mj-column-per-60 { width:60% !important; max-width: 60%; }
+.mj-column-per-100 { width:100% !important; max-width: 100%; }
+      }
     </style>
-
-</head>
-
-<body class="container">
-
-
-
-<div class="email-body">
-
-    <header style="margin-top: 10px;">
-
-        <h2 style="margin-top: 10px;"><span style="color: green;">Outlet</span><span style="color: red;">ko</span></h2>        
-
-        <div class="header-right" >
-
-          <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">eOutlet</span><span class="span-eprocurement">Suite</span></h2>
-
-        </div>
-
-    </header>
-
-
-
-    <section style="background: #EDA634;height: 50px;width: 100%;text-align: center;padding: 20px;">
-
-        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to Outletko!</h1>
-    </section>
-
-
-
-    <section>
-
-        <article class="pb-3" style="padding-left: 70px;">
-
-            <h2 style="color: black;">Congratulations!</h2>
-
-            <p style="font-size: 18px;">You're almost ready to start your business in outletko - but first, click the link below to verify your email address</p>
-            <br>
-            <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com/Store_register/verify?hash=<?php echo $email; ?>&emailid=<?php echo $account_id; ?>" class='btn btn-orange' style="text-decoration: none;color: white;" target="_blank" >Click Here to Verify Email Addresss</a></p>
-
-            <br><br>
-
-
-
-        </article>
-
+    
+  
+        <style type="text/css">
+        
         
 
-
-
-        <article class="pb-3" style="position: fixed; bottom: 100px;width: 79%;padding-left: 70px;">
-
-            <hr style="color: black;">
-
-            <h4 style="margin: 0;">Need Support?</h4>
-
-            <p style="margin-top: 10px;">Feel free to email us if you have any questions, comments or suggestions. We'll be happy resolve all your issues.</p>
-
-        </article>
-
-
-
+    @media only screen and (max-width:480px) {
+      table.full-width-mobile { width: 100% !important; }
+      td.full-width-mobile { width: auto !important; }
+    }
+  
+        </style>
+        <style type="text/css">.hide_on_mobile { display: none !important;} 
+        @media only screen and (min-width: 480px) { .hide_on_mobile { display: block !important;} }
+        .hide_section_on_mobile { display: none !important;} 
+        @media only screen and (min-width: 480px) { .hide_section_on_mobile { display: table !important;} }
+        .hide_on_desktop { display: block !important;} 
+        @media only screen and (min-width: 480px) { .hide_on_desktop { display: none !important;} }
+        .hide_section_on_desktop { display: table !important;} 
+        @media only screen and (min-width: 480px) { .hide_section_on_desktop { display: none !important;} }
+        [owa] .mj-column-per-100 {
+            width: 100%!important;
+          }
+          [owa] .mj-column-per-50 {
+            width: 50%!important;
+          }
+          [owa] .mj-column-per-33 {
+            width: 33.333333333333336%!important;
+          }
+          p {
+              margin: 0px;
+          }
+          @media only print and (min-width:480px) {
+            .mj-column-per-100 { width:100%!important; }
+            .mj-column-per-40 { width:40%!important; }
+            .mj-column-per-60 { width:60%!important; }
+            .mj-column-per-50 { width: 50%!important; }
+            mj-column-per-33 { width: 33.333333333333336%!important; }
+            }</style>
         
-
-    </section>
-
-
-
-    <footer class="font-text-footer">
-        <p style="float: right;">Copyright @ <?php echo date('Y')?> Outletko</p>
-    </footer>
-
-</div>
-
-
-
-</body>
-
-</html>
+      </head>
+      <body style="background-color:#FFFFFF;">
+        
+        
+      <div style="background-color:#FFFFFF;">
+        
+      
+      <!--[if mso | IE]>
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:9px 0px 9px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:240px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-40 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:40%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;">
+                
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+        <tbody>
+          <tr>
+            <td style="width:132px;">
+              
+      <img height="auto" src="https://www.outletko.com/assets/img/logo-13x.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="132">
+    
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+            <td
+               class="" style="vertical-align:top;width:360px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-60 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:60%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
+                
+      <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
+        <div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">+63 2 76166430</span></div>
+<div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">support@outletko.com</span></div>
+<div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">www.outletko.com</span></div>
+      </div>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="background:green;background-color:green;Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:green;background-color:green;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:9px 0px 9px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:600px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
+                
+      <div style="font-family:Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:white;">
+        <p style="text-align: center;"><strong><span style="font-size: 36px; color: white;">Welcome to Outlet<span style="color:yellow">Ko</span>!</span></strong></p>
+      </div>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="background:white;background-color:white;Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:white;background-color:white;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:9px 0px 9px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:600px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
+                
+      <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
+        <p><span style="font-family: arial, helvetica, sans-serif; font-size: 36px;"><strong>Congratulations!</strong></span></p>
+<p>&#xA0;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 18px;">You&apos;re almost ready to start your business in outletko - but first, click the link below to verify your email address</span></p>
+      </div>
+    
+              </td>
+            </tr>
+          
+            <tr>
+              <td align="center" vertical-align="middle" style="font-size:0px;padding:20px 20px 20px 20px;word-break:break-word;">
+                
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:auto;line-height:100%;">
+        <tbody><tr>
+          <td align="center" bgcolor="orange" role="presentation" style="border:0px solid #000;border-radius:5px;cursor:auto;mso-padding-alt:13px 38px 13px 38px;background:orange;" valign="middle">
+            <a href="https://www.outletko.com/Store_register/verify?hash=<?php echo $email; ?>&emailid=<?php echo $account_id; ?>" style="display:inline-block;background:orange;color:#ffffff;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:19px;font-weight:bold;line-height:100%;Margin:0;text-decoration:none;text-transform:none;padding:13px 38px 13px 38px;mso-padding-alt:0px;border-radius:5px;" target="_blank">
+              Verify Email Address
+            </a>
+          </td>
+        </tr>
+      </tbody></table>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="background:white;background-color:white;Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:white;background-color:white;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:9px 0px 9px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:600px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td style="font-size:0px;padding:10px 25px;padding-top:10px;padding-right:10px;word-break:break-word;">
+                
+      <p style="border-top:solid 1px #000000;font-size:1;margin:0px auto;width:100%;">
+      </p>
+      
+      <!--[if mso | IE]>
+        <table
+           align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1;margin:0px auto;width:565px;" role="presentation" width="565px"
+        >
+          <tr>
+            <td style="height:0;line-height:0;">
+              &nbsp;
+            </td>
+          </tr>
+        </table>
+      <![endif]-->
+    
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="background:white;background-color:white;Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:white;background-color:white;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:9px 0px 9px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:600px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
+                
+      <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
+        <p><strong><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Need Support?</span></strong></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 14px;">Feel free to email us if you have any questions, comments or suggestions. We&apos;ll be happy resolve all your issues.</span></p>
+      </div>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+    
+      
+      <div style="background:green;background-color:green;Margin:0px auto;max-width:600px;">
+        
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:green;background-color:green;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:center;vertical-align:top;">
+                <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
+            <td
+               class="" style="vertical-align:top;width:600px;"
+            >
+          <![endif]-->
+            
+      <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+        
+            <tbody><tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
+                
+      <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
+        <p style="text-align: right;"><span style="font-family: arial, helvetica, sans-serif; font-size: 14px; color: #ecf0f1;font-weight:bold;">Copyright @ 2020 Outletko</span></p>
+      </div>
+    
+              </td>
+            </tr>
+          
+      </tbody></table>
+    
+      </div>
+    
+          <!--[if mso | IE]>
+            </td>
+          
+        </tr>
+      
+                  </table>
+                <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    
+      
+      <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+    
+    
+      </div>
+    
+      
+    
+  </body></html>
