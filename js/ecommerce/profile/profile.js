@@ -6,10 +6,12 @@ $(document).ready(function(){
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
-  get_profile($id);
-    // setTimeout(function(){ 
-    //     get_profile($id);    
-    // }, 500);
+    console.log($("input[name=csrf_name]").val());
+
+//   get_profile($id);
+    setTimeout(function(){ 
+        get_profile($id);    
+    }, 500);
 
   $("#btn_back").click(function(){
     $("#div-display-products").show();

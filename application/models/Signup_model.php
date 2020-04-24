@@ -30,9 +30,9 @@ class Signup_model extends CI_Model {
     level_2 as lvl_3,
     account_id 
     FROM account_application
-    WHERE last_name LIKE ? OR account_id LIKE ?    
+    WHERE last_name LIKE ? OR account_id LIKE ? OR first_name LIKE ?   
     LIMIT 20
-    ", array("%".$partner."%", "%".$partner."%"))->result();
+    ", array("%".$partner."%", "%".$partner."%", "%".$partner."%"))->result();
     return $query;
   }
 

@@ -9,28 +9,27 @@
 
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
-<!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>"> -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/store_register.css') ?>">
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/store_register.css') ?>">
 
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
 
     <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/all.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/style.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.number.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/node_modules/parsleyjs/dist/parsley.js')?>"></script>
+    <script async src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/style.js') ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/jquery.number.min.js') ?>"></script>
+    <script defer src="<?php echo base_url('assets/node_modules/parsleyjs/dist/parsley.js')?>"></script>
 
-    <script src="<?php echo base_url('assets/vendors/creditcardvalidator/creditCardValidator.js')?>"></script>
-    <script src="<?php echo base_url('js/credit_card.js') ?>"></script>
-    <script src="<?php echo base_url('js/register_store.js') ?>"></script>    
-    <script src="<?php echo base_url('js/login.js')?>"></script>
+    <script defer src="<?php echo base_url('assets/vendors/creditcardvalidator/creditCardValidator.js')?>"></script>
+    <script defer src="<?php echo base_url('js/credit_card.js') ?>"></script>
+    <script defer src="<?php echo base_url('js/register_store.js') ?>"></script>    
+    <script defer src="<?php echo base_url('js/login.js')?>"></script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -261,8 +260,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Zip Code <span class="text-red">*</span> </span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-zipcode" data-parsley-trigger="focusin focusout" required>
+                                            <span>Zip Code  </span>
+                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-zipcode" >
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Country <span class="text-red">*</span></span>
@@ -298,7 +297,7 @@
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Partner <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-partner" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green" value="HOUSE ACCOUNT  (000001)" id="info-partner" data-parsley-trigger="focusin focusout" required data-id="1" data-lvl-2="0" data-lvl-3="0">
                                         </div>
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                             <div class="g-recaptcha" data-sitekey="6Lceu-UUAAAAAIEI5p99WGEi9w5EH8AMnNo4AZg0"></div>

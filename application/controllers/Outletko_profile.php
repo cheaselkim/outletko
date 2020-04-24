@@ -451,7 +451,21 @@ class Outletko_profile extends CI_Controller {
 
             move_uploaded_file($files_tmp,$upload_path.$randname);
             $files_upload[] = $randname;
+            $file_name = $randname;
             $set = 'true';
+
+            $config['upload_path'] = './images/products/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/products/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/products/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
         }
 
         if($set == 'true') {
@@ -493,6 +507,21 @@ class Outletko_profile extends CI_Controller {
 
             move_uploaded_file($files_tmp,$upload_path.$randname);
             $files_upload[] = $randname;
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/profile/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/profile/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/profile/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
+            
         }
         $serialized = serialize($files_upload);         
         $data = array('loc_image' => $serialized); 
@@ -517,6 +546,20 @@ class Outletko_profile extends CI_Controller {
 
             move_uploaded_file($files_tmp,$upload_path.$randname);
             $files_upload[] = $randname;
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/store/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/store/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/store/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
         }
         $serialized = serialize($files_upload);         
         $data = array("comp_id" => $this->session->userdata('comp_id'), 'loc_image' => $serialized, "img_order" => $this->input->post("store_order")); 

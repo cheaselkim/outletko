@@ -14,6 +14,7 @@ $(document).ready(function(){
         changeMonth : true,
         changeYear : true,
         dateFormat: 'mm/dd/yy', 
+        yearRange : "-100:+0",
         onClose: function () {
             $(this).parsley().validate();
         }

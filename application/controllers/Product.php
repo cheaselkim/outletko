@@ -125,7 +125,7 @@ class Product extends CI_Controller {
 
 		$db = $this->load->database('default', TRUE);
 
-		$upload_path = './images/products/'; 
+		$upload_path = './images/app_products/'; 
 		$counts = count($_FILES["files"]["name"]);
 
 		for($x = 0; $x < $counts; $x++) { 
@@ -135,7 +135,21 @@ class Product extends CI_Controller {
 
 			move_uploaded_file($files_tmp,$upload_path.$randname);
 			$files_upload[] = $randname;
-		}
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/app_products/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/app_products/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/app_products/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
+        }
 		$serialized = serialize($files_upload);	 		
 		$data = array('image_loc' => $serialized); 
         $result = $this->product_model->upload_image_file($data, $this->input->post("product_no", TRUE));
@@ -165,7 +179,7 @@ class Product extends CI_Controller {
         $set = '';
 
         $db = $this->load->database('default', TRUE);
-        $upload_path = './images/products/'; 
+        $upload_path = './images/app_products/'; 
 
         $counts = count($_FILES["files"]["name"]);
         $counts_curr = count($this->input->post('curr_img'));
@@ -183,6 +197,21 @@ class Product extends CI_Controller {
             move_uploaded_file($files_tmp,$upload_path.$randname);
             $files_upload[] = $randname;
             $set = 'true';
+
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/app_products/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/app_products/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/app_products/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
         }
 
         if($set == 'true') {

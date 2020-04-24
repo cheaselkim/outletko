@@ -1,9 +1,8 @@
-<script  type="text/javascript" src="<?php echo base_url('js/ecommerce/profile/profile.js') ?>"></script>
+<input type="hidden" id="id" value="<?php echo $id ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/user.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
-<input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
-<input type="hidden" id="id" value="<?php echo $id ?>">
+<script  type="text/javascript" src="<?php echo base_url('js/ecommerce/profile/profile.js') ?>"></script>
 
 <style type="text/css">
 	.opt-hide{
