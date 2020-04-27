@@ -592,8 +592,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-2" style="line-height: 1;">
-                            <span>By clicking <span class="font-weight-600">"SIGN UP"</span>, I agree to Outletko's <a href="<?php echo base_url('terms'); ?>">Terms and Conditions</a> and <a href="<?php echo base_url('privacy'); ?>">Privacy Policy</a> </span>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-2">
+                            <span style="line-height: 1px;">By clicking <span class="font-weight-600">"SIGN UP"</span>, I agree to Outletko's <a href="<?php echo base_url('terms'); ?>">Terms and Conditions</a> and <a href="<?php echo base_url('privacy'); ?>">Privacy Policy</a> </span>
                         </div>
                     </div>
                 </div>
