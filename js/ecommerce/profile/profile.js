@@ -6,7 +6,7 @@ $(document).ready(function(){
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
-    console.log($("input[name=csrf_name]").val());
+    // console.log($("input[name=csrf_name]").val());
 
 //   get_profile($id);
     setTimeout(function(){ 
@@ -72,6 +72,10 @@ $(document).ready(function(){
     compute_total_amount();
   });
 
+  $("#prod-category").click(function(){
+    product_by_cat($(this).val());
+  });
+
 });
 
 function get_profile(id){
@@ -86,12 +90,20 @@ function get_profile(id){
     success : function(result){
     $("input[name=csrf_name]").val(result.token);
 
+    var prod_cat = result.prod_cat;
     var profile = base_url + "images/profile/" + result.profile;    
     var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
             (result.result[0].village == "" ? "" : result.result[0].village + ", ")  + 
             (result.result[0].barangay == "" ? "" : result.result[0].barangay + ",")  + 
             (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ") + 
             (result.result[0].province_desc == "" ? "" : result.result[0].province_desc) ;
+
+    if (prod_cat.length > 0){
+        for (var i = 0; i < prod_cat.length; i++) {
+            $("#prod-category").append("<option value='"+prod_cat[i].id+"'>"+prod_cat[i].product_category  +"</option>");
+        }    
+    }
+        
 
     //for text
         $(".div-header").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
@@ -492,6 +504,173 @@ function get_product_info(id){
 
 }   
 
+function product_by_cat(id){
+var csrf_name = $("input[name=csrf_name]").val();
+var comp_id = $("#id").val();
+$.ajax({
+    data : {csrf_name : csrf_name, id : id, comp_id : comp_id},
+    type : "POST",
+    dataType : "JSON",
+    url : base_url + "Profile/product_by_cat",
+    success : function(result){ 
+        $("input[name=csrf_name]").val(result.token);
+
+        $('#div-posted-prod').empty();
+        $('#posted_prod').empty();
+        var bg_color = $(".div-header").css("background-color");
+        var posted_rows = (result.products.length/8).toFixed(0);
+        // console.log("posted_rows raw " + posted_rows);
+        var posted_rows2 = (result.products.length/ (8 * posted_rows));
+
+        if (posted_rows2 <= 1){
+            posted_rows2 = 0;
+        }else{
+            posted_rows2 = posted_rows2.toFixed(0);
+        }
+
+        // console.log("posted_rows2 " + posted_rows2);
+        posted_rows = Number(posted_rows) + Number(posted_rows2);
+        // console.log("posted_rows final " + posted_rows);
+        var $style = "";
+        var i =1;
+      	var a = 0;
+      	var mod = 0;
+
+        // console.log(posted_rows);
+        if (isFinite(posted_rows) == false){
+          posted_rows = 1;
+        }if (isNaN(posted_rows)){
+          posted_rows = 1;
+        }else if (posted_rows < 1){
+          posted_rows = 1;
+        }
+
+
+        for (var i = 1; i <= posted_rows; i++) {
+          if (i % 2 == 0){
+            $style = ("style='background:"+ bg_color +"'");
+          }else{
+            $style = "background:white";
+          }
+
+          // $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
+          $("#div-posted-prod").append("<div class='col-12 div-row-prod-"+i+" pb-2' id='div-row-prod-"+i+"' "+$style+"></div>");
+          $("#div-posted-prod .div-row-prod-"+i+"").append("<div class='container mx-auto'></div>");
+          $("#div-posted-prod .container").append("<div class='row posted-prod-"+i+"' id='posted-prod-"+i+"' "+$style+"></div>");          
+
+        }
+
+        // console.log(result.products.length);
+
+        for(var x = 0; x < result.products.length; x++) {
+            var href_url = base_url +'images/products/'+result.products[x].img_location[0];
+            var product_name = result.products[x].product_name;
+            var margin = "";
+            var margin_plus_image = "";
+
+            if (x > 3){
+              margin = "mt-3";
+            }else{
+              margin = "";
+            }
+
+            if (x > 2){
+              margin_plus_image = "mt-2";
+            }else{
+              margin_plus_image = "";
+            }
+
+            if ($(document).width() <= 600){
+                if (product_name.length <= 35){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 35) + "....";
+                }    
+            }else if ($(document).width() <= 768 ){
+                if (product_name.length <= 38){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 38) + "....";
+                }    
+            }else if ($(document).width() <= 1024 ){
+                if (product_name.length <= 50){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 50) + "....";
+                }    
+            }else{
+                if (product_name.length <= 55){
+                    product_name = product_name;
+                }else{
+                    product_name = product_name.substring(0, 55) + "....";
+                }    
+            }
+            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
+            '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
+              // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
+                '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
+                  // '<i class="fa fa-camera"></i>'+
+                '</div>'+
+            '</div>'+
+            '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
+              '<span class="font-weight-600 list-prod-name">'+product_name+'</span><br>' + 
+              '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
+            '</div>' +
+          '</div>');
+
+          // for (var index = 1; index <= posted_rows; index++) {
+          //   var total_rows = 8 * index;
+          // }
+          var index = 1;
+
+          	a++;
+
+	        var div_row = (a/8).toFixed(0);
+	        var div_row2 = (((a/8).toFixed(2)) % 1);
+
+	        if (Number(div_row2.toFixed(2)) == 0){
+	        	mod = 0;
+	        }else if (Number((div_row2).toFixed(2)) < 0.50){
+	        	mod = 1;
+	        }else{
+	        	mod = 0;
+	        }
+
+	        // console.log(a + " " + div_row2.toFixed(2) + " " + mod);
+
+
+	        index = Number(div_row) + Number(mod);
+            // console.log("index " + index);
+            $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+
+
+          // if (x < 8){
+          //   $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          // }else{
+          //   index++;
+          //   $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          //   if (x > 15){
+          //     index = 3;
+          //     $('.div-row-prod-'+index+' .container #posted-prod-'+index+'').append(e);  
+          //   }
+          // }
+
+
+            
+          $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
+          $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
+          $('#div-list-img-'+x+'').css("background-position", "center");
+          $('#div-list-img-'+x+'').css("background-size", "100% 100%");
+
+        }
+
+
+    }, error : function(err){
+        console.log(err.responseText);
+    }
+})    
+
+}
 
 function compute_total_amount(){
   

@@ -103,7 +103,16 @@
 	<div class="row">
 		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 			<div class="container">
-				<span class="font-size-20 font-weight-600">Products and Services</span>
+                <div class="row">
+                    <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
+                        <span class="font-size-20 font-weight-600">Products and Services</span>
+                    </div>
+                    <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
+                        <select class="form-control" id="prod-category" style="min-width: 200px;">
+                            <option value="0">All</option>
+                        </select>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>

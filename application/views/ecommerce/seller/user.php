@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/user.js') ?>"></script>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
+<input type="hidden" id="pickr-setting" value="0">
 
 <div class="container pt-3 pb-4">
 	<div class="row">
@@ -453,7 +454,7 @@
 											</div>
 										</div>
 
-										<div class="row">
+										<div class="row pb-4">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 												<div id="div-delivery-type">
 												
@@ -467,7 +468,7 @@
 
 								<hr class="my-2 hr-green">								
 
-								<div class="row">
+								<div class="row pb-4">
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<span class="font-size-18 font-weight-600 text-uppercase font-weight-600">Payment Types <span class="text-red">*</span> </span>									
 										

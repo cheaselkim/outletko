@@ -127,7 +127,7 @@
                         </div>
                         <div class="row" hidden>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-font-header">
-                                <span class="font-header">Start using Outletko.com </span><br>
+                                <span class="font-header">Start using Outletko </span><br>
                                 <span class="font-header">in your business</span>
                             </div>
                         </div>
@@ -340,7 +340,7 @@
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-cart-header">
                         <div class="row">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-cart-font-header">
-                                <span class="font-header">Outletko.com for your business </span><br>
+                                <span class="font-header">Outletko for your business </span><br>
                                 <span class="font-header">is just a few clicks away</span>
                             </div>
                         </div>
@@ -361,7 +361,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Outletko.com Subscription <br> <span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
+                                            <td>Outletko Subscription <br> <span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
                                             <td class="pt-4"><span id="cart-plan-price">PHP 2,850.00</span></td>
                                             <td class="text-center pt-4" ><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
                                             <td class="pt-4"><span id="cart-plan-total-price">2,850.00</span></td>
@@ -380,7 +380,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="font-weight-600 border-0 bg-gray px-1">ITEM</td>
-                                            <td class="border-0"><span id="sml-cart-plan-name">Outletko.com Subscription <br> Payment Plan A : Quarterly</span></td>
+                                            <td class="border-0">Outletko Subscription <span id="sml-cart-plan-name"><br> Payment Plan A : Quarterly</span></td>
                                             <td class="border-0" hidden>No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;"></td>
                                         </tr>
                                         <tr>

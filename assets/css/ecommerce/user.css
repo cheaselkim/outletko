@@ -3,6 +3,38 @@
 	display: none;
 }
 
+.checkbox-xl .custom-control-label::before, 
+.checkbox-xl .custom-control-label::after {
+  /* top: 1.2rem; */
+  /* width: 1.85rem;
+  height: 1.85rem; */
+  width: 42px;
+  height: 38px;
+}
+
+.checkbox-xl .custom-control-label {
+  padding-top: 23px;
+  padding-left: 10px;
+}
+
+.custom-control-label{
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: orange;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: orange;
+    background-color: orange;
+}
+
+.custom-control-label::before {
+    border: orange solid 1px;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;

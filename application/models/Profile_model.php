@@ -46,7 +46,7 @@ class Profile_model extends CI_Model {
     public function get_product_category($id){
         $this->db2->select('*');
         $this->db2->from('product_category');
-        $this->db2->where('id', $id);
+        $this->db2->where('comp_id', $id);
         $query = $this->db2->get();
         return $query->result();
     }
@@ -124,6 +124,22 @@ class Profile_model extends CI_Model {
         }else{
             $this->db2->insert("buyer_order_products", $data);
         }
+    }
+
+    public function get_product_by_cat($id, $comp_id){
+        
+        $this->db2->select('*');
+        $this->db2->from('products');
+        $this->db2->where('account_id', $comp_id);
+        $this->db2->where("product_status", 1);
+
+        if ($id != "0"){
+            $this->db2->where("product_category", $id);
+        }
+
+        $query = $this->db2->get();
+        return $query->result();        
+
     }
 
 }

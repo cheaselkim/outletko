@@ -683,7 +683,7 @@ function createColorPicker(color){
     });
     
     pickr.on('init', instance => {
-        console.log('init', instance);
+        // console.log('init', instance);
     }).on('save', (color, instance) => {
         // console.log('save', color.toHEXA().toString());
         $(".pcr-app").removeClass("visible");
@@ -799,9 +799,14 @@ function delivery_type(){
                         '<span class="text-capitalize">'+result[i].delivery_type+'</span>' +
                       '</div>' +
                       '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
-                        '<input type="checkbox" name="checkboxG4" id="delivery_'+result[i].id+'" class="css-checkbox delivery_type" value="'+result[i].id+'">' +
-                        '<label for="delivery_'+result[i].id+'" id="check_box_'+result[i].id+'" class="css-label"></label>' +
-                      '</div>' + 
+                        // '<input type="checkbox" name="checkboxG4" id="delivery_'+result[i].id+'" class="css-checkbox delivery_type" value="'+result[i].id+'">' +
+                        // '<label for="delivery_'+result[i].id+'" id="check_box_'+result[i].id+'" class="css-label"></label>' +
+                        '<div class="custom-control custom-checkbox checkbox-xl cursor-pointer" style="padding-left: 1.0rem;">'+
+                            '<input type="checkbox" id="delivery_'+result[i].id+'" class="custom-control-input cursor-pointer delivery_type" value="'+result[i].id+'" >'+
+                            '<label for="delivery_'+result[i].id+'" id="check_box_'+result[i].id+'" class="custom-control-label cursor-pointer"></label>'+
+                        '</div>'+
+
+                        '</div>' + 
                     '</div>';
       }
 
@@ -825,18 +830,48 @@ function payment_type(){
       $("input[name=csrf_name]").val(data.token);
       var result = data.data;
       var div = "";
+      var disabled = "";
+      var message = "";
 
       for (var i = 0; i < result.length; i++) {
-        div += '<div class="row pt-2">' +
-                      '<div class="col-lg-3 col-md-5 col-sm-6 col-6 pl-4">' +
+        disabled = "";
+        message = "";
+
+        if (result[i].id == "3"){
+            disabled = "disabled";
+            message = "Please contact support@outletko.com for activation of Card Payment";
+        }
+
+        // div += '<div class="row pt-2">' +
+        //               '<div class="col-lg-3 col-md-5 col-sm-6 col-6 pl-4">' +
+        //                 '<span class="text-capitalize">'+result[i].payment_type+'</span>' +
+        //               '</div>' +
+        //               '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
+        //                 '<input type="checkbox" name="checkboxG4" id="payment_'+result[i].id+'" class="css-checkbox payment_type" value="'+result[i].id+'" '+disabled+'>' +
+        //                 '<label for="payment_'+result[i].id+'" class="css-label"></label>' +
+        //               '</div>' + 
+        //               '<div class="col-lg-8 col-md-5 col-sm-4 col-4">' +
+        //                 '<span style="color:green;">'+message+'</span>' + 
+        //                '</div>' +
+        //             '</div>';
+
+        div += '<div class="row pt-2 mt-3">' +
+                    '<div class="col-lg-3 col-md-5 col-sm-6 col-6 pl-4">' +
                         '<span class="text-capitalize">'+result[i].payment_type+'</span>' +
-                      '</div>' +
-                      '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
-                        '<input type="checkbox" name="checkboxG4" id="payment_'+result[i].id+'" class="css-checkbox payment_type" value="'+result[i].id+'">' +
-                        '<label for="payment_'+result[i].id+'" class="css-label"></label>' +
-                      '</div>' + 
-                    '</div>';
-      }
+                    '</div>' +
+                    '<div class="col-lg-1 col-md-1 col-sm-2 col-2">' +
+                        '<div class="custom-control custom-checkbox checkbox-xl cursor-pointer" style="padding-left: 1.0rem;">'+
+                            '<input type="checkbox" id="payment_'+result[i].id+'" class="custom-control-input cursor-pointer payment_type" value="'+result[i].id+'" '+disabled+'>'+
+                            '<label for="payment_'+result[i].id+'" class="custom-control-label cursor-pointer"></label>'+
+                        '</div>'+
+                    '</div>' + 
+                    '<div class="col-lg-8 col-md-5 col-sm-4 col-4">' +
+                        '<span style="color:green;">'+message+'</span>' + 
+                    '</div>' +
+                '</div>';
+
+    
+    }
 
       $("#div-payment-types").append(div);
 
@@ -948,12 +983,15 @@ function index(){
         $("#colorpicker").css("background", result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
 
-        if (result.result[0].bg_color == null){
-            createColorPicker("#77933c");
-        }else if (result.result[0].bg_color == ""){
-            createColorPicker("#77933c");
-        }else{
-            createColorPicker(result.result[0].bg_color);
+        if ($("#pickr-setting").val() == "0"){
+            $("#pickr-setting").val("1");
+            if (result.result[0].bg_color == null){
+                createColorPicker("#77933c");
+            }else if (result.result[0].bg_color == ""){
+                createColorPicker("#77933c");
+            }else{
+                createColorPicker(result.result[0].bg_color);
+            }    
         }
 
         // console.log(result.result[0].bg_color);
@@ -1989,7 +2027,10 @@ function check_payment(){
    }
   });
 
-  console.log(switchbox);
+//   console.log(delivery_type);
+//   console.log(payment_type);
+//   console.log(inp_return);
+//   console.log(inp_warranty);
 
   if (payment_type == 0 || delivery_type == 0 || inp_return == 0 || inp_warranty == 0){
     swal({

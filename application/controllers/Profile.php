@@ -108,4 +108,27 @@ class Profile extends CI_Controller {
         echo json_encode($data);
     }	
 
+    public function product_by_cat(){
+        $id = $this->input->post("id");
+        $comp_id = $this->input->post("comp_id");
+        $result = $this->profile_model->get_product_by_cat($id, $comp_id);
+        $products = array();
+      
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $unserialized_files = unserialize($value->img_location); 
+                $products[$key] = array(
+                    'product_name' => $value->product_name,
+                    "product_description" => $value->product_description,
+                    "product_unit_price" => $value->product_unit_price,
+                    "img_location" => $unserialized_files,
+                    "id" => $value->id);
+            }
+        }
+
+        $data['products'] = $products;
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 }
