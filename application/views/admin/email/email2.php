@@ -299,7 +299,7 @@
 <div><span style="font-family: arial, helvetica, sans-serif; font-size: 18px;">Get started by logging into your Outletko account at</span></div>
 <div><span style="font-family: arial, helvetica, sans-serif; font-size: 18px;">https://www.outletko.com</span></div>
 <div>&#xA0;</div>
-<div><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Outletko Page Account&#xA0;</span></div>
+<div><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Outletko Online Store Account&#xA0;</span></div>
 <div><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Username : Your Email</span></div>
 <div><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Password : <?php echo $outletko_pass; ?></span></div>
       </div>

@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     div_hide();
-    country();
     category();
     $("#div-plan").show();
     $("#info-mobile").mobilenumber();
@@ -15,6 +14,7 @@ $(document).ready(function(){
         changeYear : true,
         dateFormat: 'mm/dd/yy', 
         yearRange : "-100:+0",
+        maxDate : "-18y",
         onClose: function () {
             $(this).parsley().validate();
         }
@@ -141,6 +141,59 @@ $(document).ready(function(){
         }
     });    
 
+    // window.ParsleyValidator
+    // .addValidator('info-email', function (value, requirement) {
+    //     var response = false;
+    //     console.log(value);
+    //     $.ajax({
+    //         url: base_url + "Store_register/check_email",
+    //         data: {email: value},
+    //         dataType: 'JSON',
+    //         type: 'POST',
+    //         async: false,
+    //         success: function(data) {
+    //             console.log(data);
+    //             response = true;
+    //         },
+    //         error: function() {
+    //             response = false;
+    //         }
+    //     });
+    //     return response;
+    // }, 32)
+    // .addMessage('en', 'info-email', 'Email already exists.');
+
+    $("#info-email").blur(function(){
+        var email = $(this).val();
+        var csrf_name = $("input[name='csrf_name']").val();
+        // console.log(email);
+
+        var result = $("#info-email").parsley();
+
+        if (result.validationResult == true){
+            $("#parsley-email").remove();
+            $("#info-email").attr("data-exists", "0");
+            $.ajax({
+                data : {email : email, csrf_name : csrf_name},
+                type : "POST",
+                dataType : "JSON",
+                url : base_url + "Store_register/check_email",
+                success : function(result){
+                    console.log(result);
+                    $("input[name='csrf_name']").val(result.token);
+                    if (result.result > 0){
+                        $("#info-email").attr("data-exists", "1");
+                        $(".div-email").append('<ul class="parsley-errors-list filled" id="parsley-email" aria-hidden="false"><li class="parsley-type">Email already exists.</li></ul>');
+                    }
+
+                }, error : function(err){
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+    });
+
     $("#cart-plan-outlet-qty").keyup(function(){
         if ($(this).val() == ""){
             $(this).val("0");
@@ -172,7 +225,8 @@ $(document).ready(function(){
     });
 
     $("#btn-next-cart").click(function(){
-        check_cart();
+        check_payment();
+        // check_cart();
     });
 
     $("#btn-next-bill").click(function(){
@@ -260,9 +314,9 @@ function country(){
         data : {csrf_name : csrf_name},
         type : "POST",
         dataType : "JSON",
-        url : base_url + "Signup/Country",
+        url : base_url + "Signup/country",
         success : function(result){
-            $("input[name='csrf_name']").val(result.csrf_name);
+            $("input[name='csrf_name']").val(result.token);
             var data = result.result;
             for (var i = 0; i < data.length; i++) {
                 $("#info-country").append("<option value='"+data[i].id+"'>"+data[i].country+"</option>");
@@ -291,6 +345,7 @@ function category(){
             for (var i = 0; i < data.result.length; i++) {
                 $("#info-business-category").append("<option value='"+data.result[i].id+"'>"+data.result[i].desc+"</option>");
             }
+            country();
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -336,21 +391,29 @@ function check_info(){
 
     if (grecaptcha && grecaptcha.getResponse().length !== 0){
         if ($("#info-form").parsley().isValid()){
-            div_hide();
-            $("#div-cart").show();                    
+            if ($("#info-email").attr("data-exists") == "0"){
+                div_hide();
+                $("#div-cart").show();   
+            }else{
+                $('#info-form').parsley().validate();                 
+                swal({
+                    type : "warning",
+                    title : "Please input all required fields"
+                })    
+            }
         }else{
+            $('#info-form').parsley().validate();                 
             swal({
                 type : "warning",
                 title : "Please input all required fields"
-            })
+            })    
         }
-
     }else{
+        $('#info-form').parsley().validate();                 
         swal({
             type : "warning",
             title : "Please Check reCAPTCHA"
         })
-
     }
 
 
@@ -432,6 +495,22 @@ function check_bill(){
 }
 
 function check_payment(){
+
+    $("#payment-grand-total").text("PHP " + $.number($("#total_amount").val(), 2));
+
+    $("#bill-fname").val($("#info-fname").val());
+    $("#bill-lname").val($("#info-lname").val());
+    $("#bill-address").val($("#info-business-address").val());
+    $("#bill-town").val($("#info-town").val());
+    $("#bill-province").val($("#info-province").val());
+    $("#bill-town").attr("data-id", $("#info-town").attr("data-id"));
+    $("#bill-town").attr("data-prov", $("#info-town").attr("data-prov"));
+    $("#bill-zipcode").val($("#info-zipcode").val());
+    $("#bill-email").val($("#info-email").val());
+    $("#bill-mobile").val($("#info-mobile").val());
+    $("#bill-phone").val($("#info-phone").val());
+    $("#bill-phone-code").val($("#info-phone-code").val());
+
 
     if ($("#payment-type").val() != ""){
 

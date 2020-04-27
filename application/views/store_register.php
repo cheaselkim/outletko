@@ -106,7 +106,7 @@
                                     <button class="btn btn-block bg-transparent text-white d-none d-sm-block" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
                                     <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('login')?>" style="border: 1px solid white;"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
                                 </li>    
-                                <li class="nav-item py-1 pad-left" >
+                                <li class="nav-item py-1 pad-left" hidden>
                                     <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-white"></i> <span class="text-white">Sign Up</span></button>
                                 </li>
                             </ul>
@@ -189,7 +189,7 @@
                         
                         <div class="row">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                <span class="font-weight-600 font-size-30">Outletko.com Account Information</span>
+                                <span class="font-weight-600 font-size-30">Outletko Account Information</span>
                             </div>
                         </div>
 
@@ -271,9 +271,9 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 div-email">
                                             <span>Email Address <span class="text-red">*</span></span>
-                                            <input type="email" class="form-control form-control-sm textbox-green" id="info-email" data-parsley-trigger="focusin focusout" data-parsley-type="email" required>
+                                            <input type="email" class="form-control form-control-sm textbox-green" id="info-email" data-exists="0" data-parsley-trigger="focusin focusout" data-parsley-type="email" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Mobile No <span class="text-red">*</span></span>
@@ -281,7 +281,7 @@
                                                 <div class="input-group-prepend" style="height: 31px;">
                                                     <span class="input-group-text textbox-green text-black bg-white">+63</span>
                                                 </div>
-                                                <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-mobile" data-parsley-type="number" data-parsley-trigger="focusin focusout" required>
+                                                <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-mobile" data-parsley-length="[10, 10]" data-parsley-length-message="This value should be exactly 10 digits long" data-parsley-type="digits" data-parsley-trigger="focusin focusout" required>
                                             </div>
                                         </div>
                                     </div>
@@ -299,8 +299,13 @@
                                             <span>Partner <span class="text-red">*</span></span>
                                             <input type="text" class="form-control form-control-sm textbox-green" value="HOUSE ACCOUNT  (000001)" id="info-partner" data-parsley-trigger="focusin focusout" required data-id="1" data-lvl-2="0" data-lvl-3="0">
                                         </div>
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-3">
                                             <div class="g-recaptcha" data-sitekey="6Lceu-UUAAAAAIEI5p99WGEi9w5EH8AMnNo4AZg0"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-3">
+                                            <span>By clicking <span class="font-weight-600">"Continue"</span>, I agree to Outletko's <a href="<?php echo base_url('terms'); ?>">Terms and Conditions</a> and <a href="<?php echo base_url('privacy'); ?>">Privacy Policy</a> </span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -399,9 +404,9 @@
                             <div class="col-12 col-lg-4 col-md-12 col-sm-12 div-cart-total border-green py-2">
                                 <div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
-                                        <span class="font-size-20 font-weight-600">CART TOTALS</span><br>
-                                        <span class="font-size-25 font-weight-bold mt-2">Grand Total : <span id="cart-grand-total"></span></span>
-                                        <button class="btn btn-success btn-block mt-4" id="btn-next-cart">Proceed to Checkout</button>
+                                        <span class="font-size-20 font-weight-600" hidden>CART TOTALS</span>
+                                        <span class="font-size-30 font-weight-bold" >Grand Total : <span id="cart-grand-total"></span></span>
+                                        <button class="btn btn-success btn-block mt-4" id="btn-next-cart"> <span class=""> Proceed to Checkout</span> </button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -548,7 +553,7 @@
                     </div>
                 </div>
                 <div class="row navbar mt-3">
-                    <input type="hidden" id="payment-type">
+                    <input type="hidden" id="payment-type" value="1">
                     <div class="col-12 col-lg-8 col-md-12 col-sm-12 pt-3">
                         <div class="row">
                             <div class="col-12 col-lg-6 col-md-6 col-sm-12">

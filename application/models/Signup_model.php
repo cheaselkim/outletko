@@ -16,39 +16,44 @@ class Signup_model extends CI_Model {
 		return $query;
 	}
 	
-  public function search_city_prov($city){
-    $query = $this->db->query("SELECT city.*, `province`.`province_desc` FROM city INNER JOIN province ON `city`.`province_id` = `province`.`id` WHERE city_desc LIKE ? LIMIT 20", array($city."%"))->result();
-    return $query;
-  }
+    public function search_city_prov($city){
+        $query = $this->db->query("SELECT city.*, `province`.`province_desc` FROM city INNER JOIN province ON `city`.`province_id` = `province`.`id` WHERE city_desc LIKE ? LIMIT 20", array($city."%"))->result();
+        return $query;
+    }
 
-  public function search_partner($partner){
-    $query = $this->db->query("
-    SELECT
-    id AS partner_id,
-    CONCAT(last_name, ', ', first_name, ' ', middle_name) AS partner_name,
-    recruited_by as lvl_2,
-    level_2 as lvl_3,
-    account_id 
-    FROM account_application
-    WHERE last_name LIKE ? OR account_id LIKE ? OR first_name LIKE ?   
-    LIMIT 20
-    ", array("%".$partner."%", "%".$partner."%", "%".$partner."%"))->result();
-    return $query;
-  }
+    public function search_partner($partner){
+        $query = $this->db->query("
+        SELECT
+        id AS partner_id,
+        CONCAT(last_name, ', ', first_name, ' ', middle_name) AS partner_name,
+        recruited_by as lvl_2,
+        level_2 as lvl_3,
+        account_id 
+        FROM account_application
+        WHERE last_name LIKE ? OR account_id LIKE ? OR first_name LIKE ?   
+        LIMIT 20
+        ", array("%".$partner."%", "%".$partner."%", "%".$partner."%"))->result();
+        return $query;
+    }
 
-  public function country(){
-    $query = $this->db->query("SELECT * FROM country")->result();
-    return $query;
-  }
+    public function country(){
+        $query = $this->db->query("SELECT * FROM country")->result();
+        return $query;
+    }
+
+    public function check_email($email){
+        $query = $this->db->query("SELECT * FROM account_application WHERE email = ? ", array($email))->num_rows();
+        return $query;
+    }
 
 	public function account_id(){
-    $result = $this->db->query("SELECT account_id FROM account_application ORDER BY id DESC LIMIT 1")->row();
-    $data['account_id'] = date("y").'1'.str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT);
+        $result = $this->db->query("SELECT account_id FROM account_application ORDER BY id DESC LIMIT 1")->row();
+        $data['account_id'] = date("y").'1'.str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT);
     
-    $this->db->insert("account_application", $data);
-    $data['comp_id'] = $this->db->insert_id();
+        $this->db->insert("account_application", $data);
+        $data['comp_id'] = $this->db->insert_id();
 
-    return $data; 		
+        return $data; 		
 	}
     
     public function email_check($email){

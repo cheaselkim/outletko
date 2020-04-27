@@ -24,6 +24,13 @@ class Store_register extends CI_Controller {
         $this->load->view("admin/email/".$page);
     }
 
+    public function check_email(){
+        $email = $this->input->post("email");
+        $data['result'] = $this->signup_model->check_email($email);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
     public function save_account(){
         $info_user = $this->input->post("info_user");
         $info_bill = $this->input->post("info_bill");
@@ -280,7 +287,7 @@ class Store_register extends CI_Controller {
 
           $this->email->initialize($config)
                       ->set_newline("\r\n")
-                      ->from('noreplys@outletko.com', 'OutletSuite Application')
+                      ->from('noreplys@outletko.com', 'Outletko Application')
                       ->to($email)
                       ->bcc("verify@outletko.com")
                       ->subject('Outletko Verification')
@@ -366,7 +373,7 @@ class Store_register extends CI_Controller {
 
             $this->email->initialize($config)
                         ->set_newline("\r\n")
-                        ->from('noreply@outletko.com', 'OutletSuite Application')
+                        ->from('noreply@outletko.com', 'Outletko Application')
                         ->to($email)
                         ->bcc("accounts@outletko.com")
                         ->subject('Outletko Application')
@@ -438,7 +445,7 @@ class Store_register extends CI_Controller {
 
             $this->email->initialize($config)
                         ->set_newline("\r\n")
-                        ->from('noreply@outletko.com', 'OutletSuite Receipt')
+                        ->from('noreply@outletko.com', 'Outletko Receipt')
                         ->to($email)
                         ->bcc("receipt@outletko.com")
                         ->subject('Outletko Receipt')
