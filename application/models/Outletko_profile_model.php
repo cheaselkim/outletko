@@ -20,7 +20,7 @@ class Outletko_profile_model extends CI_Model {
     }
 
     public function business_type(){
-        $query = $this->db->query("SELECT * FROM business_type")->result();
+        $query = $this->db->query("SELECT * FROM business_type ORDER BY `business_type`.`desc`")->result();
         return $query;
     }
 
@@ -239,6 +239,12 @@ class Outletko_profile_model extends CI_Model {
         $this->db2->where('account_id',$this->session->userdata("account_id"));
         $this->db2->update('account',$data);
         return ($this->db2->affected_rows() > 0) ? true : false;
+    }
+
+    public function update_eoutletsuite($data){
+        $this->db->where("account_id", $this->session->userdata("account_id"));
+        $this->db->update("account_application", $data);
+        return ($this->db2->affected_rows() > 0) ? true : false;        
     }
 
     public function update_store_assoc($store_assoc){

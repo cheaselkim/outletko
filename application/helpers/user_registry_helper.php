@@ -9,14 +9,17 @@ if (!function_exists("tbl_query")){
 
 		$output .= "<table class='table table-striped table-sm table-hover table-bordered' id='tbl-data'>
 					<thead class='w-100'>
-						<tr>
+                        <tr>
+                            <th>Date</th>
 							<th>Account ID</th>
-							<th>Account Name</th>
-							<th>Account Class</th>
-							<th>Account Type</th>
+                            <th>Account Name</th>
+                            <th>Plan Type</th>
+                            <th>Renewal Date</th>
+							<th hidden>Account Class</th>
+							<th hidden>Account Type</th>
 							<th>Account Status</th>
 							<th>Business Type</th>
-							<th>Action</th>
+							<th hidden>Action</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -37,14 +40,17 @@ if (!function_exists("tbl_query")){
 				$status = "Inactive";
 			}
 
-			$output .= "<tr>
+            $output .= "<tr>
+                            <td>".date('m/d/Y', strtotime($value->date_insert))."</td>
 							<td>".$value->account_id."</td>
-							<td>".$value->account_name."</td>
-							<td>".$value->account_class_desc."</td>
-							<td>".$value->account_type_desc."</td>
+                            <td>".$value->account_name."</td>
+                            <td>".$value->plan_name."</td>
+                            <td>".date('m/d/Y', strtotime($value->renewal_date))."</td>
+							<td hidden>".$value->account_class_desc."</td>
+							<td hidden>".$value->account_type_desc."</td>
 							<td>".$status."</td>
 							<td>".$value->business_type_desc."</td>
-							<td>".$button."</td>
+							<td hidden>".$button."</td>
 						</tr>";
 		}
 

@@ -256,11 +256,17 @@ class Outletko_profile extends CI_Controller {
             "bg_color" => $this->input->post("bgcolor")
         );
 
+        $eoutletsuite_data = array(
+            "account_name" => $this->input->post("business_name"),
+            "business_type" => $this->input->post("business_category")
+        );
+
         if (!empty($this->input->post("store_assoc"))){
             $store_data = $this->outletko_profile_model->update_store_assoc($this->input->post("store_assoc"));
         }
 
         $query = $this->outletko_profile_model->update_aboutus($data);
+        $eoutletsuite_query = $this->outletko_profile_model->update_eoutletsuite($eoutletsuite_data);
         echo json_encode(array("status" => $query, "token" => $this->security->get_csrf_hash()));
     }
 

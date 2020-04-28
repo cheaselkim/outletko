@@ -134,7 +134,7 @@ class User_registry_model extends CI_Model {
 		$account_class_query = "";
 
 		if (!empty($trans_date)){
-			$trans_date_query = "AND DATE(date_insert) = '".$trans_date."'";
+			$trans_date_query = "AND DATE(`account_application`.`date_insert`) = '".$trans_date."'";
 		}
 
 		if (!empty($keyword)){
@@ -153,7 +153,8 @@ class User_registry_model extends CI_Model {
 					`account_application`.*,
 					`account_class`.`desc` AS `account_class_desc`,
 					`account_type`.`desc` AS `account_type_desc`,
-					`business_type`.`desc` AS `business_type_desc`
+					`business_type`.`desc` AS `business_type_desc`,
+                    `plan_type`.`plan_name`
 					FROM account_application
 					LEFT JOIN `account_class` ON
 					`account_application`.`account_class` = `account_class`.`id`
@@ -161,6 +162,8 @@ class User_registry_model extends CI_Model {
 					`account_application`.`account_type` = `account_type`.`id`
 					LEFT JOIN business_type ON
 					`account_application`.`business_type` = `business_type`.`id`
+                    lEFT JOIN plan_type ON 
+                    `account_application`.`subscription_type` = `plan_type`.`id`
 					WHERE ".$account_status_query."
 					".$trans_date_query." ".$keyword_query."  ".$account_class_query."
 				";
