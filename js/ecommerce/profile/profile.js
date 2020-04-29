@@ -78,6 +78,58 @@ $(document).ready(function(){
 
 });
 
+function lightOrDark(color) {
+
+    // Variables for red, green, blue values
+    var r, g, b, hsp;
+    
+    // Check the format of the color, HEX or RGB?
+    if (color.match(/^rgb/)) {
+
+        // If HEX --> store the red, green, blue values in separate variables
+        color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+        
+        r = color[1];
+        g = color[2];
+        b = color[3];
+    } 
+    else {
+        
+        // If RGB --> Convert it to HEX: http://gist.github.com/983661
+        color = +("0x" + color.slice(1).replace( 
+        color.length < 5 && /./g, '$&$&'));
+
+        r = color >> 16;
+        g = color >> 8 & 255;
+        b = color & 255;
+    }
+    
+    // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+    hsp = Math.sqrt(
+    0.299 * (r * r) +
+    0.587 * (g * g) +
+    0.114 * (b * b)
+    );
+
+    var font_color = "";
+
+    // Using the HSP value, determine whether the color is light or dark
+    if (hsp>127.5) {
+        font_color = "black";
+        // return 'light';
+    }else {
+        font_color = "white";
+        // return 'dark';
+    }
+
+    $("#text-buss-name").css("color", font_color);
+    $("#text-buss-address").css("color", font_color);
+    $("#text-buss-contact-no").css("color", font_color);
+    $("#text-buss-email").css("color", font_color);
+    $("#header_aboutus").css("color", font_color);
+    console.log(font_color);
+}
+
 function get_profile(id){
 
  var csrf_name = $("input[name=csrf_name]").val();
@@ -109,6 +161,8 @@ function get_profile(id){
         $(".div-header").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
         $(".div-header-2").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
         $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+
+        lightOrDark((result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
         $("#div-footer-img").css("background-image", "url('"+profile+"')");

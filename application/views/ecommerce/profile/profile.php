@@ -25,21 +25,21 @@
 					<div class="div-prof-details">
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-								<span class="font-weight-600 text-white text-buss-name" id="text-buss-name">Business Name</span>
+								<span class="font-weight-600  text-buss-name" id="text-buss-name">Business Name</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
 								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center div-buss-address" >
-								<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
+								<span class=" text-buss-address" id="text-buss-address">Business Address</span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-contact-no" style="margin-top: -0.5%;">
-										<span class="text-white text-buss-address" id="text-buss-contact-no"></span>												
+										<span class=" text-buss-address" id="text-buss-contact-no"></span>												
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-email" style="margin-top: -0.5%;">
-										<span class="text-white text-buss-address" id="text-buss-email"></span>												
+										<span class=" text-buss-address" id="text-buss-email"></span>												
 										<span class="text-white text-buss-address" id="text-buss-tel-no" hidden></span>												
 									</div>
 									<div class="col-3" hidden>
