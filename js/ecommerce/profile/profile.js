@@ -746,6 +746,7 @@ function compute_total_amount(){
 function check_session(type){
   var csrf_name = $("input[name=csrf_name]").val();
   var prod_ol = $("#prod-name").attr("data-ol");
+  var comp_id = $("#id").val();
 
   if (prod_ol == 0){
 
@@ -756,30 +757,37 @@ function check_session(type){
 
   }else{
 
-    $.ajax({
-      data : {csrf_name : csrf_name},
-      type : "GET",
-      dataType : "JSON",
-      url : base_url + "Profile/check_session",
-      success : function(result){
-        $("input[name=csrf_name]").val(result.token);
-        if (result.result == 1){
-          if (type == "1"){
-            add_to_cart();
-          }else{
-            order_now();
-          }
-        }else{
-            if ($(document).width() < 768){
-                window.open(base_url + "login", "_self");
+    if (comp_id > 10){
+        $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "GET",
+        dataType : "JSON",
+        url : base_url + "Profile/check_session",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            if (result.result == 1){
+            if (type == "1"){
+                add_to_cart();
             }else{
-                $("#modal_signup_user").modal("show");        
+                order_now();
             }
+            }else{
+                if ($(document).width() < 768){
+                    window.open(base_url + "login", "_self");
+                }else{
+                    $("#modal_signup_user").modal("show");        
+                }
+            }
+        }, error : function(err){
+            console.log(err.responseText);
         }
-      }, error : function(err){
-        console.log(err.responseText);
-      }
-    })
+        })
+    }else{
+        swal({
+            type : "warning",
+            title : "This Store is for viewing only."
+        })    
+    }
 
   }
 

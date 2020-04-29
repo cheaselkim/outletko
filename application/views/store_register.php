@@ -121,8 +121,13 @@
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-plan-header">
                         <div class="row">  
                             <div class="col-11 col-lg-7 col-md-9 col-sm-10 text-center text-white mx-auto div-plan-discount">
-                                <span class="font-header-discount font-weight-600"><u>Special Subscription Fee for One (1) Year</u></span><br>
-                                <span class="font-header-discount-2 font-weight-600">to those who will subscribe <br> before June 30, 2020</span>
+                                <span class="font-header-discount font-weight-600"><u>Outletko Standard </u>Online Store</span><br>
+                                <span class="font-header-discount font-weight-600">for your business</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-auto col-md-auto col-sm-8 text-center mx-auto div-plan-btn">
+                                <button class="btn btn-success btn-block btn-header-plan font-weight-600" data-toggle="modal" data-target="#modal-features">Key Features of the Online Store</button>
                             </div>
                         </div>
                         <div class="row" hidden>
@@ -133,7 +138,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-subheader">
-                                <span class="font-subheader">Choose Payment Plan</span>
+                                <span class="font-subheader">Choose Payment Plan for your Outletko Standard Online Store</span>
                             </div>
                         </div>
                     </div>
@@ -1066,6 +1071,36 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal" id="modal-features">
+    <div class="modal-dialog" style="max-width:600px;">
+        <div class="modal-content">
+            <div class="modal-header pb-0 pt-1">
+                <h4 class="modal-title">Features of your Outletko Standard Online Store :</h4>
+                <button type="button" class="close" data-dismiss="modal" hidden>&times;</button>
+            </div>
+            <div class="modal-body py-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <!-- <span><i class="fas fa-minus"></i> Allow Business Owner to post/display upto 30 Product Items in their Online Store.</span><br>
+                            <span><i class="fas fa-minus"></i> Can setup different payment mode (COD,  Bank Deposit, Remittance).</span><br>
+                            <span><i class="fas fa-minus"></i> * Card Payment/Online Payment can also be setup for your Online Store.</span><br> -->
+                            <ul class="px-2">
+                                <li>Allow Business Owner to post/display upto 30 Product Items in their Online Store.</li>
+                                <li>Can setup different payment mode (COD,  Bank Deposit, Remittance).</li>
+                                <li>*Card Payment/Online Payment can also be setup for your Online Store.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1 text-center">
+                <button type="button" class="btn btn-success mx-auto" data-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">

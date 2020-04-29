@@ -12,7 +12,7 @@ class Outletko_model extends CI_Model {
   }
 
   public function featured_outlet(){
-    $query = $this->db2->query("SELECT * FROM account  WHERE id IN (2, 9, 3, 10, 8, 7)  ORDER BY FIELD(ID, 2, 9, 3, 10, 8, 7) LIMIT 0,6 ")->result();
+    $query = $this->db2->query("SELECT * FROM account  WHERE id IN (9, 4, 2, 10, 8, 7)  ORDER BY FIELD(ID, 9, 4, 2, 10, 8, 7) LIMIT 0,6 ")->result();
     return $query;
   }
 

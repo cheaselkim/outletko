@@ -63,7 +63,7 @@ table tbody td, .table tbody th{
 }
 
 .div-plan-discount{
-    background: black;
+    /* background: black; */
     padding: 30px;
 }
 
@@ -78,7 +78,7 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 .div-plan-discount{
@@ -137,6 +137,10 @@ table tbody td, .table tbody th{
 
 .plan-discount-price{
     font-size: 25px;
+}
+
+.div-plan-btn{
+    font-size: 18px;
 }
 
 }
@@ -218,6 +222,17 @@ table tbody td, .table tbody th{
 .div-plan{
 }
 
+.div-plan-btn{
+    padding-top: 20px;
+}
+
+.div-plan-btn button{
+    font-size: 18px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -233,6 +248,7 @@ table tbody td, .table tbody th{
     background-image: url('../images/register-header.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    padding-top: 15px;
 }
 
 .font-header-discount{
@@ -270,6 +286,15 @@ table tbody td, .table tbody th{
     font-size: 38px;
 }
 
+.div-plan-btn{
+    padding-top: 20px;
+}
+
+.div-plan-btn button{
+    font-size: 18px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
 
 
 }
@@ -299,11 +324,25 @@ table tbody td, .table tbody th{
     width: auto;
 }
 
+.div-plan-btn{
+    padding-top: 20px;
+}
+
+.div-plan-btn button{
+    font-size: 18px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
 
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+
+.font-size-25{
+    font-size: 25px;
+}
 
 .div-cart-total{
     margin-left: 0rem;
@@ -326,7 +365,7 @@ table tbody td, .table tbody th{
     background-size: 100% 100%;
     background-repeat: no-repeat;
     /* padding-top: 75px; */
-    padding-top: 30px;
+    padding-top: 0px;
 }
 
 .div-plan-subheader{
@@ -384,11 +423,22 @@ table tbody td, .table tbody th{
 
 .font-subheader{
     font-size: 20px;
-    font-weight: 300;
+    /* font-weight: 300; */
 }
 
 .plan-discount-price{
     font-size: 43px;
 }
+
+.div-plan-btn{
+    padding-top: 20px;
+}
+
+.div-plan-btn button{
+    font-size: 25px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
 
 }
