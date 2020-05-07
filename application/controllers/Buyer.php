@@ -160,10 +160,10 @@ class Buyer extends CI_Controller {
 		$product = array();
 
 		foreach ($data['result'] as $key => $value) {
+            $img = unserialize($value->img_location);
 			$product[$key] = array(
                 "prod_id" => $value->prod_id,
-                
-				"prod_img" => unserialize($value->img_location)
+				"prod_img" => $img[0]
 			);
 		}
 
