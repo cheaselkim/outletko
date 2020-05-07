@@ -438,6 +438,10 @@ class Store_register extends CI_Controller {
                 $data['address'] = "";
             }
 
+            if ($data['plan_price'] == "0"){
+                $data['plan_price'] = "FREE";
+            }
+
             $message = $this->load->view("admin/email/invoice", $data, TRUE);
 
 

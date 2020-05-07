@@ -519,6 +519,7 @@ function check_payment(){
     $("#bill-phone-code").val($("#info-phone-code").val());
 
     if ($("#plan-type").val() == "0"){
+        $("#payment-type").val("0");
         check_payment_details();
     }else{
         if ($("#payment-type").val() != ""){
@@ -733,7 +734,8 @@ function check_payment_details(){
     } 
 
     var csrf_name = $("input[name=csrf_name]").val();
-    console.log(info_user);
+    // console.log(info_user);
+    // console.log(info_bill);
 
     $.ajax({
         data : {csrf_name : csrf_name, info_user : info_user, info_bill : info_bill, info_outletko : info_outletko, info_outletsuite : info_outletsuite},
