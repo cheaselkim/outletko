@@ -173,13 +173,13 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
     
-    public function variations(){
-        $query = $this->db2->query("SELECT * FROM account_variation WHERE comp_id = ?", array($this->session->userdata('comp_id')))->result();
+    public function variations($prod_id){
+        $query = $this->db2->query("SELECT * FROM account_variation WHERE prod_id = ?", array($prod_id))->result();
         return $query;
     }
 
-    public function variation_type(){
-        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE comp_id = ?", array($this->session->userdata('comp_id')))->result();
+    public function variation_type($prod_id){
+        $query = $this->db2->query("SELECT * FROM account_variation_type INNER JOIN account_variation ON `account_variation`.`id` = `account_variation_type`.`variation_id`  WHERE prod_id = ?", array($prod_id))->result();
         return $query;
     }
 
@@ -231,6 +231,11 @@ class Outletko_profile_model extends CI_Model {
 
     public function get_coverage_area(){
         $query = $this->db2->query("SELECT * FROM account_coverage WHERE comp_id =? ", array($this->session->userdata('comp_id')))->result();
+        return $query;
+    }
+
+    public function get_ol_products(){
+        $query = $this->db2->query("SELECT * FROM products WHERE comp_id = ? AND product_online = ? ", array($this->session->userdata('comp_id'), "1"));
         return $query;
     }
 
@@ -426,6 +431,22 @@ class Outletko_profile_model extends CI_Model {
         $status = "";
         $this->db2->trans_begin();
 
+        $query = $this->db2->query("SELECT * FROM products WHERE id = ?", array($id))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->img_location);
+                if (!empty($img)){
+                    for ($i=0; $i < COUNT($img); $i++) { 
+                        $file = './images/products/'.$img[$i];   
+                        if (file_exists($file)){
+                            unlink($file);
+                        }    
+                    }
+                }
+            }    
+        }
+        
         $this->db2->where('id',$this->input->post('id'));
         $this->db2->update('products',$data);     
 
@@ -451,20 +472,20 @@ class Outletko_profile_model extends CI_Model {
         if (!empty($query)){
             foreach ($query as $key => $value) {
                 $product = unserialize($value->img_location);
+                if (!empty($product)){
+                    for ($i=0; $i < COUNT($product); $i++) { 
+                        $file = './images/products/'.$product[$i];
+                        if (file_exists($file)){
+                            unlink($file);
+                        }
+                    }
+                }        
             }
         }else{
             $product = "";
         }
 
 
-        if (!empty($product)){
-            $file = './images/products/'.$product[0];
-            if (file_exists($file)){
-                unlink($file);
-            }
-        }else{
-            $status = false;
-        }
 
         if ($status == true){
             $this->db2->where("id", $id);
@@ -494,6 +515,21 @@ class Outletko_profile_model extends CI_Model {
         $status = "";
         $this->db2->trans_begin();
 
+        $query = $this->db2->query("SELECT * FROM account WHERE id = ?", array($this->session->userdata('comp_id')))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->loc_image);
+                if (!empty($img)){
+                    $file = './images/profile/'.$img[0];
+                    if (file_exists($file)){
+                        unlink($file);
+                    }    
+                }
+            }    
+        }
+
+
         $this->db2->where('id',$this->session->userdata('comp_id'));
         $this->db2->update('account',$data);     
 
@@ -517,6 +553,18 @@ class Outletko_profile_model extends CI_Model {
         $query = $this->db2->query("SELECT * FROM account_store WHERE comp_id = ? AND img_order = ?", array($this->session->userdata('comp_id'), $img_order))->result();
 
         if (!empty($query)){
+
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->loc_image);
+                if (!empty($img)){
+                    $file = './images/store/'.$img[0];
+                    if (file_exists($file)){
+                        unlink($file);
+                    }    
+                }
+    
+            }
+
             $data['date_update'] = date("Y-m-d H:i:s");
             $this->db2->where('comp_id',$this->session->userdata('comp_id'));
             $this->db2->where('img_order',$img_order);
@@ -539,7 +587,7 @@ class Outletko_profile_model extends CI_Model {
         return $status;
     }
 
-    public function insert_prod_var($prod_id, $var_name){
+    public function save_prod_var($prod_id, $var_name, $id){
 
         // $this->db2->where("comp_id", $this->session->userdata("comp_id"));
         // $this->db2->where("prod_id", $prod_id);
@@ -553,12 +601,131 @@ class Outletko_profile_model extends CI_Model {
         $data = array(
             "comp_id"  => $this->session->userdata("comp_id"),
             "prod_id" => $prod_id,
-            "variation" => $var_name,
-            "date_insert" => date("Y-m-d H:i:s")
+            "variation" => $var_name
         );
 
-        $this->db2->insert("account_variation", $data);
-        return $this->db2->insert_id();
+        if (!empty($id)){
+            $data['date_update'] = date("Y-m-d H:i:s");
+            $this->db2->where("id", $id);
+            $this->db2->set("variation", $var_name);
+            $this->db2->set("date_update", date("Y-m-d H:i:s"));
+            $this->db2->update("account_variation");        
+            $result = 1;    
+        }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
+            $this->db2->insert("account_variation", $data);
+            $result = $this->db2->insert_id();
+        }
+    
+
+        return $result;
+    }
+
+    public function del_variation($id){
+        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE variation_id =? ", array($id))->result();
+    
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->img_location);
+                $file = './images/products/'.$img[0];
+                if (file_exists($file)){
+                    unlink($file);
+                }
+    
+            }
+        }
+
+        $this->db2->where("id", $id);
+        $this->db2->delete("account_variation");
+        
+        $this->db2->where("variation_id", $id);
+        $this->db2->delete("account_variation_type");
+    
+        
+    }
+
+    public function save_variation_type($variation, $variation_type, $variation_qty, $variation_price, $id){
+
+        $data = array(
+            "comp_id" => $this->session->userdata("comp_id"),
+            "variation_id" => $variation,
+            "type" => $variation_type,
+            "qty" => $variation_qty,
+            "unit_price" => $variation_price
+        );
+
+        if (!empty($id)){
+            $this->db2->where("id", $id);
+            $this->db2->set("type", $variation_type);
+            $this->db2->set("qty", $variation_qty);
+            $this->db2->set("unit_price", $variation_price);
+            $this->db2->set("date_update", date("Y-m-d H:i:s"));
+            $this->db2->update("account_variation_type");
+            $result = $id;
+        }else{
+            $this->db2->insert("account_variation_type", $data);
+            $result = $this->db2->insert_id();
+        }
+
+        return $result;
+
+    }
+
+    public function del_variation_type($id){
+        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE id = ? ", array($id))->result();
+    
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->img_location);
+                if (!empty($img)){
+                    $file = './images/products/'.$img[0];
+                    if (file_exists($file)){
+                        unlink($file);
+                    }    
+                }
+    
+            }
+        }
+        
+        $this->db2->where("id", $id);
+        $this->db2->delete("account_variation_type");
+    
+        
+    }
+
+    public function upload_variation_image($data, $id){
+        $status = "";
+        $this->db2->trans_begin();
+
+        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE id = ?", array($id))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $img = unserialize($value->img_location);
+                if (!empty($img)){
+                    $file = './images/products/'.$img[0];
+                    if (file_exists($file)){
+                        unlink($file);
+                    }    
+                }
+            }    
+        }
+
+
+        $this->db2->where('id',$id);
+        $this->db2->update('account_variation_type',$data);     
+
+        if($this->db2->trans_status() === FALSE){
+            $db_error = "";
+            $db_error = $this->db->error();
+            $this->db2->trans_rollback();
+           $status = $db_error;
+        }else{  
+            $this->db2->trans_commit();
+            $status = "success";
+        }   
+
+        return $status;
     }
 
     public function insert_prod_var_type($var_id, $var_type){

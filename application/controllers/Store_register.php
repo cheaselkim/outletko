@@ -48,12 +48,19 @@ class Store_register extends CI_Controller {
 
         $link_name = $info_outletko['link_name'];
 
+        if ($info_user['plan_type'] == "0"){
+            $account_pro = "0";
+        }else{
+            $account_pro = "1";
+        }
+
         $account=array(
           'account_id'=>$account_id,
           'account_name'=>$info_user['info_business_name'],
           'account_partner' => $info_user['info_partner'],
           'link_name' => $info_outletko['link_name'],
           'account_status' => 1,
+          'account_pro' => $account_pro,
           'about_us' => "",
           'account_status'=> 1,
           'business_category'=>$info_user['info_business_category'],
@@ -109,7 +116,8 @@ class Store_register extends CI_Controller {
             }else if ($info_user['plan_type'] == "4"){
                 $renewal_date = date('Y-m-d', strtotime("+365 days"));
             }else{
-                $renewal_date = date('Y-m-d', strtotime("+11 days"));
+                $renewal_date = "0000-00-00";
+                // $renewal_date = date('Y-m-d', strtotime("+11 days"));
             }
 
             if ($info_user['plan_outlet_qty'] != "0"){
@@ -207,8 +215,9 @@ class Store_register extends CI_Controller {
 
             $invoice_result = $this->signup_model->update_invoice($bill_data, $invoice_id);
 
-            // $send_email =  $this->send_email($info_user['info_email'],$account_id,$outletko_pass, $eoutletsuite_pass);            
-            $send_email = $this->send_confirm_email($info_user['info_email'], $account_id);
+            // $send_email =  $this->send_email($info_user['info_email'],$account_id,$outletko_pass, $eoutletsuite_pass); 
+            // $send_email = $this->send_confirm_email($info_user['info_email'], $account_id);
+            $send_email = true;
 
         // }
 
@@ -445,10 +454,10 @@ class Store_register extends CI_Controller {
 
             $this->email->initialize($config)
                         ->set_newline("\r\n")
-                        ->from('noreply@outletko.com', 'Outletko Receipt')
+                        ->from('noreply@outletko.com', 'Outletko Acknowledgement')
                         ->to($email)
                         ->bcc("receipt@outletko.com")
-                        ->subject('Outletko Receipt')
+                        ->subject('Outletko Acknowledgement')
                         ->message($message);
 
             if($this->email->send()) {

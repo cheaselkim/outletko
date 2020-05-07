@@ -104,6 +104,16 @@ class Profile_model extends CI_Model {
 
     }
 
+    public function get_prod_var($prod_id){
+        $query = $this->db2->query("SELECT * FROM account_variation WHERE prod_id = ?", array($prod_id))->result();
+        return $query;
+    }
+
+    public function get_prod_var_type($prod_id){
+        $query = $this->db2->query("SELECT account_variation_type.* FROM account_variation_type LEFT JOIN account_variation ON `account_variation`.`id` = `account_variation_type`.`variation_id` WHERE prod_id = ? ", array($prod_id))->result();
+        return $query;
+    }
+
     public function get_store_img($id){
         $query = $this->db2->query("SELECT * FROM account_store WHERE comp_id = ? ", array($id))->result();
         return $query;

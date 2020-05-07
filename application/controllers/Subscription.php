@@ -61,15 +61,15 @@ class Subscription extends CI_Controller {
         }
 
         if ($info_bill['plan_type'] == "1"){
-            $renewal_date = date($renew_date, strtotime("+30 days"));
+            $renewal_date = date("Y-m-d", strtotime("+30 days", strtotime($renew_date)));
         }else if ($info_bill['plan_type'] == "2"){
-            $renewal_date = date($renew_date, strtotime("+90 days"));
+            $renewal_date = date("Y-m-d", strtotime("+90 days", strtotime($renew_date)));
         }else if ($info_bill['plan_type'] == "3"){
-            $renewal_date = date($renew_date, strtotime("+180 days"));
+            $renewal_date = date("Y-m-d", strtotime("+180 days", strtotime($renew_date)));
         }else if ($info_bill['plan_type'] == "4"){
-            $renewal_date = date($renew_date, strtotime("+365 days"));
+            $renewal_date = date("Y-m-d", strtotime("+365 days", strtotime($renew_date)));
         }else{
-            $renewal_date = date($renew_date, strtotime("+11 days"));
+            $renewal_date = date("Y-m-d", strtotime("+11 days", strtotime($renew_date)));
         }
 
         $account_app = $this->subscription_model->update_account($outlet_qty, $renewal_date, $info_bill['plan_type']);

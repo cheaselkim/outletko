@@ -62,6 +62,10 @@
     <script src="<?php echo base_url('assets/node_modules/colorpicker/js/util.js') ?>"></script>    
     <script src="<?php echo base_url('assets/node_modules/colorpicker/js/jquery.js') ?>"></script>     -->
 
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/fotorama/fotorama.css')?>"> -->
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <!-- <script src="<?php echo base_url('assets/node_modules/fotorama/fotorama.js'); ?>"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
 
     <script>var base_url = '<?php echo base_url() ?>';</script>

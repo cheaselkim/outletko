@@ -42,6 +42,7 @@ class Outletko_profile extends CI_Controller {
 
         if (!empty($result)){
             foreach ($result as $key => $value) {
+                $renew_date = $value->renewal_date;
                 $renewal_date = date("m/d/Y", strtotime($value->renewal_date));
                 $now_date = strtotime(date("Y-m-d"));
                 $end_date = strtotime($value->renewal_date);
@@ -51,10 +52,15 @@ class Outletko_profile extends CI_Controller {
         $datediff = $end_date - $now_date;
         $datediff = round($datediff / (60 * 60 * 24));
 
-        if ($datediff <= 30){
-            $status = "1";
+
+        if ($renew_date == "0000-00-00"){
+            $status = "2";
         }else{
-            $status = "0";
+            if ($datediff <= 30){
+                $status = "1";
+            }else{
+                $status = "0";
+            }    
         }
 
         if ($check_subs == "1"){
@@ -90,8 +96,26 @@ class Outletko_profile extends CI_Controller {
     }
     
     public function variations(){
-        $data['data'] = $this->outletko_profile_model->variations();
-        $data['var_type'] = $this->outletko_profile_model->variation_type();
+        // $data['var_type'] = $this->outletko_profile_model->variation_type();
+        $prod_id = $this->input->post("prod_id");
+        $result = $this->outletko_profile_model->variation_type($prod_id);
+        $prod = array();
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $prod[$key] = array(
+                    "id" => $value->id,
+                    "comp_id" => $value->comp_id,
+                    "variation_id" => $value->variation_id,
+                    "type" => $value->type,
+                    "qty" => $value->qty,
+                    "unit_price" => $value->unit_price,
+                    "img_location" => unserialize($value->img_location)
+                );
+            }
+        }
+
+        $data['data'] = $this->outletko_profile_model->variations($prod_id);
+        $data['var_type'] = $prod;        
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -132,11 +156,27 @@ class Outletko_profile extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function check_product_online(){
+    	$id = $this->session->userdata("account_id");
+        $result = $this->outletko_profile_model->get_profile_dtl($id);
+        $ol_products = $this->outletko_profile_model->get_ol_products();
+
+        foreach ($result as $key => $value) {
+            $data['account_pro'] = $value->account_pro;
+        }
+
+        $data['ol_products_rows'] = $ol_products->num_rows();
+        $data['ol_products'] = $ol_products->result();
+    	$data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 	public function get_profile_dtl(){
     	$id = $this->session->userdata("account_id");
+    	$result = $this->outletko_profile_model->get_products($id);
+        $ol_products = $this->outletko_profile_model->get_ol_products();
     	$data['result'] = $this->outletko_profile_model->get_profile_dtl($id);
     	$data['prod_cat'] = $this->outletko_profile_model->get_product_category($id);
-    	$result = $this->outletko_profile_model->get_products($id);
     	$data['token'] = $this->security->get_csrf_hash();
         $data['payment_type'] = $this->outletko_profile_model->get_payment_type();
         $data['delivery_type'] = $this->outletko_profile_model->get_delivery_type();
@@ -148,6 +188,8 @@ class Outletko_profile extends CI_Controller {
         $data['bank_list'] = $this->outletko_profile_model->get_bank_list();
         $data['remittance_list'] = $this->outletko_profile_model->get_remittance_list();
         $data['area_coverage'] = $this->outletko_profile_model->get_coverage_area();
+        $data['ol_products_rows'] = $ol_products->num_rows();
+        $data['ol_products'] = $ol_products->result();
         $store_img = $this->outletko_profile_model->get_store_img();
         $data['products']="";
         
@@ -161,6 +203,10 @@ class Outletko_profile extends CI_Controller {
                 "img_order" => $value->img_order,
                 "image" => unserialize($value->loc_image)
             );
+        }
+
+        if (empty($data['store_img'])){
+            $data['store_img'] = "";
         }
 
         // foreach($result as $row){
@@ -190,9 +236,17 @@ class Outletko_profile extends CI_Controller {
 	
 	public function get_product_info(){
 	    $id = $this->input->post('id', TRUE);
-		$result = $this->outletko_profile_model->get_product_info($id);
+        $result = $this->outletko_profile_model->get_product_info($id);
+        $prod_img = "";
 		foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
+
+            for ($i=0; $i < COUNT($unserialized_files); $i++) { 
+                if ($unserialized_files[$i] != false){
+                    $data['prod_img'][$i] = array("img" => $unserialized_files[$i]);
+                }
+            }
+
             $data['products'][] = array(
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
@@ -387,106 +441,6 @@ class Outletko_profile extends CI_Controller {
         $this->output->set_content_type('application/json');
         echo json_encode(array('id' => $id, 'token' => $this->security->get_csrf_hash()));       
     }
-    
-    public function upload_image_file() {
-
-		$files_upload = array();
-
-		$db = $this->load->database('default', TRUE);
-
-		$upload_path = './images/products/'; 
-		$counts = count($_FILES["files"]["name"]);
-
-        if (!empty($_FILES['files']['name'])){
-
-            for($x = 0; $x < $counts; $x++) { 
-                $files_tmp = $_FILES['files']['tmp_name'][$x];
-                $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
-                $randname = "file_".rand(1000,1000000) . "." . $files_ext;
-
-                move_uploaded_file($files_tmp,$upload_path.$randname);
-                $files_upload[] = $randname;
-                $file_name = $randname;
-
-                $config['upload_path'] = './images/products/'; 
-                $config['image_library'] = 'gd2';  
-                $config['source_image'] = './images/products/'.$file_name;  
-                $config['create_thumb'] = FALSE;  
-                $config['maintain_ratio'] = FALSE;  
-                $config['quality'] = '60%';  
-                $config['width'] = 200;  
-                $config['height'] = 200;  
-                $config['new_image'] = './images/products/'.$file_name;  
-                $this->load->library('image_lib', $config);  
-                $this->image_lib->resize();                         
-    
-            }
-
-
-            $serialized = serialize($files_upload);         
-            $data = array('img_location' => $serialized); 
-            $result = $this->outletko_profile_model->upload_image_file($data, $this->input->post("id", TRUE));
-
-
-        }
-
-        $this->output->set_content_type('application/json');
-		echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));					
-	}
-	
-	public function update_img_file() {
-        $files_upload = array();
-        $array_curr = array();
-        $set = '';
-
-        $db = $this->load->database('default', TRUE);
-        $upload_path = './images/products/'; 
-
-        $counts = count($_FILES["files"]["name"]);
-        $counts_curr = count($this->input->post('curr_img'));
-
-        $array_curr = $this->input->post('curr_img'); 
-        //var_dump($array_curr);
-
-        for($x = 0; $x <$counts; $x++) { 
- 
-            $files_tmp = $_FILES['files']['tmp_name'][$x];
-            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
-
-            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
-
-            move_uploaded_file($files_tmp,$upload_path.$randname);
-            $files_upload[] = $randname;
-            $file_name = $randname;
-            $set = 'true';
-
-            $config['upload_path'] = './images/products/'; 
-            $config['image_library'] = 'gd2';  
-            $config['source_image'] = './images/products/'.$file_name;  
-            $config['create_thumb'] = FALSE;  
-            $config['maintain_ratio'] = FALSE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
-            $config['new_image'] = './images/products/'.$file_name;  
-            $this->load->library('image_lib', $config);  
-            $this->image_lib->resize();                         
-
-        }
-
-        if($set == 'true') {
-            for($y = 0; $y < $counts_curr; $y++) {
-                unlink($upload_path.$array_curr[$y]);
-            }
-        }else{}
-
-        $serialized = serialize($files_upload); 
-        
-        $data = array('img_location' => $serialized); 
-        $result = $this->outletko_profile_model->upload_image_file($data, $this->input->post("id", TRUE));
-        $this->output->set_content_type('application/json');
-        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash())); 
-    }
 
     public function delete_product(){
         $id = $this->input->post("id");
@@ -494,86 +448,42 @@ class Outletko_profile extends CI_Controller {
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
+    
+    public function save_variation(){
+        $prod_id = $this->input->post("prod_id");
+        $id = $this->input->post("id");
+        $variation = $this->input->post("variation");
 
-    // Profile Picture
-
-    public function upload_profile_image() {
-
-        $files_upload = array();
-
-        $db = $this->load->database('outletko', TRUE);
-
-        $upload_path = './images/profile/'; 
-        $counts = count($_FILES["files"]["name"]);
-
-        for($x = 0; $x < $counts; $x++) { 
-            $files_tmp = $_FILES['files']['tmp_name'][$x];
-            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
-            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
-
-            move_uploaded_file($files_tmp,$upload_path.$randname);
-            $files_upload[] = $randname;
-            $file_name = $randname;
-
-            $config['upload_path'] = './images/profile/'; 
-            $config['image_library'] = 'gd2';  
-            $config['source_image'] = './images/profile/'.$file_name;  
-            $config['create_thumb'] = FALSE;  
-            $config['maintain_ratio'] = FALSE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
-            $config['new_image'] = './images/profile/'.$file_name;  
-            $this->load->library('image_lib', $config);  
-            $this->image_lib->resize();                         
-
-            
-        }
-        $serialized = serialize($files_upload);         
-        $data = array('loc_image' => $serialized); 
-        $result = $this->outletko_profile_model->upload_profile_image($data);
-        $this->output->set_content_type('application/json');
-        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
+        $data['id'] = $this->outletko_profile_model->save_prod_var($prod_id, $variation, $id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
     }
 
-    public function upload_store_image() {
-
-        $files_upload = array();
-
-        $db = $this->load->database('outletko', TRUE);
-
-        $upload_path = './images/store/'; 
-        $counts = count($_FILES["files"]["name"]);
-
-        for($x = 0; $x < $counts; $x++) { 
-            $files_tmp = $_FILES['files']['tmp_name'][$x];
-            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
-            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
-
-            move_uploaded_file($files_tmp,$upload_path.$randname);
-            $files_upload[] = $randname;
-            $file_name = $randname;
-
-            $config['upload_path'] = './images/store/'; 
-            $config['image_library'] = 'gd2';  
-            $config['source_image'] = './images/store/'.$file_name;  
-            $config['create_thumb'] = FALSE;  
-            $config['maintain_ratio'] = FALSE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
-            $config['new_image'] = './images/store/'.$file_name;  
-            $this->load->library('image_lib', $config);  
-            $this->image_lib->resize();                         
-
-        }
-        $serialized = serialize($files_upload);         
-        $data = array("comp_id" => $this->session->userdata('comp_id'), 'loc_image' => $serialized, "img_order" => $this->input->post("store_order")); 
-        $result = $this->outletko_profile_model->upload_store_image($data, $this->input->post("store_order"));
-        $this->output->set_content_type('application/json');
-        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
+    public function del_variation(){
+        $id = $this->input->post("id");
+        $data['result'] = $this->outletko_profile_model->del_variation($id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
     }
 
+    public function save_variation_type(){
+        $id = $this->input->post("id");
+        $variation = $this->input->post("variation");
+        $variation_type = $this->input->post("variation_type");
+        $variation_qty = $this->input->post("variation_qty");
+        $variation_price = $this->input->post("variation_price");
+
+        $data['result'] = $this->outletko_profile_model->save_variation_type($variation, $variation_type, $variation_qty, $variation_price, $id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function del_variation_type(){
+        $id = $this->input->post("id");
+        $data['result'] = $this->outletko_profile_model->del_variation_type($id);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
     public function save_prod_variation(){
 
@@ -598,6 +508,8 @@ class Outletko_profile extends CI_Controller {
 
         echo json_encode($data);
     }
+
+    
 
     public function account_post(){
         $post = $this->input->post("data", TRUE);
@@ -694,5 +606,233 @@ class Outletko_profile extends CI_Controller {
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
+
+    //Upload Image
+
+    public function upload_image_file() {
+
+		$files_upload = array();
+
+		$db = $this->load->database('default', TRUE);
+
+		$upload_path = './images/products/'; 
+        $counts = count($_FILES["files"]["name"]);
+        
+        // var_dump($counts);
+
+        if (!empty($_FILES['files']['name'])){
+
+            for($x = 0; $x < $counts; $x++) { 
+                $files_tmp = $_FILES['files']['tmp_name'][$x];
+                $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+                $randname = "file_".rand(1000,1000000) . "." . $files_ext;
+
+                move_uploaded_file($files_tmp,$upload_path.$randname);
+                $files_upload[] = $randname;
+                $file_name = $randname;
+
+                $config['upload_path'] = './images/products/'; 
+                $config['image_library'] = 'gd2';  
+                $config['source_image'] = './images/products/'.$file_name;  
+                $config['create_thumb'] = TRUE;  
+                $config['maintain_ratio'] = TRUE;  
+                $config['quality'] = '60%';  
+                $config['width'] = 300;  
+                $config['height'] = 300;  
+                $config['new_image'] = './images/products/'.$file_name;  
+                $this->load->library('image_lib', $config);  
+                $this->image_lib->resize();                         
+    
+            }
+
+
+            $serialized = serialize($files_upload);         
+            $data = array('img_location' => $serialized); 
+            $result = $this->outletko_profile_model->upload_image_file($data, $this->input->post("id", TRUE));
+
+
+        }
+
+        $this->output->set_content_type('application/json');
+		echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));					
+	}
+	
+	public function update_img_file() {
+        $files_upload = array();
+        $array_curr = array();
+        $set = '';
+
+        $db = $this->load->database('default', TRUE);
+        $upload_path = './images/products/'; 
+
+        $counts = count($_FILES["files"]["name"]);
+        $counts_curr = count($this->input->post('curr_img'));
+
+        $array_curr = $this->input->post('curr_img'); 
+        // var_dump($array_curr);
+
+        for($x = 0; $x <$counts; $x++) { 
+ 
+            $files_tmp = $_FILES['files']['tmp_name'][$x];
+            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+
+            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
+
+            move_uploaded_file($files_tmp,$upload_path.$randname);
+            $files_upload[] = $randname;
+            $file_name = $randname;
+            $set = 'true';
+
+            $config['upload_path'] = './images/products/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/products/'.$file_name;  
+            $config['create_thumb'] = TRUE;  
+            $config['maintain_ratio'] = TRUE;  
+            $config['quality'] = '70%';  
+            $config['width'] = 300;  
+            $config['height'] = 300;  
+            $config['new_image'] = './images/products/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
+        }
+
+        // if($set == 'true') {
+        //     for($y = 0; $y < $counts_curr; $y++) {
+        //         unlink($upload_path.$array_curr[$y]);
+        //     }
+        // }else{}
+
+        $serialized = serialize($files_upload); 
+        
+        $data = array('img_location' => $serialized); 
+        $result = $this->outletko_profile_model->upload_image_file($data, $this->input->post("id", TRUE));
+        $this->output->set_content_type('application/json');
+        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash())); 
+    }
+
+    public function upload_profile_image() {
+
+        $files_upload = array();
+
+        $db = $this->load->database('outletko', TRUE);
+
+        $upload_path = './images/profile/'; 
+        $counts = count($_FILES["files"]["name"]);
+
+        for($x = 0; $x < $counts; $x++) { 
+            $files_tmp = $_FILES['files']['tmp_name'][$x];
+            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
+
+            move_uploaded_file($files_tmp,$upload_path.$randname);
+            $files_upload[] = $randname;
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/profile/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/profile/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/profile/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
+            
+        }
+        $serialized = serialize($files_upload);         
+        $data = array('loc_image' => $serialized); 
+        $result = $this->outletko_profile_model->upload_profile_image($data);
+        $this->output->set_content_type('application/json');
+        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
+    }
+
+    public function upload_store_image() {
+
+        $files_upload = array();
+
+        $db = $this->load->database('outletko', TRUE);
+
+        $upload_path = './images/store/'; 
+        $counts = count($_FILES["files"]["name"]);
+
+        for($x = 0; $x < $counts; $x++) { 
+            $files_tmp = $_FILES['files']['tmp_name'][$x];
+            $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+            $randname = "file_".$this->session->userdata("comp_id")."_".rand(1000,1000000) . "." . $files_ext;
+
+            move_uploaded_file($files_tmp,$upload_path.$randname);
+            $files_upload[] = $randname;
+            $file_name = $randname;
+
+            $config['upload_path'] = './images/store/'; 
+            $config['image_library'] = 'gd2';  
+            $config['source_image'] = './images/store/'.$file_name;  
+            $config['create_thumb'] = FALSE;  
+            $config['maintain_ratio'] = FALSE;  
+            $config['quality'] = '60%';  
+            $config['width'] = 200;  
+            $config['height'] = 200;  
+            $config['new_image'] = './images/store/'.$file_name;  
+            $this->load->library('image_lib', $config);  
+            $this->image_lib->resize();                         
+
+        }
+        $serialized = serialize($files_upload);         
+        $data = array("comp_id" => $this->session->userdata('comp_id'), 'loc_image' => $serialized, "img_order" => $this->input->post("store_order")); 
+        $result = $this->outletko_profile_model->upload_store_image($data, $this->input->post("store_order"));
+        $this->output->set_content_type('application/json');
+        echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));                  
+    }
+
+    public function upload_variation_image() {
+
+		$files_upload = array();
+
+		$db = $this->load->database('default', TRUE);
+
+		$upload_path = './images/products/'; 
+		$counts = count($_FILES["files"]["name"]);
+
+        if (!empty($_FILES['files']['name'])){
+
+            for($x = 0; $x < $counts; $x++) { 
+                $files_tmp = $_FILES['files']['tmp_name'][$x];
+                $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+                $randname = "file_".rand(1000,1000000) . "." . $files_ext;
+
+                move_uploaded_file($files_tmp,$upload_path.$randname);
+                $files_upload[] = $randname;
+                $file_name = $randname;
+
+                $config['upload_path'] = './images/products/'; 
+                $config['image_library'] = 'gd2';  
+                $config['source_image'] = './images/products/'.$file_name;  
+                $config['create_thumb'] = FALSE;  
+                $config['maintain_ratio'] = FALSE;  
+                $config['quality'] = '70%';  
+                $config['width'] = 300;  
+                $config['height'] = 300;  
+                $config['new_image'] = './images/products/'.$file_name;  
+                $this->load->library('image_lib', $config);  
+                $this->image_lib->resize();                         
+    
+            }
+
+
+            $serialized = serialize($files_upload);         
+            $data = array('img_location' => $serialized); 
+            $result = $this->outletko_profile_model->upload_variation_image($data, $this->input->post("id", TRUE));
+
+
+        }
+
+        $this->output->set_content_type('application/json');
+		echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));					
+	}
+
 
 }

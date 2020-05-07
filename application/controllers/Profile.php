@@ -5,7 +5,8 @@ class Profile extends CI_Controller {
 
 	public function __construct(){
 	    parent::__construct();
-	    $this->load->model("profile_model");
+        $this->load->model("profile_model");
+        $this->load->helper("profile");
     }
 
     public function check_session(){
@@ -20,13 +21,13 @@ class Profile extends CI_Controller {
     	$acc_id = $id;
     	// $acc_id = $this->profile_model->get_account_id($id);
     	$data['result'] = $this->profile_model->get_profile_dtl($acc_id);
-    	$data['prod_cat'] = $this->profile_model->get_product_category($acc_id);
+        $data['prod_cat'] = $this->profile_model->get_product_category($acc_id);
     	$result = $this->profile_model->get_products($acc_id);
         $store_img = $this->profile_model->get_store_img($acc_id);
         // $data['payment_type'] = $this->profile_model->get_payment_type();
         // $data['delivery_type'] = $this->profile_model->get_delivery_type();
         // $data['shipping_fee'] = $this->profile_model->get_shipping_fee();
-    	$data['products']="";
+        $data['products']="";
         
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
@@ -35,11 +36,18 @@ class Profile extends CI_Controller {
         $products = array();
         foreach ($result as $key => $value) {
             $unserialized_files = unserialize($value->img_location); 
+            // var_dump($unserialized_files);
+            if ($unserialized_files != false){
+                $file = $unserialized_files[0];
+            }else{
+                $file = "";
+            }
+
             $products[$key] = array(
                 'product_name' => $value->product_name,
                 "product_description" => $value->product_description,
                 "product_unit_price" => $value->product_unit_price,
-                "img_location" => $unserialized_files,
+                "img_location" => $file,
                 "id" => $value->id);
         }
 
@@ -63,9 +71,32 @@ class Profile extends CI_Controller {
 	    $id = $this->input->post('id', TRUE);
         $result = $this->profile_model->get_product_info($id);
         // var_dump($result);
-		foreach($result as $row){
+        $data['prod_var_type'] = "";
+        $data['prod_img'] = "";
+
+        $prod_var_arr = array();
+        $prod_img = array();
+        $prod_img1 = array();
+
+        foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
+            $data['img'] = img_display($unserialized_files);
+
+            // if ($unserialized_files != false){
+            //     $file = $unserialized_files[0];
+            // }else{
+            //     $file = "";
+            // }
+
+            for ($i=0; $i < COUNT($unserialized_files); $i++) { 
+                if ($unserialized_files[$i] != false){
+                    $prod_img1[$i] = array("img" => $unserialized_files[$i]);
+                }
+            }
             $data['payment_type'] = $this->profile_model->get_payment_type($row->account_id);
+            $data['prod_var'] = $this->profile_model->get_prod_var($row->id);
+            $prod_var_type = $this->profile_model->get_prod_var_type($row->id);
+
             $data['products'][] = array(
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
@@ -86,7 +117,31 @@ class Profile extends CI_Controller {
                 "ship_o_mm" => $row->ship_fee_o_mm,
                 "img_location" => $unserialized_files,
                 "id" => $row->id);
-            }
+
+                if (!empty($prod_var_type)){
+                    foreach ($prod_var_type as $key2 => $value2) {
+                        $prod_unserialize_img = unserialize($value2->img_location);
+                        $prod_var_arr[$key2] = array(
+                            "id" => $value2->id,
+                            "variation_id" => $value2->variation_id,
+                            "type" => $value2->type,
+                            "unit_price" => $value2->unit_price,
+                            "img_location" => $prod_unserialize_img
+                        );
+                        // $prod_img[$key2] = array("img" => $prod_unserialize_img);
+                        // $data['prod_img'][$key2] = $prod_unserialize_img;
+                    }
+                }
+        
+                // array_push($prod_img, $prod_img1);
+
+                $data['prod_var_type'] = $prod_var_arr;
+                $data['prod_img'] = $prod_img1;
+
+
+        }
+
+        // var_dump($data['prod_img']);
         $data['token'] = $this->security->get_csrf_hash();
 
             // var_dump($data);

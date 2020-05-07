@@ -7,7 +7,8 @@ class Subscription_model extends CI_Model {
         parent::__construct();
             $CI = &get_instance(); 
             $this->load->database();
-            $this->db2 = $CI->load->database('admin', TRUE);
+            $this->db2 = $CI->load->database('outletko', TRUE);
+            $this->db3 = $CI->load->database('admin', TRUE);
             $result = $this->login_model->check_session();
             if ($result != true){
                 redirect("/");
@@ -25,7 +26,7 @@ class Subscription_model extends CI_Model {
         `city`.`id` = `account_application`.`city`
         LEFT JOIN province ON 
         `province`.`id` = `city`.`province_id`
-        WHERE `account_application`.`id` = ? ", array($this->session->userdata('comp_id')))->result();
+        WHERE `account_application`.`account_id` = ? ", array($this->session->userdata('account_id')))->result();
         return $result;
     }
 
@@ -35,7 +36,7 @@ class Subscription_model extends CI_Model {
     }
 
     public function get_plan($id){
-        $result = $this->db2->query("SELECT * FROM plan_type WHERE id = ? ", array($id))->row();
+        $result = $this->db3->query("SELECT * FROM plan_type WHERE id = ? ", array($id))->row();
         return $result->plan_name;
     }
 
@@ -44,9 +45,15 @@ class Subscription_model extends CI_Model {
         return $query;    
     }
 
+    public function update_account_pro(){
+        $this->db2->where("id", $this->session->userdata('comp_id'));
+        $this->db2->set("account_pro", "1");
+        $this->db2->update("account");
+    }
+
     public function update_account($outlet_qty, $renewal_date, $subscription_type){
 
-        $this->db->where("id", $this->session->userdata('comp_id'));
+        $this->db->where("account_id", $this->session->userdata('account_id'));
         $this->db->set("renewal_date", date("Y-m-d", strtotime($renewal_date)));
         $this->db->set("subscription_type", $subscription_type);
         $this->db->set("outlet_no", $outlet_qty);
@@ -56,7 +63,7 @@ class Subscription_model extends CI_Model {
 
     public function insert_bill($data){
 
-        $result = $this->db2->query("SELECT invoice_no FROM account_invoice ORDER BY id DESC LIMIT 1")->row();
+        $result = $this->db3->query("SELECT invoice_no FROM account_invoice ORDER BY id DESC LIMIT 1")->row();
 
         if (!empty($result)){
           $invoice_no = date("y").str_pad((substr($result->invoice_no, -4) + 1), 5, '0', STR_PAD_LEFT);
@@ -66,12 +73,12 @@ class Subscription_model extends CI_Model {
   
         $data['invoice_no'] = $invoice_no;
   
-        $this->db2->insert("account_invoice", $data);
+        $this->db3->insert("account_invoice", $data);
   
-        $insert_id = $this->db2->insert_id();
+        $insert_id = $this->db3->insert_id();
         
-        $this->db2->where("id", $insert_id);
-        $this->db2->update("account_invoice", $data);        
+        $this->db3->where("id", $insert_id);
+        $this->db3->update("account_invoice", $data);        
     }
 
 }

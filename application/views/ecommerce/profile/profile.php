@@ -136,9 +136,22 @@
 		</div>
 				
 		<div class="row">
-			<div class="col-lg-auto col-sm-12 mb-4">
-				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img">
+			<div class="col-lg-3 col-sm-12 mb-4">
+				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
 				</div>
+
+                <div class="fotorama text-center" id="div-fotorama" data-width="100%" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
+                        <!-- <img src="https://s.fotorama.io/okonechnikov/1-lo.jpg">
+                        <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
+                        <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">  -->
+                </div>
+
 			</div>
 			<div class="col-lg-auto col-sm-12 px-0" id="div-details" >
 				
@@ -271,6 +284,18 @@
                             <div class="row mt-3 div-btn-order pt-3 mx-1" id="div-btn-order">
                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="row">
+                                        <div class="col-12 col-lg-8 col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                    <select class="form-control prod-var" id="prod-var-1"></select>
+                                                </div>
+                                                <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                    <select class="form-control prod-var" id="prod-var-2"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
                                         <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
                                             <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
                                         </div>

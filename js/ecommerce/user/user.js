@@ -654,6 +654,7 @@ function copyToClipboard(element) {
 }
 
 function readURL(input, type) {
+    console.log(input.files);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         
@@ -671,7 +672,10 @@ function readURL(input, type) {
           }
         }else if (type == "2"){
           reader.onload = function (e) {
+              console.log(e);
               $('#img-upload').attr('src', e.target.result);
+              $("#div-fotorama").empty();
+              $("#div-fotoroma").append("<img src='"+e.target.result+"'>");
           }
         }else if (type == "3"){
           reader.onload = function (e) {

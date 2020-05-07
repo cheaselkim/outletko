@@ -93,7 +93,7 @@ table tbody td, .table tbody th{
     font-size: 15px;
 }
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
+.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
     border: 1px solid gray;
     margin-top: 10px;
     padding-bottom: 10px;
@@ -205,7 +205,7 @@ table tbody td, .table tbody th{
 }
 
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
+.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
     border: 1px solid gray;
     margin-top: 15px;
     padding-top: 10px;
@@ -302,7 +302,7 @@ table tbody td, .table tbody th{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d{
+.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
     border: 0;
 }
     
@@ -427,7 +427,8 @@ table tbody td, .table tbody th{
 }
 
 .plan-discount-price{
-    font-size: 43px;
+    /* font-size: 43px; */
+    font-size: 30px;
 }
 
 .div-plan-btn{
@@ -440,5 +441,17 @@ table tbody td, .table tbody th{
     padding-right: 3rem;
 }
 
+.col-lg-15{
+    max-width: 20%;
+}
+
+.div-plan{
+    border:1px solid black;
+    border-right: 0px;
+}
+
+.div-plan-d{
+    border-right: 1px solid black;
+}
 
 }

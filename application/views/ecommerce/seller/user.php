@@ -22,17 +22,17 @@
 							<div class="div-prof-details">
 								<div class="row">
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="font-weight-bold text-white text-buss-name" id="text-buss-name">Business Name</span>
+										<span class="font-weight-bold text-buss-name" id="text-buss-name">Business Name</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
+										<span class=" text-buss-type" id="text-buss-type">Business Type</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="text-white text-buss-address" id="text-buss-address">Business Address</span>
+										<span class=" text-buss-address" id="text-buss-address">Business Address</span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right pt-2 text-span-header-clickable pr-0">
-										<span class="text-white font-weight-bold mr-2 cursor-pointer" id="span_home">Home</span>
-										<span class="text-yellow font-weight-bold cursor-pointer" id="span_setting">Settings</span>
+										<span class=" font-weight-bold mr-2 cursor-pointer" id="span_home">Home</span>
+										<span class=" font-weight-bold cursor-pointer" id="span_setting">Settings</span>
 									</div>
 								</div>	
 							</div>
@@ -1406,7 +1406,7 @@
 		                <div class="col-12 col-md-5 col-lg-5">
 		                    <div class="form-group mb-0 row">
 		                        <div class="col-12 col-md-12 col-lg-12">
-									<div class="modal-img-upload" >
+									<div class="modal-img-upload" onclick="get_image();">
 										<img src="<?php echo base_url('assets/images/add_pic.png') ?>" id='img-upload'>
 									</div>
 		                        </div>
@@ -1418,7 +1418,7 @@
                                     <span class="btn btn-block btn-success btn-file btn-modal-img-upload bg-white" style="border-top: 0;border-radius: 0;">
 									<!--    <i class="fa fa-camera" aria-hidden="true">-->
 									    	Choose Image
-									    	<input type="file" id="imgInp" class="img-upload-modal btn btn-success">
+									    	<input type="file" id="imgInp" class="img-upload-modal btn btn-success" multiple>
 									<!--  	</i>-->
                                     </span>
 									<!-- </button> -->
@@ -1495,7 +1495,7 @@
 
 		                    </div>
 
-		                    <div class="form-group mb-0 mt-2 row" hidden>
+		                    <div class="form-group mb-0 mt-2 row" >
 		                    	<div class="col-12 col-md-12 col-lg-12">
 		                    		<button class="form-control textbox-green2" id="btn-variation">Variations</button>
 		                    	</div>
@@ -1658,8 +1658,8 @@
 
 <!-- MODAL FOR VARIATION  -->
 
-<div class="modal" id="modal_variations" style="top: 15% !important">
-  <div class="modal-dialog">
+<div class="modal" id="modal_variations" style="top: 5% !important">
+  <div class="modal-dialog  modal-dialog-scrollable" style="height: 500px;">
     <div class="modal-content">
       <div class="modal-header py-2 btn-success">
         <h4 class="modal-title">Variations</h4>
@@ -1679,9 +1679,9 @@
       	</div>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="save-prod-variation">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <div class="modal-footer py-1">
+        <!-- <button type="button" class="btn btn-success" id="save-prod-variation">Save</button> -->
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -1904,4 +1904,73 @@
       </div>
     </div>
   </div>
+</div>
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+<!-- The Modal -->
+<div class="modal" id="modal-product-image" style="top: 10%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1 btn-success">
+                <h4 class="modal-title">Product Image</h4>
+                <button type="button" class="close" data-dismiss="modal" hidden>&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="fotorama text-center" id="div-fotorama" data-width="100%" data-ratio="4/3" data-nav="thumbs" data-allowfullscreen="true">
+                            <!-- <img src="" alt=""> -->
+                            <!-- <img src="https://s.fotorama.io/okonechnikov/1-lo.jpg">
+                            <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
+                            <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">  -->
+                    </div>
+
+                    <div class="row" hidden>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div style="width: 200px; height:200px;border:1px solid green;" class="mx-auto" id="variation-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" id="close-modal-products-image" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-product-image-2" style="top: 10%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1 btn-success">
+                <h4 class="modal-title">Product Image</h4>
+                <button type="button" class="close" data-dismiss="modal" hidden>&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="text-center" id="div-fotorama-2" data-width="100%" data-ratio="4/3" data-nav="thumbs" data-allowfullscreen="true">
+
+                    </div>
+
+                    <div class="row" hidden>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div style="width: 200px; height:200px;border:1px solid green;" class="mx-auto" id="variation-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" id="close-modal-products-image" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

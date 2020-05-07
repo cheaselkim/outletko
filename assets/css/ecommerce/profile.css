@@ -1,3 +1,8 @@
+.fa-angle-left path, .fa-angle-right path {
+    stroke: white;
+    stroke-width: 30px;
+}
+
 .div-btn-order{
 	background: rgb(235, 241, 222);
 }
@@ -145,7 +150,7 @@
 	width: 300px; */
 /*	border: 1px solid gray;	*/
 	height: 300px;
-	width: 320px;
+	width: 300px;
 }
 
 .div-prod-dtls{
@@ -189,5 +194,17 @@
 .text-buss-address{
 	font-size: 13px;
 }
+
+/* .fotorama img{
+    height: 200px;
+    width: 200px;
+}
+
+.fotorama__active img{
+    height: 230px !important;
+    width: 280px !important;
+    margin: 0 auto !important;
+    left: 0 !important;
+} */
 
 }

@@ -393,7 +393,11 @@ function check_info(){
         if ($("#info-form").parsley().isValid()){
             if ($("#info-email").attr("data-exists") == "0"){
                 div_hide();
-                $("#div-cart").show();   
+                if ($("#plan-type").val() == "0"){
+                    check_payment();
+                }else{
+                    $("#div-cart").show();   
+                }
             }else{
                 $('#info-form').parsley().validate();                 
                 swal({
@@ -427,7 +431,10 @@ function check_plan(plan){
     var plan_name = "";
     var plan_price = "";
 
-    if (plan == "1"){
+    if (plan == "0"){
+        plan_name = "Free";
+        plan_price = "0.00";    
+    }else if (plan == "1"){
         plan_name = "Payment Plan D : Annually";
         plan_price = "2300.00";
     }else if (plan == "2"){
@@ -511,29 +518,33 @@ function check_payment(){
     $("#bill-phone").val($("#info-phone").val());
     $("#bill-phone-code").val($("#info-phone-code").val());
 
+    if ($("#plan-type").val() == "0"){
+        check_payment_details();
+    }else{
+        if ($("#payment-type").val() != ""){
 
-    if ($("#payment-type").val() != ""){
+            div_hide();
+            $("#div-payment-details").show();
+            $("#div-card-payment-details").hide();
+            $("#div-bank-payment-details").hide();
 
-        div_hide();
-        $("#div-payment-details").show();
-        $("#div-card-payment-details").hide();
-        $("#div-bank-payment-details").hide();
+            if ($("#payment-type").val() == "1"){
+                card_payment();
+            }else{
+                bank_payment();
+            }
 
-        if ($("#payment-type").val() == "1"){
-            card_payment();
         }else{
-            bank_payment();
+            swal({
+                type : "warning",
+                title : "No Payment Method Selected",
+                text : "Please select payment method"
+            })
         }
 
-    }else{
-        swal({
-            type : "warning",
-            title : "No Payment Method Selected",
-            text : "Please select payment method"
-        })
     }
 
-    // check_payment_details();
+        // check_payment_details();
 
 }
 
@@ -729,12 +740,18 @@ function check_payment_details(){
         type : "POST",
         dataType : "JSON",
         url : base_url + "Store_register/save_account",
+        beforeSend : function(){
+            swal({
+                type : "info",
+                title : "Saving...."
+            })
+        },
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             swal({
                 type : "success",
-                title : "Account Registration Completed",
-                text : "Please see your email for further instructions"
+                title : "Your Online Store Registration is Completed",
+                text : "Outletko Verification email has been sent to your email address."
             }, function(){
                 location.reload();
             })    

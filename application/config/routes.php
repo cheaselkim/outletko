@@ -83,6 +83,8 @@ $route['sukifresh'] = 'sukifresh/homepage';
 $route['sukifresh/(:any)'] = 'sukifresh/page/$1'; 
 
 $route['register-store'] = 'Store_register/page';
+$route['upgrade-store'] = 'Store_subscription/upgrade';
+$route['renew-store'] = 'Store_subscription/renew';
 
 $route['invoice'] = 'Store_register/invoice';
 $route['verification'] = 'Store_register/verification';

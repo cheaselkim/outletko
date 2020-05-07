@@ -1448,6 +1448,17 @@ textarea{
 	padding-top: 303px;
 }
 
+/* .fotorama img{
+    height: 200px;
+    width: 200px;
+}
+
+.fotorama__active img{
+    height: 300px !important;
+    width: 200px !important;
+    margin: 0 auto !important;
+    left: 0 !important;
+} */
 
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */

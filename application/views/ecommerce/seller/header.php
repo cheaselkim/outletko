@@ -1,7 +1,6 @@
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css') ?>"> -->
 
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>"> -->
-
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/header.js') ?>"></script>
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
@@ -14,6 +13,12 @@
 		<ul class="navbar-nav">
 			<li class="nav-item" hidden>
 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">Outlet</span><span class="text-red">Ko</span></a>
+			</li>
+			<li class="nav-item" id="upgrade-outletko" hidden>
+				<a class="nav-link font-small text-white cursor-pointer" href="<?php echo base_url('/upgrade-store');?>">Upgrade Outletko</a>
+			</li>
+			<li class="nav-item" id="renew-outletko" hidden>
+				<a class="nav-link font-small text-white cursor-pointer" href="#">Renew Outletko</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_myorders"><span class="text-uppercase text-white">My Orders </span> <span class="badge badge-light" id="order_no">
