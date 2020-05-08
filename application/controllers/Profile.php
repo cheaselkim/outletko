@@ -28,7 +28,8 @@ class Profile extends CI_Controller {
         // $data['delivery_type'] = $this->profile_model->get_delivery_type();
         // $data['shipping_fee'] = $this->profile_model->get_shipping_fee();
         $data['products']="";
-        
+        $min_price = "";
+        $max_price = "";    
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
         }
@@ -43,10 +44,22 @@ class Profile extends CI_Controller {
                 $file = "";
             }
 
+            $variation_price = $this->profile_model->get_variation_price($value->id);
+
+            if (!empty($variation_price)){
+                foreach ($variation_price as $key2 => $value2) {
+                    $min_price = $value2->min_unit_price;
+                    $max_price = $value2->max_unit_price;
+                }
+            }
+
+
             $products[$key] = array(
                 'product_name' => $value->product_name,
                 "product_description" => $value->product_description,
                 "product_unit_price" => $value->product_unit_price,
+                "min_price" => $min_price,
+                "max_price" => $max_price,
                 "img_location" => $file,
                 "id" => $value->id);
         }
@@ -70,6 +83,7 @@ class Profile extends CI_Controller {
         // $id = 63;
 	    $id = $this->input->post('id', TRUE);
         $result = $this->profile_model->get_product_info($id);
+        $variation_price = $this->profile_model->get_variation_price($id);
         // var_dump($result);
         $data['prod_var_type'] = "";
         $data['prod_img'] = "";
@@ -88,6 +102,14 @@ class Profile extends CI_Controller {
             //     $file = "";
             // }
 
+            if (!empty($variation_price)){
+                foreach ($variation_price as $key2 => $value2) {
+                    $min_price = $value2->min_unit_price;
+                    $max_price = $value2->max_unit_price;
+                }
+            }
+
+
             for ($i=0; $i < COUNT($unserialized_files); $i++) { 
                 if ($unserialized_files[$i] != false){
                     $prod_img1[$i] = array("img" => $unserialized_files[$i]);
@@ -103,6 +125,8 @@ class Profile extends CI_Controller {
                 "product_other_details" => $row->product_other_details,
                 "product_online" => $row->product_online,
                 "product_unit_price" => $row->product_unit_price,
+                "min_price" => $min_price,
+                "max_price" => $max_price,
                 "product_category" => $row->product_category,
                 "product_condition" => $row->product_condition,
                 "product_stock" => $row->product_stock,

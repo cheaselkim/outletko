@@ -1401,6 +1401,9 @@ function index(){
 
     //products
         var pad = "";
+        var prod_price = "";
+        var min_price = "";
+        var max_price = "";
         $('#posted_prod').empty();
         for(var x = 0; x<result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location[0];
@@ -1450,6 +1453,27 @@ function index(){
 
 
             // pad = "pad-center";
+            min_price = result.products[x]['min_price'];
+            max_price = result.products[x]['max_price'];
+            // console.log(product_name);
+            // console.log(min_price);
+            // console.log(max_price);
+            // console.log(prod_unit_price);
+
+            if (min_price == null){
+                prod_price = $.number(prod_unit_price, 2);    
+            }else{
+                if (min_price != ""){
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }else{
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }
+            } 
+
+            // if (min_price == null){
+            //     prod_price = $.number(prod_unit_price, 2);    
+            // }
+
             pad = "";
             var e = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' "   >'+
                         '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
@@ -1464,7 +1488,7 @@ function index(){
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
                     '<span class="font-weight-600 list-prod-name" >'+ product_name +'</span><br>' + 
-                    '<span class="font-weight-600 font-size-14 text-red  list-prod-price">PHP '+ $.number(prod_unit_price, 2) +'</span>' +
+                    '<span class="font-weight-600 font-size-14 text-red  list-prod-price">PHP '+ prod_price +'</span>' +
                     '</div>' +
         				'</div>');
 
@@ -1487,7 +1511,10 @@ function index(){
                 });
               
 
-        }
+                min_price = "";
+                max_price = "";
+            }
+
     //products
     
         var e2 = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' ">' +
@@ -1579,7 +1606,6 @@ function index(){
             $("#div-bank-list").hide("slow");
           }
         });
-
     }, error: function(err){
       console.log(err.responseText);
     }
@@ -1912,7 +1938,14 @@ function add_variation(){
   var variation = $("#variation").val();
   var csrf_name = $("input[name=csrf_name]").val();
   var var_length = $("#div-card-variation .card").length;
+  var var_class = "";
   var id = "";
+
+  if (var_length == "0"){
+      var_class = "1";
+  }else{
+      var_class = "2";
+  }
 
   if (variation == ""){
     $("#variation").addClass("error");
@@ -1921,7 +1954,7 @@ function add_variation(){
     if (var_length < 2){
 
         $.ajax({
-            data : {variation : variation, csrf_name : csrf_name, id : id, prod_id : prod_id},
+            data : {variation : variation, var_class : var_class, csrf_name : csrf_name, id : id, prod_id : prod_id},
             type : "POST",
             dataType : "JSON",
             url : base_url + "Outletko_profile/save_variation",
@@ -2751,20 +2784,20 @@ function image_file(img,id){
           , success : function(result) {
               console.log(result);
                 $("input[name=csrf_name]").val(result.token);
-                // if(result.status == "success") {
-                //     $("#save_product").removeAttr('disabled');
-                //     swal({
-                //         title : "Successfully Save",
-                //         type : "success",
-                //         timer: 2000
-                //     }, function(){
-                //         clear_prod_model()
-                //         index()
-                //         $("#img_upload").modal("hide");
-                //     });
-                // }else {
-                //     console.log(result.status);
-                // }
+                if(result.status == "success") {
+                    $("#save_product").removeAttr('disabled');
+                    swal({
+                        title : "Successfully Save",
+                        type : "success",
+                        timer: 2000
+                    }, function(){
+                        clear_prod_model()
+                        index()
+                        $("#img_upload").modal("hide");
+                    });
+                }else {
+                    console.log(result.status);
+                }
           }, failure : function(msg) {
               console.log("Error connecting to server...");
           }, error: function(err) {
@@ -2902,6 +2935,9 @@ function clear_prod_model(){
 
 function get_product_info(id){
     var csrf_name = $("input[name=csrf_name]").val();
+    var min_price = "";
+    var max_price = "";
+    var prod_price = "";
     $("#delete_product").show();
     $.ajax({
         url : base_url + "Outletko_profile/get_product_info",
@@ -2932,6 +2968,28 @@ function get_product_info(id){
             }else{
                 index();
             }
+
+            min_price = data.products[0].min_price;
+            max_price = data.products[0].max_price;
+
+            if (min_price == null){
+                prod_price = $.number(data.products[0].product_unit_price, 2);    
+                $("#prod_price").show();
+                $("#prod_price2").hide();
+                $("#prod_price").val(prod_price);
+                $("#prod_price2").val(prod_price);
+            }else{
+                if (min_price != ""){
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }else{
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }
+                $("#prod_price").val(min_price);
+                $("#prod_price2").val(prod_price);
+                $("#prod_price2").show();
+                $("#prod_price").hide();
+                $("#prod_price2").attr("readonly", true);
+            } 
 
             // if (data.products[0].product_delivery == "3"){
             //   $("#div-prod-ship-fee").show("slow");

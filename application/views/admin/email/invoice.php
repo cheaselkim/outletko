@@ -240,7 +240,15 @@
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Your Outletko Registration Details :</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
 <p style="font-family: Arial, sans-serif;"><strong><span style="font-size: 18px;">Outletko Standard Online Register Store Registration </span></strong></p>
-<p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Total Amount Paid : <strong>PHP <?php echo $plan_price; ?></strong></span></p>
+<p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Total Amount Paid : <strong>
+<?php
+if ($plan_price == "FREE"){
+    echo $plan_price;
+}else{
+    echo "PHP ".$plan_price; 
+}
+?>
+</strong></span></p>
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Payment Method :<strong> Card</strong></span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Thank you for registering Outletko</span></p>

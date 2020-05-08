@@ -72,6 +72,18 @@ class Profile_model extends CI_Model {
         return $query->result();
     }	
 
+    public function get_variation_price($id){
+        $query = $this->db2->query("SELECT 
+        MAX(unit_price) AS max_unit_price,
+        MIN(unit_price) AS min_unit_price
+        FROM account_variation_type
+        LEFT JOIN account_variation ON 
+        `account_variation`.`id` = `account_variation_type`.`variation_id`
+        WHERE `account_variation`.`prod_id` = ? AND variation_class = ?        
+        ", array($id, "1"))->result();
+        return $query;
+    }    
+
     public function get_payment_type($comp_id){
         $query = $this->db2->query("
         SELECT GROUP_CONCAT(' ', payment_type.payment_type) AS payment_type

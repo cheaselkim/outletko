@@ -7,8 +7,8 @@ class Signup_model extends CI_Model {
 		parent::__construct();
 		$CI = &get_instance(); 
 		$this->load->database();
-    $this->db2 = $CI->load->database('outletko', TRUE);
-    $this->db3 = $CI->load->database('admin', TRUE);
+        $this->db2 = $CI->load->database('outletko', TRUE);
+        $this->db3 = $CI->load->database('admin', TRUE);
 	}	
 
 	public function business_category(){
@@ -107,6 +107,9 @@ class Signup_model extends CI_Model {
             
           
             if ($status == true){
+                $this->db2->where("account_id", $account_id);
+                $this->db2->set("account_status", 1);
+                $this->db2->update("account");
                 return $this->db->query("SELECT * FROM users WHERE account_id = ? AND user_type = ?", array($account_id, 2))->result_array();
             }else{
                 return false;

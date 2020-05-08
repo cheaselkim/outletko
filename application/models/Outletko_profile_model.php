@@ -116,6 +116,18 @@ class Outletko_profile_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_variation_price($id){
+        $query = $this->db2->query("SELECT 
+        MAX(unit_price) AS max_unit_price,
+        MIN(unit_price) AS min_unit_price
+        FROM account_variation_type
+        LEFT JOIN account_variation ON 
+        `account_variation`.`id` = `account_variation_type`.`variation_id`
+        WHERE `account_variation`.`prod_id` = ? AND variation_class = ?        
+        ", array($id, "1"))->result();
+        return $query;
+    }
+
     public function get_del_type(){
         $query = $this->db2->query("
             SELECT
@@ -587,7 +599,7 @@ class Outletko_profile_model extends CI_Model {
         return $status;
     }
 
-    public function save_prod_var($prod_id, $var_name, $id){
+    public function save_prod_var($prod_id, $var_class, $var_name, $id){
 
         // $this->db2->where("comp_id", $this->session->userdata("comp_id"));
         // $this->db2->where("prod_id", $prod_id);
@@ -601,6 +613,7 @@ class Outletko_profile_model extends CI_Model {
         $data = array(
             "comp_id"  => $this->session->userdata("comp_id"),
             "prod_id" => $prod_id,
+            "variation_class" => $var_class,
             "variation" => $var_name
         );
 

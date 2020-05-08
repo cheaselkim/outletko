@@ -59,10 +59,9 @@ class Store_register extends CI_Controller {
           'account_name'=>$info_user['info_business_name'],
           'account_partner' => $info_user['info_partner'],
           'link_name' => $info_outletko['link_name'],
-          'account_status' => 1,
+          'account_status' => 0,
           'account_pro' => $account_pro,
           'about_us' => "",
-          'account_status'=> 1,
           'business_category'=>$info_user['info_business_category'],
           'user_id'=> "0",
           'first_name'=>$info_user['info_fname'],
@@ -100,7 +99,7 @@ class Store_register extends CI_Controller {
                 'email' => $info_user['info_email'],
                 'username' => $info_user['info_email'],
                 'account_type' => "0",
-                "status" => "1",
+                "status" => "0",
                 'all_access' => "1",
                 "online_register" => "1"
             );
@@ -216,8 +215,8 @@ class Store_register extends CI_Controller {
             $invoice_result = $this->signup_model->update_invoice($bill_data, $invoice_id);
 
             // $send_email =  $this->send_email($info_user['info_email'],$account_id,$outletko_pass, $eoutletsuite_pass); 
-            // $send_email = $this->send_confirm_email($info_user['info_email'], $account_id);
-            $send_email = true;
+            $send_email = $this->send_confirm_email($info_user['info_email'], $account_id);
+            // $send_email = true;
 
         // }
 
@@ -469,6 +468,8 @@ class Store_register extends CI_Controller {
             }else {
                 $status = $this->email->print_debugger();
             }       
+
+            $this->email->clear(TRUE);
         }else{
             $status = 1;
         }

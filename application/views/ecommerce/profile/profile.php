@@ -171,7 +171,9 @@
 
                     <div class="row">
                         <div class="col-12 col-lg-6 col-md-7 col-sm-12">
-            				<span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span><br>
+                            <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
+            				<span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
+                            <br>
 							<span id="prod_payment_type" class="font-size-15"></span><br>
 							<span id="prod_delivery_type" class="font-size-15 " hidden></span>
 							<span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span></span><br>
@@ -471,7 +473,8 @@
 								<div class="div-product-details-img mb-2" id="div-product-details-img">
 								</div>
 								<span class="font-size-25" id="prod-name">Abaca Seedlings</span><br>
-								<span class="font-size-20" id="prod-price">PHP 25.00</span>
+								<!-- <span class="font-size-20" id="prod-price">PHP 25.00</span> -->
+                                
 							</div>
 							<div class="col-lg-7 col-sm-12">
 								

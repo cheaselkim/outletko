@@ -306,6 +306,9 @@ function get_profile(id){
         }
 
         // console.log(result.products.length);
+        var prod_price = "";
+        var min_price = "";
+        var max_price = "";
 
         for(var x = 0; x < result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location;
@@ -350,6 +353,25 @@ function get_profile(id){
                     product_name = product_name.substring(0, 55) + "....";
                 }    
             }
+
+            min_price = result.products[x]['min_price'];
+            max_price = result.products[x]['max_price'];
+            // console.log(product_name);
+            // console.log(min_price);
+            // console.log(max_price);
+            // console.log(result.products[x]['product_unit_price']);
+
+            if (min_price == null){
+                prod_price = $.number(result.products[x]['product_unit_price'], 2)  
+            }else{
+                if (min_price != ""){
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }else{
+                    prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+                }
+            } 
+
+
             var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
               // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
@@ -359,7 +381,7 @@ function get_profile(id){
             '</div>'+
             '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
               '<span class="font-weight-600 list-prod-name">'+product_name+'</span><br>' + 
-              '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+$.number(result.products[x]['product_unit_price'], 2)+'</span>' + 
+              '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+ prod_price +'</span>' + 
             '</div>' +
           '</div>');
 
@@ -459,6 +481,7 @@ function get_product_info(id){
   
 var img_url = base_url + "assets/images/no-image.jpg";
 var csrf_name = $("input[name=csrf_name]").val();
+$("#prod_qty").val(1);
 $("#div-details-2").hide();
 $("#div-display-products").hide();
 $("#div-btn-order").hide();
@@ -495,6 +518,9 @@ $("#prod-var-1").removeClass("error");
 $("#prod-var-2").removeClass("error");
 $(".carousel-indicators").empty();
 $(".carousel-inner").empty();
+
+var min_price = "";
+var max_price = "";
 
 $.ajax({
     data : {id : id, csrf_name : csrf_name},
@@ -537,6 +563,40 @@ $.ajax({
         }else{
             $("#div-ship-fee").hide();
         }
+
+        min_price = data.products[0]['min_price'];
+        max_price = data.products[0]['max_price'];
+        // console.log(product_name);
+        // console.log(min_price);
+        // console.log(max_price);
+        // console.log(result.products[x]['product_unit_price']);
+
+        if (min_price == null){
+            prod_price = $.number(data.products[0].product_unit_price, 2)  
+            $("#prod-price").text("PHP " + prod_price);
+            $("#prod-price2").text("PHP " + prod_price);
+            $("#cart-prod-price").text($.number(data.products[0].product_unit_price, 2));
+            $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
+            $("#prod-price").show();
+            $("#prod-price2").hide();
+        }else{
+            if (min_price != ""){
+                prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+            }else{
+                prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
+            }
+            $("#prod-price").text("PHP " + $.number(min_price, 2));
+            $("#prod-price2").text("PHP " + prod_price);
+            $("#cart-prod-price").text($.number(0, 2));
+            $("#cart_total_amount").text($.number(0, 2));
+            $("#prod-price2").show();
+            $("#prod-price").hide();
+        } 
+
+        console.log(prod_price);
+
+
+
         // console.log(data.products[0].img_location);
         var href_url = base_url +'images/products/'+data.products[0].img_location[0];
         // var href_url = "";
@@ -583,8 +643,10 @@ $.ajax({
             // console.log($(this).find(':selected').attr("data-price"));
             var price = $(this).find(':selected').attr("data-price");
             $("#prod-price").text($.number(price, 2));
+            // $("#prod-price2").text($.number(price, 2));
             $("#cart_total_amount").text($.number(($("#prod_qty").val() * price), 2));
             $(this).removeClass("error");
+            compute_total_amount();
         });
 
         $(document).on('change', '#prod-var-2' , function() {
@@ -809,19 +871,50 @@ $.ajax({
 }
 
 function compute_total_amount(){
+    var result = "false";
+
+    if ($("#prod-var-1").is(":visible")){
+        if ($("#prod-var-1").val() == null){
+            swal({
+                type : "warning",
+                title : "Please select product variations"
+            })    
+            $("#prod-var-1").addClass("error");
+            $("#prod_qty").val("1");
+        }else{
+            if ($("#prod-var-1").val() == ""){
+                swal({
+                    type : "warning",
+                    title : "Please select product variations"
+                })        
+                $("#prod-var-1").addClass("error");
+                $("#prod_qty").val("1");
+            }else{
+                result = "true";
+            }
+        }
+    }else{
+        result = "true";
+    }
   
-  var prod_qty = $("#prod_qty").val(); 
-  var prod_price_raw = $("#prod-price").text();
+    if (result == "true"){
 
-  var sd2 = prod_price_raw.replace(/[^\d.]/g, '');
-  var prod_price = parseInt(sd2, 10);
+        $("#prod-price2").hide();
+        $("#prod-price").show();
 
-  var total = prod_qty * prod_price;
+        var prod_qty = $("#prod_qty").val(); 
+        var prod_price_raw = $("#prod-price").text();
 
-//   console.log(sd2);
-//   console.log(prod_price);
+        var sd2 = prod_price_raw.replace(/[^\d.]/g, '');
+        var prod_price = parseInt(sd2, 10);
 
-  $("#cart_total_amount").text($.number(total, 2));
+        var total = prod_qty * prod_price;
+
+        //   console.log(sd2);
+        //   console.log(prod_price);
+
+        $("#cart_total_amount").text($.number(total, 2));
+    }
 
 }
 

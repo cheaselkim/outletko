@@ -218,12 +218,25 @@ class Outletko_profile extends CI_Controller {
         //         "id" => $row->id);
         // }
         $products = array();
+        $min_price = "";
+        $max_price = "";
         foreach ($result as $key => $value) {
             $unserialized_files = unserialize($value->img_location); 
+            $variation_price = $this->outletko_profile_model->get_variation_price($value->id);
+
+            if (!empty($variation_price)){
+                foreach ($variation_price as $key2 => $value2) {
+                    $min_price = $value2->min_unit_price;
+                    $max_price = $value2->max_unit_price;
+                }
+            }
+
             $products[$key] = array(
                 'product_name' => $value->product_name,
                 "product_description" => $value->product_description,
                 "product_unit_price" => $value->product_unit_price,
+                "min_price" => $min_price,
+                "max_price" => $max_price,
                 "img_location" => $unserialized_files,
                 "id" => $value->id);
         }
@@ -238,12 +251,27 @@ class Outletko_profile extends CI_Controller {
 	    $id = $this->input->post('id', TRUE);
         $result = $this->outletko_profile_model->get_product_info($id);
         $prod_img = "";
+        $min_price = "";
+        $max_price = "";
 		foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
 
-            for ($i=0; $i < COUNT($unserialized_files); $i++) { 
-                if ($unserialized_files[$i] != false){
-                    $data['prod_img'][$i] = array("img" => $unserialized_files[$i]);
+            if ($unserialized_files != ""){
+                for ($i=0; $i < COUNT($unserialized_files); $i++) { 
+                    if ($unserialized_files[$i] != false){
+                        $data['prod_img'][$i] = array("img" => $unserialized_files[$i]);
+                    }
+                }    
+            }else{
+                $data['prod_img'] = "";
+            }
+
+            $variation_price = $this->outletko_profile_model->get_variation_price($id);
+
+            if (!empty($variation_price)){
+                foreach ($variation_price as $key => $value) {
+                    $min_price = $value->min_unit_price;
+                    $max_price = $value->max_unit_price;
                 }
             }
 
@@ -252,6 +280,8 @@ class Outletko_profile extends CI_Controller {
                 "product_description" => $row->product_description,
                 "product_online" => $row->product_online,
                 "product_unit_price" => $row->product_unit_price,
+                "min_price" => $min_price,
+                "max_price" => $max_price,
                 "product_category" => $row->product_category,
                 "product_condition" => $row->product_condition,
                 "product_stock" => $row->product_stock,
@@ -453,8 +483,9 @@ class Outletko_profile extends CI_Controller {
         $prod_id = $this->input->post("prod_id");
         $id = $this->input->post("id");
         $variation = $this->input->post("variation");
+        $var_class = $this->input->post("var_class");
 
-        $data['id'] = $this->outletko_profile_model->save_prod_var($prod_id, $variation, $id);
+        $data['id'] = $this->outletko_profile_model->save_prod_var($prod_id, $var_class, $variation, $id);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
