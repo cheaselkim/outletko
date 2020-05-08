@@ -2,6 +2,13 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>"> -->
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/header.js') ?>"></script>
+
+<style>
+.text-yellow{
+    color: yellow;
+}
+</style>
+
 <!-- NAVRBAR -->
 <nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: rgb(79, 98, 40);">
 	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></a>
@@ -15,10 +22,10 @@
 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">Outlet</span><span class="text-red">Ko</span></a>
 			</li>
 			<li class="nav-item" id="upgrade-outletko" hidden>
-				<a class="nav-link font-small text-white cursor-pointer" href="<?php echo base_url('/upgrade-store');?>">Upgrade Outletko</a>
+				<a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/upgrade-store');?>">Upgrade Outletko</a>
 			</li>
 			<li class="nav-item" id="renew-outletko" hidden>
-				<a class="nav-link font-small text-white cursor-pointer" href="#">Renew Outletko</a>
+				<a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/renew-store');?>">Renew Outletko</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_myorders"><span class="text-uppercase text-white">My Orders </span> <span class="badge badge-light" id="order_no">
