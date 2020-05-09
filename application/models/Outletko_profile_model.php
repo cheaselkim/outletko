@@ -128,6 +128,11 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function get_product_count(){
+        $query = $this->db2->query("SELECT * FROM products WHERE comp_id = ?", array($this->session->userdata('comp_id')))->num_rows();
+        return $query;
+    }
+
     public function get_del_type(){
         $query = $this->db2->query("
             SELECT
@@ -251,7 +256,37 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function check_curr_password($password){
+        $query = $this->db->query("SELECT * FROM users WHERE id = ? ", array($this->session->userdata("user_id")))->result();
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                if (password_verify($password, $value->password)){
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }
+        }else{
+            return 1;
+        }
+
+    }
+
     //SAVING
+
+    public function save_username($username){
+        $this->db->where("id", $this->session->userdata("user_id"));
+        $this->db->set("username", $username);
+        $this->db->update("users");
+        $this->session->set_userdata("user_uname", $username);
+    }
+
+    public function save_password($password){
+        $this->db->where("id", $this->session->userdata("user_id"));
+        $this->db->set("password", password_hash($password, PASSWORD_DEFAULT));
+        $this->db->update("users");
+    }
+
     public function update_aboutus($data){
         $this->db2->where('account_id',$this->session->userdata("account_id"));
         $this->db2->update('account',$data);

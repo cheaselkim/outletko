@@ -481,7 +481,10 @@ $(document).ready(function(){
   /*change username & password */
 
   $("#save_setting").click(function(){
+    var csrf_name = $("input[name=csrf_name]").val();
     var password = $("#curr_pass").val();
+    var new_pass = $("#new_pass").val();
+    var conf_pass = $("#conf_pass").val();
 
     if (password == ""){
       swal({
@@ -498,19 +501,47 @@ $(document).ready(function(){
         }
       })
     }else{
-      swal({
-        type : "warning",
-        title : "Send?",
-        text : "Username & Password will change",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-      }, function(isConfirm){
-        if (isConfirm){
-          save_setting();
+        if (new_pass != conf_pass){
+            swal({
+                type : "warning",
+                title : "New Password and Confirm Password does not match",
+            })
+            $("#modal-setting").modal("show");
+        }else{
+            $.ajax({
+                type : "POST",
+                dataType : "JSON",
+                url : base_url + "Outletko_profile/check_curr_password",
+                data : {password : password, csrf_name : csrf_name},
+                success : function(result){
+                    $("input[name=csrf_name]").val(result.token);
+                    console.log(result.result);
+                    if (result.result > 0){
+                        swal({
+                            type : "warning",
+                            title : "Current Password is Incorrect"
+                        })                          
+                        $("#modal-setting").modal("show");
+                    }else{
+                        swal({
+                            type : "warning",
+                            title : "Send?",
+                            text : "Username & Password will change",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes",
+                            cancelButtonText: "No",
+                          }, function(isConfirm){
+                            if (isConfirm){
+                              save_setting();
+                            }
+                          })                          
+                    }
+                }, error : function(err){
+                    console.log(err.responseText);
+                }
+            })
         }
-      })      
     }
 
   });
@@ -1514,21 +1545,28 @@ function index(){
                 min_price = "";
                 max_price = "";
             }
-
     //products
-    
-        var e2 = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' ">' +
-						'<div class="div-list-img">' +
-								'<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +
-						'</div>' +
-						'<div class="bd-green text-center cursor-pointer div-list-img-btn py-1"  onclick="clear_prod_model();" id="btn-img-upload-2" data-toggle="modal" data-target="#img_upload">' +
-							'<span class="font-weight-600 font-size-16 list-prod-name">Add Product</span><br>' +
-							'<span class="font-weight-600 font-size-14 text-red list-prod-price">PHP 0.00</span>' +
-						'</div>' +
-      				'</div>'  );
+        var product_allowed = 0;
+        if (result.result[0].account_pro == 1){
+            product_allowed = 100;
+        }else{
+            product_allowed = 8;
+        }
 
-        $('#posted_prod').append(e2);
-        
+        if (result.product_rows < product_allowed){
+            var e2 = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' ">' +
+            '<div class="div-list-img">' +
+                    '<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +
+            '</div>' +
+            '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1"  onclick="clear_prod_model();" id="btn-img-upload-2" data-toggle="modal" data-target="#img_upload">' +
+                '<span class="font-weight-600 font-size-16 list-prod-name">Add Product</span><br>' +
+                '<span class="font-weight-600 font-size-14 text-red list-prod-price">PHP 0.00</span>' +
+            '</div>' +
+            '</div>'  );
+
+            $('#posted_prod').append(e2);
+        }
+    
         var prod_cat = result.prod_category;
 
         if (prod_cat.length != 0){
@@ -3260,12 +3298,36 @@ function save_prod_variation(){
 
 function save_setting(){
 
-  var username = $("#uname").val();
-  var curr_pass = $("#curr_pass").val();
-  var new_pass = $("#new_pass").val();
-  var conf_pass = $("#conf_pass").val();
+    var csrf_name = $("input[name=csrf_name]").val();
+    var username = $("#uname").val();
+    var curr_pass = $("#curr_pass").val();
+    var new_pass = $("#new_pass").val();
 
-  
+    $.ajax({
+        url : base_url + "Outletko_profile/save_setting",
+        data : {csrf_name : csrf_name, username : username, curr_pass : curr_pass, new_pass : new_pass},
+        type : "POST",
+        dataType : "JSON",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            if (result.password > 0){
+                swal({
+                    type : "warning",
+                    title : "Current Password is Incorrect"
+                })
+            }else{
+                swal({
+                    type : "success",
+                    title : "Successfully Saved"
+                }, function(){
+                    location.reload();
+                })
+            }
+        }, error : function(err){
+            console.log(err);
+            console.log(err.responseText);
+        }
+    })
 
 }
 

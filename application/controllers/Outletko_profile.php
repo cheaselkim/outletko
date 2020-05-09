@@ -171,6 +171,13 @@ class Outletko_profile extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function check_curr_password(){
+        $password = $this->input->post("password");
+        $data['result'] = $this->outletko_profile_model->check_curr_password($password);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 	public function get_profile_dtl(){
     	$id = $this->session->userdata("account_id");
     	$result = $this->outletko_profile_model->get_products($id);
@@ -190,8 +197,10 @@ class Outletko_profile extends CI_Controller {
         $data['area_coverage'] = $this->outletko_profile_model->get_coverage_area();
         $data['ol_products_rows'] = $ol_products->num_rows();
         $data['ol_products'] = $ol_products->result();
+        $data['product_rows'] = $this->outletko_profile_model->get_product_count();
         $store_img = $this->outletko_profile_model->get_store_img();
         $data['products']="";
+
         
         foreach ($data['result'] as $key => $value) {
             $data['profile'] = unserialize($value->loc_image);
@@ -316,6 +325,34 @@ class Outletko_profile extends CI_Controller {
     }
 
     //SAVING
+    public function save_setting(){
+        $result_username = "";
+        $result_password = "";
+
+        $username = $this->input->post("username");
+        $password = $this->input->post("curr_pass");
+        $new_password = $this->input->post("new_pass");
+
+        if (!empty($password)){
+            $result_curr_password = $this->outletko_profile_model->check_curr_password($password);
+        }else{
+            $result_curr_password = 0;
+        }
+
+        if ($username != $this->session->userdata('user_uname')){
+            $result_username = $this->outletko_profile_model->save_username($username); 
+        }
+
+        if ($result_curr_password == 0){
+            $result_password = $this->outletko_profile_model->save_password($new_password);
+        }
+
+        $data['token'] = $this->security->get_csrf_hash();
+        $data['password'] = $result_curr_password;
+        $data['result_username'] = $result_username;
+        $data['result_password'] = $result_password;
+        echo json_encode($data);
+    }
 
     public function update_aboutus(){
 
