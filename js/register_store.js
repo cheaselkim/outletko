@@ -436,13 +436,13 @@ function check_plan(plan){
         plan_price = "0.00";    
     }else if (plan == "1"){
         plan_name = "Payment Plan D : Annually";
-        plan_price = "2300.00";
+        plan_price = "2900.00";
     }else if (plan == "2"){
         plan_name = "Payment Plan C : Semi - Annual";
-        plan_price = "1170.00";
+        plan_price = "1500.00";
     }else if (plan == "3"){
         plan_name = "Payment Plan B : Quarterly";
-        plan_price = "585.00"
+        plan_price = "795.00"
     }else if (plan == "4"){
         plan_name = "Payment Plan A : Monthly";
         plan_price = "195.00"

@@ -2416,7 +2416,7 @@ $.ajax({
         var products = result.ol_products;
 
         if (result.account_pro == 0){
-            if (result.ol_products_rows >= 4){
+            if (result.ol_products_rows >= 8){
                 if (id != ""){
                     $("#prod_id").val(id);
                     for (var i = 0; i < products.length; i++) {
@@ -2432,6 +2432,21 @@ $.ajax({
             }else{
                 // $("#prod_online").attr("disabled", true);
                 // $("#prod_online").val("0");
+            }
+        }else{
+            if (result.ol_products_rows >= 100){
+                if (id != ""){
+                    $("#prod_id").val(id);
+                    for (var i = 0; i < products.length; i++) {
+                        if (id == products[i].id){
+                            $("#prod_online").removeAttr("disabled");
+                        }
+                    }    
+                }else{
+                    $("#prod_online").attr("disabled", true);
+                    $("#prod_online").val("0");
+                    $("#prod_id").val("");
+                }
             }
         }        
 

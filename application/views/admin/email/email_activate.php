@@ -173,7 +173,7 @@
               <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
                 
       <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
-        <div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">+63 2 76166430</span></div>
+        <!-- <div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">+63 2 76166430</span></div> -->
 <div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">support@outletko.com</span></div>
 <div style="text-align: right;"><span style="font-size: 15px; font-family: arial, helvetica, sans-serif;">www.outletko.com</span></div>
       </div>
