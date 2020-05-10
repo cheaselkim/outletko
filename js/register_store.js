@@ -445,7 +445,7 @@ function check_plan(plan){
         plan_price = "795.00"
     }else if (plan == "4"){
         plan_name = "Payment Plan : Monthly";
-        plan_price = "195.00"
+        plan_price = "265.00"
     }else{
 
     }

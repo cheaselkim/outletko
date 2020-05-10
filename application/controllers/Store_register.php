@@ -113,7 +113,7 @@ class Store_register extends CI_Controller {
             }else if ($info_user['plan_type'] == "3"){
                 $renewal_date = date('Y-m-d', strtotime("+180 days"));
             }else if ($info_user['plan_type'] == "4"){
-                $renewal_date = date('Y-m-d', strtotime("+365 days"));
+                $renewal_date = date('Y-m-d', strtotime("+395 days"));
             }else{
                 $renewal_date = "0000-00-00";
                 // $renewal_date = date('Y-m-d', strtotime("+11 days"));

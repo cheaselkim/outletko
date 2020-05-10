@@ -146,48 +146,48 @@
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="row pt-2 px-3">
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-1">
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1">
                                 <div class="mx-auto text-center div-plan-e div-plan" id="div-plan-e">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Basic</span></p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Basic</span></p>
                                     <p class="font-size-25 font-weight-600 mb-0">FREE</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">5,750.00</span></span>
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">0.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-e" value="0"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-4">
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-4">
                                 <div class="mx-auto text-center div-plan-d div-plan" id="div-plan-b">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span> <img src="https://c.mql5.com/6/702/1monthfreeSticker1.jpg" alt="Free 1 Month" class="img-free-month"></p>
                                     <p class="font-size-25 font-weight-600 mb-0">Annual</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">5,750.00</span></span>
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">2,900.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-d" value="1"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-3">
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-3">
                                 <div class="mx-auto text-center div-plan-c div-plan" id="div-plan-c">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
                                     <p class="font-size-25 font-weight-600 mb-0">Semi - Annual</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">3,000.00</span></span>
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">1,500.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-c" value="2"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-2">
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-2">
                                 <div class="mx-auto text-center div-plan-b div-plan" id="div-plan-b">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
                                     <p class="font-size-25 font-weight-600 mb-0">Quarterly</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">1,500.00</span></span>
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">795.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-b" value="3"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-md-6 col-sm-12 px-0 mt-2 order-1" hidden>
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1" >
                                 <div class="mx-auto text-center div-plan-a div-plan" id="div-plan-a">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan A : Monthly</p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Monthly</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">500.00</span></span>
-                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">195.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">265.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-a" value="4"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
