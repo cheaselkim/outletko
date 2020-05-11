@@ -322,7 +322,16 @@
     
               </td>
             </tr>
-          
+
+            <tr>
+              <td align="left" style="font-size:0px;padding:15px 15px 0px 15px;word-break:break-word;">
+                
+      <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 18px;">Your Outletko Login Details will be email to you upon verification of your Email Address.</span></p>
+      </div>
+    
+              </td>
+            </tr>            
       </tbody></table>
     
       </div>
@@ -376,7 +385,7 @@
       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
         
             <tbody><tr>
-              <td style="font-size:0px;padding:10px 25px;padding-top:10px;padding-right:10px;word-break:break-word;">
+              <td style="font-size:0px;padding-top:10px;padding-right:10px;word-break:break-word;">
                 
       <p style="border-top:solid 1px #000000;font-size:1;margin:0px auto;width:100%;">
       </p>
@@ -456,6 +465,7 @@
         <p><strong><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">Need Support?</span></strong></p>
 <p><span style="font-family: arial, helvetica, sans-serif; font-size: 14px;">Feel free to email us if you have any questions, comments or suggestions. We&apos;ll be happy resolve all your issues.</span></p>
       </div>
+
     
               </td>
             </tr>

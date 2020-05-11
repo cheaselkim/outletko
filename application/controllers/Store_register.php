@@ -13,7 +13,7 @@ class Store_register extends CI_Controller {
     }
 
     public function invoice(){
-        $this->load->view("admin/email/invoice");
+        $this->load->view("admin/email/email_activate");
     }
 
     public function verification(){
@@ -178,10 +178,10 @@ class Store_register extends CI_Controller {
 
             $users_result = $this->signup_model->insert_users($users);
             $outlet_result = $this->signup_model->insert_outlet(array("user_id" => $users_result, "outlet_id" => "0"));
-            $product_color = $this->signup_model->insert_product_color($user_app_result);
-            $product_unit = $this->signup_model->insert_product_unit($user_app_result);
-            $sales_discount = $this->signup_model->insert_sales_discount($user_app_result);
-            $customer = $this->signup_model->insert_customer($user_app_result);
+            $product_color = $this->signup_model->insert_product_color($comp_id);
+            $product_unit = $this->signup_model->insert_product_unit($comp_id);
+            $sales_discount = $this->signup_model->insert_sales_discount($comp_id);
+            $customer = $this->signup_model->insert_customer($comp_id);
 
             $invoice_id = $this->signup_model->insert_invoice();
 
@@ -384,7 +384,7 @@ class Store_register extends CI_Controller {
                         ->from('noreply@outletko.com', 'Outletko')
                         ->to($email)
                         ->bcc("accounts@outletko.com")
-                        ->subject('Welcome to Outletko')
+                        ->subject('Your Outletko Login Detail')
                         ->message($message);
 
             if($this->email->send()) {
@@ -530,7 +530,7 @@ class Store_register extends CI_Controller {
                         ->from('noreply@outletko.com', 'Outletko')
                         ->to($email)
                         ->bcc("receipt@outletko.com")
-                        ->subject('Outletko Acknowledgement')
+                        ->subject('Your Outletko Plan')
                         ->message($message);
 
             if($this->email->send()) {

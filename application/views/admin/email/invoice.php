@@ -171,7 +171,9 @@
               <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
                 
       <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
-        <p style="font-family: Arial, sans-serif; text-align: right;"><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">+63 2 76166430</span><br><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">support@outletko.com</span><br><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">www.outletko.com</span></p>
+        <p style="font-family: Arial, sans-serif; text-align: right;">
+        //<span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">+63 2 76166430</span><br>
+        <span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">support@outletko.com</span><br><span style="font-family: arial, helvetica, sans-serif; font-size: 16px;">www.outletko.com</span></p>
       </div>
     
               </td>
@@ -235,7 +237,7 @@
       <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
         <p style="font-family: Arial, sans-serif;"><span style="font-size: 24px;">Dear <?php echo $name; ?>,</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
-<p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">This is to acknowledge your payment for the Outletko resistration on <?php echo date('F d, Y') ?>.</span></p>
+<p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">This is to acknowledge your Outletko registration on <?php echo date('F d, Y') ?>.</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">Your Outletko Registration Details :</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>

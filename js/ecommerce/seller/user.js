@@ -711,15 +711,18 @@ function lightOrDark(color) {
     var font_color = "";
 
     // Using the HSP value, determine whether the color is light or dark
-    if (hsp > 127.5) {
+    if (hsp > 150) { //127.5
         font_color = "black";
-        font_color_other = "blue";
+        // font_color_other = "#008080";
+        font_color_other = "#800000";
         // return 'light';
     }else {
         font_color = "white";
         font_color_other = "yellow";
         // return 'dark';
     }
+
+    console.log(hsp);
 
     $("#text-buss-type").css("color", font_color_other);
     $("#span_setting").css("color", font_color_other);
@@ -889,7 +892,7 @@ function check_subscription(){
                 swal({
                     html : true,
                     type : "warning",
-                    title : "Your Subscription is Free. We encourage you to upgrade it to Outletko Pro for your Online Store or e-commerce"
+                    title : "Your Outletko Subscription is Free. Happy Selling!"
                 })
             }
 
@@ -1550,7 +1553,7 @@ function index(){
         if (result.result[0].account_pro == 1){
             product_allowed = 100;
         }else{
-            product_allowed = 8;
+            product_allowed = 12;
         }
 
         if (result.product_rows < product_allowed){
@@ -2454,7 +2457,7 @@ $.ajax({
         var products = result.ol_products;
 
         if (result.account_pro == 0){
-            if (result.ol_products_rows >= 8){
+            if (result.ol_products_rows >= 12){
                 if (id != ""){
                     $("#prod_id").val(id);
                     for (var i = 0; i < products.length; i++) {

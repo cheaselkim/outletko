@@ -60,8 +60,9 @@
     
   
         <style type="text/css">
-        
-        
+        li{
+        font-size:16px;
+        }
 
     @media only screen and (max-width:480px) {
       table.full-width-mobile { width: 100% !important; }

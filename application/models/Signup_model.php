@@ -281,6 +281,7 @@ class Signup_model extends CI_Model {
     public function insert_account($user_app, $comp_id){
       $this->db->where("id", $comp_id);
       $this->db->update("account_application", $user_app);
+    //   return $this->db->insert_id();
       return ($this->db->affected_rows() > 0) ? 1 : 0;		
     }
 

@@ -753,7 +753,7 @@ function check_payment_details(){
             swal({
                 type : "success",
                 title : "Your Online Store Registration is Completed",
-                text : "Outletko Verification email has been sent to your email address."
+                text : "Outletko Activation email has been sent to your email address."
             }, function(){
                 location.reload();
             })    

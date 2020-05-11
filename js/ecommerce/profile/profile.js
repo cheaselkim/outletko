@@ -114,7 +114,7 @@ function lightOrDark(color) {
     var font_color = "";
 
     // Using the HSP value, determine whether the color is light or dark
-    if (hsp>127.5) {
+    if (hsp > 150) { //127.5
         font_color = "black";
         // return 'light';
     }else {
