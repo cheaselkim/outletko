@@ -796,10 +796,39 @@
 </div>
 
 <div id="modal-image" class="modal" style="z-index: 9999;">
-  <span class="close" data-dismiss="modal">&times;</span>
-  <img class="modal-content" id="img01" src="<?php echo base_url('assets/img/modal-outletko.png')?>" style="top: 20vh;">
-  <!-- <div id="caption"></div> -->
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header" hidden>
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body py-0 px-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-8 col-md-8 col-sm-12 pl-4 pt-3">
+                            <p class="mb-0 text-body text-black font-weight-600">Outletko enables <br> Micro and Small Enterprises to create a DIGITAL DISPLAY and ONLINE STORE for their business.</p>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0 div-body-image text-right">
+                            <img src="<?php echo base_url('assets/img/outletko-man.png')?>" alt="logo" class="img-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-success pt-1 pb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center px-0">
+                            <p class="mb-1 text-white"><span class="font-weight-600 font-size-35">Mag Register na sa </span><span class="font-weight-bold font-size-45">Outlet<span class="text-yellow">ko</span>!</span></p>
+                            <button class="btn btn-orange text-black px-5 font-weight-600" data-dismiss="modal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 </body>
