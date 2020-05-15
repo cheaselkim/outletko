@@ -1100,13 +1100,13 @@
                             <!-- <span><i class="fas fa-minus"></i> Allow Business Owner to post/display upto 30 Product Items in their Online Store.</span><br>
                             <span><i class="fas fa-minus"></i> Can setup different payment mode (COD,  Bank Deposit, Remittance).</span><br>
                             <span><i class="fas fa-minus"></i> * Card Payment/Online Payment can also be setup for your Online Store.</span><br> -->
-                            <ul class="px-2">
+                            <ul class="px-2" style="font-size:18px;">
                                 <li>You will have your OWN Online Store or e-commerce Store.</li>
                                 <li>Very easy and fast to activate, setup and maintain your Online Store.</li>
                                 <li>All you need is your smartphone to setup your Online Store.</li>
-                                <li>Enable you to display or post your Products in your Online Store.</li>
+                                <li>Enables you to display or post your Products in your Online Store.</li>
                                 <li>Able to Setup and Display Products by Category</li>
-                                <li>Can Set-up the following Display Modes in your Store. - Cash on Delivery, Bank Deposit/Payment, Remittances</li>
+                                <li>Can Setup the following Mode of Payments in your Store. - Cash on Delivery, Bank Deposit/Payment, Remittances</li>
                                 <li>Online/Card Payment can be configured upon payment of the One time setup fee.</li>
                                 <li>Able to Set-up Delivery Mode : - Delivery or Pick-up</li>
                             </ul>

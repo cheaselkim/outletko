@@ -862,3 +862,41 @@
 		</div>
 	</div>
 </div>
+
+<div id="modal-review" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title">Review</h4>
+            </div>
+            <div class="modal-body pt-1 pb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                            <input type="hidden" id="review-store-id">
+                            <span id="review-store-name" class="font-weight-600 h3">Store Name</span>
+                        </div>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="mx-auto text-center">
+                                <span class="rating-emoji">&#128544;</span>
+                                <span class="rating-emoji">&#128542;</span>
+                                <span class="rating-emoji">&#128528;</span>
+                                <span class="rating-emoji">&#128512;</span>
+                                <span class="rating-emoji">&#128525;</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                            <textarea name="" id="review-text" rows="5" class="form-control textbox-orange" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button class="btn btn-orange text-white" id="review-save">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

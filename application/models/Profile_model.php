@@ -164,4 +164,28 @@ class Profile_model extends CI_Model {
 
     }
 
+    public function get_ave_review($comp_id){
+        $query = $this->db2->query("SELECT 
+        COALESCE(COUNT(CASE WHEN (`reviews`.`rating` = '1f60d') THEN 1 END)) AS love,
+        COALESCE(COUNT(CASE WHEN (`reviews`.`rating` = '1F600') THEN 1 END)) AS happy,
+        COALESCE(COUNT(CASE WHEN (`reviews`.`rating` = '1F610') THEN 1 END)) AS meh,
+        COALESCE(COUNT(CASE WHEN (`reviews`.`rating` = '1F61E') THEN 1 END)) AS sad,
+        COALESCE(COUNT(CASE WHEN (`reviews`.`rating` = '1F620') THEN 1 END)) AS angry,
+        COALESCE(COUNT(*)) AS all_rating
+        FROM reviews
+        WHERE comp_id = ?", array($comp_id))->result();
+        return $query;
+    }
+
+    public function get_reviews($comp_id){
+        $query = $this->db2->query("SELECT 
+        reviews.*,
+        CONCAT(`eoutletsuite_users`.`first_name`, ' ', `eoutletsuite_users`.`last_name`) AS user_name
+        FROM reviews
+        LEFT JOIN eoutletsuite_users ON
+        `reviews`.`user_id` = `eoutletsuite_users`.`id`
+        WHERE `reviews`.`comp_id` = ?", array($comp_id))->result();
+        return $query;
+    }
+
 }

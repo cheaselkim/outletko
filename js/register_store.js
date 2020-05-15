@@ -14,11 +14,13 @@ $(document).ready(function(){
         changeYear : true,
         dateFormat: 'mm/dd/yy', 
         yearRange : "-100:+0",
-        maxDate : "-18y",
+        maxDate : "0",
         onClose: function () {
             $(this).parsley().validate();
         }
     });    
+    
+   $("#info-bday").datepicker("option", "defaultDate", new Date(2004,0,1));
 
     $("#info-town").autocomplete({
         focus: function(event, ui){

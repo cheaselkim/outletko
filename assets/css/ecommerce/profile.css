@@ -1,3 +1,22 @@
+.div-menu-bar a.active{
+    color: black !important;
+}
+
+
+.tab-content{
+    border: 0;
+    padding: 0;
+}
+
+.tab-pane{
+    padding: 0;
+}
+
+.tab-content .tab-pane{
+    padding: 0;
+}
+
+
 .fa-angle-left path, .fa-angle-right path {
     stroke: white;
     stroke-width: 30px;
@@ -65,7 +84,24 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    
+    #div-display-reviews{
+        padding-left: 0;
+        padding: 0;
+    }
 
+    .rating-emoji{
+        font-size: 20px;
+    }
+    
+    .progress-bar{
+        height: 25px;
+    }
+    
+    .progress{
+        height: 25px;
+    }
+    
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -101,6 +137,18 @@
 
 .div-list-img{
     height: 200px;
+}
+
+.rating-emoji{
+    font-size: 25px;
+}
+
+.progress-bar{
+    height: 35px;
+}
+
+.progress{
+    height: 35px;
 }
 
 
@@ -194,6 +242,19 @@
 .text-buss-address{
 	font-size: 13px;
 }
+
+.rating-emoji{
+    font-size: 25px;
+}
+
+.progress-bar{
+    height: 35px;
+}
+
+.progress{
+    height: 35px;
+}
+
 
 /* .fotorama img{
     height: 200px;

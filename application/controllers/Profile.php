@@ -24,9 +24,12 @@ class Profile extends CI_Controller {
         $data['prod_cat'] = $this->profile_model->get_product_category($acc_id);
     	$result = $this->profile_model->get_products($acc_id);
         $store_img = $this->profile_model->get_store_img($acc_id);
+        $review = $this->profile_model->get_reviews($id);
+        $data['ave_review'] = $this->profile_model->get_ave_review($id);
         // $data['payment_type'] = $this->profile_model->get_payment_type();
         // $data['delivery_type'] = $this->profile_model->get_delivery_type();
         // $data['shipping_fee'] = $this->profile_model->get_shipping_fee();
+        $data['review'] = reviews($review);
         $data['products']="";
         $min_price = "";
         $max_price = "";    

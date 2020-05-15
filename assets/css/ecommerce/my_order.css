@@ -2,6 +2,34 @@
     color: black !important;
 }
 
+.textbox-green{
+    border: 1px solid green;
+}
+
+.textbox-orange{
+    border: 1px solid orange;
+}
+
+.rating-emoji{
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.rating-emoji{
+    filter: grayscale(1);
+}
+
+.rating-emoji:hover{
+    filter: grayscale(.5);
+    font-size: 60px;
+    transition:100ms ease;
+}
+
+.emoji-active{
+    filter:grayscale(0);
+}
+
+
 .checkbox-xl .custom-control-label::before, 
 .checkbox-xl .custom-control-label::after {
   /* top: 1.2rem; */

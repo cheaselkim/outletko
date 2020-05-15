@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // $("#div-body").hide();
     // $("#website_modal").modal("show");
+    $("#modal-image").modal("show");
 
     $("#wrong_pass").hide();
     $("#div-body").css("display", "block");
@@ -49,10 +50,12 @@ $(document).ready(function(){
 
     $("#btn_mod_signin").click(function(){
         $("#modal_signup").modal("hide");
+        $("#modal-image").modal("hide");
     });
 
     $("#btn_mod_signup").click(function(){
         $("#modal_signup_user").modal("hide");
+        $("#modal-image").modal("hide");
     });
 
 	business_category();

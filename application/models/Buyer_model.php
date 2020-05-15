@@ -385,5 +385,8 @@ class Buyer_model extends CI_Model {
         $this->db->update("users", $data);
     }
 
-    
+    public function insert_review($data){
+        $this->db2->insert("reviews", $data);
+    }
+
 }

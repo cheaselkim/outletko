@@ -308,5 +308,18 @@ class Buyer extends CI_Controller {
  		echo json_encode($data);
  	}
 
+    public function save_review(){
+        $review = array(
+            "comp_id" => $this->input->post("seller_id"),
+            "user_id" => $this->session->userdata("user_id"),
+            "rating" => $this->input->post("rating"),
+            "review" => $this->input->post("review"),
+            "date_insert" => date("Y-m-d H:i:s")
+        );
+
+        $data['result'] = $this->buyer_model->insert_review($review);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
 }

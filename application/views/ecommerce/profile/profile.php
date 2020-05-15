@@ -96,302 +96,415 @@
 </div>
  
 <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0"> 
-	<hr class="mt-3 mb-1">
+	<hr class="mt-3 mb-0">
 </div>
 
-<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center" id="div-display-products" style="padding-bottom: 80px;">
-	<div class="row">
-		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-			<div class="container">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-menu-bar">
+    <div class="container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#div-products">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#div-reviews">Reviews</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+    <div class="tab-content px-0">
+        <div id="div-products" class="tab-pane active px-0">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 div-center  pt-3" id="div-display-products" style="padding-bottom: 80px;">
                 <div class="row">
-                    <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
-                        <span class="font-size-20 font-weight-600">Products and Services</span>
-                    </div>
-                    <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
-                        <select class="form-control" id="prod-category" style="min-width: 200px;">
-                            <option value="0">All</option>
-                        </select>
-                    </div>
-                </div>
-			</div>
-		</div>
-	</div>
-	<div class="row" id="div-posted-prod">
-		<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="">
-			<div class="container">
-			</div>
-		</div> -->
-	</div>
-</div>
-
-<div class="container">
-	<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center py-3" id="div-product-details">
-						<!-- PRODUCT DETAILS -->
-		<input type="hidden" id="prod_id">
-						
-		<div class="row">
-			<div class="col-9 col-lg-11 col-md-10 col-sm-9">
-				<span class="font-size-25" hidden>Product Details</span>								
-			</div>
-		</div>
-				
-		<div class="row">
-			<div class="col-lg-3 col-sm-12 mb-4">
-				<div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
-				</div>
-
-                <div class="fotorama text-center" id="div-fotorama" data-width="100%" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
-                        <!-- <img src="https://s.fotorama.io/okonechnikov/1-lo.jpg">
-                        <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/3ed25902-4a51-4628-a057-1e55fbca7856/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/4facbe78-b4e8-4b7d-8fb0-d3659f46f1b4/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/5b0b329d-050e-4143-bc92-7f40cdde46f5/-/stretch/off/-/resize/760x/">
-                        <img src="https://ucarecdn.com/7ca0e7f6-90eb-4254-82ea-58c77e74f6a0/-/stretch/off/-/resize/760x/">  -->
-                </div>
-
-			</div>
-			<div class="col-lg-auto col-sm-12 px-0" id="div-details" >
-				
-				<div class="col-12 mb-2 div-prod-dtls" >
-					<span class="font-weight-600 font-size-25" hidden>Product Description</span>
-					<p id="prod-condition" hidden></p>
-					<p id="prod-stock" hidden></p>
-					<p id="prod-weight" hidden></p>
-					<!-- <p id="prod-dtls" ></p> -->
-
-                    <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                            <span class="font-size-22 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
-							<span class="font-size-18 font-weight-500" id="prod-desc"></span><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 col-lg-6 col-md-7 col-sm-12">
-                            <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
-            				<span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
-                            <br>
-							<span id="prod_payment_type" class="font-size-15"></span><br>
-							<span id="prod_delivery_type" class="font-size-15 " hidden></span>
-							<span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span></span><br>
-							<span id="prod_del_std" class="font-size-15 "></span><br>
-							<span id="prod_return" class="font-size-15 "></span><br>
-							<span id="prod_warranty" class="font-size-15 "></span>
-                        </div>
-                        <div class="col-12 col-lg-6 col-md-5 col-sm-12">
-                            <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100">
-								<p id="prod-other-details"></p>
-							</div>
-                        </div>
-                    </div>
-
-					<!-- <div class="row">
-						<div class="col-12" hidden>
-							<span calss="font-size-16">Details : </span>
-						</div>
-						<div class="col-12 "> 
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<span class="font-size-16">Payment Type : </span>
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<span class="font-size-16">Delivery Type : </span>
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<span class="font-size-16">Area Coverage : </span>
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<span class="font-size-16">Standard Delivery : </span>
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<span class="font-size-16">Returns & Warranty : </span>
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-						<div class="col-12 pl-4">
-						</div>
-					</div> -->
-
-
-				</div>
-
-				<div class="col-12">
-
-					<div class="row" hidden>
-						<div class="col-12">
-							<span class="font-size-16" id="std_lbl">Standard Delivery</span><br>
-						</div>
-						<div class="col-12">
-							<span class="ml-2 font-size-18 font-weight-600" id="std_del">Seeds are delivered by LBC</span>
-						</div>
-					</div>
-
-					<div class="row" id="div-ship-fee" hidden>
-						<div class="col-11 ml-4 pl-1 border">
-							<div class="row">
-								<div class="col-9 pr-0">
-									<span>Shipping Fee (Within Metro Manila)</span>
-								</div>
-								<div class="col-3 px-1">
-									<span id="shipp_w_mm">&#8369; 0.00</span>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-9 pr-0">
-									<span>Shipping Fee (Outside Metro Manila)</span>
-								</div>
-								<div class="col-3 px-1">
-									<span id="shipp_o_mm">&#8369; 0.00</span>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-						</div>						
-					</div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                            <div class="row mt-3 div-btn-order pt-3 mx-1" id="div-btn-order">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-8 col-md-12 col-sm-12">
-                                            <div class="row">
-                                                <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
-                                                    <select class="form-control prod-var" id="prod-var-1"></select>
-                                                </div>
-                                                <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
-                                                    <select class="form-control prod-var" id="prod-var-2"></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
-                                            <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
-                                        </div>
-                                        <div class="col-3 col-lg-1 col-md-2 col-sm-2 px-1">
-                                            <input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
-                                        </div>								
-                                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 pl-1">
-                                            <button class="btn btn-orange btn-block px-0" id="btn_add"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="row my-2">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <span class="font-weight-600 font-size-20">Total Amount : PHP <span id="cart_total_amount">0.00</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
-                                            <button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
-                                            <button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
-                                        </div>								
-                                    </div>
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
+                                    <span class="font-size-20 font-weight-600">Products and Services</span>
+                                </div>
+                                <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
+                                    <select class="form-control" id="prod-category" style="min-width: 200px;">
+                                        <option value="0">All</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back">
-                            <div class="row pb-3 mx-1 div-btn-order">
-                                <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
-                                    <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
-                                </div>								
-                            </div>
+                </div>
+                <div class="row" id="div-posted-prod">
+                    <!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="">
+                        <div class="container">
                         </div>
-                    </div>
-
-				</div>
-
-			</div>
-            <div class="col-lg-auto col-sm-12" id="div-details-2">
-                
-                <div class="row">
-                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        <span class="font-size-30 font-weight-600">Now in Cart</span>
-                    </div>
+                    </div> -->
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        <span id="cart-prod-name" class="font-size-22 font-weight-600"></span><br>
-                        <span class="font-size-18">Quantity : <span id="cart-prod-qty"></span></span><br>
-                        <span class="font-size-18 font-weight-500">Unit Price : PHP <span id="cart-prod-price"></span></span><br>
-                        <span class="font-size-22">Total Order : PHP <span id="cart-prod-total-price" ></span></span><br>
-                    </div>
-                </div>
-
-                <div class="row my-3">
-                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        <a href="<?php echo base_url('my-order')?>" class="btn btn-outline-secondary px-5">View Cart</a>
-                    </div>
-                </div>
-
-                <div class="row ">
-                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2">
-                        <div class="row mx-0 px-1 div-btn-order pb-3 pt-1">
-                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
-                                <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
-                            </div>
-                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
-                                <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
-                            </div>								
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="row">
-                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                        <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
-                        <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
-                    </div>
-                </div> -->
-
             </div>
-			<div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-md-block">
-				<button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
-			</div>
-		</div>
 
-	</div>
+            <div class="container">
+                <div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center py-3" id="div-product-details">
+                                    <!-- PRODUCT DETAILS -->
+                    <input type="hidden" id="prod_id">
+                                    
+                    <div class="row">
+                        <div class="col-9 col-lg-11 col-md-10 col-sm-9">
+                            <span class="font-size-25" hidden>Product Details</span>								
+                        </div>
+                    </div>
+                            
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 mb-4">
+                            <div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
+                            </div>
+
+                            <div class="fotorama text-center" id="div-fotorama" data-width="100%" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-auto col-sm-12 px-0" id="div-details" >
+                            
+                            <div class="col-12 mb-2 div-prod-dtls" >
+                                <span class="font-weight-600 font-size-25" hidden>Product Description</span>
+                                <p id="prod-condition" hidden></p>
+                                <p id="prod-stock" hidden></p>
+                                <p id="prod-weight" hidden></p>
+                                <!-- <p id="prod-dtls" ></p> -->
+
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <span class="font-size-22 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
+                                        <span class="font-size-18 font-weight-500" id="prod-desc"></span><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 col-md-7 col-sm-12">
+                                        <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
+                                        <span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
+                                        <br>
+                                        <span id="prod_payment_type" class="font-size-15"></span><br>
+                                        <span id="prod_delivery_type" class="font-size-15 " hidden></span>
+                                        <span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span></span><br>
+                                        <span id="prod_del_std" class="font-size-15 "></span><br>
+                                        <span id="prod_return" class="font-size-15 "></span><br>
+                                        <span id="prod_warranty" class="font-size-15 "></span>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-md-5 col-sm-12">
+                                        <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100">
+                                            <p id="prod-other-details"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row">
+                                    <div class="col-12" hidden>
+                                        <span calss="font-size-16">Details : </span>
+                                    </div>
+                                    <div class="col-12 "> 
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="font-size-16">Payment Type : </span>
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="font-size-16">Delivery Type : </span>
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="font-size-16">Area Coverage : </span>
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="font-size-16">Standard Delivery : </span>
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="font-size-16">Returns & Warranty : </span>
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                    <div class="col-12 pl-4">
+                                    </div>
+                                </div> -->
+
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <div class="row" hidden>
+                                    <div class="col-12">
+                                        <span class="font-size-16" id="std_lbl">Standard Delivery</span><br>
+                                    </div>
+                                    <div class="col-12">
+                                        <span class="ml-2 font-size-18 font-weight-600" id="std_del">Seeds are delivered by LBC</span>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="div-ship-fee" hidden>
+                                    <div class="col-11 ml-4 pl-1 border">
+                                        <div class="row">
+                                            <div class="col-9 pr-0">
+                                                <span>Shipping Fee (Within Metro Manila)</span>
+                                            </div>
+                                            <div class="col-3 px-1">
+                                                <span id="shipp_w_mm">&#8369; 0.00</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-9 pr-0">
+                                                <span>Shipping Fee (Outside Metro Manila)</span>
+                                            </div>
+                                            <div class="col-3 px-1">
+                                                <span id="shipp_o_mm">&#8369; 0.00</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                    </div>						
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="row mt-3 div-btn-order pt-3 mx-1" id="div-btn-order">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-8 col-md-12 col-sm-12">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                                <select class="form-control prod-var" id="prod-var-1"></select>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                                <select class="form-control prod-var" id="prod-var-2"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
+                                                        <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
+                                                    </div>
+                                                    <div class="col-3 col-lg-1 col-md-2 col-sm-2 px-1">
+                                                        <input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod_qty">
+                                                    </div>								
+                                                    <div class="col-3 col-lg-1 col-md-2 col-sm-3 pl-1">
+                                                        <button class="btn btn-orange btn-block px-0" id="btn_add"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-2">
+                                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                        <span class="font-weight-600 font-size-20">Total Amount : PHP <span id="cart_total_amount">0.00</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
+                                                        <button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
+                                                        <button class="btn btn-orange btn-block font-weight-600" id="btn_order">Order Now</button>										
+                                                    </div>								
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back">
+                                        <div class="row pb-3 mx-1 div-btn-order">
+                                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
+                                                <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
+                                            </div>								
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-auto col-sm-12" id="div-details-2">
+                            
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <span class="font-size-30 font-weight-600">Now in Cart</span>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <span id="cart-prod-name" class="font-size-22 font-weight-600"></span><br>
+                                    <span class="font-size-18">Quantity : <span id="cart-prod-qty"></span></span><br>
+                                    <span class="font-size-18 font-weight-500">Unit Price : PHP <span id="cart-prod-price"></span></span><br>
+                                    <span class="font-size-22">Total Order : PHP <span id="cart-prod-total-price" ></span></span><br>
+                                </div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <a href="<?php echo base_url('my-order')?>" class="btn btn-outline-secondary px-5">View Cart</a>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2">
+                                    <div class="row mx-0 px-1 div-btn-order pb-3 pt-1">
+                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
+                                            <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2">
+                                            <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
+                                        </div>								
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    <button class="btn btn-success btn-block" id="btn-sel-prod">Select Another Product</button>
+                                </div>
+                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    <a class="btn btn-warning btn-block" href="<?php echo base_url('my-order')?>">Process Order</a>
+                                </div>
+                            </div> -->
+
+                        </div>
+                        <div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-md-block">
+                            <button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="div-reviews" class="tab-pane "> 
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-center pt-3" id="div-display-reviews" style="padding-bottom: 80px;">
+                <div class="container">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="row div-score-ratings">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+
+                                <div class="row mt-1">
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="rating-emoji">&#128525;</span>
+                                    </div>
+                                    <div class="col-8 col-lg-10 col-md-10 col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success progress-love"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="span-progress-love"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="rating-emoji">&#128512;</span>
+                                    </div>
+                                    <div class="col-8 col-lg-10 col-md-10 col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-primary progress-happy" ></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="span-progress-happy"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="rating-emoji">&#128544;</span>
+                                    </div>
+                                    <div class="col-8 col-lg-10 col-md-10 col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-info progress-meh"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="span-progress-meh"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="rating-emoji">&#128542;</span>
+                                    </div>
+                                    <div class="col-8 col-lg-10 col-md-10 col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning progress-sad"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="span-progress-sad"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="rating-emoji">&#128544;</span>
+                                    </div>
+                                    <div class="col-8 col-lg-10 col-md-10 col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger progress-angry" ></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-lg-1 col-md-1 col-sm-2">
+                                        <span class="span-progress-angry">100</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row div-user-reviews">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-user-reviews">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
  
 <div class="container pb-4" hidden>
 	<div class="row">

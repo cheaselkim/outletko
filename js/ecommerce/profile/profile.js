@@ -127,6 +127,7 @@ function lightOrDark(color) {
     $("#text-buss-contact-no").css("color", font_color);
     $("#text-buss-email").css("color", font_color);
     $("#header_aboutus").css("color", font_color);
+    $(".div-menu-bar a").css("color", font_color);
 }
 
 function get_profile(id){
@@ -140,6 +141,9 @@ function get_profile(id){
     dataType : "JSON",
     success : function(result){
     $("input[name=csrf_name]").val(result.token);
+
+    reviews(result.ave_review);
+    $("#div-user-reviews").html(result.review);
 
     var prod_cat = result.prod_cat;
     var profile = base_url + "images/profile/" + result.profile;    
@@ -160,6 +164,7 @@ function get_profile(id){
         $(".div-header").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
         $(".div-header-2").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
         $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
+        $(".div-menu-bar").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
 
         lightOrDark((result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
 
@@ -474,6 +479,59 @@ function get_profile(id){
     }
   });
 
+
+}
+
+function reviews(data){
+    var angry = 0;
+    var sad = 0;
+    var meh = 0;
+    var happy = 0;
+    var love = 0;
+
+        angry = (data[0].angry / data[0].all_rating) * 100;
+        sad = (data[0].sad / data[0].all_rating) * 100;
+        meh = (data[0].meh / data[0].all_rating) * 100;
+        happy = (data[0].happy / data[0].all_rating) * 100;
+        love = (data[0].love / data[0].all_rating) * 100;        
+    
+    if (isNaN(angry)){
+        angry = 0;
+    }
+
+    if (isNaN(sad)){
+        sad = 0;
+    }
+
+    if (isNaN(meh)){
+        meh = 0;
+    }
+
+    if (isNaN(happy)){
+        happy = 0;
+    }
+
+    if (isNaN(love)){
+        love = 0;
+    }
+
+    $(".progress-angry").width(angry+"%");
+    $(".progress-sad").width(sad+"%");
+    $(".progress-meh").width(meh+"%");
+    $(".progress-happy").width(happy+"%");
+    $(".progress-love").width(love+"%");
+
+    $(".progress-angry").text(angry+"%");
+    $(".progress-sad").text(sad+"%");
+    $(".progress-meh").text(meh+"%");
+    $(".progress-happy").text(happy+"%");
+    $(".progress-love").text(love+"%");
+
+    $(".span-progress-angry").text(data[0].angry);
+    $(".span-progress-sad").text(data[0].sad);
+    $(".span-progress-meh").text(data[0].meh);
+    $(".span-progress-happy").text(data[0].happy);
+    $(".span-progress-love").text(data[0].love);
 
 }
 

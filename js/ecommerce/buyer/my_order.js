@@ -42,6 +42,12 @@ $(document).ready(function(){
 		});
 	  });
 
+    $(".rating-emoji").click(function(){
+        $(".rating-emoji").removeClass("emoji-active");
+        $(this).addClass("emoji-active");
+    });
+
+
 	$("#payment_type").change(function(){
 		$("#div-bank-list").hide();
 		$("#div-remittance-list").hide();
@@ -271,7 +277,22 @@ $(document).ready(function(){
 	
 	$("#courier").change(function(){
 		get_courier();
-	});
+    });
+    
+    $("#review-save").click(function(){
+
+        var emoji = $(".emoji-active").text();
+
+        if (emoji != ""){
+            save_rating();
+        }else{
+            swal({
+                type : "warning",
+                title : "Please select rating emoji"
+            })
+        }
+
+    });
 
 });
 
@@ -541,7 +562,7 @@ function view_order(type, id){
 		$("#div-ongoing").removeClass("show");
 	}else if (type == "3"){
 		// $("#div-complete").removeClass("active");
-		$("#div-complete").removeClass("show");
+		// $("#div-complete").removeClass("show");
 	}else if (type == "4"){
 		// $("#div-transactions").removeClass("active");
 		$("#div-transactions").removeClass("show");
@@ -549,7 +570,9 @@ function view_order(type, id){
 
 	$("#div-dtls-no").val(type);
 
-	$("#div-order-dtls").show("slow");
+    if (type != "3"){
+        $("#div-order-dtls").show("slow");
+    }
 	// $("#div-order-dtls").addClass("show");
 
 
@@ -577,9 +600,14 @@ function view_order(type, id){
 				status = "Cancelled Order";
 			}else{
 				status = "";
-			}
+            }
+            
+            // console.log(data[0]);
 
-			$("#vw_order_no").text(data[0].order_no);
+            $("#review-store-name").text(data[0].account_name);
+            $("#review-store-id").val(data[0].seller_id);
+
+            $("#vw_order_no").text(data[0].order_no);
 			$("#vw_order_date").text(data[0].order_date);
 			$("#vw_outlet").text(data[0].account_name);
 			$("#vw_status").text(status);
@@ -1285,7 +1313,7 @@ function place_order(){
     // console.log("save_info " + save_info);
     // console.log(data_profile);
 
-    console.log(save_info);
+    // console.log(save_info);
 
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},
@@ -1331,7 +1359,9 @@ function complete_order(id){
 }
 
 function insert_order(id){
-    console.log("id " + id);
+    // console.log("id " + id);
+    var csrf_name = $("input[name=csrf_name]").val();
+
     $.ajax({
         data : {csrf_name : csrf_name, id : id},
         type : "POST",
@@ -1339,11 +1369,41 @@ function insert_order(id){
         url : base_url + "Buyer/complete_order",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
+            $("#modal-review").modal("show");
+            get_complete_orders();
+            // swal({
+            //     type : "success",
+            //     title : "Successfully Completed the order"
+            // }, function(){
+            // })
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+function save_rating(){
+    var seller_id = $("#review-store-id").val();
+    var rating = $(".emoji-active").text().codePointAt(0).toString(16);
+    var review = $("#review-text").val();
+    var csrf_name = $("input[name=csrf_name]").val();
+    // var emo = String.fromCodePoint("0x"+rating);
+
+
+    $.ajax({
+        data : {seller_id : seller_id, rating : rating, review : review, csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Buyer/save_review",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
             swal({
                 type : "success",
-                title : "Successfully Completed the order"
+                title : "Successfully Completed the order",
+                timer : 3000
             }, function(){
-                get_complete_orders();
+                location.reload();
             })
         }, error : function(err){
             console.log(err.responseText);

@@ -30,4 +30,41 @@ if (!function_exists("img_display")){
     }
 }
 
+if (!function_exists("reviews")){
+    function reviews($data){
+        $output = "";
+        $border = "";
+
+        foreach ($data as $key => $value) {
+
+            if ($key > 0){
+                $border = 'style="border-top: 1px solid orange;"';
+            }
+
+            $output .= '<div class="row mx-0" '.$border.'>
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0 pt-2">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <span class="rating-emoji">&#x'.$value->rating.';</span><br>
+                            <p class="mb-0">'.$value->review.'</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+                            <hr class="mb-0 mt-1">
+                            <p class="mb-0">'.$value->user_name.'</p>
+                            <span>'.date('d M Y', strtotime($value->date_insert)).'</span>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+
+
+        }
+
+        return $output;
+
+    }
+}
+
 ?>

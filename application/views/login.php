@@ -17,7 +17,7 @@
     </script>
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link    rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
-    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.min.css') ?>" >
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
@@ -25,7 +25,7 @@
     <script async src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" async></script>
-    <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
     <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
     <style type="text/css">
         option {
@@ -793,6 +793,12 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="modal-image" class="modal" style="z-index: 9999;">
+  <span class="close" data-dismiss="modal">&times;</span>
+  <img class="modal-content" id="img01" src="<?php echo base_url('assets/img/modal-outletko.png')?>" style="top: 20vh;">
+  <!-- <div id="caption"></div> -->
 </div>
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">

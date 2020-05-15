@@ -14,8 +14,12 @@ class Search extends CI_Controller {
 		$data['prov_id'] = $this->input->post("prov_id");
 		$data['product'] = $this->input->post("product_outlet");	
 
-		$query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
-		$data['tbl'] = tbl_query($query);		
+        if (!empty($data['city_id']) && !empty($data['prov_id']) && !empty($data['product'])){
+            $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
+            $data['tbl'] = tbl_query($query);		    
+        }else{
+            $data['tbl'] = "";
+        }
 
 		// $this->load->view("login_search", $data);
 		
@@ -89,8 +93,17 @@ class Search extends CI_Controller {
 		$data['product'] = $this->input->get("product_outlet");	
 
 
-		$query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
-		$data['tbl'] = tbl_query($query);		
+		// $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
+		// $data['tbl'] = tbl_query($query);		
+
+        if (empty($data['city_id']) && empty($data['prov_id']) && empty($data['product'])){
+            $data['tbl'] = "<div class='row'>
+                                <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
+                            </div>";
+        }else{
+            $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
+            $data['tbl'] = tbl_query($query);		    
+        }
 
 		// $this->load->view("login_search", $data);
 		
