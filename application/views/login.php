@@ -818,7 +818,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center px-0">
-                            <p class="mb-1 text-white"><span class="font-weight-600 font-size-35">Mag Register na sa </span><span class="font-weight-bold font-size-45">Outlet<span class="text-yellow">ko</span>!</span></p>
+                            <p class="mb-1 text-white"><span class="font-weight-bold font-size-45">Outlet<span class="text-yellow">ko</span>!</span><br>
+                            <span class="font-weight-600 font-size-35">Kasama mo sa Negosyo </span></p>
                             <button class="btn btn-orange text-black px-5 font-weight-600" data-dismiss="modal">Continue</button>
                         </div>
                     </div>
@@ -828,7 +829,6 @@
         </div>
     </div>
 </div>
-
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 </body>

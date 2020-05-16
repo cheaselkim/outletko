@@ -344,9 +344,24 @@ body{
     font-size: 25px !important;
 }
 
-#modal-image  .modal-dialog{
-    max-width: 350px;
+#modal-image{
+    top: 7vh;
+    margin: 0;
+    padding: 0;;
 }
+
+#modal-image  .modal-dialog{
+    /* max-width: 92% !important; */
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-left: 3%;
+    padding-right: 7%;
+}
+
+/* #modal-image .modal-content{
+    width: 100%;
+} */
 
 .text-body{
     font-size: 20px;
@@ -359,6 +374,7 @@ body{
 .img-body{
     height: 150px;
 }
+
 
 }
 
@@ -488,6 +504,10 @@ body{
     max-width: 100%;
 }
 
+.text-body{
+    font-size: 25px;
+}
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -544,6 +564,10 @@ body{
 
 .img-body{
     max-width: 100%;
+}
+
+.text-body{
+    font-size: 27px;
 }
 
 }
@@ -615,7 +639,7 @@ body{
 }
 
 #modal-image  .modal-dialog{
-    max-width: 650px;
+    max-width: 650px !important;
 }
 
 .div-body-image{
@@ -624,6 +648,10 @@ body{
 
 .img-body{
     max-width: 100%;
+}
+
+.text-body{
+    font-size: 27px;
 }
 
 }
@@ -676,6 +704,11 @@ body{
 
 .img-body{
     max-width: 100%;
+    height: 200px;
+}
+
+.text-body{
+    font-size: 27px;
 }
 
 }
