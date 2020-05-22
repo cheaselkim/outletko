@@ -20,11 +20,13 @@
     <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
+    <link defer rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
     <script  src="<?php echo base_url('assets/js/jquery.min.js') ?>" ></script>
     <script async src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
-    <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" async></script>
+    <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
     <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
     <style type="text/css">
