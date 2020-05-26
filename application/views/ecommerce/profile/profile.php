@@ -25,13 +25,13 @@
 					<div class="div-prof-details">
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-								<span class="font-weight-600  text-buss-name" id="text-buss-name">Business Name</span>
+								<span class="font-weight-600  text-buss-name" id="text-buss-name"></span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
-								<span class="text-yellow text-buss-type" id="text-buss-type">Business Type</span>
+								<span class="text-yellow text-buss-type" id="text-buss-type"></span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center div-buss-address" >
-								<span class=" text-buss-address" id="text-buss-address">Business Address</span>
+								<span class=" text-buss-address" id="text-buss-address"></span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="row">
@@ -71,7 +71,7 @@
 <div class="container pt-3 div-header-3">
 	<div class="row">
 		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-			<span class="font-weight-600 font-size-18 text-capitalize" style="font-size:22px;" id="header_whats_new">hello world</span>
+			<span class="font-weight-600 font-size-18 text-capitalize" style="font-size:22px;" id="header_whats_new"></span>
 		</div>
 	</div>
 </div>

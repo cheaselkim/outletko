@@ -36,12 +36,13 @@ class Search_model extends CI_Model {
 			`city`.`id` = `account`.`city`
 			LEFT JOIN products ON 
 			`account`.`id` = `products`.`account_id`
-			WHERE 
+            WHERE 
+            `account`.`account_status` = ? AND 
 			(`products`.`product_name` LIKE ? OR `account`.`account_name` LIKE ?)
 			 ".$prov_qry." ".$city_qry." 
 			GROUP BY `account`.`account_name`
 			ORDER BY `account`.`account_name`
-		", array('%'.$product.'%', '%'.$product.'%'))->result();
+		", array(1, '%'.$product.'%', '%'.$product.'%'))->result();
 
 		return $query;
 	}

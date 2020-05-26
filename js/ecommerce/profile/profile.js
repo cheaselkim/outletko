@@ -146,7 +146,14 @@ function get_profile(id){
     $("#div-user-reviews").html(result.review);
 
     var prod_cat = result.prod_cat;
-    var profile = base_url + "images/profile/" + result.profile;    
+    var profile = "";
+    
+    if (result.profile == "false"){
+        profile = base_url + "assets/images/no-image.jpg";
+    }else{      
+        profile = base_url + "images/profile/" + result.profile;
+    }
+    
     var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
             (result.result[0].village == "" ? "" : result.result[0].village + ", ")  + 
             (result.result[0].barangay == "" ? "" : result.result[0].barangay + ",")  + 
@@ -161,10 +168,10 @@ function get_profile(id){
         
 
     //for text
-        $(".div-header").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
-        $(".div-header-2").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
-        $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color) );
-        $(".div-menu-bar").css("background", (result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
+        $(".div-header").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
+        $(".div-header-2").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
+        $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
+        $(".div-menu-bar").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color));
 
         lightOrDark((result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
 
