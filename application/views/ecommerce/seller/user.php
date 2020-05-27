@@ -804,8 +804,8 @@
 			<!-- DIV SETTING -->
 
 			<!-- DIV MY ORDERS  -->
-			<div class="row pt-2 pb-5" id="div-my-orders">
-				<div class="col-12 col-md-12 col-lg-12 bg-white py-3" >
+			<div class="row mt-3 pb-5" id="div-my-orders">
+				<div class="col-12 col-md-12 col-lg-12  py-3" >
 
 					<div class="row" id="div_order_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -1130,8 +1130,8 @@
 
 			<!-- DIV MY DELIVER -->
 
-			<div class="row pt-2 pb-5" id="div-my-deliver">
-				<div class="col-12 col-md-12 col-lg-12 post-body bg-white py-3" id="">
+			<div class="row mt-3 pb-5" id="div-my-deliver">
+				<div class="col-12 col-md-12 col-lg-12 post-body py-3" id="">
 
 					<div class="row" id="div_deliver_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">

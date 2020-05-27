@@ -732,6 +732,8 @@ function lightOrDark(color) {
     $("#text-buss-contact-no").css("color", font_color);
     $("#text-buss-email").css("color", font_color);
     $("#header_aboutus").css("color", font_color);
+    $(".div-left-aboutus").find("span").css("color", font_color_other);
+    $(".div-left-aboutus").find("p").css("color", font_color);
 }
 
 function copyToClipboard(element) {
@@ -1124,6 +1126,7 @@ function index(){
 
     //for text
         $(".div-header").css("background", result.result[0].bg_color);
+        $(".div-left-aboutus").css("background", result.result[0].bg_color);
         $("#colorpicker").css("background", result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
 

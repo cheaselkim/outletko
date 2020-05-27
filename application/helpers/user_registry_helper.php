@@ -38,14 +38,20 @@ if (!function_exists("tbl_query")){
 				$status = "Active";
 			}else{
 				$status = "Inactive";
-			}
+            }
+            
+            if ($value->renewal_date != "0000-00-00"){
+                $renewal_date = date('m/d/Y', strtotime($value->renewal_date));
+            }else{
+                $renewal_date = "FREE";
+            }
 
             $output .= "<tr>
                             <td>".date('m/d/Y', strtotime($value->date_insert))."</td>
 							<td>".$value->account_id."</td>
                             <td>".$value->account_name."</td>
                             <td>".$value->plan_name."</td>
-                            <td>".date('m/d/Y', strtotime($value->renewal_date))."</td>
+                            <td>".$renewal_date."</td>
 							<td hidden>".$value->account_class_desc."</td>
 							<td hidden>".$value->account_type_desc."</td>
 							<td>".$status."</td>
