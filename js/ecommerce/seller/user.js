@@ -150,7 +150,7 @@ $(document).ready(function(){
     });
 
 	$("#span_setting").click(function(){
-    index();
+        index();
 		$("#div-home").hide();
 		$("#div-payment").hide();
 		$("#div-my-deliver").hide();
@@ -161,6 +161,8 @@ $(document).ready(function(){
 		$("#div-setting").show("slow");
 		$("#div-aboutus").show();
 		$("#list_aboutus").addClass("active");
+
+        lightOrDark($(".div-header").css("background-color"));
 
 	});
 
@@ -175,20 +177,30 @@ $(document).ready(function(){
 	/* SETTINGS LINK */
 
 	$("#list_aboutus").click(function(){
-		$("#div-payment").hide();
+        var font_color = $(".div-left-setting").find("li").not(".active").css("color");
+
+        $("#div-payment").hide();
 		$("#list_payment").removeClass("active");
 
 		$("#div-aboutus").show("slow");
-		$("#list_aboutus").addClass("active");
+        $("#list_aboutus").addClass("active");
+
+        lightOrDark($(".div-header").css("background-color"));
+
 	});
 
 	$("#list_payment").click(function(){
-		$("#div-aboutus").hide();
+        var font_color = $(".div-left-setting").find("li").not(".active").css("color");
+
+        $("#div-aboutus").hide();
 		$("#list_aboutus").removeClass("active");
 
 		$("#div-payment").show("slow");
 		$("#list_payment").addClass("active");
-	});
+
+        lightOrDark($(".div-header").css("background-color"));
+
+    });
 
 	/* SETTINGS LINK */
 
@@ -734,6 +746,8 @@ function lightOrDark(color) {
     $("#header_aboutus").css("color", font_color);
     $(".div-left-aboutus").find("span").css("color", font_color_other);
     $(".div-left-aboutus").find("p").css("color", font_color);
+    $(".div-left-setting").find("li").css("color", font_color);
+    $(".div-left-setting").find(".active").css("color", font_color_other);
 }
 
 function copyToClipboard(element) {
@@ -758,10 +772,26 @@ function createColorPicker(color){
         el: '#colorpicker',
         theme: 'nano', // or 'monolith', or 'nano'
         default : color,
+        swatches: [
+            'rgb(0,0,0)',
+            'rgb(0,0,128)',
+            'rgb(0,0,255)',
+            'rgb(0,128,0)',
+            'rgb(0,255,255)',
+            'rgb(128,0,0)',
+            'rgb(128,0,128)',
+            'rgb(128,128,0)',
+            'rgb(128,128,128)',
+            'rgb(192,192,192)',
+            'rgb(255,0,0)',
+            'rgb(255,0,255)',
+            'rgb(255,255,0)',
+            'rgb(255,255,255)'
+        ],        
         components: {
             // Main components
             preview: true,
-            opacity: true,
+            opacity: false,
             hue: true,
     
             // Input / output Options
@@ -781,13 +811,18 @@ function createColorPicker(color){
     pickr.on('init', instance => {
         // console.log('init', instance);
     }).on('save', (color, instance) => {
-        // console.log('save', color.toHEXA().toString());
+        console.log('save', color.toHEXA().toString());
         $(".pcr-app").removeClass("visible");
         $("#color-val").val(color.toHEXA().toString());
         $(".div-header").css("background", color.toHEXA().toString());
+        $(".div-left-setting").css("background", color.toHEXA().toString());
+        $(".div-left-aboutus").css("background", color.toHEXA().toString());
+        lightOrDark(color.toHEXA().toString());
     }).on('clear', (color, instance) => {
         $("#color-val").val("#77933c");
         $(".div-header").css("background", "#77933c");
+        $(".div-left-setting").css("background", "#77933c");
+        $(".div-left-aboutus").css("background", "#77933c");
         $(".pcr-app").removeClass("visible");
         // console.log('clear', instance);
     });
@@ -1127,6 +1162,7 @@ function index(){
     //for text
         $(".div-header").css("background", result.result[0].bg_color);
         $(".div-left-aboutus").css("background", result.result[0].bg_color);
+        $(".div-left-setting").css("background", result.result[0].bg_color);
         $("#colorpicker").css("background", result.result[0].bg_color);
         $("#color-val").val(result.result[0].bg_color);
 

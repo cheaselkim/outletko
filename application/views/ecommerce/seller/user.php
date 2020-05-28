@@ -22,13 +22,13 @@
 							<div class="div-prof-details">
 								<div class="row">
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="font-weight-bold text-buss-name" id="text-buss-name">Business Name</span>
+										<span class="font-weight-bold text-buss-name" id="text-buss-name"></span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class=" text-buss-type" id="text-buss-type">Business Type</span>
+										<span class=" text-buss-type" id="text-buss-type"></span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class=" text-buss-address" id="text-buss-address">Business Address</span>
+										<span class=" text-buss-address" id="text-buss-address"></span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right pt-2 text-span-header-clickable pr-0">
 										<span class=" font-weight-bold mr-2 cursor-pointer" id="span_home">Home</span>
@@ -180,8 +180,8 @@
 					</div>
 
 				</div>
-				<div class="col pad-right pad-md-right pb-5">
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white pt-2  pb-3" id="div-aboutus">
+				<div class="col pr-0 pad-md-right pb-5">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2  pb-3" id="div-aboutus">
 				
 						<div class="row">
 							<div class="col-lg-3 col-md-4 col-sm-12">
@@ -436,9 +436,9 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12 bg-white pt-2 pb-3" id="div-payment">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2 pb-3" id="div-payment">
 						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 pt-2 pb-5 bg-white">
+							<div class="col-lg-12 col-md-12 col-sm-12 pt-2 pb-5">
 
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12">
