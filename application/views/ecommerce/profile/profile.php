@@ -35,7 +35,7 @@
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="row">
-									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-contact-no" style="margin-top: -0.5%;">
+									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-contact-no text-right" style="margin-top: -0.5%;">
 										<span class=" text-buss-address" id="text-buss-contact-no"></span>												
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-email" style="margin-top: -0.5%;">

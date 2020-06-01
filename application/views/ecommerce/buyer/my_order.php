@@ -2,7 +2,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/my_order.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/buyer/my_order.js') ?>"></script>
-<input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 <input type="hidden" id="seller_id" value="0">
 <input type="hidden" id="payment_type_id" value="0">
 
