@@ -225,16 +225,15 @@ $(document).ready(function(){
     });
 
     $("#input_linkname").focusout(function(){
-    $("#span-linkname").hide();
+        $("#span-linkname").hide();
+        check_linkname();
     });
 
-    $("#input_linkname").keyup(function(){
+    $("#input_linkname").keyup(delay(function(){
         var length = $(this).val().length;
         $("#input_linkname_length").text(length);
-        setTimeout(function(){ 
-            var result = check_linkname();
-        }, 500);
-    });
+        check_linkname();
+    },500));
 
 
 	/* TEXTBOX */

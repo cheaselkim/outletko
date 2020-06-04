@@ -53,6 +53,7 @@
 
     <script src="<?php echo base_url('js/login.js') ?>"></script>
     <script src="<?php echo base_url('js/template_login2.js') ?>"></script>
+    <script src="<?php echo base_url('js/template.js') ?>"></script>
 
     <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/layout.css') ?>"> -->
