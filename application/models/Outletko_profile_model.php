@@ -60,6 +60,11 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function check_linkname($linkname){
+        $query = $this->db2->query("SELECT * FROM account WHERE link_name = ? AND id != ?", array($linkname, $this->session->userdata("comp_id")))->num_rows();
+        return $query;
+    }
+
 
     public function get_profile_dtl($id){
         $query = $this->db2->query("

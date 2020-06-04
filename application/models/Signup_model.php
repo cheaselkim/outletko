@@ -46,6 +46,11 @@ class Signup_model extends CI_Model {
         return $query;
     }
 
+    public function check_linkname($linkname){
+        $query = $this->db2->query("SELECT * FROM account WHERE link_name = ?", array($linkname))->num_rows();
+        return $query;
+    }
+
 	public function account_id(){
         $result = $this->db->query("SELECT account_id FROM account_application ORDER BY id DESC LIMIT 1")->row();
         $data['account_id'] = date("y").'1'.str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT);

@@ -195,8 +195,11 @@ function check_required_fields(){
 							cancelButtonText: "No",
 						}, function(isConfirm){
 							if (isConfirm){
-								save_data();			
-							}
+								// save_data();			
+                                setTimeout(function(){  
+                                    save_data();			
+                                }, 1000);            
+                            }
 						});
 
 					}
@@ -215,7 +218,9 @@ function check_required_fields(){
 				cancelButtonText: "No",
 			}, function(isConfirm){
 				if (isConfirm){
-					save_data();			
+                    setTimeout(function(){  
+                        save_data();			
+                    }, 1000);
 				}
 			});
 		}
@@ -242,7 +247,7 @@ function save_data(){
 	var user_email = $("#user_email").val();
 
 	var csrf_name = $("input[name=csrf_name]").val();
-
+    // console.log(csrf_name);
 	$.ajax({
 		data : {
 				csrf_name : csrf_name,
@@ -265,13 +270,17 @@ function save_data(){
 		url : base_url + "Buyer/update_account",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
-			swal({
-				type : "success",
-				title : "Successfully Updated",
-			}, function(){
-				location.reload();
-			})
-		}, error : function(err){
+            setTimeout(function(){  
+                swal({
+                    type : "success",
+                    title : "Successfully Updated",
+                }, function(){
+                    location.reload();
+                })    
+    
+            }, 500);
+    
+        }, error : function(err){
 			console.log(err.responseText);
 		}
 	})

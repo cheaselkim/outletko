@@ -324,6 +324,13 @@ class Outletko_profile extends CI_Controller {
         echo json_encode($list);
     }
 
+    public function check_linkname(){
+        $link_name = $this->input->post("link_name");
+        $data['result'] = $this->outletko_profile_model->check_linkname($link_name);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
     //SAVING
     public function save_setting(){
         $result_username = "";

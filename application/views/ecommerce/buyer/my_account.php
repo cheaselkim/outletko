@@ -113,11 +113,11 @@
 							<span class="font-weight-600">Mobile</span>
 							<div class="input-group">
 								<div class="input-group-prepend" style="height: 31px;"  >
-									<span class="input-group-text bg-white">
+									<span class="input-group-text bg-white textbox-green">
 										+63
 									</span>
 								</div>
-								<input type="text" class="form-control form-control-sm textbox-green border-left-0" id="user_mobile">
+								<input type="text" class="form-control form-control-sm textbox-green " id="user_mobile">
 							</div>							
 						</div>
 						<div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-center">

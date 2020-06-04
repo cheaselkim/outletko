@@ -3,6 +3,7 @@
 <head>
     <title>Outletko</title>
     <meta charset="utf-8">
+    <meta name="theme-color" content="#77933c">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Outletko is a digital platform technology and service that enables enterprises to connect to people and the community, and gives growth to business. It provides facility for full digital transformation for micro and small enterprises.">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
@@ -14,9 +15,13 @@
         gtag('js', new Date());
         
         gtag('config', 'UA-163137526-1');
+
     </script>
+
+    <link rel="manifest" href="./manifest.json">
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
-    <link    rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
+    <link rel="apple-touch-icon" href="assets/img/logo-13.png" type="image/png", sizes="2x2">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
     <link async rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/login3.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
@@ -29,6 +34,8 @@
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
     <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
+    <script src="<?php echo base_url('/app.js')?>"></script>
+
     <style type="text/css">
         option {
         max-height: 15px;

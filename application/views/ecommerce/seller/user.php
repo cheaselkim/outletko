@@ -211,6 +211,7 @@
 								<span class="text-capitalize">Link Name <span class="text-red">*</span></span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
+                                <small class="text-red" id="span-linkname-error">This Link Name is not available</small>
 								<input type="text" class="form-control textbox-green2 text-lowercase" maxlength="15" onkeypress="avoidSplChars(event);" id="input_linkname">
 								<div class="row">
 									<div class="col-6">
@@ -1466,7 +1467,7 @@
 		                    		</select>
 		                    	</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
-		                    		<span class="font-weight-600">Unit Price <span class="text-red" hidden>*</span></span>
+		                    		<span class="font-weight-600">Unit Price <span class="text-red" >*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price">
 		                    		<input type="text" class="form-control textbox-green2 text-right" placeholder="0.00" id="prod_price2" readonly>
 		                    	</div>

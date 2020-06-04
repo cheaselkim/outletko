@@ -154,11 +154,11 @@ function get_profile(id){
         profile = base_url + "images/profile/" + result.profile;
     }
     
-    var address = (result.result[0].street == "" ? "" : result.result[0].street  + ", ") + 
-            (result.result[0].village == "" ? "" : result.result[0].village + ", ")  + 
-            (result.result[0].barangay == "" ? "" : result.result[0].barangay + ",")  + 
-            (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ") + 
-            (result.result[0].province_desc == "" ? "" : result.result[0].province_desc) ;
+    var address = (result.result[0].street == null ? "" : (result.result[0].street == "" ? "" : result.result[0].street  + ", ")) + 
+            (result.result[0].village == null ? "" : (result.result[0].village == "" ? "" : result.result[0].village + ", "))  + 
+            (result.result[0].barangay == null ? "" : (result.result[0].barangay == "" ? "" : result.result[0].barangay + ","))  + 
+            (result.result[0].city_desc == null ? "" : (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ")) + 
+            (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
     if (prod_cat.length > 0){
         for (var i = 0; i < prod_cat.length; i++) {
@@ -166,14 +166,13 @@ function get_profile(id){
         }    
     }
         
-
     //for text
-        $(".div-header").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
-        $(".div-header-2").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
-        $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color) );
-        $(".div-menu-bar").css("background", (result.result[0].bg_color == null ? "#77933c" : result.result[0].bg_color));
+        $(".div-header").css("background", (result.result[0].bg_color == null ? "#77933c" : (result.result[0].bg_color == "" ? "#77933c" : result.result[0].bg_color) ) );
+        $(".div-header-2").css("background", (result.result[0].bg_color == null ? "#77933c" : (result.result[0].bg_color == "" ? "#77933c" : result.result[0].bg_color) ) );
+        $(".div-profile-footer").css("background", (result.result[0].bg_color == null ? "#77933c" : (result.result[0].bg_color == "" ? "#77933c" : result.result[0].bg_color)) );
+        $(".div-menu-bar").css("background", (result.result[0].bg_color == null ? "#77933c" : (result.result[0].bg_color == "" ? "#77933c" : result.result[0].bg_color)));
 
-        lightOrDark((result.result[0].bg_color == null ? "77933c" : result.result[0].bg_color));
+        lightOrDark((result.result[0].bg_color == null ? "77933c" : (result.result[0].bg_color == "" ? "77933c" : result.result[0].bg_color)));
 
         $("#div-prod-img").css("background-image", "url('"+profile+"')");
         $("#div-footer-img").css("background-image", "url('"+profile+"')");
@@ -191,10 +190,10 @@ function get_profile(id){
         $("#text_aboutus").text(result.result[0].about_us);
         $("#header_aboutus").text(result.result[0].about_us);
 
-        $("#text-buss-email").text("Email : "+ (result.result[0].email == null ? "" : result.result[0].email));
-        $("#text-buss-contact-no").text("Mobile No. : "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));
-        $("#text-buss-tel-no").text("Tel No. : "+(result.result[0].telephone_no == null ? "" : result.result[0].telephone_no));
-        $("#text-buss-facebook").text("Facebook : "+ (result.result[0].facebook == null ? "" : result.result[0].facebook));
+        $("#text-buss-email").text("Email : "+ (result.result[0].email == null ? "N/A" : (result.result[0].email == "" ? "N/A" : result.result[0].email)));
+        $("#text-buss-contact-no").text("Mobile No. : "+(result.result[0].mobile_no == null ? "N/A" : (result.result[0].email == "" ? "N/A" : "+63"+result.result[0].mobile_no)));
+        $("#text-buss-tel-no").text("Tel No. : "+(result.result[0].telephone_no == null ? "N/A" : (result.result[0].telephone_no == "" ? "N/A" : result.result[0].telephone_no)));
+        $("#text-buss-facebook").text("Facebook : "+ (result.result[0].facebook == null ? "N/A" : (result.result[0].facebook == "" ? "N/A" : result.result[0].facebook)));
 
         
 
@@ -439,7 +438,7 @@ function get_profile(id){
           $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
           $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
           $('#div-list-img-'+x+'').css("background-position", "center");
-          $('#div-list-img-'+x+'').css("background-size", "100% 100%");
+          $('#div-list-img-'+x+'').css("background-size", "contain");
 
         }
     //products

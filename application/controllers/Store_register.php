@@ -40,13 +40,24 @@ class Store_register extends CI_Controller {
         $year = date("y");
         $user_type= "4";
         $account_id_result = $this->signup_model->account_id();
-        $account_id = $year.'1'.$account_id_result['account_id'];
+        $account_id = $account_id_result['account_id'];
         $comp_id = $account_id_result['comp_id'];
         
         $outletko_pass = $this->randomString();
         $eoutletsuite_pass = $this->randomString();
 
-        $link_name = $info_outletko['link_name'];
+        // $link_name = substr($info_outletko['link_name'], 0, 15);
+        $check_linkname = $this->signup_model->check_linkname(substr($info_outletko['link_name'], 0, 15));
+
+        var_dump($check_linkname);
+
+        if ($check_linkname > 0){
+            $link_name = substr($info_outletko['link_name'], 0, 8);
+            $link_name = $link_name.$account_id;
+        }else{
+            $link_name = substr($info_outletko['link_name'], 0, 15);
+        }
+
 
         if ($info_user['plan_type'] == "0"){
             $account_pro = "0";
@@ -58,7 +69,7 @@ class Store_register extends CI_Controller {
           'account_id'=>$account_id,
           'account_name'=>$info_user['info_business_name'],
           'account_partner' => $info_user['info_partner'],
-          'link_name' => $info_outletko['link_name'],
+          'link_name' => $link_name,
           'account_status' => 0,
           'account_pro' => $account_pro,
           'about_us' => "",
@@ -314,6 +325,14 @@ class Store_register extends CI_Controller {
           return $status;
 
 
+    }
+
+    public function resend_email(){
+        $email = "dooleycheasel@gmail.com";
+        $account_id = "2012010103";
+
+        $result = $this->send_confirm_email($email, $account_id);
+        var_dump($result);
     }
 
     public function send_email($email, $account_id){

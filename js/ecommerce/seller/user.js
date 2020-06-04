@@ -34,6 +34,8 @@ $(document).ready(function(){
     $("#div-for-appointment").hide();
     $("#div-for-delivery").hide();
     $("#div-prod-ship-fee").hide();
+    $("#span-linkname").hide();
+    $("#span-linkname-error").hide();
 
     if ($(document).width() > 1200){
         $("#div-store-img-btn-1").hide();
@@ -213,23 +215,26 @@ $(document).ready(function(){
 		$("#span-aboutus").hide();
 	});
 
-  $("#input_aboutus").keyup(function(){
+    $("#input_aboutus").keyup(function(){
     var length = $(this).val().length;
     $("#input_aboutus_length").text(length);
-  });
+    });
 
-  $("#input_linkname").focus(function(){
+    $("#input_linkname").focus(function(){
     $("#span-linkname").show("slow");
-  });
+    });
 
-  $("#input_linkname").focusout(function(){
+    $("#input_linkname").focusout(function(){
     $("#span-linkname").hide();
-  });
+    });
 
-  $("#input_linkname").keyup(function(){
-    var length = $(this).val().length;
-    $("#input_linkname_length").text(length);
-  });
+    $("#input_linkname").keyup(function(){
+        var length = $(this).val().length;
+        $("#input_linkname_length").text(length);
+        setTimeout(function(){ 
+            var result = check_linkname();
+        }, 500);
+    });
 
 
 	/* TEXTBOX */
@@ -838,7 +843,7 @@ function readURL(input, type) {
           reader.onload = function (e) {
             // console.log(e.target.result);
               $('#div-img-prof').css('background', 'url("' + e.target.result + '")');
-              $('#div-img-prof').css('background-size', "100% 100%");
+              $('#div-img-prof').css('background-size', "contain");
               $('#div-img-prof').css('background-repeat', "no-repeat");
               $('#div-img-prof').css('background-position', "center center");
               // $("#div-prod-img").css('background', 'url("' + e.target.result + '")');
@@ -854,7 +859,7 @@ function readURL(input, type) {
         }else if (type == "3"){
           reader.onload = function (e) {
             $('#div-img-store').css('background', 'url("' + e.target.result + '")');
-            $('#div-img-store').css('background-size', "100% 100%");
+            $('#div-img-store').css('background-size', "contain");
             $('#div-img-store').css('background-repeat', "no-repeat");
             $('#div-img-store').css('background-position', "center center");
           }
@@ -933,6 +938,40 @@ function check_subscription(){
                 })
             }
 
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+function check_linkname(){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var link_name = $("#input_linkname").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, link_name : link_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/check_linkname",
+        success : function(result){ 
+            $("input[name=csrf_name]").val(result.token);
+            $("#span-linkname-error").attr("data-err", result.result);
+            if (link_name != ""){
+                if (result.result > 0){
+                    $("#input_linkname").addClass("error");
+                    $("#span-linkname-error").text('This "'+link_name+'" is not available');
+                    $("#span-linkname-error").show();
+                }else{
+                    $("#span-linkname-error").hide();
+                    $("#input_linkname").removeClass("error");
+                }    
+            }else{
+                $("#input_linkname").addClass("error");
+                $("#span-linkname-error").text('Link Name is required field');
+                $("#span-linkname-error").show();
+            }
+            return result.result;
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -1571,7 +1610,7 @@ function index(){
                 $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
                 $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
                 $('#div-list-img-'+x+'').css("background-position", "center");
-                $('#div-list-img-'+x+'').css("background-size", "100% 100%");
+                $('#div-list-img-'+x+'').css("background-size", "contain");
       
                 $(".div-list-img").mouseover(function(){
                   var id = this.id
@@ -2405,34 +2444,42 @@ function save_store_img(){
 
 function check_aboutus(){
 
-  var business_name = $("#input_businessname").val();
-  var link_name = $("#input_linkname").val();
-  var aboutus = $("#input_aboutus").val();
-  var business_category = $("#input_bussinesscategory").val();
+    check_linkname();
+    var business_name = $("#input_businessname").val();
+    var link_name = $("#input_linkname").val();
+    var aboutus = $("#input_aboutus").val();
+    var business_category = $("#input_bussinesscategory").val();
 
-  var bldg = $("#input_bldg").val();
-  var subdivison = $("#input_subdivision").val();
-  var barangay = $("#input_barangay").val();
-  var city = $("#input_city").attr("data-id");
-  var province = $("#input_province").attr("data-id");
+    var bldg = $("#input_bldg").val();
+    var subdivison = $("#input_subdivision").val();
+    var barangay = $("#input_barangay").val();
+    var city = $("#input_city").attr("data-id");
+    var province = $("#input_province").attr("data-id");
 
-  var email = $("#input_email").val();
-  var mobile = $("#input_mobile").val();
-  var telephone = $("#input_telephone").val();
+    var email = $("#input_email").val();
+    var mobile = $("#input_mobile").val();
+    var telephone = $("#input_telephone").val();
 
-  var website = $("#input_website").val();
-  var facebook = $("#input_facebook").val();
-  var twitter = $("#input_twitter").val();
-  var instagram = $("#input_instagram").val();
-  var shoppee = $("#input_shopee").val();
+    var website = $("#input_website").val();
+    var facebook = $("#input_facebook").val();
+    var twitter = $("#input_twitter").val();
+    var instagram = $("#input_instagram").val();
+    var shoppee = $("#input_shopee").val();
+    var link_name_result = $("#span-linkname-error").attr("data-err");
+    console.log(link_name_result);
 
-  if(jQuery.trim(business_name).length <= 0 || jQuery.trim(link_name).length <= 0 || jQuery.trim(business_category).length <= 0 || jQuery.trim(bldg).length <= 0 
+    if(jQuery.trim(business_name).length <= 0 || jQuery.trim(link_name).length <= 0 || jQuery.trim(business_category).length <= 0 || jQuery.trim(bldg).length <= 0 
     || jQuery.trim(city).length <= 0 || jQuery.trim(province).length <= 0 || jQuery.trim(email).length <= 0 || jQuery.trim(mobile).length <= 0) {
         swal("Please fill up required fields.", "", "warning")
         return false;
-  }else{
-    save_aboutus();
-  }
+    }else{
+        if (link_name_result > 0){
+            swal("Please check Link Name", "", "warning")
+            return false;
+        }else{
+            save_aboutus();
+        }
+    }
 
 
 }
@@ -2657,7 +2704,6 @@ function save_aboutus(){
   })
 
 }
-
 
 function save_payment(){
 
