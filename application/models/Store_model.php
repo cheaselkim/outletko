@@ -92,6 +92,11 @@ class Store_model extends CI_Model {
   //   '--', '-')) = ?
 		// ", array($store))->row();
 
-	}
+    }
+    
+    public function get_linkname(){
+        $query = $this->db2->query("SELECT * FROM account WHERE id = ?", array($this->session->userdata("comp_id")))->row();
+        return $query->link_name;
+    }
 
 }
