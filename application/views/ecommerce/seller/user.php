@@ -1407,8 +1407,8 @@
 		                <div class="col-12 col-md-5 col-lg-5">
 		                    <div class="form-group mb-0 row">
 		                        <div class="col-12 col-md-12 col-lg-12">
-									<div class="modal-img-upload" onclick="get_image();">
-										<img src="<?php echo base_url('assets/images/add_pic.png') ?>" id='img-upload'>
+									<div class="modal-img-upload" id="modal-img-upload" onclick="get_image();">
+										<!-- <img src="<?php echo base_url('assets/images/add_pic.png') ?>" id='img-upload'> -->
 									</div>
 		                        </div>
 		                    </div>

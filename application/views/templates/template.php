@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/pace-progress/css/pace.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/summernote/css/summernote-bs4.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
+
 
 
     <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script> 
@@ -66,9 +69,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
 
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/fotorama/fotorama.css')?>"> -->
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <!-- <script src="<?php echo base_url('assets/node_modules/fotorama/fotorama.js'); ?>"></script> -->
-    <!-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
     <script>var base_url = '<?php echo base_url() ?>';</script>
 

@@ -922,7 +922,8 @@ $.ajax({
           $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
           $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
           $('#div-list-img-'+x+'').css("background-position", "center");
-          $('#div-list-img-'+x+'').css("background-size", "100% 100%");
+          $('#div-list-img-'+x+'').css("background-size", "contain");
+          //   $('#div-list-img-'+x+'').css("background-size", "100% 100%");
 
         }
 

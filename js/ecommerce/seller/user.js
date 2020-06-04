@@ -852,8 +852,12 @@ function readURL(input, type) {
           }
         }else if (type == "2"){
             reader.onload = function (e) {
-                $('#img-upload').attr('src', e.target.result);
-            }  
+                // $('#img-upload').attr('src', e.target.result);
+                $('#modal-img-upload').css('background', 'url("' + e.target.result + '")');
+                $('#modal-img-upload').css('background-size', "contain");
+                $('#modal-img-upload').css('background-repeat', "no-repeat");
+                $('#modal-img-upload').css('background-position', "center center");
+              }  
             // readProductURL(input);
         }else if (type == "3"){
           reader.onload = function (e) {
@@ -3060,7 +3064,12 @@ function clear_prod_model(){
     $("#prod_ship_fee_o_mm").val(0);
     $("#unserialized_files").val("");
     $("#imgInp").val("");
-    $("#img-upload").attr("src", base_url + "assets/images/add_pic.png");
+    // $("#img-upload").attr("src", base_url + "assets/images/add_pic.png");
+    var image = base_url + "assets/images/add_pic.png";
+    $('#modal-img-upload').css('background', 'url("' + image + '")');
+    $('#modal-img-upload').css('background-size', "100% 100%");
+    $('#modal-img-upload').css('background-repeat', "no-repeat");
+    $('#modal-img-upload').css('background-position', "center center");
     $("#prod_price").val(0);
     $("#prod_price2").val(0);
     $("#prod_stock").val(0);
@@ -3101,7 +3110,11 @@ function get_product_info(id){
             $("#prod_id").val(data.products[0].id);
             $("#unserialized_files").val(data.products[0].img_location[0]);
             var href_url = base_url +'images/products/'+data.products[0].img_location[0];
-            $("#img-upload").attr("src", href_url);
+            // $("#img-upload").attr("src", href_url);
+            $('#modal-img-upload').css('background', 'url("' + href_url + '")');
+            $('#modal-img-upload').css('background-size', "contain");
+            $('#modal-img-upload').css('background-repeat', "no-repeat");
+            $('#modal-img-upload').css('background-position', "center center");
 
             if (data.products[0].product_std_delivery != null){
                 $("#prod_std_delivery").val(data.products[0].product_std_delivery);
