@@ -5,27 +5,36 @@ if (!function_exists("tbl_products_no_order")){
 	function tbl_products_no_order($query){
 
 		$output = "";
-		$account_id = "";
-		$div = 0;
-
-		foreach ($query as $key => $value) {
-			
-			$img = unserialize($value->img_location);
+        $account_id = "";
+        $variation = "";
+        $div = 0;
+        
+        for ($x=0; $x < COUNT($query); $x++) { 
+        
+			$img = unserialize($query[$x]['img_location']);
 			$img_loc = base_url().'images/products/'.$img[0];
-			$i = $key + 1;
+			$i = $x + 1;
+
+            if (!empty($query[$x]['prod_var1'])){
+                $variation = "<span>Variation : ".$query[$x]['prod_var1']."</span>";
+            }
+
+            if (!empty($query[$x]['prod_var1']) && !empty($query[$x]['prod_var2'])){
+                $variation = "<span>Variation : ".$query[$x]['prod_var1'].", ".$query[$x]['prod_var2']."</span>";
+            }
 
             $checkbox = '
             <div class="col-12 text-center"  style="height: 65px;padding-top: 10px;">           
                 <div class="custom-control custom-checkbox checkbox-xl" style="padding-left: 1.0rem;">
-                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$value->prod_id.'" data-id="'.$i.'" checked>
+                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" checked>
                 <label for="checkbox_'.$i.'" class="custom-control-label"></label>
                     </div>
             </div>';
 
             
-			if ($account_id  != $value->account_id){
+			if ($account_id  != $query[$x]['account_id']){
 				$div++;
-				if ($key != 0){
+				if ($i != 0){
 					$output .= "</div>
 								<div class='col-12 px-0'>
 									<hr class='my-3' style='border-top: 1.5px dashed red;'>
@@ -35,14 +44,14 @@ if (!function_exists("tbl_products_no_order")){
                 
 
                 $checbox_raw = '<div class="col-12 text-center" style="height: 85px;padding-top: 15px;">
-                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$value->prod_id.'" data-id="'.$i.'" checked>
+                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" checked>
                     <label for="checkbox_'.$i.'" class="css-label"></label>
                 </div>';
 
 				$output .= '<div class="col-12 col-sm-12 col-md-12 col-lg-12 py-0 item div-prod" id="div_prod_'.$div.'"> 
 							<div class="row py-1 bg-white-smoke" style="border: 1px solid black;">
 								<div class="col-lg-6 col-md-6 col-sm-12">
-									<span class="h5 font-weight-600">'.$value->account_name.'</span>
+									<span class="h5 font-weight-600">'.$query[$x]['account_name'].'</span>
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-12 text-right">
 									<button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$div.')">Proceed to Checkout</button>
@@ -53,7 +62,7 @@ if (!function_exists("tbl_products_no_order")){
 									<div class="row">
 										'.$checkbox.'
 										<div class="col-12 text-center" style="height: 65px;border-top: 1px solid gray;padding-top: 13px;">
-											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$value->item_id.')"><i class="fas fa-minus-circle"></i></button>
+											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$query[$x]['item_id'].')"><i class="fas fa-minus-circle"></i></button>
 										</div> 
 									</div>
 								</div>
@@ -65,16 +74,17 @@ if (!function_exists("tbl_products_no_order")){
 								<div class="col-12 col-lg-7 col-md-4 col-sm-12 py-2 div-prod-info">
 									<div class="row">
 										<div class="col-12">
-											<span class="font-weight-600">'.$value->product_name.'</span><br>
-											<span hidden>details</span>
+											<span class="font-weight-600">'.$query[$x]['product_name'].'</span><br>
+                                            <span hidden>details</span>
+                                            '.$variation.'
 										</div>
 										<div class="col-12">
 											<div class="row">
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
+													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($query[$x]['product_unit_price'], 2).'</span></span>
 												</div>
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
+													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($query[$x]['product_unit_price'] * $query[$x]['prod_qty']), 2).'</span></span>
 												</div>
 											</div>
 										</div>
@@ -85,7 +95,7 @@ if (!function_exists("tbl_products_no_order")){
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>
 												</div>
-												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$value->prod_qty.'" data-id="'.$i.'">
+												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'">
 												<div class="input-group-append">
 													<button class="btn btn-outline-dark btn-append btn_plus" id="btn_plus_'.$i.'" value="'.$i.'"><i class="fas fa-plus"></i></button>
 												</div>
@@ -98,7 +108,7 @@ if (!function_exists("tbl_products_no_order")){
 			}else{
                 $checbox_raw = '										
                 <div class="col-12 text-center" style="height: 85px;padding-top: 15px;">
-                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$value->prod_id.'" data-id="'.$i.'" checked>
+                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" checked>
                     <label for="checkbox_'.$i.'" class="css-label"></label>
                 </div>';
 
@@ -107,7 +117,7 @@ if (!function_exists("tbl_products_no_order")){
                                     <div class="row">
                                         '.$checkbox.'
 										<div class="col-12 text-center" style="height: 65px;border-top: 1px solid gray;padding-top: 13px;">
-											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$value->item_id.')"><i class="fas fa-minus-circle"></i></button>
+											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$query[$x]['item_id'].')"><i class="fas fa-minus-circle"></i></button>
 										</div> 
 									</div>
 								</div>
@@ -119,16 +129,17 @@ if (!function_exists("tbl_products_no_order")){
 								<div class="col-12 col-lg-7 col-md-4 col-sm-12 py-2 div-prod-info">
 									<div class="row">
 										<div class="col-12">
-											<span class="font-weight-600">'.$value->product_name.'</span><br>
+											<span class="font-weight-600">'.$query[$x]['product_name'].'</span><br>
 											<span hidden>details</span>
+                                            '.$variation.'
 										</div>
 										<div class="col-12">
 											<div class="row">
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($value->product_unit_price, 2).'</span></span>
+													<span class="font-weight-600">Price : PHP <span class="prod_price" id="prod_price_'.$i.'">'.number_format($query[$x]['product_unit_price'], 2).'</span></span>
 												</div>
 												<div class="col-12 col-lg-6 col-md-12 col-sm-12">
-													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($value->product_unit_price * $value->prod_qty), 2).'</span></span>
+													<span class="font-weight-600">Total Price : PHP <span class="prod_total_price" id="prod_total_price_'.$i.'">'.number_format(($query[$x]['product_unit_price'] * $query[$x]['prod_qty']), 2).'</span></span>
 												</div>
 											</div>
 										</div>
@@ -139,7 +150,7 @@ if (!function_exists("tbl_products_no_order")){
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>
 												</div>
-												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$value->prod_qty.'" data-id="'.$i.'">
+												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'">
 												<div class="input-group-append">
 													<button class="btn btn-outline-dark btn-append btn_plus" id="btn_plus_'.$i.'" value="'.$i.'"><i class="fas fa-plus"></i></button>
 												</div>
@@ -150,7 +161,8 @@ if (!function_exists("tbl_products_no_order")){
 							</div>';
 			}
 
-			$account_id = $value->account_id;
+            $account_id = $query[$x]['account_id'];
+            $variation = "";
 		}
 
 		return $output;

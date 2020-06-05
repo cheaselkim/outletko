@@ -85,14 +85,46 @@ class Buyer extends CI_Controller {
 	public function get_orders(){
         $total = 0;
 		$query = $this->buyer_model->get_orders();
+        $products = array();
 
         if (!empty($query)){
             foreach ($query as $key => $value) {
                 $total += ($value->product_unit_price * $value->prod_qty);
+                $product_price = $value->product_unit_price;
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);
+                    $product_price = $this->buyer_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                    $product_price = $product_price;
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->buyer_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+
+                // var_dump($prod_var1);
+                $products[$key] = array(
+                    "prod_id" => $value->prod_id,
+                    "account_id" => $value->account_id,
+                    "account_name" => $value->account_name,
+                    "item_id" => $value->item_id,
+                    "img_location" => $value->img_location,
+                    "product_name" => $value->product_name,
+                    "product_unit_price" => $product_price,
+                    "prod_qty" => $value->prod_qty,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2
+                );
             }
         }
 
-		$data['result'] = tbl_products_no_order($query);
+        // $prod_obj = (object) $products;
+        // var_dump($products);
+        $data['result'] = tbl_products_no_order($products);
         $data['order_no'] = COUNT($this->buyer_model->get_orders());
         $data['cart_total'] = $total;
         $data['token'] = $this->security->get_csrf_hash();

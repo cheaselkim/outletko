@@ -181,7 +181,10 @@ class Profile extends CI_Controller {
         $data = array(
             "comp_id" => $this->session->userdata("comp_id"),
             "prod_id" => $this->input->post("prod_id"),
-            "prod_qty" => $this->input->post("prod_qty")
+            "prod_qty" => $this->input->post("prod_qty"),
+            "prod_var1" => $this->input->post("prod_var1"),
+            "prod_var2" => $this->input->post("prod_var2"),
+            "date_insert" => date("Y-m-d H:i:s")
         );
 
         $data['result'] = $this->profile_model->insert_prod($data);

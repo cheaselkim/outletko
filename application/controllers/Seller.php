@@ -18,15 +18,44 @@ class Seller extends CI_Controller {
 
 	public function get_process_order(){
 		$result = $this->Seller_model->get_process_order();
-		$data['result'] = tbl_process_order($result);
+		$data['result'] = tbl_process_order($result, "");
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
 
 	public function get_order_id(){
 		$id = $this->input->post("id");
-		$data['result'] = $this->Seller_model->get_order_id($id);
-		$data['products'] = $this->Seller_model->get_order_products($id);
+        $order_prod = $this->Seller_model->get_order_products($id);
+        $products = array();
+
+        if (!empty($order_prod)){
+            foreach ($order_prod as $key => $value) {
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->Seller_model->get_variation($value->prod_var1);
+                    $product_price = $this->Seller_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->Seller_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+
+                $products[$key] = array(
+                    "product_name" => $value->product_name,
+                    "prod_qty" => $value->prod_qty,
+                    "product_unit_price" => $product_price,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2
+                );
+            }
+        }
+        
+        $data['products'] = $products;
+        $data['result'] = $this->Seller_model->get_order_id($id);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -44,8 +73,8 @@ class Seller extends CI_Controller {
 	}
 
 	public function get_close_order(){
-		$result = $this->Seller_model->get_close_order();
-		$data['result'] = tbl_process_order($result);
+        $result = $this->Seller_model->get_close_order();
+		$data['result'] = tbl_process_order($result, "");
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -59,5 +88,14 @@ class Seller extends CI_Controller {
 		echo json_encode($data);		
 	}
 
+    public function get_delivered_order(){
+        $status = $this->input->post("status");
+        $fdate = $this->input->post("fdate");
+        $tdate = $this->input->post("tdate");
+        $result = $this->Seller_model->get_delivered_order($status, $fdate, $tdate);
+        $data['result'] = tbl_process_order($result, $status);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
 }

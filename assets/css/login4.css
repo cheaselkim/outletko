@@ -840,4 +840,15 @@ body{
     height: 325px;
 }
 
+.card{
+    width: 100% !important;
+    /* width: 195px !important; */
+    height: 180px !important;
+}
+
+.div-card-name{
+    width: 100% !important;
+    /* width: 270px !important; */
+}
+
 }

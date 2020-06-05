@@ -1,3 +1,11 @@
+.card{
+    height: auto !important;
+}
+
+.card-body{
+    height: auto !important;
+}
+
 .text-black{
     color: black !important;
 }

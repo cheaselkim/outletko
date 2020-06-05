@@ -36,7 +36,7 @@ class Seller_model extends CI_Model {
 				`province`.`province_desc`,
 				`city`.`city_desc`,
 				`courier`.`courier` AS courier_name,
-				DATE_FORMAT(`buyer_order`.`date_insert`, '%m/%d/%Y') AS order_date,
+				DATE_FORMAT(`buyer_order`.`date_insert`, '%m/%d/%Y %h:%i:%s %p') AS order_date,
 				DATE_FORMAT(`buyer_order`.`delivery_date`, '%m/%d/%Y') AS delivery_date_format,
 				buyer_order.*,
 				CONCAT(`account_buyer`.`first_name`, ' ', `account_buyer`.`last_name`) AS buyer_name,
@@ -84,6 +84,32 @@ class Seller_model extends CI_Model {
 		return $result;
 	}
 
+    public function get_variation($prod_var){
+        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE id = ? ", array($prod_var))->result();
+        
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->type;
+            }
+        }else{
+            return "";
+        }
+
+    }
+
+    public function get_variation_price($prod_var){
+        $query = $this->db2->query("SELECT * FROM account_variation_type WHERE id = ? ", array($prod_var))->result();
+        
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->unit_price;
+            }
+        }else{
+            return 0;
+        }
+
+    }
+
 	public function acknowledge_order($id){
 		$this->db2->where("id", $id);
 		$this->db2->set("status", "2");
@@ -121,5 +147,27 @@ class Seller_model extends CI_Model {
 		$this->db2->update("buyer_order");
 	}
 
+    public function get_delivered_order($status, $fdate, $tdate){
+
+        if (!empty($fdate) && !empty($tdate)){
+            $date_qry = "AND (DATE(`buyer_order`.`date_insert`) >= '".$fdate."' AND DATE(`buyer_order`.`date_insert`) <= '".$tdate."')";
+        }else{
+            $date_qry = "";
+        }
+
+        $result = $this->db2->query("SELECT buyer_order.*,
+        	`delivery_type`.`delivery_type` AS delivery_type_name,
+			CONCAT(`account_buyer`.`first_name`, ' ', `account_buyer`.`last_name`) AS buyer_name,
+			`buyer_order`.`id` as buyer_order_id
+			FROM buyer_order
+			LEFT JOIN account_buyer ON 
+			`account_buyer`.`id` = `buyer_order`.`comp_id` 
+			LEFT JOIN delivery_type ON 
+			`delivery_type`.`id` = `buyer_order`.`delivery_type`
+            WHERE `buyer_order`.`status` = ? AND seller_id = ?
+            ".$date_qry."
+            ", array($status, $this->session->userdata("comp_id")))->result();	
+        return $result;        
+    }
 
 }

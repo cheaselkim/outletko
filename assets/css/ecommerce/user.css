@@ -139,7 +139,7 @@ textarea{
 	border: 1px solid #AEDCBF;
 }
 
-#div-my-orders, #div-my-deliver, #div-aboutus, #div-payment{
+#div-my-orders, #div-my-delivered, #div-my-closed, #div-aboutus, #div-payment{
     background-color: #f5f5f5;
 }
 

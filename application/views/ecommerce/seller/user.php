@@ -963,6 +963,7 @@
 													<thead>
 														<tr>
 															<th>Product</th>
+															<th>Variation</th>
 															<th>Qty</th>
 															<th>Unit Price</th>
 															<th>Total</th>
@@ -1129,12 +1130,12 @@
 			</div>
 			<!-- DIV MY ORDERS -->
 
-			<!-- DIV MY DELIVER -->
+			<!-- DIV MY CLOSED -->
 
-			<div class="row mt-3 pb-5" id="div-my-deliver">
+			<div class="row mt-3 pb-5" id="div-my-closed">
 				<div class="col-12 col-md-12 col-lg-12 post-body py-3" id="">
 
-					<div class="row" id="div_deliver_table">
+					<div class="row" id="div_closed_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 							<span class="h4">Orders</span>							
 						</div>
@@ -1152,7 +1153,7 @@
 						</div>
 					</div>
 
-					<div class="row" id="div_deliver">
+					<div class="row" id="div_closed">
 						<input type="hidden" id="close_order_id" value="0">
 
 							<div class="col-lg-12 col-md-12 col-sm-12">
@@ -1315,7 +1316,215 @@
 				</div>
 			</div>
 
-			<!-- DIV MY DELIVER -->
+			<!-- DIV MY CLOSED -->
+
+			<!-- DIV MY DELIVERED -->
+
+			<div class="row mt-3 pb-5" id="div-my-delivered">
+				<div class="col-12 col-md-12 col-lg-12 post-body py-3" id="">
+
+					<div class="row" id="div_delivered_table">
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<span class="h4">Orders</span>							
+						</div>
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-12 col-lg-auto col-md-2 col-sm-12">
+                                    <div class="form-inline">
+                                        <label for="delivered-status">Status</label>
+                                        <select class="form-control ml-2" id="delivered-status">
+                                            <option value="2">Delivered</option>
+                                            <option value="3"> Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-auto col-md-2 col-sm-12">
+                                    <div class="form-inline">
+                                        <label for="delivered-fdate">From</label>
+                                        <input type="date" class="form-control ml-2" id="delivered-fdate" value="<?php echo date('Y-m-01')?>"> 
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-auto col-md-2 col-sm-12">
+                                    <div class="form-inline">
+                                        <label for="delivered-tdate">To</label>
+                                        <input type="date" class="form-control ml-2" id="delivered-tdate" value="<?php echo date('Y-m-01')?>"> 
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-1 col-md-3 col-sm-12">
+                                    <button class="btn btn-success btn-block" id="btn-delivered-search">Search</button>
+                                </div>                                
+                            </div>
+						</div>
+						<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-3">
+							<div id="div-tbl-delivered-order" style="overflow: auto;">  
+							</div>
+						</div>
+					</div>
+
+					<div class="row" id="div_delivered">
+						<input type="hidden" id="close_order_id" value="0">
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-12">
+										<div class="row">
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4" id="delivered_title">Order 10001</span>							
+											</div>
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Status : <span id="span-delivered-status"></span></span>							
+											</div>
+
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="row">
+													<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+														<table class="table table-sm table-bordered">
+															<thead>
+																<tr>
+																	<th>Order No</th>
+																	<th>Order Date</th>
+																	<th>From</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td id="tbl_delivered_order_no"></td>
+																	<td id="tbl_delivered_order_date"></td>
+																	<td id="tbl_delivered_from"></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div style="height: 300px; overflow: auto;">
+
+													<table class="table table-sm table-bordered" id="tbl-delivered-products"> 
+														<thead>
+															<tr>
+																<th>Product</th>
+																<th>Qty</th>
+																<th>Unit Price</th>
+																<th>Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Abracada Seedlings</td>
+																<td>10</td>
+																<td>25.00</td>
+																<td>250.00</td>
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<td colspan="3">Subtotal</td>
+																<td id="tbl_delivered_subtotal">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="3">Shipping</td>
+																<td id="tbl_delivered_ship">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="3">Total</td>
+																<td id="tbl_delivered_total">0.00</td>
+															</tr>
+														</tfoot>
+													</table>
+													
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+									<div class="col-lg-4 col-md-4 col-sm-12">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Address</span>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>House no., Building and Street Name</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_1" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Barangay</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_barangay" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>City / Municipilaty</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_city" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Province</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_prov" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Mobile Number</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_mobile" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Email Address</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_email" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Contact Person</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_contact_person" readonly>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Delivery Type : </span>
+												<span id="delivered_delivery_type">For Delivery</span>		
+												<input type="hidden" id="delivered_delivery_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Payment Type : </span>
+												<span id="delivered_payment_type">Cash on Delivery</span>
+												<input type="hidden" id="delivered_payment_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pb-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<button class="btn btn-warning" id="btn-delivered-back">Back</button>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+			<!-- DIV MY DELIVERED -->
+
 
 		</div>
 		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1" hidden>
@@ -1364,15 +1573,19 @@
       <div class="modal-body" style="background: transparent;">
 
       	<div class="row">
-      		<div class="col-12 col-md-5 col-lg-5 px-4" id="div-img-process-order">
+      		<div class="col-12 col-md-4 col-lg-4 px-4" id="div-img-process-order">
 				<img src="<?php echo base_url() ?>assets/images/process_order.png" id="img_process_order" class='img-fluid cursor-pointer'>
       		</div>
 
-      		<div class="col-2 col-md-2 col-lg-2"></div>
-
-      		<div class="col-12 col-md-5 col-lg-5 px-4" id="div-img-close-order">      			
+      		<div class="col-12 col-md-4 col-lg-4 px-4" id="div-img-close-order">      			
 				<img src="<?php echo base_url() ?>assets/images/close_order.png" id="img_close_order" class='img-fluid cursor-pointer' >
       		</div>
+
+      		<div class="col-12 col-md-4 col-lg-4 px-4" id="div-img-delivered-order">
+				<img src="<?php echo base_url() ?>assets/images/delivered_order.png" id="img_delivered_order" class='img-fluid cursor-pointer'>
+      		</div>
+
+
       	</div>
 
 

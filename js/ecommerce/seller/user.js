@@ -241,11 +241,12 @@ $(document).ready(function(){
 	/* MY ORDER */
 
 	$("#img_process_order").click(function(){
-    get_process_order();
+        get_process_order();
 		$("#div-setting").hide();
 		$("#div-home").hide();
 		$("#div_order").hide();
-		$("#div-my-deliver").hide();
+        $("#div-my-delivered").hide();
+        $("#div-my-closed").hide();
 
 		$("#div_order_table").show("slow");
 		$("#div-my-orders").show("slow");
@@ -254,16 +255,47 @@ $(document).ready(function(){
 	});
 
 	$("#img_close_order").click(function(){
-    get_close_order();
+        get_close_order();
 		$("#div-setting").hide();
 		$("#div-home").hide();
 		$("#div-my-orders").hide();
-		$("#div_deliver").hide();
+        $("#div-my-delivered").hide();
+        $("#div_closed").hide();
 
-		$("#div_deliver_table").show("slow");
-		$("#div-my-deliver").show("slow");
+		$("#div_closed_table").show("slow");
+		$("#div-my-closed").show("slow");
 		$("#modal_myorders").modal("hide");
-	});
+    });
+    
+	$("#img_delivered_order").click(function(){
+        get_delivered_order();
+		$("#div-setting").hide();
+		$("#div-home").hide();
+		$("#div-my-orders").hide();
+        $("#div-my-closed").hide();
+        $("#div_delivered").hide();
+
+		$("#div_delivered_table").show("slow");
+		$("#div-my-delivered").show("slow");
+		$("#modal_myorders").modal("hide");
+	});    
+
+    $("#btn-delivered-back").click(function(){
+        get_delivered_order();
+		$("#div-setting").hide();
+		$("#div-home").hide();
+		$("#div-my-orders").hide();
+        $("#div-my-closed").hide();
+        $("#div_delivered").hide();
+
+		$("#div_delivered_table").show("slow");
+		$("#div-my-delivered").show("slow");
+		$("#modal_myorders").modal("hide");
+    });
+
+    $("#btn-delivered-search").click(function(){
+        get_delivered_order();
+    });
 
   $(document).on("change", "#delivery_1", function(){
     if ($("#delivery_1").is(":checked") == true){
@@ -1812,10 +1844,11 @@ function order_table(id){
       for (var i = 0; i < products.length; i++) {
 
         $("#tbl-po-products tbody").append("<tr><td>"+ products[i].product_name + 
-          "</td><td>" + $.number(products[i].prod_qty) + 
-          "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-          "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-          "</td></tr>");
+        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+        "</td><td>" + $.number(products[i].prod_qty) + 
+        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+        "</td></tr>");
         subtotal += (products[i].prod_qty * products[i].product_unit_price);
       }
 
@@ -1830,10 +1863,10 @@ function order_table(id){
 
 }
 
-function deliver_table(id){
+function closed_table(id){
 
-  $("#div_deliver_table").hide();
-  $("#div_deliver").show("slow");
+  $("#div_closed_table").hide();
+  $("#div_closed").show("slow");
 
   var csrf_name = $("input[name=csrf_name]").val();
   $("#tbl-close-products tbody tr").remove();
@@ -1892,6 +1925,77 @@ function deliver_table(id){
 
 
 }
+
+function delivered_table(id){
+
+    $("#div_delivered_table").hide();
+    $("#div_delivered").show("slow");
+  
+    var csrf_name = $("input[name=csrf_name]").val();
+    $("#tbl-delivered-products tbody tr").remove();
+    $("#delivered_order_id").val(id);
+  
+    $.ajax({
+      data : {id : id, csrf_name : csrf_name},
+      type : "POST",
+      dataType : "JSON",
+      url : base_url + "Seller/get_order_id",
+      success : function(result){
+        $("input[name=csrf_name]").val(result.token);
+  
+        var data = result.result;
+        var products = result.products;
+        var subtotal = 0;
+        var shipping_fee = data[0].shipping_fee;
+  
+        if (data[0].status == "2"){
+            status_desc = "For Delivery";            
+        }else if (data[0].status == "3"){
+            status_desc = "Closed Order";
+        }
+
+        $("#span-delivered-status").text(status_desc);
+        $("#delivered_title").text("Order " + data[0].order_no);
+        $("#tbl_delivered_order_no").text(data[0].order_no);
+        $("#tbl_delivered_order_date").text(data[0].order_date);
+        $("#tbl_delivered_from").text(data[0].buyer_name);
+  
+        $("#delivered_addr_1").val(data[0].delivery_address);
+        $("#delivered_addr_barangay").val(data[0].barangay);
+        $("#delivered_addr_city").val(data[0].city_desc);
+        $("#delivered_addr_prov").val(data[0].province_desc);
+        $("#delivered_addr_mobile").val(data[0].contact_no);
+        $("#delivered_addr_email").val(data[0].email);
+        $("#delivered_addr_contact_person").val(data[0].contact_name);
+  
+        $("#delivered_delivery_type").text(data[0].delivery_type_desc);
+        $("#delivered_payment_type").text(data[0].payment_type_desc);
+        $("#delivered_delivery_type_id").val(data[0].delivery_type_id);
+        $("#delivered_payment_type_id").val(data[0].payment_type_id);
+  
+  
+        for (var i = 0; i < products.length; i++) {
+  
+          $("#tbl-delivered-products tbody").append("<tr><td>"+ products[i].product_name + 
+            "</td><td>" + $.number(products[i].prod_qty) + 
+            "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+            "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+            "</td></tr>");
+          subtotal += (products[i].prod_qty * products[i].product_unit_price);
+        }
+  
+        $("#tbl_delivered_subtotal").text($.number(subtotal, 2));
+        $("#tbl_delivered_ship").text($.number(shipping_fee, 2))
+        $("#tbl_delivered_total").text($.number((Number(subtotal) + Number(shipping_fee)), 2));
+  
+      }, error : function(err){
+        console.log(err.responseText);
+      }
+    })
+  
+  
+  }
+  
 
 function variations(){
 
@@ -3237,6 +3341,28 @@ function get_close_order(){
 
 }
 
+function get_delivered_order(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+    var status = $("#delivered-status").val();
+    var fdate = $("#delivered-fdate").val();
+    var tdate = $("#delivered-tdate").val();
+
+    $.ajax({
+      data : {csrf_name : csrf_name, fdate : fdate, tdate : tdate, status : status},
+      type : "POST",
+      dataType : "JSON",
+      url : base_url + "Seller/get_delivered_order",
+      success : function(result){
+        $("input[name=csrf_name]").val(result.token);
+        $("#div-tbl-delivered-order").html(result.result);
+      }, error : function(err){
+        console.log(err.responseText);
+      }
+    })
+
+}
+
 function acknowledge_order(){
 
   var csrf_name = $("input[name=csrf_name]").val();
@@ -3244,6 +3370,7 @@ function acknowledge_order(){
   var order_no = $("#order_no").val();
 
   $.ajax({
+    async : true,
     data : {id : id, csrf_name : csrf_name},
     type : "POST",
     dataType : "JSON",
@@ -3254,15 +3381,16 @@ function acknowledge_order(){
         type : "success",
         title : "Order " + order_no + "is acknowledged"
       }, function(){
-        get_process_order();
-        $("#div-setting").hide();
-        $("#div-home").hide();
-        $("#div_order").hide();
-        $("#div-my-deliver").hide();
+            // location.reload();
+            get_process_order();
+            $("#div-setting").hide();
+            $("#div-home").hide();
+            $("#div_order").hide();
+            $("#div-my-deliver").hide();
 
-        $("#div_order_table").show("slow");
-        $("#div-my-orders").show("slow");
-        $("#modal_myorders").modal("hide");  
+            $("#div_order_table").show("slow");
+            $("#div-my-orders").show("slow");
+            $("#modal_myorders").modal("hide");  
       })
     }, error : function(err){
       console.log(err.responseText);
@@ -3315,6 +3443,7 @@ function delivery_order(){
   var order_no = $("#tbl_close_order_no").val();
 
   $.ajax({
+    async : true,
     data : {id : id, csrf_name : csrf_name, courier : courier, track_no : track_no},
     type : "POST",
     dataType : "JSON",

@@ -135,6 +135,32 @@ class Buyer_model extends CI_Model {
         return $query;
     }
 
+    public function get_variation($variation){
+        $query = $this->db2->query("SELECT `account_variation_type`.`type` AS var_type FROM account_variation_type WHERE id = ?", array($variation))->result();
+        
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->var_type;
+            }
+        }else{
+            return "";
+        }
+
+    }
+
+    public function get_variation_price($variation){
+        $query = $this->db2->query("SELECT `account_variation_type`.`unit_price` FROM account_variation_type WHERE id = ?", array($variation))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->unit_price;
+            }
+        }else{
+            return 0;
+        }
+
+    }
+
     public function get_orders(){
 
         $query = $this->db2->query("

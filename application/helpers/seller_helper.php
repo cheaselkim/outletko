@@ -1,7 +1,7 @@
 <?php 
 
 if (!function_exists("tbl_process_order")){
-	function tbl_process_order($query){
+	function tbl_process_order($query, $var_status){
 
 		$output = "";
 
@@ -29,8 +29,17 @@ if (!function_exists("tbl_process_order")){
 					$onclick = "order_table(".($value->buyer_order_id).")";
 				}else if ($value->status == "2"){
 					$status = "For Delivery";
-					$onclick = "deliver_table(".($value->buyer_order_id).")";
-				}
+					$onclick = "closed_table(".($value->buyer_order_id).")";
+                }
+                
+                if (!empty($var_status)){
+                    $onclick = "delivered_table(".($value->buyer_order_id).")";
+                    if ($value->status == "2"){
+                        $status = "For Delivery";
+                    }else if ($value->status == "3"){
+                        $status = "Closed Order";
+                    }
+                }
 
 				$output .= "<tr onclick='".$onclick."' class='cursor-pointer'>
 								<td>".$value->order_no."</td>

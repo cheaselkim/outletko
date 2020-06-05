@@ -1027,37 +1027,39 @@ if (prod_ol == 0){
         
     }else{
 
-        if (comp_id < 10){
-            $.ajax({
-                data : {csrf_name : csrf_name},
-                type : "GET",
-                dataType : "JSON",
-                url : base_url + "Profile/check_session",
-                success : function(result){
-                    $("input[name=csrf_name]").val(result.token);
-                    if (result.result == 1){
-                        if (type == "1"){
-                            add_to_cart();
-                        }else{
-                            order_now();
-                        }
+        // if (comp_id < 10){
+        // }else{
+        //     swal({
+        //     type : "warning",
+        //     title : "This Store is for viewing only."
+        //     })    
+        // }
+
+        $.ajax({
+            data : {csrf_name : csrf_name},
+            type : "GET",
+            dataType : "JSON",
+            url : base_url + "Profile/check_session",
+            success : function(result){
+                $("input[name=csrf_name]").val(result.token);
+                if (result.result == 1){
+                    if (type == "1"){
+                        add_to_cart();
                     }else{
-                        if ($(document).width() < 768){
-                            window.open(base_url + "login", "_self");
-                        }else{
-                            $("#modal_signup_user").modal("show");        
-                        }
+                        order_now();
                     }
-                }, error : function(err){
-                    console.log(err.responseText);
+                }else{
+                    if ($(document).width() < 768){
+                        window.open(base_url + "login", "_self");
+                    }else{
+                        $("#modal_signup_user").modal("show");        
+                    }
                 }
-            })
-        }else{
-            swal({
-            type : "warning",
-            title : "This Store is for viewing only."
-            })    
-        }
+            }, error : function(err){
+                console.log(err.responseText);
+            }
+        })
+
 
         
     }
@@ -1076,6 +1078,8 @@ function add_to_cart(){
   var prod_price = $("#cart_total_amount").text().replace(/,/g, '');
   var cart = $("#total-cart").text().replace(/,/g, '');
   var csrf_name = $("input[name=csrf_name]").val();
+  var prod_var1 = $("#prod-var-1").val();
+  var prod_var2 = $("#prod-var-2").val();
 
   order = Number(order) + 1;
   var total_cart = Number(prod_price) + Number(cart);
@@ -1084,7 +1088,7 @@ function add_to_cart(){
   $("#cart-prod-total-price").text($.number(prod_price, 2));
 
   $.ajax({
-    data : {prod_id : prod_id, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
     type : "POST",
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",
@@ -1108,16 +1112,17 @@ function add_to_cart(){
 
 function order_now(){
 
-
   var order = Number($("#order_no").text());
   var prod_id = $("#prod_id").val();
   var prod_qty = $("#prod_qty").val();
   var csrf_name = $("input[name=csrf_name]").val();
+  var prod_var1 = $("#prod-var-1").val();
+  var prod_var2 = $("#prod-var-2").val();
 
   order = Number(order) + Number(prod_qty);
 
   $.ajax({
-    data : {prod_id : prod_id, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
     type : "POST",
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",

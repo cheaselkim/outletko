@@ -133,7 +133,7 @@ class Profile_model extends CI_Model {
 
 
     public function insert_prod($data){
-        $query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $data['prod_id']))->result();
+        $query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $data['prod_id'], $data['prod_var1'], $data['prod_var2']))->result();
 
         if (!empty($query)){
             $id = "";
