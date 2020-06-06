@@ -223,6 +223,7 @@ class Buyer extends CI_Controller {
                 }
                 
                 $prod_array[$key] = array(
+                    "item_id" => $value->item_id,
                     "account_id" => $value->account_id,
                     "prod_id" => $value->prod_id,
                     "product_name" => $value->product_name,

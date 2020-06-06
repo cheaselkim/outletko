@@ -1200,7 +1200,8 @@
 													<table class="table table-sm table-bordered" id="tbl-close-products"> 
 														<thead>
 															<tr>
-																<th>Product</th>
+                                                                <th>Product</th>
+                                                                <th>Variation</th>
 																<th>Qty</th>
 																<th>Unit Price</th>
 																<th>Total</th>
@@ -1209,6 +1210,7 @@
 														<tbody>
 															<tr>
 																<td>Abracada Seedlings</td>
+																<td>N/A</td>
 																<td>10</td>
 																<td>25.00</td>
 																<td>250.00</td>
@@ -1347,7 +1349,7 @@
                                 <div class="col-12 col-lg-auto col-md-2 col-sm-12">
                                     <div class="form-inline">
                                         <label for="delivered-tdate">To</label>
-                                        <input type="date" class="form-control ml-2" id="delivered-tdate" value="<?php echo date('Y-m-01')?>"> 
+                                        <input type="date" class="form-control ml-2" id="delivered-tdate" value="<?php echo date('Y-m-d')?>"> 
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-1 col-md-3 col-sm-12">
@@ -1409,6 +1411,7 @@
 														<thead>
 															<tr>
 																<th>Product</th>
+																<th>Variation</th>
 																<th>Qty</th>
 																<th>Unit Price</th>
 																<th>Total</th>

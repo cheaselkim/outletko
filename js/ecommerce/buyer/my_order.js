@@ -924,8 +924,9 @@ function get_order_checkout(div_id){
 					"</td><td class='text-right prod_qty' style='padding-top: 1.5%;'>" + $.number(prod_qty) + 
 					"</td><td class='text-right prod_unit_price' style='padding-top: 1.5%;'>" + $.number(prod_dtls[i].product_unit_price, 2) + 
 					"</td><td class='text-right prod_total_price' style='padding-top: 1.5%;'>" + $.number((prod_qty * prod_dtls[i].product_unit_price), 2) + 
-					"</td><td class='text-right prod_id' hidden>" + prod_dtls[i].id + 
+					"</td><td class='text-right prod_id' hidden>" + prod_dtls[i].prod_id + 
 					"</td><td class='text-right prod_weight' hidden>" + prod_dtls[i].product_weight + 
+					"</td><td class='text-right item_id' hidden>" + prod_dtls[i].item_id + 
 					"</td></tr>");
 
 					shipping_fee_w_mm += Number(prod_dtls[i].ship_fee_w_mm);
@@ -948,13 +949,15 @@ function get_order_checkout(div_id){
 
 				// console.log($("#bill_province").attr("data-id"));
 
-				if ($("#bill_province").attr("data-id") == "52"){
-					shipping_fee = shipping_fee_w_mm;
-				}else if ($("#bill_province").attr("data-id") == "0"){
-					shipping_fee = 0;
-				}else{	
-					shipping_fee = shipping_fee_o_mm;
-				}
+				// if ($("#bill_province").attr("data-id") == "52"){
+				// 	shipping_fee = shipping_fee_w_mm;
+				// }else if ($("#bill_province").attr("data-id") == "0"){
+				// 	shipping_fee = 0;
+				// }else{	
+				// 	shipping_fee = shipping_fee_o_mm;
+                // }
+                
+                shipping_fee = $("#delivery_fee").val();
 
 				// console.log(sub_total);
 				// console.log(shipping_fee);
@@ -969,8 +972,9 @@ function get_order_checkout(div_id){
 				$("#total_amount").attr("data-id", (Number(sub_total) + Number(shipping_fee)));
 				$("#comp_total_items").text($.number(total_items));
 				$("#comp_total_amount").text($.number(sub_total, 2));
-
-				// bank_list();
+                console.log(sub_total);
+                console.log(shipping_fee);
+                // bank_list();
 				// remittance_list();
 				$("#delivery_type").val("3");
                 courier();
@@ -1129,7 +1133,9 @@ function get_courier(){
 
 				$("#delivery_fee").val($.number(shipping_fee, 2));			
 				$("#shipping_fee").text($.number(shipping_fee, 2));
+				$("#shipping_fee").attr("data-id", shipping_fee);
 				$("#total_amount").text($.number(grand_total, 2));
+				$("#total_amount").attr("data-id", grand_total);
 				$("#vw_delivery_fee").text($.number(shipping_fee, 2));			
 				$("#vw_grand_total").text($.number(grand_total, 2));			
 				$("#summ-total-order").text($.number(total_order, 2));			
@@ -1283,6 +1289,7 @@ function place_order(){
 
     $("#prod_dtls tbody tr").each(function(row, tr){
     	sub = {
+            "item_id" : $(tr).find(".item_id").text(),
     		"prod_id" : $(tr).find(".prod_id").text(),
     		"prod_price" : $(tr).find(".prod_unit_price").text().replace(/,/g, ''),
     		"prod_total_price" : $(tr).find(".prod_total_price").text().replace(/,/g, '')
@@ -1340,6 +1347,8 @@ function place_order(){
     // console.log(data_profile);
 
     // console.log(save_info);
+
+    console.log(prod_id);
 
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},

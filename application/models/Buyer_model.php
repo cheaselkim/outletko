@@ -215,7 +215,8 @@ class Buyer_model extends CI_Model {
             `buyer_order_products`.`prod_qty`, 
             `products`.`id` AS prod_id,
             `buyer_order_products`.`prod_var1`,
-            `buyer_order_products`.`prod_var2`
+            `buyer_order_products`.`prod_var2`,
+            `buyer_order_products`.`id` AS item_id
             FROM
             products 
             LEFT JOIN buyer_order_products ON 
@@ -274,6 +275,7 @@ class Buyer_model extends CI_Model {
 
     public function insert_order_no_product($prod_id, $id){
         foreach ($prod_id as $row) {
+            $this->db2->where("id", $row['item_id']);
             $this->db2->where("prod_id", $row['prod_id']);
             $this->db2->where("comp_id", $this->session->userdata("comp_id"));
             $this->db2->where("order_id", NULL);

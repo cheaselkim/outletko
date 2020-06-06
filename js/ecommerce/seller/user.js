@@ -156,7 +156,8 @@ $(document).ready(function(){
 		$("#div-home").hide();
 		$("#div-payment").hide();
 		$("#div-my-deliver").hide();
-		$("#div-my-orders").hide();
+        $("#div-my-orders").hide();
+        $("#div-my-closed").hide();
 		$("#list_payment").removeClass("active");
 
 
@@ -171,7 +172,8 @@ $(document).ready(function(){
 	$("#span_home").click(function(){
 		$("#div-setting").hide();
 		$("#div-my-deliver").hide();
-		$("#div-my-orders").hide();
+        $("#div-my-orders").hide();
+        $("#div-my-closed").hide();
 
 		$("#div-home").show("slow");
 	});
@@ -1907,10 +1909,11 @@ function closed_table(id){
       for (var i = 0; i < products.length; i++) {
 
         $("#tbl-close-products tbody").append("<tr><td>"+ products[i].product_name + 
-          "</td><td>" + $.number(products[i].prod_qty) + 
-          "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-          "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-          "</td></tr>");
+        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+        "</td><td>" + $.number(products[i].prod_qty) + 
+        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+        "</td></tr>");
         subtotal += (products[i].prod_qty * products[i].product_unit_price);
       }
 
@@ -1976,11 +1979,12 @@ function delivered_table(id){
   
         for (var i = 0; i < products.length; i++) {
   
-          $("#tbl-delivered-products tbody").append("<tr><td>"+ products[i].product_name + 
-            "</td><td>" + $.number(products[i].prod_qty) + 
-            "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-            "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-            "</td></tr>");
+        $("#tbl-delivered-products tbody").append("<tr><td>"+ products[i].product_name + 
+        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+        "</td><td>" + $.number(products[i].prod_qty) + 
+        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+        "</td></tr>");
           subtotal += (products[i].prod_qty * products[i].product_unit_price);
         }
   
@@ -3490,10 +3494,10 @@ function delivery_order(){
                 $("#div-setting").hide();
                 $("#div-home").hide();
                 $("#div-my-orders").hide();
-                $("#div_deliver").hide();
+                $("#div_closed").hide();
 
-                $("#div_deliver_table").show("slow");
-                $("#div-my-deliver").show("slow");
+                $("#div_closed_table").show("slow");
+                $("#div-my-closed").show("slow");
                 $("#modal_deliver").modal("hide");
 
             })
