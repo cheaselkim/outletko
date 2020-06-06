@@ -30,12 +30,13 @@ class Seller extends CI_Controller {
 
         if (!empty($order_prod)){
             foreach ($order_prod as $key => $value) {
-
+                $product_price = $value->product_unit_price;
                 if ($value->prod_var1 != "0"){
                     $prod_var1 = $this->Seller_model->get_variation($value->prod_var1);
                     $product_price = $this->Seller_model->get_variation_price($value->prod_var1);
                 }else{
                     $prod_var1 = "";
+                    $product_price = $product_price;
                 }
 
                 if ($value->prod_var2 != "0"){

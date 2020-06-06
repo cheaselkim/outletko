@@ -1994,9 +1994,8 @@ function delivered_table(id){
     })
   
   
-  }
+}
   
-
 function variations(){
 
   var csrf_name = $("input[name=csrf_name]").val();
@@ -3370,28 +3369,39 @@ function acknowledge_order(){
   var order_no = $("#order_no").val();
 
   $.ajax({
-    async : true,
     data : {id : id, csrf_name : csrf_name},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Seller/acknowledge_order",
+    async : true,
+    beforeSend : function(){
+        swal({
+            type : "warning",
+            title : "Sending....",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false 
+        })
+    },
     success : function(result){      
-      $("input[name=csrf_name]").val(result.token);
-      swal({
-        type : "success",
-        title : "Order " + order_no + "is acknowledged"
-      }, function(){
-            // location.reload();
-            get_process_order();
-            $("#div-setting").hide();
-            $("#div-home").hide();
-            $("#div_order").hide();
-            $("#div-my-deliver").hide();
+        $("input[name=csrf_name]").val(result.token);
 
-            $("#div_order_table").show("slow");
-            $("#div-my-orders").show("slow");
-            $("#modal_myorders").modal("hide");  
-      })
+        setTimeout(function(){             
+            swal({
+            type : "success",
+            title : "Order " + order_no + "is acknowledged"
+            }, function(){
+                // location.reload();
+                get_process_order();
+                $("#div-setting").hide();
+                $("#div-home").hide();
+                $("#div_order").hide();
+                $("#div-my-deliver").hide();
+
+                $("#div_order_table").show("slow");
+                $("#div-my-orders").show("slow");
+                $("#modal_myorders").modal("hide");  
+            })
+        }, 500);      
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -3410,22 +3420,34 @@ function cancel_acknowledge_order(){
     type : "POST",
     dataType : "JSON",
     url : base_url + "Seller/cancel_acknowledge_order",
+    async : true,
+    beforeSend : function(){
+        swal({
+            type : "warning",
+            title : "Sending....",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false 
+        })
+    },
     success : function(result){      
-      $("input[name=csrf_name]").val(result.token);
-      swal({
-        type : "success",
-        title : "Order " + order_no + "is cancelled"
-      }, function(){
-        get_process_order();
-        $("#div-setting").hide();
-        $("#div-home").hide();
-        $("#div_order").hide();
-        $("#div-my-deliver").hide();
+        $("input[name=csrf_name]").val(result.token);
 
-        $("#div_order_table").show("slow");
-        $("#div-my-orders").show("slow");
-        $("#modal_myorders").modal("hide");
-      })
+        setTimeout(function(){ 
+            swal({
+                type : "success",
+                title : "Order " + order_no + "is cancelled"
+            }, function(){
+                get_process_order();
+                $("#div-setting").hide();
+                $("#div-home").hide();
+                $("#div_order").hide();
+                $("#div-my-deliver").hide();
+
+                $("#div_order_table").show("slow");
+                $("#div-my-orders").show("slow");
+                $("#modal_myorders").modal("hide");
+            })
+        }, 500);      
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -3443,29 +3465,39 @@ function delivery_order(){
   var order_no = $("#tbl_close_order_no").val();
 
   $.ajax({
-    async : true,
     data : {id : id, csrf_name : csrf_name, courier : courier, track_no : track_no},
     type : "POST",
     dataType : "JSON",
     url : base_url + "Seller/delivery_order",
+    async : true,
+    beforeSend : function(){
+        swal({
+            type : "warning",
+            title : "Sending....",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false 
+        })
+    },
     success : function(result){
-      $("input[name=csrf_name]").val(result.token);
-      swal({
-        type : "success",
-        title : "Order " + order_no + "is delivered"
-      }, function(){
-          get_close_order();
-          $("#div-setting").hide();
-          $("#div-home").hide();
-          $("#div-my-orders").hide();
-          $("#div_deliver").hide();
+        $("input[name=csrf_name]").val(result.token);
 
-          $("#div_deliver_table").show("slow");
-          $("#div-my-deliver").show("slow");
-          $("#modal_deliver").modal("hide");
+        setTimeout(function(){ 
+            swal({
+                type : "success",
+                title : "Order " + order_no + "is delivered"
+            }, function(){
+                get_close_order();
+                $("#div-setting").hide();
+                $("#div-home").hide();
+                $("#div-my-orders").hide();
+                $("#div_deliver").hide();
 
-      })
+                $("#div_deliver_table").show("slow");
+                $("#div-my-deliver").show("slow");
+                $("#modal_deliver").modal("hide");
 
+            })
+        }, 500);
     }, error : function(err){
       console.log(err.responseText);
     }

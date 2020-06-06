@@ -26,7 +26,7 @@ if (!function_exists("tbl_products_no_order")){
             $checkbox = '
             <div class="col-12 text-center"  style="height: 65px;padding-top: 10px;">           
                 <div class="custom-control custom-checkbox checkbox-xl" style="padding-left: 1.0rem;">
-                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" checked>
+                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" data-prod-var1="'.$query[$x]['prod_var1_id'].'" data-prod-var-2="'.$query[$x]['prod_var2_id'].'" data-item="'.$query[$x]['item_id'].'" checked>
                 <label for="checkbox_'.$i.'" class="custom-control-label"></label>
                     </div>
             </div>';
@@ -44,7 +44,7 @@ if (!function_exists("tbl_products_no_order")){
                 
 
                 $checbox_raw = '<div class="col-12 text-center" style="height: 85px;padding-top: 15px;">
-                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" checked>
+                    <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="css-checkbox" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" data-prod-var1="'.$query[$x]['prod_var1_id'].'" data-prod-var-2="'.$query[$x]['prod_var2_id'].'" checked>
                     <label for="checkbox_'.$i.'" class="css-label"></label>
                 </div>';
 

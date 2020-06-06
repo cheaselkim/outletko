@@ -979,15 +979,15 @@
 													</tbody>
 													<tfoot >
 														<tr style="border-top: 2px dotted black;">
-															<td colspan="3" class="font-weight-600">Subtotal</td>
+															<td colspan="4" class="font-weight-600">Subtotal</td>
 															<td id="tbl_subtotal" class="font-weight-600"></td>
 														</tr>
 														<tr>
-															<td colspan="3" class="font-weight-600">Shipping</td>
+															<td colspan="4" class="font-weight-600">Shipping</td>
 															<td id="tbl_ship" class="font-weight-600"></td>
 														</tr>
 														<tr>
-															<td colspan="3" class="font-weight-600">Total</td>
+															<td colspan="4" class="font-weight-600">Total</td>
 															<td id="tbl_total" class="font-weight-600"></td>
 														</tr>
 													</tfoot>
@@ -1216,15 +1216,15 @@
 														</tbody>
 														<tfoot>
 															<tr>
-																<td colspan="3">Subtotal</td>
+																<td colspan="4">Subtotal</td>
 																<td id="tbl_close_subtotal">0.00</td>
 															</tr>
 															<tr>
-																<td colspan="3">Shipping</td>
+																<td colspan="4">Shipping</td>
 																<td id="tbl_close_ship">0.00</td>
 															</tr>
 															<tr>
-																<td colspan="3">Total</td>
+																<td colspan="4">Total</td>
 																<td id="tbl_close_total">0.00</td>
 															</tr>
 														</tfoot>
@@ -1424,15 +1424,15 @@
 														</tbody>
 														<tfoot>
 															<tr>
-																<td colspan="3">Subtotal</td>
+																<td colspan="4">Subtotal</td>
 																<td id="tbl_delivered_subtotal">0.00</td>
 															</tr>
 															<tr>
-																<td colspan="3">Shipping</td>
+																<td colspan="4">Shipping</td>
 																<td id="tbl_delivered_ship">0.00</td>
 															</tr>
 															<tr>
-																<td colspan="3">Total</td>
+																<td colspan="4">Total</td>
 																<td id="tbl_delivered_total">0.00</td>
 															</tr>
 														</tfoot>
@@ -1564,7 +1564,7 @@
 
 </div>
 
-<div class="modal" id="modal_myorders" style="top: 15% !important">
+<div class="modal" id="modal_myorders" style="top: 15%">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="background: transparent;border: 0">
       <div class="modal-header py-2 btn-success" hidden>

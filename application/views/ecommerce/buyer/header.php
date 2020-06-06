@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?php echo base_url('assets/ecommerce/buyer/header.css')?>">
+<!-- <link rel="stylesheet" href="<?php echo base_url('assets/ecommerce/buyer/header.css')?>"> -->
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 
 <script type="text/javascript">

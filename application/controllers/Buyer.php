@@ -108,6 +108,7 @@ class Buyer extends CI_Controller {
 
                 // var_dump($prod_var1);
                 $products[$key] = array(
+                    "item_id" => $value->item_id,
                     "prod_id" => $value->prod_id,
                     "account_id" => $value->account_id,
                     "account_name" => $value->account_name,
@@ -117,7 +118,9 @@ class Buyer extends CI_Controller {
                     "product_unit_price" => $product_price,
                     "prod_qty" => $value->prod_qty,
                     "prod_var1" => $prod_var1,
-                    "prod_var2" => $prod_var2
+                    "prod_var2" => $prod_var2,
+                    "prod_var1_id" => $value->prod_var1,
+                    "prod_var2_id" => $value->prod_var2
                 );
             }
         }
@@ -186,29 +189,62 @@ class Buyer extends CI_Controller {
  	}
 
 	public function get_order_checkout(){
-		$prod_id = $this->input->post("prod_id");
+        $prod_id = $this->input->post("prod_id");
+        $item_id = $this->input->post("item_id");
 
-		$data['result'] = $this->buyer_model->get_order_checkout($prod_id);
-		$product = array();
+		$result = $this->buyer_model->get_order_checkout($prod_id, $item_id);
+        $product = array();
+        $prod_array = array();
+        $account_id = "";
 
-		foreach ($data['result'] as $key => $value) {
-            $img = unserialize($value->img_location);
-			$product[$key] = array(
-                "prod_id" => $value->prod_id,
-				"prod_img" => $img[0]
-			);
-		}
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $account_id = $value->account_id;
+                $img = unserialize($value->img_location);
+                $prod_price = $value->product_unit_price;
 
-		$data['prod_img'] = $product;
-		$data['cust_del_date'] = $this->buyer_model->cust_del_date($data['result'][0]->account_id);
-		$data['delivery_type'] = $this->buyer_model->delivery_type($data['result'][0]->account_id);
-		$data['payment_type'] = $this->buyer_model->payment_type($data['result'][0]->account_id);
-        $data['sched_time'] = $this->buyer_model->get_sched_time($data['result'][0]->account_id);
-        $data['std_delivery'] = $this->buyer_model->get_std_delivery($data['result'][0]->account_id);
+                $product[$key] = array(
+                    "prod_id" => $value->prod_id,
+                    "prod_img" => $img[0]
+                );
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);
+                    $prod_price = $this->buyer_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                    $prod_price = $prod_price;
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->buyer_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+                
+                $prod_array[$key] = array(
+                    "account_id" => $value->account_id,
+                    "prod_id" => $value->prod_id,
+                    "product_name" => $value->product_name,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2,
+                    "product_unit_price" => $prod_price
+                );
+
+            }
+        }
+        
+        $data['result'] = $prod_array;
+        $data['prod_img'] = $product;
+		$data['cust_del_date'] = $this->buyer_model->cust_del_date($account_id);
+		$data['delivery_type'] = $this->buyer_model->delivery_type($account_id);
+		$data['payment_type'] = $this->buyer_model->payment_type($account_id);
+        $data['sched_time'] = $this->buyer_model->get_sched_time($account_id);
+        $data['std_delivery'] = $this->buyer_model->get_std_delivery($account_id);
 		$data['token'] = $this->security->get_csrf_hash();
-		$data['seller_id'] = $data['result'][0]->account_id;
+		$data['seller_id'] = $account_id;
 
-		echo json_encode($data);
+        echo json_encode($data);
 
 	}
 

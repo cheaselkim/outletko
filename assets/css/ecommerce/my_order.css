@@ -272,44 +272,140 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+.div-prod{
+    min-height: 175px;
+    height: auto;
+}
+
+.div-body{
+    background: white;
+    min-height: 500px;
+    height: auto;
+}
+
+.div-img-prod{
+    height: 110px; 
+    width: 110px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.img-prod{
+    width: 110px;
+    height: 110px;
+}
+
+.div-checkout{
+
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    border-top: 1px solid gray;
+    background-color: #f5f5f5;
+}
+
+.font-size-30{
+    font-size: 24px;
+}
+
+.font-size-24{
+    font-size: 15px;
+}
+
+.font-size-20{
+    font-size: 15px;
+}
 
 
-	.div-prod{
-		min-height: 215px;
-		height: auto;
-	}
-	
-	.div-body{
-		background: white;
-		min-height: 500px;
-		height: auto;
-	}
-	
-	.div-img-prod{
-		height: 150px;
-		width: 150px;
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-	
-	.img-prod{
-		width: 150px;
-		height: 150px;
-	}
-	
-	.div-checkout{
-	
-		bottom: 0;
-		position: absolute;
-		right: 0;
-		border-top: 1px solid gray;
-		background-color: #f5f5f5;
-	}
-	
-	.font-size-30{
-		font-size: 30px;
-	}
+.font-size-18{
+    font-size: 18px;
+}
+
+.font-size-17{
+    font-size: 17px;
+}
+
+.font-size-16{
+    font-size: 16px;
+}
+
+.css-label{
+    margin-left: 0px;
+}
+
+.div-checkout-details-1{
+    border-top: 10px solid rgb(119, 147, 60);
+    border-bottom: 10px solid rgb(119, 147, 60);
+    height: 250px;
+    background: rgb(235, 241, 222);
+}
+
+.div-process-btn{
+    padding-top: 7%;
+}
+
+.div-process-btn button{
+    height: 50px;
+}
+
+.div-deliver{
+    height: 150px;
+    border-left: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-arrive{
+    height: 150px;
+    border-left: 1px solid rgb(119, 147, 60);
+    border-right: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-payment{
+    height: 150px;
+    border-right: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-modal-payment-type{
+    border: 1px solid rgb(119, 147, 60);
+    height: 80px;
+}
+
+.div-modal-payment-type:hover{
+    background: rgb(235, 241, 222);
+}
+
+.div-modal-payment-type .active{
+    background: yellowgreen;
+}
+
+.div-checkout-footer{
+    height: 90px;
+}
+
+.div-checkout-footer-fee{
+    border-left: 1px solid rgb(119, 147, 60);
+}
+
+.div-checkout-footer-total{
+    border-left: 1px solid rgb(119, 147, 60);
+    border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-checkout-footer-button{
+    border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-order-details{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.tbl-checkout-img{
+    width: 5% !important;
+}
 	
 
 
@@ -317,7 +413,141 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+.div-prod{
+    min-height: 175px;
+    height: auto;
+}
 
+.div-body{
+    background: white;
+    min-height: 500px;
+    height: auto;
+}
+
+.div-img-prod{
+    height: 110px; 
+    width: 110px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.img-prod{
+    width: 110px;
+    height: 110px;
+}
+
+.div-checkout{
+
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    border-top: 1px solid gray;
+    background-color: #f5f5f5;
+}
+
+.font-size-30{
+    font-size: 26px;
+}
+
+.font-size-24{
+    font-size: 20px;
+}
+
+.font-size-20{
+    font-size: 18px;
+}
+
+
+.font-size-18{
+    font-size: 18px;
+}
+
+.font-size-17{
+    font-size: 17px;
+}
+
+.font-size-16{
+    font-size: 16px;
+}
+
+.css-label{
+    margin-left: 0px;
+}
+
+.div-checkout-details-1{
+    border-top: 10px solid rgb(119, 147, 60);
+    border-bottom: 10px solid rgb(119, 147, 60);
+    height: 250px;
+    background: rgb(235, 241, 222);
+}
+
+.div-process-btn{
+    padding-top: 7%;
+}
+
+.div-process-btn button{
+    height: 50px;
+}
+
+.div-deliver{
+    height: 150px;
+    border-left: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-arrive{
+    height: 150px;
+    border-left: 1px solid rgb(119, 147, 60);
+    border-right: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-payment{
+    height: 150px;
+    border-right: 1px solid rgb(119, 147, 60);
+    border-bottom: 1px solid rgb(119, 147, 60);
+}
+
+.div-modal-payment-type{
+    border: 1px solid rgb(119, 147, 60);
+    height: 80px;
+}
+
+.div-modal-payment-type:hover{
+    background: rgb(235, 241, 222);
+}
+
+.div-modal-payment-type .active{
+    background: yellowgreen;
+}
+
+.div-checkout-footer{
+    height: 90px;
+}
+
+.div-checkout-footer-fee{
+    border-left: 1px solid rgb(119, 147, 60);
+}
+
+.div-checkout-footer-total{
+    border-left: 1px solid rgb(119, 147, 60);
+    border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-checkout-footer-button{
+    border-right: 1px solid rgb(119, 147, 60);	
+}
+
+.div-order-details{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.tbl-checkout-img{
+    width: 5% !important;
+}
+    
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -452,6 +682,10 @@
 .div-order-details{
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.tbl-checkout-img{
+    width: 5% !important;
 }
 
 }

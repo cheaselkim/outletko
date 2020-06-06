@@ -713,25 +713,34 @@ function payment_selected(id){
 function get_order_checkout(div_id){
 	$("#div_id").val(div_id);
 
-	$("#div-payment").empty();
+    $("#div-payment").empty();
+    $("#prod_dtls tbody").empty();
 
 	var csrf_name = $("input[name=csrf_name]").val();
 	var shipping_fee = "";
 	// var prod_id = [];
 	var prod_id = [];
-	var products = [];
+    var products = [];
+    var item_id = [];
     $.each($("#div_prod_"+div_id+" input[type='checkbox']:checked"), function(){
     	// prod_id = $(this).val();
+        // prod_id.push($(this).val());
         prod_id.push($(this).val());
+        item_id.push($(this).attr("data-item"));
         var id = $(this).attr("data-id");
         var sub = {
+            "item_id" : $(this).attr("data-item"),
         	"prod_id" : $(this).val(),
-        	"prod_qty" : $("#prod_qty_"+id).val()
+        	"prod_qty" : $("#prod_qty_"+id).val(),
+            "prod_var1" : $(this).attr("data-prod-var1"),
+            "prod_var2" : $(this).attr("data-prod-var2")
         }
         products.push(sub);
     });	
 
-
+    // console.log(products);
+    // console.log(prod_id);
+    // console.log(item_id);
 
 	if (products.length == 0){
 		swal({
@@ -744,18 +753,19 @@ function get_order_checkout(div_id){
 		$("#div-checkout-details").show("slow");
 
 	    $.ajax({
-	    	data : {csrf_name : csrf_name, prod_id : prod_id},
+	    	data : {csrf_name : csrf_name, prod_id : prod_id, item_id : item_id},
 	    	type : "POST",
 	    	dataType : "JSON",
 	    	url : base_url + "Buyer/get_order_checkout",
 	    	success : function(result){
-	    		// console.log(result.seller_id);
+                // console.log(result.seller_id);
+                $("#prod_dtls tbody").empty();
 	    		$("#seller_id").val(result.seller_id);
 				$("input[name=csrf_name]").val(result.token);
 				$("#delivery_type").empty();
 				var img_src = "";
 
-				$("#datepicker").attr("data-deldate", result.cust_del_date[0].del_date);
+                $("#datepicker").attr("data-deldate", result.cust_del_date[0].del_date);
 
 				if (result.cust_del_date[0].del_date == "1"){
 					$('#datepicker').datepicker('enable');
@@ -866,6 +876,7 @@ function get_order_checkout(div_id){
 				var shipping_fee_w_mm = 0;
 				var shipping_fee_o_mm = 0;
 				var prod_id = "";
+                $("#prod_dtls tbody").empty();
 
 				for (var i = 0; i < prod_dtls.length; i++) {
 					total_items++;
@@ -885,16 +896,31 @@ function get_order_checkout(div_id){
 					}
                     prod_img = base_url + "images/products/" + prod_img;
                     var img_width = "";
+                    var tbl_width = "";
                     
                     if ($(document).width() < 768){
-                        img_width = "12%;";
+                        img_width = "100%;";
+                        tbl_width = "50%";
                         $("#div-order-summary table").find("td:eq(0)").css("width", "50%");
                     }else{  
-                        img_width = "6%;";
+                        img_width = "100%;";
+                        tbl_width = "65%";
                         $("#div-order-summary table").find("td:eq(0)").css("width", "20%");
                     }
 
-					$("#prod_dtls tbody").append("<tr><td><img src='"+prod_img+"' style='width: "+img_width+"'>&nbsp;&nbsp;" + prod_dtls[i].product_name + 
+                    var variation = "";
+
+                    if (prod_dtls[i].prod_var1 != ""){
+                        variation = "<br>Variation : " + prod_dtls[i].prod_var1;
+                    }
+
+                    if (prod_dtls[i].prod_var2 != ""){
+                        variation = "<br>Variation : " + prod_dtls[i].prod_var1 + ", " + prod_dtls[i].prod_var2;
+                    }
+
+                    $("#prod_dtls tbody").append("<tr><td class='tbl-checkout-img'><p><img src='"+prod_img+"' style='width: "+img_width+"'></p>" + 
+					"</td><td class='text-left prod_name' width='"+tbl_width+"' style='padding-top: 1.5%;'><p>" + 
+                     prod_dtls[i].product_name + variation + "</p>" +
 					"</td><td class='text-right prod_qty' style='padding-top: 1.5%;'>" + $.number(prod_qty) + 
 					"</td><td class='text-right prod_unit_price' style='padding-top: 1.5%;'>" + $.number(prod_dtls[i].product_unit_price, 2) + 
 					"</td><td class='text-right prod_total_price' style='padding-top: 1.5%;'>" + $.number((prod_qty * prod_dtls[i].product_unit_price), 2) + 

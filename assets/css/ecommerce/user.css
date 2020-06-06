@@ -170,23 +170,19 @@ textarea{
     padding-right: 30px;
 }
 
-#div-img-process-order{
+#modal_myorders{
+    top: 3% !important
+}
+
+#div-img-process-order, #div-img-close-order, #div-img-delivered-order{
     padding-top: 1.5rem;
     text-align: center;
 }
 
-#div-img-close-order{
-    padding-top: 1.5rem;
-    text-align: center;
-}
-
-#img_process_order{
+#img_process_order, #img_close_order, #img_delivered_order{
     width: 50%;
 }
 
-#img_close_order{
-    width: 50%;
-}
 
 /* #img_upload{
     top: 4%;

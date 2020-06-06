@@ -207,18 +207,23 @@ class Buyer_model extends CI_Model {
         return $query;
     }
 
-    public function get_order_checkout($prod_id){
+    public function get_order_checkout($prod_id, $item_id){
         $query = $this->db2->query("
             SELECT 
-            products.*, `account`.`account_name`, `buyer_order_products`.`prod_qty`, `products`.`id` AS prod_id
+            products.*, 
+            `account`.`account_name`, 
+            `buyer_order_products`.`prod_qty`, 
+            `products`.`id` AS prod_id,
+            `buyer_order_products`.`prod_var1`,
+            `buyer_order_products`.`prod_var2`
             FROM
             products 
             LEFT JOIN buyer_order_products ON 
             `buyer_order_products`.`prod_id` = `products`.`id`            
             LEFT JOIN account ON 
             `products`.`account_id` = `account`.`id` 
-            WHERE `products`.`id` IN ? AND `buyer_order_products`.`comp_id` = ? AND (order_id IS NULL OR order_id = '')
-        ", array($prod_id, $this->session->userdata("comp_id")))->result();
+            WHERE `buyer_order_products`.`id` IN ? AND `buyer_order_products`.`comp_id` = ? AND (order_id IS NULL OR order_id = '')
+        ", array($item_id, $this->session->userdata("comp_id")))->result();
         return $query;
     }
 

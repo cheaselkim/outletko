@@ -413,7 +413,7 @@
 											<table class="table table-sm " id="prod_dtls" style="width: 100%;">
 												<thead>
 													<tr>
-														<th class="" style="width: 70%;background: white !important;color: black;">Product</th>
+														<th class="" colspan="2" style="width: 70%;background: white !important;color: black;">Product</th>
 														<th class="text-right" style="width: 5%;background: white !important;color: black;">Qty</th>
 														<th class="text-right" style="width: 10%;background: white !important;color: black;">Unit Price</th>
 														<th class="text-right" style="width: 15%;background: white !important;color: black;">Total Amount</th>
