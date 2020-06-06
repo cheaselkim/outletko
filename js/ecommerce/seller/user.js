@@ -155,7 +155,7 @@ $(document).ready(function(){
         index();
 		$("#div-home").hide();
 		$("#div-payment").hide();
-		$("#div-my-deliver").hide();
+		$("#div-my-delivered").hide();
         $("#div-my-orders").hide();
         $("#div-my-closed").hide();
 		$("#list_payment").removeClass("active");
@@ -171,7 +171,7 @@ $(document).ready(function(){
 
 	$("#span_home").click(function(){
 		$("#div-setting").hide();
-		$("#div-my-deliver").hide();
+		$("#div-my-delivered").hide();
         $("#div-my-orders").hide();
         $("#div-my-closed").hide();
 

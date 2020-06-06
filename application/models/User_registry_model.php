@@ -185,7 +185,42 @@ class User_registry_model extends CI_Model {
 									WHERE `account_application`.`id` = ?", 
 					array($id))->result();
 		return $result;
-	}
+    }
+    
+    public function get_outletko_data($id){
+        $query = $this->db2->query("SELECT
+        `account`.`id`
+        , `account`.`account_id`
+        , `account`.`account_name`
+        , `account`.`link_name`
+        , `account`.`account_pro`
+        , `account`.`account_status`
+        , `business_type`.`desc` AS buss_cat
+        , `account`.`address`
+        , `account`.`street`
+        , `city`.`city_desc`
+        , `province`.`province_desc`
+        , `plan_type`.`plan_name`
+        , `account`.`email`
+        , `account`.`mobile_no`
+        , CONCAT(`account`.`first_name`, ' ', `account`.`last_name`) AS `user_name`
+        , DATE_FORMAT(subscription_date, '%m/%d/%Y') AS subscribe_date
+        , DATE_FORMAT(renewal_date, '%m/%d/%Y') AS renewal_date
+    FROM
+        `account`
+        INNER JOIN `city` 
+            ON (`account`.`city` = `city`.`id`)
+        INNER JOIN `eoutletsuite_account` 
+            ON (`account`.`account_id` = `eoutletsuite_account`.`account_id`)
+        INNER JOIN `business_type` 
+            ON (`account`.`business_category` = `business_type`.`id`)
+        INNER JOIN `province` 
+            ON (`city`.`province_id` = `province`.`id`)
+        INNER JOIN `plan_type` 
+            ON (`eoutletsuite_account`.`subscription_type` = `plan_type`.`id`)
+        WHERE `account`.`account_id` = ?", array($id))->result();
+        return $query;
+    }
 
 	public function update_account($data, $id){
 		$this->db->where("id", $id);

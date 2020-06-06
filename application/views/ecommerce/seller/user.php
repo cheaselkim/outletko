@@ -1335,8 +1335,8 @@
                                     <div class="form-inline">
                                         <label for="delivered-status">Status</label>
                                         <select class="form-control ml-2" id="delivered-status">
-                                            <option value="2">Delivered</option>
-                                            <option value="3"> Closed</option>
+                                            <option value="2">For Delivery</option>
+                                            <option value="3">Delivered</option>
                                         </select>
                                     </div>
                                 </div>

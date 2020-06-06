@@ -357,6 +357,13 @@ class User_registry extends CI_Controller {
 		echo json_encode($data);
 	}
 
+    public function get_outletko_data(){
+		$id = $this->input->post("id", TRUE);
+		$data['data'] = $this->user_registry_model->get_outletko_data($id);
+		$data['token'] = $this->security->get_csrf_hash();
+		echo json_encode($data);
+    }
+
 	public function update_account(){
 		$user_app_result = 0;
 		$users_result = 0;

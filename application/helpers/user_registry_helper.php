@@ -19,7 +19,7 @@ if (!function_exists("tbl_query")){
 							<th hidden>Account Type</th>
 							<th>Account Status</th>
 							<th>Business Type</th>
-							<th hidden>Action</th>
+							<th >Action</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -29,7 +29,7 @@ if (!function_exists("tbl_query")){
 			if ($app_func == "2"){
 				$button = "<button class='btn btn-primary btn-block py-0 btn-query' onclick = 'edit_user_registry(".$value->id.")'>Edit</button>";
 			}else if ($app_func == "3"){
-				$button = "<button class='btn btn-success btn-block py-0 btn-query' onclick = 'view_user_registry(".$value->id.")'>View</button>";
+				$button = "<button class='btn btn-success btn-block py-0 btn-query' onclick = 'view_user_registry(".$value->account_id.")'>View</button>";
 			}else if ($app_func == "5"){
 				$button = "<button class='btn btn-danger btn-block py-0 btn-query' onclick = 'delete_user_registry(".$value->id.", ".$key.")'>Delete</button>";
 			}
@@ -56,7 +56,7 @@ if (!function_exists("tbl_query")){
 							<td hidden>".$value->account_type_desc."</td>
 							<td>".$status."</td>
 							<td>".$value->business_type_desc."</td>
-							<td hidden>".$button."</td>
+							<td >".$button."</td>
 						</tr>";
 		}
 

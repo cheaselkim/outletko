@@ -106,69 +106,110 @@
 
 </div>
 
-<div class="modal fade" id="modal_query" role="dialog">
-  <div class="modal-dialog modal-lg" >
-    <div class="modal-content">
-      <div class="modal-header pt-3 pb-0">
-        <h5>Sales Query</h5>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-lg-6 col-md-8 col-sm-12 mr-auto">
-            <label class="font-size-modal">Customer</label>
-            <div class="row">
-              <div class="col-lg-4 col-md-4 pr-1">
-                <input type="text" class="form-control" id="mod_cust_code" readonly>
-              </div>
-              <div class="col-lg-8 col-md-8 pl-1">
-                <input type="text" class="form-control" id="mod_cust_name" readonly>
-              </div>
+<div class="modal" id="modal-user">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title">User Registry</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-4 ml-auto">
-            <label class="font-size-modal">Transaction No</label>
-            <input type="text" class="form-control" id="mod_trans_no" readonly>
-          </div>
-        </div>
-        <div class="row pt-2">
-          <div class="col-lg-5">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <label class="font-size-modal">Sales Discount</label>
-                <input type="text" class="form-control text-right" id="mod_discount_sales" value="0.00" readonly>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <label class="font-size-modal">Total Amount</label>
-                <input type="text" class="form-control text-right" id="mod_tot_amount" value="0.00"  readonly>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-2"></div>
-          <div class="col-lg-5">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <label class="font-size-modal">Total VAT Amount</label>
-                <input type="text" class="form-control text-right" id="mod_tot_vat" value="0.00"  readonly>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <label class="font-size-modal">Total Net of VAT</label>
-                <input type="text" class="form-control text-right" id="mot_net_vat" value="0.00"  readonly>
-              </div>
-            </div>            
-          </div>
-        </div>
-        <div class="row pt-3">
-          <div class="col-lg-12">
-            <div id="div_query_items" class="table-responsive" style="height: 200px;">
-              
-            </div>
-          </div>
-        </div>
+            <div class="modal-body py-1">
+                <div class="container">
+                    <div class="row"> 
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
 
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <span>User Name</span>
+                                    <input type="text" class="form-control" id="user-name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <hr class="mt-3 mb-2" style="border-top: 1px solid green;">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Account ID</span>
+                                    <input type="text" class="form-control" id="user-account-id">
+                                </div>
+                                <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+                                    <span>Account Name</span>
+                                    <input type="text" class="form-control" id="user-account-name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <span>Link Name</span>
+                                    <input type="text" class="form-control" id="user-link-name">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Business Category</span>
+                                    <input type="text" class="form-control" id="user-business-category">
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Account Pro</span>
+                                    <input type="text" class="form-control" id="user-account-pro">
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Account Status</span>
+                                    <input type="text" class="form-control" id="user-account-status">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Plan</span>
+                                    <input type="text" class="form-control" id="user-plan">
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Subscription Date</span>
+                                    <input type="text" class="form-control" id="user-subscribe-date">
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <span>Renewal Date</span>
+                                    <input type="text" class="form-control" id="user-renewal-date">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <hr class="mt-3 mb-2" style="border-top: 1px solid green;">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <span>Address</span>
+                                    <input type="text" class="form-control" id="user-address">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                    <span>Email</span>
+                                    <input type="text" class="form-control" id="user-email">
+                                </div>
+                                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                    <span>Mobile No</span>
+                                    <input type="text" class="form-control" id="user-mobile">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
