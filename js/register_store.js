@@ -607,9 +607,11 @@ function bank_payment(){
 function check_payment_details(){
 
     var info_fname = $("#info-fname").val();
+    var info_mname = $("#info-mname").val();
     var info_lname = $("#info-lname").val();
     var info_gender = $(".info-gender:checked").val();
     var info_bday = $("#info-bday").val();
+    var info_fb = $("#info-fb").val();
     
     var info_business_name = $("#info-business-name").val();
     var info_business_category = $("#info-business-category").val();
@@ -654,9 +656,11 @@ function check_payment_details(){
 
     var info_user  = {
         info_fname : info_fname,
+        info_mname : info_mname,
         info_lname : info_lname,
         info_gender : info_gender,
         info_bday : info_bday,
+        info_fb : info_fb,
         info_business_name : info_business_name,
         info_business_category : info_business_category,
         info_address : info_address,
@@ -681,6 +685,7 @@ function check_payment_details(){
 
     var info_bill = {
         bill_fname : bill_fname,
+        bill_mname : info_mname,
         bill_lname : bill_lname,
         bill_company : bill_company,
         bill_address : bill_address,
@@ -711,6 +716,7 @@ function check_payment_details(){
             username : info_email,
             password : "password",
             first_name : info_fname,
+            middle_name : info_mname,
             last_name : info_lname,
             address : info_address,
             city : info_town,
@@ -727,6 +733,7 @@ function check_payment_details(){
             account_id : "",
             status : 0,
             first_name : info_fname,
+            middle_name : info_fname,
             last_name : info_lname,
             username : info_email,
             password : "password",

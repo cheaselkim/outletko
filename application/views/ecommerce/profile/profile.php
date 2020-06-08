@@ -25,7 +25,7 @@
 					<div class="div-prof-details">
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-								<span class="font-weight-600  text-buss-name" id="text-buss-name"></span>
+								<span class="font-weight-600 text-capitalize text-buss-name" id="text-buss-name"></span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
 								<span class="text-yellow text-buss-type" id="text-buss-type"></span>

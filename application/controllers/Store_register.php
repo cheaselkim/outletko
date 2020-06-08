@@ -67,7 +67,7 @@ class Store_register extends CI_Controller {
 
         $account=array(
           'account_id'=>$account_id,
-          'account_name'=>$info_user['info_business_name'],
+          'account_name'=> ucwords(strtolower($info_user['info_business_name'])),
           'account_partner' => $info_user['info_partner'],
           'link_name' => $link_name,
           'account_status' => 0,
@@ -75,8 +75,10 @@ class Store_register extends CI_Controller {
           'about_us' => "",
           'business_category'=>$info_user['info_business_category'],
           'user_id'=> "0",
-          'first_name'=>$info_user['info_fname'],
-          'last_name'=>$info_user['info_lname'],
+          'first_name'=> strtoupper($info_user['info_fname']),
+          'middle_name' => strtoupper($info_user['info_mname']),
+          'last_name'=> strtoupper($info_user['info_lname']),
+          'user_fb' => $info_user['info_fb'],
           'address'=>$info_user['info_address'],
           'street' => $info_user['info_address'],
           'confirm_email'=>$info_user['info_email'],
@@ -101,10 +103,11 @@ class Store_register extends CI_Controller {
             $account2 = array(
                 'account_id' => $account_id,
                 'comp_id' => $res,
-                'first_name' => $info_user['info_fname'],
-                'last_name' => $info_user['info_lname'],
+                'first_name' => strtoupper($info_user['info_fname']),
+                'middle_name' => strtoupper($info_user['info_mname']),
+                'last_name' => strtoupper($info_user['info_lname']),
                 'gender' => $info_user['info_gender'],
-                'birthday' => $info_user['info_bday'],
+                'birthday' => date('Y-m-d', strtotime($info_user['info_bday'])),
                 'password' => password_hash($outletko_pass, PASSWORD_DEFAULT),
                 'user_type' => $user_type,
                 'email' => $info_user['info_email'],
@@ -138,6 +141,7 @@ class Store_register extends CI_Controller {
 
             $user_app = array(
                 "last_name" => strtoupper($info_user['info_lname']),
+                'middle_name' => strtoupper($info_user['info_mname']),
                 "first_name" => strtoupper($info_user['info_fname']),
                 "email" => $info_user['info_email'],
                 "mobile_no" => $info_user['info_mobile'],
@@ -174,6 +178,7 @@ class Store_register extends CI_Controller {
                 "account_id" => $account_id,
                 "account_type" => "1",
                 "first_name" => strtoupper($info_user['info_fname']),
+                'middle_name' => strtoupper($info_user['info_mname']),
                 "last_name" => strtoupper($info_user['info_lname']),
                 "gender" => $info_user['info_gender'],
                 "birthday" => date('Y-m-d', strtotime($info_user['info_bday'])),

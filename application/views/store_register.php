@@ -223,11 +223,15 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>First Name <span class="text-red">*</span> </span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-fname" data-parsley-trigger="focusin focusout"  required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-fname" data-parsley-trigger="focusin focusout"  required>
+                                        </div>
+                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12" hidden>
+                                            <span>Middle Name  </span>
+                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-mname" >
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Last Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-lname" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-lname" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -243,6 +247,13 @@
                                             <input type="text" class="form-control form-control-sm textbox-green readonly bg-white cursor-pointer" id="info-bday" data-parsley-trigger="focusin focusout change" required>
                                         </div>
                                     </div>
+                                    <div class="row" hidden>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <span>Facebook Profile/Page Link<span class="text-red">*</span> (This is for supporting user through facebook)</span>
+                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-fb" > 
+                                            <!-- data-parsley-trigger="focusin focusout change" required -->
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                             <hr class="mt-2 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
@@ -251,11 +262,11 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Business Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-name" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-business-name" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Business Category <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-business-category" data-parsley-trigger="focusin focusout" required>
+                                            <select class="form-control form-control-sm textbox-green text-capitalize" id="info-business-category" data-parsley-trigger="focusin focusout" required>
                                                 <option value="" selected hidden></option>
                                             </select>
                                         </div>
@@ -263,17 +274,17 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                             <span>Business Address <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-address" placeholder="Number/Street/Village/" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-business-address" placeholder="Number/Street/Village/" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Town / City <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-town" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-town" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Province <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-province" data-parsley-trigger="focusin focusout" required readonly>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-province" data-parsley-trigger="focusin focusout" required readonly>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -283,7 +294,7 @@
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Country <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-country" data-parsley-trigger="focusin focusout" required>
+                                            <select class="form-control form-control-sm textbox-green text-capitalize" id="info-country" data-parsley-trigger="focusin focusout" required>
                                                 <option value="" selected hidden></option>
                                             </select>
                                         </div>
