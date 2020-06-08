@@ -147,6 +147,18 @@ textarea{
     border: 1px solid gray;
 }
 
+.prod-not-avail:before{
+    content: "Not Available";
+    color: white;
+    font-weight: 600;
+    background: red;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    z-index: 9999;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -698,6 +710,10 @@ textarea{
 	padding-right: 3px;
 }
 
+#img_upload > .modal-dialog{
+    max-width: 700px;
+}
+
 /* DIV ADS */
 
 .div-ads{
@@ -896,7 +912,7 @@ textarea{
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
-	width: 85%;
+	width: 102.5%;
 	border-radius: 0px !important;
 	text-align: center;
 	height: 40px !important;
@@ -955,6 +971,10 @@ textarea{
 	padding-right: 3px;
 }
 	
+#img_upload > .modal-dialog{
+    max-width: 800px;
+}
+
 
 /* DIV ADS */
 
@@ -1138,7 +1158,7 @@ textarea{
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
-	width: 85%;
+	width: 87.8%;
 	border-radius: 0px !important;
 	text-align: center;
 	height: 40px !important;
@@ -1183,10 +1203,19 @@ textarea{
     margin-top: -30px;
 }
 
+.div-not-avail{
+    padding-left: 30px;
+}
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+
+#img_upload > .modal-dialog{
+    max-width: 800px;
+}
+    
 
 .container{
     padding-left: 0px;
@@ -1464,6 +1493,10 @@ textarea{
     margin: 0 auto !important;
     left: 0 !important;
 } */
+
+.div-not-avail{
+    padding-left: 30px;
+}
 
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */

@@ -3,6 +3,8 @@ $(document).ready(function(){
   $("#div-details-2").hide();
   $("#prod_qty").number(true, 0);
   $("#div-product-details").hide();
+  $("#alert-pc").hide();
+  $("#alert-phone").hide();
   $(".div-store-img").css("background", "white");
   $id = $("#id").val();
 
@@ -326,6 +328,7 @@ function get_profile(id){
             var product_name = result.products[x].product_name;
             var margin = "";
             var margin_plus_image = "";
+            var avail = result.products[x].avail;
 
             if (x > 3){
               margin = "mt-3";
@@ -384,13 +387,15 @@ function get_profile(id){
 
 
             var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
-            '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
-              // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
-                '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
-                  // '<i class="fa fa-camera"></i>'+
-                '</div>'+
+            '<div class="div-list-img cursor-pointer mx-auto bd-green" id="div-list-prod-'+x+'">'+
+                '<div id="div-list-img-'+x+'" class="div-list-prod" onclick="get_product_info('+result.products[x]['id']+');">' +  
+            // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
+                    '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
+                    // '<i class="fa fa-camera"></i>'+
+                    '</div>'+
+                '</div>' +
             '</div>'+
-            '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
+            '<div class=" text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
               '<span class="font-weight-600 list-prod-name">'+product_name+'</span><br>' + 
               '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+ prod_price +'</span>' + 
             '</div>' +
@@ -433,12 +438,18 @@ function get_profile(id){
           //   }
           // }
 
+            if (avail == "0"){
+                $("#div-list-img-"+x+"").addClass("prod-not-avail");
+                $('#div-list-img-'+x+'').css("background", "linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('"+href_url+"')");
+            }else{
+                $('#div-list-img-'+x+'').css("background", "url('"+href_url+"')");
+            }
 
-            
-          $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
-          $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
-          $('#div-list-img-'+x+'').css("background-position", "center");
-          $('#div-list-img-'+x+'').css("background-size", "contain");
+            $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
+            $('#div-list-img-'+x+'').css("background-position", "center");
+            $('#div-list-img-'+x+'').css("background-size", "contain");
+            $('#div-list-img-'+x+'').css("height", "100%");
+            $('#div-list-img-'+x+'').css("width", "100%");
 
         }
     //products
@@ -657,8 +668,38 @@ $.ajax({
             $("#prod-price").hide();
         } 
 
-        console.log(prod_price);
+        // console.log(prod_price);
+        // console.log(data.products[0].product_available);
+        if (data.products[0].product_available == "0"){
+            if ($(document).width() <= "768"){
+                $("#div-btn-back > .row").addClass("pt-1");
+                $("#alert-phone").show();
+            }else{
+                $("#div-btn-back").hide();
+                $("#alert-pc").show();
+            }
 
+            $("#div-btn-order").hide();
+            $("#std_lbl").hide();
+            $("#std_del").hide();
+        }else{
+            if (data.products[0].product_online == "1"){
+                $("#div-btn-back > .row").removeClass("pt-1");
+                $("#div-btn-order").show();
+                $("#std_lbl").show();
+                $("#std_del").show();
+            }else{
+                if ($(document).width() <= "768"){
+                    $("#div-btn-back > .row").addClass("pt-1");
+                }else{
+                    $("#div-btn-back").hide();
+                }
+                $("#div-btn-order").hide();
+                $("#std_lbl").hide();
+                $("#std_del").hide();
+            }
+    
+        }
 
 
         // console.log(data.products[0].img_location);
@@ -671,17 +712,6 @@ $.ajax({
         // $("#div-product-details-img").css("background-size", "100% 100%");
         $("#prod-name").attr("data-ol", data.products[0].product_online);
 
-        if (data.products[0].product_online == "1"){
-            $("#div-btn-back > .row").removeClass("pt-1");
-            $("#div-btn-order").show();
-            $("#std_lbl").show();
-            $("#std_del").show();
-        }else{
-            $("#div-btn-back > .row").addClass("pt-1");
-            $("#div-btn-order").hide();
-            $("#std_lbl").hide();
-            $("#std_del").hide();
-        }
 
         var variation = data.prod_var;
         var var_type = data.prod_var_type;

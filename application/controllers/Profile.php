@@ -58,12 +58,13 @@ class Profile extends CI_Controller {
 
 
             $products[$key] = array(
-                'product_name' => $value->product_name,
+                "product_name" => $value->product_name,
                 "product_description" => $value->product_description,
                 "product_unit_price" => $value->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,
                 "img_location" => $file,
+                "avail" => $value->product_available,
                 "id" => $value->id);
         }
 
@@ -127,6 +128,7 @@ class Profile extends CI_Controller {
                 "product_description" => $row->product_description,
                 "product_other_details" => $row->product_other_details,
                 "product_online" => $row->product_online,
+                "product_available" => $row->product_available,
                 "product_unit_price" => $row->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,

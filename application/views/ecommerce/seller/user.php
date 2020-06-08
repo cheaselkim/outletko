@@ -1629,7 +1629,7 @@
 		                        </div>
 		                    </div>
 
-		                    <div class="form-group mb-0 row">
+		                    <div class="form-group mb-3 row">
 		                    	<div class="col-12 col-md-12 col-lg-12">
 									<!-- <button class="btn  btn-success bg-white"> -->
                                     <span class="btn btn-block btn-success btn-file btn-modal-img-upload bg-white" style="border-top: 0;border-radius: 0;">
@@ -1640,7 +1640,17 @@
                                     </span>
 									<!-- </button> -->
 								</div>
-		                    </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-not-avail">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input cursor-pointer" id="not_avail" name="not_avail" value="0">
+                                        <label class="custom-control-label cursor-pointer" for="not_avail">Not Available?</label>
+                                    </div>
+                                </div>
+                            </div>
+
 		                </div>
 
 	                	<div class="col-12 col-md-7 col-lg-7 pad-left">

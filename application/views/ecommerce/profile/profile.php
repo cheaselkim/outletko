@@ -122,10 +122,10 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
-                                    <span class="font-size-20 font-weight-600">Products and Services</span>
+                                    <span class="font-size-20 font-weight-600 text-green-orig">View Products Categories</span>
                                 </div>
                                 <div class="col-12 col-lg-auto col-md-auto col-sm-auto">
-                                    <select class="form-control" id="prod-category" style="min-width: 200px;">
+                                    <select class="form-control textbox-green" id="prod-category" style="min-width: 200px;">
                                         <option value="0">All</option>
                                     </select>
                                 </div>
@@ -151,6 +151,14 @@
                             <span class="font-size-25" hidden>Product Details</span>								
                         </div>
                     </div>
+
+                    <div class="row" id="alert-phone"> 
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mx-auto">
+                            <div class="w-100 alert alert-danger">
+                                <span>Product is not Available</span>
+                            </div>
+                        </div>
+                    </div>
                             
                     <div class="row">
                         <div class="col-lg-3 col-sm-12 mb-4">
@@ -162,13 +170,21 @@
 
                         </div>
                         <div class="col-lg-auto col-sm-12 px-0" id="div-details" >
-                            
+                        
                             <div class="col-12 mb-2 div-prod-dtls" >
                                 <span class="font-weight-600 font-size-25" hidden>Product Description</span>
                                 <p id="prod-condition" hidden></p>
                                 <p id="prod-stock" hidden></p>
                                 <p id="prod-weight" hidden></p>
                                 <!-- <p id="prod-dtls" ></p> -->
+
+                                <div class="row" id="alert-pc"> 
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto">
+                                        <div class="w-100 alert alert-danger">
+                                            <span>Product is not Available</span>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">

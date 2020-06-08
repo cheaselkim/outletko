@@ -247,6 +247,7 @@ class Outletko_profile extends CI_Controller {
                 "min_price" => $min_price,
                 "max_price" => $max_price,
                 "img_location" => $unserialized_files,
+                "product_available" => $value->product_available,
                 "id" => $value->id);
         }
 
@@ -288,6 +289,7 @@ class Outletko_profile extends CI_Controller {
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
                 "product_online" => $row->product_online,
+                "product_available" => $row->product_available,
                 "product_unit_price" => $row->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,

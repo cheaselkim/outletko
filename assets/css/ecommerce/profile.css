@@ -1,7 +1,10 @@
+.text-green-orig{
+    color: green;
+}
+
 .div-menu-bar a.active{
     color: black !important;
 }
-
 
 .tab-content{
     border: 0;
@@ -81,6 +84,31 @@
   background: #b30000; 
 }
 
+.div-list-img{
+    border: 1px solid green;
+}
+
+.div-list-img-btn{
+    border: 1px solid green;
+    border-top: 0;
+}
+
+.prod-not-avail{
+    /* opacity: 0.6; */
+}
+
+.prod-not-avail:before{
+    content: "Not Available";
+    color: white;
+    font-weight: 600;
+    background: red;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    z-index: 9999;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
