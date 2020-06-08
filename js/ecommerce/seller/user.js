@@ -30,7 +30,8 @@ $(document).ready(function(){
     $("#div-setting").hide();
     $("#div-my-orders").hide();
     $("#div_order").hide();
-    $("#div-my-deliver").hide();
+    $("#div-my-delivered").hide();
+    $("#div-my-closed").hide();
     $("#div-for-appointment").hide();
     $("#div-for-delivery").hide();
     $("#div-prod-ship-fee").hide();
@@ -517,7 +518,8 @@ $(document).ready(function(){
     $("#div-setting").hide();
     $("#div-home").hide();
     $("#div_order").hide();
-    $("#div-my-deliver").hide();
+    $("#div-my-delivered").hide();
+    $("#div-my-closed").hide();
 
     $("#div_order_table").show("slow");
     $("#div-my-orders").show("slow");
@@ -1206,8 +1208,9 @@ function btn_day(type){
 
 function home(){
   $("#div-setting").hide();
-  $("#div-my-deliver").hide();
+  $("#div-my-delivered").hide();
   $("#div-my-orders").hide();
+  $("#div-my-closed").hide();
 
   $("#div-home").show("slow");  
 }
@@ -3399,7 +3402,8 @@ function acknowledge_order(){
                 $("#div-setting").hide();
                 $("#div-home").hide();
                 $("#div_order").hide();
-                $("#div-my-deliver").hide();
+                $("#div-my-delivered").hide();
+                $("#div-my-closed").hide();
 
                 $("#div_order_table").show("slow");
                 $("#div-my-orders").show("slow");
@@ -3445,7 +3449,8 @@ function cancel_acknowledge_order(){
                 $("#div-setting").hide();
                 $("#div-home").hide();
                 $("#div_order").hide();
-                $("#div-my-deliver").hide();
+                $("#div-my-delivered").hide();
+                $("#div-my-closed").hide();
 
                 $("#div_order_table").show("slow");
                 $("#div-my-orders").show("slow");

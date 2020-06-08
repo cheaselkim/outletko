@@ -102,11 +102,16 @@
         height: 25px;
     }
     
+    .header-post{
+        font-size: 17px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+    .header-post{
+        font-size: 18px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -120,6 +125,13 @@
     height: 140px;
 }
 
+.header-post{
+    font-size: 20px;
+}
+
+.div-header-post{
+    padding-left: 0;
+}
 
 }
 
@@ -151,6 +163,13 @@
     height: 35px;
 }
 
+.header-post{
+    font-size: 20px;
+}
+
+.div-header-post{
+    padding-left: 0;
+}
 
 }
 
@@ -253,6 +272,14 @@
 
 .progress{
     height: 35px;
+}
+
+.header-post{
+    font-size: 22px;
+}
+
+.div-header-post{
+    padding-left: 0;
 }
 
 

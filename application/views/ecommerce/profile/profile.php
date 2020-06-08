@@ -70,8 +70,8 @@
 
 <div class="container pt-3 div-header-3">
 	<div class="row">
-		<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-			<span class="font-weight-600 font-size-18 text-capitalize" style="font-size:22px;" id="header_whats_new"></span>
+		<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-header-post">
+			<span class="font-weight-600 header-post text-capitalize" id="header_whats_new"></span>
 		</div>
 	</div>
 </div>
