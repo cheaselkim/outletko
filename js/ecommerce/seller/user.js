@@ -2794,6 +2794,8 @@ function save_aboutus(){
     csrf_name : csrf_name
   }
 
+  console.log(data);
+
   $.ajax({
     data: data, 
     type: "POST", 

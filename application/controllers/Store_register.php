@@ -49,7 +49,7 @@ class Store_register extends CI_Controller {
         // $link_name = substr($info_outletko['link_name'], 0, 15);
         $check_linkname = $this->signup_model->check_linkname(substr($info_outletko['link_name'], 0, 15));
 
-        var_dump($check_linkname);
+        // var_dump($check_linkname);
 
         if ($check_linkname > 0){
             $link_name = substr($info_outletko['link_name'], 0, 8);
@@ -231,7 +231,7 @@ class Store_register extends CI_Controller {
             $invoice_result = $this->signup_model->update_invoice($bill_data, $invoice_id);
 
             // $send_email =  $this->send_email($info_user['info_email'],$account_id,$outletko_pass, $eoutletsuite_pass); 
-            $send_email = $this->send_confirm_email($info_user['info_email'], $account_id);
+            $send_email = $this->send_confirm_email($info_user['info_email'], $account_id); //ORIGINAL
             // $send_email = true;
 
         // }
@@ -241,6 +241,7 @@ class Store_register extends CI_Controller {
         }else{
             $status = "failed";
         }
+
 
         echo json_encode(array('status' => $status, "email_check" => $email_check, "id" => $res, 'token' => $this->security->get_csrf_hash()));     
 

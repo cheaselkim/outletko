@@ -754,10 +754,13 @@ function check_payment_details(){
         beforeSend : function(){
             swal({
                 type : "info",
-                title : "Saving...."
+                title : "Saving....",
+                showCancelButton: false, 
+                showConfirmButton: false
             })
         },
         success : function(result){
+            console.log(result);
             $("input[name=csrf_name]").val(result.token);
             swal({
                 type : "success",
@@ -767,6 +770,7 @@ function check_payment_details(){
                 location.reload();
             })    
         }, error : function(err){
+            console.log(err);
             console.log(err.responseText);
         }
     })
