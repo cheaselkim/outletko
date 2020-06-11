@@ -25,7 +25,9 @@ $(document).ready(function(){
     //     }
     //   });
 
-
+    // $("#div-home").hide();
+    // $("#div-aboutus").hide();
+    // $("#div-payment").show();
 
     $("#div-setting").hide();
     $("#div-my-orders").hide();
@@ -65,6 +67,9 @@ $(document).ready(function(){
     $("#prod_ship_fee_w_mm").number(true, 2);
     $("#prod_ship_fee_o_mm").number(true, 2);
         
+    $("#cov-ship-kg").number(true, 0);
+    $("#cov-ship-fee").number(true, 2);
+
     $("#span-aboutus").hide();
     $("#div-card-variation").hide();
     $("#div_variation_type").hide();
@@ -300,416 +305,496 @@ $(document).ready(function(){
         get_delivered_order();
     });
 
-  $(document).on("change", "#delivery_1", function(){
+    $(document).on("change", "#delivery_1", function(){
     if ($("#delivery_1").is(":checked") == true){
-      $("#div-for-appointment").show("slow");
+        $("#div-for-appointment").show("slow");
     }else{
 
-      for (var i = 1; i < 8; i++) {
+        for (var i = 1; i < 8; i++) {
         $("#btn-day-"+i).removeClass("btn-success");  
         $("#btn-day-"+i).addClass("btn-outline-success");  
         $("#btn-day-"+i).val(0);
-      }
+        }
 
-      $('#ftime').timepicker({
-          startTime: '8:00'      
-      });
+        $('#ftime').timepicker({
+            startTime: '8:00'      
+        });
 
-      $('#ttime').timepicker({
-          startTime: '17:00'
-      });
+        $('#ttime').timepicker({
+            startTime: '17:00'
+        });
 
 
 
-      $("#div-for-appointment").hide("slow");      
+        $("#div-for-appointment").hide("slow");      
     }
-  });
+    });
 
-  $(document).on("change", "#delivery_3", function(){
+    $(document).on("change", "#delivery_3", function(){
     if ($("#delivery_3").is(":checked") == true){
-      $("#div-for-delivery").show("slow");
+        $("#div-for-delivery").show("slow");
     }else{
-      $("#ship_w_mm").val(0);
-      $("#ship_o_mm").val(0);
-      $("#div-for-delivery").hide("slow");      
+        $("#ship_w_mm").val(0);
+        $("#ship_o_mm").val(0);
+        $("#div-for-delivery").hide("slow");      
     }
-  });
+    });
 
 
-  $('#ftime').timepicker({
-      timeFormat: 'h:mm p',
-      interval: 30,
-      defaultTime : '8',
-      startTime: '8:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-  });
+    $('#ftime').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        defaultTime : '8',
+        startTime: '8:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 
-  $('#ttime').timepicker({
-      timeFormat: 'h:mm p',
-      interval: 30,
-      defaultTime: '17',
-      startTime: '17:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-  });
+    $('#ttime').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        defaultTime: '17',
+        startTime: '17:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 
-  $("#free_shipping").change(function(){
+    $("#free_shipping").change(function(){
     if ($(this).is(":checked")){
-      $("#div-shipping-fee").hide("slow");
+        $("#div-shipping-fee").hide("slow");
     }else{
-      $("#div-shipping-fee").show("slow");
+        $("#div-shipping-fee").show("slow");
     }
-  });
+    });
 
 
 	/* MY ORDER */
 
 	$("#save_prof_pic").click(function(){
 		save_prof_pic();
-  });
+    });
   
-  $("#save_store_img").click(function(){
-    save_store_img();
-  });
+    $("#save_store_img").click(function(){
+        save_store_img();
+    });
 
-  $("#cancel_aboutus").click(function(){
-    home();    
-  });
+    $("#cancel_aboutus").click(function(){
+        home();    
+    });
 
-  $("#save_aboutus").click(function(){
-    check_aboutus();
-  });
+    $("#save_aboutus").click(function(){
+        check_aboutus();
+    });
 
-  $("#save_payment").click(function(){
-    check_payment();
-  });  
+    $("#save_payment").click(function(){
+        check_payment();
+    });  
 
-  $("#cancel_payment").click(function(){
-    home();
-  });
+    $("#cancel_payment").click(function(){
+        home();
+    });
 
-  $("#imgInp").change(function(){
-    //   console.log(this);
-      readURL(this, 2);
-    // readProductURL(this);
-  }); 
+    $("#imgInp").change(function(){
+        //   console.log(this);
+        readURL(this, 2);
+        // readProductURL(this);
+    }); 
 
-  $("#imgProf").change(function(){
-      readURL(this, 1);
-  })
-
-  $("#imgStore").change(function(){
-    readURL(this, 3);
-  })
-
-  $("#btn_add_variation").click(function(){
-    add_variation();
-  });
-
-  $(document).on("click", "#btn_add_variation_type_1", function(){
-    add_variation_type(1);
-  });
-
-  $(document).on("click", "#btn_add_variation_type_2", function(){
-    add_variation_type(2);
-  });
-
-  $("#btn-variation").click(function(){
-    variations();
-  });
-
-
-  $("#save_product").click(function(){
-    check_product();
-  });
-
-  $("#delete_product").click(function(){
-    swal({
-      type : "warning",
-      title : "Delete?",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }, function(isConfirm){
-      if (isConfirm){
-        delete_product();
-      }      
+    $("#imgProf").change(function(){
+        readURL(this, 1);
     })
-  });
 
-  $("#btn-post").click(function(){
-    account_post();
-  });
-
-  $("#btn_cancel_acknowledge").click(function(){
-    swal({
-      type : "warning",
-      title : "Cancel ?",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }, function(isConfirm){
-      if (isConfirm){
-        cancel_acknowledge_order();
-      }
+    $("#imgStore").change(function(){
+        readURL(this, 3);
     })
-  })
 
-  $("#btn_acknowledge").click(function(){
-    swal({
-      type : "warning",
-      title : "Acknowledge?",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }, function(isConfirm){
-      if (isConfirm){
-        acknowledge_order();
-      }
-    })
-  });
+    $("#btn_add_variation").click(function(){
+        add_variation();
+    });
 
-  $("#btn_save_deliver").click(function(){
+    $(document).on("click", "#btn_add_variation_type_1", function(){
+        add_variation_type(1);
+    });
 
-    var courier = jQuery.trim($("#delivery_courier").val()).length;
-    var track_order = jQuery.trim($("#delivery_track").val()).length;
+    $(document).on("click", "#btn_add_variation_type_2", function(){
+        add_variation_type(2);
+    });
 
-    if (courier == 0 || track_order == 0){
-      swal({
+    $("#btn-variation").click(function(){
+        variations();
+    });
+
+
+    $("#save_product").click(function(){
+        check_product();
+    });
+
+    $("#delete_product").click(function(){
+        swal({
         type : "warning",
-        title : "Please input all required fields"
-      })
-
-      if (courier == 0){
-        $("#delivery_courier").addClass("error");
-      }
-
-      if (track_order == 0){
-        $("#delivery_track").addClass("error");
-      }
-
-    }else{
-
-      swal({
-        type : "warning",
-        title : "Confirm Delivery?",
+        title : "Delete?",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
         confirmButtonText: "Yes",
         cancelButtonText: "No",
-      }, function(isConfirm){
+        }, function(isConfirm){
         if (isConfirm){
-          delivery_order();
+            delete_product();
+        }      
+        })
+    });
+
+    $("#btn-post").click(function(){
+        account_post();
+    });
+
+    $("#btn_cancel_acknowledge").click(function(){
+        swal({
+        type : "warning",
+        title : "Cancel ?",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        }, function(isConfirm){
+        if (isConfirm){
+            cancel_acknowledge_order();
         }
-      })
+        })
+    })
 
-    }
+    $("#btn_acknowledge").click(function(){
+        swal({
+        type : "warning",
+        title : "Acknowledge?",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        }, function(isConfirm){
+        if (isConfirm){
+            acknowledge_order();
+        }
+        })
+    });
 
-  });
+    $("#btn_save_deliver").click(function(){
 
-  $("#btn_back_acknowledge").click(function(){
-    get_process_order();
-    $("#div-setting").hide();
-    $("#div-home").hide();
-    $("#div_order").hide();
-    $("#div-my-delivered").hide();
-    $("#div-my-closed").hide();
+        var courier = jQuery.trim($("#delivery_courier").val()).length;
+        var track_order = jQuery.trim($("#delivery_track").val()).length;
 
-    $("#div_order_table").show("slow");
-    $("#div-my-orders").show("slow");
-    $("#modal_myorders").modal("hide");    
-  });
+        if (courier == 0 || track_order == 0){
+        swal({
+            type : "warning",
+            title : "Please input all required fields"
+        })
 
-  $("#save-prod-variation").click(function(){
-    save_prod_variation();
-  });
+        if (courier == 0){
+            $("#delivery_courier").addClass("error");
+        }
+
+        if (track_order == 0){
+            $("#delivery_track").addClass("error");
+        }
+
+        }else{
+
+        swal({
+            type : "warning",
+            title : "Confirm Delivery?",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+        }, function(isConfirm){
+            if (isConfirm){
+            delivery_order();
+            }
+        })
+
+        }
+
+    });
+
+    $("#btn_back_acknowledge").click(function(){
+        get_process_order();
+        $("#div-setting").hide();
+        $("#div-home").hide();
+        $("#div_order").hide();
+        $("#div-my-delivered").hide();
+        $("#div-my-closed").hide();
+
+        $("#div_order_table").show("slow");
+        $("#div-my-orders").show("slow");
+        $("#modal_myorders").modal("hide");    
+    });
+
+    $("#save-prod-variation").click(function(){
+        save_prod_variation();
+    });
 
   /*change username & password */
 
-  $("#save_setting").click(function(){
-    var csrf_name = $("input[name=csrf_name]").val();
-    var password = $("#curr_pass").val();
-    var new_pass = $("#new_pass").val();
-    var conf_pass = $("#conf_pass").val();
+    $("#save_setting").click(function(){
+        var csrf_name = $("input[name=csrf_name]").val();
+        var password = $("#curr_pass").val();
+        var new_pass = $("#new_pass").val();
+        var conf_pass = $("#conf_pass").val();
 
-    if (password == ""){
-      swal({
-        type : "warning",
-        title : "Send?",
-        text : "Password will not change",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-      }, function(isConfirm){
-        if (isConfirm){
-          save_setting();
-        }
-      })
-    }else{
-        if (new_pass != conf_pass){
-            swal({
-                type : "warning",
-                title : "New Password and Confirm Password does not match",
-            })
-            $("#modal-setting").modal("show");
+        if (password == ""){
+        swal({
+            type : "warning",
+            title : "Send?",
+            text : "Password will not change",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+        }, function(isConfirm){
+            if (isConfirm){
+            save_setting();
+            }
+        })
         }else{
-            $.ajax({
-                type : "POST",
-                dataType : "JSON",
-                url : base_url + "Outletko_profile/check_curr_password",
-                data : {password : password, csrf_name : csrf_name},
-                success : function(result){
-                    $("input[name=csrf_name]").val(result.token);
-                    console.log(result.result);
-                    if (result.result > 0){
-                        swal({
-                            type : "warning",
-                            title : "Current Password is Incorrect"
-                        })                          
-                        $("#modal-setting").modal("show");
-                    }else{
-                        swal({
-                            type : "warning",
-                            title : "Send?",
-                            text : "Username & Password will change",
-                            showCancelButton: true,
-                            confirmButtonClass: "btn-danger",
-                            confirmButtonText: "Yes",
-                            cancelButtonText: "No",
-                          }, function(isConfirm){
-                            if (isConfirm){
-                              save_setting();
-                            }
-                          })                          
+            if (new_pass != conf_pass){
+                swal({
+                    type : "warning",
+                    title : "New Password and Confirm Password does not match",
+                })
+                $("#modal-setting").modal("show");
+            }else{
+                $.ajax({
+                    type : "POST",
+                    dataType : "JSON",
+                    url : base_url + "Outletko_profile/check_curr_password",
+                    data : {password : password, csrf_name : csrf_name},
+                    success : function(result){
+                        $("input[name=csrf_name]").val(result.token);
+                        console.log(result.result);
+                        if (result.result > 0){
+                            swal({
+                                type : "warning",
+                                title : "Current Password is Incorrect"
+                            })                          
+                            $("#modal-setting").modal("show");
+                        }else{
+                            swal({
+                                type : "warning",
+                                title : "Send?",
+                                text : "Username & Password will change",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-danger",
+                                confirmButtonText: "Yes",
+                                cancelButtonText: "No",
+                            }, function(isConfirm){
+                                if (isConfirm){
+                                save_setting();
+                                }
+                            })                          
+                        }
+                    }, error : function(err){
+                        console.log(err.responseText);
                     }
-                }, error : function(err){
-                    console.log(err.responseText);
-                }
-            })
+                })
+            }
         }
-    }
 
-  });
+    });
 
-  $("#prod_std_delivery").change(function(){
+    $("#prod_std_delivery").change(function(){
     // if ($(this).val() == "3"){
     //   $("#div-prod-ship-fee").show("slow");
     // }else{
     //   $("#div-prod-ship-fee").hide("slow");
     // }
-  });
+    });
 
-  $("#save_category").click(function(){
+    $("#save_category").click(function(){
     save_category();
-  });
+    });
 
-  $("#input_city").autocomplete({
-		focus: function(event, ui){
-			$("#input_province").val(ui.item.province);
-		},
-		select: function(event, ui){
-			$("#input_province").val(ui.item.province);
-			$("#input_city").attr("data-id", ui.item.city_id);
-			$("#input_province").attr("data-id", ui.item.prov_id);
-		},
-		source: function(req, add){
-      var csrf_name = $("input[name=csrf_name]").val();
-			var city = $("#input_city").val();
+    $("#input_city").autocomplete({
+        focus: function(event, ui){
+            $("#input_province").val(ui.item.province);
+        },
+        select: function(event, ui){
+            $("#input_province").val(ui.item.province);
+            $("#input_city").attr("data-id", ui.item.city_id);
+            $("#input_province").attr("data-id", ui.item.prov_id);
+        },
+        source: function(req, add){
+        var csrf_name = $("input[name=csrf_name]").val();
+            var city = $("#input_city").val();
         $.ajax({
-          url: base_url + "Outletko_profile/search_city/", 
-          dataType: "JSON",
-          type: "POST",
-          data: {'city' : city, csrf_name : csrf_name},
-          success: function(data){
+            url: base_url + "Outletko_profile/search_city/", 
+            dataType: "JSON",
+            type: "POST",
+            data: {'city' : city, csrf_name : csrf_name},
+            success: function(data){
             $("input[name=csrf_name]").val(data.token);
             if(data.response =="true"){
                 add(data.result);
             }else{
-              $("#outlet_city").val("");
-              $("#outlet_province").val("");
+                $("#outlet_city").val("");
+                $("#outlet_province").val("");
                 add('');
             }
-          }, error: function(err){
+            }, error: function(err){
             console.log("Error: " + err.responseText);
-          }
+            }
         });
-		}
-	});
+        }
+    });
 
-  $("#ship_courier").autocomplete({
-		select: function(event, ui){
-			$("#ship_courier").attr("data-id", ui.item.id);
-		},
-		source: function(req, add){
-            var csrf_name = $("input[name=csrf_name]").val();
-			var ship_courier = $("#ship_courier").val();
-        $.ajax({
-          url: base_url + "Outletko_profile/search_courier/", 
-          dataType: "JSON",
-          type: "POST",
-          data: {'courier' : ship_courier, csrf_name : csrf_name},
-          success: function(data){
-            $("input[name=csrf_name]").val(data.token);
-            if(data.response =="true"){
-                add(data.result);
-            }else{
-              $("#ship_courier").val("");
-                add('');
+    $("#ship_courier").autocomplete({
+            select: function(event, ui){
+                $("#ship_courier").attr("data-id", ui.item.id);
+            },
+            source: function(req, add){
+                var csrf_name = $("input[name=csrf_name]").val();
+                var ship_courier = $("#ship_courier").val();
+            $.ajax({
+            url: base_url + "Outletko_profile/search_courier/", 
+            dataType: "JSON",
+            type: "POST",
+            data: {'courier' : ship_courier, csrf_name : csrf_name},
+            success: function(data){
+                $("input[name=csrf_name]").val(data.token);
+                if(data.response =="true"){
+                    add(data.result);
+                }else{
+                $("#ship_courier").val("");
+                    add('');
+                }
+            }, error: function(err){
+                console.log("Error: " + err.responseText);
             }
-          }, error: function(err){
-            console.log("Error: " + err.responseText);
-          }
-        });
-		}
+            });
+            }
 	});  
 
-  $("#btn-save-ship").click(function(){
-    swal({
-      type : "warning",
-      title : "Save?",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }, function(isConfirm){
-      if (isConfirm){
-        check_ship();
-      }
+    $("#btn-save-ship").click(function(){
+        swal({
+        type : "warning",
+        title : "Save?",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        }, function(isConfirm){
+        if (isConfirm){
+            check_ship();
+        }
+        }); 
+
     }); 
 
-  }); 
+    $("#payment_6").change(function(){
+        if ($(this).is(":checked")){
+        $("#div-remittance-list").show("slow");
+        }else{
+        $("#div-remittance-list").hide("slow");
+        }
+    });
 
-  $("#payment_6").change(function(){
-    if ($(this).is(":checked")){
-      $("#div-remittance-list").show("slow");
-    }else{
-      $("#div-remittance-list").hide("slow");
-    }
-  });
-
-  $("#payment_5").change(function(){
-    if ($(this).is(":checked")){
-      $("#div-bank-list").show("slow");
-    }else{
-      $("#div-bank-list").hide("slow");
-    }
-  });
+    $("#payment_5").change(function(){
+        if ($(this).is(":checked")){
+        $("#div-bank-list").show("slow");
+        }else{
+        $("#div-bank-list").hide("slow");
+        }
+    });
 
 
-  $("#btn_save_bank").click(function(){
-    check_save_bank();
-  });
+    $("#btn_save_bank").click(function(){
+        check_save_bank();
+    });
 
-  $("#btn_remitt_save").click(function(){
-    check_remitt_save();
-  });
+    $("#btn_remitt_save").click(function(){
+        check_remitt_save();
+    });
+
+    //Coverage Selection 
+
+    $("#btn-cov-mm").click(function(){
+        coverage_area(1);
+    });
+
+    $("#btn-cov-luz").click(function(){
+        coverage_area(2);
+    });
+
+    $("#btn-cov-vis").click(function(){
+        coverage_area(3);
+    });
+
+    $("#btn-cov-min").click(function(){
+        coverage_area(4);
+    });
+
+    $(document).on("change", ".cov_area", function(){
+        $('#cov-prov :not(:first-child)').remove();
+        $('.cov_area').each(function () {
+            if (this.checked) {
+                $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
+            }
+        });
+    })
+
+    $(document).on("change", "#cov-prov", function(){
+        coverage_city($(this).val());
+    })
+
+    $("#add-prov-city").click(function(){
+        add_prov_city();
+    });
+
+    $("#btn-save-prov-city").click(function(){
+        save_prov_city();
+    });
+
+    //Coverage Shipping Fee
+
+    $("#cov-ship-courier").autocomplete({
+        select: function(event, ui){
+            $("#cov-ship-courier").attr("data-id", ui.item.id);
+        },
+        source: function(req, add){
+            var csrf_name = $("input[name=csrf_name]").val();
+            var ship_courier = $("#cov-ship-courier").val();
+            $.ajax({
+                url: base_url + "Outletko_profile/search_courier/", 
+                dataType: "JSON",
+                type: "POST",
+                data: {'courier' : ship_courier, csrf_name : csrf_name},
+                success: function(data){
+                    $("input[name=csrf_name]").val(data.token);
+                    if(data.response =="true"){
+                        add(data.result);
+                    }else{
+                    $("#cov-ship-courier").val("");
+                        add('');
+                    }
+                }, error: function(err){
+                    console.log("Error: " + err.responseText);
+                }
+            });
+        }
+    });  
+
+    $("#cov-ship-area").change(function(){
+        coverage_ship_area();
+    });
+
+    $("#cov-ship-prov").change(function(){
+        coverage_ship_prov();
+    });
+
+    $("#btn-save-cov-ship").click(function(){
+        save_coverage_ship();
+    });
 
 });
 
@@ -1204,6 +1289,130 @@ function btn_day(type){
     $(btn).addClass("btn-outline-success");  
     $(btn).val(0);
   }
+}
+
+function coverage_area(area){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var desc = "";
+    $("#coverage-group").attr("data-id", area);
+    $.ajax({
+        data : {area : area, csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/coverage_area",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            var data = result.result;
+            var prov = result.province;
+            var city = result.city;
+            var checked = "";
+
+            $("#coverage_area").empty();
+            if (area == "1"){
+                $("#coverage-group").text("Metro Manila");
+                $("#div-coverage-city").hide();
+            }else if (area == "2"){
+                $("#coverage-group").text("Luzon");
+                $("#div-coverage-city").show();
+            }else if (area == "3"){
+                $("#coverage-group").text("Visayas");
+                $("#div-coverage-city").show();
+            }else if (area == "4"){
+                $("#coverage-group").text("Mindanao");
+                $("#div-coverage-city").show();
+            }
+
+    
+            for ( var i = 0; i < data.length; i++) {
+                if (area == "1"){
+                    desc = data[i].city_desc;
+                    for (var x = 0; x < city.length; x++) {
+                        if (data[i].id == city[x].city_id){
+                            checked = "checked";
+                        }                        
+                    }
+                }else{
+                    desc = data[i].province_desc;
+                    for (var x = 0; x < prov.length; x++) {
+                        if (data[i].id == prov[x].prov_id){
+                            checked = "checked";
+                        }                        
+                    }
+                }
+
+                $("#coverage_area").append('<div class="custom-control custom-checkbox" >'+
+                        '<input type="checkbox" class="custom-control-input cursor-pointer cov_area" id="cov_'+data[i].id+'" value="'+data[i].id+'" '+checked+'>'+
+                        '<label class="custom-control-label cursor-pointer" for="cov_'+data[i].id+'">'+desc+'</label>'+
+                    '</div>');
+
+                checked = "";
+            }
+
+            if (area != "1"){
+                for (var i = 0; i < city.length; i++) {
+                    if (city[i].city_id == "0"){
+                        city_desc = "All";
+                    }else{
+                        city_desc = city[i].city_desc;
+                    }
+
+                    $("#tbl-prov-city tbody").append("<tr id='tbl-row-"+(i+1)+"'>"+
+                    "<td data-id='"+city[i].prov_id+"'>"+city[i].prov_desc+"</td>" +
+                    "<td data-id='"+city[i].city_id+"'>"+city_desc+"</td>" +
+                    "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city("+(i + 1)+")'><i class='fa fa-trash'></i></button></td>" +
+                    "</tr>");                
+                }
+
+                for (let i = 0; i < prov.length; i++) {
+                    $("#cov-prov").append("<option value='"+prov[i].prov_id+"'>"+prov[i].prov_desc+"</option>");
+                }
+
+            }
+
+            $("#modal-coverage").modal("show");
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+function coverage_city(province){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, province : province},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/coverage_city",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            var data = result.result;
+            $('#cov-prov-city :not(:first-child)').remove();
+            for (let i = 0; i < data.length; i++) {
+                $("#cov-prov-city").append("<option value='"+data[i].id+"'>"+data[i].city_desc+"</option>");
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+}
+
+function add_prov_city(){
+    var row = $("#tbl-prov-city > tbody > tr").length + 1; 
+
+    $("#tbl-prov-city tbody").append("<tr  id='tbl-row-"+(row)+"'>"+
+    "<td data-id='"+$("#cov-prov").val()+"'>"+$("#cov-prov option:selected").text()+"</td>" +
+    "<td data-id='"+$("#cov-prov-city").val()+"'>"+$("#cov-prov-city option:selected").text()+"</td>" +
+    "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city('"+row+"')'><i class='fa fa-trash'></i></button></td>" +
+    "</tr>");
+
+}
+
+function remove_prov_city(row){
+    $("#tbl-prov-city tbody").find("#tbl-row-"+row).remove();
 }
 
 function home(){
@@ -1772,6 +1981,34 @@ function index(){
             $("#div-bank-list").hide("slow");
           }
         });
+
+        var cov_ship = result.coverage_ship;
+        var area = "";
+        $("#tbl-cov-ship tbody").empty();
+
+        for (let i = 0; i < cov_ship.length; i++) {
+
+            if (cov_ship[i].area == "1"){
+                area = "Metro Manila";
+            }else if (cov_ship[i].area == "2"){
+                area = "Luzon";
+            }else if (cov_ship[i].area == "3"){
+                area = "Visayas";
+            }else if (cov_ship[i].area == "4"){
+                area = "Mindanao";
+            }
+
+            $("#tbl-cov-ship tbody").append("<tr><td data-id='"+cov_ship[i].courier_id+"' class='courier'>" + cov_ship[i].courier_name +
+            "</td><td class='area' data-id='"+cov_ship[i].area+"'>" + area + 
+            "</td><td class='prov' data-id='"+cov_ship[i].prov_id+"'>" + cov_ship[i].prov_desc + 
+            "</td><td class='city' data-id='"+cov_ship[i].city_id+"'>" + cov_ship[i].city_desc + 
+            "</td><td class='weight'>" + $.number(cov_ship[i].weight, 0) + 
+            "</td><td class='amount'>" + $.number(cov_ship[i].amount, 2) + 
+            "</td><td>" + "<button class='btn btn-outline-primary py-0' onclick='edit_coverage_ship("+(i + 1)+","+cov_ship[i].id+")'><i class='fa fa-edit'></i></button>" + 
+            "</td><td>" + "<button class='btn btn-outline-danger py-0' onclick='del_coverage_ship("+cov_ship[i].id+")'><i class='fa fa-trash'></i></button>" + 
+            "</td></tr>");            
+        }
+
     }, error: function(err){
       console.log(err.responseText);
     }
@@ -2794,7 +3031,7 @@ function save_aboutus(){
     csrf_name : csrf_name
   }
 
-  console.log(data);
+//   console.log(data);
 
   $.ajax({
     data: data, 
@@ -2915,6 +3152,7 @@ function save_payment(){
 //   console.log(cov_area);
 
   $.ajax({
+    async : true,
     data : {csrf_name : csrf_name, payment_type : payment_type, delivery_type : delivery_type, std_del : std_del, ship_w_mm : ship_w_mm, ship_o_mm : ship_o_mm, appointment : appointment, inp_return : inp_return, inp_warranty : inp_warranty, cust_del_date : cust_del_date, shipping_fee : shipping_fee, remitt_contact_no : remitt_contact_no, remitt_acct_name : remitt_acct_name, cov_area : cov_area},
     type : "POST",
     dataType : "JSON",
@@ -3755,6 +3993,7 @@ function save_ship(){
   var ship_id = $("#ship_id").val();
 
   $.ajax({
+    async : true, 
     data : {csrf_name : csrf_name, ship_courier : ship_courier, ship_kg : ship_kg, ship_mm : ship_mm, ship_luz : ship_luz, ship_vis : ship_vis, ship_min : ship_min, ship_id : ship_id},
     type : "POST",
     dataType : "JSON",
@@ -4169,10 +4408,251 @@ $("#impInp").val(null);
 
 }
 
+function save_prov_city(){
+
+    var prov_area = $("#coverage-group").attr("data-id");
+    var prov_city = new Array();
+    var status = 1;
+    var title = "";
+
+    if (prov_area == "1"){        
+        $('.cov_area').each(function () {
+            if (this.checked) {
+                city = {
+                    "area" : prov_area,
+                    "prov" : "52",
+                    "city" : $(this).val()
+                };
+                prov_city.push(city);
+            }
+        })
+
+        if (prov_city.length == "0"){
+            status = 0;
+            title = "Please Select City";
+        }
+    }else{
+
+        $("#tbl-prov-city tbody tr").each(function(row, tr){
+            city = {
+                "area" : prov_area,
+                "prov" : $(tr).find("td:eq(0)").attr("data-id"),
+                "city" : $(tr).find("td:eq(1)").attr("data-id")
+            };
+            prov_city.push(city);
+        })
+
+        if (prov_city.length == "0"){
+            status = 0;
+            title = "Please Add City";
+        }
+
+    }
+
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    if (status == 0){
+        swal({
+            type : "warning",
+            title : title
+        })
+    }else{
+        $.ajax({
+            async : true,
+            data : {csrf_name : csrf_name, prov_city : prov_city, area : prov_area},
+            type : "POST",
+            dataType : "JSON",
+            url : base_url + "Outletko_profile/insert_prov_city",
+            success : function(result){
+                $("input[name=csrf_name]").text(result.token);
+                swal({
+                    type : "success",
+                    title : "Successfully Saved"
+                }, function(){
+                    coverage_area($("#coverage-group").attr("data-id"));
+                })
+            }, error : function(err){
+                console.log(err.responseText);
+            }
+        });    
+    }
+
+}   
+
+// Coverage Shipping
+function coverage_ship_area(){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var area = $("#cov-ship-area").val();
+
+    $('#cov-ship-prov :not(:first-child)').remove();
+    $('#cov-ship-city :not(:first-child)').remove();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, area : area},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/coverage_ship_area",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            var data = result.result;
+
+            for (let i = 0; i < data.length; i++) {
+                $("#cov-ship-prov").append("<option value='"+data[i].prov_id+"'>"+data[i].prov_desc+"</option>");
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+function coverage_ship_prov(){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var prov = $("#cov-ship-prov").val();
+
+    $('#cov-ship-city :not(:first-child)').remove();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, prov : prov},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/coverage_ship_prov",
+        success : function(result){ 
+            $("input[name=csrf_name]").val(result.token);
+
+            var data = result.result;
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                $("#cov-ship-city").append("<option value='"+data[i].city_id+"'>"+data[i].city_desc+"</option>");
+            }
+
+        }, error : function(err){
+            console.log(err.responseText)
+        }
+    })
+
+}
+
+function clear_cov_ship(){
+    $("#cov-ship-id").val("0");    
+    $("#cov-ship-courier").attr("data-id", "");
+    $("#cov-ship-courier").val("");    
+    $("#cov-ship-area").val("");    
+    $("#cov-ship-prov").val("");    
+    $("#cov-ship-city").val("");    
+    $("#cov-ship-kg").val("");    
+    $("#cov-ship-fee").val("");    
+    $('#cov-ship-prov :not(:first-child)').remove();
+    $('#cov-ship-city :not(:first-child)').remove();
+
+}
+
+function check_coverage_ship(){
+    var courier = $("#cov-ship-courier").attr("data-id");
+    var area = $("#cov-ship-area").val();
+    var province = $("#cov-ship-prov").val();
+    var city = $("#cov-ship-city").val();
+    var weight = $("#cov-ship-kg").val();
+    var amount = $("#cov-ship-fee").val();
+
+    if (courier.length <= 0 || area.length <= 0 || province.length <= 0 || city.length <= 0 || weight.length <= 0 || amount.length <= 0){
+        swal({
+            type : "warning",
+            title : "Please input all requried fields"
+        })
+    }else{
+        save_coverage_ship();
+    }
+}
+
+function save_coverage_ship(){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var courier = $("#cov-ship-courier").attr("data-id");
+    var area = $("#cov-ship-area").val();
+    var province = $("#cov-ship-prov").val();
+    var city = $("#cov-ship-city").val();
+    var weight = $("#cov-ship-kg").val();
+    var amount = $("#cov-ship-fee").val();
+    var id = $("#cov-ship-id").val();
+
+    $.ajax({
+        async : true,
+        data : {csrf_name : csrf_name, courier : courier, area : area, province : province, city : city, weight : weight, amount : amount, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/save_coverage_ship",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            clear_cov_ship();
+            index();
+            swal({
+                type : "success",
+                title : "Successfully Saved"
+            }, function(){
+                $("#cov-ship-id").val("0");    
+            })
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    });
+
+}
+
+function edit_coverage_ship(row, id){
+    clear_cov_ship();
+
+    $("#cov-ship-id").val(id);    
+    $("#cov-ship-courier").attr("data-id", $("#tbl-cov-ship tr:eq("+row+")").find(".courier").attr("data-id"));
+    $("#cov-ship-courier").val($("#tbl-cov-ship tr:eq("+row+")").find(".courier").text());    
+    $("#cov-ship-area").val($("#tbl-cov-ship tr:eq("+row+")").find(".area").attr("data-id"));    
+    $("#cov-ship-prov").val($("#tbl-cov-ship tr:eq("+row+")").find(".prov").attr("data-id"));    
+    $("#cov-ship-city").val($("#tbl-cov-ship tr:eq("+row+")").find(".city").attr("data-id"));    
+    $("#cov-ship-kg").val($("#tbl-cov-ship tr:eq("+row+")").find(".weight").text());    
+    $("#cov-ship-fee").val($("#tbl-cov-ship tr:eq("+row+")").find(".amount").text());    
+
+    coverage_ship_area();
+    $("#modal-coverage-ship").modal("show");
+
+    setTimeout(function(){ 
+        $("#cov-ship-prov").val($("#tbl-cov-ship tr:eq("+row+")").find(".prov").attr("data-id"));    
+        coverage_ship_prov();
+    }, 200);
+
+    setTimeout(function(){ 
+        $("#cov-ship-city").val($("#tbl-cov-ship tr:eq("+row+")").find(".city").attr("data-id"));    
+    }, 500);
+
+}
+
+function del_coverage_ship(id){
+    
+    var csrf_name = $("input[name=csrf_name]").val();
+    
+    $.ajax({
+        async : true,
+        data : {csrf_name : csrf_name, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/del_coverage_ship",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            clear_prod_model();
+            index();
+
+            swal({
+                type : "success",
+                title : "Successfully Deleted"
+            })
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    });
 
 
 
 
-
-
+}
 

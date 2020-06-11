@@ -198,6 +198,7 @@ class Outletko_profile extends CI_Controller {
         $data['ol_products_rows'] = $ol_products->num_rows();
         $data['ol_products'] = $ol_products->result();
         $data['product_rows'] = $this->outletko_profile_model->get_product_count();
+        $data['coverage_ship'] = $this->outletko_profile_model->get_coverage_ship();
         $store_img = $this->outletko_profile_model->get_store_img();
         $data['products']="";
 
@@ -329,6 +330,39 @@ class Outletko_profile extends CI_Controller {
     public function check_linkname(){
         $link_name = $this->input->post("link_name");
         $data['result'] = $this->outletko_profile_model->check_linkname($link_name);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function coverage_area(){
+        $area = $this->input->post("area");
+        $data['province'] = $this->outletko_profile_model->get_coverage_province($area);
+        $data['city'] = $this->outletko_profile_model->get_coverage_city($area);
+
+        if ($area == "1"){
+            $data['result'] = $this->outletko_profile_model->coverage_city("52");
+        }else{
+            $data['result'] = $this->outletko_profile_model->coverage_area($area);
+        }
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function coverage_city(){
+        $province = $this->input->post("province");
+        $data['result'] = $this->outletko_profile_model->coverage_city($province);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function coverage_ship_area(){
+        $data['result'] = $this->outletko_profile_model->get_coverage_province($this->input->post("area"));
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function coverage_ship_prov(){
+        $data['result'] = $this->outletko_profile_model->get_coverage_city_prov($this->input->post("prov"));
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -680,6 +714,37 @@ class Outletko_profile extends CI_Controller {
     public function save_remittance(){
         $array = $this->input->post("array");
         $data['result'] = $this->outletko_profile_model->save_remittance($array);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function insert_prov_city(){
+        $data['result'] = $this->outletko_profile_model->insert_prov_city($this->input->post("prov_city"), $this->input->post("area"));
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function save_coverage_ship(){
+        $array = array();
+
+        $array = array(
+            "comp_id" => $this->session->userdata("comp_id"),
+            "courier" => $this->input->post("courier"),
+            "area" => $this->input->post("area"),
+            "province" => $this->input->post("province"),
+            "city" => $this->input->post("city"),
+            "weight" => $this->input->post("weight"),
+            "amount" => $this->input->post("amount"),
+            "date_insert" => date("Y-m-d H:i:s")
+        );
+
+        $data['result'] = $this->outletko_profile_model->save_coverage_ship($array, $this->input->post("id"));
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function del_coverage_ship(){
+        $data['result'] = $this->outletko_profile_model->del_coverage_ship($this->input->post("id"));
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }

@@ -65,6 +65,16 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function coverage_area($area){
+        $query = $this->db2->query("SELECT * FROM province WHERE island_group = ?" , array($area))->result();
+        return $query;
+    }
+
+    public function coverage_city($province){
+        $query = $this->db2->query("SELECT * FROM city WHERE province_id = ? ORDER BY city_desc ASC", array($province))->result();
+        return $query;
+    }
+
 
     public function get_profile_dtl($id){
         $query = $this->db2->query("
@@ -275,6 +285,72 @@ class Outletko_profile_model extends CI_Model {
             return 1;
         }
 
+    }
+
+    public function get_coverage_province($area){
+        $query = $this->db2->query("SELECT 
+        `province`.`id` AS prov_id,
+        `province`.`province_desc` AS prov_desc
+        FROM account_coverage_city 
+        LEFT JOIN province ON 
+        `account_coverage_city`.`prov` = `province`.`id` 
+        WHERE comp_id = ? AND area = ?
+        GROUP BY prov_id", array($this->session->userdata("comp_id"), $area))->result();
+        return $query;
+    }
+
+    public function get_coverage_city($area){
+        $query = $this->db2->query("SELECT 
+        `province`.`id` AS prov_id,
+        `account_coverage_city`.`city` AS city_id,
+        `province`.`province_desc` AS prov_desc, 
+        `city`.`city_desc` AS city_desc
+        FROM account_coverage_city 
+        LEFT JOIN province ON 
+        `account_coverage_city`.`prov` = `province`.`id` 
+        LEFT JOIN city ON 
+        `account_coverage_city`.`city` = `city`.`id` 
+        WHERE  comp_id = ? AND area = ?", array($this->session->userdata("comp_id"), $area))->result();
+        return $query;
+    }
+
+    public function get_coverage_city_prov($prov){
+        $query = $this->db2->query("SELECT 
+        `province`.`id` AS prov_id,
+        `account_coverage_city`.`city` AS city_id,
+        `province`.`province_desc` AS prov_desc, 
+        `city`.`city_desc` AS city_desc
+        FROM account_coverage_city 
+        LEFT JOIN province ON 
+        `account_coverage_city`.`prov` = `province`.`id` 
+        LEFT JOIN city ON 
+        `account_coverage_city`.`city` = `city`.`id` 
+        WHERE  comp_id = ? AND `account_coverage_city`.`prov` = ?", array($this->session->userdata("comp_id"), $prov))->result();
+        return $query;
+    }
+
+    public function get_coverage_ship(){
+        $query = $this->db2->query("SELECT 
+        `courier`.`id` AS courier_id,
+        `courier`.`courier` AS courier_name,
+        `account_coverage_shipping`.`id`,
+        `account_coverage_shipping`.`area`,
+        `account_coverage_shipping`.`weight`,
+        `account_coverage_shipping`.`amount`,
+        `province`.`id` AS prov_id, 
+        `city`.`id` AS city_id,
+        `province`.`province_desc` AS prov_desc,
+        `city`.`city_desc` AS city_desc
+        FROM 
+        account_coverage_shipping
+        LEFT JOIN courier ON 
+        courier.id = account_coverage_shipping.courier
+        LEFT JOIN province ON
+        province.id = account_coverage_shipping.province
+        LEFT JOIN city ON 
+        city.id = account_coverage_shipping.city
+        WHERE comp_id = ?", array($this->session->userdata("comp_id")))->result();
+        return $query;
     }
 
     //SAVING
@@ -561,6 +637,40 @@ class Outletko_profile_model extends CI_Model {
 
     }
     
+    public function insert_prov_city($data, $area){
+        $query = $this->db2->query("SELECT * FROM account_coverage_city WHERE comp_id = ? AND area = ?", array($this->session->userdata("comp_id"), $area))->result();
+
+        if (!empty($query)){
+            $this->db2->where("comp_id", $this->session->userdata("comp_id"));
+            $this->db2->where("area", $area);
+            $this->db2->delete("account_coverage_city");
+        }
+
+        if (!empty($data)){
+            foreach ($data as $key => $value) {
+                $data[$key]['comp_id'] = $this->session->userdata("comp_id");
+                $this->db2->insert("account_coverage_city", $data[$key]);
+            }    
+        }
+
+    }
+
+    public function save_coverage_ship($data, $id){
+
+        if ($id != "0"){
+            $this->db2->where("id", $id);
+            $this->db2->update("account_coverage_shipping", $data);
+        }else{
+            $this->db2->insert("account_coverage_shipping", $data);
+        }
+
+    }
+
+    public function del_coverage_ship($id){
+        $this->db2->where("id", $id);
+        $this->db2->delete("account_coverage_shipping");
+    }
+
     // profile picture
     
     public function upload_profile_image($data){

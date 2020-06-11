@@ -88,9 +88,18 @@ body{
 	cursor: pointer;
 }
 
+.cursor-not-allowed{
+    cursor: not-allowed;
+}
+
 .btn-orange {
 	background: orange;
 }
+
+.btn-outline-orange {
+    border: 1px solid orange;
+}
+
 
 .btn-green2{
 	background: #67B073;

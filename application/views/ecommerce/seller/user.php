@@ -613,36 +613,64 @@
                                         <div class="row">	
 
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
-                                                    <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-2 col-md-4 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
+                                                            <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-10 col-md-8 col-sm-12">
+                                                        <button class="btn btn-outline-orange py-0" id="btn-cov-mm">Select City/Province</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="custom-control custom-checkbox cursor-pointer">
-                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_luz" name="cov_2" value="6">
-                                                    <label class="custom-control-label cursor-pointer" for="cov_luz">Luzon</label>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-2 col-md-4 col-sm-12">
+                                                        <div class="custom-control custom-checkbox cursor-pointer">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_luz" name="cov_2" value="6">
+                                                            <label class="custom-control-label cursor-pointer" for="cov_luz">Luzon</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-10 col-md-8 col-sm-12">
+                                                        <button class="btn btn-outline-orange py-0" id="btn-cov-luz">Select City/Province</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="custom-control custom-checkbox cursor-pointer">
-                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_vis" name="cov_3" value="6">
-                                                    <label class="custom-control-label cursor-pointer" for="cov_vis">Visayas</label>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-2 col-md-4 col-sm-12">
+                                                        <div class="custom-control custom-checkbox cursor-pointer">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_vis" name="cov_3" value="6">
+                                                            <label class="custom-control-label cursor-pointer" for="cov_vis">Visayas</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-10 col-md-8 col-sm-12">
+                                                        <button class="btn btn-outline-orange py-0" id="btn-cov-vis">Select City/Province</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="custom-control custom-checkbox cursor-pointer">
-                                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_min" name="cov_4" value="6">
-                                                    <label class="custom-control-label cursor-pointer" for="cov_min">Mindanao</label>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-2 col-md-4 col-sm-12">
+                                                        <div class="custom-control custom-checkbox cursor-pointer">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_min" name="cov_4" value="6">
+                                                            <label class="custom-control-label cursor-pointer" for="cov_min">Mindanao</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-10 col-md-8 col-sm-12">
+                                                        <button class="btn btn-outline-orange py-0" id="btn-coz-min">Select City/Province</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 										
 										<div class="row" id="div-shipping-fee">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right">
-												<button class="btn btn-outline-success px-5 ml-auto mb-2" id="btn_add_ship" data-toggle="modal" data-target="#modal_ship">Add Shipping Fee</button>
+												<button class="btn btn-outline-success px-5 ml-auto mb-2" id="btn_add_ship" data-toggle="modal" data-target="#modal-coverage-ship">Add Shipping Fee</button>
 											</div>
-											<div class="col-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px; overflow: auto;">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px; overflow: auto;" hidden>
 												<table class="table table-bordered table-sm" id="tbl-ship-fee">
 													<thead>
 														<tr>
@@ -659,6 +687,22 @@
 													</tbody>
 												</table>
 											</div>
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px; overflow:auto;">
+                                                <table class="table table-bordered table-sm" id="tbl-cov-ship">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Courier</th>
+                                                            <th>Area</th>
+                                                            <th>Province</th>
+                                                            <th>City</th>
+                                                            <th>Weight(Kg)</th>
+                                                            <th>Fee</th>
+                                                            <th colspan="2" class="text-center" style="width: 5%;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
 										</div>
 
 										<div class="row pt-3" hidden>
@@ -2197,6 +2241,161 @@
             </div>
             <div class="modal-footer py-1">
                 <button type="button" id="close-modal-products-image" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL COVERAGE AREA -->
+<div class="modal" id="modal-coverage">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title font-weight-600">City / Provinces</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body py-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <span class="font-weight-600 h4" id="coverage-group">Metro Manila</span>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 200px; overflow: auto;"> 
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-4 pt-2" id="coverage_area"> 
+
+                            <div class="custom-control custom-checkbox" hidden>
+                                <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
+                                <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
+                            </div>                    
+
+                        </div>
+                    </div>
+                    <div class="row pt-2" id="div-coverage-city">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="row">
+                                <div class="col-12 col-lg-5 col-md-5 col-sm-12 pad-right">
+                                    <select class="form-control" id="cov-prov">
+                                        <option value="" hidden>Province</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-lg-5 col-md-6 col-sm-12 pad-center">
+                                    <select  class="form-control" id="cov-prov-city">
+                                        <option value="0">All</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-lg-2 col-md-1 col-sm-12 pad-left">
+                                    <button class="btn btn-outline-orange" id="add-prov-city">Add</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <table class="table table-bordered table-sm" id="tbl-prov-city">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 40%;">Province</th>
+                                                <th style="width: 55%;">City</th>
+                                                <th style="width: 5%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" class='btn btn-orange' id="btn-save-prov-city">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-coverage-ship">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title">Shipping Fee</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="cov-ship-id" value="0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-2">
+                            <span class="text-red font-italic">Note: Search "My Store Shipping" for personal courier service</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span class="font-weight-600">Courier <span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="cov-ship-courier" data-id = "" placeholder="Search Courier Service">
+                        </div>
+                    </div> 
+                    <div class="row mt-1">
+                        <div class="col-4">
+                            <span class="font-weight-600">Area <span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <select class="form-control" id="cov-ship-area">
+                                <option value="" hidden>Area</option>
+                                <option value="1">Metro Manila</option>
+                                <option value="2">Luzon</option>
+                                <option value="3">Visayas</option>
+                                <option value="4">Mindanao</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4">
+                            <span class="font-weight-600">Province<span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <select name="" id="cov-ship-prov" class="form-control">
+                                <option value="0">All</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4">
+                            <span class="font-weight-600">City <span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <select name="" id="cov-ship-city" class="form-control">
+                                <option value="0">All</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4">
+                            <span class="font-weight-600">Kilo (Kg) <span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control text-right" value="0" id="cov-ship-kg">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4">
+                            <span class="font-weight-600">Amount Fee <span class="text-red">*</span></span>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control text-right" value="0" id="cov-ship-fee">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success"  id="btn-save-cov-ship">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clear_cov_ship();">Cancel</button>
             </div>
         </div>
     </div>
