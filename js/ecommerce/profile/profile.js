@@ -1,12 +1,18 @@
 $(document).ready(function(){
 
-  $("#div-details-2").hide();
-  $("#prod_qty").number(true, 0);
-  $("#div-product-details").hide();
-  $("#alert-pc").hide();
-  $("#alert-phone").hide();
-  $(".div-store-img").css("background", "white");
-  $id = $("#id").val();
+    $("#div-details-2").hide();
+    $("#prod_qty").number(true, 0);
+    $("#div-product-details").hide();
+    $("#alert-pc").hide();
+    $("#alert-phone").hide();
+    $(".div-store-img").css("background", "white");
+    $id = $("#id").val();
+
+    $("#div-pop-mm").hide();
+    $("#div-pop-luz").hide();
+    $("#div-pop-vis").hide();
+    $("#div-pop-min").hide();
+
 
     // console.log($("input[name=csrf_name]").val());
 
