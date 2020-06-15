@@ -616,7 +616,7 @@
                                                 <div class="row">
                                                     <div class="col-12 col-lg-2 col-md-4 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer del_cov" id="cov_mm" name="cov_1" value="1">
                                                             <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
                                                         </div>
                                                     </div>
@@ -629,7 +629,7 @@
                                                 <div class="row">
                                                     <div class="col-12 col-lg-2 col-md-4 col-sm-12">
                                                         <div class="custom-control custom-checkbox cursor-pointer">
-                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_luz" name="cov_2" value="6">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer del_cov" id="cov_luz" name="cov_2" value="2">
                                                             <label class="custom-control-label cursor-pointer" for="cov_luz">Luzon</label>
                                                         </div>
                                                     </div>
@@ -642,7 +642,7 @@
                                                 <div class="row">
                                                     <div class="col-12 col-lg-2 col-md-4 col-sm-12">
                                                         <div class="custom-control custom-checkbox cursor-pointer">
-                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_vis" name="cov_3" value="6">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer del_cov" id="cov_vis" name="cov_3" value="3">
                                                             <label class="custom-control-label cursor-pointer" for="cov_vis">Visayas</label>
                                                         </div>
                                                     </div>
@@ -654,8 +654,8 @@
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-2 col-md-4 col-sm-12">
-                                                        <div class="custom-control custom-checkbox cursor-pointer">
-                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_min" name="cov_4" value="6">
+                                                        <div class="custom-control custom-checkbox cursor-pointer del_cov">
+                                                            <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_min" name="cov_4" value="4">
                                                             <label class="custom-control-label cursor-pointer" for="cov_min">Mindanao</label>
                                                         </div>
                                                     </div>
@@ -2348,10 +2348,10 @@
                         <div class="col-8">
                             <select class="form-control" id="cov-ship-area">
                                 <option value="" hidden>Area</option>
-                                <option value="1">Metro Manila</option>
+                                <!-- <option value="1">Metro Manila</option>
                                 <option value="2">Luzon</option>
                                 <option value="3">Visayas</option>
-                                <option value="4">Mindanao</option>
+                                <option value="4">Mindanao</option> -->
                             </select>
                         </div>
                     </div>
@@ -2377,7 +2377,7 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-4">
-                            <span class="font-weight-600">Kilo (Kg) <span class="text-red">*</span></span>
+                            <span class="font-weight-600">Kilo (Kg) <span class="text-red" hidden>*</span></span>
                         </div>
                         <div class="col-8">
                             <input type="text" class="form-control text-right" value="0" id="cov-ship-kg">

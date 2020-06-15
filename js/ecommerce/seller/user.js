@@ -757,6 +757,10 @@ $(document).ready(function(){
 
     //Coverage Shipping Fee
 
+    $("#btn_add_ship").click(function(){
+        coverage_ship();
+    });
+
     $("#cov-ship-courier").autocomplete({
         select: function(event, ui){
             $("#cov-ship-courier").attr("data-id", ui.item.id);
@@ -793,7 +797,7 @@ $(document).ready(function(){
     });
 
     $("#btn-save-cov-ship").click(function(){
-        save_coverage_ship();
+        check_coverage_ship();
     });
 
 });
@@ -1295,6 +1299,9 @@ function coverage_area(area){
     var csrf_name = $("input[name=csrf_name]").val();
     var desc = "";
     $("#coverage-group").attr("data-id", area);
+    $("#tbl-prov-city tbody").empty();
+    $('#cov-prov :not(:first-child)').remove();
+
     $.ajax({
         data : {area : area, csrf_name : csrf_name},
         type : "POST",
@@ -2000,8 +2007,8 @@ function index(){
 
             $("#tbl-cov-ship tbody").append("<tr><td data-id='"+cov_ship[i].courier_id+"' class='courier'>" + cov_ship[i].courier_name +
             "</td><td class='area' data-id='"+cov_ship[i].area+"'>" + area + 
-            "</td><td class='prov' data-id='"+cov_ship[i].prov_id+"'>" + cov_ship[i].prov_desc + 
-            "</td><td class='city' data-id='"+cov_ship[i].city_id+"'>" + cov_ship[i].city_desc + 
+            "</td><td class='prov' data-id='"+cov_ship[i].prov_id+"'>" + (cov_ship[i].prov_desc == null ? "All" : cov_ship[i].prov_desc) + 
+            "</td><td class='city' data-id='"+cov_ship[i].city_id+"'>" + (cov_ship[i].city_desc == null ? "All" : cov_ship[i].city_desc) + 
             "</td><td class='weight'>" + $.number(cov_ship[i].weight, 0) + 
             "</td><td class='amount'>" + $.number(cov_ship[i].amount, 2) + 
             "</td><td>" + "<button class='btn btn-outline-primary py-0' onclick='edit_coverage_ship("+(i + 1)+","+cov_ship[i].id+")'><i class='fa fa-edit'></i></button>" + 
@@ -4480,6 +4487,19 @@ function save_prov_city(){
 }   
 
 // Coverage Shipping
+
+function coverage_ship(){
+    $('#cov-ship-area :not(:first-child)').remove();
+
+    $('.del_cov').each(function () {
+        if (this.checked) {
+            $("#cov-ship-area").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
+        }
+    });
+
+
+}
+
 function coverage_ship_area(){
     var csrf_name = $("input[name=csrf_name]").val();
     var area = $("#cov-ship-area").val();
@@ -4498,6 +4518,18 @@ function coverage_ship_area(){
 
             for (let i = 0; i < data.length; i++) {
                 $("#cov-ship-prov").append("<option value='"+data[i].prov_id+"'>"+data[i].prov_desc+"</option>");
+                if (area == "1"){
+                    $("#cov-ship-prov").val(data[i].prov_id);
+                }
+            }
+
+            if (area == "1"){
+                $('#cov-ship-prov :first-child').attr("hidden", true);
+                $("#cov-ship-prov").attr("disabled", true);
+                coverage_ship_prov();
+            }else{
+                $('#cov-ship-prov :first-child').attr("hidden", false);
+                $("#cov-ship-prov").attr("disabled", false);
             }
 
         }, error : function(err){
@@ -4556,7 +4588,7 @@ function check_coverage_ship(){
     var weight = $("#cov-ship-kg").val();
     var amount = $("#cov-ship-fee").val();
 
-    if (courier.length <= 0 || area.length <= 0 || province.length <= 0 || city.length <= 0 || weight.length <= 0 || amount.length <= 0){
+    if (courier == "0" || courier.length <= 0 || area.length <= 0 || province.length <= 0 || city.length <= 0 || weight.length <= 0 || amount.length <= 0){
         swal({
             type : "warning",
             title : "Please input all requried fields"
@@ -4643,7 +4675,8 @@ function del_coverage_ship(id){
 
             swal({
                 type : "success",
-                title : "Successfully Deleted"
+                title : "Successfully Deleted",
+                timer : 1000
             })
 
         }, error : function(err){

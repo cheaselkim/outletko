@@ -338,13 +338,14 @@ class User_registry extends CI_Controller {
 	}	
 
 	public function data_query(){
-		$trans_date = $this->input->post("trans_date");
+        $fdate = $this->input->post("fdate");
+        $tdate = $this->input->post("tdate");
 		$keyword = $this->input->post("keyword");
 		$account_status = $this->input->post("account_status");
 		$account_class = $this->input->post("account_class");
 		$app_func = $this->input->post("app_func");
 
-		$result = $this->user_registry_model->data_query($trans_date, $keyword, $account_status, $account_class);
+		$result = $this->user_registry_model->data_query($fdate, $tdate, $keyword, $account_status, $account_class);
 		$data['result'] = tbl_query($result, $app_func);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);

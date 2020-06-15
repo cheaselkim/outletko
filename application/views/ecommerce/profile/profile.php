@@ -200,7 +200,7 @@
                                         <br>
                                         <span id="prod_payment_type" class="font-size-15"></span><br>
                                         <span id="prod_delivery_type" class="font-size-15 " hidden></span>
-                                        <span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span></span><br>
+                                        <span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
                                         <span id="prod_del_std" class="font-size-15 "></span><br>
                                         <span id="prod_return" class="font-size-15 "></span><br>
                                         <span id="prod_warranty" class="font-size-15 "></span>
@@ -759,3 +759,57 @@
 
 </div>
 
+
+<div class="container-fluid" id="popover-content">
+    <div class="row"> 
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+
+            <div class="row" id="div-pop-mm">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-mm">
+                    <p id="pop-mm" class="mb-0"></p>
+                </div>
+            </div>
+
+            <div class="row" id="div-pop-luz">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span>Luzon :</span>
+
+                    <div class="row pl-2">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                            <div id="pop-luz"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" id="div-pop-vis">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span>Visayas :</span>
+
+                    <div class="row pl-2">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                            <p id="pop-vis" class="mb-0"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" id="div-pop-min">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span>Mindanao :</span>
+
+                    <div class="row pl-2">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                            <p id="pop-min" class="mb-0"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

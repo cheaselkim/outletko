@@ -71,7 +71,11 @@ class Buyer extends CI_Controller {
 	}
 
 	public function courier(){
-		$data['result'] = $this->buyer_model->courier($this->input->post("id"), $this->input->post("total_weight"));
+        $id = $this->input->post("id"); 
+        $weight = $this->input->post("total_weight");
+        $city = $this->input->post("city");
+        $prov = $this->input->post("prov");
+        $data['result'] = $this->buyer_model->courier($id, $weight, $city, $prov);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -116,6 +120,7 @@ class Buyer extends CI_Controller {
                     "img_location" => $value->img_location,
                     "product_name" => $value->product_name,
                     "product_unit_price" => $product_price,
+                    "prod_avail" => $value->product_available,
                     "prod_qty" => $value->prod_qty,
                     "prod_var1" => $prod_var1,
                     "prod_var2" => $prod_var2,
@@ -229,7 +234,8 @@ class Buyer extends CI_Controller {
                     "product_name" => $value->product_name,
                     "prod_var1" => $prod_var1,
                     "prod_var2" => $prod_var2,
-                    "product_unit_price" => $prod_price
+                    "product_unit_price" => $prod_price,
+                    "product_weight" => $value->product_weight
                 );
 
             }

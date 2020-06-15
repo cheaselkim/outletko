@@ -8,7 +8,10 @@ if (!function_exists("tbl_products_no_order")){
         $account_id = "";
         $variation = "";
         $div = 0;
-        
+        $checked = "";
+        $bg = "";
+        $prod_hidden = "";
+
         for ($x=0; $x < COUNT($query); $x++) { 
         
 			$img = unserialize($query[$x]['img_location']);
@@ -17,16 +20,28 @@ if (!function_exists("tbl_products_no_order")){
 
             if (!empty($query[$x]['prod_var1'])){
                 $variation = "<span>Variation : ".$query[$x]['prod_var1']."</span>";
+            }else{
+                // $variation = "<span>Variation : N\A</span>";
             }
 
             if (!empty($query[$x]['prod_var1']) && !empty($query[$x]['prod_var2'])){
                 $variation = "<span>Variation : ".$query[$x]['prod_var1'].", ".$query[$x]['prod_var2']."</span>";
             }
 
+            if ($query[$x]['prod_avail'] == "1"){
+                $checked = "checked";
+                $bg = "";
+                $prod_hidden = "hidden";
+            }else{
+                $checked = "disabled";
+                $bg = "background:#D3D3D3";
+                $prod_hidden = "";
+            }
+
             $checkbox = '
-            <div class="col-12 text-center"  style="height: 65px;padding-top: 10px;">           
+            <div class="col-12 text-center"  style="height: 75px;padding-top: 10px;">           
                 <div class="custom-control custom-checkbox checkbox-xl" style="padding-left: 1.0rem;">
-                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" data-prod-var1="'.$query[$x]['prod_var1_id'].'" data-prod-var-2="'.$query[$x]['prod_var2_id'].'" data-item="'.$query[$x]['item_id'].'" checked>
+                <input type="checkbox" name="checkbox_'.$i.'" id="checkbox_'.$i.'" class="custom-control-input" value="'.$query[$x]['prod_id'].'" data-id="'.$i.'" data-prod-var1="'.$query[$x]['prod_var1_id'].'" data-prod-var-2="'.$query[$x]['prod_var2_id'].'" data-item="'.$query[$x]['item_id'].'" '.$checked.'>
                 <label for="checkbox_'.$i.'" class="custom-control-label"></label>
                     </div>
             </div>';
@@ -57,11 +72,11 @@ if (!function_exists("tbl_products_no_order")){
 									<button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$div.')">Proceed to Checkout</button>
 								</div>
 							</div>
-							<div class="row border-1" >
+							<div class="row border-1" style="'.$bg.'">
 								<div class="col-4 col-lg-1 col-md-3 col-sm-4"  style="border-right: 1px solid gray;">
 									<div class="row">
 										'.$checkbox.'
-										<div class="col-12 text-center" style="height: 65px;border-top: 1px solid gray;padding-top: 13px;">
+										<div class="col-12 text-center" style="height: 75px;border-top: 1px solid gray;padding-top: 20px;">
 											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$query[$x]['item_id'].')"><i class="fas fa-minus-circle"></i></button>
 										</div> 
 									</div>
@@ -91,17 +106,22 @@ if (!function_exists("tbl_products_no_order")){
 									</div>
 									<div class="row">
 										<div class="col-6 col-lg-3 col-md-10 col-sm-6 pt-2">
-											<div class="input-group mb-3">
+											<div class="input-group mb-0">
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>
 												</div>
-												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'">
+												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'"  style="'.$bg.'">
 												<div class="input-group-append">
 													<button class="btn btn-outline-dark btn-append btn_plus" id="btn_plus_'.$i.'" value="'.$i.'"><i class="fas fa-plus"></i></button>
 												</div>
 											</div>											
 										</div>
-									</div>
+                                    </div>
+                                    <div class="row" '.$prod_hidden.'>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <span class="font-italic text-red">This product is not available</span>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						';
@@ -112,11 +132,11 @@ if (!function_exists("tbl_products_no_order")){
                     <label for="checkbox_'.$i.'" class="css-label"></label>
                 </div>';
 
-                $output .= '<div class="row border-1 ">
+                $output .= '<div class="row border-1 "  style="'.$bg.'">
 								<div class="col-4 col-lg-1 col-md-3 col-sm-4"  style="border-right: 1px solid gray;">
                                     <div class="row">
                                         '.$checkbox.'
-										<div class="col-12 text-center" style="height: 65px;border-top: 1px solid gray;padding-top: 13px;">
+										<div class="col-12 text-center" style="height: 75px;border-top: 1px solid gray;padding-top: 20px;">
 											<button class="btn btn-danger btn_del" id="btn_del" onclick="remove_item('.$query[$x]['item_id'].')"><i class="fas fa-minus-circle"></i></button>
 										</div> 
 									</div>
@@ -146,17 +166,22 @@ if (!function_exists("tbl_products_no_order")){
 									</div>
 									<div class="row">
 										<div class="col-6 col-lg-3 col-md-10 col-sm-6 pt-2">
-											<div class="input-group mb-3">
+											<div class="input-group mb-0">
 												<div class="input-group-prepend">
 													<button class="btn btn-outline-dark btn-append btn_minus" id="btn_minus_'.$i.'" value="'.$i.'"><i class="fas fa-minus"></i></button>
 												</div>
-												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'">
+												<input type="text" class="form-control text-center px-1 input-qty prod_qty" id="prod_qty_'.$i.'" value="'.$query[$x]['prod_qty'].'" data-id="'.$i.'"  style="'.$bg.'">
 												<div class="input-group-append">
 													<button class="btn btn-outline-dark btn-append btn_plus" id="btn_plus_'.$i.'" value="'.$i.'"><i class="fas fa-plus"></i></button>
 												</div>
 											</div>											
 										</div>
-									</div>
+                                    </div>
+                                    <div class="row" '.$prod_hidden.'>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <span class="font-italic text-red">This product is not available</span>
+                                        </div>
+                                    </div>                                    
 								</div>
 							</div>';
 			}

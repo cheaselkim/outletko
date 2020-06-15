@@ -131,6 +131,21 @@ class Profile_model extends CI_Model {
         return $query;
     }
 
+    public function get_delivery_area($comp_id){
+        $query = $this->db2->query("SELECT 
+        `account_coverage_city`.`area`,
+        `province`.`province_desc` AS prov_desc,
+        GROUP_CONCAT(DISTINCT city_desc SEPARATOR ', ') AS city_desc
+        FROM account_coverage_city
+        LEFT JOIN city ON 
+        `account_coverage_city`.`city` = `city`.`id`
+        LEFT JOIN province ON 
+        `account_coverage_city`.`prov` = `province`.`id`
+        WHERE comp_id = ? 
+        GROUP BY `account_coverage_city`.`area`, `account_coverage_city`.`prov`
+        ORDER BY `account_coverage_city`.`area`, `account_coverage_city`.`prov` ", array($comp_id))->result();
+        return $query;
+    }
 
     public function insert_prod($data){
         $query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $data['prod_id'], $data['prod_var1'], $data['prod_var2']))->result();

@@ -41,11 +41,15 @@
         <div class="col-xs-12 col-md-12">
           <div class="container">
             <div class="form-group row my-0" >
-              <div class="col-xs-12 col-md-3 pr-1 pl-0">
-                <label class="font-size-18">Transaction Date</label>
-                <input type="date" class="form-control" value="<?php echo date('Y-m-d') ?>" id="trans_date">
+              <div class="col-xs-12 col-md-2 pr-1 pl-0">
+                <label class="font-size-18">Trans Date (From)</label>
+                <input type="date" class="form-control" value="<?php echo date('Y-m-d', strtotime("Last Monday")) ?>" id="trans_fdate">
               </div>
-              <div class="col-xs-12 col-md-5 px-1">
+              <div class="col-xs-12 col-md-2 pr-1 pl-0">
+                <label class="font-size-18">(To)</label>
+                <input type="date" class="form-control" value="<?php echo date('Y-m-d') ?>" id="trans_tdate">
+              </div>
+              <div class="col-xs-12 col-md-6 px-1">
                 <label class="font-size-18">Keyword</label>
                 <input type="text" class="form-control" placeholder="Search Business Name, Account ID" id="keyword">
               </div>
@@ -56,7 +60,7 @@
                   <option value="0">Inactive</option>
                 </select>
               </div>
-              <div class="col-xs-12 col-md-2 pr-0 pl-1">
+              <div class="col-xs-12 col-md-2 pr-0 pl-1" hidden>
                 <label class="font-size-18">Account Class</label>
                 <select class="form-control" id="account_class">
                 </select>

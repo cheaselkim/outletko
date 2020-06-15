@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/pace-progress/css/pace.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/summernote/css/summernote-bs4.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
 
 

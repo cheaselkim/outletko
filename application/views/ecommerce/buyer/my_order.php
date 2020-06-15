@@ -763,6 +763,11 @@
 			</div>
 			<div class="modal-body pt-1 pb-3">
 				<div class="container-fluid px-0">
+                    <div class="row" id="div-del-not-avail">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                            <span class="text-red font-weight-600 font-size-20">Delivery is not available in your area.</span>
+                        </div>
+                    </div>
 					<div class="row">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 							<span>Delivery Type <span class="text-red">*</span></span>
@@ -771,19 +776,19 @@
 							</select>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row div-modal-delivery-details">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12" >
 							<span>Standard Delivery</span>
 							<input type="text" class="form-control" id="std_delivery" readonly>
 						</div>
 					</div>
-					<div class="row" id="div-courier">
+					<div class="row div-modal-delivery-details" id="div-courier">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 							<span>Courier</span>
 							<select class="form-control" id="courier"></select>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row div-modal-delivery-details">
 						<div class="col-12 col-lg-9 col-md-10 col-sm-12 mx-auto">
 							<div class="row">
 								<div class="col-12 col-lg-12 col-md-12 col-sm-12">

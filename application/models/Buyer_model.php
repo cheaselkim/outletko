@@ -64,20 +64,40 @@ class Buyer_model extends CI_Model {
         return $query;
     }
 
-    public function courier($id, $total_weight){
-        $query = $this->db2->query("SELECT 
-            account_courier.*,
+    public function courier($id, $weight, $city, $prov){
+        // $query = $this->db2->query("SELECT 
+        //     account_courier.*,
+        //     `courier`.`courier`
+        //     FROM account_courier
+        //     INNER JOIN courier ON 
+        //     `account_courier`.`courier_id` = `courier`.`id`
+        //     WHERE comp_id = ? AND `account_courier`.`ship_kg` >= ?
+        //     GROUP BY courier_id", array($id, $total_weight))->result();
+       
+        $city_query = $this->db2->query("SELECT * FROM account_coverage_city WHERE comp_id = ? AND city = ?", array($id, $city))->result();
+        $query = "";
+        if (!empty($city_query)){
+            $query = $this->db2->query("SELECT 
+            `account_coverage_shipping`.`id`,
+            `courier`.`id` AS courier_id,
             `courier`.`courier`
-            FROM account_courier
-            INNER JOIN courier ON 
-            `account_courier`.`courier_id` = `courier`.`id`
-            WHERE comp_id = ? AND `account_courier`.`ship_kg` >= ?
-            GROUP BY courier_id", array($id, $total_weight))->result();
+            FROM account_coverage_shipping
+            LEFT JOIN courier ON 
+            courier.`id` = `account_coverage_shipping`.`courier`
+            WHERE comp_id = ? AND 
+            province = ? AND city IN ?
+            AND `account_coverage_shipping`.`weight` >= ?
+            GROUP BY `courier`.`id`", array($id, $prov, array("0", $city), $weight))->result();    
+        }
+
+
         return $query;    
     }
 
     public function get_courier($id){
-        $query = $this->db2->query("SELECT * FROM account_courier WHERE id = ?", array($id))->result();
+        // $query = $this->db2->query("SELECT * FROM account_courier WHERE id = ?", array($id))->result();
+        $query = $this->db2->query("SELECT * FROM account_coverage_shipping WHERE id = ?", $id)->result();
+
         return $query;
     }
 

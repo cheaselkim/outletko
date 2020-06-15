@@ -108,8 +108,9 @@ $(document).ready(function(){
 	});
 
 	$("#delivery_type").change(function(){
+            $("#div-del-not-avail").hide();
 			$("#sched_date").val("");
-			$("#sched_time").val("");
+            $("#sched_time").val("");
 			$("#sched_date").prop("readonly", true);
 			$("#sched_time").prop("disabled", true);
 			$("#payment_type").prop("disabled", true);
@@ -123,6 +124,17 @@ $(document).ready(function(){
 			$("#sched_time").removeClass("bg-white");
 			$("#payment_type").prop("disabled", false);
 		}
+
+		if ($(this).val() == "2"){
+            get_courier();
+            $(".div-modal-delivery-details").hide();
+            // $("#div-courier").hide();
+		}else{
+            $(".div-modal-delivery-details").show();
+            courier();
+            // $("#div-courier").show();
+		}
+
 
 	});
 
@@ -205,7 +217,8 @@ $(document).ready(function(){
 			$("#bill_province").attr("data-id", ui.item.prov_id);
 			$("#bill_province").attr("data-island", ui.item.island_group);
 			// get_order_checkout($("#div_id").val());
-		},
+            courier();
+        },
 		source: function(req, add){
 		    var csrf_name = $("input[name=csrf_name]").val();
 			var city = $("#bill_city").val();
@@ -265,14 +278,6 @@ $(document).ready(function(){
 
 	$("#btn-modal-delivery").click(function(){
 		get_courier();
-	});
-
-	$("#delivery_type").change(function(){
-		if ($(this).val() == "3"){
-			$("#div-courier").show();
-		}else{
-			$("#div-courier").hide();
-		}
 	});
 	
 	$("#courier").change(function(){
@@ -415,7 +420,9 @@ function payment_type(){
 
 function courier(){
 	var id = $("#seller_id").val();
-	var csrf_name = $("input[name=csrf_name]").val();
+    var csrf_name = $("input[name=csrf_name]").val();
+    var city = $("#bill_city").attr("data-id");
+    var prov = $("#bill_province").attr("data-id");
 	var total_weight = "";
 	$("#courier").empty();
 
@@ -428,19 +435,22 @@ function courier(){
 		total_weight += weight_qty;
 	})
 
-	$.ajax({
-		data : {id : id, csrf_name : csrf_name, total_weight : total_weight},
+    var data = {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov};
+    // console.log(data);
+
+    $.ajax({
+		data : {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov},
 		type : "POST",
 		dataType : "JSON",
 		url : base_url + "Buyer/courier",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 			$("#courier").empty();
-
-			for (var i = 0; i < result.result.length; i++) {
+            // console.log(result.result);
+            for (var i = 0; i < result.result.length; i++) {
 				$("#courier").append("<option value='"+result.result[i].id+"'>"+result.result[i].courier+"</option>");
-			}
-
+            }
+            
 			get_courier();
 
 		}, error : function(err){
@@ -764,13 +774,21 @@ function get_order_checkout(div_id){
 				$("input[name=csrf_name]").val(result.token);
 				$("#delivery_type").empty();
 				var img_src = "";
-
                 $("#datepicker").attr("data-deldate", result.cust_del_date[0].del_date);
+                check_delivery_address();
+
+                setTimeout(function(){ 
+                    courier();
+                    // get_billing();
+                    // console.log("get_billing");
+                 }, 500);
 
 				if (result.cust_del_date[0].del_date == "1"){
 					$('#datepicker').datepicker('enable');
+                    $("#deliver_date_note").hide();
 				}else{
-					$('#datepicker').datepicker('disable');
+                    $('#datepicker').datepicker('disable');
+                    $("#deliver_date_note").show();
 				}
 
 				if (result.cust_del_date[0].free_shipping == "1"){
@@ -819,6 +837,8 @@ function get_order_checkout(div_id){
 
                     if (result.payment_type.length == 1){
                         payment_selected(result.payment_type[i].id);
+                    }else{
+                        $(".div-payment").css("background-color", "rgb(235, 241, 222)");
                     }
 				}
 
@@ -877,6 +897,8 @@ function get_order_checkout(div_id){
 				var shipping_fee_o_mm = 0;
 				var prod_id = "";
                 $("#prod_dtls tbody").empty();
+
+                // console.log(prod_dtls);
 
 				for (var i = 0; i < prod_dtls.length; i++) {
 					total_items++;
@@ -972,13 +994,11 @@ function get_order_checkout(div_id){
 				$("#total_amount").attr("data-id", (Number(sub_total) + Number(shipping_fee)));
 				$("#comp_total_items").text($.number(total_items));
 				$("#comp_total_amount").text($.number(sub_total, 2));
-                console.log(sub_total);
-                console.log(shipping_fee);
+                // console.log(sub_total);
+                // console.log(shipping_fee);
                 // bank_list();
 				// remittance_list();
-				$("#delivery_type").val("3");
-                courier();
-                check_delivery_address();
+                $("#delivery_type").val("3");
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
@@ -1018,6 +1038,7 @@ function check_delivery_address(){
 }
 
 function cancel_order(){
+    get_billing();
 	$("#div-checkout-details").hide();
 	$("#div-order-summary").hide();
 
@@ -1030,6 +1051,8 @@ function cancel_order(){
 	$("#total_amount").attr("data-id", 0);
 	$("#comp_total_items").text("0.00");
 	$("#comp_total_amount").text("0.00");
+	$("#payment_type_id").val("");
+	$("#payment_type_id").attr("data-name", "");
 
 	$("#div-home").show("slow");
 
@@ -1042,6 +1065,9 @@ $("#div-bank-payment").hide();
 get_remittance();
 
 var payment_type = $("#payment_type_id").val();
+var delivery_type = $("#delivery_type").val();
+var courier = $("#courier").val();
+var courier_name = "";
 
 if (payment_type == "1"){
 	// $("#div-remittance-payment").show();
@@ -1060,6 +1086,15 @@ if (payment_type == "1"){
     $("#div-bank-payment").hide();    
 }
 
+if (delivery_type == "3"){
+    courier_name = "N/A";
+}else{
+    courier_name = $("#courier :selected").text();
+}
+
+console.log(delivery_type);
+console.log(courier_name);
+
 var address = $("#bill_address").val() + ", " + ($("#bill_barangay").val() == "" ? "" : ", ") + $("#bill_city").val() + ", " + $("#bill_province").val() + " " + $("#bill_zip").val();
 
 $("#summ-address").text(address);
@@ -1068,20 +1103,35 @@ $("#summ-contact-person").text($("#bill_contact").val());
 $("#summ-notes").text($("#bill_notes").val());
 
 $("#summ-delivery").text($("#delivery_type :selected").text());
-$("#summ-courier").text($("#courier :selected").text());
+$("#summ-courier").text(courier_name);
 $("#summ-payment-type").text($("#payment_type_id").attr("data-name"));
 $("#summ-payment-method").text($("#summ-payment-type-list :selected").text());
 
-if (payment_type != "0"){
+if (courier == null){
+    courier = "";
+}
+
+if (delivery_type == "2"){
+    courier = "n/a";
+}
+
+if (payment_type != "0" && courier != ""){
 	$("#div-home").hide();
 	$("#div-checkout-details").hide();
 	$("#div-order-summary").show("slow");
 }else{
-
-	swal({
-		type : "warning",
-		title : "Please Complete all required fields",
-	})
+    if (courier == ""){
+        swal({
+            type : "warning",
+            title : "Delivery is not available in your area.",
+        })
+    
+    }else{
+        swal({
+            type : "warning",
+            title : "Please Complete all required fields",
+        })    
+    }
 
 }
 
@@ -1116,16 +1166,37 @@ function get_courier(){
 				$("input[name=csrf_name]").val(result.token);
 
                 if (result.result.length != 0){
-                    if (island_group == "1"){
-                        shipping_fee = result.result[0].sf_mm;
-                    }else if (island_group == "2"){
-                        shipping_fee = result.result[0].sf_luz;				
-                    }else if (island_group == "3"){
-                        shipping_fee = result.result[0].sf_vis;
-                    }else if (island_group == "4"){
-                        shipping_fee = result.result[0].sf_min;
+                    // if (island_group == "1"){
+                    //     shipping_fee = result.result[0].sf_mm;
+                    // }else if (island_group == "2"){
+                    //     shipping_fee = result.result[0].sf_luz;				
+                    // }else if (island_group == "3"){
+                    //     shipping_fee = result.result[0].sf_vis;
+                    // }else if (island_group == "4"){
+                    //     shipping_fee = result.result[0].sf_min;
+                    // }else{
+                    //     shipping_fee = "0";
+                    // }    
+
+                    shipping_fee = result.result[0].amount;
+                }else{
+                    shipping_fee = "0";
+                }
+
+                if ($("#delivery_type").val() == "2"){
+                    shipping_fee = 0;
+                    $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                    $(".div-modal-delivery-details").hide();
+                }else{
+                    shipping_fee = shipping_fee;
+                    $(".div-modal-delivery-details").show();
+                    if ($("#courier").val() != null){
+                        $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                        $("#div-del-not-avail").hide();
+                        $("#courier").attr("disabled", false);
                     }else{
-                        shipping_fee = "0";
+                        $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
+                        $("#div-del-not-avail").show();
                     }    
                 }
 
@@ -1142,8 +1213,6 @@ function get_courier(){
 				$("#summ-shipping-fee").text($.number(shipping_fee, 2));
 				$("#summ-delivery-fee").text($.number(shipping_fee, 2));			
 				$("#summ-grand-total").text($.number(grand_total, 2));		
-
-                $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
 
 
 			}, error : function(err){
@@ -1348,7 +1417,7 @@ function place_order(){
 
     // console.log(save_info);
 
-    console.log(prod_id);
+    // console.log(prod_id);
 
     $.ajax({
     	data : {csrf_name : csrf_name, prod_id : prod_id, data : data, data_profile : data_profile, save_info : save_info},

@@ -126,15 +126,15 @@ class User_registry_model extends CI_Model {
 		$this->db->insert("customer", $data);
 	}
 
-	public function data_query($trans_date, $keyword, $account_status, $account_class){
+	public function data_query($fdate, $tdate, $keyword, $account_status, $account_class){
 
 		$trans_date_query = "";
 		$keyword_query = "";
 		$account_status_query = "";
 		$account_class_query = "";
 
-		if (!empty($trans_date)){
-			$trans_date_query = "AND DATE(`account_application`.`date_insert`) = '".$trans_date."'";
+		if (!empty($fdate) && !empty($tdate)){
+			$trans_date_query = "AND (DATE(`account_application`.`date_insert`) >= '".$fdate."' AND DATE(`account_application`.`date_insert`) <= '".$tdate."')";
 		}
 
 		if (!empty($keyword)){

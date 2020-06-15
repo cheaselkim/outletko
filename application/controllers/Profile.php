@@ -95,6 +95,10 @@ class Profile extends CI_Controller {
         $prod_var_arr = array();
         $prod_img = array();
         $prod_img1 = array();
+        $mm = "";
+        $luz = array();
+        $vis = "";
+        $min = "";
 
         foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
@@ -122,6 +126,7 @@ class Profile extends CI_Controller {
             $data['payment_type'] = $this->profile_model->get_payment_type($row->account_id);
             $data['prod_var'] = $this->profile_model->get_prod_var($row->id);
             $prod_var_type = $this->profile_model->get_prod_var_type($row->id);
+            $delivery_area = $this->profile_model->get_delivery_area($row->account_id);
 
             $data['products'][] = array(
                 'product_name' => $row->product_name,
@@ -167,9 +172,43 @@ class Profile extends CI_Controller {
                 $data['prod_var_type'] = $prod_var_arr;
                 $data['prod_img'] = $prod_img1;
 
+                if (!empty($delivery_area)){
+                    foreach ($delivery_area as $key => $value) {
+                        if ($value->area == "1"){
+                            $mm = "Metro Manila : ".$value->city_desc;
+                        }
+
+                        if (empty($value->city_desc)){
+                            $city_desc = "All";
+                        }else{
+                            $city_desc = $value->city_desc;
+                        }
+
+                        if ($value->area == "2"){
+                            $var_luz = $value->prov_desc." - ".$city_desc;
+                            $luz[] = array("city_desc" => $var_luz);
+                        }
+
+                        if ($value->area == "3"){
+                            $var_vis = $value->prov_desc." - ".$city_desc;
+                            $vis[] = array("city_desc" => $var_vis);
+                        }
+
+                        if ($value->area == "4"){
+                            $var_min .= $value->prov_desc." - ".$city_desc;
+                            $min[] = array("city_desc" => $var_min);
+                        }
+
+
+                    }    
+                }
 
         }
 
+        $data['mm'] = nl2br($mm);
+        $data['luz'] = $luz;
+        $data['vis'] = $vis;
+        $data['min'] = $min;
         // var_dump($data['prod_img']);
         $data['token'] = $this->security->get_csrf_hash();
 

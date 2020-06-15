@@ -29,14 +29,15 @@ function account_class(){
 
 function data_query(){
 	var csrf_name = $("input[name=csrf_name]").val();
-	var trans_date = $("#trans_date").val();
+    var fdate = $("#trans_fdate").val();
+    var tdate = $("#trans_tdate").val();
 	var keyword = $("#keyword").val();
 	var account_status = $("#account_status").val();
 	var account_class = $("#account_class").val();
 	var app_func = $("#app_func").val();
 
 	$.ajax({
-		data : {trans_date : trans_date, keyword : keyword, account_status : account_status, account_class : account_class, app_func : app_func, csrf_name : csrf_name},
+		data : {fdate : fdate, tdate : tdate, keyword : keyword, account_status : account_status, account_class : account_class, app_func : app_func, csrf_name : csrf_name},
 		type : "POST",
 		dataType : "JSON",
 		url : base_url + "User_registry/data_query",
