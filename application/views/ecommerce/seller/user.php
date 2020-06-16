@@ -1773,14 +1773,14 @@
 		                    </div>
 
 		                    <div class="form-group mb-0 row" >
-		                    	<div class="col-12 col-md-6 col-lg-6 mt-1">
+		                    	<div class="col-12 col-md-12 col-lg-12 mt-1">
 		                    		<span class="font-weight-600">Standard Delivery</span>
 		                    		<input type="text" class="form-control textbox-green2" id="prod_std_delivery">
 		                    		<!-- <select class="form-control textbox-green2" id="prod_std_delivery">
 		                    			
 		                    		</select> -->
 		                    	</div>
-								<div class="col-12 col-md-6 col-lg-6 mt-1">
+								<div class="col-12 col-md-6 col-lg-6 mt-1" hidden>
 									<span class="font-weight-600">Delivery Options <span class="text-red">*</span> </span>
                                     <select class="form-control" id="prod_del_opt">
                                         <option value="00" selected hidden></option>
@@ -2361,7 +2361,8 @@
                         </div>
                         <div class="col-8">
                             <select name="" id="cov-ship-prov" class="form-control">
-                                <option value="0">All</option>
+                                <!-- <option value="0" hidden>All</option> -->
+                                <option value="" selected hidden></option>
                             </select>
                         </div>
                     </div>
@@ -2371,7 +2372,8 @@
                         </div>
                         <div class="col-8">
                             <select name="" id="cov-ship-city" class="form-control">
-                                <option value="0">All</option>
+                                <!-- <option value="0" hidden>All</option> -->
+                                <option value="" selected hidden></option>
                             </select>
                         </div>
                     </div>

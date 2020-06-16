@@ -131,6 +131,11 @@ class Profile_model extends CI_Model {
         return $query;
     }
 
+    public function get_coverage_area($comp_id){
+        $query = $this->db2->query("SELECT * FROM account_coverage WHERE comp_id = ?", array($comp_id))->result();
+        return $query;
+    }
+
     public function get_delivery_area($comp_id){
         $query = $this->db2->query("SELECT 
         `account_coverage_city`.`area`,

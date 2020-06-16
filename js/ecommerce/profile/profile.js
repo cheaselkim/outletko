@@ -21,6 +21,14 @@ $(document).ready(function(){
         get_profile($id);    
     }, 500);
 
+    $("#btn-del-info").popover({
+        html: true,
+        trigger: "hover",
+        title: "Delivery Coverage Area",
+        content: $('#popover-content')
+    });
+
+
   $("#btn_back").click(function(){
     $("#div-display-products").show();
     $(".div-header-2").show();
@@ -28,7 +36,7 @@ $(document).ready(function(){
     $(".div-header-4").show();
     $("#div-product-details").hide();    
     $(window).scrollTop($('#div-posted-prod').offset().top);    
-     $("#btn-del-info").popover('hide');
+    $("#btn-del-info").popover('hide');
   });
 
   $("#btn_back2").click(function(){
@@ -573,6 +581,8 @@ $("#std_del").hide();
 $(".div-header-3").hide();
 $("#div-details").show();
 
+
+$("#btn-del-info").popover('hide');
 var window_width = $(document).width();
 
 if (window_width > 768){
@@ -602,10 +612,6 @@ $("#prod-var-1").removeClass("error");
 $("#prod-var-2").removeClass("error");
 $(".carousel-indicators").empty();
 $(".carousel-inner").empty();
-$("#div-pop-mm").hide();
-$("#div-pop-luz").hide();
-$("#div-pop-vis").hide();
-$("#div-pop-min").hide();
 
 var min_price = "";
 var max_price = "";
@@ -625,39 +631,53 @@ $.ajax({
         var vis = data.vis;
         var min = data.min;
 
+        var result = {mm : mm, luz : luz, vis : vis, min : min};
+
+        console.log(result)
+        console.log(luz.length);
+
+        $('#btn-del-info').popover('show');
+                
         if (mm.length > 0){
             $("#div-pop-mm").show();
             $("#pop-mm").text(data.mm);
+        }else{
+            $("#div-pop-mm").hide();
+            $("#pop-mm").text("");
         }
 
         if (luz.length > 0){
             $("#div-pop-luz").show();
-            for (let i = 0; i < luz.length; i++) {
+            for (var i = 0; i < luz.length; i++) {
                 $("#pop-luz").append("<p class='mb-0'>"+luz[i].city_desc+"</p>");
             }    
+        }else{
+            $("#pop-luz").text("");
+            $("#div-pop-luz").hide();
         }
 
         if (vis.length > 0){
             $("#div-pop-vis").show();
-            for (let i = 0; i < luz.length; i++) {
+            for (var i = 0; i < luz.length; i++) {
                 $("#pop-vis").append("<p class='mb-0'>"+vis[i].city_desc+"</p>");
             }    
+        }else{
+            $("#pop-vis").text("");
+            $("#div-pop-vis").hide();    
         }
 
         if (min.length > 0){
             $("#div-pop-min").show();
-            for (let i = 0; i < min.length; i++) {
+            for (var i = 0; i < min.length; i++) {
                 $("#pop-min").append("<p class='mb-0'>"+min[i].city_desc+"</p>");
             }    
+        }else{
+            $("#pop-min").text("");
+            $("#div-pop-min").hide();    
         }
 
+        $('#btn-del-info').popover('hide');
 
-        $("#btn-del-info").popover({
-            content: $("#popover-content"),
-            html: true,
-            title: "Delivery Coverage Area"
-        });
-        
         $("#prod-name").text(data.products[0].product_name);
         $("#prod-desc").text(data.products[0].product_description);
         $("#prod-other-details").text((data.products[0].product_other_details == null ? "No Other Details" : (data.products[0].product_other_details == "" ? "No Other Details " : data.products[0].product_other_details)));
@@ -675,7 +695,7 @@ $.ajax({
 
         $("#prod_payment_type").text((data.payment_type[0].payment_type == null ? "None" : data.payment_type[0].payment_type));
         $("#prod_delivery_type").text((data.products[0].delivery_type == null ? "None" : data.products[0].delivery_type));
-        $("#prod_del_opt").text((data.products[0].product_del_opt == null ? "None" : data.products[0].product_del_opt));
+        $("#prod_del_opt").text((data.prod_del_opt == null ? "None" : data.prod_del_opt));
         $("#prod_del_std").text((data.products[0].product_std_delivery == null ? "None" : data.products[0].product_std_delivery));
         $("#prod_return").text((data.products[0].product_return == null ? "None" : data.products[0].product_return));
         $("#prod_warranty").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));

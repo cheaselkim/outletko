@@ -735,7 +735,7 @@ $(document).ready(function(){
     });
 
     $(document).on("change", ".cov_area", function(){
-        $('#cov-prov :not(:first-child)').remove();
+        // $('#cov-prov :not(:first-child)').remove();
         $('.cov_area').each(function () {
             if (this.checked) {
                 $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
@@ -1300,7 +1300,7 @@ function coverage_area(area){
     var desc = "";
     $("#coverage-group").attr("data-id", area);
     $("#tbl-prov-city tbody").empty();
-    $('#cov-prov :not(:first-child)').remove();
+    // $('#cov-prov :not(:first-child)').remove();
 
     $.ajax({
         data : {area : area, csrf_name : csrf_name},
@@ -1396,7 +1396,7 @@ function coverage_city(province){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             var data = result.result;
-            $('#cov-prov-city :not(:first-child)').remove();
+            // $('#cov-prov-city :not(:first-child)').remove();
             for (let i = 0; i < data.length; i++) {
                 $("#cov-prov-city").append("<option value='"+data[i].id+"'>"+data[i].city_desc+"</option>");
             }
@@ -2007,8 +2007,8 @@ function index(){
 
             $("#tbl-cov-ship tbody").append("<tr><td data-id='"+cov_ship[i].courier_id+"' class='courier'>" + cov_ship[i].courier_name +
             "</td><td class='area' data-id='"+cov_ship[i].area+"'>" + area + 
-            "</td><td class='prov' data-id='"+cov_ship[i].prov_id+"'>" + (cov_ship[i].prov_desc == null ? "All" : cov_ship[i].prov_desc) + 
-            "</td><td class='city' data-id='"+cov_ship[i].city_id+"'>" + (cov_ship[i].city_desc == null ? "All" : cov_ship[i].city_desc) + 
+            "</td><td class='prov' data-id='"+(cov_ship[i].prov_id == null ? "0" : cov_ship[i].prov_id)+"'>" + (cov_ship[i].prov_desc == null ? "All" : cov_ship[i].prov_desc) + 
+            "</td><td class='city' data-id='"+(cov_ship[i].city_id == null ? "0" : cov_ship[i].city_id)+"'>" + (cov_ship[i].city_desc == null ? "All" : cov_ship[i].city_desc) + 
             "</td><td class='weight'>" + $.number(cov_ship[i].weight, 0) + 
             "</td><td class='amount'>" + $.number(cov_ship[i].amount, 2) + 
             "</td><td>" + "<button class='btn btn-outline-primary py-0' onclick='edit_coverage_ship("+(i + 1)+","+cov_ship[i].id+")'><i class='fa fa-edit'></i></button>" + 
@@ -2971,7 +2971,7 @@ function check_product(){
   }
 
   if (prod_online == "1"){
-    if (prod_del_opt == "" || prod_return == "" || prod_warranty == ""){
+    if ( prod_return == "" || prod_warranty == ""){
       error++;
     }
   }
@@ -4504,8 +4504,8 @@ function coverage_ship_area(){
     var csrf_name = $("input[name=csrf_name]").val();
     var area = $("#cov-ship-area").val();
 
-    $('#cov-ship-prov :not(:first-child)').remove();
-    $('#cov-ship-city :not(:first-child)').remove();
+    // $('#cov-ship-prov :not(:first-child)').remove();
+    // $('#cov-ship-city :not(:first-child)').remove();
 
     $.ajax({
         data : {csrf_name : csrf_name, area : area},
@@ -4524,13 +4524,16 @@ function coverage_ship_area(){
             }
 
             if (area == "1"){
-                $('#cov-ship-prov :first-child').attr("hidden", true);
+                // $('#cov-ship-prov :first-child').attr("hidden", true);
                 $("#cov-ship-prov").attr("disabled", true);
                 coverage_ship_prov();
             }else{
-                $('#cov-ship-prov :first-child').attr("hidden", false);
+                // $('#cov-ship-prov :first-child').attr("hidden", false);
                 $("#cov-ship-prov").attr("disabled", false);
             }
+
+            // $('#cov-ship-prov :first-child').attr("hidden", true);
+            // $('#cov-ship-city :first-child').attr("hidden", true);
 
         }, error : function(err){
             console.log(err.responseText);
@@ -4543,7 +4546,7 @@ function coverage_ship_prov(){
     var csrf_name = $("input[name=csrf_name]").val();
     var prov = $("#cov-ship-prov").val();
 
-    $('#cov-ship-city :not(:first-child)').remove();
+    // $('#cov-ship-city :not(:first-child)').remove();
 
     $.ajax({
         data : {csrf_name : csrf_name, prov : prov},
@@ -4558,6 +4561,9 @@ function coverage_ship_prov(){
             for (let i = 0; i < data.length; i++) {
                 $("#cov-ship-city").append("<option value='"+data[i].city_id+"'>"+data[i].city_desc+"</option>");
             }
+
+            // $('#cov-ship-prov :first-child').attr("hidden", true);
+            // $('#cov-ship-city :first-child').attr("hidden", true);
 
         }, error : function(err){
             console.log(err.responseText)
@@ -4575,8 +4581,8 @@ function clear_cov_ship(){
     $("#cov-ship-city").val("");    
     $("#cov-ship-kg").val("");    
     $("#cov-ship-fee").val("");    
-    $('#cov-ship-prov :not(:first-child)').remove();
-    $('#cov-ship-city :not(:first-child)').remove();
+    // $('#cov-ship-prov :not(:first-child)').remove();
+    // $('#cov-ship-city :not(:first-child)').remove();
 
 }
 
