@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     div_hide();
-    category();
+    plan();
     $("#div-plan").show();
     $("#info-mobile").mobilenumber();
     $("#info-phone").mobilenumber();
@@ -199,12 +199,27 @@ $(document).ready(function(){
     $("#cart-plan-outlet-qty").keyup(function(){
         if ($(this).val() == ""){
             $(this).val("0");
-            $("#cart-pan-outlet-qty").val("0");
+            $("#cart-plan-outlet-qty").val("0");
+            $("#sml-cart-plan-outlet-qty").val("0");
         }else{
             cart_outlet();
         }
-        $("#cart-pan-outlet-qty").val($(this).val());
+        $("#sml-cart-plan-outlet-qty").val($(this).val());
+        $("#cart-plan-outlet-qty").val($(this).val());
     });
+
+    $("#sml-cart-plan-outlet-qty").keyup(function(){
+        if ($(this).val() == ""){
+            $(this).val("0");
+            $("#cart-plan-outlet-qty").val("0");
+            $("#sml-cart-plan-outlet-qty").val("0");
+        }else{
+            cart_outlet();
+        }
+        $("#cart-plan-outlet-qty").val($(this).val());
+        $("#sml-cart-plan-outlet-qty").val($(this).val());
+    });
+
 
     $(".div-payment-type").click(function(){
         $(".div-payment-type").css("background", "white");
@@ -222,7 +237,7 @@ $(document).ready(function(){
         check_info();
     });
 
-    $(".btn-plan").click(function(){
+    $(document).on("click", ".btn-plan", function(){
         check_plan($(this).val());
     });
 
@@ -309,6 +324,79 @@ function div_hide(){
     
 }
 
+function plan(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        type : "GET",
+        url : base_url + "Store_register/plan",
+        dataType : "JSON",
+        data : {csrf_name : csrf_name},
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);   
+            category();
+            var data = result.result;
+            var style = "";
+            var plan_title = "";
+
+            for (let i = 0; i < data.length; i++) {
+
+                if (i == 4){
+                    style = "style='border-right: 1px solid black'";
+                }else if (i == (data.length - 1)){
+                    style = "style='border-right: 1px solid black'";
+                }else{
+                    style = "";
+                }
+
+                var plan_name = data[i].plan_title.split(' ');
+
+                if (typeof plan_name[1] !== "undefined"){
+                    plan_title = plan_name[0] + " <span class='font-weight-bold'>"+plan_name[1]+"</span>";
+                }else{
+                    plan_title = "<span class='font-weight-bold'>"+plan_name[0]+"</span>";
+                }
+    
+                $("#div-plan-dtls").append("<div class='col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2'>"+
+                    "<div class='mx-auto text-center div-plan' "+style+"> "+
+                        "<p class='font-size-35 font-weight-600 mb-0 plan-type-name' data-desc='"+data[i].plan_name+"'>"+plan_title+"</p> "+
+                        "<p class='font-size-25 font-weight-600 mb-0' data-days='"+data[i].plan_days+"'>"+data[i].plan_days_name+"</p> "+
+                        "<span class='font-size-36 font-weight-600' hidden>PHP <span class='text-decoration-line'>"+$.number(data[i].price, 2)+"</span></span> "+
+                        "<span class='plan-discount-price font-weight-600'>PHP <span class='span-plan-price' data-price='"+data[i].price+"'>"+$.number(data[i].price, 2)+"</span></span><br> "+
+                        "<button class='font-weight-600 btn btn-orange px-5 btn-plan mt-3' value='"+data[i].id+"'><span class='text-black'>Select</span></button><br> "+
+                    "</div> "+
+                "</div> ");
+
+                
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+}
+
+function category(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        type : "GET",
+        url : "Signup/business_category",
+        dataType : "JSON",
+        data : {csrf_name : csrf_name},
+        success : function(data){
+            $("input[name=csrf_name]").val(data.token);   
+            for (var i = 0; i < data.result.length; i++) {
+                $("#info-business-category").append("<option value='"+data.result[i].id+"'>"+data.result[i].desc+"</option>");
+            }
+            country();
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })    
+
+}
+
 function country(){
     var csrf_name = $("input[name='csrf_name']").val();
 
@@ -334,59 +422,57 @@ function country(){
 
 }
 
-function category(){
-    var csrf_name = $("input[name=csrf_name]").val();
-
-    $.ajax({
-        type : "GET",
-        url : "Signup/business_category",
-        dataType : "JSON",
-        data : {csrf_name : csrf_name},
-        success : function(data){
-            $("input[name=csrf_name]").val(data.token);   
-            for (var i = 0; i < data.result.length; i++) {
-                $("#info-business-category").append("<option value='"+data.result[i].id+"'>"+data.result[i].desc+"</option>");
-            }
-            country();
-        }, error : function(err){
-            console.log(err.responseText);
-        }
-    })    
-
-}
-
 function cart_outlet(){
     var qty = $("#cart-plan-outlet-qty").val();
     var plan = $("#plan-type").val();
-    var plan_price = $("#plan-price").val();
+    var plan_price = "";
+    var csrf_name = $("input[name=csrf_name]").val();
     var price = "";
     var total = "";
+    var grand_total = 0;
 
-    if (qty > 0){
-        price = $().find().text();
-        if (plan == "1"){
-            price = 1000;
-        }else if (plan == "2"){
-            price = 650;
-        }else if (plan == "3"){
-            price = 375;
-        }else if (plan == "4"){
-            price = 150;
-        }else{
+    $.ajax({
+        data : {csrf_name : csrf_name, plan : plan},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Store_register/get_plan",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            price = result.data[0].outlet_price;
+            plan_price = result.data[0].plan_price
 
+            if (qty != 0){
+                qty = qty;
+                price = price;
+            }else{
+                qty = 0;
+                price = 0;
+            }
+        
+            total = qty * price; 
+            grand_total = Number(plan_price) + Number(total);
+
+            $("#plan-price").val(plan_price)
+
+            $("#cart-plan-outlet-qty-dp").val(qty);
+            $("#cart-plan-outlet-price").text($.number(result.data[0].outlet_price, 2));
+            $("#cart-plan-outlet-total-price").text("PHP " + $.number(total, 2));
+            $("#cart-grand-total").text("PHP " + $.number(grand_total, 2));
+            $("#total_amount").val(grand_total);
+
+            $("#sml-cart-plan-outlet-qty-dp").val(qty);
+            $("#sml-cart-plan-outlet-price").text($.number(result.data[0].outlet_price, 2));
+            $("#sml-cart-plan-outlet-total-price").text("PHP " + $.number(total, 2));
+            $("#sml-cart-grand-total").text("PHP " + $.number(grand_total, 2));
+            
+            $("#total_amount").val(grand_total);
+
+
+        }, error : function(err){
+            console.log(err.responseText);
         }
-    }else{
-        qty = 0;
-        price = 0;
-    }
+    })
 
-    total = qty * price; 
-    grand_total = Number(plan_price) + Number(total);
-    $("#cart-plan-outlet-qty-dp").val(qty);
-    $("#cart-plan-outlet-price").text($.number(price, 2));
-    $("#cart-plan-outlet-total-price").text("PHP " + $.number(total, 2));
-    $("#cart-grand-total").text("PHP " + $.number(grand_total, 2));
-    $("#total_amount").val(grand_total);
 }
 
 function check_info(){
@@ -432,40 +518,75 @@ function check_plan(plan){
 
     var plan_name = "";
     var plan_price = "";
+    var outlet_price = 0;
+    var grand_total = "";
+    var csrf_name = $("input[name=csrf_name]").val();
+    var qty = $("#cart-plan-outlet-qty").val();
 
-    if (plan == "0"){
-        plan_name = "Free";
-        plan_price = "0.00";    
-    }else if (plan == "1"){
-        plan_name = "Payment Plan : Annually";
-        plan_price = "2900.00";
-    }else if (plan == "2"){
-        plan_name = "Payment Plan : Semi - Annual";
-        plan_price = "1500.00";
-    }else if (plan == "3"){
-        plan_name = "Payment Plan : Quarterly";
-        plan_price = "795.00"
-    }else if (plan == "4"){
-        plan_name = "Payment Plan : Monthly";
-        plan_price = "265.00"
-    }else{
+    $.ajax({
+        data : {csrf_name : csrf_name, plan : plan},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Store_register/get_plan",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            plan_price = result.data[0].plan_price;
+            plan_name = result.data[0].plan_name;
+            outlet_price = result.data[0].outlet_price;
 
-    }
+            $("#plan-price").val(plan_price);
 
-    $("#plan-price").val(plan_price);
+            $("#cart-plan-name").text(plan_name);
+            $("#cart-plan-price").text("PHP " + $.number(plan_price, 2));
+            $("#cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+        
+            $("#sml-cart-plan-name").text(plan_name);
+            $("#sml-cart-plan-price").text("PHP " + $.number(plan_price, 2));
+            $("#sml-cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+        
+            $("#cart-grand-total").text("PHP " + $.number(plan_price, 2));
+            $("#total_amount").val(plan_price);
+        
+            $('#cart-plan-name').html(plan_name.replace(/\n/g, '<br />'));
+            $('#cart-plan-name').html(plan_name.replace(/\n/g, '<br />'));
 
-    $("#cart-plan-name").text(plan_name);
-    $("#cart-plan-price").text("PHP " + $.number(plan_price, 2));
-    $("#cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+        
+            if (plan > 4){
+                $("#tbl-row-cart-plan-outlet").show();
+                $("#sml-tbl-row-cart-plan-outlet").show();
+            }else{
+                $("#tbl-row-cart-plan-outlet").hide();
+                $("#sml-tbl-row-cart-plan-outlet").hide();
+            }
 
-    $("#sml-cart-plan-name").text(plan_name);
-    $("#sml-cart-plan-price").text("PHP " + $.number(plan_price, 2));
-    $("#sml-cart-plan-total-price").text("PHP " + $.number(plan_price, 2));
+            if (qty != 0){
+                qty = qty;
+                outlet_price = outlet_price;
+            }else{
+                qty = 0;
+                outlet_price = 0;
+            }
 
-    $("#cart-grand-total").text("PHP " + $.number(plan_price, 2));
-    $("#total_amount").val(plan_price);
+            total = qty * outlet_price; 
+            grand_total = Number(plan_price) + Number(total);
 
-    cart_outlet();
+            $("#cart-plan-outlet-qty-dp").val(qty);
+            $("#cart-plan-outlet-price").text($.number(result.data[0].outlet_price, 2));
+            $("#cart-plan-outlet-total-price").text("PHP " + $.number(total, 2));
+            $("#cart-grand-total").text("PHP " + $.number(grand_total, 2));
+
+            $("#sml-cart-plan-outlet-qty-dp").val(qty);
+            $("#sml-cart-plan-outlet-price").text($.number(result.data[0].outlet_price, 2));
+            $("#sml-cart-plan-outlet-total-price").text("PHP " + $.number(total, 2));
+            $("#sml-cart-grand-total").text("PHP " + $.number(grand_total, 2));
+
+
+            $("#total_amount").val(grand_total);
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
 
 }
 

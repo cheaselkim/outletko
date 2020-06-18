@@ -637,13 +637,16 @@ $.ajax({
         console.log(luz.length);
 
         $('#btn-del-info').popover('show');
+        $("#pop-min").text("");
+        $("#pop-mm").text("");
+        $("#pop-luz").text("");
+        $("#pop-vis").text("");
                 
         if (mm.length > 0){
             $("#div-pop-mm").show();
             $("#pop-mm").text(data.mm);
         }else{
             $("#div-pop-mm").hide();
-            $("#pop-mm").text("");
         }
 
         if (luz.length > 0){
@@ -652,7 +655,6 @@ $.ajax({
                 $("#pop-luz").append("<p class='mb-0'>"+luz[i].city_desc+"</p>");
             }    
         }else{
-            $("#pop-luz").text("");
             $("#div-pop-luz").hide();
         }
 
@@ -662,7 +664,6 @@ $.ajax({
                 $("#pop-vis").append("<p class='mb-0'>"+vis[i].city_desc+"</p>");
             }    
         }else{
-            $("#pop-vis").text("");
             $("#div-pop-vis").hide();    
         }
 
@@ -672,7 +673,6 @@ $.ajax({
                 $("#pop-min").append("<p class='mb-0'>"+min[i].city_desc+"</p>");
             }    
         }else{
-            $("#pop-min").text("");
             $("#div-pop-min").hide();    
         }
 

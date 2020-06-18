@@ -9,7 +9,45 @@ class Signup_model extends CI_Model {
 		$this->load->database();
         $this->db2 = $CI->load->database('outletko', TRUE);
         $this->db3 = $CI->load->database('admin', TRUE);
-	}	
+    }	
+    
+    public function plan(){
+        $query = $this->db3->query("SELECT  
+        `plan_category`.`category_desc` AS plan_title,
+        `plan_days`.`days_name` AS plan_days_name,
+        `plan_days`.`days_desc` AS plan_days,
+        `plan_type`.`plan_name`,
+        `plan_type`.`price`,
+        `plan_type`.`outlet_price`,
+        `plan_type`.`id`
+        FROM plan_type
+        INNER JOIN plan_days ON 
+        `plan_days`.`id` = `plan_type`.`plan_days`
+        INNER JOIN plan_category ON 
+        `plan_category`.`id` = `plan_type`.`plan_category` 
+        WHERE `plan_type`.`status` = ? 
+        ORDER BY `plan_type`.`id` ASC", array(1))->result();
+        return $query;
+    }
+
+    public function get_plan($id){
+        $query = $this->db3->query("SELECT  
+        `plan_category`.`category_desc` AS plan_title,
+        `plan_days`.`days_name` AS plan_days_name,
+        `plan_days`.`days_desc` AS plan_days,
+        `plan_type`.`plan_name`,
+        `plan_type`.`price` AS plan_price,
+        `plan_type`.`outlet_price`,
+        `plan_type`.`id`
+        FROM plan_type
+        INNER JOIN plan_days ON 
+        `plan_days`.`id` = `plan_type`.`plan_days`
+        INNER JOIN plan_category ON 
+        `plan_category`.`id` = `plan_type`.`plan_category` 
+        WHERE `plan_type`.`status` = ?  AND `plan_type`.`id` = ?
+        ORDER BY `plan_type`.`id` ASC", array(1, $id))->result();
+        return $query;    
+    }
 
 	public function business_category(){
 		$query = $this->db->query("SELECT * FROM business_type ORDER BY `business_type`.`desc` ASC")->result();
@@ -115,7 +153,8 @@ class Signup_model extends CI_Model {
                 $this->db2->where("account_id", $account_id);
                 $this->db2->set("account_status", 1);
                 $this->db2->update("account");
-                return $this->db->query("SELECT * FROM users WHERE account_id = ? AND user_type = ?", array($account_id, 2))->result_array();
+                // return $this->db->query("SELECT * FROM users WHERE account_id = ? AND user_type = ?", array($account_id, 2))->result_array();
+                return $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($account_id))->result_array();
             }else{
                 return false;
             }

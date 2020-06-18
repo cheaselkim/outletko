@@ -145,8 +145,9 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="row pt-2 px-3">
-                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1">
+                        <div class="row pt-2 px-3" id="div-plan-dtls">
+
+                            <!-- <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2">
                                 <div class="mx-auto text-center div-plan-e div-plan" id="div-plan-e">
                                     <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Basic</span></p>
                                     <p class="font-size-25 font-weight-600 mb-0">FREE</p>
@@ -190,7 +191,8 @@
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">265.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-a" value="4"><span class="text-black">Select</span></button><br>
                                 </div>
-                            </div>
+                            </div> -->
+
                         </div>
                         <div class="row" hidden>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-3">
@@ -390,12 +392,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Outletko Subscription <br> <span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
+                                            <td><span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
                                             <td class="pt-4"><span id="cart-plan-price">PHP 2,850.00</span></td>
                                             <td class="text-center pt-4" ><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
                                             <td class="pt-4"><span id="cart-plan-total-price">2,850.00</span></td>
                                         </tr>
-                                        <tr hidden>
+                                        <tr id="tbl-row-cart-plan-outlet">
                                             <td>No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;" id="cart-plan-outlet-qty"></td>
                                             <td><span id="cart-plan-outlet-price">PHP 0.00</span></td>
                                             <td class="text-center" ><input type="text" class="textbox-green text-center" value="0" readonly style="width: 50px;" id="cart-plan-outlet-qty-dp"></td>
@@ -406,26 +408,26 @@
                             </div>
                             <div class="col-12 col-lg-8 col-md-12 col-sm-12 pt-3 table-responsive px-0 d-block d-sm-none d-md-none">
                                 <table class="table border-green">
-                                    <tbody>
+                                    <tbody >
                                         <tr>
                                             <td class="font-weight-600 border-0 bg-gray px-1">ITEM</td>
-                                            <td class="border-0">Outletko Subscription <span id="sml-cart-plan-name"><br> Payment Plan A : Quarterly</span></td>
-                                            <td class="border-0" hidden>No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;"></td>
+                                            <td class="border-0"><span id="sml-cart-plan-name"><br> Payment Plan A : Quarterly</span></td>
+                                            <td class="border-0 sml-tbl-row-cart-plan-outlet">No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;" id="sml-cart-plan-outlet-qty"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-600 bg-gray px-1">PRICE</td>
                                             <td><span id="sml-cart-plan-price">PHP 2,850.00</span></td>
-                                            <td hidden>PHP 0.00</td>
+                                            <td class="sml-tbl-row-cart-plan-outlet"><span id="sml-cart-plan-outlet-price">PHP 0.00</span></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-600 bg-gray px-1">QUANTITY</td>                                        
                                             <td class="text-left"><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
-                                            <td class="text-center" hidden><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
+                                            <td class="text-center sml-tbl-row-cart-plan-outlet" ><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;" id="sml-cart-plan-outlet-qty-dp"></td>
                                         </tr>
                                         <tr class="bg-gray">
                                             <td class="font-weight-600 px-1">TOTAL</td>
                                             <td><span id="sml-cart-plan-total-price">2,850.00</span></td>
-                                            <td hidden>PHP 0.00</td>
+                                            <td class="sml-tbl-row-cart-plan-outlet"><span id="sml-cart-plan-outlet-total-price">PHP 0.00</span></td>
                                         </tr>
                                     </tbody>
                                 </table>

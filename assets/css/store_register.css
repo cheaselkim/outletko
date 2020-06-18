@@ -98,7 +98,7 @@ table tbody td, .table tbody th{
     font-size: 15px;
 }
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
+.div-plan{
     border: 1px solid gray;
     margin-top: 10px;
     padding-bottom: 10px;
@@ -215,7 +215,7 @@ table tbody td, .table tbody th{
 }
 
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
+.div-plan{
     border: 1px solid gray;
     margin-top: 15px;
     padding-top: 10px;
@@ -324,7 +324,7 @@ table tbody td, .table tbody th{
     height: 65px;
 }
 
-.div-plan-a, .div-plan-b, .div-plan-c, .div-plan-d, .div-plan-e{
+.div-plan{
     border: 1px solid black;
     margin-left: 50px !important;
     margin-right: 50px !important;
@@ -484,13 +484,10 @@ table tbody td, .table tbody th{
 
 .div-plan{
     border:1px solid black;
-    border-right: 0px;
+    border-right: 0;
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
 
-.div-plan-d{
-    border-right: 1px solid black;
-}
 
 }
