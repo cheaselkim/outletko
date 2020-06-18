@@ -239,7 +239,7 @@
       <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
         <p style="font-family: Arial, sans-serif;"><span style="font-size: 24px;">Dear <?php echo $name; ?>,</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
-<p style="font-family: Arial, sans-serif;"><span style="font-size: 20px;">Your Outletko Basic Plan includes</p>
+<p style="font-family: Arial, sans-serif;"><span style="font-size: 20px;">Your <b>Outletko Pro Plan</b> includes</p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">
 </p>
@@ -248,10 +248,10 @@
     <li>Maximum of One Hundered (100) products/items are allowed to display or post in your Online Store</li>
     <li>Able to Set-up the following Payment Modes in your Store - Cash on Delivery, Bank Deposit/Payment, Remittance</li>
     <li>Able to Set-up Delivery Mode : Delivery or Pick-up</li>
-    <li>No Expiration Date</li>
+    <!-- <li>No Expiration Date</li> -->
 </ul>>
-<p style="font-family: Arial, sans-serif;">&#xA0;</p><br>
-<p style="font-family: Arial, sans-serif;">Happy Online Selling!</p>
+<!-- <p style="font-family: Arial, sans-serif;">&#xA0;</p><br> -->
+<p style="font-family: Arial, sans-serif; font-size: 15px;">Happy Online Selling!</p>
     </div>
     
               </td>

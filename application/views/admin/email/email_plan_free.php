@@ -238,13 +238,13 @@
       <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
         <p style="font-family: Arial, sans-serif;"><span style="font-size: 24px;">Dear <?php echo $name; ?>,</span></p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
-<p style="font-family: Arial, sans-serif;"><span style="font-size: 20px;">Your Outletko Basic Plan includes</p>
+<p style="font-family: Arial, sans-serif;"><span style="font-size: 20px;">Your <b>Outletko Basic Plan</b> includes</p>
 <p style="font-family: Arial, sans-serif;">&#xA0;</p>
 <p style="font-family: Arial, sans-serif;"><span style="font-size: 18px;">
 </p>
 <ul>
     <li>You will have your own Online Store for e-commerce store.</li>
-    <li>Maximum of Eight (8) products/items are allowed to display or post in your Online Store</li>
+    <li>Maximum of Twenty (20) products/items are allowed to display or post in your Online Store</li>
     <li>Able to Set-up the following Payment Modes in your Store - Cash on Delivery, Bank Deposit/Payment, Remittance</li>
     <li>Able to Set-up Delivery Mode : Delivery or Pick-up</li>
     <li>No Expiration Date</li>

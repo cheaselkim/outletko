@@ -464,6 +464,8 @@ class Store_register extends CI_Controller {
 
         if ($check_send_email > 0){
             $result = $this->signup_model->get_data($id);
+
+            // var_dump($result);
         
             $data['account_id'] = password_hash($account_id, PASSWORD_DEFAULT);
             $data['email'] = password_hash($email, PASSWORD_DEFAULT);
@@ -471,7 +473,7 @@ class Store_register extends CI_Controller {
             if (!empty($result)){
                 foreach ($result as $key => $value) {
                     $data['plan'] = $value->plan_name;
-                    $data['plan_price'] = number_format($value->price, 2);
+                    $data['plan_price'] = number_format(($value->price) + ($value->outlet_price * ($value->outlet_no - 3)), 2);
                     $data['plan_vat'] = number_format(($value->price * 0.12), 2);
                     $data['invoice_no'] = $value->invoice_no;
                     $data['name'] = ucwords(strtolower($value->first_name))." ".ucwords(strtolower($value->last_name));
@@ -616,8 +618,8 @@ class Store_register extends CI_Controller {
                     //echo "Your account is verified!";
                     $status = $this->send_email($result[0]['email'], $result[0]['account_id'], $result[0]['subscription_type']);
                     if ($status == "1"){
-                        $status2 = $this->send_invoice_email($result[0]['email'], $result[0]['account_id'], $result[0]['comp_id']);                    
-                        $status3 = $this->send_plan_email($result[0]['email'], $result[0]['account_id'], $result[0]['comp_id']);                    
+                        $status2 = $this->send_invoice_email($result[0]['email'], $result[0]['account_id'], $result[0]['id']);                    
+                        $status3 = $this->send_plan_email($result[0]['email'], $result[0]['account_id'], $result[0]['id']);                    
                         if ($status2 == "1"){
                             // var_dump($result[0]['id']);
                             header('Location:https://www.outletko.com/');
