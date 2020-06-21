@@ -131,15 +131,17 @@ class Store_register extends CI_Controller {
             );
 
             $res2 = $this->signup_model->register_users($account2);
+            $plan_result = $this->signup_model->get_plan($info_user['plan_type']);
+            $plan_days = 0;
 
-            if ($info_user['plan_type'] == "1"){
-                $renewal_date = date('Y-m-d', strtotime("+30 days"));
-            }else if ($info_user['plan_type'] == "2"){
-                $renewal_date = date('Y-m-d', strtotime("+90 days"));
-            }else if ($info_user['plan_type'] == "3"){
-                $renewal_date = date('Y-m-d', strtotime("+180 days"));
-            }else if ($info_user['plan_type'] == "4"){
-                $renewal_date = date('Y-m-d', strtotime("+395 days"));
+            if (!empty($plan_result)){
+                foreach ($plan_result as $key => $value) {
+                    $plan_days = $value->plan_days;
+                }
+            }
+
+            if ($info_user['plan_type'] != "0"){
+                $renewal_date = date('Y-m-d', strtotime("+".$plan_days." days"));
             }else{
                 $renewal_date = "0000-00-00";
                 // $renewal_date = date('Y-m-d', strtotime("+11 days"));
@@ -347,10 +349,10 @@ class Store_register extends CI_Controller {
     }
 
     public function resend_email(){
-        $email = "dooleycheasel@gmail.com";
-        $account_id = "2012010103";
+        $email = "ifernhealth2020@gmail.com";
+        $account_id = "2010134";
 
-        $result = $this->send_confirm_email($email, $account_id);
+        $result = $this->send_email($email, $account_id, 0);
         var_dump($result);
     }
 
@@ -429,7 +431,8 @@ class Store_register extends CI_Controller {
                         ->set_newline("\r\n")
                         ->from('noreply@outletko.com', 'Outletko')
                         // ->from('epgmcompany@gmail.com', 'Outletko')
-                        ->to("dooleycheasel@gmail.com")
+                        // ->to("dooleycheasel@gmail.com")
+                        ->to($email )
                         ->bcc("accounts@outletko.com")
                         // ->bcc("epgmcompany@gmail.com")
                         ->subject('Your Outletko Login Detail')

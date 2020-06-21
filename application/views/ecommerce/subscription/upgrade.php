@@ -96,19 +96,16 @@
             <div class="row" style="background-color:rgb(78, 98, 42)">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-md py-1">
-                    <a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-13x.png')?>" class="border img-header-website" alt=""></a>
+                    <a class="navbar-brand font-small" href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/img/logo-13.png')?>" class="border img-header-website" alt=""></a>
                         <button class="navbar-toggler p-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
                             <span class="fas fa-bars" style="font-size: 25px;"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item py-1 pad-right" hidden>
-                                    <button class="btn btn-block bg-transparent text-white d-none d-sm-block" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
-                                    <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('login')?>" style="border: 1px solid white;"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
+                                <li class="nav-item py-1 pad-right">
+                                    <a class="btn btn-block bg-transparent text-white d-none d-sm-block" style="border: 1px solid white;" href="<?php echo base_url('/')?>"><i class="fas fa-store-alt text-white"></i> <span class="text-white"><?php echo $this->session->userdata('account_name')?></span></a>
+                                    <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('/')?>" style="border: 1px solid white;"><i class="fas fa-store-alt text-white"></i> <span class="text-white"><?php echo $this->session->userdata('account_name')?></span></a>
                                 </li>    
-                                <li class="nav-item py-1 pad-left" hidden>
-                                    <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-white"></i> <span class="text-white">Sign Up</span></button>
-                                </li>
                             </ul>
                         </div>  
                     </nav>
@@ -121,7 +118,7 @@
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-plan-header">
                         <div class="row">  
                             <div class="col-11 col-lg-7 col-md-9 col-sm-10 text-center text-white mx-auto div-plan-discount">
-                                <span class="font-header-discount font-weight-600"><u>Outletko Standard </u>Online Store</span><br>
+                                <span class="font-header-discount font-weight-600">Outlet<span class="text-yellow">ko</span> gives an Online Store</span><br>
                                 <span class="font-header-discount font-weight-600">for your business</span>
                             </div>
                         </div>
@@ -145,52 +142,54 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="row pt-2 px-3">
-                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1">
-                                <div class="mx-auto text-center div-plan-e div-plan bg-gray" id="div-plan-e">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Basic</span></p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Free</p>
+                        <div class="row pt-2 px-3" id="div-plan-dtls">
+
+                            <!-- <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2">
+                                <div class="mx-auto text-center div-plan-e div-plan" id="div-plan-e">
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Basic</span></p>
+                                    <p class="font-size-25 font-weight-600 mb-0">FREE</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">5,750.00</span></span>
                                     <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">0.00</span></span><br>
-                                    <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-e" value="0" disabled><span class="text-black">Select</span></button><br>
+                                    <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-e" value="0"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-4">
                                 <div class="mx-auto text-center div-plan-d div-plan" id="div-plan-b">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan D : Annually</p>
+                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span> <img src="https://c.mql5.com/6/702/1monthfreeSticker1.jpg" alt="Free 1 Month" class="img-free-month"></p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Annual</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">5,750.00</span></span>
-                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">2,300.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">2,900.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-d" value="1"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-3">
                                 <div class="mx-auto text-center div-plan-c div-plan" id="div-plan-c">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan C : Semi - Annual</p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Semi - Annual</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">3,000.00</span></span>
-                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">1,170.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">1,500.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-c" value="2"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-2">
                                 <div class="mx-auto text-center div-plan-b div-plan" id="div-plan-b">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan B : Quarterly</p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Quarterly</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">1,500.00</span></span>
-                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">585.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">795.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-b" value="3"><span class="text-black">Select</span></button><br>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1">
+                            <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2 order-1" >
                                 <div class="mx-auto text-center div-plan-a div-plan" id="div-plan-a">
-                                    <p class="font-size-35 font-weight-600 mb-0">Outletko <span class="font-weight-bold">Pro</span>  </p>
-                                    <p class="font-size-25 font-weight-600 mb-0">Plan A : Monthly</p>
+                                    <p class="font-size-35 font-weight-600 mb-0 plan-type-name">Outletko <span class="font-weight-bold">Pro</span>  </p>
+                                    <p class="font-size-25 font-weight-600 mb-0">Monthly</p>
                                     <span class="font-size-36 font-weight-600" hidden>PHP <span class="text-decoration-line">500.00</span></span>
-                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">195.00</span></span><br>
+                                    <span class="plan-discount-price font-weight-600">PHP <span class="span-plan-price">265.00</span></span><br>
                                     <button class="font-weight-600 btn btn-orange px-5 btn-plan mt-3" id="btn-plan-a" value="4"><span class="text-black">Select</span></button><br>
                                 </div>
-                            </div>
+                            </div> -->
+
                         </div>
                         <div class="row" hidden>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-3">
@@ -223,11 +222,15 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>First Name <span class="text-red">*</span> </span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-fname" data-parsley-trigger="focusin focusout"  required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-fname" data-parsley-trigger="focusin focusout"  required>
+                                        </div>
+                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12" hidden>
+                                            <span>Middle Name  </span>
+                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-mname" >
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Last Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-lname" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-lname" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                     </div>
                                     <div class="row" hidden>
@@ -243,6 +246,13 @@
                                             <input type="text" class="form-control form-control-sm textbox-green readonly bg-white cursor-pointer" id="info-bday" >
                                         </div>
                                     </div>
+                                    <div class="row" hidden>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <span>Facebook Profile/Page Link<span class="text-red">*</span> (This is for supporting user through facebook)</span>
+                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-fb" > 
+                                            <!-- data-parsley-trigger="focusin focusout change" required -->
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                             <hr class="mt-2 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
@@ -251,11 +261,11 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Business Name <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-name" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-business-name" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Business Category <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-business-category" data-parsley-trigger="focusin focusout" required>
+                                            <select class="form-control form-control-sm textbox-green text-capitalize" id="info-business-category" data-parsley-trigger="focusin focusout" required>
                                                 <option value="" selected hidden></option>
                                             </select>
                                         </div>
@@ -263,17 +273,17 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                             <span>Business Address <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-business-address" placeholder="Number/Street/Village/" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-business-address" placeholder="Number/Street/Village/" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Town / City <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-town" data-parsley-trigger="focusin focusout" required>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-town" data-parsley-trigger="focusin focusout" required>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Province <span class="text-red">*</span></span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-province" data-parsley-trigger="focusin focusout" required readonly>
+                                            <input type="text" class="form-control form-control-sm textbox-green text-capitalize" id="info-province" data-parsley-trigger="focusin focusout" required readonly>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -283,7 +293,7 @@
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Country <span class="text-red">*</span></span>
-                                            <select class="form-control form-control-sm textbox-green" id="info-country" data-parsley-trigger="focusin focusout" required>
+                                            <select class="form-control form-control-sm textbox-green text-capitalize" id="info-country" data-parsley-trigger="focusin focusout" required>
                                                 <option value="" selected hidden></option>
                                             </select>
                                         </div>
@@ -297,7 +307,7 @@
                                             <span>Mobile No <span class="text-red">*</span></span>
                                             <div class="input-group">
                                                 <div class="input-group-prepend" style="height: 31px;">
-                                                    <span class="input-group-text textbox-green text-black" style="background: #e9ecef;">+63</span>
+                                                    <span class="input-group-text textbox-green text-black bg-white">+63</span>
                                                 </div>
                                                 <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-mobile" data-parsley-length="[10, 10]" data-parsley-length-message="This value should be exactly 10 digits long" data-parsley-type="digits" data-parsley-trigger="focusin focusout" required>
                                             </div>
@@ -316,26 +326,6 @@
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Partner <span class="text-red">*</span></span>
                                             <input readonly disabled type="text" class="form-control form-control-sm textbox-green" value="HOUSE ACCOUNT  (000001)" id="info-partner" data-parsley-trigger="focusin focusout" required data-id="1" data-lvl-2="0" data-lvl-3="0">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <hr class="mt-2 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Registration Date</span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-registration-date" >
-                                        </div>
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-                                            <span>Renewal Date</span>
-                                            <input type="text" class="form-control form-control-sm textbox-green" id="info-renewal-date" >
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <hr class="mt-2 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -399,12 +389,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Outletko Subscription <br> <span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
+                                            <td><span id='cart-plan-name'>Payment Plan A : Monthly</span></td>
                                             <td class="pt-4"><span id="cart-plan-price">PHP 2,850.00</span></td>
                                             <td class="text-center pt-4" ><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
                                             <td class="pt-4"><span id="cart-plan-total-price">2,850.00</span></td>
                                         </tr>
-                                        <tr hidden>
+                                        <tr id="tbl-row-cart-plan-outlet">
                                             <td>No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;" id="cart-plan-outlet-qty"></td>
                                             <td><span id="cart-plan-outlet-price">PHP 0.00</span></td>
                                             <td class="text-center" ><input type="text" class="textbox-green text-center" value="0" readonly style="width: 50px;" id="cart-plan-outlet-qty-dp"></td>
@@ -415,26 +405,26 @@
                             </div>
                             <div class="col-12 col-lg-8 col-md-12 col-sm-12 pt-3 table-responsive px-0 d-block d-sm-none d-md-none">
                                 <table class="table border-green">
-                                    <tbody>
+                                    <tbody >
                                         <tr>
                                             <td class="font-weight-600 border-0 bg-gray px-1">ITEM</td>
-                                            <td class="border-0">Outletko Subscription <span id="sml-cart-plan-name"><br> Payment Plan A : Quarterly</span></td>
-                                            <td class="border-0" hidden>No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;"></td>
+                                            <td class="border-0"><span id="sml-cart-plan-name"><br> Payment Plan A : Quarterly</span></td>
+                                            <td class="border-0 sml-tbl-row-cart-plan-outlet">No. of Additional Branches or Outlets <input type="text" class="textbox-green text-center" value="0" style="width: 50px;" id="sml-cart-plan-outlet-qty"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-600 bg-gray px-1">PRICE</td>
                                             <td><span id="sml-cart-plan-price">PHP 2,850.00</span></td>
-                                            <td hidden>PHP 0.00</td>
+                                            <td class="sml-tbl-row-cart-plan-outlet"><span id="sml-cart-plan-outlet-price">PHP 0.00</span></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-600 bg-gray px-1">QUANTITY</td>                                        
                                             <td class="text-left"><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
-                                            <td class="text-center" hidden><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;"></td>
+                                            <td class="text-center sml-tbl-row-cart-plan-outlet" ><input type="text" class="textbox-green text-center" value="1" readonly style="width: 50px;" id="sml-cart-plan-outlet-qty-dp"></td>
                                         </tr>
                                         <tr class="bg-gray">
                                             <td class="font-weight-600 px-1">TOTAL</td>
                                             <td><span id="sml-cart-plan-total-price">2,850.00</span></td>
-                                            <td hidden>PHP 0.00</td>
+                                            <td class="sml-tbl-row-cart-plan-outlet"><span id="sml-cart-plan-outlet-total-price">PHP 0.00</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1110,7 +1100,7 @@
     <div class="modal-dialog" style="max-width:600px;">
         <div class="modal-content">
             <div class="modal-header pb-0 pt-1">
-                <h4 class="modal-title">Features of your Outletko Standard Online Store :</h4>
+                <h4 class="modal-title">Features of your Outletko Online Store :</h4>
                 <button type="button" class="close" data-dismiss="modal" hidden>&times;</button>
             </div>
             <div class="modal-body py-2">
@@ -1120,10 +1110,15 @@
                             <!-- <span><i class="fas fa-minus"></i> Allow Business Owner to post/display upto 30 Product Items in their Online Store.</span><br>
                             <span><i class="fas fa-minus"></i> Can setup different payment mode (COD,  Bank Deposit, Remittance).</span><br>
                             <span><i class="fas fa-minus"></i> * Card Payment/Online Payment can also be setup for your Online Store.</span><br> -->
-                            <ul class="px-2">
-                                <li>Allow Business Owner to post/display upto 30 Product Items in their Online Store.</li>
-                                <li>Can setup different payment mode (COD,  Bank Deposit, Remittance).</li>
-                                <li>*Card Payment/Online Payment can also be setup for your Online Store.</li>
+                            <ul class="px-2" style="font-size:18px;">
+                                <li>You will have your OWN Online Store or e-commerce Store.</li>
+                                <li>Very easy and fast to activate, setup and maintain your Online Store.</li>
+                                <li>All you need is your smartphone to setup your Online Store.</li>
+                                <li>Enables you to display or post your Products in your Online Store.</li>
+                                <li>Able to Setup and Display Products by Category</li>
+                                <li>Can Setup the following Mode of Payments in your Store. - Cash on Delivery, Bank Deposit/Payment, Remittances</li>
+                                <li>Online/Card Payment can be configured upon payment of the One time setup fee.</li>
+                                <li>Able to Set-up Delivery Mode : - Delivery or Pick-up</li>
                             </ul>
                         </div>
                     </div>

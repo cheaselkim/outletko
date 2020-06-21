@@ -453,7 +453,7 @@ class Signup_model extends CI_Model {
     }
 
     public function get_data($id){
-        $query = $this->db->query("SELECT plan_type.*, account_application.*, `plan_type`.`id` AS plan_type_id, city.city_desc, province.province_desc
+        $query = $this->db->query("SELECT plan_type.*, account_application.*, `plan_type`.`id` AS plan_type_id, city.city_desc, province.province_desc, `invoice`.`invoice_no`
         FROM account_application 
         LEFT JOIN plan_type ON 
         account_application.subscription_type = plan_type.id

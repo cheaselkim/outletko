@@ -463,10 +463,14 @@ function get_profile(id){
 
             $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
             $('#div-list-img-'+x+'').css("background-position", "center");
-            $('#div-list-img-'+x+'').css("background-size", "contain");
             $('#div-list-img-'+x+'').css("height", "100%");
             $('#div-list-img-'+x+'').css("width", "100%");
 
+            if ($(document).width() < 768){
+                $('#div-list-img-'+x+'').css("background-size", "100px 100%");
+            }else{
+                $('#div-list-img-'+x+'').css("background-size", "175px 200px");
+            }
         }
     //products
     
@@ -1023,7 +1027,8 @@ $.ajax({
           $('#div-list-img-'+x+'').css("background-image", "url('"+href_url+"')");
           $('#div-list-img-'+x+'').css("background-repeat", "no-repeat");
           $('#div-list-img-'+x+'').css("background-position", "center");
-          $('#div-list-img-'+x+'').css("background-size", "contain");
+          $('#div-list-img-'+x+'').css("background-size", "200px 250px");
+        //   $('#div-list-img-'+x+'').css("background-size", "contain);
           //   $('#div-list-img-'+x+'').css("background-size", "100% 100%");
 
         }

@@ -165,7 +165,7 @@
                             <div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
                             </div>
 
-                            <div class="fotorama text-center" id="div-fotorama" data-width="100%" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
+                            <div class="fotorama text-center" id="div-fotorama" data-minheight="175" data-minwidth="250" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
                             </div>
 
                         </div>

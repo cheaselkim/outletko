@@ -202,10 +202,15 @@ $(document).ready(function(){
             $("#cart-plan-outlet-qty").val("0");
             $("#sml-cart-plan-outlet-qty").val("0");
         }else{
+            if ($(this).val() > 3){
+                $("#cart-plan-outlet-qty").val("3");
+                $("#sml-cart-plan-outlet-qty").val("3");
+            }else{
+                $("#sml-cart-plan-outlet-qty").val($(this).val());
+                $("#cart-plan-outlet-qty").val($(this).val());
+            }
             cart_outlet();
         }
-        $("#sml-cart-plan-outlet-qty").val($(this).val());
-        $("#cart-plan-outlet-qty").val($(this).val());
     });
 
     $("#sml-cart-plan-outlet-qty").keyup(function(){
