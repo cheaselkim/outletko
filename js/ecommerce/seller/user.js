@@ -4532,6 +4532,10 @@ function coverage_ship_area(){
     // $('#cov-ship-prov :not(:first-child)').remove();
     // $('#cov-ship-city :not(:first-child)').remove();
 
+    $('#cov-ship-prov').empty();
+    $('#cov-ship-city').empty();
+
+
     $.ajax({
         data : {csrf_name : csrf_name, area : area},
         type : "POST",
@@ -4573,6 +4577,9 @@ function coverage_ship_prov(){
 
     // $('#cov-ship-city :not(:first-child)').remove();
 
+    $('#cov-ship-city').empty();
+
+
     $.ajax({
         data : {csrf_name : csrf_name, prov : prov},
         type : "POST",
@@ -4608,6 +4615,8 @@ function clear_cov_ship(){
     $("#cov-ship-fee").val("");    
     // $('#cov-ship-prov :not(:first-child)').remove();
     // $('#cov-ship-city :not(:first-child)').remove();
+    $('#cov-ship-prov').empty();
+    $('#cov-ship-city').empty();
 
 }
 

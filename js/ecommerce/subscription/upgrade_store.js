@@ -362,7 +362,7 @@ function plan(){
                     plan_title = "<span class='font-weight-bold'>"+plan_name[0]+"</span>";
                 }
     
-                $("#div-plan-dtls").append("<div class='col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2'>"+
+                $("#div-plan-dtls").append("<div class='col-12 col-lg-4 col-md-6 col-sm-12 px-0 mt-2'>"+
                     "<div class='mx-auto text-center div-plan' "+style+"> "+
                         "<p class='font-size-35 font-weight-600 mb-0 plan-type-name' data-desc='"+data[i].plan_name+"'>"+plan_title+"</p> "+
                         "<p class='font-size-25 font-weight-600 mb-0' data-days='"+data[i].plan_days+"'>"+data[i].plan_days_name+"</p> "+

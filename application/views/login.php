@@ -576,6 +576,7 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Email Address <span class="text-red">*</span></span>
                             <input type="text" class="form-control form-control-sm textbox-green" id="signup_user_email">
+                            <span class="text-red" id="span-email" >Email Already Exists</span>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Password <span class="text-red">*</span></span>

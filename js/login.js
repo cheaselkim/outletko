@@ -23,7 +23,10 @@ $(document).ready(function(){
 	$("#btn_confirm").hide();
 	$("#btn_confirm2").hide();
 	$("#div-form").hide();
-	$("#login-error").hide();
+    $("#login-error").hide();
+    
+    $("#span-email").hide();
+
 
     $("#go").click(function(){
         var password = $("#website_password").val();
@@ -423,10 +426,37 @@ $(document).ready(function(){
 	    }
 	});
 
-
 	$('#verify_code').bind("cut copy paste",function(e) {
 		e.preventDefault();
     });    
+
+    $("#signup_user_email").blur(function(){
+        var email = $(this).val();
+        var csrf_name = $("input[name='csrf_name']").val();
+        // console.log(email);
+            $("#signup_user_email").attr("data-exists", "0");
+            $.ajax({
+                data : {email : email, csrf_name : csrf_name},
+                type : "POST",
+                dataType : "JSON",
+                url : base_url + "Store_register/check_email",
+                success : function(result){
+                    console.log(result);
+                    $("input[name='csrf_name']").val(result.token);
+                    if (result.result > 0){
+                        $("#signup_user_email").attr("data-exists", "1");
+                        $("#span-email").show();
+                        // $("#signup_user_email").append('<br><span class="text-red">Email already exists</span>');
+                    }else{
+                        $("#span-email").hide();
+                    }
+
+                }, error : function(err){
+                    console.log(err.responseText);
+                }
+            })
+
+    });
 
 });
 
@@ -558,8 +588,12 @@ function check_signup_field(){
 		swal({
 			type : "warning",
 			title : "Password does not match"
-		})
-
+        })
+    }else if ($("#signup_user_email").attr("data-exists") == "1"){        
+		swal({
+			type : "warning",
+			title : "Email already Exists"
+		});
 	}else{
 
 		insert_user();
