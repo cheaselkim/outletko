@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     $("#btn-del-info").popover({
         html: true,
-        trigger: "hover",
+        trigger: "click",
         title: "Delivery Coverage Area",
         content: $('#popover-content')
     });
@@ -359,10 +359,10 @@ function get_profile(id){
             }
 
             if ($(document).width() <= 600){
-                if (product_name.length <= 35){
+                if (product_name.length <= 30){
                     product_name = product_name;
                 }else{
-                    product_name = product_name.substring(0, 35) + "....";
+                    product_name = product_name.substring(0, 30) + "....";
                 }    
             }else if ($(document).width() <= 768 ){
                 if (product_name.length <= 38){
@@ -402,7 +402,7 @@ function get_profile(id){
             } 
 
 
-            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
+            var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto bd-green" id="div-list-prod-'+x+'">'+
                 '<div id="div-list-img-'+x+'" class="div-list-prod" onclick="get_product_info('+result.products[x]['id']+');">' +  
             // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
@@ -421,11 +421,18 @@ function get_profile(id){
           //   var total_rows = 8 * index;
           // }
           var index = 1;
-
+          var div_row = 0;
+          var div_row2 = 0;
           	a++;
 
-	        var div_row = (a/8).toFixed(0);
-	        var div_row2 = (((a/8).toFixed(2)) % 1);
+            if ($(document).width() <= 768){
+                div_row = (a/6).toFixed(0);
+                div_row2 = (((a/6).toFixed(2)) % 1);   
+            }else{
+                div_row = (a/8).toFixed(0);
+                div_row2 = (((a/8).toFixed(2)) % 1);    
+            }
+
 
 	        if (Number(div_row2.toFixed(2)) == 0){
 	        	mod = 0;
@@ -434,6 +441,7 @@ function get_profile(id){
 	        }else{
 	        	mod = 0;
 	        }
+
 
 	        // console.log(a + " " + div_row2.toFixed(2) + " " + mod);
 
@@ -595,6 +603,11 @@ $(".div-header-2").removeClass("d-none d-md-block");
 $(".div-header-4").removeClass("d-none d-md-block");
 $(".div-header-2").hide();
 $(".div-header-4").hide();  
+$("#prod-desc").show();
+$("#prod-desc-2").hide();
+}else{
+    $("#prod-desc").hide();
+    $("#prod-desc-2").show();
 }
 
 $("#div-product-details").show();
@@ -685,6 +698,7 @@ $.ajax({
 
         $("#prod-name").text(data.products[0].product_name);
         $("#prod-desc").text(data.products[0].product_description);
+        $("#prod-desc-2").html(data.products[0].product_description + "<br>");
         $("#prod-other-details").text((data.products[0].product_other_details == null ? "No Other Details" : (data.products[0].product_other_details == "" ? "No Other Details " : data.products[0].product_other_details)));
         $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
         $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));

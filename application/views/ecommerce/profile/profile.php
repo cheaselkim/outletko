@@ -165,7 +165,13 @@
                             <div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
                             </div>
 
-                            <div class="fotorama text-center" id="div-fotorama" data-minheight="175" data-minwidth="250" data-ratio="4/3" data-nav="thumbs"  data-auto="false" data-allowfullscreen="true">
+                            <div class="fotorama text-center bg-white" id="div-fotorama"  
+                                data-width="100%"
+                                data-height="300px"
+                                data-nav="thumbs"  
+                                data-auto="false" 
+                                data-allowfullscreen="true" 
+                                data-fit="contain">
                             </div>
 
                         </div>
@@ -189,7 +195,7 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <span class="font-size-22 font-weight-600" id="prod-name">Abaca Seedlings</span><br>
-                                        <span class="font-size-18 font-weight-500" id="prod-desc"></span><br>
+                                        <span class="font-size-18 font-weight-500" id="prod-desc"></span>
                                     </div>
                                 </div>
 
@@ -198,6 +204,7 @@
                                         <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
                                         <span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
                                         <br>
+                                        <span class="font-size-18 font-weight-500" id="prod-desc-2"></span>
                                         <span id="prod_payment_type" class="font-size-15"></span><br>
                                         <span id="prod_delivery_type" class="font-size-15 " hidden></span>
                                         <span>Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
@@ -353,7 +360,7 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back">
                                         <div class="row pb-3 mx-1 div-btn-order">
-                                            <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-left pt-2 d-block d-sm-none">
+                                            <div class="col-12 col-lg-12 col-md-10 col-sm-12 pad-left pt-2 d-block d-lg-none">
                                                 <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
                                             </div>								
                                         </div>
@@ -409,7 +416,7 @@
                             </div> -->
 
                         </div>
-                        <div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-md-block">
+                        <div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-lg-block">
                             <button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
                         </div>
                     </div>
