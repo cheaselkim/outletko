@@ -1911,10 +1911,10 @@ function index(){
         if (result.result[0].account_pro == 1){
             product_allowed = 100;
         }else{
-            product_allowed = 12;
+            product_allowed = 20;
         }
 
-        if (result.product_rows < product_allowed){
+        if (result.product_rows <= product_allowed){
             var e2 = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' ">' +
             '<div class="div-list-img">' +
                     '<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +
@@ -2924,7 +2924,7 @@ $.ajax({
         var products = result.ol_products;
 
         if (result.account_pro == 0){
-            if (result.ol_products_rows >= 12){
+            if (result.ol_products_rows >= 20){
                 if (id != ""){
                     $("#prod_id").val(id);
                     for (var i = 0; i < products.length; i++) {

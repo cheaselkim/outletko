@@ -24,7 +24,7 @@
 				<div class="col-12 pad-left" style="margin-top: -10px;">
 					<div class="div-prof-details">
 						<div class="row">
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center px-0">
 								<span class="font-weight-600 text-capitalize text-buss-name" id="text-buss-name"></span>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
@@ -167,7 +167,7 @@
 
                             <div class="fotorama text-center bg-white" id="div-fotorama"  
                                 data-width="100%"
-                                data-height="300px"
+                                data-minheight="300px"
                                 data-nav="thumbs"  
                                 data-auto="false" 
                                 data-allowfullscreen="true" 

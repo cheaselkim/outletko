@@ -133,6 +133,14 @@
     .header-post{
         font-size: 17px;
     }
+
+    #prod-name{
+        font-size: 26px;
+    }
+
+    #prod-price, #prod-price2{
+        font-size: 24px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

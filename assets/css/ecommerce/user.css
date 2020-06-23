@@ -249,7 +249,7 @@ textarea{
 }
 
 .div-prof-details{
-	height: 160px;
+	min-height: 160px;
 }
 
 .text-buss-name{

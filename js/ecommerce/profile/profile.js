@@ -292,9 +292,18 @@ function get_profile(id){
 
     //products
         $('#posted_prod').empty();
-        var posted_rows = (result.products.length/8).toFixed(0);
-        // console.log("posted_rows raw " + posted_rows);
-        var posted_rows2 = (result.products.length/ (8 * posted_rows));
+        var posted_rows = 0;
+        var posted_rows2 = 0;
+
+        if ($(document).width() <= 768){
+            posted_rows = (result.products.length/6).toFixed(0);
+            // console.log("posted_rows raw " + posted_rows);
+            posted_rows2 = (result.products.length/ (6 * posted_rows));    
+        }else{
+            posted_rows = (result.products.length/8).toFixed(0);
+            // console.log("posted_rows raw " + posted_rows);
+            posted_rows2 = (result.products.length/ (8 * posted_rows));    
+        }
 
         if (posted_rows2 <= 1){
             posted_rows2 = 0;
@@ -424,7 +433,7 @@ function get_profile(id){
           var div_row = 0;
           var div_row2 = 0;
           	a++;
-
+            
             if ($(document).width() <= 768){
                 div_row = (a/6).toFixed(0);
                 div_row2 = (((a/6).toFixed(2)) % 1);   
@@ -852,7 +861,9 @@ $.ajax({
 
             var data = {
                 "img" : img,
-                "thumb" : img
+                "thumb" : img,
+                "width" : "250px",
+                "height" : "300px"
             }
 
             arr_data.push(data);
@@ -900,9 +911,18 @@ $.ajax({
         $('#div-posted-prod').empty();
         $('#posted_prod').empty();
         var bg_color = $(".div-header").css("background-color");
-        var posted_rows = (result.products.length/8).toFixed(0);
-        // console.log("posted_rows raw " + posted_rows);
-        var posted_rows2 = (result.products.length/ (8 * posted_rows));
+        var posted_rows = 0;
+        var posted_rows2 = 0;
+
+        if ($(document).width() <= 768){
+            posted_rows = (result.products.length/6).toFixed(0);
+            // console.log("posted_rows raw " + posted_rows);
+            posted_rows2 = (result.products.length/ (6 * posted_rows));    
+        }else{
+            posted_rows = (result.products.length/8).toFixed(0);
+            // console.log("posted_rows raw " + posted_rows);
+            posted_rows2 = (result.products.length/ (8 * posted_rows));    
+        }
 
         if (posted_rows2 <= 1){
             posted_rows2 = 0;
@@ -987,7 +1007,7 @@ $.ajax({
                     product_name = product_name.substring(0, 55) + "....";
                 }    
             }
-            var e = $('<div class="col col-6 col-md-3 col-lg-3  mt-3 '+margin+' ">'+
+            var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" onclick="get_product_info('+result.products[x]['id']+');">'+
               // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
                 '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
@@ -1007,8 +1027,16 @@ $.ajax({
 
           	a++;
 
-	        var div_row = (a/8).toFixed(0);
-	        var div_row2 = (((a/8).toFixed(2)) % 1);
+            var div_row = 0;
+            var div_row2 = 0;
+
+            if ($(document).width() <= 768){
+                div_row = (a/6).toFixed(0);
+                div_row2 = (((a/6).toFixed(2)) % 1);    
+            }else{
+                div_row = (a/8).toFixed(0);
+                div_row2 = (((a/8).toFixed(2)) % 1);    
+            }
 
 	        if (Number(div_row2.toFixed(2)) == 0){
 	        	mod = 0;
