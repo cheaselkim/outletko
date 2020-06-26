@@ -51,6 +51,8 @@ $(document).ready(function(){
     $("#div-remittance-list").hide();
     $("#div-bank-list").hide();
 
+    $("#alert-cov-ship").hide();
+
     $("#ship_w_mm").number(true, 2);
     $("#ship_o_mm").number(true, 2);
     $("#prod_price").number(true, 2);
@@ -764,6 +766,7 @@ $(document).ready(function(){
     $("#cov-ship-courier").autocomplete({
         select: function(event, ui){
             $("#cov-ship-courier").attr("data-id", ui.item.id);
+            check_cov_area_duplicate();
         },
         source: function(req, add){
             var csrf_name = $("input[name=csrf_name]").val();
@@ -796,8 +799,28 @@ $(document).ready(function(){
         coverage_ship_prov();
     });
 
+    $("#cov-ship-city").change(function(){
+        check_cov_area_duplicate();
+    });
+
     $("#btn-save-cov-ship").click(function(){
         check_coverage_ship();
+    });
+
+    $("#cov-ship-kg").keyup(function(){
+        check_cov_area_duplicate();
+    });
+
+    $("#cov-ship-fee").keyup(function(){
+        check_cov_area_duplicate();
+    });
+
+    $("#cov_all").change(function(){
+        if ($(this).is(":checked")){
+            $(".cov_area").prop("checked", true);
+        }else{
+            $(".cov_area").prop("checked", false);
+        }
     });
 
 });
@@ -1338,6 +1361,7 @@ function coverage_area(area){
                 $("#div-coverage-city").show();
             }
 
+            var checked_cov_area = 0;
     
             for ( var i = 0; i < data.length; i++) {
                 if (area == "1"){
@@ -1361,7 +1385,17 @@ function coverage_area(area){
                         '<label class="custom-control-label cursor-pointer" for="cov_'+data[i].id+'">'+desc+'</label>'+
                     '</div>');
 
+                if (checked == "checked"){
+                    checked_cov_area++;
+                }
+
                 checked = "";
+            }
+
+            if (checked_cov_area == data.length){
+                $("#cov_all").prop("checked", true);
+            }else{
+                $("#cov_all").prop("checked", false);
             }
 
             if (area != "1"){
@@ -3487,6 +3521,7 @@ function get_product_info(id){
             $("input[name=csrf_name]").val(data.token);
             $("#prod_name").val(data.products[0].product_name);
             $("#prod_desc").val(data.products[0].product_description);
+            $("#prod_remarks").val(data.products[0].product_other_details);
             $("#prod_online").val(data.products[0].product_online);
             $("#prod_price").val(data.products[0].product_unit_price);
             $("#prod_category").val(data.products[0].product_category);
@@ -4530,10 +4565,10 @@ function coverage_ship_area(){
     var area = $("#cov-ship-area").val();
 
     // $('#cov-ship-prov :not(:first-child)').remove();
-    // $('#cov-ship-city :not(:first-child)').remove();
+    $('#cov-ship-city :not(:first-child)').remove();
 
     $('#cov-ship-prov').empty();
-    $('#cov-ship-city').empty();
+    // $('#cov-ship-city').empty();
 
 
     $.ajax({
@@ -4563,7 +4598,7 @@ function coverage_ship_area(){
 
             // $('#cov-ship-prov :first-child').attr("hidden", true);
             // $('#cov-ship-city :first-child').attr("hidden", true);
-
+            coverage_ship_prov();
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -4575,9 +4610,9 @@ function coverage_ship_prov(){
     var csrf_name = $("input[name=csrf_name]").val();
     var prov = $("#cov-ship-prov").val();
 
-    // $('#cov-ship-city :not(:first-child)').remove();
+    $('#cov-ship-city :not(:first-child)').remove();
 
-    $('#cov-ship-city').empty();
+    // $('#cov-ship-city').empty();
 
 
     $.ajax({
@@ -4589,16 +4624,60 @@ function coverage_ship_prov(){
             $("input[name=csrf_name]").val(result.token);
 
             var data = result.result;
-            console.log(data);
+            // console.log(data);
             for (let i = 0; i < data.length; i++) {
                 $("#cov-ship-city").append("<option value='"+data[i].city_id+"'>"+data[i].city_desc+"</option>");
             }
 
             // $('#cov-ship-prov :first-child').attr("hidden", true);
             // $('#cov-ship-city :first-child').attr("hidden", true);
-
+            check_cov_area_duplicate();
         }, error : function(err){
             console.log(err.responseText)
+        }
+    })
+
+}
+
+function check_cov_area_duplicate(){
+
+    var cov_courier = $("#cov-ship-courier").attr("data-id");
+    var cov_area = $("#cov-ship-area").val();
+    var cov_prov = $("#cov-ship-prov").val();
+    var cov_city = $("#cov-ship-city").val();
+    var cov_kg = $("#cov-ship-kg").val();
+
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {cov_courier : cov_courier, cov_area : cov_area, cov_prov : cov_prov, cov_city : cov_city, cov_kg : cov_kg, csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Outletko_profile/check_cov_area_duplicate",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            $("#alert-cov-ship").attr("data-id", result.result);
+
+            if (result.result == 1){
+                $("#alert-cov-ship").show();
+                $("#cov-ship-courier").addClass("error");
+                $("#cov-ship-area").addClass("error");
+                $("#cov-ship-prov").addClass("error");
+                $("#cov-ship-city").addClass("error");
+                $("#cov-ship-kg").addClass("error");
+                $("#cov-ship-fee").addClass("error");
+            }else{
+                $("#alert-cov-ship").hide();
+                $("#cov-ship-courier").removeClass("error");
+                $("#cov-ship-area").removeClass("error");
+                $("#cov-ship-prov").removeClass("error");
+                $("#cov-ship-city").removeClass("error");
+                $("#cov-ship-kg").removeClass("error");
+                $("#cov-ship-fee").removeClass("error");
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
         }
     })
 
@@ -4614,9 +4693,9 @@ function clear_cov_ship(){
     $("#cov-ship-kg").val("");    
     $("#cov-ship-fee").val("");    
     // $('#cov-ship-prov :not(:first-child)').remove();
-    // $('#cov-ship-city :not(:first-child)').remove();
+    $('#cov-ship-city :not(:first-child)').remove();
     $('#cov-ship-prov').empty();
-    $('#cov-ship-city').empty();
+    // $('#cov-ship-city').empty();
 
 }
 
@@ -4627,6 +4706,7 @@ function check_coverage_ship(){
     var city = $("#cov-ship-city").val();
     var weight = $("#cov-ship-kg").val();
     var amount = $("#cov-ship-fee").val();
+    var alert_cov = $("#alert-cov-ship").attr("data-id");
 
     if (courier == "0" || courier.length <= 0 || area.length <= 0 || province.length <= 0 || city.length <= 0 || weight.length <= 0 || amount.length <= 0){
         swal({
@@ -4634,7 +4714,15 @@ function check_coverage_ship(){
             title : "Please input all requried fields"
         })
     }else{
-        save_coverage_ship();
+        if (alert_cov == "1"){
+            swal({
+                type : "warning",
+                title : "This Shipping details is already saved",
+                text : "Please change your shipping details"
+            })
+        }else{
+            save_coverage_ship();
+        }
     }
 }
 

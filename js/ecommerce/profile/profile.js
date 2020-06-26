@@ -28,6 +28,13 @@ $(document).ready(function(){
         content: $('#popover-content')
     });
 
+    // $("#btn-del-info-2").popover({
+    //     html: true,
+    //     trigger: "click",
+    //     placement : "top",
+    //     title: "Delivery Coverage Area",
+    //     content: $('#popover-content')
+    // });
 
   $("#btn_back").click(function(){
     $("#div-display-products").show();
@@ -37,6 +44,7 @@ $(document).ready(function(){
     $("#div-product-details").hide();    
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     $("#btn-del-info").popover('hide');
+    // $("#btn-del-info-2").popover('hide');
   });
 
   $("#btn_back2").click(function(){
@@ -47,6 +55,7 @@ $(document).ready(function(){
     $("#div-product-details").hide();    
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     $("#btn-del-info").popover('hide');
+    // $("#btn-del-info-2").popover('hide');
   })
 
   $("#btn-sel-prod").click(function(){
@@ -294,21 +303,36 @@ function get_profile(id){
         $('#posted_prod').empty();
         var posted_rows = 0;
         var posted_rows2 = 0;
+        var posted_rows3 = 0;
 
         if ($(document).width() <= 768){
             posted_rows = (result.products.length/6).toFixed(0);
             // console.log("posted_rows raw " + posted_rows);
             posted_rows2 = (result.products.length/ (6 * posted_rows));    
+            posted_rows3 = (result.products.length/6) - posted_rows;
         }else{
             posted_rows = (result.products.length/8).toFixed(0);
             // console.log("posted_rows raw " + posted_rows);
             posted_rows2 = (result.products.length/ (8 * posted_rows));    
+            posted_rows3 = (result.products.length/8) - posted_rows;
         }
+
+        // console.log("Products Length "  + result.products.length);
+        // console.log("posted_rows raw " + posted_rows);
+        // console.log("posted_rows2 " + posted_rows2);
+        // console.log((result.products.length / 6));
+        // console.log("posted_rows2 remainder "  + ((result.products.length/6) - posted_rows ))
 
         if (posted_rows2 <= 1){
             posted_rows2 = 0;
         }else{
             posted_rows2 = posted_rows2.toFixed(0);
+        }
+
+        if (posted_rows3 > 0){
+            posted_rows2 = 1;
+        }else{
+            posted_rows2 = 0;
         }
 
         // console.log("posted_rows2 " + posted_rows2);
@@ -605,6 +629,7 @@ $("#div-details").show();
 
 
 $("#btn-del-info").popover('hide');
+// $("#btn-del-info-2").popover('hide');
 var window_width = $(document).width();
 
 if (window_width > 768){
@@ -614,9 +639,13 @@ $(".div-header-2").hide();
 $(".div-header-4").hide();  
 $("#prod-desc").show();
 $("#prod-desc-2").hide();
+$("#div-sm-prod-dtls").hide();
+$("#div-lg-prod-dtls").show();
 }else{
     $("#prod-desc").hide();
     $("#prod-desc-2").show();
+    $("#div-sm-prod-dtls").show();
+    $("#div-lg-prod-dtls").hide();
 }
 
 $("#div-product-details").show();
@@ -660,10 +689,11 @@ $.ajax({
 
         var result = {mm : mm, luz : luz, vis : vis, min : min};
 
-        console.log(result)
-        console.log(luz.length);
+        // console.log(result)
+        // console.log(luz.length);
 
         $('#btn-del-info').popover('show');
+        // $('#btn-del-info-2').popover('show');
         $("#pop-min").text("");
         $("#pop-mm").text("");
         $("#pop-luz").text("");
@@ -704,6 +734,7 @@ $.ajax({
         }
 
         $('#btn-del-info').popover('hide');
+        // $('#btn-del-info-2').popover('hide');
 
         $("#prod-name").text(data.products[0].product_name);
         $("#prod-desc").text(data.products[0].product_description);
@@ -717,6 +748,36 @@ $.ajax({
         $("#std_del").text(data.products[0].delivery_type);
         $("#prod_id").val(data.products[0].id);
 
+        if (window_width <= 768){
+            $("#div-prod-other-details").css("margin-top", "10px");
+            if (data.products[0].product_other_details == null){
+                // $("#div-prod-other-details").css("height", "100px");
+                $("#div-prod-other-details").css("min-height", "100px");
+                $("#prod-other-details").css("color", "gray");
+            }else if (data.products[0].product_other_details == ""){
+                // $("#div-prod-other-details").css("height", "100px");
+                $("#div-prod-other-details").css("min-height", "100px");
+                $("#prod-other-details").css("color", "gray");
+            }else{
+                // $("#div-prod-other-details").css("height", "150px");
+                $("#div-prod-other-details").css("min-height", "150px");
+                $("#prod-other-details").css("color", "black");
+            }
+        }else{
+            // $("#div-prod-other-details").css("height", "150px");
+            $("#div-prod-other-details").css("min-height", "150px");
+            $("#div-prod-other-details").css("margin-top", "0px");
+
+            if (data.products[0].product_other_details == null){
+                $("#prod-other-details").css("color", "gray");
+            }else if (data.products[0].product_other_details == ""){
+                $("#prod-other-details").css("color", "gray");
+            }else{
+                $("#prod-other-details").css("color", "black");
+            }
+
+        }
+
         $("#cart-prod-name").text(data.products[0].product_name);
         $("#cart-prod-price").text($.number(data.products[0].product_unit_price, 2));
 
@@ -728,6 +789,16 @@ $.ajax({
         $("#prod_return").text((data.products[0].product_return == null ? "None" : data.products[0].product_return));
         $("#prod_warranty").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));
 
+        $("#prod_payment_type-2").text((data.payment_type[0].payment_type == null ? "None" : data.payment_type[0].payment_type));
+        $("#prod_delivery_type-2").text((data.products[0].delivery_type == null ? "None" : data.products[0].delivery_type));
+        $("#prod_del_opt-2").text((data.prod_del_opt == null ? "None" : data.prod_del_opt));
+        $("#prod_del_std-2").text((data.products[0].product_std_delivery == null ? "None" : data.products[0].product_std_delivery));
+        $("#prod_return-2").text((data.products[0].product_return == null ? "None" : data.products[0].product_return));
+        $("#prod_warranty-2").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));
+
+        var clone_del_opt = $('#popover-content').clone();
+        $("#div-del-area").empty();
+        $("#div-del-area").append(clone_del_opt);
 
         $("#shipp_w_mm").text($.number(data.products[0].ship_w_mm, 2));
         $("#shipp_o_mm").text($.number(data.products[0].ship_o_mm, 2));
@@ -913,15 +984,18 @@ $.ajax({
         var bg_color = $(".div-header").css("background-color");
         var posted_rows = 0;
         var posted_rows2 = 0;
+        var posted_rows3 = 0;
 
         if ($(document).width() <= 768){
             posted_rows = (result.products.length/6).toFixed(0);
             // console.log("posted_rows raw " + posted_rows);
-            posted_rows2 = (result.products.length/ (6 * posted_rows));    
+            posted_rows2 = (result.products.length/ (6 * posted_rows));   
+            posted_rows3 =  (result.products.length/6) - posted_rows;
         }else{
             posted_rows = (result.products.length/8).toFixed(0);
             // console.log("posted_rows raw " + posted_rows);
             posted_rows2 = (result.products.length/ (8 * posted_rows));    
+            posted_rows3 =  (result.products.length/8) - posted_rows;
         }
 
         if (posted_rows2 <= 1){
@@ -929,6 +1003,13 @@ $.ajax({
         }else{
             posted_rows2 = posted_rows2.toFixed(0);
         }
+
+        if (posted_rows3 > 0){
+            posted_rows2 = 1;
+        }else{
+            posted_rows2 = 0;
+        }
+
 
         // console.log("posted_rows2 " + posted_rows2);
         posted_rows = Number(posted_rows) + Number(posted_rows2);

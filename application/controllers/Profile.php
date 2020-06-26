@@ -105,6 +105,8 @@ class Profile extends CI_Controller {
         $cov_vis = "";
         $cov_min = "";
 
+        $account_id = "";
+
         foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
             $data['img'] = img_display($unserialized_files);
@@ -133,6 +135,8 @@ class Profile extends CI_Controller {
             $prod_var_type = $this->profile_model->get_prod_var_type($row->id);
             $coverage_area = $this->profile_model->get_coverage_area($row->account_id);
             $delivery_area = $this->profile_model->get_delivery_area($row->account_id);
+
+            $account_id = $row->account_id;
 
             $data['products'][] = array(
                 'product_name' => $row->product_name,
@@ -192,7 +196,12 @@ class Profile extends CI_Controller {
 
                         if ($value->area == "1"){
                             if ($cov_mm == "1"){
-                                $mm = "Metro Manila : ".$value->city_desc;
+                                $result_cov_area = $this->profile_model->get_coverage_city($value->area, $value->prov_id, $account_id);
+                                if ($result_cov_area == "1"){
+                                    $mm = "Metro Manila : All";
+                                }else{
+                                    $mm = "Metro Manila : ".$value->city_desc;
+                                }
                             }
                         }
 
@@ -204,21 +213,36 @@ class Profile extends CI_Controller {
 
                         if ($value->area == "2"){
                             if ($cov_luz == "1"){
-                                $var_luz = $value->prov_desc." - ".$city_desc;
+                                $result_cov_area = $this->profile_model->get_coverage_city($value->area, $value->prov_id, $account_id);
+                                if ($result_cov_area == "1"){
+                                    $var_luz = $value->prov_desc." - All";
+                                }else{
+                                    $var_luz = $value->prov_desc." - ".$city_desc;
+                                }
                                 $luz[] = array("city_desc" => $var_luz);    
                             }
                         }
 
                         if ($value->area == "3"){
                             if ($cov_vis == "1"){
-                                $var_vis = $value->prov_desc." - ".$city_desc;
+                                $result_cov_area = $this->profile_model->get_coverage_city($value->area, $value->prov_id, $account_id);
+                                if ($result_cov_area == "1"){
+                                    $var_vis = $value->prov_desc." - All";
+                                }else{
+                                    $var_vis = $value->prov_desc." - ".$city_desc;
+                                }
                                 $vis[] = array("city_desc" => $var_vis);    
                             }
                         }
 
                         if ($value->area == "4"){
                             if ($cov_min == "1"){
-                                $var_min .= $value->prov_desc." - ".$city_desc;
+                                $result_cov_area = $this->profile_model->get_coverage_city($value->area, $value->prov_id, $account_id);
+                                if ($result_cov_area == "1"){
+                                    $var_min .= $value->prov_desc." - All";
+                                }else{
+                                    $var_min .= $value->prov_desc." - ".$city_desc;
+                                }
                                 $min[] = array("city_desc" => $var_min);    
                             }
                         }

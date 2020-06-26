@@ -289,6 +289,7 @@ class Outletko_profile extends CI_Controller {
             $data['products'][] = array(
                 'product_name' => $row->product_name,
                 "product_description" => $row->product_description,
+                "product_other_details" => $row->product_other_details,
                 "product_online" => $row->product_online,
                 "product_available" => $row->product_available,
                 "product_unit_price" => $row->product_unit_price,
@@ -363,6 +364,43 @@ class Outletko_profile extends CI_Controller {
 
     public function coverage_ship_prov(){
         $data['result'] = $this->outletko_profile_model->get_coverage_city_prov($this->input->post("prov"));
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function check_cov_area_duplicate(){
+
+        $courier = $this->input->post("cov_courier");
+        $area = $this->input->post("cov_area");
+        $prov = $this->input->post("cov_prov");
+        $city = $this->input->post("cov_city");
+        $kg = $this->input->post("cov_kg");
+        $result = 0;
+
+        if ($city == "0"){
+
+            $result_prov = $this->outletko_profile_model->get_coverage_city_prov($prov);
+
+            if (!empty($result_prov)){
+                foreach ($result_prov as $key => $value) {
+                    $result_cov = $this->outletko_profile_model->check_cov_area_duplicate($courier, $area, $prov, $value->city_id, $kg);
+
+                    if ($result_cov == 0){
+                        $result = 0;
+                        break;
+                    }else{
+                        $result = 1;
+                    }
+                }
+            }else{
+                $result = 0;
+            }
+
+        }else{
+            $result = $this->outletko_profile_model->check_cov_area_duplicate($courier, $area, $prov, $city, $kg);
+        }
+
+        $data['result'] = $result;
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -727,18 +765,54 @@ class Outletko_profile extends CI_Controller {
     public function save_coverage_ship(){
         $array = array();
 
-        $array = array(
-            "comp_id" => $this->session->userdata("comp_id"),
-            "courier" => $this->input->post("courier"),
-            "area" => $this->input->post("area"),
-            "province" => $this->input->post("province"),
-            "city" => $this->input->post("city"),
-            "weight" => $this->input->post("weight"),
-            "amount" => $this->input->post("amount"),
-            "date_insert" => date("Y-m-d H:i:s")
-        );
+        if ($this->input->post("city") == "0"){
 
-        $data['result'] = $this->outletko_profile_model->save_coverage_ship($array, $this->input->post("id"));
+            $coverage_city = $this->outletko_profile_model->get_coverage_city_prov($this->input->post("province"));
+
+            if (!empty($coverage_city)){
+
+                foreach ($coverage_city as $key => $value) {
+                    $city = $value->city_id;
+
+                    $array = array(
+                        "comp_id" => $this->session->userdata("comp_id"),
+                        "courier" => $this->input->post("courier"),
+                        "area" => $this->input->post("area"),
+                        "province" => $this->input->post("province"),
+                        "city" => $city,
+                        "weight" => $this->input->post("weight"),
+                        "amount" => $this->input->post("amount")
+                    );
+
+                    $cov_duplicate = $this->outletko_profile_model->get_coverage_ship_by_dtls($this->input->post("courier"), $this->input->post("area"), $this->input->post("province"), $city, $this->input->post("weight"));
+
+                    if (!empty($cov_duplicate)){
+                        foreach ($cov_duplicate as $key2 => $value2) {
+                            $id = $value2->id;
+                        }
+                    }else{
+                        $id = "0";
+                    }
+
+                    $result_array = $this->outletko_profile_model->save_coverage_ship($array, $id);        
+                }
+            }
+
+            $result = 1;
+            $data['result'] = $result;
+        }else{
+            $array = array(
+                "comp_id" => $this->session->userdata("comp_id"),
+                "courier" => $this->input->post("courier"),
+                "area" => $this->input->post("area"),
+                "province" => $this->input->post("province"),
+                "city" => $this->input->post("city"),
+                "weight" => $this->input->post("weight"),
+                "amount" => $this->input->post("amount")
+            );
+            $data['result'] = $this->outletko_profile_model->save_coverage_ship($array, $this->input->post("id"));        
+        }
+
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -773,18 +847,47 @@ class Outletko_profile extends CI_Controller {
                 $files_upload[] = $randname;
                 $file_name = $randname;
 
+                // $filename = './images/products/'.$file_name;  
+                // $exif = exif_read_data($filename);
+                // $ort = $exif['Orientation'];
+                // $ort1 = $ort;
+                // $exif = exif_read_data($filename, 0, true);
+                // $config['rotation_angle'] = '90';
+
+                // var_dump($exif);
+
+                // if (!empty($ort1)){
+                //     $ort = $ort1;
+                //     // var_dump($ort);
+                //     switch ($ort) {
+                //         case 3:
+                //             $config['rotation_angle'] = '180';
+                //             break;
+                //         case 6:
+                //             $config['rotation_angle'] = '270';
+                //             break;
+                //         case 8:
+                //             $config['rotation_angle'] = '90';
+                //         default:
+                //             # code...
+                //             break;
+                //     }
+                // }
+                
+                $config['rotation_angle'] = '90';
                 $config['upload_path'] = './images/products/'; 
                 $config['image_library'] = 'gd2';  
                 $config['source_image'] = './images/products/'.$file_name;  
                 $config['create_thumb'] = FALSE;  
                 $config['maintain_ratio'] = TRUE;  
-                $config['quality'] = '60%';  
-                $config['width'] = 200;  
-                $config['height'] = 200;  
+                $config['quality'] = '100%';  
+                $config['width'] = 600;  
+                $config['height'] = 600;  
                 $config['new_image'] = './images/products/'.$file_name;  
                 $this->load->library('image_lib', $config);  
                 $this->image_lib->resize();                         
-    
+                $this->image_lib->clear();
+
             }
 
 
@@ -825,17 +928,41 @@ class Outletko_profile extends CI_Controller {
             $file_name = $randname;
             $set = 'true';
 
-            $config['upload_path'] = './images/products/'; 
+            // $filename = $upload_path.$file_name;
+            // $exif = exif_read_data($filename);
+            // $ort = $exif['Orientation'];
+            // $ort1 = $ort;
+            // $exif = exif_read_data($filename, 0, true);
+
+            // if (!empty($ort1)){
+            //     $ort = $ort1;
+            //     switch ($ort) {
+            //         case 3:
+            //             $config['rotation_angle'] = '180';
+            //             break;
+            //         case 6:
+            //             $config['rotation_angle'] = '270';
+            //             break;
+            //         case 8:
+            //             $config['rotation_angle'] = '90';
+            //         default:
+            //             # code...
+            //             break;
+            //     }
+            // }
+
+            $config['upload_path'] = $upload_path; 
             $config['image_library'] = 'gd2';  
-            $config['source_image'] = './images/products/'.$file_name;  
+            $config['source_image'] = $upload_path.$file_name;  
             $config['create_thumb'] = FALSE;  
             $config['maintain_ratio'] = TRUE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
-            $config['new_image'] = './images/products/'.$file_name;  
+            $config['quality'] = '100%';  
+            $config['width'] = 600;  
+            $config['height'] = 600;  
+            $config['new_image'] = $upload_path.$file_name;  
             $this->load->library('image_lib', $config);  
             $this->image_lib->resize();                         
+            $this->image_lib->clear();
 
         }
 
@@ -876,9 +1003,9 @@ class Outletko_profile extends CI_Controller {
             $config['source_image'] = './images/profile/'.$file_name;  
             $config['create_thumb'] = FALSE;  
             $config['maintain_ratio'] = FALSE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
+            $config['quality'] = '100%';  
+            $config['width'] = 600;  
+            $config['height'] = 600;  
             $config['new_image'] = './images/profile/'.$file_name;  
             $this->load->library('image_lib', $config);  
             $this->image_lib->resize();                         
@@ -915,9 +1042,9 @@ class Outletko_profile extends CI_Controller {
             $config['source_image'] = './images/store/'.$file_name;  
             $config['create_thumb'] = FALSE;  
             $config['maintain_ratio'] = FALSE;  
-            $config['quality'] = '60%';  
-            $config['width'] = 200;  
-            $config['height'] = 200;  
+            $config['quality'] = '100%';  
+            $config['width'] = 800;  
+            $config['height'] = 800;  
             $config['new_image'] = './images/store/'.$file_name;  
             $this->load->library('image_lib', $config);  
             $this->image_lib->resize();                         
@@ -955,9 +1082,9 @@ class Outletko_profile extends CI_Controller {
                 $config['source_image'] = './images/products/'.$file_name;  
                 $config['create_thumb'] = FALSE;  
                 $config['maintain_ratio'] = FALSE;  
-                $config['quality'] = '70%';  
-                $config['width'] = 300;  
-                $config['height'] = 300;  
+                $config['quality'] = '100%';  
+                $config['width'] = 600;  
+                $config['height'] = 600;  
                 $config['new_image'] = './images/products/'.$file_name;  
                 $this->load->library('image_lib', $config);  
                 $this->image_lib->resize();                         

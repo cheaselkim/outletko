@@ -353,6 +353,22 @@ class Outletko_profile_model extends CI_Model {
         return $query;
     }
 
+    public function get_coverage_ship_by_dtls($courier, $area, $prov, $city, $kg){
+        $query = $this->db2->query("SELECT * FROM account_coverage_shipping WHERE comp_id = ? AND courier = ? AND area = ? AND province = ? AND city = ? AND `account_coverage_shipping`.`weight` = ? ", array($this->session->userdata("comp_id"), $courier, $area, $prov, $city, $kg))->result();
+
+        return $query;
+    }
+
+    public function check_cov_area_duplicate($courier, $area, $prov, $city, $kg){
+        $query = $this->db2->query("SELECT * FROM account_coverage_shipping WHERE comp_id = ? AND courier = ? AND area = ? AND province = ? AND city = ? AND `account_coverage_shipping`.`weight` = ? ", array($this->session->userdata("comp_id"), $courier, $area, $prov, $city, $kg))->result();
+    
+        if (!empty($query)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     //SAVING
 
     public function save_username($username){
@@ -658,9 +674,11 @@ class Outletko_profile_model extends CI_Model {
     public function save_coverage_ship($data, $id){
 
         if ($id != "0"){
+            $data['date_update'] = date("Y-m-d H:i:s");
             $this->db2->where("id", $id);
             $this->db2->update("account_coverage_shipping", $data);
         }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
             $this->db2->insert("account_coverage_shipping", $data);
         }
 

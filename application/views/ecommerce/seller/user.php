@@ -22,7 +22,7 @@
 							<div class="div-prof-details">
 								<div class="row">
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-										<span class="font-weight-bold text-buss-name text-capitalize" id="text-buss-name"></span>
+										<span class="font-weight-bold text-buss-name " id="text-buss-name"></span>
 									</div>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 										<span class=" text-buss-type" id="text-buss-type"></span>
@@ -2261,15 +2261,15 @@
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                             <span class="font-weight-600 h4" id="coverage-group">Metro Manila</span>
                         </div>
+                        <div class="col-12 col-lg-12 co-md-12 col-sm-12 px-4 pt-2">
+                           <div class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_all" name="cov_all" value="0">
+                                <label class="custom-control-label cursor-pointer font-weight-600" for="cov_all">All</label>
+                            </div>                    
+                        </div>
                     </div>
                     <div class="row" style="height: 200px; overflow: auto;"> 
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-4 pt-2" id="coverage_area"> 
-
-                            <div class="custom-control custom-checkbox" hidden>
-                                <input type="checkbox" class="custom-control-input cursor-pointer" id="cov_mm" name="cov_1" value="6">
-                                <label class="custom-control-label cursor-pointer" for="cov_mm">Metro Manila</label>
-                            </div>                    
-
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-4 pt-1" id="coverage_area"> 
                         </div>
                     </div>
                     <div class="row pt-2" id="div-coverage-city">
@@ -2333,6 +2333,13 @@
                             <span class="text-red font-italic">Note: Search "My Store Shipping" for personal courier service</span>
                         </div>
                     </div>
+                    <div class="row" id="alert-cov-ship">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="alert alert-danger py-1">
+                                <span>This Shipping details is already saved.</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             <span class="font-weight-600">Courier <span class="text-red">*</span></span>
@@ -2372,8 +2379,8 @@
                         </div>
                         <div class="col-8">
                             <select name="" id="cov-ship-city" class="form-control">
-                                <!-- <option value="0" hidden>All</option> -->
-                                <option value="" selected hidden></option>
+                                <option value="0" >All</option>
+                                <!-- <option value="" selected hidden></option> -->
                             </select>
                         </div>
                     </div>

@@ -140,6 +140,7 @@ class Profile_model extends CI_Model {
         $query = $this->db2->query("SELECT 
         `account_coverage_city`.`area`,
         `province`.`province_desc` AS prov_desc,
+        `province`.`id` AS prov_id,
         GROUP_CONCAT(DISTINCT city_desc SEPARATOR ', ') AS city_desc
         FROM account_coverage_city
         LEFT JOIN city ON 
@@ -206,6 +207,19 @@ class Profile_model extends CI_Model {
         `reviews`.`user_id` = `eoutletsuite_users`.`id`
         WHERE `reviews`.`comp_id` = ?", array($comp_id))->result();
         return $query;
+    }
+
+    public function get_coverage_city($area, $prov, $comp_id){
+        $query = $this->db2->query("SELECT COUNT(*) AS city_count FROM account_coverage_city WHERE prov = ? AND comp_id = ?", array($prov, $comp_id))->row();
+        $city  = $this->db2->query("SELECT COUNT(*) AS total_city FROM city WHERE province_id = ?", array($prov))->row();
+    
+
+        if ($query->city_count == $city->total_city){
+            return 1;
+        }else{
+            return 0;
+        }
+
     }
 
 }
