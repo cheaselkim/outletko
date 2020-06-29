@@ -107,6 +107,11 @@ class Profile extends CI_Controller {
 
         $account_id = "";
 
+        $var_luz = "";
+        $var_vis = "";
+        $var_min = "";
+
+
         foreach($result as $row){
             $unserialized_files = unserialize($row->img_location); 
             $data['img'] = img_display($unserialized_files);
@@ -259,41 +264,69 @@ class Profile extends CI_Controller {
             $prod_del_opt = "Nationwide";
         }
 
-        if ($cov_mm == "1" || $cov_luz == "1"){
+        if ($cov_mm == "1" || $cov_luz == "1" && $cov_vis == "0" && $cov_min == "0"){
             $prod_del_opt = "Metro Manila Only";
         }
 
-        if ($cov_luz == "1" ){
+        if ($cov_luz == "1" && $cov_vis == "0" && $cov_min == "0"){
             $prod_del_opt = "Luzon Only";
         }
 
-        if ($cov_vis == "1"){
+        if ($cov_vis == "1" && $cov_luz == "0" && $cov_min == "0" && $cov_mm == "0"){
             $prod_del_opt = "Visayas Only";
         }
 
-        if ($cov_min == "1"){
+        if ($cov_min == "1" && $cov_luz == "0" && $cov_vis == "0" && $cov_mm == "0"){
             $prod_del_opt = "Mindanao Only";
         }
 
-        if ($cov_mm == "1" && $cov_luz == "0" && $cov_vis == "1"){
+        if ($cov_mm == "1" && $cov_luz == "0" && $cov_vis == "1" && $cov_min == "0"){
             $prod_del_opt = "Metro Manila & Visayas";
         }
 
-        if ($cov_mm == "1" && $cov_luz == "0" && $cov_min == "1"){
+        if ($cov_mm == "1" && $cov_luz == "0" && $cov_min == "1" && $cov_vis == "0"){
             $prod_del_opt = "Metro Manila & Mindanao";
         }
 
-        if ($cov_luz == "1" && $cov_vis == "1"){
+        if ($cov_luz == "1" && $cov_vis == "1" && $cov_min == "0"){
             $prod_del_opt = "Luzon & Visayas";
         }
 
-        if ($cov_luz == "1" && $cov_min == "1"){
+        if ($cov_luz == "1" && $cov_min == "1" && $cov_vis == "0"){
             $prod_del_opt = "Luzon & Mindanao";
         }
 
-        if ($cov_vis == "1" && $cov_min == "1"){
+        if ($cov_vis == "1" && $cov_min == "1" && $cov_luz == "0"){
             $prod_del_opt = "Visayas & Mindanao";
         }
+
+        if ($cov_mm == "1" && $cov_luz == "1" && $cov_vis == "1" && $cov_min == "1"){
+            $prod_del_opt = "Nationwide";
+        }
+
+
+        $result_cov_luz = $this->profile_model->get_coverage_province(2, $account_id);
+        $result_cov_vis = $this->profile_model->get_coverage_province(3, $account_id);
+        $result_cov_min = $this->profile_model->get_coverage_province(4, $account_id);
+
+        if ($result_cov_luz == "1"){
+            unset($luz);
+            $luz = array();
+            $luz[] = array("city_desc" => "All Areas");
+        }
+
+        if ($result_cov_vis == "1"){
+            unset($vis);
+            $vis = array();
+            $vis[] = array("city_desc" => "All Areas");
+        }
+
+        if ($result_cov_min == "1"){
+            unset($min);
+            $min = array();
+            $min[] = array("city_desc" => "All Areas");
+        }
+
 
         $data['mm'] = nl2br($mm);
         $data['luz'] = $luz;

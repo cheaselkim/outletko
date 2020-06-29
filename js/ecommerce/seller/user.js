@@ -737,12 +737,63 @@ $(document).ready(function(){
     });
 
     $(document).on("change", ".cov_area", function(){
-        // $('#cov-prov :not(:first-child)').remove();
-        $('.cov_area').each(function () {
-            if (this.checked) {
-                $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
-            }
-        });
+        if (this.checked) {
+            // $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
+            $('#cov-prov :not(:first-child)').remove();
+            // $("#tbl-prov-city tbody").empty();
+
+            var tbl_row = "";
+
+            $('.cov_area').each(function () {
+                if ($(this).is(":checked")){
+                    $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
+
+                    status = 0;
+                    tbl_row = "";
+                    var checked_val = $(this).val();
+
+                    $("#tbl-prov-city tbody tr").each(function(row, tr){
+                        if ($(tr).find("td:eq(0)").attr("data-id") == checked_val){
+                            if ($(tr).find("td:eq(1)").attr("data-id") != "0"){
+                                status = 1;
+                                tbl_row = tr;
+                                return false;
+                            }               
+                        }
+    
+                    })
+    
+    
+                    if (status == 0){
+    
+                        if (tbl_row != ""){
+                            $("#tbl-prov-city tbody").find("tr:eq("+tbl_row+")").remove();
+                        }
+    
+                        var row2 = $("#tbl-prov-city > tbody > tr").length + 1; 
+    
+                        $("#tbl-prov-city tbody").append("<tr  id='tbl-row-"+(row2)+"'>"+
+                        "<td data-id='"+$(this).val()+"'>"+$(this).next("label").text()+"</td>" +
+                        "<td data-id='0'>All</td>" +
+                        "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city("+row2+")'><i class='fa fa-trash'></i></button></td>" +
+                        "</tr>");
+    
+                    }   
+    
+                }
+            });
+
+        }else{
+            var checked_val = $(this).val();
+
+            $("#tbl-prov-city tbody tr").each(function(row, tr){
+                if ($(tr).find("td:eq(0)").attr("data-id") == checked_val){
+                    $(tr).remove();
+                }
+
+            })
+
+        }
     })
 
     $(document).on("change", "#cov-prov", function(){
@@ -817,10 +868,67 @@ $(document).ready(function(){
 
     $("#cov_all").change(function(){
         if ($(this).is(":checked")){
-            $(".cov_area").prop("checked", true);
+            $(".cov_area").prop("checked", true); 
         }else{
             $(".cov_area").prop("checked", false);
+            $("#tbl-prov-city tbody").empty();
         }
+
+        var status = 0;
+        var tbl_row = 0;
+
+        $('#cov-prov :not(:first-child)').remove();
+        // $("#tbl-prov-city tbody").empty();
+
+        if ($(this).is(":checked")){
+
+            $('.cov_area').each(function () {
+                if ($(".cov_area").is(":checked")){
+                    $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
+
+                    status = 0;
+                    var checked_val = $(this).val();
+                    $("#tbl-prov-city tbody tr").each(function(row, tr){
+                        if ($(tr).find("td:eq(0)").attr("data-id") == checked_val){
+                            if ($(tr).find("td:eq(1)").attr("data-id") != "0"){
+                                status = 1;
+                                tbl_row = tr;
+                                return false;
+                            }               
+                        }
+
+                    })
+
+
+                    if (status == 0){
+
+                        if (tbl_row != ""){
+                            $("#tbl-prov-city tbody").find("tr:eq("+tbl_row+")").remove();
+                        }
+
+                        var row2 = $("#tbl-prov-city > tbody > tr").length + 1; 
+
+                        $("#tbl-prov-city tbody").append("<tr  id='tbl-row-"+(row2)+"'>"+
+                        "<td data-id='"+$(this).val()+"'>"+$(this).next("label").text()+"</td>" +
+                        "<td data-id='0'>All</td>" +
+                        "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city("+row2+")'><i class='fa fa-trash'></i></button></td>" +
+                        "</tr>");
+
+                    }
+
+
+                    // var row = $("#tbl-prov-city > tbody > tr").length + 1; 
+
+                    // $("#tbl-prov-city tbody").append("<tr  id='tbl-row-"+(row)+"'>"+
+                    // "<td data-id='"+$(this).val()+"'>"+$(this).next("label").text()+"</td>" +
+                    // "<td data-id='0'>All</td>" +
+                    // "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city("+row+")'><i class='fa fa-trash'></i></button></td>" +
+                    // "</tr>");
+                
+                }
+            });
+
+        }            
     });
 
 });
@@ -1456,7 +1564,7 @@ function add_prov_city(){
     $("#tbl-prov-city tbody").append("<tr  id='tbl-row-"+(row)+"'>"+
     "<td data-id='"+$("#cov-prov").val()+"'>"+$("#cov-prov option:selected").text()+"</td>" +
     "<td data-id='"+$("#cov-prov-city").val()+"'>"+$("#cov-prov-city option:selected").text()+"</td>" +
-    "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city('"+row+"')'><i class='fa fa-trash'></i></button></td>" +
+    "<td><button class='btn btn-outline-danger btn-block py-0' onclick='remove_prov_city("+row+")'><i class='fa fa-trash'></i></button></td>" +
     "</tr>");
 
 }

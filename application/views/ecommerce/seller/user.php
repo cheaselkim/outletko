@@ -660,7 +660,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-lg-10 col-md-8 col-sm-12">
-                                                        <button class="btn btn-outline-orange py-0" id="btn-coz-min">Select City/Province</button>
+                                                        <button class="btn btn-outline-orange py-0" id="btn-cov-min">Select City/Province</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2292,7 +2292,7 @@
                             </div>
 
                             <div class="row mt-3">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12" style="height: 200px; overflow: auto;">
                                     <table class="table table-bordered table-sm" id="tbl-prov-city">
                                         <thead>
                                             <tr>

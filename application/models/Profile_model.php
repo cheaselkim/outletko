@@ -222,4 +222,17 @@ class Profile_model extends CI_Model {
 
     }
 
+    public function get_coverage_province($area, $comp_id){
+        $query = $this->db2->query("SELECT COUNT(DISTINCT(prov)) AS prov_count FROM account_coverage_city WHERE `account_coverage_city`.`area` = ? AND comp_id = ?
+        ", array($area, $comp_id))->row();
+        $prov  = $this->db2->query("SELECT COUNT(*) AS total_prov FROM province WHERE island_group = ?", array($area))->row();
+
+        if ($query->prov_count == $prov->total_prov){
+            return 1;
+        }else{
+            return 0;
+        }
+
+    }
+
 }

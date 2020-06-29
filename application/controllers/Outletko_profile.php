@@ -103,7 +103,7 @@ class Outletko_profile extends CI_Controller {
         if (!empty($result)){
             foreach ($result as $key => $value) {
                 $prod[$key] = array(
-                    "id" => $value->id,
+                    "id" => $value->var_type_id,
                     "comp_id" => $value->comp_id,
                     "variation_id" => $value->variation_id,
                     "type" => $value->type,

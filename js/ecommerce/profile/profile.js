@@ -21,12 +21,12 @@ $(document).ready(function(){
         get_profile($id);    
     }, 500);
 
-    $("#btn-del-info").popover({
-        html: true,
-        trigger: "click",
-        title: "Delivery Coverage Area",
-        content: $('#popover-content')
-    });
+    // $("#btn-del-info").popover({
+    //     html: true,
+    //     trigger: "click",
+    //     title: "Delivery Coverage Area",
+    //     content: $('#popover-content')
+    // });
 
     // $("#btn-del-info-2").popover({
     //     html: true,
@@ -43,7 +43,7 @@ $(document).ready(function(){
     $(".div-header-4").show();
     $("#div-product-details").hide();    
     $(window).scrollTop($('#div-posted-prod').offset().top);    
-    $("#btn-del-info").popover('hide');
+    // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
   });
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
     $(".div-header-4").show();
     $("#div-product-details").hide();    
     $(window).scrollTop($('#div-posted-prod').offset().top);    
-    $("#btn-del-info").popover('hide');
+    // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
   })
 
@@ -628,7 +628,7 @@ $(".div-header-3").hide();
 $("#div-details").show();
 
 
-$("#btn-del-info").popover('hide');
+// $("#btn-del-info").popover('hide');
 // $("#btn-del-info-2").popover('hide');
 var window_width = $(document).width();
 
@@ -692,7 +692,7 @@ $.ajax({
         // console.log(result)
         // console.log(luz.length);
 
-        $('#btn-del-info').popover('show');
+        // $('#btn-del-info').popover('show');
         // $('#btn-del-info-2').popover('show');
         $("#pop-min").text("");
         $("#pop-mm").text("");
@@ -733,13 +733,21 @@ $.ajax({
             $("#div-pop-min").hide();    
         }
 
-        $('#btn-del-info').popover('hide');
+        if (mm.length == 0 && luz.length == 0 && vis.length == 0 && min.length == "0"){
+            $("#div-del-area").css("min-height", "30px");
+            $("#div-del-area-2").css("min-height", "100px");
+        }else{
+            $("#div-del-area").css("min-height", "100px");
+            $("#div-del-area-2").css("min-height", "100px");
+        }
+
+        // $('#btn-del-info').popover('hide');
         // $('#btn-del-info-2').popover('hide');
 
         $("#prod-name").text(data.products[0].product_name);
         $("#prod-desc").text(data.products[0].product_description);
         $("#prod-desc-2").html(data.products[0].product_description + "<br>");
-        $("#prod-other-details").text((data.products[0].product_other_details == null ? "No Other Details" : (data.products[0].product_other_details == "" ? "No Other Details " : data.products[0].product_other_details)));
+        $("#prod-other-details").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
         $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
         $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
         $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Used"));
@@ -751,20 +759,20 @@ $.ajax({
         if (window_width <= 768){
             $("#div-prod-other-details").css("margin-top", "10px");
             if (data.products[0].product_other_details == null){
-                // $("#div-prod-other-details").css("height", "100px");
-                $("#div-prod-other-details").css("min-height", "100px");
+                $("#div-prod-other-details").css("height", "40px");
+                $("#div-prod-other-details").css("min-height", "0px");
                 $("#prod-other-details").css("color", "gray");
             }else if (data.products[0].product_other_details == ""){
-                // $("#div-prod-other-details").css("height", "100px");
-                $("#div-prod-other-details").css("min-height", "100px");
+                $("#div-prod-other-details").css("height", "40px");
+                $("#div-prod-other-details").css("min-height", "0px");
                 $("#prod-other-details").css("color", "gray");
             }else{
-                // $("#div-prod-other-details").css("height", "150px");
+                $("#div-prod-other-details").css("height", "auto");
                 $("#div-prod-other-details").css("min-height", "150px");
                 $("#prod-other-details").css("color", "black");
             }
         }else{
-            // $("#div-prod-other-details").css("height", "150px");
+            $("#div-prod-other-details").css("height", "auto");
             $("#div-prod-other-details").css("min-height", "150px");
             $("#div-prod-other-details").css("margin-top", "0px");
 
@@ -797,8 +805,26 @@ $.ajax({
         $("#prod_warranty-2").text((data.products[0].product_warranty == null ? "None" : data.products[0].product_warranty));
 
         var clone_del_opt = $('#popover-content').clone();
-        $("#div-del-area").empty();
-        $("#div-del-area").append(clone_del_opt);
+
+        if (window_width > 768){
+            $("#div-del-area").empty();
+            $("#div-del-area").append(clone_del_opt);
+            $("#div-del-area").find("#popover-content").attr("hidden", false);
+        }else{
+            $("#div-del-area-2").empty();
+            $("#div-del-area-2").append(clone_del_opt);
+            $("#div-del-area-2").find("#popover-content").attr("hidden", false);
+        }
+
+        if (data.prod_del_opt == "Nationwide"){
+            $("#div-del-area").hide();
+            $("#div-del-area-2").hide();
+        }else{
+            $("#div-del-area").show();
+            $("#div-del-area-2").show();
+        }
+
+        
 
         $("#shipp_w_mm").text($.number(data.products[0].ship_w_mm, 2));
         $("#shipp_o_mm").text($.number(data.products[0].ship_o_mm, 2));

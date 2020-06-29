@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-12 col-lg-6 col-md-7 col-sm-12">
+                                    <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                         <div class="row">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                 <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
@@ -211,14 +211,16 @@
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-lg-prod-dtls">
                                                 <span id="prod_payment_type" class="font-size-15"></span><br>
                                                 <span id="prod_delivery_type" class="font-size-15 " hidden></span>
-                                                <span class="font-weight-600">Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
+                                                <span class="font-weight-600">Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
+                                                <div style="min-height: 100px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow-y:auto;" class="px-2 bg-white my-2" id="div-del-area">
+                                                </div>                                                
                                                 <span id="prod_del_std" class="font-size-15 "></span><br>
                                                 <span id="prod_return" class="font-size-15 "></span><br>
                                                 <span id="prod_warranty" class="font-size-15 "></span>                                            
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-6 col-md-5 col-sm-12">
+                                    <div class="col-12 col-lg-7 col-md-7 col-sm-12">
                                         <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100" id="div-prod-other-details">
                                             <p id="prod-other-details"></p>
                                         </div>
@@ -229,7 +231,7 @@
                                         <span class="font-weight-600">Delivery Area : <span id="prod_del_opt-2" class="font-size-15 "></span> 
                                         <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info-2" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                                         </span><br>
-                                        <div style="min-height: 100px; border: 1px solid #F05E23; height: auto" class="px-2 bg-white mt-2" id="div-del-area">
+                                        <div style="min-height: 100px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow:auto;" class="px-2 bg-white my-2" id="div-del-area-2">
                                         </div>
                                         <span id="prod_del_std-2" class="font-size-15 "></span><br>
                                         <span id="prod_return-2" class="font-size-15 "></span><br>
@@ -290,7 +292,7 @@
 
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12 mt-3">
 
                                 <div class="row" hidden>
                                     <div class="col-12">
@@ -330,23 +332,23 @@
                                 </div>
 
 
-                                <div class="row">
+                                <div class="row ">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="row mt-3 div-btn-order pt-3 mx-1" id="div-btn-order">
+                                        <div class="row div-btn-order mx-1 pt-3" id="div-btn-order">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-8 col-md-12 col-sm-12">
                                                         <div class="row">
-                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
                                                                 <select class="form-control prod-var" id="prod-var-1"></select>
                                                             </div>
-                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12"> 
+                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
                                                                 <select class="form-control prod-var" id="prod-var-2"></select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-3">
+                                                <div class="row mt-2">
                                                     <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
                                                         <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
                                                     </div>
@@ -785,7 +787,7 @@
 </div>
 
 
-<div class="container-fluid" id="popover-content">
+<div class="container-fluid" id="popover-content" hidden>
     <div class="row"> 
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
 

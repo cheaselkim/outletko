@@ -211,7 +211,7 @@ class Outletko_profile_model extends CI_Model {
     }
 
     public function variation_type($prod_id){
-        $query = $this->db2->query("SELECT * FROM account_variation_type INNER JOIN account_variation ON `account_variation`.`id` = `account_variation_type`.`variation_id`  WHERE prod_id = ?", array($prod_id))->result();
+        $query = $this->db2->query("SELECT *, `account_variation_type`.`id` AS var_type_id FROM account_variation_type INNER JOIN account_variation ON `account_variation`.`id` = `account_variation_type`.`variation_id`  WHERE prod_id = ?", array($prod_id))->result();
         return $query;
     }
 
@@ -844,6 +844,7 @@ class Outletko_profile_model extends CI_Model {
             $this->db2->update("account_variation_type");
             $result = $id;
         }else{
+            $data['date_insert'] = date("Y-m-d H:i:s");
             $this->db2->insert("account_variation_type", $data);
             $result = $this->db2->insert_id();
         }
