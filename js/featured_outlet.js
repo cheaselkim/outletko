@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    get_featured_outlet();
+    get_featured();
 
     $(".card").mouseout(function(){
         var id = this.id;
@@ -11,6 +11,15 @@ $(document).ready(function(){
         var id = this.id;
         console.log(id);
     });
+
+    // $('#div-slideshow').on('slid.bs.carousel', function() {
+    //     currentIndex = $('div.active').index();
+    //     bg_color = $("#div-carousel-item-"+currentIndex).css("background-color");
+        
+    //     if ($(document).width() <= 600){
+    //         $(".div-featured-stores").css("background-color", bg_color);
+    //     }
+    // });
 
 });
 
@@ -103,6 +112,33 @@ function get_featured_outlet(){
 
         }, error : function(err){
             console.log(err.responseText);
+        }
+    })
+
+}
+
+function get_featured(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+    var resolution = $(document).width();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, resolution : resolution},
+        type : "POST",
+        dataType : "JSON",
+        url : "Outletko/featured",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+
+            $("#div-carousel-inner").html(result.featured_store);
+            $("#div-list-product").html(result.featured_product);
+
+            for (let i = 1; i < result.carousel_store.length; i++) {
+                $(".carousel-indicators").append('<li data-target="#div-slideshow" data-slide-to="'+i+'" ></li>');
+            }
+
+        }, error : function(err){
+            console.log(err.responseText)
         }
     })
 

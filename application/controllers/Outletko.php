@@ -5,6 +5,7 @@ class Outletko extends CI_Controller {
 
 	public function __construct(){
         parent::__construct();
+        $this->load->helper("outletko");
         $this->load->model("outletko_model");
     }
 
@@ -23,7 +24,15 @@ class Outletko extends CI_Controller {
 
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
-	}
+    }
+    
+    public function featured(){
+        $data['featured_store'] = featured_store($this->outletko_model->featured_store(), $this->input->post("resolution"));
+        $data['featured_product'] = featured_product($this->outletko_model->featured_product(), $this->input->post("resolution"));
+        $data['carousel_store'] = $this->outletko_model->featured_store();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
 
 
     public function menu($menu){

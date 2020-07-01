@@ -1,0 +1,1272 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-weight-600{
+    font-weight: 600;
+}
+
+.btn-see-more:hover{
+    color: white;
+}
+
+.carousel-indicators .active{
+    background-color: orange !important;
+}
+
+.carousel-indicators li{
+    background-color: gray !important;
+}
+
+/* Text Color */
+.text-black{
+    color: black;
+}
+
+.text-white{
+    color:white;
+}
+
+.text-yellow{
+    color: yellow;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-orange{
+    color: orange;
+}
+
+
+/* Background Color */
+.bg-green{
+    background-color: green;
+}
+
+.bg-orange{
+    background: orange;
+}
+
+/* Button Color */
+.btn-orange{
+    background-color: orange;
+}
+
+/* border color */
+.bd-orange{
+    border: 1px solid orange;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+.carousel-indicators .active{
+    background-color: white !important;
+}
+
+.carousel-indicators li{
+    background-color: gray !important;
+}
+
+.icon-prev, .icon-next{
+    color: rgb(99, 91, 91) !important;
+}
+
+.div-header{
+    background-color: green;
+    height: 100px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.navbar{
+    padding: 0rem;
+}
+
+.font-logo{
+    font-size: 30px;
+}
+
+.div-header-searchbar{
+    width: 100%;
+}
+
+.div-header-searchbar .input-group{
+    width: 100%;
+}
+
+.navbar-collapse{
+    background-color: green;
+    padding: 0px 15px 15px 15px;
+    width: 100%;
+
+    position: absolute; 
+    top: 54px;
+    /* right: -15px; */
+
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 3;
+}
+
+.div-button{
+    order: 2;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 460px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+    /* background-color: red; */
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 20px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 4%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 37px;
+}
+
+.div-outlet-product{
+    height: 175px;
+    width: 100%;
+    margin-left: 2.5%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 210px;
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 3%;
+    /* border: 1px solid black; */
+    /* padding: 20px; */
+    /* background-color: rgb(156, 3, 3); */
+}
+
+.div-outlet-logo{
+    height: 70px;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: none;
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 8px;
+    /* padding-top: 0px; {if two lines} */
+    margin-left: -1.5%;
+    text-align: center;
+}
+
+.div-outlet-about{
+    padding-top: 3px;
+}
+
+.div-outlet-button{
+    padding-top: 15px;
+    text-align: center;
+}
+
+.carousel-item{
+    padding-top: 30px;
+}
+
+.span-outlet-name{
+    font-size: 20px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 16px;
+    color: white;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 6%;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    height: auto;
+    background-color: orange;
+    padding: 0.5% 2.2%;
+}
+
+.span-featured-products{
+    font-size: 25px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 30px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-card-prod{
+    height: 100px;
+    width: 113px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    width: 113px;
+    height: 75px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+.carousel-indicators .active{
+    background-color: orange !important;
+}
+
+.carousel-indicators li{
+    background-color: gray !important;
+}
+
+.icon-prev, .icon-next{
+    color: orange !important;
+}
+
+.div-header{
+    background-color: green;
+    height: 55px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.navbar{
+    padding: .5rem 1rem;
+}
+
+.font-logo{
+    font-size: 30px;
+}
+
+.div-header-searchbar{
+    width: 70%;
+}
+
+.div-header-searchbar .input-group{
+    width: 100%;
+}
+
+.navbar-collapse{
+    background-color: green;
+    padding: 0px 15px 15px 15px;
+    width: 30%;
+
+    position: absolute; 
+    top: 54px;
+    right: -15px;
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 2;
+}
+
+.div-button{
+    order: 3;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 480px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 25px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 2%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.div-outlet-product{
+    height: 300px;
+    width: 100%;
+    margin-left: 2.5%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 300px;
+    width: 100%;
+    margin-left: 3%;
+    /* border: 1px solid black; */
+    padding: 20px;
+    background-color: rgb(156, 3, 3);
+}
+
+.div-outlet-logo{
+    height: 70px;
+    width: 100%;
+    display: block;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 18px;
+    /* padding-top: 0px; {if two lines} */
+    margin-left: -1.5%;
+}
+
+.div-outlet-about{
+    padding-top: 10px;
+}
+
+.div-outlet-button{
+    padding-top: 10px;
+}
+
+.carousel-item{
+    padding-top: 60px;
+}
+
+.span-outlet-name{
+    font-size: 20px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 16px;
+    color: white;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 6%;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    min-height: 240px;
+    background-color: orange;
+    padding: 0.5% 2.2%;
+}
+
+.span-featured-products{
+    font-size: 25px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 5px;
+}
+
+.div-card-prod{
+    height: 100px;
+    width: 113px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    width: 113px;
+    height: 75px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+.div-header{
+    background-color: green;
+    height: 55px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.font-logo{
+    font-size: 30px;
+}
+
+.div-header-searchbar{
+    width: 70%;
+}
+
+.div-header-searchbar .input-group{
+    width: 100%;
+}
+
+.navbar-collapse{
+    background-color: green;
+    padding: 0px 15px 15px 15px;
+    width: 30%;
+
+    position: absolute; 
+    top: 54px;
+    right: -15px;
+
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 2;
+}
+
+.div-button{
+    order: 3;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 480px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 25px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 2%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.div-outlet-product{
+    height: 300px;
+    width: 100%;
+    margin-left: 2.7%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 300px;
+    width: 100%;
+    margin-left: 3%;
+    /* border: 1px solid black; */
+    padding: 20px;
+    background-color: rgb(156, 3, 3);
+}
+
+.div-outlet-logo{
+    height: 70px;
+    width: 100%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 18px;
+    /* padding-top: 0px; {if two lines} */
+    margin-left: -1.5%;
+}
+
+.div-outlet-about{
+    padding-top: 10px;
+}
+
+.div-outlet-button{
+    padding-top: 10px;
+}
+
+.carousel-item{
+    padding-top: 60px;
+}
+
+.span-outlet-name{
+    font-size: 20px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 16px;
+    color: white;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 6%;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    min-height: 240px;
+    background-color: orange;
+    padding: 0.5% 2.2%;
+}
+
+.span-featured-products{
+    font-size: 25px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 43px;
+    padding-right: 42px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+.div-card-prod{
+    height: 150px;
+    width: 180px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 10px;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    width: 180px;
+    height: 75px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+.pad-right{
+    padding-right: 3px;
+}
+
+.pad-left{
+    padding-left: 3px;
+}
+
+.pad-center{
+    padding-right: 3px;
+    padding-left: 3px;
+}
+    
+.div-header{
+    background-color: green;
+    height: 58px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.navbar{
+    margin-top: 0px !important;
+}
+
+.font-logo{
+    font-size: 30px;
+}
+
+.div-header-searchbar{
+    width: 46%;
+}
+
+.div-header-searchbar .input-group{
+    width: 100%;
+}    
+
+.navbar-collapse{
+    padding: 0%;
+    position: relative; 
+    top: 0;
+    right: -0px; 
+
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 2;
+}
+
+.div-button{
+    order: 4;
+}
+
+.navbar-collapse{
+    order: 3;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 480px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 25px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 2%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.div-outlet-product{
+    height: 300px;
+    width: 37%;
+    margin-left: 0%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 300px;
+    width: 60%;
+    margin-left: 3%;
+    /* border: 1px solid black; */
+    padding: 20px;
+    background-color: rgb(156, 3, 3);
+}
+
+.div-outlet-logo{
+    height: 90px;
+    width: 100%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 18px;
+    /* padding-top: 0px; {if two lines} */
+    margin-left: -1.5%;
+}
+
+.div-outlet-about{
+    padding-top: 10px;
+}
+
+.div-outlet-button{
+    padding-top: 20px;
+}
+
+.carousel-item{
+    padding-top: 60px;
+}
+
+.span-outlet-name{
+    font-size: 30px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 16px;
+    color: white;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 6%;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    min-height: 300px;
+    height: auto;
+    background-color: orange;
+    padding: 0.5% 2.2%;
+}
+
+.span-featured-products{
+    font-size: 25px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-card-prod{
+    height: 120px;
+    width: 130px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 0px;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    height: 50px;
+    width: 130px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+.pad-right{
+    padding-right: 3px;
+}
+
+.pad-left{
+    padding-left: 3px;
+}
+
+.pad-center{
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.div-header{
+    background-color: green;
+    height: 65px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.navbar{
+    margin-top: -3px !important;
+}
+
+.font-logo{
+    font-size: 40px;
+}
+
+.div-header-searchbar{
+    width: 100%;
+}
+
+.div-header-searchbar .input-group{
+    width: 90%;
+}
+
+.navbar-collapse{
+    padding: 0%;
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 2;
+}
+
+.div-button{
+    order: 4;
+}
+
+.navbar-collapse{
+    order: 3;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 435px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 32px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 3.3%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.div-outlet-product{
+    height: 320px;
+    width: 30%;
+    margin-left: 65px;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 320px;
+    width: 54%;
+    margin-left: 60px;
+    /* border: 1px solid black; */
+    padding: 30px;
+    background-color: rgb(156, 3, 3);
+}
+
+.div-outlet-logo{
+    height: 85px;
+    width: 90%;
+    /* border: 1px solid black; */
+    display: block;
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 20px;
+    /* padding-top: 0px; {if two lines} */
+    margin-left: -2.5%;
+}
+
+.div-outlet-about{
+    padding-top: 10px;
+}
+
+.div-outlet-button{
+    padding-top: 20px;
+}
+
+.carousel-item{
+    padding-top: 35px;
+}
+
+.span-outlet-name{
+    font-size: 30px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 18px;
+    color: white;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    min-height: 270px;
+    height:auto;
+    background-color: orange;
+    padding: 0.5% 2.2%;
+}
+
+.span-featured-products{
+    font-size: 25px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-card-prod{
+    height: 150px;
+    width: 180px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    height: 50px;
+    width: 180px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1920px) {
+    
+.div-header{
+    background-color: green;
+    height: 68px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.navbar{
+    margin-top: -5px !important;
+}
+
+
+.font-logo{
+    font-size: 45px;
+}
+
+.div-header-searchbar{
+    width: 100%;
+}
+
+.div-header-searchbar .input-group{
+    width: 50%;
+}
+
+.navbar-collapse{
+    padding: 0%;
+}
+
+.div-logo{
+    order: 1;
+}
+
+.div-header-searchbar{
+    order: 2;
+}
+
+.div-button{
+    order: 4;
+}
+
+.navbar-collapse{
+    order: 3;
+}
+
+/* Body */
+.div-featured-stores{
+    height: 600px;
+    /* border-bottom: 1px solid black; */
+    background:white;
+}
+
+.div-featured{
+    /* height: 50px; */
+    font-size: 35px;
+    font-style: italic;
+    position: absolute;
+    top: 1%;
+    padding-left: 2.3%;
+}
+
+.div-outlet{
+    margin-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.div-outlet-product{
+    height: 450px;
+    width: 30%;
+    margin-left: 115px;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.div-outlet-details{
+    height: 450px;
+    width: 53%;
+    margin-left: 60px;
+    /* border: 1px solid black; */
+    padding: 40px;
+    background-color: rgb(156, 3, 3);
+}
+
+.div-outlet-logo{
+    height: 120px;
+    width: 85%;
+    /* border: 1px solid black; */
+
+    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.div-outlet-name{
+    padding-left: 0;
+    padding-top: 30px;
+    /* padding-top: 0px; {if two lines} */
+}
+
+.div-outlet-about{
+    padding-top: 10px;
+}
+
+.div-outlet-button{
+    padding-top: 20px;
+}
+
+.carousel-item{
+    padding-top: 50px;
+}
+
+.span-outlet-name{
+    font-size: 45px;
+    color: white;
+}
+
+.span-outlet-about{
+    font-size: 20px;
+    color: white;
+}
+
+/* Featured Products */
+
+.div-featured-product{
+    min-height: 300px;
+    height: auto;
+    background-color: orange;
+    padding: 0.5% 1.7%;
+}
+
+.span-featured-products{
+    font-size: 30px;
+    font-style: italic;
+}
+
+.div-list-product{
+    padding-left: 223px;
+    padding-right: 224px;
+}
+
+.div-card-prod{
+    height: 175px;
+    width: 200px;
+    border: 1px solid green;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background-image: url('https://www.outletko.com/images/products/file_48_643092.png');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+.div-card-prod-name{
+    height: 50px;
+    width:200px;
+    border: 1px solid green;
+    border-top: 0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    color: black;
+    background-color: white;
+}
+
+.div-card-prod-name .prod-title{
+    font-size: 15px;
+}
+
+.div-card-prod-name .prod-price{
+    font-size: 14px;
+}
+
+}
