@@ -99,4 +99,9 @@ class Store_model extends CI_Model {
         return $query->link_name;
     }
 
+    public function get_linkname_id($id){
+        $query = $this->db2->query("SELECT * FROM account WHERE id = ?", array($id))->row();
+        return $query->link_name;
+    }
+
 }

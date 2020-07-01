@@ -9,8 +9,16 @@ class Store extends CI_Controller {
 	  }
 
 	public function store($store){
-		
+        
+            $prod_id = 0;
+
+            if (!empty($this->session->userdata("comp_prod_id"))){
+                $prod_id = $this->session->userdata("comp_prod_id");
+                $this->session->unset_userdata("comp_prod_id");
+            }
+
             $data['id'] = $this->store_model->search_store($store);
+            $data['comp_prod_id'] = $prod_id;
             $data['sub_module'] = 0;
 			$data['menu_module'] = 0;
 			$data['edit'] = 0;
@@ -51,7 +59,18 @@ class Store extends CI_Controller {
 
 
 
-	}
+    }
+    
+    public function products($product){
+        $comp_id = substr(substr($this->input->get("OS"), 5), 0, -3);
+        $prod_id = substr(substr($this->input->get("pd"), 2), 0, -3);;
+
+        $link_name = $this->store_model->get_linkname_id($comp_id);
+        $this->session->set_userdata("comp_prod_id", $prod_id);
+
+        redirect("/".$link_name);
+
+    }
 
 
 }

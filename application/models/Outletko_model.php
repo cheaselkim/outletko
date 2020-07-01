@@ -24,7 +24,7 @@ class Outletko_model extends CI_Model {
         AND `products`.`id` IN ?
         GROUP BY `account`.`id`
         ORDER BY `account`.`featured_order`
-        ", array(1, array(37, 55, 76, 83, 123, 156)))->result();
+        ", array(1, array(37, 55, 76, 83, 123, 88)))->result();
         return $query;
     }
 

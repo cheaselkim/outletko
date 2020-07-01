@@ -1,4 +1,3 @@
-<input type="hidden" id="id" value="<?php echo $id ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/user.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/header.css') ?>">
@@ -790,6 +789,9 @@
 <div class="container-fluid" id="popover-content" hidden>
     <div class="row"> 
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+        <input type="hidden" id="id" value="<?php echo $id ?>">
+        <input type="hidden" id="comp-prod-id" value="<?php echo $comp_prod_id; ?>">
+        <input type="hidden" id="link-name" value="">
 
             <div class="row" id="div-pop-mm">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-mm">

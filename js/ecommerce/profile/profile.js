@@ -13,7 +13,6 @@ $(document).ready(function(){
     $("#div-pop-vis").hide();
     $("#div-pop-min").hide();
 
-
     // console.log($("input[name=csrf_name]").val());
 
 //   get_profile($id);
@@ -45,6 +44,12 @@ $(document).ready(function(){
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
+
+    // if ($("#comp-prod-id").val() != "0"){
+    //     console.log(base_url + $("#link-name").val());
+    //     window.open(base_url + $("#link-name").val(), "_self");
+    // }
+
   });
 
   $("#btn_back2").click(function(){
@@ -56,7 +61,12 @@ $(document).ready(function(){
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
-  })
+
+    // if ($("#comp-prod-id").val() != "0"){
+    //     window.open(base_url + $("#link-name").val(), "_self");
+    // }
+
+})
 
   $("#btn-sel-prod").click(function(){
     $("#div-display-products").show();
@@ -208,6 +218,8 @@ function get_profile(id){
 
         $("#account-post").text(result.result[0].account_post);
         $("#header_whats_new").text(result.result[0].account_post);
+
+        $("#link-name").val(result.result[0].link_name);
 
         $("#text-buss-name").text(result.result[0].account_name);
         $("#owner_name_text").text(result.result[0].first_name+" "+result.result[0].middle_name+" "+result.result[0].last_name);
@@ -552,6 +564,10 @@ function get_profile(id){
           }
         }
         
+        if ($("#comp-prod-id").val() != "0"){
+            // console.log($("#comp-prod-id").val());
+            get_product_info($("#comp-prod-id").val());
+        }
 
     }, error: function(err){
       console.log(err.responseText);
@@ -678,7 +694,8 @@ $.ajax({
     dataType : "JSON",
     url : base_url + "Profile/get_product_info",
     success : function(data){
-        //   console.log(data.products[0]);
+        //   console.log(data);
+        //   console.log(id);
         //   console.log(data.payment_type[0]);
         $("input[name=csrf_name]").val(data.token);
 

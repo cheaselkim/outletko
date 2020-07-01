@@ -89,4 +89,7 @@ $route['renew-store'] = 'Store_subscription/renew';
 $route['invoice'] = 'Store_register/invoice';
 $route['verification'] = 'Store_register/verification';
 
+$route['products/(:any)'] = "store/products/$1";
+
 $route['(:any)'] = 'store/store/$1';    
+

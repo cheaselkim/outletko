@@ -27,7 +27,7 @@
     </script>
 
 
-    <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="<?php echo base_url('assets/img/logo-13.png')?>" type="image/png" sizes="2x2">
 <!--     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css') ?>">  
 <!--     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
@@ -55,9 +55,9 @@
     <script src="<?php echo base_url('js/template_login2.js') ?>"></script>
     <script src="<?php echo base_url('js/template.js') ?>"></script>
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>"> -->
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/layout.css') ?>"> -->
-    <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>    
+    <!-- <script src="<?php echo base_url('assets/node_modules/colorpicker/js/colorpicker.js') ?>"></script>     -->
     <!-- <script src="<?php echo base_url('assets/node_modules/colorpicker/js/eye.js') ?>"></script>    
     <script src="<?php echo base_url('assets/node_modules/colorpicker/js/layout.js') ?>"></script>    
     <script src="<?php echo base_url('assets/node_modules/colorpicker/js/util.js') ?>"></script>    

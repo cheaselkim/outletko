@@ -217,6 +217,13 @@ if (!function_exists("featured_product")){
             $img_prod = unserialize($value->img_location);
             $prod_img = base_url()."images/products/".$img_prod[0];
 
+
+            $comp_id = randomNumber(5).$value->comp_id.randomNumber(3);
+            $prod_id = randomNumber(2).$value->id.randomNumber(3);
+
+            $href_url = base_url()."products/".str_replace(" ", "-", preg_replace('/[^A-Za-z0-9\-]/', '', $value->product_name))."?".randomNumber(150)."&OS=".$comp_id."&pd=".$prod_id;
+
+
             $css_product = "background-image: url('".$prod_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
             $product_name = $value->product_name;
 
@@ -255,7 +262,7 @@ if (!function_exists("featured_product")){
 
 
             $output .= '<div class="tile px-3 pt-1 "> 
-            <a href="href_url"> 
+            <a href="'.$href_url.'"> 
                 <div class="card div-card-prod" id="div-card-prod-i" style="'.$css_product.'"> 
                 </div> 
                 <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
@@ -333,4 +340,15 @@ function RGBToHSL($RGB) {
     $l = (int)round(255.0 * $l);
 
     return (object) Array('hue' => $h, 'saturation' => $s, 'lightness' => $l);
+}
+
+function randomNumber($length) {
+    $str = "";
+    $characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+    $max = count($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+      $rand = mt_rand(0, $max);
+      $str .= $characters[$rand];
+    }
+    return str_shuffle($str);
 }
