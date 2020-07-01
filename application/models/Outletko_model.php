@@ -19,12 +19,11 @@ class Outletko_model extends CI_Model {
     public function featured_store(){
         $query = $this->db2->query("SELECT * FROM account
         INNER JOIN products ON 
-        `products`.`comp_id` = `account`.`id`
+        `products`.`id` = `account`.`featured_product`
         WHERE `account`.`featured_store` = ?
-        AND `products`.`id` IN ?
         GROUP BY `account`.`id`
         ORDER BY `account`.`featured_order`
-        ", array(1, array(37, 55, 76, 83, 123, 88)))->result();
+        ", array(1))->result();
         return $query;
     }
 

@@ -32,7 +32,7 @@
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
-    <script defer src="<?php echo base_url('js/featured_outlet.js')?>" ></script>
+    <script  src="<?php echo base_url('js/featured_outlet.js')?>" ></script>
     <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
 </head>
@@ -110,7 +110,7 @@
             <div class="carousel-inner" id="div-carousel-inner">
     
 
-                <div class="carousel-item active w-100">
+                <!-- <div class="carousel-item active w-100">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
                         <div class="row">
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -143,7 +143,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -176,13 +176,13 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                    <span class="span-featured-products">Featured Products</span>
+                    <span class="span-featured-products text-white">Featured Products</span>
                 </div>
             </div>
 
             <div class="row div-list-product" id="div-list-product">
 
-                <div class="tile px-3 pt-1 "> 
+                <!-- <div class="tile px-3 pt-1 "> 
                     <a href="href_url"> 
                         <div class="card div-card-prod" id="div-card-prod-i" > 
                         </div> 
@@ -235,7 +235,7 @@
                             <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
                         </div>
                     </a>
-                </div>            
+                </div>             -->
 
 
             </div>

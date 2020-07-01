@@ -220,7 +220,7 @@
 
 .div-featured-product{
     height: auto;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 2.2%;
 }
 
@@ -239,7 +239,7 @@
 .div-card-prod{
     height: 100px;
     width: 113px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -253,7 +253,7 @@
 .div-card-prod-name{
     width: 113px;
     height: 75px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -427,7 +427,7 @@
 
 .div-featured-product{
     min-height: 240px;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 2.2%;
 }
 
@@ -445,7 +445,7 @@
 .div-card-prod{
     height: 100px;
     width: 113px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -459,7 +459,7 @@
 .div-card-prod-name{
     width: 113px;
     height: 75px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -616,7 +616,7 @@
 
 .div-featured-product{
     min-height: 240px;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 2.2%;
 }
 
@@ -635,7 +635,7 @@
 .div-card-prod{
     height: 150px;
     width: 180px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-top: 10px;
@@ -650,7 +650,7 @@
 .div-card-prod-name{
     width: 180px;
     height: 75px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -829,7 +829,7 @@
 .div-featured-product{
     min-height: 300px;
     height: auto;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 2.2%;
 }
 
@@ -848,7 +848,7 @@
 .div-card-prod{
     height: 120px;
     width: 130px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-top: 0px;
@@ -863,7 +863,7 @@
 .div-card-prod-name{
     height: 50px;
     width: 130px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -1033,7 +1033,7 @@
 .div-featured-product{
     min-height: 270px;
     height:auto;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 2.2%;
 }
 
@@ -1052,7 +1052,7 @@
 .div-card-prod{
     height: 150px;
     width: 180px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -1066,7 +1066,7 @@
 .div-card-prod-name{
     height: 50px;
     width: 180px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -1222,7 +1222,7 @@
 .div-featured-product{
     min-height: 300px;
     height: auto;
-    background-color: orange;
+    background-color: green;
     padding: 0.5% 1.7%;
 }
 
@@ -1239,7 +1239,7 @@
 .div-card-prod{
     height: 175px;
     width: 200px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -1253,7 +1253,7 @@
 .div-card-prod-name{
     height: 50px;
     width:200px;
-    border: 1px solid green;
+    border: 1px solid orange;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;

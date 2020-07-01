@@ -224,7 +224,7 @@ if (!function_exists("featured_product")){
             $href_url = base_url()."products/".str_replace(" ", "-", preg_replace('/[^A-Za-z0-9\-]/', '', $value->product_name))."?".randomNumber(150)."&OS=".$comp_id."&pd=".$prod_id;
 
 
-            $css_product = "background-image: url('".$prod_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
+            $css_product = "background-image: url('".$prod_img."');background-size: 99% 99%;background-repeat: no-repeat;background-position: center center;";
             $product_name = $value->product_name;
 
             if ($resolution < 768){

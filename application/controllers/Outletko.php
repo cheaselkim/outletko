@@ -33,8 +33,6 @@ class Outletko extends CI_Controller {
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
-
-
     public function menu($menu){
 
 		$data['id'] = "";
