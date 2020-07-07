@@ -171,22 +171,24 @@ if (!function_exists("menu_roles")){
 					}
 
 
+                    if ($module != "12"){
+                        $output .= "<a onclick='select_function(".$submodule.", ".$function.")' class='card mx-2 cursor-pointer ".$disabled."' readonly>
 
-					$output .= "<a onclick='select_function(".$submodule.", ".$function.")' class='card mx-2 cursor-pointer ".$disabled."' readonly>
-
-		              <div class='h-100 ".$disabled." w-100'>
-
-			              <div class=' menu-img-box  text-center pt-3'>
-
-			                <img src='".$img."' class='img-fluid mb-2'>  
-		                	<span class='mt-2 font-weight-bold mx-auto'>".$title."</span>
-
-			              </div>
-
-
-		              </div>             
-
-		            </a>";
+                        <div class='h-100 ".$disabled." w-100'>
+  
+                            <div class=' menu-img-box  text-center pt-3'>
+  
+                              <img src='".$img."' class='img-fluid mb-2'>  
+                              <span class='mt-2 font-weight-bold mx-auto'>".$title."</span>
+  
+                            </div>
+  
+  
+                        </div>             
+  
+                      </a>";
+  
+                    }
 
 
 
@@ -340,7 +342,45 @@ if (!function_exists("menu_roles")){
 		                // </div>
 
 
-				}
+				}else if ($module == "12"){
+
+					$output .= "<a onclick='select_function(0, 1)' class='card mx-2 cursor-pointer' id=''  style='line-height: 23px;'>
+
+		              <div class='h-100 ".$disabled." w-100'>
+
+			              <div class=' menu-img-box  text-center pt-3'>
+
+ 		                	<img src='".base_url()."/assets/icons/menu/featured-outlet.webp' class='img-fluid mb-2'>  		                
+
+		                	<span class='mt-2 font-weight-bold px-1'>Featured Store</span>
+
+			              </div>
+
+
+		              </div>             
+
+		            </a>";										
+
+
+					$output .= "<a onclick='select_function(0, 2)' class='card mx-2 cursor-pointer' id=''  style='line-height: 23px;'>
+
+		              <div class='h-100 ".$disabled." w-100'>
+
+			              <div class=' menu-img-box  text-center pt-3'>
+
+ 		                	<img src='".base_url()."/assets/icons/menu/featured-prod.webp' class='img-fluid mb-2'>  		                
+
+		                	<span class='mt-2 font-weight-bold px-1'>Featured Product</span>
+
+			              </div>
+
+
+		              </div>             
+
+		            </a>";										
+
+                    
+                }
 
 
 
@@ -463,7 +503,21 @@ if (!function_exists("menu_roles_with_submodule")){
 						$col = "col-lg-4 col-md-4 col-sm-4";
 
 						$my = 'mt-4 pt-2';
+                    
+                    }else if ($submodule_id == "28"){
+						$submodule_title = $submodule_name;
 
+						$col = "col-lg-6 col-md-6 col-sm-6";
+
+						$my = 'mt-4 pt-2';
+
+                    }else if ($submodule_id == "29"){
+						$submodule_title = $submodule_name;
+
+						$col = "col-lg-6 col-md-6 col-sm-6";
+
+						$my = 'mt-4 pt-2';
+                    
 					}else{
 
 						$submodule_title = $submodule_name;

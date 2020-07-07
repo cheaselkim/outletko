@@ -1,0 +1,200 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-weight-600{
+    font-weight: 600;
+}
+
+.btn-see-more:hover{
+    color: white;
+}
+
+.carousel-indicators .active{
+    background-color: orange !important;
+}
+
+.carousel-indicators li{
+    background-color: gray !important;
+}
+
+.carousel-inner .carousel-item {
+    transition: -webkit-transform 3s ease;
+    transition: transform 3s ease;
+    transition: transform 3s ease, -webkit-transform 3s ease;
+}
+
+
+/* Text Color */
+.text-black{
+    color: black;
+}
+
+.text-white{
+    color:white;
+}
+
+.text-yellow{
+    color: yellow;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-orange{
+    color: orange;
+}
+
+.text-green{
+    color: #006600;
+}
+
+.text-gray{
+    color: gray;
+}
+
+
+/* Background Color */
+.bg-green{
+    background-color: #006600;
+}
+
+.bg-orange{
+    background: orange;
+}
+
+    /* Button Color */
+.btn-orange{
+    background-color: orange;
+}
+
+/* border color */
+.bd-orange{
+    border: 1px solid orange;
+}
+
+.bd-green{
+    border: 1px solid #006600;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+/* Footer */
+
+.div-footer-1{
+    padding-top: 0;
+}
+
+.text-footer-logo{
+    font-size: 15.5px;
+}
+
+.div-footer-col-2-logo{
+    text-align: center;
+    padding: 1rem;
+}
+
+.div-footer-col-2-text{
+    text-align: center;
+}
+
+.div-footer-col-3{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+/* Footer */
+
+.div-footer-1{
+    padding-top: 1rem;
+}
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1900px) {
+
+}

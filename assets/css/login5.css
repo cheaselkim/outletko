@@ -18,6 +18,13 @@
     background-color: gray !important;
 }
 
+.carousel-inner .carousel-item {
+    transition: -webkit-transform 3s ease;
+    transition: transform 3s ease;
+    transition: transform 3s ease, -webkit-transform 3s ease;
+}
+
+
 /* Text Color */
 .text-black{
     color: black;
@@ -39,17 +46,25 @@
     color: orange;
 }
 
+.text-green{
+    color: #006600;
+}
+
+.text-gray{
+    color: gray;
+}
+
 
 /* Background Color */
 .bg-green{
-    background-color: green;
+    background-color: #006600;
 }
 
 .bg-orange{
     background: orange;
 }
 
-/* Button Color */
+    /* Button Color */
 .btn-orange{
     background-color: orange;
 }
@@ -57,6 +72,10 @@
 /* border color */
 .bd-orange{
     border: 1px solid orange;
+}
+
+.bd-green{
+    border: 1px solid #006600;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -68,14 +87,16 @@
 
 .carousel-indicators li{
     background-color: gray !important;
+    visibility: hidden;
 }
 
 .icon-prev, .icon-next{
-    color: rgb(99, 91, 91) !important;
+    /* color: rgb(99, 91, 91) !important; */
+    color:black !important;
 }
 
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 100px;
     padding-right: 0px;
     padding-left: 0px;
@@ -101,7 +122,7 @@
 }
 
 .navbar-collapse{
-    background-color: green;
+    background-color: #006600;
     padding: 0px 15px 15px 15px;
     width: 100%;
 
@@ -127,29 +148,37 @@
 .div-featured-stores{
     height: 460px;
     /* border-bottom: 1px solid black; */
-    background:white;
-    /* background-color: red; */
+
+    /* background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; */
+
+    background-color: white;
 }
 
 .div-featured{
     /* height: 50px; */
     font-size: 20px;
-    font-style: italic;
+    /* font-style: italic; */
     position: absolute;
     top: 1%;
     padding-left: 4%;
 }
 
 .div-outlet{
-    margin-top: 30px;
-    padding-left: 20px;
-    padding-right: 37px;
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .div-outlet-product{
-    height: 175px;
+    height: 200px;
     width: 100%;
-    margin-left: 2.5%;
+    margin-left: 0%;
+    /* padding-bottom: 2%; */
+    /* margin-bottom: 3%; */
+    /* margin-left: 2.5%; */
     /* border: 1px solid black; */
 
     background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
@@ -162,8 +191,8 @@
 .div-outlet-details{
     height: 210px;
     width: 100%;
-    margin-top: 5%;
-    margin-left: 3%;
+    margin-top: 0%;
+    margin-left: 0%;
     /* border: 1px solid black; */
     /* padding: 20px; */
     /* background-color: rgb(156, 3, 3); */
@@ -183,9 +212,10 @@
 
 .div-outlet-name{
     padding-left: 0;
+    padding-right: 0;
     padding-top: 8px;
     /* padding-top: 0px; {if two lines} */
-    margin-left: -1.5%;
+    margin-left: 0%;
     text-align: center;
 }
 
@@ -194,8 +224,9 @@
 }
 
 .div-outlet-button{
-    padding-top: 15px;
+    /* padding-top: 15px; */
     text-align: center;
+    bottom: -10px;
 }
 
 .carousel-item{
@@ -216,21 +247,26 @@
     width: 6%;
 }
 
+.carousel-indicators{
+    bottom: 0;
+}
+
 /* Featured Products */
 
 .div-featured-product{
     height: auto;
-    background-color: green;
-    padding: 0.5% 2.2%;
+    padding: 3% 2.2%;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
 }
 
 .span-featured-products{
-    font-size: 25px;
-    font-style: italic;
+    font-size: 20px;
+    /* font-style: italic; */
 }
 
 .div-list-product{
-    padding-left: 30px;
+    padding-left: 0px;
     padding-right: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -239,7 +275,7 @@
 .div-card-prod{
     height: 100px;
     width: 113px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -252,8 +288,8 @@
 
 .div-card-prod-name{
     width: 113px;
-    height: 75px;
-    border: 1px solid orange;
+    height: 50px;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -269,6 +305,40 @@
     font-size: 14px;
 }
 
+.span-outlet-business{
+    font-size: 18px;
+}
+
+.span-outlet-customer{
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+/* Footer */
+
+.div-footer-1{
+    padding-top: 0;
+}
+
+.text-footer-logo{
+    font-size: 15.5px;
+}
+
+.div-footer-col-2-logo{
+    text-align: center;
+    padding: 1rem;
+}
+
+.div-footer-col-2-text{
+    text-align: center;
+}
+
+.div-footer-col-3{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -280,14 +350,16 @@
 
 .carousel-indicators li{
     background-color: gray !important;
+    visibility: visible;
 }
 
 .icon-prev, .icon-next{
-    color: orange !important;
+    /* color: orange !important; */
+    color: black !important;
 }
 
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 55px;
     padding-right: 0px;
     padding-left: 0px;
@@ -313,7 +385,7 @@
 }
 
 .navbar-collapse{
-    background-color: green;
+    background-color: #006600;
     padding: 0px 15px 15px 15px;
     width: 30%;
 
@@ -338,13 +410,17 @@
 .div-featured-stores{
     height: 480px;
     /* border-bottom: 1px solid black; */
-    background:white;
+    background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
 }
 
 .div-featured{
     /* height: 50px; */
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
     position: absolute;
     top: 1%;
     padding-left: 2%;
@@ -392,6 +468,7 @@
 
 .div-outlet-name{
     padding-left: 0;
+    padding-right: 1rem;
     padding-top: 18px;
     /* padding-top: 0px; {if two lines} */
     margin-left: -1.5%;
@@ -403,6 +480,7 @@
 
 .div-outlet-button{
     padding-top: 10px;
+    bottom: 0;
 }
 
 .carousel-item{
@@ -427,13 +505,14 @@
 
 .div-featured-product{
     min-height: 240px;
-    background-color: green;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
     padding: 0.5% 2.2%;
 }
 
 .span-featured-products{
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .div-list-product{
@@ -445,7 +524,7 @@
 .div-card-prod{
     height: 100px;
     width: 113px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -459,7 +538,7 @@
 .div-card-prod-name{
     width: 113px;
     height: 75px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -475,12 +554,41 @@
     font-size: 14px;
 }
 
+.span-outlet-business{
+    font-size: 18px;
+}
+
+.span-outlet-customer{
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+/* Footer */
+
+.div-footer-1{
+    padding-top: 1rem;
+}
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 55px;
     padding-right: 0px;
     padding-left: 0px;
@@ -502,7 +610,7 @@
 }
 
 .navbar-collapse{
-    background-color: green;
+    background-color: #006600;
     padding: 0px 15px 15px 15px;
     width: 30%;
 
@@ -528,13 +636,17 @@
 .div-featured-stores{
     height: 480px;
     /* border-bottom: 1px solid black; */
-    background:white;
+    background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
 }
 
 .div-featured{
     /* height: 50px; */
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
     position: absolute;
     top: 1%;
     padding-left: 2%;
@@ -616,13 +728,14 @@
 
 .div-featured-product{
     min-height: 240px;
-    background-color: green;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
     padding: 0.5% 2.2%;
 }
 
 .span-featured-products{
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .div-list-product{
@@ -635,7 +748,7 @@
 .div-card-prod{
     height: 150px;
     width: 180px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-top: 10px;
@@ -650,7 +763,7 @@
 .div-card-prod-name{
     width: 180px;
     height: 75px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -666,6 +779,29 @@
     font-size: 14px;
 }
 
+.span-outlet-business{
+    font-size: 18px;
+}
+
+.span-outlet-customer{
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
 
 
 }
@@ -687,7 +823,7 @@
 }
     
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 58px;
     padding-right: 0px;
     padding-left: 0px;
@@ -740,13 +876,17 @@
 .div-featured-stores{
     height: 480px;
     /* border-bottom: 1px solid black; */
-    background:white;
+    background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
 }
 
 .div-featured{
     /* height: 50px; */
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
     position: absolute;
     top: 1%;
     padding-left: 2%;
@@ -829,13 +969,14 @@
 .div-featured-product{
     min-height: 300px;
     height: auto;
-    background-color: green;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
     padding: 0.5% 2.2%;
 }
 
 .span-featured-products{
     font-size: 25px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .div-list-product{
@@ -848,7 +989,7 @@
 .div-card-prod{
     height: 120px;
     width: 130px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-top: 0px;
@@ -863,7 +1004,7 @@
 .div-card-prod-name{
     height: 50px;
     width: 130px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -878,6 +1019,31 @@
 .div-card-prod-name .prod-price{
     font-size: 14px;
 }
+
+.span-outlet-business{
+    font-size: 20px;
+}
+
+.span-outlet-customer{
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
 
 }
 
@@ -898,7 +1064,7 @@
 }
 
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 65px;
     padding-right: 15px;
     padding-left: 15px;
@@ -945,17 +1111,21 @@
 
 /* Body */
 .div-featured-stores{
-    height: 435px;
+    height: 380px;
     /* border-bottom: 1px solid black; */
-    background:white;
+    /* background:white; */
+    background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .div-featured{
     /* height: 50px; */
-    font-size: 32px;
-    font-style: italic;
+    font-size: 22px;
+    /* font-style: italic; */
     position: absolute;
-    top: 1%;
+    top: 3%;
     padding-left: 3.3%;
 }
 
@@ -966,9 +1136,10 @@
 }
 
 .div-outlet-product{
-    height: 320px;
+    height: 290px;
     width: 30%;
-    margin-left: 65px;
+    margin-left: 85px;
+    /* margin-left: 65px; */
     /* border: 1px solid black; */
 
     background-image: url("https://www.outletko.com/images/products/file_2_267124.png");
@@ -979,11 +1150,12 @@
 }
 
 .div-outlet-details{
-    height: 320px;
+    height: 290px;
     width: 54%;
-    margin-left: 60px;
+    margin-left: 10px;
+    /* margin-left: 60px; */
     /* border: 1px solid black; */
-    padding: 30px;
+    padding: 20px 30px;
     background-color: rgb(156, 3, 3);
 }
 
@@ -1015,7 +1187,11 @@
 }
 
 .carousel-item{
-    padding-top: 35px;
+    padding-top: 25px;
+}
+
+.carousel-indicators{
+    bottom: 0px;
 }
 
 .span-outlet-name{
@@ -1033,17 +1209,19 @@
 .div-featured-product{
     min-height: 270px;
     height:auto;
-    background-color: green;
-    padding: 0.5% 2.2%;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
+    /* background-color: #d7e4bd; */
+    padding: 0.5% 0% 2.5% 2.3%;
 }
 
 .span-featured-products{
-    font-size: 25px;
-    font-style: italic;
+    font-size: 18px;
+    /* font-style: italic; */
 }
 
 .div-list-product{
-    padding-left: 0px;
+    padding-left:12px;
     padding-right: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -1052,7 +1230,7 @@
 .div-card-prod{
     height: 150px;
     width: 180px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -1066,7 +1244,7 @@
 .div-card-prod-name{
     height: 50px;
     width: 180px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -1082,13 +1260,37 @@
     font-size: 14px;
 }
 
+.span-outlet-business{
+    font-size: 22px;
+}
+
+.span-outlet-customer{
+    font-size: 35px;
+    line-height: 1.2;
+}
+
+/* Footer */
+
+.text-footer-logo{
+    font-size: 14px;
+}
+
+.div-footer-col-2-logo{
+    text-align: right;
+    padding: 0;
+}
+
+.div-footer-col-2-text{
+    text-align: left;
+}
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 1900px) {
     
 .div-header{
-    background-color: green;
+    background-color: #006600;
     height: 68px;
     padding-right: 15px;
     padding-left: 15px;
@@ -1138,13 +1340,16 @@
 .div-featured-stores{
     height: 600px;
     /* border-bottom: 1px solid black; */
-    background:white;
+    background-image: url("../img/bg-featured-store.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .div-featured{
     /* height: 50px; */
     font-size: 35px;
-    font-style: italic;
+    /* font-style: italic; */
     position: absolute;
     top: 1%;
     padding-left: 2.3%;
@@ -1222,13 +1427,14 @@
 .div-featured-product{
     min-height: 300px;
     height: auto;
-    background-color: green;
+    background-color: white;
+    border-bottom: 1px solid #9acd32;
     padding: 0.5% 1.7%;
 }
 
 .span-featured-products{
     font-size: 30px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .div-list-product{
@@ -1239,7 +1445,7 @@
 .div-card-prod{
     height: 175px;
     width: 200px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -1253,7 +1459,7 @@
 .div-card-prod-name{
     height: 50px;
     width:200px;
-    border: 1px solid orange;
+    border: 1px solid #006600;
     border-top: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
@@ -1267,6 +1473,15 @@
 
 .div-card-prod-name .prod-price{
     font-size: 14px;
+}
+
+.span-outlet-business{
+    font-size: 30px;
+}
+
+.span-outlet-customer{
+    font-size: 45px;
+    line-height: 1.2;
 }
 
 }

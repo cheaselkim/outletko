@@ -4,6 +4,70 @@ if (!function_exists("featured_store")){
 
         $output = "";
 
+        $text_color = "white";
+        if ($resolution < 768){
+            $div_bg_color = "";
+            $bg_color = "#4F6228";
+            $pad = "px-0";
+            $pad2 = "px-0";
+            $text_align = "center;";
+            $bg_size = "65%";
+            $pad_outlet = "mt-3";
+        }else{
+            $div_bg_color = "";
+            $bg_color = "#4F6228";
+            $pad = "pr-0";
+            $text_align = "left";
+            $bg_size = "100%";
+            $pad2 = "";
+            $pad_outlet = "";
+        }
+
+        $prod_img = base_url()."assets/img/featured-prod.png";
+        $css_product = "background-image: url('".$prod_img."'); background-size: ".$bg_size." 100%; background-repeat: no-repeat; background-position: center center;";
+
+        $logo_img = base_url()."assets/img/featured-icon.png";
+        $css_logo = "background-image: url('".$logo_img."'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;";
+
+        $output .= '<div class="carousel-item w-100 active" id="div-carousel-item-3" style="background-color: '.$div_bg_color.'">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 '.$pad2.'"> 
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 '.$pad2.'">
+
+                    <div class="row div-outlet" id="div-outlet">
+                        <div class="col-12 col-lg-auto col-md-5 col-sm-12 div-outlet-product" style="'.$css_product.'">
+                        </div>
+                        <div class="col-12 col-lg-auto col-md-6 col-sm-12 div-outlet-details '.$pad_outlet.'" style="background-color: '.$bg_color.'">
+                            <div class="row">
+                                <div class="col-12 col-lg-8 col-md-12 col-sm-12 '.$pad.'" style="text-align: '.$text_align.'">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" style="padding-top: 8px;">
+                                            <p class="span-outlet-business mb-0" style="color:'.$text_color.'">Take your business to the next level
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
+                                            <p class="span-outlet-customer mb-0" style="color:'.$text_color.'">Bring your store closer to customers!
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button '.$pad_outlet.'">
+                                            <button class="btn btn-orange px-5 btn-see-more" id="btn_mod_signup" data-toggle="modal" data-target="#modal_signup">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0 d-none d-lg-block mt-3">
+                                    <img src="'.$logo_img.'" class="img-fluid" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>';
+
+        // $data = "";
+
         if (!empty($data)){
             foreach ($data as $key => $value) {
                 
@@ -32,11 +96,14 @@ if (!function_exists("featured_store")){
                     $colour = "#77933c";
                 }
 
+                if ($value->comp_id == "48"){
+                    $prod_img = base_url()."images/store/file_48_570682.png";
+                }else if ($value->comp_id == "4"){
+                    $prod_img = base_url()."images/store/file_4_422469.png";
+                }
+
                 $rgb = HTMLToRGB($colour);
                 $hsl = RGBToHSL($rgb);
-
-                $css_product = "background-image: url('".$prod_img."');background-size: auto 100%;background-repeat: no-repeat;background-position: center center;";
-                $css_logo = "background-image: url('".$comp_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
 
                 if ($hsl->lightness > 200){
                     $text_color = "black";
@@ -51,25 +118,27 @@ if (!function_exists("featured_store")){
                 if ($resolution < 768){
 
                     if ($account_name_length > 20){
-                        $css_name = "padding-top: 0px";
+                        $css_name = "padding-top: 8px";
                     }else{
                         $css_name = "padding-top: 8px";
                     }
 
-                    if (strlen($value->about_us) > 100){
+                    if (strlen($value->about_us) > 70){
                         $about_us = substr($value->about_us, 0, 100)."....";
                     }else{
                         $about_us = substr($value->about_us, 0, 100);
                     }
 
                     if (!empty($value->bg_color)){
-                        $div_bg_color = $value->bg_color;
+                        $bg_color = $value->bg_color;
                     }else{
-                        $div_bg_color = "#77933c";
+                        $bg_color = "#77933c";
                     }
 
-                    $bg_color = "";
-
+                    $div_bg_color = "transparent";
+                    $bg_size = "65%";
+                    $pad2 = "px-0";
+                    $pad_outlet = "mt-3";
 
                 }else if ($resolution >= 768 && $resolution < 992){
 
@@ -91,8 +160,10 @@ if (!function_exists("featured_store")){
                         $bg_color = "#77933c";
                     }
 
-                    $div_bg_color = "white";
-
+                    $div_bg_color = "transparent";
+                    $bg_size = "100%";
+                    $pad2 = "";
+                    $pad_outlet = "";
 
                 }else if ($resolution >= 992 && $resolution < 1220){
 
@@ -114,8 +185,10 @@ if (!function_exists("featured_store")){
                         $bg_color = "#77933c";
                     }
 
-                    $div_bg_color = "white";
-
+                    $div_bg_color = "transparent";
+                    $bg_size = "100%";
+                    $pad2 = "";
+                    $pad_outlet = "";
 
                 }else if ($resolution >= 1220 && $resolution < 1440){
 
@@ -137,8 +210,10 @@ if (!function_exists("featured_store")){
                         $bg_color = "#77933c";
                     }
 
-                    $div_bg_color = "white";
-
+                    $div_bg_color = "transparent";
+                    $bg_size = "100%";
+                    $pad2 = "";
+                    $pad_outlet = "";
                 }else{
 
                     if ($account_name_length > 20){
@@ -159,13 +234,18 @@ if (!function_exists("featured_store")){
                         $bg_color = "#77933c";
                     }
 
-                    $div_bg_color = "white";
-
+                    $div_bg_color = "transparent";
+                    $bg_size = "100%";
+                    $pad2 = "";
+                    $pad_outlet = "";
 
                 }
 
+                $css_product = "background-image: url('".$prod_img."');background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
+                $css_logo = "background-image: url('".$comp_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
 
-                $output .= '<div class="carousel-item '.$active.' w-100" id="div-carousel-item-'.$key.'" style="background-color: '.$div_bg_color.'">
+
+                $output .= '<div class="carousel-item  w-100" id="div-carousel-item-'.$key.'" style="background-color: '.$div_bg_color.'">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -173,7 +253,7 @@ if (!function_exists("featured_store")){
                             <div class="row div-outlet" id="div-outlet">
                                 <div class="col-12 col-lg-auto col-md-5 col-sm-12 div-outlet-product" style="'.$css_product.'">
                                 </div>
-                                <div class="col-12 col-lg-auto col-md-6 col-sm-12 div-outlet-details" style="background-color: '.$bg_color.'">
+                                <div class="col-12 col-lg-auto col-md-6 col-sm-12 div-outlet-details '.$pad_outlet.'" style="background-color: '.$bg_color.'">
                                     <div class="row">
                                         <div class="col-12 col-lg-3 col-md-4 col-sm-12">
                                             <div class="div-outlet-logo" style="'.$css_logo.'"></div>
@@ -188,7 +268,7 @@ if (!function_exists("featured_store")){
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button">
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button '.$pad_outlet.'">
                                             <a href="'.$href_url.'" class="btn btn-orange px-5 text-black btn-see-more">See More</a>
                                         </div>
                                     </div>
@@ -202,6 +282,8 @@ if (!function_exists("featured_store")){
             
             }
         }
+
+
 
         return $output;
     }
@@ -224,13 +306,19 @@ if (!function_exists("featured_product")){
             $href_url = base_url()."products/".str_replace(" ", "-", preg_replace('/[^A-Za-z0-9\-]/', '', $value->product_name))."?".randomNumber(150)."&OS=".$comp_id."&pd=".$prod_id;
 
 
-            $css_product = "background-image: url('".$prod_img."');background-size: 99% 99%;background-repeat: no-repeat;background-position: center center;";
+            $css_product = "background-image: url('".$prod_img."');background-size: auto 99%;background-repeat: no-repeat;background-position: center center;";
             $product_name = $value->product_name;
 
             if ($resolution < 768){
 
-                if (strlen($value->product_name) > 12){
-                    $product_name = substr($value->product_name, 0, 12)."..";
+                if (strlen($value->product_name) > 10){
+                    $product_name = substr($value->product_name, 0, 10)."..";
+                }
+
+                if ($key % 2 == 0){
+                    $margin = "ml-auto";
+                }else{
+                    $margin = "mr-auto";
                 }
     
             }else if ($resolution >= 768 && $resolution < 992){
@@ -238,17 +326,20 @@ if (!function_exists("featured_product")){
                 if (strlen($value->product_name) > 10){
                     $product_name = substr($value->product_name, 0, 10)."..";
                 }
+                $margin = "";
 
 
             }else if ($resolution >= 992 && $resolution < 1220){
                 if (strlen($value->product_name) > 12){
                     $product_name = substr($value->product_name, 0, 12)."..";
                 }
+                $margin = "";
 
             }else if ($resolution >= 1220 && $resolution < 1440){
-                if (strlen($value->product_name) > 12){
-                    $product_name = substr($value->product_name, 0, 12)."..";
+                if (strlen($value->product_name) > 17){
+                    $product_name = substr($value->product_name, 0, 17)."..";
                 }
+                $margin = "";
 
             }else{
 
@@ -256,12 +347,13 @@ if (!function_exists("featured_product")){
                     $product_name = substr($value->product_name, 0, 12)."..";
                 }
 
+                $margin = "";
 
             }
 
 
 
-            $output .= '<div class="tile px-3 pt-1 "> 
+            $output .= '<div class="tile px-3 pt-2 '.$margin.'"> 
             <a href="'.$href_url.'"> 
                 <div class="card div-card-prod" id="div-card-prod-i" style="'.$css_product.'"> 
                 </div> 

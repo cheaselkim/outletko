@@ -47,7 +47,7 @@
                 <nav class="navbar navbar-expand-lg py-0 my-0">
                     <div class=" py-0 my-0 div-logo">
                         <div class="navbar-header py-0 my-0">
-                            <a href="#" class="navbar-brand font-weight-bold text-white font-logo">Outlet<span class="text-yellow">Ko</span> </a>
+                            <a href="#" class="navbar-brand font-weight-bold text-white font-logo">Outlet<span class="text-yellow">ko</span> </a>
                         </div>
                     </div>
                     <div class="py-0 my-0 div-header-searchbar">
@@ -102,7 +102,7 @@
         <div id="div-slideshow" class="carousel slide w-100" data-ride="carousel" data-interval="5000" >
 
             <!-- Indicators -->
-            <ul class="carousel-indicators">
+            <ul class="carousel-indicators" >
                 <li data-target="#div-slideshow" data-slide-to="0" class="active"></li>
             </ul>
 
@@ -152,7 +152,7 @@
             </div>
 
             <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-featured" id="">
-                <span>Featured Outlet Stores</span>
+                <span class="text-black font-weight-600">Connecting Stores to Community</span>
             </div>
 
 
@@ -176,7 +176,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                    <span class="span-featured-products text-white">Featured Products</span>
+                    <span class="span-featured-products text-green font-weight-600">Featured Products</span>
                 </div>
             </div>
 
@@ -244,30 +244,42 @@
     </div>
 
     <div class="row" style="background: white;">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-4 pb-2 div-footer-1" >
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-2 div-footer-1" >
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
-                    <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;"><br>
-                    <p class="text-black font-size-14">Outletko is a complete digital platform exclusively designed for micro and small business</p>
-                </div>
-                <div class="col-12 col-lg-4 col-md-6 col-sm-12 pl-1">
                     <div class="row">
-                        <div class="col-6 text-white pr-0" style="line-height:30px;">
+                        <div class="col-12 col-lg-3 col-md-auto col-sm-12 div-footer-col-2-logo">
+                            <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-auto col-sm-12 div-footer-col-2-text">
+                            <p class="text-black mb-0 text-footer-logo">Outletko is a complete digital platform exclusively designed for micro and small business</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-11 col-lg-4 col-md-6 col-sm-10 mx-auto div-footer-col-3">
+                    <div class="row">
+                        <div class="col-5 col-lg-auto col-md-6 col-sm-7 text-white pr-0" style="line-height:23px;">
                             <a href="<?php echo base_url('aboutus') ?>" class="text-black">About Us</a><br>
-                            <a href="<?php echo base_url('terms') ?>" class="text-black">Terms and Conditions</a><br>
+                            <a href="<?php echo base_url('terms') ?>" class="text-black">Terms of Use</a><br>
                             <a href="<?php echo base_url('privacy'); ?>" class="text-black">Privacy Policy</a>
                         </div>
-                        <div class="col-6 text-white pl-5" style="line-height:30px;">
-                            <a href="<?php echo base_url('reviews')?>" class="text-black">Reviews</a><br>
+                        <div class="col-7 col-lg-6 col-md-6 col-sm-7 text-white pl-5" style="line-height:23px;">
+                            <!-- <a href="<?php echo base_url('reviews')?>" class="text-black">Reviews</a><br> -->
                             <a href="<?php echo base_url('contactus')?>" class="text-black">Contact Us</a><br>
-                            <a href="<?php echo base_url('blog')?>" class="text-black">Blog</a>
+                            <!-- <a href="<?php echo base_url('blog')?>" class="text-black">Blog</a> -->
+                            <a href="<?php echo base_url('blog')?>" class="text-black">News and Insight</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-right">
-                    <div class="mt-5 text-right">
+                    <div class="text-right">
                         <span style="font-size: 25px;"><span class="text-black">Follow us on :</span> <i class="fab fa-facebook-f text-orange"></i>&nbsp;<i class="fab fa-twitter text-orange"></i>&nbsp;<i class="fab fa-youtube text-orange"></i>&nbsp;</span>
                     </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                    <span class="text-gray">@ Outletko.com <?php echo date("Y"); ?>. All Rights Reserved.</span>
                 </div>
             </div>
         </div>
@@ -280,14 +292,14 @@
 <div class="modal" id="modal_signup_user" style="z-index: 999999;">
     <div class="modal-dialog" style="max-width: 460px;">
         <div class="modal-content">
-            <div class="modal-header py-2" style="background: rgb(119,147,60);">
+            <div class="modal-header py-2" style="background: green;">
                 <div class="container">
                     <div class="row">
                         <div class="col-3 col-lg-2 pr-0" hidden>
                             <img src="<?php echo base_url('assets/img/logo-13.png') ?>" alt="logo" style='height: 50px;'>
                         </div>
                         <div class="col-12 col-lg-12 text-center ">
-                            <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
+                            <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></span>
                             <!-- <span class="h1 text-white font-bauhaus-93">Outletko</span><br>                                 -->
                         </div>
                     </div>
@@ -310,11 +322,11 @@
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Username</span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="login_email">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="login_email">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Password</span>
-                            <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="login_password">
+                            <input type="password" class="form-control form-control-sm textbox-green bd-green" id="login_password">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right">
                             <a href="<?php echo base_url('forgot_password')?>"><span class="text-red">Forgot Password?</span></a>
@@ -343,7 +355,7 @@
                 <button type="button" class="btn btn-success" id="btn_confirm">Confirm</button>
                 <button type="button" class="btn btn-success" id="btn_login">Login</button>
                 <button type="button" class="btn btn-success"  id="btn_signup">Sign Up</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal" id="signup_cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="signup_cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -352,14 +364,14 @@
 <div class="modal" id="modal_signup">
     <div class="modal-dialog" style="max-width: 480px;">
         <div class="modal-content">
-            <div class="modal-header py-2" style="background:rgb(119,147,60);">
+            <div class="modal-header py-2" style="background:green;">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-2 pr-0" hidden>
                             <img src="<?php echo base_url('assets/img/logo-13.png') ?>" alt="logo" style='height: 50px;'>
                         </div>
                         <div class="col-lg-12 text-center">
-                            <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
+                            <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></span>
                             <!-- <p class="h1 text-white font-bauhaus-93 mb-0">Outletko</p>                              -->
                         </div>
                     </div>
@@ -390,23 +402,23 @@
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span >First Name <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_fname">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_fname">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Last Name <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_lname">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_lname">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Email Address <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_email">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_email">
                             <span class="text-red" id="span-email" >Email Already Exists</span>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Password <span class="text-red">*</span></span>
                             <div class="input-group">
-                                <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_password">
+                                <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-orange">
+                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
                                     <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
                                     </span>
                                 </div>
@@ -415,9 +427,9 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Confirm Password <span class="text-red">*</span></span>
                             <div class="input-group">
-                                <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_conf_password">
+                                <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_conf_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-orange">
+                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
                                     <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
                                     </span>
                                 </div>
@@ -621,7 +633,7 @@
                 <button type="button" class="btn btn-danger" id="signup_back">Back</button>
                 <button type="button" class="btn btn-success" id="signup_next">Next</button>
                 <button type="button" class="btn btn-success"  id="signup_save">Save</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal" id="signup_cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="signup_cancel">Cancel</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="signup_close">Close</button>
             </div>
         </div>
@@ -674,5 +686,64 @@
 
 
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+<!-- <style>
+    @media only screen and (min-width: 1200px) {
+
+        .carousel-item{
+            padding-top:25px;
+        }
+
+        .div-featured-stores{
+            height: 380px;
+        }
+
+        .div-featured-product{
+            padding: 0.5% 0% 0.5% 2.3%;
+        }
+
+        .div-list-product{
+            padding-left:12px;
+        }
+
+        .div-outlet-details{
+            height: 290px;
+        }
+
+        .div-outlet-product{
+            height: 290px;
+        }
+
+        .carousel-indicators{
+            bottom: 0px;
+        }
+
+        .div-featured{
+            font-size:22px;
+            top:3%;
+        }
+
+        .span-featured-products{
+            font-size: 18px;
+        }
+
+        /* .carousel .carousel-item {
+            transition-duration: 5s;
+        } */
+
+        /* .carousel-inner > .carousel-item {
+            -webkit-transition: -webkit-transform 3s ease-in-out !important;
+            -o-transition: -o-transform 3s ease-in-out !important;
+            transition: transform 3s ease-in-out !important;
+        } */
+
+        .carousel-inner .carousel-item {
+            transition: -webkit-transform 3s ease;
+            transition: transform 3s ease;
+            transition: transform 3s ease, -webkit-transform 3s ease;
+        }
+
+    </style> -->
+
 </body>
 </html>

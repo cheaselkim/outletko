@@ -77,8 +77,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md " style="height: 40px;background: rgb(79, 98, 40);">
-	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet<span class="text-yellow">Ko</span></span></a>
+<nav class="navbar navbar-expand-md " style="height: 40px;background: #006600">
+	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet<span class="text-yellow">ko</span></span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -89,7 +89,7 @@
         <div class="col-9 col-lg-12 col-md-12 col-sm-12 mx-auto">
             
             <div class="row mt-4 mb-5">
-                <div class="col-6 col-lg-2 col-md-3 col-sm-12 mx-auto">
+                <div class="col-6 col-lg-2 col-md-3 col-sm-12 mx-auto text-center">
                     <img src="assets/img/logo-13.png" alt="logo" class="img-fluid">
                 </div>
             </div>
@@ -142,17 +142,17 @@
     </div>
 </div>
 
-<div class="modal" id="modal_signup">
-  <div class="modal-dialog" style="max-width: 480px;">
+<div class="modal m-0" id="modal_signup">
+  <div class="modal-dialog" style="width: 92%">
     <div class="modal-content">
-      <div class="modal-header py-2" style="background:rgb(119,147,60);">
+      <div class="modal-header py-2" style="background:#006600">
         <div class="container">
           <div class="row">
             <div class="col-lg-2 pr-0" hidden>
-              <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" style='height: 50px;'>
+              <img src="<?php echo base_url('assets/img/outletko-logo.png') ?>" class='img-fluid'>
             </div>
             <div class="col-lg-12 text-center">
-                <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">Ko</span></span>
+                <span class="h1 font-weight-bold"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></span>
                 <!-- <p class="h1 text-white font-bauhaus-93 mb-0">Outletko</p>                              -->
             </div>
           </div>          

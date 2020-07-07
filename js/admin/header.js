@@ -17,7 +17,7 @@ function all_access(){
 		success : function(data){
 			$("input[name=csrf_name]").val(data.token);
 			if (data.result == "1"){
-				for (var i = 1; i <= 4; i++) {
+				for (var i = 1; i <= 5; i++) {
 					$("#menu_"+i).removeClass("disabled");
 				}
 			}else{
@@ -55,7 +55,15 @@ function main_menu($module){
 				$("#sales_modal").modal("show");
 				if ($module == "4"){
 					$("#sales_modal").css("margin-top", "-10%");
-				}
+				}else if ($module == "12"){
+					// $("#sales_modal").css("margin-top", "5%");
+                    if ($(window).width() > 768){
+                        $("#sales_modal .modal-dialog").css("max-width", "400px");
+                    }else{
+                        $("#sales_modal .modal-dialog").css("max-width", "600px");
+                    }
+
+                }
 			}
 		}, error : function(err){
 			console.log(err.responseText);

@@ -68,7 +68,11 @@
 							
 						}
 					}else if ($menu == "4"){
-
+                        if ($function == "1"){
+                            $data['page'] = 'admin/featured/featured_store';
+                        }else if ($function == "2"){
+                            $data['page'] = 'admin/featured/featured_product';
+                        }
 					}else if ($menu == "5"){
 						if ($sub_module == "25"){
 							if ($function == "1"){
