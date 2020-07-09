@@ -51,19 +51,13 @@ function main_menu($module){
 				window.open(base_url + "app/1/" + result.roles, "_self");
 			}else{
 				$("#header-menu").text(result.menu);
-				$("#menu-content").html(result.roles);
-				$("#sales_modal").modal("show");
-				if ($module == "4"){
-					$("#sales_modal").css("margin-top", "-10%");
-				}else if ($module == "12"){
-					// $("#sales_modal").css("margin-top", "5%");
-                    if ($(window).width() > 768){
-                        $("#sales_modal .modal-dialog").css("max-width", "400px");
-                    }else{
-                        $("#sales_modal .modal-dialog").css("max-width", "600px");
-                    }
-
+                if ($module == "12"){
+                    window.open(base_url + "app/4/0/0", "_self");
+                }else{
+                    $("#menu-content").html(result.roles);
+                    $("#sales_modal").modal("show");    
                 }
+
 			}
 		}, error : function(err){
 			console.log(err.responseText);

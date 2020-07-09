@@ -56,15 +56,23 @@ class Outletko extends CI_Controller {
 		if (!empty($result)){
 			foreach($result as $key => $value){
 
+				// if ($width <= 768){
+				// 	$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 380)."...");
+				// }else{
+				// 	$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 850)."...");
+				// }
+
 				if ($width <= 768){
-					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 380)."...");
+					$heeader_content = (substr($value->content, 0, 500)."...");
 				}else{
-					$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 850)."...");
+					$heeader_content = (substr($value->content, 0, 1000)."...");
 				}
+
 
 				$data['result'][$key] = array(
 					"id" => $value->id,
-					"title" => $value->title,
+                    "title" => $value->title,
+                    "author" => $value->author,
 					"content" => (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."..."),
 					"header_content" => $heeader_content,
 					"img" => unserialize($value->img_path),
@@ -87,11 +95,28 @@ class Outletko extends CI_Controller {
 
 	public function get_blog($id, $title){
 
+        $data['url'] = base_url()."blog/".$id."/".$title;
 		$id_content = substr($id, 0, 7);
 		$id = substr($id, 7);
 		
 		if ($id_content == "4579328"){
 			$menu = 7;
+            $result = $this->outletko_model->get_blog($id);
+
+            foreach ($result as $key => $value) {
+
+                if (strlen($value->content) > 100){
+                    $desc_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 100)."...");
+                }else{
+                    $desc_content = (trim(preg_replace('/<[^>]*>/', ' ', $value->content)));
+                }
+
+                $data['title'] = $value->title;
+                $data['author'] = $value->author;
+                $data['desc_content'] = $desc_content;
+                $img = unserialize($value->img_path);
+                $data['img'] = $img[0];
+            }
 
 			$data['id'] = $id;
 			$data['function'] = 0;
@@ -118,7 +143,8 @@ class Outletko extends CI_Controller {
 			foreach($result as $key => $value){
 				$data['result'][$key] = array(
                     "id" => $value->id,
-					"title" => $value->title,
+                    "title" => $value->title,
+                    "author" => $value->author,
 					"content" => $value->content,
 					"blog_date" => date("F d, Y", strtotime($value->date_insert)),
 					"img" => unserialize($value->img_path),

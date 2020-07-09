@@ -71,9 +71,9 @@
 
               <div class="card-body card-body-menu text-center" >
 
-                <img src="<?php echo base_url('assets/images/app_menu/featured-store.webp') ?>" class='img-fluid mb-2'>
+                <img src="<?php echo base_url('assets/images/app_menu/send_email.png') ?>" class='img-fluid mb-2'>
 
-                <span class="h3 font-weight-bold">Featured Display</span>
+                <span class="h3 font-weight-bold">Send Email</span>
 
               </div>
 

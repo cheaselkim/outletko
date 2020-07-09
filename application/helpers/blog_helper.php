@@ -12,6 +12,7 @@ if (!function_exists("blog_tbl")){
                                 <th style='width: 1%;'>LN</th>
                                 <th style='width: 7%;'>Date</th>
                                 <th>Title</th>
+                                <th style='width: 10%;'>Author</th>
                                 <th style='width: 7%;'>Action</th>
                             </tr>
                         </thead>
@@ -33,6 +34,7 @@ if (!function_exists("blog_tbl")){
                                 <td class='pt-2 text-center'>".($key + 1)."</td>
                                 <td class='pt-2'>".date("m/d/Y", strtotime($value->date_insert))."</td>
                                 <td class='pt-2'>".$value->title."</td>
+                                <td class='pt-2'>".$value->author."</td>
                                 <td>".$btn."</td>
                             </tr>";
             }

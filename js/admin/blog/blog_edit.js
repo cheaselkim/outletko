@@ -70,6 +70,7 @@ function get_blog(){
             $('#div-img-blog').css('background-position', "center center");            
 
             $("#title").val(result.title);
+            $("#author").val(result.author);
             $("#status").val(result.status);
             $("#display").attr("data-id", result.display);
             $("#summernote").summernote("code", result.content);
@@ -104,7 +105,7 @@ function check_display_images(){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
 
-            console.log($("#display").attr("data-id"));
+            // console.log($("#display").attr("data-id"));
                 
             if ($("#display").attr("data-id") == "0"){
                 swal({
@@ -156,9 +157,10 @@ function check_required_fields(){
     var img = $("#UploadImgBlog").val();
     var img_bg = $("#div-img-blog").css('background');
     var title = $("#title").val();
+    var author = $("#author").val();
     var content = $("#summernote").summernote("code");
 
-    if (title == "" || content == ""){
+    if (title == "" || content == "" || author == ""){
         swal({
             type : "warning",
             title : "Please complete all fields"
@@ -184,6 +186,7 @@ function check_required_fields(){
 function save_blog(){
     var img = $("#UploadImgBlog").val();
     var title = $("#title").val();
+    var author = $("#author").val();
     var content = $("#summernote").summernote("code");
     var csrf_name = $("input[name=csrf_name]").val();
     var id = $("#trans_id").val();
@@ -197,7 +200,7 @@ function save_blog(){
     }
 
     $.ajax({
-        data : {title : title, content : content, csrf_name : csrf_name, id : id, display : display, status : status},
+        data : {title : title, author : author, content : content, csrf_name : csrf_name, id : id, display : display, status : status},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/update_blog",

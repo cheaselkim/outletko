@@ -17,6 +17,7 @@ class Blog extends CI_Controller {
 
         $array = array(
             "title" => $this->input->post("title"),
+            "author" => $this->input->post("author"),
             "content" => $this->input->post("content"),
             "display" => $this->input->post("display"),
             "date_insert" => date("Y-m-d H:i:s")
@@ -40,6 +41,7 @@ class Blog extends CI_Controller {
             foreach($result as $key => $value){
                 $data['img'] = unserialize($value->img_path);
                 $data['title'] = $value->title;
+                $data['author'] = $value->author;
                 $data['content'] = $value->content;
                 $data['display'] = $value->display;
                 $data['status'] = $value->status;
@@ -54,6 +56,7 @@ class Blog extends CI_Controller {
         $id = $this->input->post("id");
         $array = array(
             "title" => $this->input->post("title"),
+            "author" => $this->input->post("author"),
             "content" => $this->input->post("content"),
             "display" => $this->input->post("display"),
             "status" => $this->input->post("status"),
@@ -81,9 +84,10 @@ class Blog extends CI_Controller {
     public function query_data(){
         $blog_date = $this->input->post("date");
         $blog_title = $this->input->post("title");
+        $blog_author = $this->input->post("author");
         $blog_status = $this->input->post("status");
         $type = $this->input->post("type");
-        $result_data = $this->blog_model->query_data($blog_date, $blog_title, $blog_status);
+        $result_data = $this->blog_model->query_data($blog_date, $blog_title, $blog_author, $blog_status);
         $data['result'] = blog_tbl($result_data, $type);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
@@ -98,6 +102,7 @@ class Blog extends CI_Controller {
             foreach($result as $key => $value){
                 $data['img'] = unserialize($value->img_path);
                 $data['title'] = $value->title;
+                $data['author'] = $value->author;
                 $data['content'] = $value->content;
             }    
         }
@@ -150,6 +155,18 @@ class Blog extends CI_Controller {
 
     public function check_display_images(){
         $data['result'] = $this->blog_model->check_display_images();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function get_author(){
+        $data['author'] = $this->blog_model->get_author();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function get_all_author(){
+        $data['result'] = $this->blog_model->get_all_author();
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }

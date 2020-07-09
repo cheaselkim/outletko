@@ -33,7 +33,7 @@ class Outletko_model extends CI_Model {
     }
 
     public function blog(){
-        $query = $this->db3->query("SELECT * FROM blog ")->result();
+        $query = $this->db3->query("SELECT * FROM blog ORDER BY id DESC")->result();
         return $query;
     }
 

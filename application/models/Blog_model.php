@@ -39,10 +39,11 @@ class Blog_model extends CI_Model {
         $this->db2->update("blog");
     }
 
-    public function query_data($blog_date, $blog_title, $blog_status){
+    public function query_data($blog_date, $blog_title, $blog_author, $blog_status){
         $query_date = "";
         $query_title = "";
         $query_status = "";
+        $query_author = "";
 
         if (!empty($blog_date)){
             $query_date = " AND DATE(date_insert) = '".$blog_date."'";
@@ -52,12 +53,16 @@ class Blog_model extends CI_Model {
             $query_title = "AND title = '".$blog_title."'";
         }
 
+        if (!empty($blog_author)){
+            $query_author = "AND author = '".$blog_author."'";
+        }
+
         if ($blog_status != ""){
             $query_status = "AND `blog`.`status`= '".$blog_status."'";
         }
 
-        $query = $this->db2->query("SELECT id, title, date_insert FROM blog WHERE date_insert IS NOT NULL 
-        ".$query_date." ".$query_title." ".$query_status."
+        $query = $this->db2->query("SELECT id, title, author, date_insert FROM blog WHERE date_insert IS NOT NULL 
+        ".$query_date." ".$query_title." ".$query_status."  ".$query_author."
         ")->result();
         return $query;
     }
@@ -99,5 +104,16 @@ class Blog_model extends CI_Model {
 
         return $query->display_count;
     }
+
+    public function get_author(){
+        $query = $this->db2->query("SELECT author FROM blog ORDER BY id DESC LIMIT 1")->row();
+        return $query->author;
+    }
+
+    public function get_all_author(){
+        $query = $this->db2->query("SELECT author FROM blog GROUP BY author ORDER BY author")->result();
+        return $query;
+    }
+
 
 }

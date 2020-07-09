@@ -1,65 +1,277 @@
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/application/email.css') ?>"> -->
+
+
+
+
+
+
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
-    <base href="./">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Outletko</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/node_modules/@coreui/icons/css/coreui-icons.min.css') ?>"> 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/node_modules/flag-icon-css/css/flag-icon.min.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/node_modules/font-awesome/css/all.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/node_modules/simple-line-icons/css/simple-line-icons.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/login.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/menu.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendors/pace-progress/css/pace.min.css') ?>">
-    <link rel="stylesheet" type="text/css" href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
-    <link rel='stylesheet' type='text/css' href='<?php echo base_url('assets/css/eqcss.css') ?>'>
+    <title>eOutletSuite</title>
 
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.min.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/popper.js/dist/umd/popper.min.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-    
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/font-awesome/js/all.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/pace-progress/pace.min.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/@coreui/coreui/dist/js/coreui.min.js') ?>"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/node_modules/eqcss/element-queries.js') ?>"></script> 
-    <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('js/forgot_password.js') ?>"></script>
-    <script>var base_url = '<?php echo base_url() ?>';</script>
+    <style type="text/css">
 
+    body{
+
+      background: gray;
+
+      font-family: Arial;
+
+    }
+
+    .email-body{
+
+      width: 60%;
+
+      margin: auto;
+
+/*      padding-left: 250px;*/
+
+    }
+
+
+
+    header{
+
+      height: 40px;
+
+      width: 100%;
+
+/*      border: 1px solid gray;*/
+
+/*      background: #45914E;*/
+
+      background: #f8f9fa!important;
+
+      padding-left: 20px;
+
+      padding-right: 20px;
+
+    }
+
+
+
+    h2{
+
+      font-family: Arial;
+
+      color: white;
+
+    }
+
+
+
+    h1{
+
+      color: white; 
+
+    }    
+
+
+
+/*    nav{
+
+      background: #EDA634;
+
+      height: 150px;
+
+      width: 100%;
+
+      text-align: center;
+
+      padding: 20px;
+
+    }*/
+
+
+
+    p{
+
+      padding: 0px;
+
+      margin: 0px;
+
+      line-height: 20px;
+
+      font-size: 15px;
+
+    }
+
+
+
+    .font-text-footer{
+
+      font-size: 13px !important;
+
+    }
+
+
+
+    section{
+
+      background: #EDEDED;
+
+      padding: 20px;
+
+      width: 100%;
+
+      height: 325px;
+
+    }
+
+
+
+    footer{
+
+      height: 30px;
+
+      /*padding: 10px 10px 10px 10px;*/
+
+      padding-left: 20px;
+
+      padding-right: 20px;
+
+      padding-top: 5px;
+
+      background: #45914E;
+
+      color: white;
+
+      width: 100%;
+
+    }        
+
+ 
+
+     .span-eprocurement{
+
+        color: orange;
+
+    }
+
+
+
+    .span-suite{
+
+        color:green;
+
+    }
+
+
+
+    .header-right {
+
+      float: right;
+
+    }
+
+
+
+    .header-left {
+
+      float: left;
+
+      color: black;
+
+      text-align: center;
+
+      text-decoration: none;
+
+    }
+
+
+
+
+
+    </style>
 
 </head>
-<body>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-6 col-md-8 col-sm-10 mx-auto py-3 text-center" style="min-height: 100px; height: auto; background:white;margin-top: 250px;border-radius: 5px;">
+<body class="container">
 
-                <a href="<?php echo base_url(); ?>"><span style="color:#759e3e;font-size: 40px;">eOutlet</span><span style="color: #fba717;font-size: 40px;" class="ml-1">Suite</span></a>
 
-                <br><br>
-                	<div class=" alert alert-success py-1" id="alert-success">
-                		<label style="font-size: 20px;">Email Sent</label>
-                	</div>
 
-                	<div class=" alert alert-danger py-1" id="alert-danger">
-                		<label style="font-size: 20px;">Email not Found</label>
-                	</div>
+<div class="email-body">
 
-				<input type="text" class="form-control" id="email" style="font-size: 20px;height: 50px;" placeholder="Email"><br>
-				<button class="btn btn-block btn-primary" style="font-size: 20px;" id="reset_pass">Reset Password</button>
-				<a href="<?php echo base_url(); ?>" class="btn btn-block btn-danger" style="font-size: 20px;">Cancel</a>
+    <header style="margin-top: 10px;">
 
-			</div>
-		</div>
-	</div>
+        <h2 class="header-left" style="margin-top: 10px;"><span class="span-suite">Outletko</span><span class="span-eprocurement">Suite</span></h2>
+
+        <div class="header-right" >
+
+          <h2 style="margin-top: 10px;"><span style="color: green;">Outlet</span><span style="color: red;">ko</span></h2>        
+
+        </div>
+
+    </header>
+
+
+
+    <section style="background: #EDA634;height: 50px;width: 100%;text-align: center;padding: 20px;">
+        <h1 style="font-size: 45px;margin-top: 3px;">Welcome to Outletko!</h1>
+    </section>
+
+    <section>
+
+        <article class="" style="padding-left: 70px;">
+
+            <h2 style="color: black;">Thank you so much for subscribing! You have Ten(10) days free trial. </h2>
+            <p style="font-size: 18px">Our Sales Team will be contacting you shortly.</p>
+
+            <p style="font-size: 18px;">Get started by logging into your Outletko account at </p>
+            <p style="padding-right: 37px;font-size: 18px;"><a href="https://www.outletko.com" target="_blank">https://www.outletko.com</a></p>
+
+            <div class="row col-12" hidden>
+                <h3 style="margin: 0;margin-top: 10px;">OutletkoSuite Account</h3>
+                <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $account_id; ?></p>
+            </div>
+            <div class="row col-12" hidden>
+                <p style="padding-right: 20px;"><b>Your Password is:</b>  <?php echo $password; ?></p>
+            </div>
+
+            <div class="row col-12">
+              <h3 style="margin: 0;margin-top: 10px;">Oulteko Page Account</h3>
+              <p style="padding-right: 37px;"><b>Your Username is:</b>  <?php echo $email; ?></p>
+              <p style="padding-right: 20px;"><b>Your Password is:</b>  password</p>
+            </div>
+
+        </article>
+
+        
+
+
+
+        <article class="pb-3" style="position: fixed; bottom: 100px;width: 79%;padding-left: 70px;">
+
+            <hr style="color: black;">
+
+            <h4 style="margin: 0;">Need Support?</h4>
+
+            <p style="margin-top: 10px;">Feel free to email us if you have any questions, comments or suggestions. We'll be happy resolve all your issues.</p>
+
+        </article>
+
+
+
+        
+
+    </section>
+
+
+
+    <footer class="font-text-footer">
+        <p style="float: right;">Copyright @ 2019 Outletko</p>
+    </footer>
+
+</div>
+
+
 
 </body>
+
 </html>

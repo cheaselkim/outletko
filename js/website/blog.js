@@ -39,7 +39,7 @@ function header_blog(){
             $("input[name=csrf_name]").val(result.token);
             get_blog(result.result);
 
-            console.log(result.width);
+            // console.log(result.width);
 
             var data = result.result;
             var url = "";
@@ -64,7 +64,8 @@ function header_blog(){
                     if (counter < 2){
 
                         title = data[i].title;
-                        url = base_url + "blog/4579328" + data[i].id + "/" + title.replace(/\s+/g, '-').toLowerCase();
+                        url_title = title.replace(/[^\w\s]/gi, '');
+                        url = base_url + "blog/4579328" + data[i].id + "/" + url_title.replace(/\s+/g, '-').toLowerCase();
                         img = base_url + "images/blog/" + data[i].img;
                         content = data[i].header_content;
                         blog_date = data[i].blog_date;
@@ -88,7 +89,7 @@ function header_blog(){
                         
                         $("#div-blog-header-img").css("background", "url('"+img+"')");
                         $("#div-blog-header-img").css("background-repeat", "no-repeat");
-                        $("#div-blog-header-img").css("background-size", "100% 100%");
+                        $("#div-blog-header-img").css("background-size", "cover");
 
                         $("#div-blog-header-text").append(content);
                         $("#blog-url").attr("href", url);
@@ -148,7 +149,8 @@ function get_blog(data){
             count++;
             
             title = data[i].title;
-            url = base_url + "blog/4579328" + data[i].id + "/" + title.replace(/\s+/g, '-').toLowerCase();
+            url_title = title.replace(/[^\w\s]/gi, '');
+            url = base_url + "blog/4579328" + data[i].id + "/" + url_title.replace(/\s+/g, '-').toLowerCase();
             img = base_url + "images/blog/" + data[i].img;
             content = data[i].content;
 
@@ -212,9 +214,10 @@ function get_page_blog(){
             $("input[name=csrf_name]").val(result.token);
             var data = result.result;
             var title = data[0].title;
-            console.log(data[0].id);
+            // console.log(data[0].id);
 
             $("#blog_title").text(data[0].title);
+            $("#blog_author").text(data[0].author);
             $("#blog_date").text(data[0].blog_date);
             $("#div-blog-content").append(data[0].content);
 
@@ -223,13 +226,14 @@ function get_page_blog(){
 
             var blog_desc = $("#div-blog-content > p > span").text();
 
-            $('meta[property="og:title"]').attr('content', title);
+            // $('meta[property="og:title"]').attr('content', title);
+            // $('meta[property="og:image"]').attr('content', (base_url + "images/blog/" + data[0].img ));
+            // $('meta[property="og:type"]').attr('content', 'blog');
+            // $('meta[property="og:url"]').attr('content', base_url + "blog/4579328" + data[0].id + "/" + title.replace(/\s+/g, '-').toLowerCase());
+            // $('meta[property="og:description"]').attr('content', blog_desc.substring(0, 100));
+
             // $('meta[property="og:description"]').attr('content', (data[0].content).substring(0,100));
-            $('meta[property="og:image"]').attr('content', (base_url + "images/blog/" + data[0].img ));
-            $('meta[property="og:type"]').attr('content', 'blog');
-            $('meta[property="og:url"]').attr('content', base_url + "blog/4579328" + data[0].id + "/" + title.replace(/\s+/g, '-').toLowerCase());
-            $('meta[property="og:description"]').attr('content', blog_desc.substring(0, 100));
-            console.log(blog_desc.substring(0, 100));
+            // console.log(blog_desc.substring(0, 100));
 
             if ($(window).width() <= 1220){
                 $("#div-img-blog").css("background-size", "100% 100%");

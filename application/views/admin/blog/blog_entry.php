@@ -38,6 +38,14 @@
                 </div>
             </div>
 
+            <div class="row mt-1">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="font-weight-600 font-size-18">Author : </span>
+                    <input type="text" class="form-control text-capitalize" placeholder="Author" id="author">
+                </div>
+            </div>
+
+
             <div class="row mt-4">
                 <div class="col-lg-12 col-md-12 col-sm-12 ">
                     <div id="summernote"></div>

@@ -565,9 +565,13 @@
 				}
 
 				if ($user_type == "6" || $user_type == "7"){
-				    $this->ci->load->view('templates/template2', $data);
+                    if ($data['page'] == "website/blog_page"){
+                        $this->ci->load->view('website/blog_page', $data);
+                    }else{
+                        $this->ci->load->view('templates/template2', $data);
+                    }
 				}else{
-				    $this->ci->load->view('templates/template', $data);
+                    $this->ci->load->view('templates/template', $data);
 				}
 			}else{
 				$this->ci->load->view('login');

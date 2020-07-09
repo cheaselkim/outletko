@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css')?>">
 
 
-<div class="row" style="background: white;">
+<div class="container-fluid" style="background: white;border-top: 1px solid green;">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-2 div-footer-1" >
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-auto col-sm-12 div-footer-col-2-logo">
-                            <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
+                            <img src="<?php echo base_url('assets/img/logo-13x.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
                         </div>
                         <div class="col-12 col-lg-9 col-md-auto col-sm-12 div-footer-col-2-text">
                             <p class="text-black mb-0 text-footer-logo">Outletko is a complete digital platform exclusively designed for micro and small business</p>

@@ -10,11 +10,17 @@
                 <div class="col-12 col-lg-2 col-md-3 col-sm-12 pad-right">
                     <input type="date" class="form-control" value="<?php echo date('Y-m-d') ?>" id="blog_date">
                 </div>
-                <div class="col-12 col-lg-7 col-md-5 col-sm-12 pad-center">
+                <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-center">
                     <input type="text" class="form-control" placeholder="Title" id="blog_title">
                 </div>
                 <div class="col-12 col-lg-2 col-md-3 col-sm-12 pad-center">
-                    <select class="form-control" id="blog_status">
+                    <select class="form-control" id="blog_author">
+                        <option value="" hidden>Author</option>
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="col-12 col-lg-1 col-md-3 col-sm-12 pad-center">
+                    <select class="form-control px-1" id="blog_status">
                         <option value="" hidden>Status</option>
                         <option value="">All</option>
                         <option value="1">Active</option>

@@ -349,8 +349,8 @@ class Store_register extends CI_Controller {
     }
 
     public function resend_email(){
-        $email = "ifernhealth2020@gmail.com";
-        $account_id = "2010134";
+        $email = "info.jacjofoods@gmail.com";
+        $account_id = "2010129";
 
         $result = $this->send_email($email, $account_id, 0);
         var_dump($result);

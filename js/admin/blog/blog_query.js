@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-    query_data();
+    get_all_author();
+    // query_data();
 
 $("#btn_search").click(function(){
     query_data();
@@ -8,16 +9,39 @@ $("#btn_search").click(function(){
 
 });
 
+function get_all_author(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Blog/get_all_author",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            for (let i = 0; i < result.result.length; i++) {                
+                $("#blog_author").append("<option value='"+result.result[i].author+"'>"+result.result[i].author+"</option>");
+            }
+            query_data();
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
 function query_data(){
 
     var type = $("#type").val();
     var date = $("#blog_date").val();
     var title = $("#blog_title").val();
+    var author = $("#blog_author").val();
     var status = $("#blog_status").val();
     var csrf_name = $("input[name=csrf_name]").val();
     
     $.ajax({
-        data : {type : type, date : date, title : title, status : status, csrf_name : csrf_name},
+        data : {type : type, date : date, title : title, author : author, status : status, csrf_name : csrf_name},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/query_data",

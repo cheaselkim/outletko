@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 // check_display_images();
 
+get_author();
+
 $('#summernote').summernote({
     height: 300,
     tabsize: 2,
@@ -39,6 +41,25 @@ $("#display").change(function(){
 });
 
 });
+
+function get_author(){
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Blog/get_author",
+        success : function(result){
+            console.log(result);
+            $("input[name=csrf_name]").val(result.token);
+            $("#author").val(result.author);
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
 
 function check_display_images(){
     var csrf_name = $("input[name=csrf_name]").val();
@@ -97,9 +118,10 @@ function readURL(input) {
 function check_required_fields(){
     var img = $("#UploadImgBlog").val();
     var title = $("#title").val();
+    var author = $("#author").val();
     var content = $("#summernote").summernote("code");
 
-    if (img == "" || title == "" || content == ""){
+    if (img == "" || title == "" || content == "" || author == ""){
         swal({
             type : "warning",
             title : "Please complete all fields"
@@ -125,6 +147,7 @@ function check_required_fields(){
 function save_blog(){
     var img = $("#UploadImgBlog").val();
     var title = $("#title").val();
+    var author = $("#author").val();
     var content = $("#summernote").summernote("code");
     var csrf_name = $("input[name=csrf_name]").val();
     var display = "";
@@ -136,7 +159,7 @@ function save_blog(){
     }
 
     $.ajax({
-        data : {title : title, content : content, display : display, csrf_name : csrf_name},
+        data : {title : title, author : author, content : content, display : display, csrf_name : csrf_name},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/insert_blog",

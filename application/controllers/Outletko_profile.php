@@ -874,7 +874,6 @@ class Outletko_profile extends CI_Controller {
                 //     }
                 // }
                 
-                $config['rotation_angle'] = '90';
                 $config['upload_path'] = './images/products/'; 
                 $config['image_library'] = 'gd2';  
                 $config['source_image'] = './images/products/'.$file_name;  
@@ -884,6 +883,7 @@ class Outletko_profile extends CI_Controller {
                 $config['width'] = 600;  
                 $config['height'] = 600;  
                 $config['new_image'] = './images/products/'.$file_name;  
+                $config['rotation_angle'] = 90;
                 $this->load->library('image_lib', $config);  
                 $this->image_lib->resize();                         
                 $this->image_lib->clear();
@@ -960,6 +960,7 @@ class Outletko_profile extends CI_Controller {
             $config['width'] = 600;  
             $config['height'] = 600;  
             $config['new_image'] = $upload_path.$file_name;  
+            $config['rotation_angle'] = 90;
             $this->load->library('image_lib', $config);  
             $this->image_lib->resize();                         
             $this->image_lib->clear();
