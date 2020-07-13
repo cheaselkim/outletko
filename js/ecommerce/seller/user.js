@@ -1690,8 +1690,8 @@ function index(){
         $("#input_bussinesscategory").val(result.result[0].business_category);
 
         $("#input_bldg").val((result.result[0].street == null ? result.result[0].address : result.result[0].street));
-        $("#input_subdivision").val();
-        $("#input_barangay").val();
+        $("#input_subdivision").val(result.result[0].village == null ? "" : result.result[0].village );
+        $("#input_barangay").val(result.result[0].barangay == null ? "" : result.result[0].barangay);
         $("#input_city").val(result.result[0].city_desc);
         $("#input_city").attr("data-id",result.result[0].city);
         $("#input_province").val(result.result[0].province_desc);
@@ -2573,7 +2573,7 @@ function variations(){
     }
   })
 
-}
+}   
 
 function add_variation(){
   var prod_id = $("#prod_id").val();

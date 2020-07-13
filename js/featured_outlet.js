@@ -133,7 +133,7 @@ function get_featured(){
             $("#div-carousel-inner").html(result.featured_store);
             $("#div-list-product").html(result.featured_product);
 
-            for (let i = 1; i <= result.carousel_store.length; i++) {
+            for (let i = 1; i < result.carousel_store.length; i++) {
                 $(".carousel-indicators").append('<li data-target="#div-slideshow" data-slide-to="'+i+'" ></li>');
             }
 

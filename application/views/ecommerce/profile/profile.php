@@ -210,7 +210,7 @@
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-lg-prod-dtls">
                                                 <span id="prod_payment_type" class="font-size-15"></span><br>
                                                 <span id="prod_delivery_type" class="font-size-15 " hidden></span>
-                                                <span class="font-weight-600">Delivery Area : <span id="prod_del_opt" class="font-size-15 "></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
+                                                <span class="font-weight-600">Delivery Area : <span id="prod_del_opt" class="font-size-15 " hidden></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
                                                 <div style="min-height: 100px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow-y:auto;" class="px-2 bg-white my-2" id="div-del-area">
                                                 </div>                                                
                                                 <span id="prod_del_std" class="font-size-15 "></span><br>
@@ -788,23 +788,23 @@
 
 <div class="container-fluid" id="popover-content" hidden>
     <div class="row"> 
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
         <input type="hidden" id="id" value="<?php echo $id ?>">
         <input type="hidden" id="comp-prod-id" value="<?php echo $comp_prod_id; ?>">
         <input type="hidden" id="link-name" value="">
 
             <div class="row" id="div-pop-mm">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-mm">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0" id="div-mm">
                     <p id="pop-mm" class="mb-0"></p>
                 </div>
             </div>
 
             <div class="row" id="div-pop-luz">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
                     <span>Luzon :</span>
 
-                    <div class="row pl-2">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                    <div class="row mx-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-3">
                             <div id="pop-luz"></div>
                         </div>
                     </div>
@@ -813,11 +813,11 @@
             </div>
 
             <div class="row" id="div-pop-vis">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
                     <span>Visayas :</span>
 
-                    <div class="row pl-2">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                    <div class="row mx-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-3">
                             <p id="pop-vis" class="mb-0"></p>
                         </div>
                     </div>
@@ -826,11 +826,11 @@
             </div>
 
             <div class="row" id="div-pop-min">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
                     <span>Mindanao :</span>
 
-                    <div class="row pl-2">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
+                    <div class="row mx-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-3">
                             <p id="pop-min" class="mb-0"></p>
                         </div>
                     </div>

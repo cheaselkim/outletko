@@ -67,6 +67,8 @@ if (!function_exists("featured_store")){
     </div>';
 
         // $data = "";
+        $output = "";
+        
 
         if (!empty($data)){
             foreach ($data as $key => $value) {
@@ -100,6 +102,8 @@ if (!function_exists("featured_store")){
                     $prod_img = base_url()."images/store/file_48_570682.png";
                 }else if ($value->comp_id == "4"){
                     $prod_img = base_url()."images/store/file_4_422469.png";
+                }else if ($value->comp_id == "18"){
+                    $prod_img = base_url()."images/store/file_18_399915.png";
                 }
 
                 $rgb = HTMLToRGB($colour);
@@ -245,7 +249,7 @@ if (!function_exists("featured_store")){
                 $css_logo = "background-image: url('".$comp_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
 
 
-                $output .= '<div class="carousel-item  w-100" id="div-carousel-item-'.$key.'" style="background-color: '.$div_bg_color.'">
+                $output .= '<div class="carousel-item w-100 '.$active.' " id="div-carousel-item-'.$key.'" style="background-color: '.$div_bg_color.'">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">

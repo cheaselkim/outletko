@@ -174,9 +174,14 @@
                 <input type="hidden" id="singup_id">
                 <div class="container font-size-18" id="div-login-form">
                     <div class="row">
-                        <div class="col-lg-12 pb-2" style="line-height: 25px;">
+                        <div class="col-lg-12" style="line-height: 25px;">
                             <span class="font-size-18" style="font-size: 18px !important;">Welcome! Please Login to continue. </span><br>
                             <!-- <small>New member? <a class="cursor-pointer" id="a_register"><u>Register here</u></a> </small> -->
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <span class="cursor-pointer" style="color:green; font-size:16px;" data-target="#modal_signup" data-toggle="modal" data-dismiss="modal">New Member? <u>Register Here.</u></span>
                         </div>
                     </div>
                     <div class="row px-3">
