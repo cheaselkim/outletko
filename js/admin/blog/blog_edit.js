@@ -65,7 +65,7 @@ function get_blog(){
             $("input[name=csrf_name]").val(result.token);
 
             $('#div-img-blog').css('background', 'url("' + base_url + "images/blog/" + result.img + '")');
-            $('#div-img-blog').css('background-size', "100% 100%");
+            $('#div-img-blog').css('background-size', "contain");
             $('#div-img-blog').css('background-repeat', "no-repeat");
             $('#div-img-blog').css('background-position', "center center");            
 
@@ -145,7 +145,7 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#div-img-blog').css('background', 'url("' + e.target.result + '")');
-            $('#div-img-blog').css('background-size', "100% 100%");
+            $('#div-img-blog').css('background-size', "contain");
             $('#div-img-blog').css('background-repeat', "no-repeat");
             $('#div-img-blog').css('background-position', "center center");
         }
@@ -208,7 +208,7 @@ function save_blog(){
             console.log(result);
             $("input[name=csrf_name]").val(result.token);
             if (img != ""){
-                save_img(img, result.id);        
+                save_img(img, id);        
             }else{
                 swal({
                     title : "Successfully Save",

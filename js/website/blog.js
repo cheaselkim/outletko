@@ -89,7 +89,8 @@ function header_blog(){
                         
                         $("#div-blog-header-img").css("background", "url('"+img+"')");
                         $("#div-blog-header-img").css("background-repeat", "no-repeat");
-                        $("#div-blog-header-img").css("background-size", "cover");
+                        $("#div-blog-header-img").css("background-size", "contain");
+                        $("#div-blog-header-img").css("background-position", "center center");
 
                         $("#div-blog-header-text").append(content);
                         $("#blog-url").attr("href", url);
@@ -185,7 +186,7 @@ function get_blog(data){
             if ($(window).width() <= 1220){
                 $("#div-blog-img-"+i).css("background-size", "100% 100%");                
             }else{
-                $("#div-blog-img-"+i).css("background-size", "cover");
+                $("#div-blog-img-"+i).css("background-size", "contain");
             }
 
         if (count == 3){
@@ -223,6 +224,7 @@ function get_page_blog(){
 
             $("#div-img-blog").css("background", "url('"+(base_url + "images/blog/" + data[0].img )+"')");
             $("#div-img-blog").css("background-repeat", "no-repeat");
+            $("#div-img-blog").css("background-position", "center center");
 
             var blog_desc = $("#div-blog-content > p > span").text();
 
@@ -238,7 +240,7 @@ function get_page_blog(){
             if ($(window).width() <= 1220){
                 $("#div-img-blog").css("background-size", "100% 100%");
             }else{
-                $("#div-img-blog").css("background-size", "cover");
+                $("#div-img-blog").css("background-size", "contain");
             }
 
         }, error : function(err){

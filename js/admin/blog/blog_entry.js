@@ -107,7 +107,7 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#div-img-blog').css('background', 'url("' + e.target.result + '")');
-            $('#div-img-blog').css('background-size', "100% 100%");
+            $('#div-img-blog').css('background-size', "contain");
             $('#div-img-blog').css('background-repeat', "no-repeat");
             $('#div-img-blog').css('background-position', "center center");
         }

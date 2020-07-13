@@ -24,7 +24,7 @@
                                     Upload Image
                                     <input type="file" id="UploadImgBlog" class="img-upload-modal btn btn-success">
                             </button>
-                            <label for="display" class="cursor-pointer mt-3 mb-0" id="lbl-display"><input type="checkbox" id="display" class="mb-0"> Display Image to Background header?</label>
+                            <label for="display" class="cursor-pointer mt-3 mb-0" id="lbl-display"><input type="checkbox" id="display" class="mb-0"> Display Blog to header?</label>
                             <p class="my-0"><i class="text-red ml-4">Note : Only 1 images are allowed to display</i></p>
                         </div>
                     </div>
