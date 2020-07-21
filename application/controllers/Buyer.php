@@ -23,8 +23,8 @@ class Buyer extends CI_Controller {
 
 	public function my_order(){
 
-		$data['id'] = $this->input->get("strid");		
-
+        $data['id'] = $this->input->get("strid");		
+        
 		$menu = 2;
 		$data['function'] = 0;
 		$data['sub_module'] = 0;

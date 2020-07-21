@@ -199,6 +199,25 @@
 
 						<div class="row mt-2">
 							<div class="col-lg-3 col-md-4 col-sm-12">
+								<span class="text-capitalize">Store Status <span class="text-red">*</span></span>
+							</div>
+							<div class="col-lg-9 col-md-8 col-sm-12">
+                                <!-- <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input cursor-pointer " id="input_store_status" checked>
+                                    <label class="custom-control-label cursor-pointer" for="input_store_status"></label>
+                                </div> -->
+
+                                <div class="custom-control custom-switch cursor-pointer" id="div_store_status">
+                                    <input type="checkbox" class="custom-control-input cursor-pointer" id="input_store_status" checked>
+                                    <label class="custom-control-label cursor-pointer" for="input_store_status"></label>
+                                </div>
+                            
+							</div>
+						</div>
+
+
+						<div class="row mt-2">
+							<div class="col-lg-3 col-md-4 col-sm-12">
 								<span class="text-capitalize">Business Name <span class="text-red">*</span></span>
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
@@ -212,13 +231,13 @@
 							</div>
 							<div class="col-lg-9 col-md-8 col-sm-12">
                                 <small class="text-red" id="span-linkname-error">This Link Name is not available</small>
-								<input type="text" class="form-control textbox-green2 text-lowercase" maxlength="15" onkeypress="avoidSplChars(event);" id="input_linkname">
+								<input type="text" class="form-control textbox-green2 text-lowercase" maxlength="20" onkeypress="avoidSplChars(event);" id="input_linkname">
 								<div class="row">
 									<div class="col-6">
-										<small class="text-green" id="span-linkname">The limit is 15 Characters</small>
+										<small class="text-green" id="span-linkname">The limit is 20 Characters</small>
 									</div>
 									<div class="col-6 text-right">
-										<small class="text-green"><span id="input_linkname_length">0</span> / 15</small>
+										<small class="text-green"><span id="input_linkname_length">0</span> / 20</small>
 									</div>
 								</div>
 							</div>

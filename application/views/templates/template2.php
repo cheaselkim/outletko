@@ -192,11 +192,11 @@
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Username</span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="login_email">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="login_email">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Password</span>
-                            <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="login_password">
+                            <input type="password" class="form-control form-control-sm textbox-green bd-green" id="login_password">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-right">
                             <a href="<?php echo base_url('forgot_password')?>"><span class="text-red">Forgot Password?</span></a>
@@ -272,23 +272,23 @@
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span >First Name <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_fname">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_fname">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Last Name <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_lname">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_lname">
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Email Address <span class="text-red">*</span></span>
-                            <input type="text" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_email">
+                            <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_email">
                             <span class="text-red" id="span-email" >Email Already Exists</span>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Password <span class="text-red">*</span></span>
                             <div class="input-group">
-                                <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_password">
+                                <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-orange">
+                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
                                     <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
                                     </span>
                                 </div>
@@ -297,9 +297,9 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span>Confirm Password <span class="text-red">*</span></span>
                             <div class="input-group">
-                                <input type="password" class="form-control form-control-sm textbox-green bd-orange" id="signup_user_conf_password">
+                                <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_conf_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-orange">
+                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
                                     <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
                                     </span>
                                 </div>

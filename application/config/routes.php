@@ -67,7 +67,7 @@ $route['forgot_password'] = 'password/forgot_password';
 /*outletko*/
 $route['store/(:any)'] = 'store/store/$1';
 
-$route['my-order'] = 'buyer/my_order';
+$route['my-order'] = 'Profile/my_order';
 $route['my-account'] = 'buyer/my_account';
 
 // outletko routes

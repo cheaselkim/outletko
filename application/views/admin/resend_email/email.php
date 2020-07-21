@@ -1,5 +1,5 @@
 
-<script src="<?php echo base_url('js/admin/email/email.js')?>"></script>
+<script src="<?php echo base_url('js/admin/resend_email/resend_email.js')?>"></script>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name() ?>" value="<?php echo $this->security->get_csrf_hash() ?>">
 
 
@@ -35,7 +35,9 @@
                         <span>Class</span>
                         <select class="form-control" id="">
                             <option value="1">Account Verification</option> 
-                            <option value="1">Account User Credentials</option> 
+                            <option value="2">Account User Credentials</option> 
+                            <option value="3">Account Invoice</option>
+                            <option value="4">Account Plan Details</option>
                         </select>
                     </div>
                 </div>
@@ -51,7 +53,7 @@
                     </div>
                     <div class="col-12 col-lg-5 col-md-4 col-sm-12">
                         <span>Account Name</span>
-                        <input type="text" class="form-control" id="account_name"  placeholder="Search Account Name">
+                        <input type="text" class="form-control text-capitalize" id="account_name"  placeholder="Search Account Name">
                     </div>
                 </div>
 

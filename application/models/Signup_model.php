@@ -196,6 +196,39 @@ class Signup_model extends CI_Model {
       $this->db2->insert("account_buyer", $data);
       $return_data['comp_id'] = $this->db2->insert_id();
 
+      $comp_id = $this->db2->insert_id();
+
+      if ($this->session->userdata("prod_session") != ""){
+        $prod_session = $this->session->userdata("prod_session");
+        foreach ($prod_session as $key2 => $value4) {
+
+            $prod_data = array(
+                "comp_id" => $comp_id,
+                "prod_id" => $value4['prod_id'],
+                "prod_qty" => $value4['prod_qty'],
+                "prod_var1" => $value4['prod_var1'],
+                "prod_var2" => $value4['prod_var2'],
+                "date_insert" => date("Y-m-d H:i:s")
+            );
+    
+            $prod_query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $prod_data['prod_id'], $prod_data['prod_var1'], $prod_data['prod_var2']))->result();
+
+            if (!empty($prod_query)){
+                $item_id = "";
+                foreach ($prod_query as $key => $value4) {
+                    $item_id = $value->id;
+                    $prod_data['prod_qty'] = $value4->prod_qty + $prod_data['prod_qty'];
+                }
+                $this->db2->where("id", $id);
+                $this->db2->update("buyer_order_products", $prod_data);
+            }else{
+                $this->db2->insert("buyer_order_products", $prod_data);
+            }
+
+
+        }
+    }
+
       return $return_data;
     }
 
@@ -220,12 +253,19 @@ class Signup_model extends CI_Model {
       $pword = $this->security->xss_clean($password);
 
       $query = $this->db->query("SELECT * FROM users WHERE status = ? AND username = ?", array("1", $uname))->result();
+      $value_account_id = "";
 
       if (!empty($query)){
         foreach ($query as $key => $value) {
           if (password_verify($pword, $value->password)){
-                  if($value->user_type == "2" || $value->user_type == "1" || $value->user_type == "3"){
-                      $result = $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($value->account_id))->num_rows();
+
+                $users_log = array("user_id" => $value->id, "date_login" => date("Y-m-d H:i:s"));
+                $this->db->insert("users_log", $users_log);
+
+            if($value->user_type == "2" || $value->user_type == "1" || $value->user_type == "3"){
+                $account_id = $value->account_id;
+
+                $result = $this->db->query("SELECT * FROM account_application WHERE account_id = ?", array($value->account_id))->num_rows();
                       
                        $user_array = array(
                           "user_id" => $value->id,
@@ -242,6 +282,7 @@ class Signup_model extends CI_Model {
                           "validated" => true
                     );
                   }else if($value->user_type == "4"){
+                        $account_id = $value->account_id;
                       $result = $this->db2->query("SELECT * FROM account WHERE account_id = ?", array($value->account_id))->num_rows();
                       $result2 = $this->db2->query("SELECT account_name, id, link_name FROM account WHERE account_id = ?", array($value->account_id))->row();
                       $result3 = $this->db2->query("SELECT COUNT(*) AS order_no FROM buyer_order WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("1", $result2->id))->row();
@@ -264,20 +305,56 @@ class Signup_model extends CI_Model {
                           "validated" => true
                     );
                   }else if ($value->user_type == "5"){
+                        $account_id = $value->account_id;
                         $result = $this->db2->query("SELECT * FROM account_buyer WHERE account_id = ?", array($value->account_id))->num_rows();
                         $result2 = $this->db2->query("SELECT id FROM account_buyer WHERE account_id = ?", array($value->account_id))->row();
+
+                        if ($this->session->userdata("prod_session") != ""){
+                            $prod_session = $this->session->userdata("prod_session");
+                            foreach ($prod_session as $key2 => $value4) {
+
+                                $prod_data = array(
+                                    "comp_id" => $result2->id,
+                                    "prod_id" => $value4['prod_id'],
+                                    "prod_qty" => $value4['prod_qty'],
+                                    "prod_var1" => $value4['prod_var1'],
+                                    "prod_var2" => $value4['prod_var2'],
+                                    "date_insert" => date("Y-m-d H:i:s")
+                                );
+                        
+                                $prod_query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $prod_data['prod_id'], $prod_data['prod_var1'], $prod_data['prod_var2']))->result();
+
+                                if (!empty($prod_query)){
+                                    $item_id = "";
+                                    foreach ($prod_query as $key => $value4) {
+                                        $item_id = $value->id;
+                                        $prod_data['prod_qty'] = $value4->prod_qty + $prod_data['prod_qty'];
+                                    }
+                                    $this->db2->where("id", $id);
+                                    $this->db2->update("buyer_order_products", $prod_data);
+                                }else{
+                                    $this->db2->insert("buyer_order_products", $prod_data);
+                                }
+
+
+                            }
+                        }
+
+
                         $buyer_query = $this->db2->query("SELECT products.*, buyer_order_products.*, `products`.`id` as prod_id, `buyer_order_products`.`id` AS item_id,`account`.`account_name`
-                        FROM buyer_order_products 
-                        LEFT JOIN products ON 
-                        `buyer_order_products`.`prod_id` = `products`.`id`            
-                        LEFT JOIN account ON 
-                        `account`.`id` = `products`.`account_id`
-                        WHERE 
-                        `buyer_order_products`.`comp_id` = ? AND 
-                        (order_id = '' OR order_id IS NULL )
-                        ORDER BY `account`.`account_name`, `products`.`product_name`
-                        ", array($result2->id))->result();                  
+                            FROM buyer_order_products 
+                            LEFT JOIN products ON 
+                            `buyer_order_products`.`prod_id` = `products`.`id`            
+                            LEFT JOIN account ON 
+                            `account`.`id` = `products`.`account_id`
+                            WHERE 
+                            `buyer_order_products`.`comp_id` = ? AND 
+                            (order_id = '' OR order_id IS NULL )
+                            ORDER BY `account`.`account_name`, `products`.`product_name`
+                            ", array($result2->id))->result();                  
+                        
                         $total = 0;
+                        
                         if (!empty($buyer_query)){
                             foreach ($buyer_query as $key => $value3) {
                                 $total += ($value3->product_unit_price * $value3->prod_qty);
@@ -303,12 +380,16 @@ class Signup_model extends CI_Model {
                     );
 
                   }
-              
+
+                  $value_account_id = $account_id;
+
           }else{
             $user_array = "";
           }
         }
 
+        $expire = time()+3600; // 1 hour expiry
+        setcookie("account_id", $value_account_id, $expire,"/", "outletko.com", 0);
 
         if (!empty($user_array)){
           $this->session->set_userdata($user_array);

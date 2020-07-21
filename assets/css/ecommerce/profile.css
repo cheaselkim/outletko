@@ -135,11 +135,11 @@
     }
 
     #prod-name{
-        font-size: 26px;
+        font-size: 20px;
     }
 
     #prod-price, #prod-price2{
-        font-size: 24px;
+        font-size: 18px;
     }
 }
 

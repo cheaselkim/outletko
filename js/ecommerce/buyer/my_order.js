@@ -564,6 +564,8 @@ function view_order(type, id){
 
 	var csrf_name = $("input[name=csrf_name]").val();
 
+    $("#tbl-vw-products").find("td").remove();
+
 	if (type == "1"){
 		// $("#div-cart").removeClass("active");
 		$("#div-cart").removeClass("show");

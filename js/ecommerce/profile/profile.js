@@ -12,6 +12,9 @@ $(document).ready(function(){
     $("#div-pop-luz").hide();
     $("#div-pop-vis").hide();
     $("#div-pop-min").hide();
+    $("#div-footer-btn-order").hide();
+    $("#div-footer-btn-qty").hide();
+    $("#div-footer-btn-cart").hide();
 
     // console.log($("input[name=csrf_name]").val());
 
@@ -41,6 +44,7 @@ $(document).ready(function(){
     $(".div-header-3").show();
     $(".div-header-4").show();
     $("#div-product-details").hide();    
+    $("#div-footer-btn-order").hide();
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
@@ -58,6 +62,24 @@ $(document).ready(function(){
     $(".div-header-3").show();
     $(".div-header-4").show();
     $("#div-product-details").hide();    
+    $("#div-footer-btn-order").hide();
+    $(window).scrollTop($('#div-posted-prod').offset().top);    
+    // $("#btn-del-info").popover('hide');
+    // $("#btn-del-info-2").popover('hide');
+
+    // if ($("#comp-prod-id").val() != "0"){
+    //     window.open(base_url + $("#link-name").val(), "_self");
+    // }
+
+})
+
+$("#btn-footer-back").click(function(){
+    $("#div-display-products").show();
+    $(".div-header-2").show();
+    $(".div-header-3").show();
+    $(".div-header-4").show();
+    $("#div-product-details").hide();    
+    $("#div-footer-btn-order").hide();
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
@@ -91,13 +113,13 @@ $(document).ready(function(){
     }else if ($(this).val() == ""){
       $(this).val(1);
     }
-    compute_total_amount();
+    compute_total_amount($(this).val());
   });
 
   $("#btn_add").click(function(){
     var val = Number($("#prod_qty").val()) + 1;
     $("#prod_qty").val(val);
-    compute_total_amount();
+    compute_total_amount(val);
   });
 
   $("#btn_minus").click(function(){
@@ -106,8 +128,41 @@ $(document).ready(function(){
       val = 1;
     } 
     $("#prod_qty").val(val);
-    compute_total_amount();
+    compute_total_amount(val);
   });
+
+  $("#btn-footer-cart").click(function(){
+    check_session(1);
+  });
+
+  $("#btn-footer-order").click(function(){
+    check_session(2);
+  });
+
+  $("#prod-footer-qty").keyup(function(){
+    if ($(this).val() == "0"){
+      $(this).val(1);
+    }else if ($(this).val() == ""){
+      $(this).val(1);
+    }
+    compute_total_amount($(this).val());
+  });
+
+  $("#btn-footer-add").click(function(){
+    var val = Number($("#prod-footer-qty").val()) + 1;
+    $("#prod-footer-qty").val(val);
+    compute_total_amount(val);
+  });
+
+  $("#btn-footer-minus").click(function(){
+    var val = Number($("#prod-footer-qty").val()) - 1;
+    if (val == 0){
+      val = 1;
+    } 
+    $("#prod-footer-qty").val(val);
+    compute_total_amount(val);
+  });
+
 
   $("#prod-category").click(function(){
     product_by_cat($(this).val());
@@ -752,10 +807,10 @@ $.ajax({
 
         if (mm.length == 0 && luz.length == 0 && vis.length == 0 && min.length == "0"){
             $("#div-del-area").css("min-height", "30px");
-            $("#div-del-area-2").css("min-height", "100px");
+            $("#div-del-area-2").css("min-height", "50px");
         }else{
-            $("#div-del-area").css("min-height", "100px");
-            $("#div-del-area-2").css("min-height", "100px");
+            $("#div-del-area").css("min-height", "50px");
+            $("#div-del-area-2").css("min-height", "50px");
         }
 
         // $('#btn-del-info').popover('hide');
@@ -764,7 +819,8 @@ $.ajax({
         $("#prod-name").text(data.products[0].product_name);
         $("#prod-desc").text(data.products[0].product_description);
         $("#prod-desc-2").html(data.products[0].product_description + "<br>");
-        $("#prod-other-details").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
+        $("#prod-other-details-1").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
+        $("#prod-other-details-2").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
         $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
         $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
         $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Used"));
@@ -774,7 +830,9 @@ $.ajax({
         $("#prod_id").val(data.products[0].id);
 
         if (window_width <= 768){
-            $("#div-prod-other-details").css("margin-top", "10px");
+            $("#div-comp-details").hide();
+            $("#div-prod-details").show();
+            $("#div-prod-other-details").css("margin-top", "0px");
             if (data.products[0].product_other_details == null){
                 $("#div-prod-other-details").css("height", "40px");
                 $("#div-prod-other-details").css("min-height", "0px");
@@ -789,6 +847,8 @@ $.ajax({
                 $("#prod-other-details").css("color", "black");
             }
         }else{
+            $("#div-comp-details").show();
+            $("#div-prod-details").hide();
             $("#div-prod-other-details").css("height", "auto");
             $("#div-prod-other-details").css("min-height", "150px");
             $("#div-prod-other-details").css("margin-top", "0px");
@@ -887,9 +947,17 @@ $.ajax({
             if ($(document).width() <= "768"){
                 $("#div-btn-back > .row").addClass("pt-1");
                 $("#alert-phone").show();
+
+                $("#div-footer-btn-order").show();
+                $("#div-footer-btn-qty").hide();
+                $("#div-footer-btn-cart").hide();
             }else{
                 $("#div-btn-back").hide();
                 $("#alert-pc").show();
+
+                $("#div-footer-btn-order").hide();
+                $("#div-footer-btn-qty").hide();
+                $("#div-footer-btn-cart").hide();
             }
 
             $("#div-btn-order").hide();
@@ -898,16 +966,31 @@ $.ajax({
         }else{
             if (data.products[0].product_online == "1"){
                 $("#div-btn-back > .row").removeClass("pt-1");
-                $("#div-btn-order").show();
                 $("#std_lbl").show();
                 $("#std_del").show();
+
+                if ($(document).width() <= "768"){
+                    $("#div-footer-btn-order").show();
+                    $("#div-footer-btn-qty").show();
+                    $("#div-footer-btn-cart").show();
+                }else{
+                    $("#div-btn-order").show();
+                }
+
             }else{
                 if ($(document).width() <= "768"){
                     $("#div-btn-back > .row").addClass("pt-1");
+
+                    $("#div-footer-btn-order").show();
+                    $("#div-footer-btn-qty").hide();
+                    $("#div-footer-btn-cart").hide();
+    
                 }else{
                     $("#div-btn-back").hide();
+
+                    $("#div-btn-order").hide();
                 }
-                $("#div-btn-order").hide();
+
                 $("#std_lbl").hide();
                 $("#std_del").hide();
             }
@@ -1208,7 +1291,7 @@ $.ajax({
 
 }
 
-function compute_total_amount(){
+function compute_total_amount(prod_qty){
     var result = "false";
 
     if ($("#prod-var-1").is(":visible")){
@@ -1240,7 +1323,8 @@ function compute_total_amount(){
         $("#prod-price2").hide();
         $("#prod-price").show();
 
-        var prod_qty = $("#prod_qty").val(); 
+        // var prod_qty = $("#prod_qty").val(); 
+        // var prod_qty2 = $("#prod-footer-qty").val();
         var prod_price_raw = $("#prod-price").text();
 
         var sd2 = prod_price_raw.replace(/[^\d.]/g, '');
@@ -1322,10 +1406,14 @@ if (prod_ol == 0){
                         order_now();
                     }
                 }else{
-                    if ($(document).width() < 768){
-                        window.open(base_url + "login", "_self");
-                    }else{
-                        $("#modal_signup_user").modal("show");        
+                    add_to_cart_session();
+                    if (type == "2"){
+                        if ($(document).width() < 768){
+                            add_to_cart_session();
+                            window.open(base_url + "login", "_self");
+                        }else{
+                            $("#modal_signup_user").modal("show");        
+                        }    
                     }
                 }
             }, error : function(err){
@@ -1410,3 +1498,46 @@ function order_now(){
 
 }
 
+function add_to_cart_session(){
+
+    var order = Number($("#order_no").text());
+    var prod_id = $("#prod_id").val();
+    var prod_qty = $("#prod_qty").val();
+    var prod_price = $("#cart_total_amount").text().replace(/,/g, '');
+    var cart = $("#total-cart").text().replace(/,/g, '');
+    var csrf_name = $("input[name=csrf_name]").val();
+    var prod_var1 = $("#prod-var-1").val();
+    var prod_var2 = $("#prod-var-2").val();
+  
+    order = Number(order) + 1;
+    var total_cart = ( Number(prod_price) * Number(prod_qty)) + Number(cart);
+  
+    // console.log(total_cart);
+
+    $("#cart-prod-qty").text($.number(prod_qty, 0));
+    $("#cart-prod-total-price").text($.number(prod_price, 2));
+  
+    $.ajax({
+      data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+      type : "POST",
+      dataType : "JSON",
+      url : base_url  + "Profile/insert_prod_session",
+      success : function(result){
+        $("input[name=csrf_name]").val(result.token);
+        $("#order_no").text(order);
+        $("#total-cart").text($.number(total_cart, 2));
+        $("#total-cart-2").text($.number(total_cart, 2));
+        $("#div-details").hide();
+        $("#div-details-2").show();
+        swal({
+            type : "success",
+            title : "Item has been added to your Cart",
+            timer : 1000
+        })
+      }, error : function(err){
+        console.log(err.responseText);
+      }
+    })
+  
+
+}

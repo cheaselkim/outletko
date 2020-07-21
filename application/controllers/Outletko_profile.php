@@ -455,7 +455,9 @@ class Outletko_profile extends CI_Controller {
             "twitter" => $this->input->post("twitter"),
             "instagram" => $this->input->post("instagram"),
             "shoppee" => $this->input->post("shoppee"),
-            "bg_color" => $this->input->post("bgcolor")
+            "bg_color" => $this->input->post("bgcolor"),
+            "store_assoc" => $this->input->post("store_assoc"),
+            "store_status" => $this->input->post("store_status")
         );
 
         $eoutletsuite_data = array(

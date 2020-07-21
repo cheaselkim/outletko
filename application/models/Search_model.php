@@ -34,10 +34,10 @@ class Search_model extends CI_Model {
 			`province`.`id` = `account`.`province`
 			LEFT JOIN city ON 
 			`city`.`id` = `account`.`city`
-			LEFT JOIN products ON 
+			INNER JOIN products ON 
 			`account`.`id` = `products`.`account_id`
             WHERE 
-            `account`.`account_status` = ? AND 
+            `account`.`store_status` = ? AND 
 			(`products`.`product_name` LIKE ? OR `account`.`account_name` LIKE ?)
 			 ".$prov_qry." ".$city_qry." 
 			GROUP BY `account`.`account_name`

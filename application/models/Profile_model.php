@@ -72,6 +72,20 @@ class Profile_model extends CI_Model {
         return $query->result();
     }	
 
+    public function get_product_info2($id){
+        $query = $this->db2->query("  SELECT 
+        products.*, `products`.`id` AS prod_id, 
+        `account`.`account_name`
+        FROM 
+        products 
+        LEFT JOIN account ON 
+        `account`.`id` = `products`.`account_id`
+        WHERE 
+         `products`.`product_status` = ? AND `products`.`id` = ?
+        ORDER BY `account`.`account_name`, `products`.`product_name`", array(1, $id))->result();
+        return $query;
+    }
+
     public function get_variation_price($id){
         $query = $this->db2->query("SELECT 
         MAX(unit_price) AS max_unit_price,
@@ -83,6 +97,32 @@ class Profile_model extends CI_Model {
         ", array($id, "1"))->result();
         return $query;
     }    
+
+    public function get_prod_variation($variation){
+        $query = $this->db2->query("SELECT `account_variation_type`.`type` AS var_type FROM account_variation_type WHERE id = ?", array($variation))->result();
+        
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->var_type;
+            }
+        }else{
+            return "";
+        }
+
+    }
+
+    public function get_prod_variation_price($variation){
+        $query = $this->db2->query("SELECT `account_variation_type`.`unit_price` FROM account_variation_type WHERE id = ?", array($variation))->result();
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                return $value->unit_price;
+            }
+        }else{
+            return 0;
+        }
+
+    }
 
     public function get_payment_type($comp_id){
         $query = $this->db2->query("

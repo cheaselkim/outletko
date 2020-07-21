@@ -162,7 +162,9 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
-		session_destroy();
+        $value_account_id = $this->session->userdata("account_id");
+        session_destroy();
+        setcookie("account_id", $value_account_id, 0,"/", "outletko.com", 0);
 		redirect("/");
 	}
 

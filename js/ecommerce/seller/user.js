@@ -1678,6 +1678,10 @@ function index(){
         $("#insta_text").prepend("<i class='fab fa-instagram'></i>");
         $("#shopee_text").prepend("<i class='fas fa-shopping-bag'></i>");
     //for text
+
+        if (result.result[0].store_status == 0){
+            $("#input_store_status").prop("checked", false);
+        }
     
     	var aboutus_length = result.result[0].about_us.substring(0, 400)
 
@@ -3174,6 +3178,12 @@ function save_aboutus(){
 
   var store_assoc = $("#input_store_assoc").val();
 
+  var store_status = 0;
+
+  if ($("#input_store_status").is(":checked")){
+      store_status = 1;
+  }
+
   var data = {
     business_name : business_name,
     link_name : link_name,
@@ -3194,6 +3204,7 @@ function save_aboutus(){
     shoppee : shoppee,
     bgcolor : bgcolor,
     store_assoc : store_assoc,
+    store_status : store_status,
     csrf_name : csrf_name
   }
 

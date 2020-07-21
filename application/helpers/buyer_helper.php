@@ -49,7 +49,7 @@ if (!function_exists("tbl_products_no_order")){
             
 			if ($account_id  != $query[$x]['account_id']){
 				$div++;
-				if ($i != 0){
+				if ($i > 1){
 					$output .= "</div>
 								<div class='col-12 px-0'>
 									<hr class='my-3' style='border-top: 1.5px dashed red;'>

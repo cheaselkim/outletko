@@ -35,6 +35,22 @@
     border: orange solid 1px;
 }
 
+#div_store_status .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: green;
+}
+
+#div_store_status .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: green;
+    background-color: green;
+}
+
+#div_store_status .custom-control-label::before {
+    border: green solid 1px;
+}
+
+
+
 .btn-file {
     position: relative;
     overflow: hidden;

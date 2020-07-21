@@ -3,6 +3,7 @@
 
 <nav class="navbar navbar-expand-md " style="height: 40px;background: #006600;">
 	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></a>
+    <a href="<?php echo base_url('my-order')?>"><span class='nav-link font-small text-yellow d-block d-sm-none' style="color: yellow;">Cart: PHP <span id="total-cart-2"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="margin-top: -2%;">
         <span class="fas fa-bars text-orange" style="font-size: 25px;"></span>
 	</button>
@@ -15,9 +16,23 @@
 			<li class="nav-item" hidden>
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_signup"><span class=" text-white">Register your Store</span></a>
 			</li>
+            <li class="nav-item d-none d-sm-block">
+                <span class='nav-link font-small text-yellow' style="color: yellow;">Cart Total : PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
+            </li>
+			<li class="nav-item">
+				<a class="nav-link font-small cursor-pointer" href="<?php echo base_url('/my-order') ?>"><span class="text-uppercase text-white">My Orders <span class="badge badge-light" id="order_no">
+					<?php 
+						if (!empty($this->session->userdata("order_no"))){
+							echo $this->session->userdata("order_no");
+						}else{
+							echo 0;
+						}
+					 ?>					
+				</span></span></a>
+			</li>
 			<li class="nav-item">
               <button class="btn btn-block btn-transparent d-none d-md-block" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
-              <a class="btn btn-block btn-transparent d-block d-sm-none" href="<?php echo base_url('login')?>"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
+              <a class="btn btn-block btn-transparent d-block d-sm-none text-left pl-0" href="<?php echo base_url('login')?>"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
 			</li>    
 			<li class="nav-item" hidden>
                   <button class="btn btn-block btn-transparent bd-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>

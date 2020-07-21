@@ -298,7 +298,7 @@
 
 						<div class="row tab-pane active" id="div-cart">
 							<div class="col-12">
-								<div class="row px-4" id="div-list-prod">
+								<div class="row px-3 pt-2" id="div-list-prod">
 								</div>							
 							</div>
 						</div>

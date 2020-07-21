@@ -160,13 +160,14 @@
                     </div>
                             
                     <div class="row">
-                        <div class="col-lg-3 col-sm-12 mb-4">
+                        <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                             <div class="div-product-details-img mb-2 mt-2" id="div-product-details-img" hidden>
                             </div>
 
                             <div class="fotorama text-center bg-white" id="div-fotorama"  
                                 data-width="100%"
                                 data-minheight="300px"
+                                data-maxheight="400px"
                                 data-nav="thumbs"  
                                 data-auto="false" 
                                 data-allowfullscreen="true" 
@@ -174,7 +175,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-auto col-sm-12 px-0" id="div-details" >
+                        <div class="col-lg-7 col-md-6 col-sm-12 px-0" id="div-details" >
                         
                             <div class="col-12 mb-2 div-prod-dtls" >
                                 <span class="font-weight-600 font-size-25" hidden>Product Description</span>
@@ -199,7 +200,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="row">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                 <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
@@ -211,17 +212,12 @@
                                                 <span id="prod_payment_type" class="font-size-15"></span><br>
                                                 <span id="prod_delivery_type" class="font-size-15 " hidden></span>
                                                 <span class="font-weight-600">Delivery Area : <span id="prod_del_opt" class="font-size-15 " hidden></span> <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button></span><br>
-                                                <div style="min-height: 100px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow-y:auto;" class="px-2 bg-white my-2" id="div-del-area">
+                                                <div style="min-height: 50px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow-y:auto;" class="px-2 bg-white my-2" id="div-del-area">
                                                 </div>                                                
                                                 <span id="prod_del_std" class="font-size-15 "></span><br>
                                                 <span id="prod_return" class="font-size-15 "></span><br>
                                                 <span id="prod_warranty" class="font-size-15 "></span>                                            
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-7 col-md-7 col-sm-12">
-                                        <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100" id="div-prod-other-details">
-                                            <p id="prod-other-details"></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2" id="div-sm-prod-dtls">
@@ -230,7 +226,7 @@
                                         <span class="font-weight-600">Delivery Area : <span id="prod_del_opt-2" class="font-size-15 "></span> 
                                         <button class="btn btn-outline-primary py-0 px-1" id="btn-del-info-2" hidden><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                                         </span><br>
-                                        <div style="min-height: 100px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow:auto;" class="px-2 bg-white my-2" id="div-del-area-2">
+                                        <div style="min-height: 50px; border: 1px solid #F05E23; height: auto; max-height: 150px; overflow:auto;" class="px-2 bg-white my-2" id="div-del-area-2">
                                         </div>
                                         <span id="prod_del_std-2" class="font-size-15 "></span><br>
                                         <span id="prod_return-2" class="font-size-15 "></span><br>
@@ -291,7 +287,7 @@
 
                             </div>
 
-                            <div class="col-12 mt-3">
+                            <div class="col-12 mt-1">
 
                                 <div class="row" hidden>
                                     <div class="col-12">
@@ -330,10 +326,23 @@
                                     </div>						
                                 </div>
 
+                                <div class="row mb-3 div-prod-details" id="div-prod-details">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12" >
+                                        <div class="div-btn-order px-2" style="border: 1px solid gray;border-bottom: 0;">
+                                            <span>Product Details / Remarks</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100" id="div-prod-other-details">
+                                            <p id="prod-other-details-1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div class="row ">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="row div-btn-order mx-1 pt-3" id="div-btn-order">
+                                        <div class="row div-btn-order mx-1" id="div-btn-order">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-8 col-md-12 col-sm-12">
@@ -347,7 +356,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
+                                                <div class="row mt-2" >
                                                     <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
                                                         <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>
                                                     </div>
@@ -358,12 +367,12 @@
                                                         <button class="btn btn-orange btn-block px-0" id="btn_add"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </div>
-                                                <div class="row my-2">
+                                                <div class="row my-2" hidden>
                                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                                         <span class="font-weight-600 font-size-20">Total Amount : PHP <span id="cart_total_amount">0.00</span></span>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row" >
                                                     <div class="col-12 col-lg-6 col-md-5 col-sm-12 pad-right pt-2">
                                                         <button class="btn btn-success btn-block font-weight-600" id="btn_cart">Add to Cart</button>
                                                     </div>
@@ -377,7 +386,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 " id="div-btn-back" hidden>
                                         <div class="row pb-3 mx-1 div-btn-order">
                                             <div class="col-12 col-lg-12 col-md-10 col-sm-12 pad-left pt-2 d-block d-lg-none">
                                                 <button class="btn btn-danger btn-block font-weight-600" id="btn_back2">Back</button>										
@@ -386,10 +395,12 @@
                                     </div>
                                 </div>
 
+
                             </div>
 
                         </div>
-                        <div class="col-lg-auto col-sm-12" id="div-details-2">
+
+                        <div class="col-lg-7 col-md-6 col-sm-12" id="div-details-2">
                             
                             <div class="row">
                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -435,11 +446,57 @@
                             </div> -->
 
                         </div>
-                        <div class="col-3 col-lg-auto col-md-2 col-sm-3 text-right ml-auto d-none d-lg-block">
+                        <div class="col-3 col-lg-1 col-md-2 col-sm-3 text-right ml-auto d-none d-lg-block">
                             <button class="btn btn-danger btn-block" id="btn_back"><i class="fas fa-arrow-alt-circle-left"></i></button>
                         </div>
                     </div>
 
+                    <div class="row mt-3 div-comp-details" id="div-comp-details">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" >
+                            <div class="div-btn-order px-2" style="border: 1px solid gray;border-bottom: 0;">
+                                <span>Product Details / Remarks</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div style="border: 1px solid gray;min-height: 150px; height: auto;background: #F0F0F0;" class="p-2 w-100" id="div-prod-other-details">
+                                <p id="prod-other-details-2"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row mx-0 div-btn-order" id="div-footer-btn-order" style="position: fixed; bottom: 0; width: 100%;z-index:999999;">
+                <div class="col-12">
+                    <div class="row my-2 mx-0" id="div-footer-btn-qty">
+                        <div class="col-4 col-lg-1 col-md-2 col-sm-3 px-1">
+                            <button class="btn btn-orange btn-block px-0" id="btn-footer-minus"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <div class="col-4 col-lg-1 col-md-2 col-sm-2 px-1">
+                            <input type="text" class="form-control he-38 text-center textbox-green2 px-1" value="1" id="prod-footer-qty">
+                        </div>								
+                        <div class="col-4 col-lg-1 col-md-2 col-sm-3 px-1">
+                            <button class="btn btn-orange btn-block px-0" id="btn-footer-add"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" id="div-footer-btn-cart">
+                    <div class="row">
+                        <div class="col-6 px-0">
+                            <button class="btn btn-orange btn-block rounded-0" id="btn-footer-order">Order Now</button>
+                        </div>
+                        <div class="col-6 px-0">
+                            <button class="btn btn-success btn-block rounded-0" id="btn-footer-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" id="div-footer-btn-back">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <button class="btn btn-danger btn-block rounded-0" id="btn-footer-back">Back</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -545,8 +602,6 @@
         </div>
     </div>
 </div>
-
-
  
 <div class="container pb-4" hidden>
 	<div class="row">

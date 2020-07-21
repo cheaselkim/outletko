@@ -15,6 +15,30 @@ class Profile extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function my_order(){
+        $result = $this->login_model->check_session();
+        if ($result == true){
+            $menu = 2;
+            $data['user_type'] = $this->session->userdata("user_type");
+        }else{    
+            $menu = 2;
+            $data['user_type'] = "6";
+        }
+
+
+        $data['function'] = 0;
+        $data['sub_module'] = 0;
+        $data['menu_module'] = 0;
+        $data['account_id'] = 0;
+        $data['owner'] = 0;
+        $data['edit'] = 0;
+        $data['width'] = 1366;
+
+        $this->template->load($menu, $data);	
+
+
+    }
+
 	public function profile(){
 
     	$id = $this->input->post("id");
@@ -341,23 +365,6 @@ class Profile extends CI_Controller {
 		echo json_encode($data);
 	}
 
-    public function insert_prod(){
-        $this->session->set_userdata("order_id", $this->input->post("order"));
-        $data = array(
-            "comp_id" => $this->session->userdata("comp_id"),
-            "prod_id" => $this->input->post("prod_id"),
-            "prod_qty" => $this->input->post("prod_qty"),
-            "prod_var1" => $this->input->post("prod_var1"),
-            "prod_var2" => $this->input->post("prod_var2"),
-            "date_insert" => date("Y-m-d H:i:s")
-        );
-
-        $data['result'] = $this->profile_model->insert_prod($data);
-        $data['token'] = $this->security->get_csrf_hash();
-
-        echo json_encode($data);
-    }	
-
     public function product_by_cat(){
         $id = $this->input->post("id");
         $comp_id = $this->input->post("comp_id");
@@ -379,6 +386,160 @@ class Profile extends CI_Controller {
         $data['products'] = $products;
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
+    }
+
+    public function insert_prod(){
+        $this->session->set_userdata("order_id", $this->input->post("order"));
+        $data = array(
+            "comp_id" => $this->session->userdata("comp_id"),
+            "prod_id" => $this->input->post("prod_id"),
+            "prod_qty" => $this->input->post("prod_qty"),
+            "prod_var1" => $this->input->post("prod_var1"),
+            "prod_var2" => $this->input->post("prod_var2"),
+            "date_insert" => date("Y-m-d H:i:s")
+        );
+
+        $data['result'] = $this->profile_model->insert_prod($data);
+        $data['token'] = $this->security->get_csrf_hash();
+
+        echo json_encode($data);
+    }	
+
+    public function insert_prod_session(){
+        $this->session->set_userdata("order_id", $this->input->post("order"));
+            // $this->session->unset_userdata("prod_session");
+
+        $prod_data = array(
+            "prod_id" => $this->input->post("prod_id"),
+            "prod_qty" => $this->input->post("prod_qty"),
+            "prod_var1" => $this->input->post("prod_var1"),
+            "prod_var2" => $this->input->post("prod_var2")
+        );
+
+        if ($this->session->userdata("prod_session") == NULL){
+            $prod_session0 = array(0 => $prod_data);
+            $prod_session = $prod_session0;
+            $this->session->set_userdata("prod_session", $prod_session);
+            // $session = 0;
+            $status = 0;
+        }else{
+            $prod_session0 = $this->session->userdata("prod_session");
+            $key_val = "";
+            $prod_qty = 0;
+            $status = 0;
+            foreach ($prod_session0 as $key => $value) {
+                if ($value['prod_id'] === $this->input->post("prod_id") && $value['prod_var1'] === $this->input->post("prod_var1") && $value['prod_var2'] === $this->input->post("prod_var2")){
+                    $prod_qty = $value['prod_qty'];
+                    $key_val = $key;
+                    // unset($prod_session0[$key]);
+                    $status = 1;
+                    break;
+                }
+            }
+
+            unset($prod_session0[$key_val]);
+
+            $prod_data['prod_qty'] += $prod_qty;
+
+            ksort($prod_session0);
+
+            // $data['length_session'] = COUNT($prod_session0);
+            // $data['status'] = $status;
+
+            if (COUNT($prod_session0) == 0){
+                $prod_session = array(0 => $prod_data);
+            }else{
+                $prod_session = $prod_session0 + array(COUNT($prod_session0) => $prod_data);
+                $data['no-sort'] = $prod_session;
+            }
+
+            ksort($prod_session);
+            // $data['sort'] = ksort($prod_session);
+            $this->session->unset_userdata("prod_session");
+            $this->session->set_userdata("prod_session", $prod_session);
+            // $session = 1;
+        }
+
+        // $data['result'] = $this->profile_model->insert_prod($data);
+        $data['prod_data'] = $prod_data;
+        $data['prod_session'] = $prod_session0;
+        $data['session'] = COUNT($prod_session0);
+        $data['result'] = $prod_session;
+        $data['token'] = $this->security->get_csrf_hash();
+
+        echo json_encode($data);
+    }	
+
+    public function get_orders(){
+
+        $session_prod = $this->session->userdata("prod_session");
+        $total = 0;
+        $product_price = 0;
+
+        if (!empty($session_prod)){
+            foreach ($session_prod as $key => $value) {
+                $prod_id = $value['prod_id'];
+                $prod_qty = $value['prod_qty'];
+                $prod_var1 = $value['prod_var1'];
+                $prod_var2 = $value['prod_var2'];
+                $product_price = 0;
+                $prod_var1_name = "";
+                $prod_var2_name = "";
+
+                $query = $this->profile_model->get_product_info2($prod_id);
+
+                foreach ($query as $key2 => $value2) {
+                    $product_price = $value2->product_unit_price;
+
+                    if ($prod_var1 != ""){
+                        $prod_var1_name = $this->profile_model->get_prod_variation($prod_var1);
+                        $product_price = $this->profile_model->get_prod_variation_price($prod_var1);
+                    }else{
+                        $prod_var1_name = "";
+                        $product_price = $product_price;
+                    }
+
+                    if ($prod_var2 != ""){
+                        $prod_var2_name = $this->profile_model->get_prod_variation($prod_var2);
+                    }else{
+                        $prod_var2_name = "";
+                    }
+
+                    $products[$key] = array(
+                        "item_id" => $key,
+                        "prod_id" => $prod_id,
+                        "account_id" => $value2->account_id,
+                        "account_name" => $value2->account_name,
+                        "img_location" => $value2->img_location,
+                        "product_name" => $value2->product_name,
+                        "product_unit_price" => $product_price,
+                        "prod_avail" => $value2->product_available,
+                        "prod_qty" => $prod_qty,
+                        "prod_var1" => $prod_var1_name,
+                        "prod_var2" => $prod_var2_name,
+                        "prod_var1_id" => $prod_var1,
+                        "prod_var2_id" => $prod_var2
+                    );
+
+                    $total += ($product_price * $prod_qty);
+
+                }
+
+            }
+        }
+
+        $data['orders']  = $products;
+        $data['result'] = tbl_products_no_order($products);
+        $data['order_no'] = COUNT($this->session->userdata("prod_session"));
+        $data['cart_total'] = $total;
+        $data['token'] = $this->security->get_csrf_hash();
+        $this->session->set_userdata('order_no', $data['order_no']);
+        $this->session->set_userdata('cart_total', $total);
+
+        echo json_encode($data);
+
+
+
     }
 
 }

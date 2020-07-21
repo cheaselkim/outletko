@@ -22,7 +22,7 @@
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="apple-touch-icon" href="assets/img/logo-13.png" type="image/png", sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
-    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login5.css') ?>" >
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login5.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
@@ -33,7 +33,7 @@
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
     <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
-    <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
+    <script src="<?php echo base_url('/app.js')?>"></script>
 
 </head>
 <body>
@@ -152,7 +152,7 @@
             </div>
 
             <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-featured" id="">
-                <span class="text-black font-weight-600">Connecting Stores to Community</span>
+                <span class="text-white font-weight-600">Connecting Stores to Community</span>
             </div>
 
 
@@ -243,15 +243,45 @@
         </div>
     </div>
 
+    <div class="row div-videos">
+    
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+            <span class="span-featured-products text-yellow font-weight-600">Lesson Videos</span>
+        </div>
+
+
+        <div class="container">
+                
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="div-video-screen">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/BUAUenrWTA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="div-video-screen">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ezY71onm52w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                    <div class="div-video-screen">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/o2Qrcg842m8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="row" style="background: white;">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-2 div-footer-1" >
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
                     <div class="row">
-                        <div class="col-12 col-lg-3 col-md-auto col-sm-12 div-footer-col-2-logo">
+                        <div class="col-12 col-lg-3 col-md-3 col-sm-12 div-footer-col-2-logo">
                             <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
                         </div>
-                        <div class="col-12 col-lg-9 col-md-auto col-sm-12 div-footer-col-2-text">
+                        <div class="col-12 col-lg-9 col-md-9 col-sm-12 div-footer-col-2-text">
                             <p class="text-black mb-0 text-footer-logo">Outletko is a complete digital platform exclusively designed for micro and small business</p>
                         </div>
                     </div>

@@ -68,7 +68,7 @@
 							
 						}
 					}else if ($menu == "4"){
-                        $data['page'] = 'admin/email/email';
+                        $data['page'] = 'admin/resend_email/email';
 					}else if ($menu == "5"){
 						if ($sub_module == "25"){
 							if ($function == "1"){
@@ -530,7 +530,9 @@
 					$data['header'] = 'ecommerce/profile/header';
 					
 					if ($menu == "1"){
-						$data['page'] = 'login_search';
+                        $data['page'] = 'login_search';
+                    }else if ($menu == "2"){
+						$data['page'] = 'ecommerce/profile/my_order';
 					}else{
 						$data['page'] = 'ecommerce/profile/profile';
 					}
