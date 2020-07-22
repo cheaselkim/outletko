@@ -49,7 +49,26 @@ class Website extends CI_Controller {
         // }
 
         // $country = $data_array['geoplugin_countryName'];
-        echo "Hello visitor from: ".$dataArray->geoplugin_countryName;
+        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_countryName);
+        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_continentName);
+        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_currencyCode);
+        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_timezone);
+        
+        if ($ip == "::1"){
+            $this->session->set_userdata("IPCountryCode", "PH");
+            $this->session->set_userdata("IPCountry", "Philippines");
+            $this->session->set_userdata("IPContinent", "Asia");
+            $this->session->set_userdata("IPCurrencyCode", "PHP");
+            $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+        }else{
+            $this->session->set_userdata("IPCountryCode", $dataArray->geoplugin_countryCode);
+            $this->session->set_userdata("IPCountry", $dataArray->geoplugin_countryName);
+            $this->session->set_userdata("IPContinent", $dataArray->geoplugin_continentName);
+            $this->session->set_userdata("IPCurrencyCode", $dataArray->geoplugin_currencyCode);
+            $this->session->set_userdata("IPTimeZone", $dataArray->geoplugin_timezone);    
+        }
+
+
 
 
     }

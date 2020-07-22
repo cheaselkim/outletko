@@ -29,7 +29,7 @@ class business_type extends CI_Controller {
         $business_type = $this->input->post("business_type", TRUE);
         $data['result'] = $this->business_type_model->business_type_wo_id($business_type);
 		$data['token'] = $this->security->get_csrf_hash();
-        echo json_decode($data);
+        echo json_encode($data);
     }
 
     public function business_type_w_id(){
@@ -37,7 +37,7 @@ class business_type extends CI_Controller {
         $id = $this->input->post("id", TRUE);
         $data['result'] = $this->business_type_model->business_type_w_id($business_type, $id);
 		$data['token'] = $this->security->get_csrf_hash();
-        echo json_decode($data);
+        echo json_encode($data);
     }
 
 	public function insert_business_type(){

@@ -4709,7 +4709,7 @@ function coverage_ship_area(){
             if (area == "1"){
                 // $('#cov-ship-prov :first-child').attr("hidden", true);
                 $("#cov-ship-prov").attr("disabled", true);
-                coverage_ship_prov();
+                // coverage_ship_prov();
             }else{
                 // $('#cov-ship-prov :first-child').attr("hidden", false);
                 $("#cov-ship-prov").attr("disabled", false);

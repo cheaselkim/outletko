@@ -61,7 +61,7 @@ $(document).ready(function(){
         $("#modal-image").modal("hide");
     });
 
-	business_category();
+	// business_category();
 	$("#ads-2").hide();	
 	$("#error_message").hide();
     $("#div-business").hide();
@@ -75,18 +75,22 @@ $(document).ready(function(){
 		$("#error_message").show();
 	}
 
-	setInterval(
-		function(){ 
+    // setTimeout(function(){ 
+    //     business_category();
+    //  }, 1500);
 
-			if ($("#ads-1").is(":visible") == true){
-				$("#ads-1").hide();
-				$("#ads-2").fadeIn();
-			}else{
-				$("#ads-1").fadeIn();
-				$("#ads-2").hide();				
-			}
+	// setInterval(
+	// 	function(){ 
 
-		}, 5000);
+	// 		if ($("#ads-1").is(":visible") == true){
+	// 			$("#ads-1").hide();
+	// 			$("#ads-2").fadeIn();
+	// 		}else{
+	// 			$("#ads-1").fadeIn();
+	// 			$("#ads-2").hide();				
+	// 		}
+
+	// 	}, 5000);
 		
     $("#signup_first_name").keyup(function(){
         $(this).removeClass("error");
@@ -467,6 +471,7 @@ function isEmail(email) {
 
 function business_category(){
     var href_url = "";
+    var csrf_name = $("input[name=csrf_name]").val();
 
 	if (document.location.href == base_url){
 		href_url = "Signup/business_category";
@@ -474,19 +479,20 @@ function business_category(){
 		href_url = base_url +  "Signup/business_category";
 	}
 
-$.ajax({
-	type : "GET",
-	url : href_url,
-	dataType : "JSON",
-	success : function(data){
-	 
-      for (var i = 0; i < data.result.length; i++) {
-        $("#signup_bussiness_category").append("<option value='"+data.result[i].id+"'>"+data.result[i].desc+"</option>");
-      }
-	}, error : function(err){
-		console.log(err.responseText);
-	}
-})
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "GET",
+        url : href_url,
+        dataType : "JSON",
+        success : function(data){
+        
+        for (var i = 0; i < data.result.length; i++) {
+            $("#signup_bussiness_category").append("<option value='"+data.result[i].id+"'>"+data.result[i].desc+"</option>");
+        }
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
 
 }
 

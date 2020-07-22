@@ -31,9 +31,9 @@
     <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
-    <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
-    <script defer src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
-    <script src="<?php echo base_url('/app.js')?>"></script>
+    <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
+    <script src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
+    <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
 </head>
 <body>
@@ -693,7 +693,7 @@
                             <p class="mb-0 mt-1 text-body text-black">Good News is, it's FREE!</p>
                         </div>
                         <div class="col-12 col-lg-4 col-md-4 col-sm-12 px-0 div-body-image text-right">
-                            <img src="<?php echo base_url('assets/img/outletko-man-woman.png')?>" alt="logo" class="img-body">
+                            <!-- <img src="<?php echo base_url('assets/img/outletko-man-woman.png')?>" alt="logo" class="img-body"> -->
                         </div>
                     </div>
                 </div>
