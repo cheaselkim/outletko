@@ -113,40 +113,61 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     
-    #div-display-reviews{
-        padding-left: 0;
-        padding: 0;
-    }
+#div-display-reviews{
+    padding-left: 0;
+    padding: 0;
+}
 
-    .rating-emoji{
-        font-size: 20px;
-    }
-    
-    .progress-bar{
-        height: 25px;
-    }
-    
-    .progress{
-        height: 25px;
-    }
-    
-    .header-post{
-        font-size: 17px;
-    }
+.rating-emoji{
+    font-size: 20px;
+}
 
-    #prod-name{
-        font-size: 20px;
-    }
+.progress-bar{
+    height: 25px;
+}
 
-    #prod-price, #prod-price2{
-        font-size: 18px;
-    }
+.progress{
+    height: 25px;
+}
+
+.header-post{
+    font-size: 17px;
+}
+
+#prod-name{
+    font-size: 20px;
+}
+
+#prod-price, #prod-price2{
+    font-size: 18px;
+}
+
+.div-store-img{
+    height: 100px !important;
+    border: 1px solid #AEDCBF;
+    background-image: url("../../icons/img-icon1.jpg");
+    background-size: 100% 100%;
+    padding-top: 200px;
+}
+
+.div-store-img-btn{
+    display: block;
+    margin-top: -70px;
+}
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .header-post{
         font-size: 18px;
+    }
+
+    .div-store-img{
+        height: 100px !important;
+        border: 1px solid #AEDCBF;
+        background-image: url("../../icons/img-icon1.jpg");
+        background-size: 100% 100%;
+        padding-top: 200px;
     }
 }
 
@@ -167,6 +188,18 @@
 
 .div-header-post{
     padding-left: 0;
+}
+
+.div-store-img{
+	height: 100px !important;
+	border: 1px solid #AEDCBF;
+	background-image: url("../../icons/img-icon1.jpg");
+	background-size: 100% 100%;
+	padding-top: 200px;
+}
+
+.div-store-img-btn{
+    margin-top: -70px;
 }
 
 }
@@ -209,6 +242,18 @@
 
 #div-details, #div-details-2{
     width: 65%;
+}
+
+.div-store-img{
+	height: 240px !important;
+	border: 1px solid #AEDCBF;
+	background-image: url("../../icons/img-icon1.jpg");
+	background-size: 100% 100%;
+	padding-top: 200px;
+}
+
+.div-store-img-btn{
+    margin-top: -30px;
 }
 
 
@@ -342,5 +387,14 @@
     margin: 0 auto !important;
     left: 0 !important;
 } */
+
+.div-store-img{
+	height: 360px !important;
+/*	border: 0;*/
+	border: 1px solid white;
+	background-image: url("../../icons/img-icon1.jpg");
+	background-size: 100% 100%;
+	padding-top: 303px;
+}
 
 }
