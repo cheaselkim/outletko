@@ -95,6 +95,7 @@
 
 .prod-not-avail{
     /* opacity: 0.6; */
+    opacity: 0;
 }
 
 .prod-not-avail:before{
