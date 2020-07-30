@@ -54,8 +54,20 @@ class Signup_model extends CI_Model {
 		return $query;
 	}
 	
-    public function search_city_prov($city){
-        $query = $this->db->query("SELECT city.*, `province`.`province_desc` FROM city INNER JOIN province ON `city`.`province_id` = `province`.`id` WHERE city_desc LIKE ? LIMIT 20", array($city."%"))->result();
+    public function search_city_prov($city, $country){
+        if (empty($country)){
+            $country = "173";
+        }
+
+        $query = $this->db2->query("SELECT 
+        city.*, 
+        `province`.`province_desc` 
+        FROM city 
+        INNER JOIN province ON 
+        `city`.`province_id` = `province`.`id` 
+        WHERE city_desc LIKE ? AND 
+        `province`.`country` = ? 
+        LIMIT 20", array($city."%", $country))->result();
         return $query;
     }
 
@@ -75,7 +87,7 @@ class Signup_model extends CI_Model {
     }
 
     public function country(){
-        $query = $this->db->query("SELECT * FROM country")->result();
+        $query = $this->db->query("SELECT * FROM country WHERE id IN ? ", array(array(12, 131, 173, 191, 240)))->result();
         return $query;
     }
 

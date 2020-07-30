@@ -38,11 +38,12 @@ class Search_model extends CI_Model {
 			`account`.`id` = `products`.`account_id`
             WHERE 
             `account`.`store_status` = ? AND 
-			(`products`.`product_name` LIKE ? OR `account`.`account_name` LIKE ?)
+            (`products`.`product_name` LIKE ? OR `account`.`account_name` LIKE ?)
+            AND `account`.`country` = ?
 			 ".$prov_qry." ".$city_qry." 
 			GROUP BY `account`.`account_name`
 			ORDER BY `account`.`account_name`
-		", array(1, '%'.$product.'%', '%'.$product.'%'))->result();
+		", array(1, '%'.$product.'%', '%'.$product.'%', $this->session->userdata("IPCountryID")))->result();
 
 		return $query;
 	}

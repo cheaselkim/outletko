@@ -41,7 +41,7 @@ class User_registry_model extends CI_Model {
 	}
 
 	public function currency(){
-		$result = $this->db->query("SELECT * FROM currency ORDER BY FIELD(curr_code, 'CNY', 'USD', 'PHP') DESC LIMIT 3")->result();
+		$result = $this->db->query("SELECT * FROM currency ORDER BY FIELD(curr_code, 'CNY', 'USD', 'VND', 'MYR', 'SGD', 'AUD' 'PHP') DESC LIMIT 10")->result();
 		return $result;
 	}
 

@@ -3,6 +3,10 @@ $(document).ready(function(){
     // $("#website_modal").modal("show");
     // $("#modal-image").modal("show");
 
+    setTimeout(() => {
+        user_country();
+    }, 2000);
+
     $("#wrong_pass").hide();
     $("#div-body").css("display", "block");
 	$("#signup_next").hide();
@@ -496,6 +500,37 @@ function business_category(){
 
 }
 
+function user_country(){
+    
+    var href_url = "";
+    var csrf_name = $("input[name=csrf_name]").val();
+
+	if (document.location.href == base_url){
+		href_url = "Signup/country";
+	}else{
+		href_url = base_url +  "Signup/country";
+	}
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "GET",
+        url : href_url,
+        dataType : "JSON",
+        success : function(data){
+            $("input[name=csrf_name]").val(data.token);
+            console.log(data);
+            for (var i = 0; i < data.result.length; i++) {
+                $("#signup_user_country").append("<option value='"+data.result[i].id+"'>"+data.result[i].country+"</option>");
+            }
+
+            $("#signup_user_country").val(data.country);
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
 function check_login_field(){
 	var username = jQuery.trim($("#login_email").val()).length;
 	var password = jQuery.trim($("#login_password").val()).length;
@@ -580,9 +615,10 @@ function check_signup_field(){
 	var lname = jQuery.trim($("#signup_user_lname").val()).length;
 	var email = jQuery.trim($("#signup_user_email").val()).length;
 	var password = jQuery.trim($("#signup_user_password").val()).length;
-	var conf_pass = jQuery.trim($("#signup_user_conf_password").val()).length;
+    var conf_pass = jQuery.trim($("#signup_user_conf_password").val()).length;
+    var country = jQuery.trim($("#signup_user_country").val()).length;
 
-	if (fname <= 0 || lname <= 0 || email <= 0 || password <= 0 || conf_pass <= 0){
+	if (fname <= 0 || lname <= 0 || email <= 0 || password <= 0 || conf_pass <= 0 || country <= 0){
 
 		swal({
 			type : "warning",
@@ -609,7 +645,7 @@ function check_signup_field(){
 
 function insert_user(){
 
-	console.log("insert_user");
+	// console.log("insert_user");
 	
 	var csrf_name = $("input[name=csrf_name]").val();
 
@@ -617,10 +653,11 @@ function insert_user(){
 	var lname = $("#signup_user_lname").val();
 	var email = $("#signup_user_email").val();
 	var password = $("#signup_user_password").val();
-	var conf_pass = $("#signup_user_conf_password").val();
+    var conf_pass = $("#signup_user_conf_password").val();
+    var country = $("#signup_user_country").val();
 
 	$.ajax({
-		data : {csrf_name : csrf_name, fname : fname, lname : lname, email : email, password : password, conf_pass : conf_pass},
+		data : {csrf_name : csrf_name, fname : fname, lname : lname, email : email, password : password, conf_pass : conf_pass, country : country},
 		type : "POST",
 		dataType : "JSON",
 		url : base_url + "Signup/insert_user",

@@ -17,18 +17,28 @@ class Outletko_model extends CI_Model {
     }
 
     public function featured_store(){
-        $query = $this->db2->query("SELECT * FROM account
-        INNER JOIN products ON 
-        `products`.`id` = `account`.`featured_product`
-        WHERE `account`.`featured_store` = ?
+        $query = $this->db2->query("SELECT 
+        `account`.*, 
+        `account`.`id` AS comp_id,
+        `account_store`.`loc_image` AS img_location FROM account
+        -- INNER JOIN products ON 
+        -- `products`.`id` = `account`.`featured_product`
+        INNER JOIN account_store ON 
+        `account_store`.`id` = `account`.`featured_img`
+        WHERE `account`.`featured_store` = ? AND `account`.`country` = ?
         GROUP BY `account`.`id`
         ORDER BY `account`.`featured_order`
-        ", array(1))->result();
+        ", array(1, 173))->result();
+        //, $this->session->userdata("IPCountryCode")
         return $query;
     }
 
     public function featured_product(){
-        $query = $this->db2->query("SELECT * FROM products WHERE featured_product = ? ORDER BY featured_order", array(1))->result();
+        $query = $this->db2->query("SELECT products.* FROM products 
+        INNER JOIN account ON 
+        `products`.`comp_id` = `account`.`id`
+        WHERE `products`.`featured_product` = ? AND `account`.`country` = ?
+        ORDER BY `products`.`featured_order`", array(1, 173))->result();
         return $query;
     }
 

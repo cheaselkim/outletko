@@ -96,6 +96,7 @@ class Store_register extends CI_Controller {
           'confirm_email'=>$info_user['info_email'],
           'city'=>$info_user['info_town'],
           'province' => $info_user['info_province'],
+          "country" => $info_user['info_country'],
           'email'=>$info_user['info_email'],
           'mobile_no'=>$info_user['info_mobile'],
           "phone_code" => $info_user['info_phone_area'],

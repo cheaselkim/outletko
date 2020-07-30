@@ -8,6 +8,7 @@
 
                 <nav class="navbar navbar-expand-lg py-0 my-0 container">
                     <div class="py-0 my-0 div-header-text">
+                        <a href="https://www.zugriffcorp.com/" class="header-text-2" target="_blank">Zugriff</a><br>
                         <a href="<?php echo base_url('blog'); ?>" class="header-text">The Digital Economy For Micro Business</a>
                     </div>
                     <div class="py-0 my-0 div-button" hidden>
@@ -39,3 +40,29 @@
         </div>
     </div>
 </div>
+
+
+<style>
+.header-text-2:hover{
+    color: black;
+}
+
+@media only screen and (min-width: 1200px) {
+
+.div-header-text{
+    /* padding-top: 45px !important; */
+    padding-top: 10px !important;
+}
+
+
+.header-text-2{
+    font-size: 35px;
+    color:white;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+
+}
+
+</style>

@@ -11,6 +11,40 @@ class Login extends CI_Controller {
 	public function login(){		
 		$result = $this->login_model->check_session();
 
+        if (empty($this->session->userdata("IPCountryCode"))){
+
+            $ip = $_SERVER['REMOTE_ADDR']; // This will contain the ip of the request
+            $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+
+            if ($ip == "::1"){
+                $this->session->set_userdata("IPCountryID", "173");
+                $this->session->set_userdata("IPCountryCode", "PH");
+                $this->session->set_userdata("IPCountry", "Philippines");
+                $this->session->set_userdata("IPContinent", "Asia");
+                $this->session->set_userdata("IPCurrencyCode", "PHP");
+                $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+            }else{
+                $result = $this->login_model->search_currency($dataArray->geoplugin_countryCode);
+                if (!empty($result)){
+                    foreach ($result as $key => $value) {
+                        $this->session->set_userdata("IPCountryID", $value->id);
+                        $this->session->set_userdata("IPCountryCode", $value->code);
+                        $this->session->set_userdata("IPCountry", $value->country);
+                        $this->session->set_userdata("IPContinent", $value->area);
+                        $this->session->set_userdata("IPCurrencyCode", $value->currency);
+                        $this->session->set_userdata("IPTimeZone", date_default_timezone_get());    
+                    }
+                }else{
+                    $this->session->set_userdata("IPCountryID", "173");
+                    $this->session->set_userdata("IPCountryCode", "PH");
+                    $this->session->set_userdata("IPCountry", "Philippines");
+                    $this->session->set_userdata("IPContinent", "Asia");
+                    $this->session->set_userdata("IPCurrencyCode", "PHP");
+                    $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+                }
+            }
+        }
+
 		// var_dump($result);
 
 		if ($result != true){
@@ -186,5 +220,35 @@ class Login extends CI_Controller {
 
 		echo json_encode($data);
 	}
+
+    public function curr_session(){
+        $code = trim($this->input->post("code"));
+
+        $result = $this->login_model->search_currency($code);
+
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $this->session->set_userdata("IPCountryID", $value->id);
+                $this->session->set_userdata("IPCountryCode", $value->code);
+                $this->session->set_userdata("IPCountry", $value->country);
+                $this->session->set_userdata("IPContinent", $value->area);
+                $this->session->set_userdata("IPCurrencyCode", $value->currency);
+                $this->session->set_userdata("IPTimeZone", date_default_timezone_get());    
+            }
+        }else{
+            $this->session->set_userdata("IPCountryID", "173");
+            $this->session->set_userdata("IPCountryCode", "PH");
+            $this->session->set_userdata("IPCountry", "Philippines");
+            $this->session->set_userdata("IPContinent", "Asia");
+            $this->session->set_userdata("IPCurrencyCode", "PHP");
+            $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+        }
+
+        // $data['curr'] = $curr;
+        $data['result'] = $result;
+        $data['token'] = $this->security->get_csrf_hash();
+        $data['country'] = $this->session->userdata("IPCountryCode");
+        echo json_encode($data);
+    }
 
 }

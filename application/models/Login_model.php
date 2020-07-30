@@ -150,4 +150,9 @@ class Login_model extends CI_Model {
     return $query;
   }
 
+    public function search_currency($code){
+        $query =  $this->db->query("SELECT * FROM country WHERE code = ? ", array($code))->result();
+        return $query;
+    }
+
 }

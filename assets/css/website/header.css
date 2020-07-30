@@ -82,6 +82,10 @@
     color: yellow;
 }
 
+.header-text-2:hover{
+    color: black;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
@@ -315,7 +319,8 @@
 }
 
 .div-header-text{
-    padding-top: 45px !important;
+    /* padding-top: 45px !important; */
+    padding-top: 10px !important;
 }
 
 .navbar-collapse{
@@ -332,6 +337,13 @@
 .header-text{
     font-size: 45px;
     color: white;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+.header-text-2{
+    font-size: 35px;
+    color:white;
     font-weight: 600;
     margin-left: 30px;
 }

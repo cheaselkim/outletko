@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Outletko is a digital platform technology and service that enables enterprises to connect to people and the community, and gives growth to business. It provides facility for full digital transformation for micro and small enterprises.">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163137526-1"></script>
     <script>
@@ -23,7 +22,7 @@
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="apple-touch-icon" href="assets/img/logo-13.png" type="image/png", sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
-    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login6.min.css') ?>" >
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login5.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
@@ -33,11 +32,16 @@
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
-    <script src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
+    <script src="<?php echo base_url('js/featured_outlet.js')?>" ></script>
     <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
 </head>
 <body>
+
+<?php 
+// echo date_default_timezone_get();
+    // echo nl2br("\nHello visitor from: ".$this->session->userdata("IPCountryCode"));
+?>
 
 <div class="row div-header bg-green " style="">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -62,7 +66,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="py-0 my-0 div-header-currency"  >
+                    <div class="py-0 my-0 div-header-currency" style="order:3; width: 10%;">
                         <div class="dropdown">
                             <button type="button" class="btn bg-block bg-transparent text-white btn-no-shadow dropdown-toggle" data-toggle="dropdown">
                                 <span class="appended" data-code="<?php echo $this->session->userdata("IPCountryCode"); ?>"><img class="img-flag" src="<?php echo 'https://www.countryflags.io/'.$this->session->userdata("IPCountryCode").'/flat/24.png'?>"> <?php echo $this->session->userdata("IPCurrencyCode"); ?></span>
@@ -123,11 +127,51 @@
 
             <!-- The slideshow -->
             <div class="carousel-inner" id="div-carousel-inner">
+    
+
+                <!-- <div class="carousel-item active w-100">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
+                        <div class="row">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+
+                                <div class="row div-outlet" id="div-outlet">
+                                    <div class="col-12 col-lg-auto col-md-5 col-sm-12 div-outlet-product">
+                                    </div>
+                                    <div class="col-12 col-lg-auto col-md-6 col-sm-12 div-outlet-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+                                                <div class="div-outlet-logo"></div>
+                                            </div>
+                                            <div class="col-12 col-lg-9 col-md-8 col-sm-12 div-outlet-name">
+                                                <span class="span-outlet-name font-weight-600">Makarios Brothers</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-about">
+                                                <span class="span-outlet-about">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been t....</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button">
+                                                <a href="" class="btn btn-orange px-5 text-black btn-see-more">See More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+
 
             </div>
 
             <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-featured" id="">
-                <span class="text-white font-weight-600">Hot Products</span>
+                <span class="text-white font-weight-600">Connecting Stores to Community</span>
             </div>
 
 
@@ -150,67 +194,68 @@
         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
 
             <div class="row">
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12 my-2">
-                    <span class="span-featured-products text-green font-weight-600">New Online Stores to Visit</span>
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="span-featured-products text-green font-weight-600">Featured Products</span>
                 </div>
             </div>
 
-            <div class="row div-list-product mx-0" id="div-list-product">
+            <div class="row div-list-product" id="div-list-product">
 
-                        
-                        <!-- <div class="col-12 col-lg-3 col-md-3 col-sm-12 px-1">
-                            <div class="row mx-0 div-online-store">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    
-                                    <div class="row div-outlet-store">
-                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12 pad-lg-right-0">
-                                            <div class="div-outlet-logo">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-8 col-md-8 col-sm-12">
-                                            <span class="font-weight-600 span-outlet-name">MLDN Online Shop</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row div-outlet-about">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <p class="span-outlet-about">MLDN Online Shop, the ONE-STOP ONLINE SHOP for different items and goodies. Are you looking for DELICIOUS FOODS, SUPPLEMENTS & VITAMINS, and others?</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button ">
-                                            <a href="'.$href_url.'" class="btn btn-orange px-4 text-black btn-see-more">See More</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="row div-outlet-img">
-                                    </div>
-
-                                </div>
-                            </div>
+                <!-- <div class="tile px-3 pt-1 "> 
+                    <a href="href_url"> 
+                        <div class="card div-card-prod" id="div-card-prod-i" > 
+                        </div> 
+                        <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
+                            <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">  Product Name  </p>
+                            <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
                         </div>
+                    </a>
+                </div>            
 
-                        <div class="col-12 col-lg-3 col-md-3 col-sm-12 px-1">
-                            <div class="div-online-store">
-
-                            </div>
+                <div class="tile px-3 pt-1 "> 
+                    <a href="href_url"> 
+                        <div class="card div-card-prod" id="div-card-prod-i" > 
+                        </div> 
+                        <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
+                            <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">  Product Name  </p>
+                            <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
                         </div>
+                    </a>
+                </div>            
 
-                        <div class="col-12 col-lg-3 col-md-3 col-sm-12 px-1">
-                            <div class="div-online-store">
-
-                            </div>
+                <div class="tile px-3 pt-1 "> 
+                    <a href="href_url"> 
+                        <div class="card div-card-prod" id="div-card-prod-i" > 
+                        </div> 
+                        <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
+                            <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">  Product Name  </p>
+                            <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
                         </div>
+                    </a>
+                </div>            
 
-                        <div class="col-12 col-lg-3 col-md-3 col-sm-12 px-1">
-                            <div class="div-online-store">
+                <div class="tile px-3 pt-1 "> 
+                    <a href="href_url"> 
+                        <div class="card div-card-prod" id="div-card-prod-i" > 
+                        </div> 
+                        <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
+                            <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">  Product Name  </p>
+                            <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
+                        </div>
+                    </a>
+                </div>            
 
-                            </div>
-                        </div> -->
+                <div class="tile px-3 pt-1 "> 
+                    <a href="href_url"> 
+                        <div class="card div-card-prod" id="div-card-prod-i" > 
+                        </div> 
+                        <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
+                            <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">  Product Name  </p>
+                            <p class="text-red font-weight-600 prod-price">PHP 100.00</p> 
+                        </div>
+                    </a>
+                </div>             -->
 
-                            
 
             </div>
 
@@ -229,17 +274,17 @@
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                     <div class="div-video-screen">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/BUAUenrWTA8" loading="lazy" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/BUAUenrWTA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                     <div class="div-video-screen">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ezY71onm52w" loading="lazy" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ezY71onm52w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                     <div class="div-video-screen">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/o2Qrcg842m8" loading="lazy" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/o2Qrcg842m8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -253,7 +298,7 @@
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center div-footer-col-2">
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-3 col-sm-12 div-footer-col-2-logo">
-                            <img src="<?php echo base_url('assets/img/logo-13x.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
+                            <img src="<?php echo base_url('assets/img/logo-13.png');?>" alt="logo" style="height:50px; width:60px;border:1px solid black;">
                         </div>
                         <div class="col-12 col-lg-9 col-md-9 col-sm-12 div-footer-col-2-text">
                             <p class="text-black mb-0 text-footer-logo">Outletko is a complete digital platform exclusively designed for micro and small business</p>
@@ -438,10 +483,6 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12">
-                            <span>Country <span class="text-red">*</span></span>
-                            <select name="" id="signup_user_country" class="form-control form-control-sm textbox-green bd-green"></select>
                         </div>
                     </div>
                     <div class="row">
@@ -696,82 +737,62 @@
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
 <!-- <style>
-@media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: 1200px) {
 
-.carousel-item .container{
-    max-width:1100px;
-}
+        .carousel-item{
+            padding-top:25px;
+        }
 
-.div-online-store{
-    background-color: green;
-    border: 1px solid #C0C0C0;
-    /* height: 600px; */
-    height: 373px;
-    padding-top: 10px;
-}
+        .div-featured-stores{
+            height: 380px;
+        }
 
-.div-outlet-store{
-    height:60px;
-}
+        .div-featured-product{
+            padding: 0.5% 0% 0.5% 2.3%;
+        }
 
-.div-outlet-img{
-    height:250px;
-}
+        .div-list-product{
+            padding-left:12px;
+        }
 
-.div-featured-stores{
-    height: 400px;
-    /* height: 380px; */
-    /* border-bottom: 1px solid black; */
-    /* background:white; */
-}
+        .div-outlet-details{
+            height: 290px;
+        }
 
-.div-outlet-logo{
-    height: 60px;
-    /* height: 90px; */
-    width: 95%;
-    /* border: 1px solid black; */
+        .div-outlet-product{
+            height: 290px;
+        }
 
-    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        .carousel-indicators{
+            bottom: 0px;
+        }
 
-.span-outlet-name{
-    /* font-size: 25px; */
-    font-size: 18px;
-    color: white;
-    line-height: 5px;
-}
+        .div-featured{
+            font-size:22px;
+            top:3%;
+        }
 
-.div-hot-prod-img{
-    height: 220px;
-    width: 100%;
-    background-image: url("https://www.outletko.com/images/profile/file_2_777983.webp");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+        .span-featured-products{
+            font-size: 18px;
+        }
 
-}
+        /* .carousel .carousel-item {
+            transition-duration: 5s;
+        } */
 
-.div-card-prod-name{
-    height: 50px;
-    width: 100%;
-    /* border: 1px solid #006600; */
-    border-top: 0;
-    border-bottom-right-radius: .25rem;
-    border-bottom-left-radius: .25rem;
-    color: black;
-    background-color: #c8d3b1;
-}
+        /* .carousel-inner > .carousel-item {
+            -webkit-transition: -webkit-transform 3s ease-in-out !important;
+            -o-transition: -o-transform 3s ease-in-out !important;
+            transition: transform 3s ease-in-out !important;
+        } */
 
-.span-featured-products{
-    font-size:22px;
-}
+        .carousel-inner .carousel-item {
+            transition: -webkit-transform 3s ease;
+            transition: transform 3s ease;
+            transition: transform 3s ease, -webkit-transform 3s ease;
+        }
 
-}
-
-</style> -->
+    </style> -->
 
 </body>
 </html>

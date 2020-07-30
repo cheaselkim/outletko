@@ -2,6 +2,17 @@ $(document).ready(function(){
 
     get_featured();
 
+    if ($(document).width() <= 600){
+        $(".div-featured span").removeClass("text-white");
+        $(".div-featured span").addClass("text-green");
+    }
+
+    $(".dropdown-menu span").each(function(){
+        if ($(this).attr("data-code") == $(".appended").attr("data-code")){
+            $(this).addClass("active");
+        }
+    });
+
     $(".card").mouseout(function(){
         var id = this.id;
         console.log(id);
@@ -20,6 +31,30 @@ $(document).ready(function(){
     //         $(".div-featured-stores").css("background-color", bg_color);
     //     }
     // });
+
+    $(".dropdown-menu span").click(function() {
+        $(".dropdown-menu span").removeClass('active');
+        $(this).addClass('active');
+        $(".dropdown-toggle").find('.appended').remove();      
+        $('.dropdown-toggle').append('<span class="appended"><img class="img-flag" src="'+$(this).find("img").attr("src")+'">' + $(this).text() + '</span>');
+    
+        var code = $(this).attr("data-code");
+        var csrf_name = $("input[name=csrf_name]").val();
+
+        $.ajax({
+            data : {code : code, csrf_name : csrf_name},
+            type : "POST",
+            dataType : "JSON",
+            url : base_url + "Login/curr_session",
+            success : function(result){
+                $("input[name=csrf_name]").val(result.token);
+                get_featured();
+            }, error : function(err){
+                console.log(err.responseText);
+            }
+        })
+
+    });    
 
 });
 
@@ -122,6 +157,10 @@ function get_featured(){
     var csrf_name = $("input[name=csrf_name]").val();
     var resolution = $(document).width();
 
+    $("#div-carousel-inner").html("");
+    $("#div-list-product").html("");
+    $(".carousel-indicators").find("li:not(:first-child)").remove();
+
     $.ajax({
         data : {csrf_name : csrf_name, resolution : resolution},
         type : "POST",
@@ -129,11 +168,13 @@ function get_featured(){
         url : "Outletko/featured",
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
+            $("#div-carousel-inner").html(result.featured_product);
+            $("#div-list-product").html(result.featured_store);
 
-            $("#div-carousel-inner").html(result.featured_store);
-            $("#div-list-product").html(result.featured_product);
+            var carousel = result.carousel.length / 4;
+            carousel = carousel.toFixed(0);
 
-            for (let i = 1; i < result.carousel_store.length; i++) {
+            for (let i = 1; i < carousel; i++) {
                 $(".carousel-indicators").append('<li data-target="#div-slideshow" data-slide-to="'+i+'" ></li>');
             }
 
@@ -147,3 +188,4 @@ function get_featured(){
     })
 
 }
+

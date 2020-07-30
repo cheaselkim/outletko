@@ -22,10 +22,10 @@
 				<a class="nav-link font-small" href="#"><span class="span-eprocurement">Outlet</span><span class="text-red">Ko</span></a>
 			</li>
 			<li class="nav-item" id="upgrade-outletko" hidden>
-				<a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/upgrade-store');?>">Upgrade Outletko</a>
+				<!-- <a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/upgrade-store');?>">Upgrade Outletko</a> -->
 			</li>
 			<li class="nav-item" id="renew-outletko" hidden>
-				<a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/renew-store');?>">Renew Outletko</a>
+				<!-- <a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/renew-store');?>">Renew Outletko</a> -->
 			</li>
 			<li class="nav-item">
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_myorders"><span class="text-uppercase text-white">My Orders </span> <span class="badge badge-light" id="order_no">

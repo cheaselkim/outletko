@@ -36,11 +36,12 @@ $(document).ready(function(){
         source: function(req, add){
           var csrf_name = $("input[name=csrf_name]").val();
             var city = $("#info-town").val();
+            var country = $("#info-country").val();
             $.ajax({
                 url: "Signup/search_city_prov/", 
                 dataType: "json",
                 type: "POST",
-                data: {'city' : city, csrf_name : csrf_name},
+                data: {'city' : city, country : country, csrf_name : csrf_name},
                 success: function(data){
                     $("input[name=csrf_name]").val(data.token);
                     if(data.response =="true"){
@@ -164,6 +165,18 @@ $(document).ready(function(){
     //     return response;
     // }, 32)
     // .addMessage('en', 'info-email', 'Email already exists.');
+
+    $("#info-country").change(function(){
+        $("#info-town").val("");
+        $("#info-province").val("");
+        $("#info-town").attr("data-id", "");
+        $("#info-town").attr("data-prov", "");
+        $("#bill-town").val("");
+        $("#bill-province").val("");
+        $("#bill-town").attr("data-id", "");
+        $("#bill-town").attr("data-prov", "");
+
+    });
 
     $("#info-email").blur(function(){
         var email = $(this).val();
@@ -418,8 +431,8 @@ function country(){
                 $("#bill-country").append("<option value='"+data[i].id+"'>"+data[i].country+"</option>");
             }
 
-            $("#info-country").val("136");
-            $("#bill-country").val("136");
+            $("#info-country").val(result.country);
+            $("#bill-country").val(result.country);
         }, error : function(err){
             console.log(err.responseText);
         }

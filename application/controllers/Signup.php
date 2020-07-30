@@ -17,7 +17,8 @@ class Signup extends CI_Controller {
     
     public function search_city_prov(){
       $city = $this->input->post("city", TRUE);
-      $result = $this->signup_model->search_city_prov($city);
+      $country = $this->input->post("country", TRUE);
+      $result = $this->signup_model->search_city_prov($city, $country);
 
       $data['response'] = "false";
 
@@ -55,6 +56,7 @@ class Signup extends CI_Controller {
 
     public function country(){
       $data['result'] = $this->signup_model->country();
+      $data['country'] = $this->session->userdata("IPCountryID");
       $data['token'] = $this->security->get_csrf_hash();
       echo json_encode($data);
     }
@@ -357,6 +359,7 @@ class Signup extends CI_Controller {
       $account_buyer = array(
         "first_name" => $this->input->post("fname"),
         "last_name" => $this->input->post("lname"),
+        "country" => $this->input->post("country"),
         "email" => $this->input->post("email"),
         "verify_code" => mt_rand(100000, 999999),
         "date_insert" => date("Y-m-d H:i:s")

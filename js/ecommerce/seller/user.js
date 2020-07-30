@@ -737,12 +737,13 @@ $(document).ready(function(){
     });
 
     $(document).on("change", ".cov_area", function(){
+
         if (this.checked) {
             // $("#cov-prov").append("<option value='"+$(this).val()+"'>"+$(this).next("label").text()+"</option>")
-            $('#cov-prov :not(:first-child)').remove();
             // $("#tbl-prov-city tbody").empty();
 
             var tbl_row = "";
+            $('#cov-prov :not(:first-child)').remove();
 
             $('.cov_area').each(function () {
                 if ($(this).is(":checked")){
@@ -785,6 +786,8 @@ $(document).ready(function(){
 
         }else{
             var checked_val = $(this).val();
+
+            $("#cov-prov option[value='"+checked_val+"']").remove();
 
             $("#tbl-prov-city tbody tr").each(function(row, tr){
                 if ($(tr).find("td:eq(0)").attr("data-id") == checked_val){
@@ -1440,7 +1443,10 @@ function coverage_area(area){
     var desc = "";
     $("#coverage-group").attr("data-id", area);
     $("#tbl-prov-city tbody").empty();
-    // $('#cov-prov :not(:first-child)').remove();
+    $('#cov-prov :not(:first-child)').remove();
+    $('#cov-prov-city :not(:first-child)').remove();
+
+    console.log(csrf_name);
 
     $.ajax({
         data : {area : area, csrf_name : csrf_name},
@@ -1527,7 +1533,9 @@ function coverage_area(area){
 
             }
 
-            $("#modal-coverage").modal("show");
+            if (!$('#modal-coverage').is(':visible')) {
+                $("#modal-coverage").modal("show");
+            }            
 
         }, error : function(err){
             console.log(err.responseText);
@@ -1547,7 +1555,7 @@ function coverage_city(province){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
             var data = result.result;
-            // $('#cov-prov-city :not(:first-child)').remove();
+            $('#cov-prov-city :not(:first-child)').remove();
             for (let i = 0; i < data.length; i++) {
                 $("#cov-prov-city").append("<option value='"+data[i].id+"'>"+data[i].city_desc+"</option>");
             }
@@ -4637,6 +4645,9 @@ function save_prov_city(){
 
     var csrf_name = $("input[name=csrf_name]").val();
 
+    // console.log(prov_city);
+    // console.log(prov_area);
+
     if (status == 0){
         swal({
             type : "warning",
@@ -4649,14 +4660,26 @@ function save_prov_city(){
             type : "POST",
             dataType : "JSON",
             url : base_url + "Outletko_profile/insert_prov_city",
+            beforeSend : function(){
+                swal({
+                    type : "warning",
+                    title : "saving...",
+                    showCancelButton: false, 
+                    showConfirmButton: false
+                })
+            },
             success : function(result){
                 $("input[name=csrf_name]").text(result.token);
-                swal({
-                    type : "success",
-                    title : "Successfully Saved"
-                }, function(){
-                    coverage_area($("#coverage-group").attr("data-id"));
-                })
+
+                setTimeout(function(){ 
+                    coverage_area($("#coverage-group").attr("data-id"));            
+                    swal({
+                        type : "success",
+                        title : "Successfully Saved"
+                    });
+    
+                }, 1000);
+
             }, error : function(err){
                 console.log(err.responseText);
             }

@@ -36,7 +36,7 @@ class Website extends CI_Controller {
         // We will retrieve quickly with the file_get_contents
         $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
 
-        var_dump($dataArray);
+        // var_dump($dataArray);
         // $data_array = json_decode($dataArray, true);
 
         // outputs something like (obviously with the data of your IP) :
@@ -49,10 +49,10 @@ class Website extends CI_Controller {
         // }
 
         // $country = $data_array['geoplugin_countryName'];
-        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_countryName);
-        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_continentName);
-        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_currencyCode);
-        echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_timezone);
+        // echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_countryName);
+        // echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_continentName);
+        // echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_currencyCode);
+        // echo nl2br("\nHello visitor from: ".$dataArray->geoplugin_timezone);
         
         if ($ip == "::1"){
             $this->session->set_userdata("IPCountryCode", "PH");

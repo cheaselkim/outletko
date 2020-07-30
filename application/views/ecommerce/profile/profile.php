@@ -79,15 +79,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
-				<div class="div-store-img" id="div-store-img-1" style="height: 315px;">
+				<div class="div-store-img-prof" id="div-store-img-1" style="height: 315px;">
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
-				<div class="div-store-img" id="div-store-img-2" style="height: 315px;">
+				<div class="div-store-img-prof" id="div-store-img-2" style="height: 315px;">
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
-				<div class="div-store-img" id="div-store-img-3" style="height: 315px;">
+				<div class="div-store-img-prof" id="div-store-img-3" style="height: 315px;">
 				</div>
 			</div>
 		</div>
