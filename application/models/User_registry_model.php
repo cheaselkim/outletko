@@ -8,6 +8,7 @@ class User_registry_model extends CI_Model {
 			$CI = &get_instance(); 
 			$this->load->database();
 			$this->db2 = $CI->load->database('outletko', TRUE);
+			$this->db3 = $CI->load->database('admin', TRUE);
 			$result = $this->login_model->check_session();
 			if ($result != true){
 				redirect("/");
@@ -36,12 +37,27 @@ class User_registry_model extends CI_Model {
 	}
 
 	public function subscription_type(){
-		$result = $this->db->query("SELECT * FROM subscription_type")->result();
-		return $result;
+        // $result = $this->db->query("SELECT * FROM subscription_type")->result();
+        $query = $this->db3->query("SELECT  
+        `plan_category`.`category_desc` AS plan_title,
+        `plan_days`.`days_name` AS plan_days_name,
+        `plan_days`.`days_desc` AS plan_days,
+        `plan_type`.`plan_name`,
+        `plan_type`.`price`,
+        `plan_type`.`outlet_price`,
+        `plan_type`.`id`
+        FROM plan_type
+        INNER JOIN plan_days ON 
+        `plan_days`.`id` = `plan_type`.`plan_days`
+        INNER JOIN plan_category ON 
+        `plan_category`.`id` = `plan_type`.`plan_category` 
+        WHERE `plan_type`.`status` = ? 
+        ORDER BY `plan_type`.`id` ASC", array(1))->result();
+        return $query;
 	}
 
 	public function currency(){
-		$result = $this->db->query("SELECT * FROM currency ORDER BY FIELD(curr_code, 'CNY', 'USD', 'VND', 'MYR', 'SGD', 'AUD' 'PHP') DESC LIMIT 10")->result();
+		$result = $this->db->query("SELECT * FROM currency ORDER BY FIELD(curr_code, 'CNY', 'USD', 'VND', 'MYR', 'SGD', 'AUD', 'PHP') DESC LIMIT 7")->result();
 		return $result;
 	}
 
@@ -54,6 +70,12 @@ class User_registry_model extends CI_Model {
         $result = $this->db->query("SELECT * FROM account_application WHERE first_name = ? AND last_name = ? AND middle_name = ? AND cash_card = ?", array($last_name, $first_name, $middle_name, $cash_card))->num_rows();
         return $result;
     }
+
+    public function check_linkname($linkname){
+        $query = $this->db2->query("SELECT * FROM account WHERE link_name = ?", array($linkname))->num_rows();
+        return $query;
+    }
+
 
 	public function insert_account($user_app){
         $this->db->insert("account_application", $user_app);

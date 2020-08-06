@@ -3,7 +3,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
 
-
 <div class="container-fluid pt-2">
     <div class="container">
 
@@ -74,9 +73,9 @@
                                 
                             </select>
                         </div>
-                        <div class="col-xs-12 col-md-4 px-1">
+                        <div class="col-xs-12 col-md-2 px-1">
                             <span class="font-size-18">Subscription Type</span>
-                            <select class="form-control px-1    " id="subscription_type">
+                            <select class="form-control" id="subscription_type">
                                 
                             </select>
                         </div>
@@ -84,11 +83,11 @@
                             <span class="font-size-18">Start Date <span class='required'>*</span></span>
                             <input class="form-control" id="start_date" data-date="" data-date-format="MM/DD/YYYY" type='date' value='<?php echo date('Y-m-d') ?>'>
                         </div>
-                        <div class="col-xs-12 col-md-2 pr-0">
+                        <div class="col-xs-12 col-md-2 px-1">
                             <span class="font-size-18">Renewal Date</span>
-                            <input class="form-control" id="renewal_date"  type='date'>
+                            <input class="form-control" id="renewal_date" data-date="" data-date-format="MM/DD/YYYY" type='date'>
                         </div>
-                        <div class="col-xs-12 col-md-2 pl-1 pr-0" hidden>
+                        <div class="col-xs-12 col-md-2 pl-1 pr-0">
                             <span class="font-size-18">Payment Date <span class='required'>*</span></span>
                             <input class="form-control" id="payment_date" data-date="" data-date-format="MM/DD/YYYY" type='date' value='<?php echo date('Y-m-d') ?>'>
                         </div>
@@ -144,7 +143,7 @@
                         </div>
                         <div class="col-xs-12 col-md-2 pl-1 pr-0">
                             <span class="font-size-18">Partner's ID <span class='required'>*</span></span>
-                            <input class="form-control" id="partner_id"  onkeypress="return isNumber(event)" value="000001" data-id="1" readonly>
+                            <input class="form-control" id="partner_id"  onkeypress="return isNumber(event)">
                         </div>
                     </div>
 

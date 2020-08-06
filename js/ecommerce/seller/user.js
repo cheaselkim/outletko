@@ -2065,7 +2065,7 @@ function index(){
         if (result.result[0].account_pro == 1){
             product_allowed = 100;
         }else{
-            product_allowed = 20;
+            product_allowed = 24;
         }
 
         if (result.product_rows <= product_allowed){
@@ -3078,7 +3078,7 @@ $.ajax({
         var products = result.ol_products;
 
         if (result.account_pro == 0){
-            if (result.ol_products_rows >= 20){
+            if (result.ol_products_rows >= 24){
                 if (id != ""){
                     $("#prod_id").val(id);
                     for (var i = 0; i < products.length; i++) {

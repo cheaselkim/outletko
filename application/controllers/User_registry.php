@@ -88,7 +88,13 @@ class User_registry extends CI_Controller {
 		$user_app_result = 0;
 		$users_result = 0;
 		$email_result = 0;
-		$user_type = 2;
+        $user_type = 2;
+        
+        if ($this->input->post("subscription_type", TRUE) == "0"){
+            $renewal_date = "0000-00-00";
+        }else{
+            $renewal_date = $this->input->post("renewal_date", TRUE);
+        }
 
 		$user_app = array(
 			"last_name" => strtoupper($this->input->post("last_name", TRUE)),
@@ -96,7 +102,7 @@ class User_registry extends CI_Controller {
 			"first_name" => strtoupper($this->input->post("first_name", TRUE)),
 			"email" => $this->input->post("email", TRUE),
 			"mobile_no" => $this->input->post("mobile_no", TRUE),
-			"area_code" => $this->input->post("area_code", TRUE),
+			// "area_code" => $this->input->post("area_code", TRUE),
 			"telephone_no" => $this->input->post("phone_no", TRUE),
 			"address" => $this->input->post("address", TRUE),
 			"city" => $this->input->post("town", TRUE),
@@ -109,9 +115,12 @@ class User_registry extends CI_Controller {
 			"business_type" => $this->input->post("business_type", TRUE),
 			"subscription_type" => $this->input->post("subscription_type", TRUE),
 			"subscription_date" => $this->input->post("subscription_date", TRUE),
-			"renewal_date" => $this->input->post("renewal_date", TRUE),
-			"payment_date" => $this->input->post("payment_date", TRUE),
-			"recruited_by" => $this->input->post("recruited_by", TRUE),
+			"renewal_date" => $renewal_date,
+            "level_2" => 0,
+            "level_3" => 0,
+            // "payment_date" => $this->input->post("payment_date", TRUE),
+            // "recruited_by" => $this->input->post("recruited_by", TRUE),
+            "recruited_by" => 1,
 			"outlet_no" => $this->input->post("outlet", TRUE),
 			"cash_card" => $this->input->post("cash_card", TRUE),
 			"vat" => $this->input->post("vat", TRUE),
@@ -161,23 +170,37 @@ class User_registry extends CI_Controller {
 			$link_name = $this->input->post("account_name", TRUE);
 			$link_name = str_replace(' ', '', strtolower($link_name));
 			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
-			$link_name = substr($link_name, 0, 20);
+			$link_name = substr($link_name, 0, 15);
+
+            $check_linkname = $this->user_registry_model->check_linkname($link_name, 0, 15);
+
+            if ($check_linkname > 0){
+                $link_name = substr($link_name, 0, 8);
+                $link_name = $link_name.$account_id;
+            }else{
+                $link_name = substr($link_name, 0, 15);
+            }
+    
 
 		$account_outletko=array(
 			'account_id'=>$this->input->post('account_id', TRUE),
 			'link_name' => $link_name,
 			'account_name'=> ucwords($this->input->post('account_name', TRUE)),
-			'account_status'=> 1,
+            'account_status'=> 1,
+            'account_pro' => 0,
 			'confirm_email' => 1,
-			'bg_color' => '77933c',
+            'bg_color' => '#77933c',
+            'about_us' => '',
 			'business_category'=> $this->input->post("business_type", TRUE),
 			'first_name' => strtoupper($this->input->post("first_name" ,TRUE)),
 			'middle_name'=> strtoupper($this->input->post("middle_name", TRUE)),
 			'last_name'=> strtoupper($this->input->post("last_name", TRUE)),
 			'address'=> $this->input->post("address", TRUE),
+			'street'=> $this->input->post("address", TRUE),
 			'city'=> $this->input->post("city", TRUE),
 			'email'=> $this->input->post("email", TRUE),
-			'mobile_no' => $this->input->post("mobile", TRUE)
+            'mobile_no' => $this->input->post("mobile", TRUE),
+            'date_insert'=>date("Y-m-d H:i:s")
 		  );
 	  
 
@@ -193,11 +216,14 @@ class User_registry extends CI_Controller {
 		$account_outletko = $this->user_registry_model->insert_account_outletko($account_outletko, $outletko_comp);
 		$user_outletko = $this->user_registry_model->insert_user_outletko($user_outletko, $outletko_comp);
 
-		$email_result = $this->send_email($this->input->post("email", TRUE), $this->input->post("account_id", TRUE));
+		// $email_result = $this->send_email($this->input->post("email", TRUE), $this->input->post("account_id", TRUE));
 
-		if ($email_result == 1){
-			$email_result2 = $this->send_admin_email($this->input->post("email", TRUE), $this->input->post("account_id", TRUE));
-		}
+		// if ($email_result == 1){
+		// 	$email_result2 = $this->send_admin_email($this->input->post("email", TRUE), $this->input->post("account_id", TRUE));
+		// }
+
+        $email_result = 1;
+        $email_result2 = 1;
 
 		// $user_app_result = 1;
 		// $outlet_result = 1;

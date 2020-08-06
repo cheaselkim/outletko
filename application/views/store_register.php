@@ -28,7 +28,7 @@
 
     <script defer src="<?php echo base_url('assets/vendors/creditcardvalidator/creditCardValidator.js')?>"></script>
     <script defer src="<?php echo base_url('js/credit_card.js') ?>"></script>
-    <script defer src="<?php echo base_url('js/register_store.js') ?>"></script>    
+    <script defer src="<?php echo base_url('js/register_store.min.js') ?>"></script>    
     <script defer src="<?php echo base_url('js/login.js')?>"></script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -136,7 +136,7 @@
                                 <span class="font-header">in your business</span>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-3" hidden>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center text-white div-plan-subheader">
                                 <span class="font-subheader">Choose Payment Plan for your Outletko Standard Online Store</span>
                             </div>
@@ -145,7 +145,25 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    
                         <div class="row pt-2 px-3" id="div-plan-dtls">
+
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-center mx-auto ">
+
+                                <button class="btn bg-white btn-block mb-4" disabled style="opacity:1;">
+                                    <span class="font-size-25 font-weight-600 text-black">Create your Outletko Account</span>
+                                </button>
+
+                                <p class='font-size-35 font-weight-600 mb-0 plan-type-name' data-desc='Outletko Basic <br> Free' hidden>Outletko Basic <br>Free</p>
+                                <p class='font-size-25 font-weight-600 mb-0' data-days='0' hidden>0</p>
+                                <span class='font-size-36 font-weight-600' hidden>PHP <span class='text-decoration-line'>0.00</span></span>
+                                <span class='plan-discount-price font-weight-600' hidden>PHP <span class='span-plan-price' data-price='0'>0.00</span></span>
+
+                                <button class="btn btn-warning btn-block py-2 text-center btn-plan" value="0">
+                                    <p class="mb-0 font-weight-600 font-size-35">Sign Up for Outletko Basic</p>
+                                    <p class="mb-0 font-weight-600 font-size-35">FREE</p>
+                                </button>
+                            </div>
 
                             <!-- <div class="col-12 col-lg-15 col-md-6 col-sm-12 px-0 mt-2">
                                 <div class="mx-auto text-center div-plan-e div-plan" id="div-plan-e">
@@ -329,6 +347,44 @@
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Partner <span class="text-red">*</span></span>
                                             <input readonly disabled type="text" class="form-control form-control-sm textbox-green" value="HOUSE ACCOUNT  (000001)" id="info-partner" data-parsley-trigger="focusin focusout" required data-id="1" data-lvl-2="0" data-lvl-3="0">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <hr class="mt-3 mb-1" style="border-top: 1px solid rgb(195, 214, 155)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 div-uname">
+                                            <span>Username <span class="text-red">*</span></span>
+                                            <input type="text" class="form-control form-contorl-sm textbox-green" id="info-uname" data-parsley-trigger="focusin focusout" 
+                                            data-parsley-minlength="8" data-exists="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                            <span>Password <span class="text-red">*</span></span>
+                                            <input type="password" class="form-control form-control-sm textbox-green" id="info-pword"
+                                            data-parsley-trigger="focusin focusout"  
+                                            data-parsley-minlength="8"
+                                            data-parsley-errors-container=".errorspannewpassinput"
+                                            data-parsley-required-message="Please enter your new password."
+                                            data-parsley-uppercase="1"
+                                            data-parsley-lowercase="1"
+                                            data-parsley-number="1"
+                                            data-parsley-special="1"
+                                            data-parsley-required >
+                                            <span class="errorspannewpassinput"></span>
+
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                            <span>Confirm Password <span class="text-red">*</span></span>
+                                            <input type="password" class="form-control form-control-sm textbox-green" id="info-conf-pword" data-parsley-trigger="focusin focusout" 
+                                            data-parsley-minlength="8"
+                                            data-parsley-errors-container=".errorspanconfirmnewpassinput"
+                                            data-parsley-required-message="Please re-enter your new password."
+                                            data-parsley-equalto="#info-pword" required>
+                                            <span class="errorspanconfirmnewpassinput"></span>
                                         </div>
                                     </div>
                                     <div class="row">

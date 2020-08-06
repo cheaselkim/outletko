@@ -214,7 +214,7 @@ function subscription_type(){
 			$("input[name=csrf_name]").val(result.token);
 			var data = result.data;
             for (var i = 0; i < data.length; i++) {
-                $("#subscription_type").append("<option value='"+data[i].id+"' data-days = '"+data[i].days+"'>"+data[i].desc +"</option>");
+                $("#subscription_type").append("<option value='"+data[i].id+"' data-days = '"+data[i].plan_days+"'>"+data[i].plan_name +"</option>");
             }			
             $("#subscription_type").val("5");
             renewal_date();
@@ -269,8 +269,13 @@ function renewal_date(){
 	var days = $("#subscription_type option:selected").data("days") + 1;
 	var newdate = new Date(date);
 	newdate.setDate(newdate.getDate() + (days + 10));
-	var renewal_date = $.datepicker.formatDate("yy-mm-dd", newdate);
-	$("#renewal_date").val(renewal_date);
+    var renewal_date = $.datepicker.formatDate("yy-mm-dd", newdate);
+    
+    if ($("#subscription_type").val() == "0"){
+        $("#renewal_date").val("0000-00-00");
+    }else{
+        $("#renewal_date").val(renewal_date);
+    }
 }
 
 function partner(){
@@ -439,7 +444,8 @@ function check_required_fields(){
             confirmButtonColor: "#DD6B55"
         })
     }else{  
-        partner();
+        // partner();
+        save();
     }
     
 }
@@ -500,6 +506,8 @@ function save(){
 		        vat : vat,
 		    	csrf_name : csrf_name};
 
+        $details = "<p style='color:black;'><b style='font-weight: 700;'>Username : </b>" + email + "<br><b style='font-weight: 700;'>Password :</b> password</p>";
+
 	$.ajax({
 		data : data,
 		type : "POST",
@@ -516,9 +524,10 @@ function save(){
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 			swal({
-				title : "Successfully Saved",
-				type : "success",
-				timer: 2000
+                html : true,
+                title : "Successfully Saved",
+                text : $details,
+				type : "success"
 			}, function(){
 				location.reload();
 			})

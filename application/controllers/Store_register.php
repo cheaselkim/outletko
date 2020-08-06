@@ -43,6 +43,13 @@ class Store_register extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function check_uname(){
+        $uname = $this->input->post("uname");
+        $data['result'] = $this->signup_model->check_uname($uname);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+    
     public function save_account(){
         $info_user = $this->input->post("info_user");
         $info_bill = $this->input->post("info_bill");
@@ -82,7 +89,7 @@ class Store_register extends CI_Controller {
           'account_name'=> ucwords(strtolower($info_user['info_business_name'])),
           'account_partner' => $info_user['info_partner'],
           'link_name' => $link_name,
-          'account_status' => 0,
+          'account_status' => 1,
           'account_pro' => $account_pro,
           'about_us' => "",
           'business_category'=>$info_user['info_business_category'],
@@ -121,13 +128,14 @@ class Store_register extends CI_Controller {
                 'last_name' => strtoupper($info_user['info_lname']),
                 'gender' => $info_user['info_gender'],
                 'birthday' => date('Y-m-d', strtotime($info_user['info_bday'])),
-                'password' => password_hash($outletko_pass, PASSWORD_DEFAULT),
+                'password' => password_hash($info_user['info_pword'], PASSWORD_DEFAULT),
                 'user_type' => $user_type,
                 'email' => $info_user['info_email'],
-                'username' => $info_user['info_email'],
+                'username' => $info_user['info_uname'],
                 'account_type' => "0",
-                "status" => "0",
+                "status" => "1",
                 'all_access' => "1",
+                "otp" => "0",
                 "online_register" => "1"
             );
 
@@ -221,7 +229,7 @@ class Store_register extends CI_Controller {
                 "invoice_type" => "1",
                 "invoice_date" => date("Y-m-d"),
                 "payment_type" => $info_bill['payment_type'],
-                "plan_type" => $info_bill['plan_price'],
+                "plan_type" => $info_bill['plan_type'],
                 "outlet" => $info_bill['plan_outlet_qty'],
                 "plan_price" => $info_bill['plan_price'],
                 "plan_outlet_price" => $info_bill['plan_outlet_price'],
@@ -246,7 +254,10 @@ class Store_register extends CI_Controller {
             $invoice_result = $this->signup_model->update_invoice($bill_data, $invoice_id);
 
             // $send_email =  $this->send_email($info_user['info_email'],$account_id,$outletko_pass, $eoutletsuite_pass); 
-            $send_email = $this->send_confirm_email($info_user['info_email'], $account_id); //ORIGINAL
+            // $send_email = $this->send_confirm_email($info_user['info_email'], $account_id); //ORIGINAL
+            // $send_email = $this->send_email($info_user['info_email'], $account_id, $info_bill['plan_type']);
+            $send_email = $this->send_plan_email($info_user['info_email'], $account_id, $comp_id);
+            $invoice_email = $this->send_invoice_email($info_user['info_email'], $account_id, $comp_id);
             // $send_email = true;
 
         // }
@@ -540,6 +551,8 @@ class Store_register extends CI_Controller {
         // $email = "eapurugganan@gmail.com";
         // $account_id = "2012010103";
 
+        // var_dump($id);
+
         $this->load->library("email");
         $status = 0;
         $hashed_email = password_hash($email, PASSWORD_DEFAULT);
@@ -555,16 +568,22 @@ class Store_register extends CI_Controller {
 
             if (!empty($result)){
                 foreach ($result as $key => $value) {
-                    $plan = $data['plan_type_id'];
+                    $plan = $value->plan_type_id;
+                    $data['plan_type_id'] = $value->plan_type_id;
                     $data['name'] = ucwords(strtolower($value->first_name))." ".ucwords(strtolower($value->last_name));
                 }
+            }else{
+                $plan = "0";
             }
 
-            if ($plan == "0"){
-                $plan_html = "admin/email/email_plan_free";
-            }else{
-                $plan_html = "admin/email/email_plan_pro";                
-            }
+            $plan_html = "admin/email/email_plan_free";
+
+
+            // if ($plan == "0"){
+            //     $plan_html = "admin/email/email_plan_free";
+            // }else{
+            //     $plan_html = "admin/email/email_plan_pro";                
+            // }
 
             $message = $this->load->view($plan_html, $data, TRUE);
 

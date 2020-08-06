@@ -25,10 +25,10 @@ table tbody td, .table tbody th{
 }
 
 .parsley-errors-list{
-    list-style: none !important;
-    padding: 0 !important;
+    /* list-style: none !important;
+    padding: 0 !important; */
     color:red !important;
-    margin: 0 !important;
+    /* margin: 0 !important; */
 }
 
 .parsley-error{

@@ -96,6 +96,11 @@ class Signup_model extends CI_Model {
         return $query;
     }
 
+    public function check_uname($uname){
+        $query = $this->db->query("SELECT * FROM users WHERE username = ? ", array($uname))->num_rows();
+        return $query;
+    }
+
     public function check_linkname($linkname){
         $query = $this->db2->query("SELECT * FROM account WHERE link_name = ?", array($linkname))->num_rows();
         return $query;

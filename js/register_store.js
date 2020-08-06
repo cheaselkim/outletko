@@ -1,13 +1,71 @@
 $(document).ready(function(){
 
-    div_hide();
-    plan();
+    // div_hide();
+    // plan();
+    category();
+    $("#div-info").hide();
+    $("#div-plan").hide();
+    $("#div-cart").hide();
+    $("#div-bill").hide();        
+    $("#div-payment").hide();
+    $("#div-payment-details").hide();
+
+
     $("#div-plan").show();
     $("#info-mobile").mobilenumber();
     $("#info-phone").mobilenumber();
     $("#bill-mobile").mobilenumber();
     $("#bill-phone").mobilenumber();
     $("#cart-plan-outlet-qty").number(true, 0);
+
+    //has uppercase
+    window.Parsley.addValidator('uppercase', {
+        requirementType: 'number',
+        validateString: function(value, requirement) {
+            var uppercases = value.match(/[A-Z]/g) || [];
+            return uppercases.length >= requirement;
+        },
+        messages: {
+            en: 'Your password must contain at least (%s) uppercase letter.'
+        }
+    });
+
+    //has lowercase
+    window.Parsley.addValidator('lowercase', {
+        requirementType: 'number',
+        validateString: function(value, requirement) {
+            var lowecases = value.match(/[a-z]/g) || [];
+            return lowecases.length >= requirement;
+        },
+        messages: {
+            en: 'Your password must contain at least (%s) lowercase letter.'
+        }
+    });
+
+    //has number
+    window.Parsley.addValidator('number', {
+        requirementType: 'number',
+        validateString: function(value, requirement) {
+            var numbers = value.match(/[0-9]/g) || [];
+            return numbers.length >= requirement;
+        },
+        messages: {
+            en: 'Your password must contain at least (%s) number.'
+        }
+    });
+
+    //has special char
+    window.Parsley.addValidator('special', {
+        requirementType: 'number',
+        validateString: function(value, requirement) {
+            var specials = value.match(/[^a-zA-Z0-9]/g) || [];
+            return specials.length >= requirement;
+        },
+        messages: {
+            en: 'Your password must contain at least (%s) special characters.'
+        }
+    });
+  
 
     $('#info-bday').datepicker({
         changeMonth : true,
@@ -208,6 +266,40 @@ $(document).ready(function(){
         }
 
     });
+
+    $("#info-uname").keyup(function(){
+        var uname = $(this).val();
+        var csrf_name = $("input[name='csrf_name']").val();
+
+        var result = $("#info-uname").parsley();            
+                
+        if (result.validationResult == true){
+            $("#parsley-uname").remove();
+            $("#info-uname").attr("data-exists", "0");
+
+            $.ajax({
+                data : {uname : uname, csrf_name : csrf_name},
+                type : "POST",
+                dataType : "JSON",
+                url : base_url + "Store_register/check_uname",
+                success : function(result){
+                    console.log(result);
+                    $("#parsley-uname").remove();
+                    $("input[name='csrf_name']").val(result.token);
+                    if (result.result > 0){
+                        $("#info-uname").attr("data-exists", "1");
+                        $(".div-uname").append('<ul class="parsley-errors-list filled" id="parsley-uname" aria-hidden="false"><li class="parsley-type">Username already exists.</li></ul>');
+                    }
+
+                }, error : function(err){
+                    console.log(err.responseText);
+                }
+            })
+                
+        }
+
+    });
+
 
     $("#cart-plan-outlet-qty").keyup(function(){
         if ($(this).val() == ""){
@@ -497,7 +589,7 @@ function check_info(){
 
     if (grecaptcha && grecaptcha.getResponse().length !== 0){
         if ($("#info-form").parsley().isValid()){
-            if ($("#info-email").attr("data-exists") == "0"){
+            if ($("#info-email").attr("data-exists") == "0" || $("#info-uname").attr("data-exists") == "0"){
                 div_hide();
                 if ($("#plan-type").val() == "0"){
                     check_payment();
@@ -751,6 +843,9 @@ function check_payment_details(){
     var info_gender = $(".info-gender:checked").val();
     var info_bday = $("#info-bday").val();
     var info_fb = $("#info-fb").val();
+
+    var info_uname = $("#info-uname").val();
+    var info_pword = $("#info-pword").val();
     
     var info_business_name = $("#info-business-name").val();
     var info_business_category = $("#info-business-category").val();
@@ -800,6 +895,8 @@ function check_payment_details(){
         info_gender : info_gender,
         info_bday : info_bday,
         info_fb : info_fb,
+        info_uname : info_uname,
+        info_pword : info_pword,
         info_business_name : info_business_name,
         info_business_category : info_business_category,
         info_address : info_address,
@@ -903,8 +1000,8 @@ function check_payment_details(){
             $("input[name=csrf_name]").val(result.token);
             swal({
                 type : "success",
-                title : "Your Online Store Registration is Completed",
-                text : "Outletko Activation email has been sent to your email address."
+                title : "Your Online Store Registration is Completed"
+                // text : "Outletko Activation email has been sent to your email address."
             }, function(){
                 location.reload();
             })    

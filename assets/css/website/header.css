@@ -78,12 +78,13 @@
     border: 1px solid #006600;
 }
 
-.header-text:hover{
-    color: yellow;
+.div-logo:hover{
+    background-color: #218f21;
 }
 
-.header-text-2:hover{
-    color: black;
+.div-logo-zugriff:hover{
+    /* background-color: rgb(0, 51, 153); */
+    background-color: #484848;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -309,9 +310,33 @@
 
 .div-logo{
     /* padding-top: 40px !important; */
-    padding-top: 15px !important;
+    /* padding-top: 15px !important; */
     margin-left: auto !important;
+
+    background:#014d01;
+    border:1px solid yellow;
+    height:100px;
+    text-align:center;
+    width:150px;
+    line-height: 90px;
+    margin-right: 20px;
 }
+
+.div-logo-zugriff{
+    background:black;
+    border:1px solid yellow;
+    height:100px;
+    text-align:center;
+    width:150px;
+    line-height: 90px;
+}
+
+.div-logo a, .div-logo-zugriff a{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
 
 .div-logo-sub-text{
     text-align: center;
@@ -319,8 +344,8 @@
 }
 
 .div-header-text{
-    /* padding-top: 45px !important; */
-    padding-top: 10px !important;
+    padding-top: 45px !important;
+    /* padding-top: 10px !important; */
 }
 
 .navbar-collapse{
@@ -329,16 +354,25 @@
 
 .header-logo{
     font-weight: 900;
-    font-size: 35px;
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+}
+
+.header-logo-zugriff{
+    font-weight: 900;
+    font-size: 30px;
     margin: 0;
     padding: 0;
 }
 
 .header-text{
-    font-size: 45px;
+    /* font-size: 45px; */
+    font-size: 38px;
     color: white;
-    font-weight: 600;
-    margin-left: 30px;
+    font-weight: normal;
+    /* margin-left: 30px; */
+    margin-left: 0px;
 }
 
 .header-text-2{

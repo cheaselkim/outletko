@@ -28,7 +28,8 @@ class Outletko_model extends CI_Model {
         WHERE `account`.`featured_store` = ? AND `account`.`country` = ?
         GROUP BY `account`.`id`
         ORDER BY `account`.`featured_order`
-        ", array(1, 173))->result();
+        ", array(1,  $this->session->userdata("IPCountryID")))->result();
+        // 173
         //, $this->session->userdata("IPCountryCode")
         return $query;
     }
@@ -38,7 +39,7 @@ class Outletko_model extends CI_Model {
         INNER JOIN account ON 
         `products`.`comp_id` = `account`.`id`
         WHERE `products`.`featured_product` = ? AND `account`.`country` = ?
-        ORDER BY `products`.`featured_order`", array(1, 173))->result();
+        ORDER BY `products`.`featured_order`", array(1,  $this->session->userdata("IPCountryID")))->result();
         return $query;
     }
 
