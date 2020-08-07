@@ -7,11 +7,11 @@ $(document).ready(function(){
 	currency();
 	// account_id();
 	renewal_date();
-    get_data();
-
+	get_data();
+	
 	$("#cancel").click(function(){
 		window.open(base_url, "_self");
-	})	
+	})
 
 	$("#partner_id").keyup(function(){
 		$(this).removeClass("error");
@@ -67,17 +67,6 @@ $(document).ready(function(){
     //     )
     // }).trigger("change")
 
-    $("#account_class").change(function(){
-    	if ($(this).val() != "1"){
-    		$("#business_type").attr("disabled", true);
-    		$("#business_type").val("97");
-    	}else{
-    		$("#business_type").attr("disabled", false);
-    		$("#business_type").val("");
-    	}
-    	// account_id();
-    });
-
 	$("#start_date").keyup(function(){
 		renewal_date();
 	});
@@ -91,18 +80,13 @@ $(document).ready(function(){
 	});
 
 	$("#business_type").change(function(){
-		// account_id();
+		account_id();
 	});
 
-	$("#save").click(function(){
+	$("#update").click(function(){
 		check_required_fields();
-        // partner()
 	});
 	
-// 	$("#partner").keyup(function(){
-// 	   partner();
-// 	});
-
 	$("#town").keyup(function(){
 		if ($(this).val() == ""){
 			$("#province").val("");
@@ -142,7 +126,8 @@ $(document).ready(function(){
 		}
 	});
 
-});	
+
+});
 
 function get_data(){
 	var trans_id = $("#trans_id").val();
@@ -163,10 +148,9 @@ function get_data(){
 			$("#business_type").val(result.data[0].business_type);
 			$("#vat").val(result.data[0].vat);
 			$("#currency").val(result.data[0].currency);
-			$("#subscription_type").val(result.data[0].subscription_type);
 			$("#start_date").val(result.data[0].subscription_date);
 			$("#renewal_date").val(result.data[0].renewal_date);
-			// $("#partner_id").val(result.data[0].partner_id);
+			$("#partner_id").val(result.data[0].partner_id);
 			$("#address").val(result.data[0].address);
 			$("#town").val(result.data[0].city_desc);
 			$("#province").val(result.data[0].province_desc);
@@ -176,14 +160,12 @@ function get_data(){
 			$("#mobile").val(result.data[0].mobile_no);
 			$("#phone").val(result.data[0].telephone_no);
 			$("#no_outlet").val(result.data[0].outlet_no);
-			// $("#partner_id").val(result.data[0].recruited_by);
+			$("#partner_id").val(result.data[0].recruited_by);
 
 			$("#last_name").val(result.data[0].last_name);
 			$("#first_name").val(result.data[0].first_name);
 			$("#middle_name").val(result.data[0].middle_name);
 			$("#cash_card").val(result.data[0].cash_card);
-			$("#birthday").val(result.data[0].birthday);
-			$("#gender").val(result.data[0].gender);
 
 		}, error : function(err){
 			console.log(err.responseText);
@@ -192,7 +174,6 @@ function get_data(){
 
 
 }
-
 
 function account_type(){
 	var csrf_name = $("input[name=csrf_name]").val();
@@ -222,7 +203,7 @@ function account_class(){
 		url : base_url + "User_registry/account_class",
 		success: function(result){
 			$("input[name=csrf_name]").val(result.token);
-			var data = result.data;
+			var data = result.result;
             for (var i = 0; i < data.length; i++) {
                 $("#account_class").append("<option value='"+data[i].id+"'>"+data[i].desc +"</option>");
             }			
@@ -246,8 +227,6 @@ function business_type(){
             for (var i = 0; i < data.length; i++) {
                 $("#business_type").append("<option value='"+data[i].id+"'>"+data[i].desc +"</option>");
             }			
-			$("#business_type option[value='25']").hide();
-            // account_id();
 		},error: function(err){
 			console.log(err.responseText);
 		}
@@ -265,7 +244,7 @@ function subscription_type(){
 			$("input[name=csrf_name]").val(result.token);
 			var data = result.data;
             for (var i = 0; i < data.length; i++) {
-                $("#subscription_type").append("<option value='"+data[i].id+"' data-days = '"+data[i].plan_days+"'>"+data[i].plan_name +"</option>");
+                $("#subscription_type").append("<option value='"+data[i].id+"' data-days = '"+data[i].days+"'>"+data[i].desc +"</option>");
             }			
             $("#subscription_type").val("5");
             renewal_date();
@@ -295,38 +274,132 @@ function currency(){
 }
 
 function account_id(){
-	var account_class = $("#account_class").val();
 	var business_type = $("#business_type").val();
-	var csrf_name = $("input[name=csrf_name]").val();
+	var account_id = $("#account_no").val();
 
-	$.ajax({
-		data : {csrf_name : csrf_name},
-		type : "GET",
-		dataType : "JSON",
-		url : base_url + "User_registry/account_id",
-		success : function(result){
-			$("input[name=csrf_name]").val(result.token);
-			var account_id = result.year + (account_class == null ? "1" : account_class) + result.account_id;
-			$("#account_no").val(account_id);
-		}, error : function(err){
-			console.log(err.responseText);
-		}
-	});
+	var account_no = account_id.substr(0,2) + business_type + account_id.substr(2+1);
+	
+	$("#account_no").val(account_no);
+
+	// $.ajax({
+	// 	type : "GET",
+	// 	dataType : "JSON",
+	// 	url : base_url + "User_registry/account_id",
+	// 	success : function(result){
+	// 		var account_id = result.year + business_type + result.account_id;
+	// 		$("#account_no").val(account_id);
+	// 	}, error : function(err){
+	// 		console.log(err.responseText);
+	// 	}
+	// });
 
 }
 
 function renewal_date(){
 	var date = $("#start_date").val();
-	var days = $("#subscription_type option:selected").data("days") + 1;
+	var days = $("#subscription_type option:selected").data("days");
 	var newdate = new Date(date);
-	newdate.setDate(newdate.getDate() + (days + 10));
-    var renewal_date = $.datepicker.formatDate("yy-mm-dd", newdate);
+	newdate.setDate(newdate.getDate() + days);
+	var renewal_date = $.datepicker.formatDate("yy-mm-dd", newdate);
+	$("#renewal_date").val(renewal_date);
+}
+
+function check_required_fields(){
     
-    if ($("#subscription_type").val() == "0"){
-        $("#renewal_date").val("0000-00-00");
-    }else{
-        $("#renewal_date").val(renewal_date);
+	var last_name = $("#last_name").val();
+	var first_name = $("#first_name").val();
+	var middle_name = $("#middle_name").val();
+	var email = $("#email").val();
+	var mobile_no = $("#mobile").val();
+	var phone_no = $("#phone").val();
+	var address = $("#address").val();
+	var account_id = $("#account_no").val();
+	var account_name = $("#account_name").val();
+	var account_status = $("#account_status").val();
+	var account_type = $("#account_type").val();
+    var account_class = $("#account_class").val();
+	var currency = $("#currency").val();
+	var business_type = $("#business_type").val();
+	var subscription_type = $("#subscription_type").val();
+	var subscription_date = $("#start_date").val();
+	var renewal_date = $("#renewal_date").val();
+	var recruited_by = $("#partner_id").val();
+	var outlet = $("#no_outlet").val();
+	var vat = $("#vat").val();
+	var town = $("#town_id").val();
+	var province = $("#province_id").val();
+	var cash_card = $("#cash_card").val();
+    var partner_id = $("#partner_id").val();
+
+    if (jQuery.trim(last_name).length <= 0 || 
+        jQuery.trim(first_name).length <= 0 || 
+        jQuery.trim(email).length <= 0 || 
+        jQuery.trim(address).length <= 0 || 
+        jQuery.trim(account_name).length <= 0 || 
+        jQuery.trim(subscription_date).length <= 0 || 
+        jQuery.trim(outlet).length <= 0 || 
+        jQuery.trim(town).length <= 0 || 
+        jQuery.trim(mobile_no).length <= 9 || 
+        jQuery.trim(partner_id).length <= 0 ){
+
+        if (jQuery.trim(last_name).length <= 0){
+            $("#last_name").addClass("error");
+        }
+
+        if (jQuery.trim(first_name).length <= 0){
+            $("#first_name").addClass("error");
+        }
+
+        if (jQuery.trim(email).length <= 0){
+            $("#email").addClass("error");
+        }
+
+        if (jQuery.trim(address).length <= 0){
+            $("#address").addClass("error");
+        }
+
+        if (jQuery.trim(account_name).length <= 0){
+            $("#account_name").addClass("error");
+        }
+
+        if (jQuery.trim(subscription_date).length <= 0){
+            $("#start_date").addClass("error");
+        }
+
+        if (jQuery.trim(outlet).length <= 0){
+            $("#no_outlet").addClass("error");
+        }
+
+        if (jQuery.trim(town).length <= 0){
+            $("#town").addClass("error");
+        }
+
+        if (jQuery.trim(mobile_no).length <= 9){
+            $("#mobile").addClass("error");
+        }
+
+        if (jQuery.trim(partner_id).length <= 0){
+            $("#partner_id").addClass("error");
+        }
+
+        // if (jQuery.trim(cash_card).length <= 0){
+        //     $("#cash_card").addClass("error");
+        // }
+
+        // if ($("#business_type").val() != ""){
+        //     $("#business_type").addClass("error");
+        // }
+
+        swal({
+            type : "warning",
+            title : "Please fill up required fields",
+            confirmButtonText: 'Continue',
+            confirmButtonColor: "#DD6B55"
+        })
+    }else{  
+        partner();
     }
+    
 }
 
 function partner(){
@@ -390,140 +463,13 @@ function cash_card(){
     
 }
 
-function check_required_fields(){
-    
-	var last_name = $("#last_name").val();
-	var first_name = $("#first_name").val();
-    var middle_name = $("#middle_name").val();
-    var birthday = $("#birthday").val();
-    var gender = $("#gender").val();
-	var email = $("#email").val();
-	var mobile_no = $("#mobile").val();
-	var phone_no = $("#phone").val();
-	var address = $("#address").val();
-	var account_id = $("#account_no").val();
-	var account_name = $("#account_name").val();
-	var account_status = $("#account_status").val();
-	var account_type = $("#account_type").val();
-    var account_class = $("#account_class").val();
-	var currency = $("#currency").val();
-	var business_type = $("#business_type").val();
-	var subscription_type = $("#subscription_type").val();
-	var subscription_date = $("#start_date").val();
-	var payment_date = $("#payment_date").val();
-	var renewal_date = $("#renewal_date").val();
-	var recruited_by = $("#partner_id").val();
-	var outlet = $("#no_outlet").val();
-	var vat = $("#vat").val();
-	var town = $("#town_id").val();
-	var province = $("#province_id").val();
-	var cash_card = $("#cash_card").val();
-	var partner_id = $("#partner_id").val();
-	var area_code = $("#area_code").val();
-
-    if (jQuery.trim(last_name).length <= 0 || 
-        jQuery.trim(first_name).length <= 0 || 
-        jQuery.trim(birthday).length <= 0 || 
-        jQuery.trim(gender).length <= 0 || 
-        jQuery.trim(email).length <= 0 || 
-        jQuery.trim(address).length <= 0 || 
-        jQuery.trim(account_name).length <= 0 || 
-        jQuery.trim(subscription_date).length <= 0 || 
-        jQuery.trim(outlet).length <= 0 || 
-        jQuery.trim(town).length <= 0 || 
-        jQuery.trim(mobile_no).length <= 9 || 
-		jQuery.trim(partner_id).length <= 0 || 
-		jQuery.trim(area_code).length <= 0 ||
-		jQuery.trim(payment_date).length <= 0){
-
-        if (jQuery.trim(last_name).length <= 0){
-            $("#last_name").addClass("error");
-        }
-
-        if (jQuery.trim(first_name).length <= 0){
-            $("#first_name").addClass("error");
-        }
-
-        if (jQuery.trim(birthday).length <= 0){
-            $("#birthday").addClass("error");
-        }
-
-        if (jQuery.trim(gender).length <= 0){
-            $("#gender").addClass("error");
-        }
-
-        if (jQuery.trim(email).length <= 0){
-            $("#email").addClass("error");
-        }
-
-        if (jQuery.trim(address).length <= 0){
-            $("#address").addClass("error");
-        }
-
-        if (jQuery.trim(account_name).length <= 0){
-            $("#account_name").addClass("error");
-        }
-
-        if (jQuery.trim(subscription_date).length <= 0){
-            $("#start_date").addClass("error");
-        }
-
-        if (jQuery.trim(outlet).length <= 0){
-            $("#no_outlet").addClass("error");
-        }
-
-        if (jQuery.trim(town).length <= 0){
-            $("#town").addClass("error");
-        }
-
-        if (jQuery.trim(mobile_no).length <= 9){
-            $("#mobile").addClass("error");
-        }
-
-        if (jQuery.trim(partner_id).length <= 0){
-            $("#partner_id").addClass("error");
-		}
-		
-		if (jQuery.trim(area_code).length <= 0){
-			$("#area_code").addClass("error");
-		}
-
-		if (jQuery.trim(payment_date).length <= 0){
-			$("#payment_date").addClass("error");
-		}
-
-        // if (jQuery.trim(cash_card).length <= 0){
-        //     $("#cash_card").addClass("error");
-        // }
-
-        if ($("#business_type").val() == "0"){
-            $("#business_type").addClass("error");
-        }
-
-        swal({
-            type : "warning",
-            title : "Please fill up required fields",
-            confirmButtonText: 'Continue',
-            confirmButtonColor: "#DD6B55"
-        })
-    }else{  
-        // partner();
-        save();
-    }
-    
-}
-
 function save(){
 
-    var trans_id = $("#trans_id").val();
 	var last_name = $("#last_name").val();
 	var first_name = $("#first_name").val();
-    var middle_name = $("#middle_name").val();
-    var birthday = $("#birthday").val();
-    var gender = $("#gender").val();
+	var middle_name = $("#middle_name").val();
 	var email = $("#email").val();
 	var mobile_no = $("#mobile").val();
-	var area_code = $("#area_code").val();
 	var phone_no = $("#phone").val();
 	var address = $("#address").val();
 	var account_id = $("#account_no").val();
@@ -536,25 +482,20 @@ function save(){
 	var subscription_type = $("#subscription_type").val();
 	var subscription_date = $("#start_date").val();
 	var renewal_date = $("#renewal_date").val();
-	var payment_date = $("#payment_date").val();
 	var recruited_by = $("#partner_id").val();
 	var outlet = $("#no_outlet").val();
 	var vat = $("#vat").val();
 	var town = $("#town_id").val();
 	var province = $("#prov_id").val();
 	var cash_card = $("#cash_card").val();
-    var csrf_name = $("input[name=csrf_name]").val();
-    
-    var update_password = $("#update_password").val();
+	var trans_id = $("#trans_id").val();
+	var csrf_name = $("input[name=csrf_name]").val();
 
 	var data = {last_name : last_name, 
 	            first_name : first_name, 
-                middle_name : middle_name, 
-                birthday : birthday,
-                gender : gender,
+	            middle_name : middle_name, 
 	            email : email, 
-				mobile_no : mobile_no,
-				area_code : area_code, 
+	            mobile_no : mobile_no, 
 		        phone_no : phone_no, 
 		        address : address, 
 		        town: town,
@@ -567,25 +508,17 @@ function save(){
 		        currency : currency, 
 		        business_type : business_type, 
 		        subscription_type : subscription_type, 
-				subscription_date : subscription_date,
-				payment_date : payment_date,
+		        subscription_date : subscription_date,
 		        renewal_date : renewal_date, 
 		        recruited_by : recruited_by, 
-				outlet : outlet, 
+		        outlet : outlet, 
 		        cash_card : cash_card,
-                vat : vat,
-                id : trans_id,
-                update_password : update_password,
-		    	csrf_name : csrf_name};
+		        vat : vat,
+		    	id : trans_id,
+		    	csrf_name : csrf_name}
 
-        if (update_password == "1"){
-            $details = "<p style='color:black;'><b style='font-weight: 700;'>Username : </b>" + email + "<br><b style='font-weight: 700;'>Password :</b> password</p>";
-        }else{
-            $details = "";
-        }
-    
-    
-        $.ajax({
+
+	$.ajax({
 		data : data,
 		type : "POST",
 		dataType : "JSON",
@@ -601,10 +534,9 @@ function save(){
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
 			swal({
-                html : true,
-                title : "Successfully Saved",
-                text : $details,
-				type : "success"
+				title : "Successfully Saved",
+				type : "success",
+				timer: 2000
 			}, function(){
 				location.reload();
 			})

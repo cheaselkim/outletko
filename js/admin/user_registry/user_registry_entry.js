@@ -255,8 +255,8 @@ function account_id(){
 		url : base_url + "User_registry/account_id",
 		success : function(result){
 			$("input[name=csrf_name]").val(result.token);
-			var account_id = result.year + (account_class == null ? "1" : account_class) + result.account_id;
-			$("#account_no").val(account_id);
+			// var account_id = result.year + (account_class == null ? "1" : account_class) + result.account_id;
+			$("#account_no").val(result.account_id);
 		}, error : function(err){
 			console.log(err.responseText);
 		}
@@ -343,7 +343,9 @@ function check_required_fields(){
     
 	var last_name = $("#last_name").val();
 	var first_name = $("#first_name").val();
-	var middle_name = $("#middle_name").val();
+    var middle_name = $("#middle_name").val();
+    var birthday = $("#birthday").val();
+    var gender = $("#gender").val();
 	var email = $("#email").val();
 	var mobile_no = $("#mobile").val();
 	var phone_no = $("#phone").val();
@@ -370,6 +372,8 @@ function check_required_fields(){
 
     if (jQuery.trim(last_name).length <= 0 || 
         jQuery.trim(first_name).length <= 0 || 
+        jQuery.trim(birthday).length <= 0 || 
+        jQuery.trim(gender).length <= 0 || 
         jQuery.trim(email).length <= 0 || 
         jQuery.trim(address).length <= 0 || 
         jQuery.trim(account_name).length <= 0 || 
@@ -387,6 +391,14 @@ function check_required_fields(){
 
         if (jQuery.trim(first_name).length <= 0){
             $("#first_name").addClass("error");
+        }
+
+        if (jQuery.trim(birthday).length <= 0){
+            $("#birthday").addClass("error");
+        }
+
+        if (jQuery.trim(gender).length <= 0){
+            $("#gender").addClass("error");
         }
 
         if (jQuery.trim(email).length <= 0){
@@ -454,7 +466,9 @@ function save(){
 
 	var last_name = $("#last_name").val();
 	var first_name = $("#first_name").val();
-	var middle_name = $("#middle_name").val();
+    var middle_name = $("#middle_name").val();
+    var birthday = $("#birthday").val();
+    var gender = $("#gender").val();
 	var email = $("#email").val();
 	var mobile_no = $("#mobile").val();
 	var area_code = $("#area_code").val();
@@ -481,7 +495,9 @@ function save(){
 
 	var data = {last_name : last_name, 
 	            first_name : first_name, 
-	            middle_name : middle_name, 
+                middle_name : middle_name, 
+                birthday : birthday,
+                gender : gender,
 	            email : email, 
 				mobile_no : mobile_no,
 				area_code : area_code, 

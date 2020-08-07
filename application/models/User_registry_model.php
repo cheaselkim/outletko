@@ -18,7 +18,8 @@ class User_registry_model extends CI_Model {
 	public function account_id(){
     // 		$result = $this->db->query("SELECT (MAX(account_id)) as account_id FROM account_application WHERE YEAR(date_insert) = '".date('Y')."'")->row();
         $result = $this->db->query("SELECT account_id FROM account_application ORDER BY id DESC LIMIT 1")->row();
-		return str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT); 		
+		// return str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT); 		
+        return date("y").'1'.str_pad((substr($result->account_id, -4) + 1), 4, '0', STR_PAD_LEFT);
 	}
 
 	public function account_class(){
@@ -249,6 +250,20 @@ class User_registry_model extends CI_Model {
 		$this->db->update("account_application", $data);
 	}
 
+    public function update_users($data, $account_id){
+		$this->db->where("account_id", $account_id);
+        $this->db->update("users", $data);
+    }
+
+    public function update_password($email, $account_id){
+        $this->db->set("username", $email);
+        $this->db->set("password", password_hash("password", PASSWORD_DEFAULT));
+        $this->db->where("account_id", $account_id);
+        $this->db->where("user_type", "4");
+        $this->db->update("users");
+
+    }
+
 	// Outletko
 	public function insert_outletko(){
 		$data = array();
@@ -270,5 +285,11 @@ class User_registry_model extends CI_Model {
 		$this->db2->set("user_id", $id);
 		$this->db2->update("account");
 	}
+
+    public function update_outletko($data, $account_id){
+		$this->db2->where("account_id", $account_id);
+		$this->db2->update("account", $data);
+        return ($this->db2->affected_rows() > 0) ? $this->db2->insert_id() : 0;		
+    }
 
 }

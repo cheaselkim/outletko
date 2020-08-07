@@ -166,6 +166,8 @@ class Store_register extends CI_Controller {
                 "last_name" => strtoupper($info_user['info_lname']),
                 'middle_name' => strtoupper($info_user['info_mname']),
                 "first_name" => strtoupper($info_user['info_fname']),
+                "gender" => $info_user['info_gender'],
+                "birthday" => date('Y-m-d', strtotime($info_user['info_bday'])),
                 "email" => $info_user['info_email'],
                 "mobile_no" => $info_user['info_mobile'],
                 "phone_code" => $info_user['info_phone_area'],

@@ -194,6 +194,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-md-3 pl-0 pr-1">
+                            <span>Birth Date <span class='required'>*</span></span>
+                            <input type="date" class="form-control" id="birthday">
+                        </div>
+                        <div class="col-xs-12 col-md-3 pl-0 pr-1">
+                            <span>Gender  <span class='required'>*</span></span>
+                            <select name="" id="gender" class="form-control">
+                                <option value="" selected hidden></option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group row" hidden>
                         <div class="col-xs-12 col-md-3 pl-0 pr-1">
                             <span>Birth Date</span>

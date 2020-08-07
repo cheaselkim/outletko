@@ -1003,7 +1003,8 @@ function check_payment_details(){
                 title : "Your Online Store Registration is Completed"
                 // text : "Outletko Activation email has been sent to your email address."
             }, function(){
-                location.reload();
+                window.open(base_url, "_self");
+                // location.reload();
             })    
         }, error : function(err){
             console.log(err);

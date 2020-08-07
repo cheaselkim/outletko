@@ -89,6 +89,8 @@ class User_registry extends CI_Controller {
 		$users_result = 0;
 		$email_result = 0;
         $user_type = 2;
+
+        $account_id = $this->user_registry_model->account_id();
         
         if ($this->input->post("subscription_type", TRUE) == "0"){
             $renewal_date = "0000-00-00";
@@ -99,7 +101,9 @@ class User_registry extends CI_Controller {
 		$user_app = array(
 			"last_name" => strtoupper($this->input->post("last_name", TRUE)),
 			"middle_name" => strtoupper($this->input->post("middle_name", TRUE)),
-			"first_name" => strtoupper($this->input->post("first_name", TRUE)),
+            "first_name" => strtoupper($this->input->post("first_name", TRUE)),
+            "birthday" => $this->input->post("birthday", TRUE),
+            "gender" => $this->input->post("gender", TRUE),
 			"email" => $this->input->post("email", TRUE),
 			"mobile_no" => $this->input->post("mobile_no", TRUE),
 			// "area_code" => $this->input->post("area_code", TRUE),
@@ -107,7 +111,7 @@ class User_registry extends CI_Controller {
 			"address" => $this->input->post("address", TRUE),
 			"city" => $this->input->post("town", TRUE),
 			"province" => $this->input->post("province", TRUE),
-			"account_id" => $this->input->post("account_id", TRUE),
+			"account_id" => $account_id,
 			"account_name" => strtoupper($this->input->post("account_name", TRUE)),
 			"account_status" => $this->input->post("account_status", TRUE),
 			"account_class" => $this->input->post("account_class", TRUE),
@@ -139,7 +143,7 @@ class User_registry extends CI_Controller {
 
 		$users = array(
 			"comp_id" => $user_app_result,
-			"account_id" => $this->input->post("account_id", TRUE),
+			"account_id" => $account_id,
 			"account_type" => "1",
 			"first_name" => strtoupper($this->input->post("first_name", TRUE)),
 			"middle_name" => strtoupper($this->input->post("middle_name", TRUE)),
@@ -152,7 +156,7 @@ class User_registry extends CI_Controller {
 		);
 
 		$user_outletko = array(
-			'account_id' => $this->input->post("account_id", TRUE),
+			'account_id' => $account_id,
 			'status' => "1",
 			'comp_id' => $outletko_comp,
 			'first_name' => strtoupper($this->input->post("first_name", TRUE)),
@@ -395,19 +399,22 @@ class User_registry extends CI_Controller {
 		$user_app_result = 0;
 		$users_result = 0;
 		$email_result = 0;
-		$id = $this->input->post("id", TRUE);
+        $id = $this->input->post("id", TRUE);
+        $account_id = $this->input->post("account_id");
 
 		$user_app = array(
 			"last_name" => strtoupper($this->input->post("last_name", TRUE)),
 			"middle_name" => strtoupper($this->input->post("middle_name", TRUE)),
-			"first_name" => strtoupper($this->input->post("first_name", TRUE)),
+            "first_name" => strtoupper($this->input->post("first_name", TRUE)),
+            "birthday" => $this->input->post("birthday", TRUE),
+            "gender" => $this->input->post("gender", TRUE),
 			"email" => $this->input->post("email", TRUE),
 			"mobile_no" => $this->input->post("mobile_no", TRUE),
 			"telephone_no" => $this->input->post("phone_no", TRUE),
 			"address" => $this->input->post("address", TRUE),
 			"city" => $this->input->post("town", TRUE),
 			"province" => $this->input->post("province", TRUE),
-			"account_id" => $this->input->post("account_id", TRUE),
+			// "account_id" => $this->input->post("account_id", TRUE),
 			"account_name" => strtoupper($this->input->post("account_name", TRUE)),
 			"account_status" => $this->input->post("account_status", TRUE),
 			"account_class" => $this->input->post("account_class", TRUE),
@@ -422,19 +429,57 @@ class User_registry extends CI_Controller {
 			"vat" => $this->input->post("vat", TRUE),
 			"currency" => $this->input->post("currency", TRUE),
 			"date_update_admin" => date('Y-m-d H:i:s')
-			);
+            );
+            
+			$link_name = $this->input->post("account_name", TRUE);
+			$link_name = str_replace(' ', '', strtolower($link_name));
+			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
+			$link_name = substr($link_name, 0, 15);
+
+            $check_linkname = $this->user_registry_model->check_linkname($link_name, 0, 15);
+
+            if ($check_linkname > 0){
+                $link_name = substr($link_name, 0, 8);
+                $link_name = $link_name.$account_id;
+            }else{
+                $link_name = substr($link_name, 0, 15);
+            }
+    
+
+		$account_outletko=array(
+			'link_name' => $link_name,
+			'account_name'=> ucwords($this->input->post('account_name', TRUE)),
+            'account_status'=> $this->input->post("account_status", TRUE),
+            'about_us' => '',
+			'business_category'=> $this->input->post("business_type", TRUE),
+			'first_name' => strtoupper($this->input->post("first_name" ,TRUE)),
+			'middle_name'=> strtoupper($this->input->post("middle_name", TRUE)),
+			'last_name'=> strtoupper($this->input->post("last_name", TRUE)),
+			'address'=> $this->input->post("address", TRUE),
+			'street'=> $this->input->post("address", TRUE),
+			'city'=> $this->input->post("city", TRUE),
+			'email'=> $this->input->post("email", TRUE),
+            'mobile_no' => $this->input->post("mobile", TRUE),
+		  );            
 
 		$user_app_result = $this->user_registry_model->update_account($user_app, $id);
+        $outletko_result = $this->user_registry_model->update_outletko($account_outletko, $account_id);
 
 		$users = array(
 			"first_name" => strtoupper($this->input->post("first_name", TRUE)),
 			"middle_name" => strtoupper($this->input->post("middle_name", TRUE)),
 			"last_name" => strtoupper($this->input->post("last_name", TRUE)),
-			"username" => $this->input->post("account_id", TRUE),
 			"email" => $this->input->post("email", TRUE),
+			"birthday" => $this->input->post("birthday", TRUE),
+			"gender" => $this->input->post("gender", TRUE),
 		);
 
-		// $users_result = $this->user_registry_model->update_users($users);
+        $users_result = $this->user_registry_model->update_users($users, $account_id);
+        
+        if ($this->input->post("update_password", TRUE) == "1"){
+            $update_users_result = $this->user_registry_model->update_password($this->input->post("email", TRUE), $account_id);
+        }
+
 		// $email_result = $this->send_email($this->input->post("email"), $this->input->post("account_id"));
 		$email_result = 1;
 
