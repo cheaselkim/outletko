@@ -132,12 +132,16 @@ class Buyer extends CI_Controller {
 
         // $prod_obj = (object) $products;
         // var_dump($products);
-        $data['result'] = tbl_products_no_order($products);
+        $tbl_products = tbl_products_no_order($products, $this->session->userdata("prod_id"));
+        $data['session_div'] = $tbl_products['seller_id'];
+        $data['session_prod_id'] = $this->session->userdata("prod_id");
+        $data['result'] = $tbl_products['output'];
         $data['order_no'] = COUNT($this->buyer_model->get_orders());
         $data['cart_total'] = $total;
         $data['token'] = $this->security->get_csrf_hash();
         $this->session->set_userdata('order_no', $data['order_no']);
         $this->session->set_userdata('cart_total', $total);
+        $this->session->unset_userdata("prod_id");
 
         echo json_encode($data);
 	}

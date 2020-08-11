@@ -399,6 +399,10 @@ class Profile extends CI_Controller {
             "date_insert" => date("Y-m-d H:i:s")
         );
 
+        if ($this->input->post("order_now") == "1"){
+            $this->session->set_userdata("prod_id", $this->input->post("prod_id"));
+        }
+        
         $data['result'] = $this->profile_model->insert_prod($data);
         $data['token'] = $this->security->get_csrf_hash();
 
@@ -408,7 +412,7 @@ class Profile extends CI_Controller {
     public function insert_prod_session(){
         $this->session->set_userdata("order_id", $this->input->post("order"));
             // $this->session->unset_userdata("prod_session");
-
+        $order = $this->input->post("order");
         $prod_data = array(
             "prod_id" => $this->input->post("prod_id"),
             "prod_qty" => $this->input->post("prod_qty"),
@@ -433,6 +437,7 @@ class Profile extends CI_Controller {
                     $key_val = $key;
                     // unset($prod_session0[$key]);
                     $status = 1;
+                    $order -= 1;
                     break;
                 }
             }
@@ -461,6 +466,15 @@ class Profile extends CI_Controller {
         }
 
         // $data['result'] = $this->profile_model->insert_prod($data);
+
+        if ($this->input->post("order_now") == "2"){
+            $this->session->set_userdata("prod_id", $this->input->post("prod_id"));
+        }
+
+        $this->session->set_userdata('order_no', $order);
+        $this->session->set_userdata('cart_total', $this->input->post("total_cart"));
+
+        $data['order'] = $order;
         $data['prod_data'] = $prod_data;
         $data['prod_session'] = $prod_session0;
         $data['session'] = COUNT($prod_session0);

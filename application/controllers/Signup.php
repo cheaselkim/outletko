@@ -354,21 +354,22 @@ class Signup extends CI_Controller {
 
     /* Outletko Buyer */
 
-    public function insert_user(){
+public function insert_user(){
 
-      $account_buyer = array(
+    $account_buyer = array(
         "first_name" => $this->input->post("fname"),
         "last_name" => $this->input->post("lname"),
         "country" => $this->input->post("country"),
         "email" => $this->input->post("email"),
         "verify_code" => mt_rand(100000, 999999),
+        "verify" => "0",
         "date_insert" => date("Y-m-d H:i:s")
-      );
+    );
 
-      $result = $this->signup_model->insert_account_buyer($account_buyer);
+    $result = $this->signup_model->insert_account_buyer($account_buyer);
 
 
-      $user_data = array(
+    $user_data = array(
         "comp_id" => $result['comp_id'],
         "account_id" => $result['account_id'],
         "account_type" => "0",
@@ -378,138 +379,173 @@ class Signup extends CI_Controller {
         "email" => $this->input->post("email"),
         "password" => password_hash($this->input->post("password"), PASSWORD_DEFAULT),
         "user_type" => "5",
-        "all_access" => "0",
+        "all_access" => "1",
         "status" => "1",
         "otp" => "0"
-      );
+    );
 
-      $result2 = $this->signup_model->register_users($user_data);
+    $result2 = $this->signup_model->register_users($user_data);
 
-      $this->send_email_buyer($account_buyer['verify_code'], $account_buyer['email']);
+    $this->send_email_buyer($account_buyer['verify_code'], $account_buyer['email']);
 
-      $data['comp_id'] = $result['comp_id'];
-      $data['token'] = $this->security->get_csrf_hash();
-      echo json_encode($data);
-    }
+    $result3 = $this->signup_model->get_account($result['comp_id']);
 
-    public function send_email_buyer($verify_code, $email){
-      $this->load->library("email");
-      $status = 0;
-      $data = array();
-    
-      // $data['first_name'] = $user_data['first_name'];    
-      // $data['verify_code'] = $user_data['verify_code'];
-      $data['verify_code'] = $verify_code;
-      $email = $email;
-    
-      $message = $this->load->view("admin/email/user_buyer", $data, TRUE);
+    if (!empty($result3)){
+        foreach ($result3 as $key => $value) {
+            $user_array = array(
+                "user_id" => $value->id,
+                "account_id" => $value->account_id,
+                "comp_id" => $value->comp_id,
+                "user_uname" => $value->username,
+                "user_fullname" => ($value->first_name." ".$value->last_name),
+                "user_status" => $value->status,
+                "user_type" => $value->user_type,
+                "all_access" => $value->all_access,
+                "login" => 1,
+                "validated" => true
+            );
 
-      // $config = array(
-      //   'protocol' => 'mail',
-      //   'mail_type' => 'html',
-      //   'smtp_host' => 'secure203.servconfig.com',
-      //   'smtp_port' => 465,
-      //   'smtp_user' => 'epgmcompany@eoutletsuite.com',
-      //   'smtp_pass' => 'epgmcompany101',
-      //   'charset' => 'iso-8859-1',
-      //   'wordwrap' => TRUE
-      // );
+            $users_log = array("user_id" => $value->id,"date_login" => date("Y-m-d H:i:s"));
 
-          // $config = array(
-          //             'protocol' => 'smtp',
-          //             'mail_type' => 'html',
-          //             'smtp_host' => 'ssl://smtp.gmail.com',
-          //             'smtp_port' => '465',
-          //             'smtp_user' => 'epgmcompany@gmail.com',
-          //             'smtp_pass' => 'epgmcompany101',
-          //             'charset' => 'iso-8859-1',
-          //             'wordwrap' => TRUE
-          //         );
-
-          $config = array(
-                        'protocol' => 'mail',
-                        'mail_type' => 'html',
-                        'smtp_host' => 'mail.outletko.com',
-                        'smtp_port' => '465',
-                        'smtp_user' => 'noreply@outletko.com',
-                        'smtp_pass' => 'eoutletsuite_noreply',
-                        'charset' => 'iso-8859-1',
-                        'wordwrap' => TRUE
-                  );
-
-
-
-      $this->email->initialize($config)
-                  ->set_newline("\r\n")
-                  ->from('noreply@outletko.com', 'Outletko User Verification')
-                  ->to($email)
-                  ->subject('Outletko User Verification')
-                  ->message($message);
-
-          if($this->email->send()) {
-            $status = 1;
-          }else {
-            $status = $this->email->print_debugger();
-          }       
-      return $status;
-  }
-
-  public function confirm_account(){
-
-    $verify_code = $this->input->post("verify_code");
-    $id = $this->input->post("id");
-
-    $result = $this->signup_model->confirm_account($verify_code, $id);
-
-    if ($result > 0){
-      $result2 = $this->signup_model->get_account($id);
-      $user_array = array();
-
-        foreach ($result2 as $key => $value) {
-          $user_array = array(
-              "user_id" => $value->id,
-              "account_id" => $value->account_id,
-              "comp_id" => $value->comp_id,
-              "user_uname" => $value->username,
-              "user_fullname" => ($value->first_name." ".$value->last_name),
-              "user_status" => $value->status,
-              "user_type" => $value->user_type,
-              "all_access" => $value->all_access,
-              "login" => 1,
-              "validated" => true
-          );
         }
+        $this->session->set_userdata($user_array);
+        $this->signup_model->insert_user_log($users_log);    
+    }
 
-      $this->session->set_userdata($user_array);
+
+    $data['comp_id'] = $result['comp_id'];
+    $data['token'] = $this->security->get_csrf_hash();
+    echo json_encode($data);
+}
+
+public function send_email_buyer($verify_code, $email){
+    $this->load->library("email");
+    $status = 0;
+    $data = array();
+
+    // $data['first_name'] = $user_data['first_name'];    
+    // $data['verify_code'] = $user_data['verify_code'];
+    $data['verify_code'] = $verify_code;
+    $email = $email;
+
+    $message = $this->load->view("admin/email/user_buyer", $data, TRUE);
+
+    // $config = array(
+    //   'protocol' => 'mail',
+    //   'mail_type' => 'html',
+    //   'smtp_host' => 'secure203.servconfig.com',
+    //   'smtp_port' => 465,
+    //   'smtp_user' => 'epgmcompany@eoutletsuite.com',
+    //   'smtp_pass' => 'epgmcompany101',
+    //   'charset' => 'iso-8859-1',
+    //   'wordwrap' => TRUE
+    // );
+
+        // $config = array(
+        //             'protocol' => 'smtp',
+        //             'mail_type' => 'html',
+        //             'smtp_host' => 'ssl://smtp.gmail.com',
+        //             'smtp_port' => '465',
+        //             'smtp_user' => 'epgmcompany@gmail.com',
+        //             'smtp_pass' => 'epgmcompany101',
+        //             'charset' => 'iso-8859-1',
+        //             'wordwrap' => TRUE
+        //         );
+
+        $config = array(
+                    'protocol' => 'mail',
+                    'mail_type' => 'html',
+                    'smtp_host' => 'mail.outletko.com',
+                    'smtp_port' => '465',
+                    'smtp_user' => 'noreply@outletko.com',
+                    'smtp_pass' => 'eoutletsuite_noreply',
+                    'charset' => 'iso-8859-1',
+                    'wordwrap' => TRUE
+                );
+
+
+
+    $this->email->initialize($config)
+                ->set_newline("\r\n")
+                ->from('noreply@outletko.com', 'Outletko User Verification')
+                ->to($email)
+                ->subject('Outletko User Verification')
+                ->message($message);
+
+        if($this->email->send()) {
+        $status = 1;
+        }else {
+        $status = $this->email->print_debugger();
+        }       
+    return $status;
+}
+
+public function confirm_account(){
+
+$verify_code = $this->input->post("verify_code");
+$id = $this->input->post("id");
+
+$result = $this->signup_model->confirm_account($verify_code, $id);
+
+if ($result > 0){
+    $result2 = $this->signup_model->get_account($id);
+    $user_array = array();
+    $users_log = "";
+
+    foreach ($result2 as $key => $value) {
+        $user_array = array(
+            "user_id" => $value->id,
+            "account_id" => $value->account_id,
+            "comp_id" => $value->comp_id,
+            "user_uname" => $value->username,
+            "user_fullname" => ($value->first_name." ".$value->last_name),
+            "user_status" => $value->status,
+            "user_type" => $value->user_type,
+            "all_access" => $value->all_access,
+            "login" => 1,
+            "validated" => true
+        );
+
+        $users_log = array("user_id" => $value->id,"date_login" => date("Y-m-d H:i:s"));
 
     }
 
-    $data['result'] = $result;
-    $data['token'] = $this->security->get_csrf_hash();
+    $this->session->set_userdata($user_array);
+    $this->signup_model->insert_user_log($users_log);
+}
 
-    echo json_encode($data);
+$data['result'] = $result;
+$data['token'] = $this->security->get_csrf_hash();
 
-  } 
+echo json_encode($data);
 
-  public function check_login(){
-    $username = $this->input->post("username");
-    $password = $this->input->post("password");
+} 
 
-    $data['result'] = $this->signup_model->check_login($username, $password);
-    $data['token'] = $this->security->get_csrf_hash();
-    $data['user_type'] = $this->session->userdata("user_type");
-    $data['otp'] = $this->session->userdata("otp");
+public function check_login(){
+$username = $this->input->post("username");
+$password = $this->input->post("password");
 
-    if (empty($data['result'])){
-      $data['login'] = "0";
-    }else{
-      $data['login'] = "1";
-    }
+$data['result'] = $this->signup_model->check_login($username, $password);
+$data['token'] = $this->security->get_csrf_hash();
+$data['user_type'] = $this->session->userdata("user_type");
+$data['otp'] = $this->session->userdata("otp");
 
-    // var_dump($data);
+if (empty($data['result'])){
+    $data['login'] = "0";
+}else{
+    $data['login'] = "1";
+}
 
-    echo json_encode($data);
-  }
+if (!empty($this->session->userdata("prod_id"))){
+    $data['session_prod_id'] = 1;
+}else{
+    $data['session_prod_id'] = 0;
+}
+
+// var_dump($data);
+
+echo json_encode($data);
+}
 
 }
 

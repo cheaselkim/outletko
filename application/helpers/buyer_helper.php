@@ -2,12 +2,13 @@
 
 if (!function_exists("tbl_products_no_order")){
 
-	function tbl_products_no_order($query){
+	function tbl_products_no_order($query, $prod_sess_id){
 
 		$output = "";
         $account_id = "";
         $variation = "";
         $div = 0;
+        $seller_id = "";
         $checked = "";
         $bg = "";
         $prod_hidden = "";
@@ -49,7 +50,12 @@ if (!function_exists("tbl_products_no_order")){
             
 			if ($account_id  != $query[$x]['account_id']){
 				$div++;
-				if ($i > 1){
+
+                if ($prod_sess_id == $query[$x]['prod_id']){
+                    $seller_id = $div;
+                }    
+
+                if ($i > 1){
 					$output .= "</div>
 								<div class='col-12 px-0'>
 									<hr class='my-3' style='border-top: 1.5px dashed red;'>
@@ -190,7 +196,11 @@ if (!function_exists("tbl_products_no_order")){
             $variation = "";
 		}
 
-		return $output;
+		// return $output;
+
+        return array("output" => $output, "seller_id" => $seller_id);
+
+    
 
 	}
 

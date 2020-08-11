@@ -1406,10 +1406,9 @@ if (prod_ol == 0){
                         order_now();
                     }
                 }else{
-                    add_to_cart_session();
+                    add_to_cart_session(type);
                     if (type == "2"){
                         if ($(document).width() < 768){
-                            add_to_cart_session();
                             window.open(base_url + "login", "_self");
                         }else{
                             $("#modal_signup_user").modal("show");        
@@ -1436,20 +1435,22 @@ function add_to_cart(){
   var order = Number($("#order_no").text());
   var prod_id = $("#prod_id").val();
   var prod_qty = $("#prod_qty").val();
-  var prod_price = $("#cart_total_amount").text().replace(/,/g, '');
+  var prod_price = $("#prod-price").text().replace(/,/g, '');
+  var prod_total_price = Number(prod_price) * Number(prod_qty);
   var cart = $("#total-cart").text().replace(/,/g, '');
   var csrf_name = $("input[name=csrf_name]").val();
   var prod_var1 = $("#prod-var-1").val();
   var prod_var2 = $("#prod-var-2").val();
 
   order = Number(order) + 1;
-  var total_cart = Number(prod_price) + Number(cart);
-
+  var total_cart = Number(prod_total_price) + Number(cart);
+  
   $("#cart-prod-qty").text($.number(prod_qty, 0));
-  $("#cart-prod-total-price").text($.number(prod_price, 2));
+  $("#cart-prod-price").text($.number(prod_price, 2));
+  $("#cart-prod-total-price").text($.number(prod_total_price, 2));
 
   $.ajax({
-    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order, order_now : 0},
     type : "POST",
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",
@@ -1483,7 +1484,7 @@ function order_now(){
   order = Number(order) + Number(prod_qty);
 
   $.ajax({
-    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+    data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order, order_now : 1},
     type : "POST",
     dataType : "JSON",
     url : base_url  + "Profile/insert_prod",
@@ -1498,12 +1499,13 @@ function order_now(){
 
 }
 
-function add_to_cart_session(){
+function add_to_cart_session(type){
 
     var order = Number($("#order_no").text());
     var prod_id = $("#prod_id").val();
     var prod_qty = $("#prod_qty").val();
-    var prod_price = $("#cart_total_amount").text().replace(/,/g, '');
+    var prod_price = $("#prod-price").text().replace(/,/g, '');
+    var prod_total_price = Number(prod_price) * Number(prod_qty);
     var cart = $("#total-cart").text().replace(/,/g, '');
     var csrf_name = $("input[name=csrf_name]").val();
     var prod_var1 = $("#prod-var-1").val();
@@ -1514,27 +1516,32 @@ function add_to_cart_session(){
   
     // console.log(total_cart);
 
+
     $("#cart-prod-qty").text($.number(prod_qty, 0));
-    $("#cart-prod-total-price").text($.number(prod_price, 2));
-  
+    $("#cart-prod-price").text($.number(prod_price, 2));
+    $("#cart-prod-total-price").text($.number(prod_total_price, 2));
+    
     $.ajax({
-      data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order},
+      data : {prod_id : prod_id, prod_var1 : prod_var1, prod_var2 : prod_var2, prod_qty : prod_qty, csrf_name : csrf_name, order : order, total_cart : total_cart, order_now : type},
       type : "POST",
       dataType : "JSON",
       url : base_url  + "Profile/insert_prod_session",
       success : function(result){
         $("input[name=csrf_name]").val(result.token);
-        $("#order_no").text(order);
+        $("#order_no").text(result.order);
         $("#total-cart").text($.number(total_cart, 2));
         $("#total-cart-2").text($.number(total_cart, 2));
         $("#div-details").hide();
         $("#div-details-2").show();
-        swal({
-            type : "success",
-            title : "Item has been added to your Cart",
-            timer : 1000
-        })
-      }, error : function(err){
+
+        if (type == "1"){
+            swal({
+                type : "success",
+                title : "Item has been added to your Cart",
+                timer : 1000
+            })
+        }
+    }, error : function(err){
         console.log(err.responseText);
       }
     })

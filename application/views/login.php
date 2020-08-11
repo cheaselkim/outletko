@@ -423,8 +423,8 @@
                             <div class="input-group">
                                 <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
-                                    <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
+                                    <span class="input-group-text show_pass cursor-pointer textbox-green bd-green">
+                                    <i class="fa fa-eye-slash" id="pass_icon"></i>
                                     </span>
                                 </div>
                             </div>
@@ -502,8 +502,8 @@
                                 <div class="input-group">
                                     <input type="password" class="form-control form-control-sm textbox-green" id="signup_conf_password">
                                     <div class="input-group-append border border-dark" style="height: 31px;">
-                                        <span class="input-group-text show_conf_pass cursor-pointer">
-                                        <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
+                                        <span class="input-group-text show_conf_pass-1 cursor-pointer">
+                                        <i class="fa fa-eye-slash" id="conf_pass_icon-2"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -773,6 +773,38 @@
 }
 
 </style> -->
+
+<script>
+$(document).ready(function(){
+
+    $(".show_conf_pass").click(function(){
+        if ($("#signup_user_conf_password").attr("type") == "password"){
+            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
+            $("#conf_pass_icon").addClass("fa fa-eye");
+            $("#signup_user_conf_password").attr("type", "text");
+        }else{
+            $("#conf_pass_icon").removeClass("fa fa-eye");
+            $("#conf_pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_conf_password").attr("type", "password");
+        }
+    });
+
+    $(".show_pass").click(function(){
+        if ($("#signup_user_password").attr("type") == "password"){
+            $("#pass_icon").removeClass("fa fa-eye-slash");
+            $("#pass_icon").addClass("fa fa-eye");
+            $("#signup_user_password").attr("type", "text");
+        }else{
+            $("#pass_icon").removeClass("fa fa-eye");
+            $("#pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_password").attr("type", "password");
+        }
+    });
+
+
+});
+
+</script>
 
 </body>
 </html>

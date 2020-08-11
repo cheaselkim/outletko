@@ -259,8 +259,10 @@ input[type="button"].btn-block, input[type="reset"].btn-block, input[type="submi
 
             <h2 style="color: black;">Congratulations!</h2>
 
-            <p style="font-size: 18px;">This is to confirm your Outletko Account Registration</p><br><br>
-            <p style="font-size: 18px;">If you have questions about your registration or need assistance, please email us at services@outletko.com</p>
+            <p style="font-size: 18px;">To continue with your email verification, please enter the following code: </p>
+            <br>
+            <p><b>VERIFICATION CODE : </b></p><br>
+            <p><?php echo $verify_code; ?></p>
 
             <br><br>
 

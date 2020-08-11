@@ -251,7 +251,7 @@ class Signup_model extends CI_Model {
 
     public function confirm_account($verify_code, $id){
 
-      $result = $this->db2->query("SELECT * FROM account_buyer WHERE id = ? AND verify_code = ? ", array($id, $verify_code))->num_rows();
+      $result = $this->db2->query("SELECT * FROM account_buyer WHERE id = ?", array($id))->num_rows();
       if($result > 0){
         $this->db2->where("id", $id);
         $this->db2->set("verify", "0");
@@ -339,13 +339,13 @@ class Signup_model extends CI_Model {
                                     "date_insert" => date("Y-m-d H:i:s")
                                 );
                         
-                                $prod_query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $prod_data['prod_id'], $prod_data['prod_var1'], $prod_data['prod_var2']))->result();
+                                $prod_query = $this->db2->query("SELECT * FROM buyer_order_products WHERE comp_id = ? AND prod_id = ? AND prod_var1 = ? AND prod_var2 = ? AND (order_id = '' OR order_id IS NULL ) ", array($this->session->userdata("comp_id"), $value4['prod_id'], $value4['prod_var1'], $value4['prod_var2']))->result();
 
                                 if (!empty($prod_query)){
                                     $item_id = "";
-                                    foreach ($prod_query as $key => $value4) {
-                                        $item_id = $value->id;
-                                        $prod_data['prod_qty'] = $value4->prod_qty + $prod_data['prod_qty'];
+                                    foreach ($prod_query as $key => $value5) {
+                                        $item_id = $value5->id;
+                                        $prod_data['prod_qty'] = $value5->prod_qty + $value4['prod_qty'];
                                     }
                                     $this->db2->where("id", $id);
                                     $this->db2->update("buyer_order_products", $prod_data);
@@ -366,15 +366,16 @@ class Signup_model extends CI_Model {
                             `account`.`id` = `products`.`account_id`
                             WHERE 
                             `buyer_order_products`.`comp_id` = ? AND 
-                            (order_id = '' OR order_id IS NULL )
+                            (order_id = '' OR order_id IS NULL ) AND `products`.`product_status` = ?
                             ORDER BY `account`.`account_name`, `products`.`product_name`
-                            ", array($result2->id))->result();                  
+                            ", array($result2->id, 1))->result();                  
                         
                         $total = 0;
                         
                         if (!empty($buyer_query)){
                             foreach ($buyer_query as $key => $value3) {
-                                $total += ($value3->product_unit_price * $value3->prod_qty);
+                                $prod_price = $value3->product_unit_price * $value3->prod_qty;
+                                $total += $prod_price;
                             }
                         }
 
@@ -564,6 +565,11 @@ class Signup_model extends CI_Model {
         WHERE `account_application`.`id` = ? ", array($id))->result();
         
         return $query;
+    }
+
+    public function insert_user_log($users_log){
+        $this->db->insert("users_log", $users_log);
+
     }
 
 }

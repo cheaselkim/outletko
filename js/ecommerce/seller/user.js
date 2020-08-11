@@ -7,6 +7,7 @@ $(document).ready(function(){
 //   get_del_type();
   bank_list();
   remittance_list();
+  coverage_ship();
 
     //   $("#colorpicker").ColorPicker({
     //     color: '#77933c',
@@ -933,6 +934,19 @@ $(document).ready(function(){
 
         }            
     });
+
+
+    // Remittance
+
+    $("#remitt_acct_name").keyup(function(){
+        $("#remitt_acct_name").removeClass("error");
+    });
+
+    $("#remitt_contact_no").keyup(function(){
+        $("#remitt_contact_no").removeClass("error");
+        $("#remittbasic-addon1").removeClass("error");
+    });
+
 
 });
 
@@ -3028,6 +3042,7 @@ function check_payment(){
   var inp_return = jQuery.trim($("#inp_return").val()).length;
   var inp_warranty = jQuery.trim($("#inp_warranty").val()).length;
   var switchbox = "";
+  var remittance = 0;
 
   if ($("#cust_del_date").is(":checked")){
     switchbox = 1;
@@ -3047,12 +3062,32 @@ function check_payment(){
    }
   });
 
+  if ($("#div-remittance-list").is(":visible")){
+      if (jQuery.trim($("#remitt_acct_name").val()).length <= 0 || jQuery.trim($("#remitt_contact_no").val()).length <= 0){
+
+            if (jQuery.trim($("#remitt_acct_name").val()).length <= 0){
+                $("#remitt_acct_name").addClass("error");
+            }
+
+            if (jQuery.trim($("#remitt_contact_no").val()).length <= 0){
+                $("#remitt_contact_no").addClass("error");
+                $("#remittbasic-addon1").addClass("error");
+            }
+
+          remittance = 0;
+      }else{
+          remittance = 1;
+      }
+  }else{
+      remittance = 1;
+  }
+
 //   console.log(delivery_type);
 //   console.log(payment_type);
 //   console.log(inp_return);
 //   console.log(inp_warranty);
 
-  if (payment_type == 0 || delivery_type == 0 || inp_return == 0 || inp_warranty == 0){
+  if (payment_type == 0 || delivery_type == 0 || inp_return == 0 || inp_warranty == 0 || remittance == 0){
     swal({
       type : "warning",
       title : "Please input all required Fields"
@@ -4281,18 +4316,19 @@ function check_save_bank(){
     })
 
   }else{
-    swal({
-      type : "warning",
-      title : "Save?",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }, function(isConfirm){
-      if (isConfirm){
-        save_bank();
-      }
-    })
+    save_bank();
+    // swal({
+    //   type : "warning",
+    //   title : "Save?",
+    //   showCancelButton: true,
+    //   confirmButtonClass: "btn-danger",
+    //   confirmButtonText: "Yes",
+    //   cancelButtonText: "No",
+    // }, function(isConfirm){
+    //   if (isConfirm){
+    //     save_bank();
+    //   }
+    // })
   }
 
 }
@@ -4319,7 +4355,8 @@ function save_bank(){
       $("#bank_status").val("1");
       swal({
         type : "success",
-        title : "Successfully Saved"
+        title : "Successfully Saved",
+        timer : 700
       })
       index();
       $("#btn_save_bank").text("Add");
@@ -4773,7 +4810,10 @@ function coverage_ship_prov(){
 
             // $('#cov-ship-prov :first-child').attr("hidden", true);
             // $('#cov-ship-city :first-child').attr("hidden", true);
-            check_cov_area_duplicate();
+
+            if ($("#cov-ship-id").val() == "0"){
+                check_cov_area_duplicate();
+            }
         }, error : function(err){
             console.log(err.responseText)
         }
@@ -4904,7 +4944,7 @@ function save_coverage_ship(){
 
 function edit_coverage_ship(row, id){
     clear_cov_ship();
-
+    coverage_ship();
     $("#cov-ship-id").val(id);    
     $("#cov-ship-courier").attr("data-id", $("#tbl-cov-ship tr:eq("+row+")").find(".courier").attr("data-id"));
     $("#cov-ship-courier").val($("#tbl-cov-ship tr:eq("+row+")").find(".courier").text());    
@@ -4920,11 +4960,11 @@ function edit_coverage_ship(row, id){
     setTimeout(function(){ 
         $("#cov-ship-prov").val($("#tbl-cov-ship tr:eq("+row+")").find(".prov").attr("data-id"));    
         coverage_ship_prov();
-    }, 200);
+    }, 500);
 
     setTimeout(function(){ 
         $("#cov-ship-city").val($("#tbl-cov-ship tr:eq("+row+")").find(".city").attr("data-id"));    
-    }, 500);
+    }, 1000);
 
 }
 

@@ -582,7 +582,7 @@
                                             <div class="col-12 col-lg-4 col-md-5 col-sm-12">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-white" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+                                                        <span class="input-group-text bg-white" id="remittbasic-addon1" style="border-right: 0 !important;">+63</span>
                                                     </div>
                                                     <input type="text" class="form-control" id="remitt_contact_no" placeholder="Contact No" onkeypress="return isNumber(event)">
                                                 </div>

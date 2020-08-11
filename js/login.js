@@ -31,6 +31,8 @@ $(document).ready(function(){
     
     $("#span-email").hide();
 
+    $(document).on('show.bs.modal', '#modal_signup', function () {
+    });
 
     $("#go").click(function(){
         var password = $("#website_password").val();
@@ -94,8 +96,57 @@ $(document).ready(function(){
 	// 			$("#ads-2").hide();				
 	// 		}
 
-	// 	}, 5000);
-		
+    // 	}, 5000);
+    
+
+    $(".show_conf_pass").click(function(){
+        if ($("#signup_user_conf_password").attr("type") == "password"){
+            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
+            $("#conf_pass_icon").addClass("fa fa-eye");
+            $("#signup_user_conf_password").attr("type", "text");
+        }else{
+            $("#conf_pass_icon").removeClass("fa fa-eye");
+            $("#conf_pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_conf_password").attr("type", "password");
+        }
+    });
+
+    $(".show_pass").click(function(){
+        if ($("#signup_user_password").attr("type") == "password"){
+            $("#pass_icon").removeClass("fa fa-eye-slash");
+            $("#pass_icon").addClass("fa fa-eye");
+            $("#signup_user_password").attr("type", "text");
+        }else{
+            $("#pass_icon").removeClass("fa fa-eye");
+            $("#pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_password").attr("type", "password");
+        }
+    });   
+
+    $("#signup_user_fname").keyup(function(){
+        $(this).removeClass("error");
+    })
+
+    $("#signup_user_lname").keyup(function(){
+        $(this).removeClass("error");
+    })
+
+    $("#signup_user_email").keyup(function(){
+        $(this).removeClass("error");
+    })
+
+    $("#signup_user_password").keyup(function(){
+        $(this).removeClass("error");
+    })
+
+    $("#signup_user_conf_password").keyup(function(){
+        $(this).removeClass("error");
+    })
+
+    $("#signup_user_country").keyup(function(){
+        $(this).removeClass("error");
+    })
+
     $("#signup_first_name").keyup(function(){
         $(this).removeClass("error");
     })
@@ -586,7 +637,11 @@ function check_login(){
                             window.open(base_url + "my-order", "_self");
                         }else{
                             // console.log("location");
-                            location.reload();
+                            if (result.session_prod_id == 1){
+                                window.open(base_url + "my-order", "_self");
+                            }else{
+                                location.reload();
+                            }
                         }
                     }else{
                         window.open(base_url, "_self");
@@ -618,26 +673,62 @@ function check_signup_field(){
     var conf_pass = jQuery.trim($("#signup_user_conf_password").val()).length;
     var country = jQuery.trim($("#signup_user_country").val()).length;
 
+    var error = 0;
+
+    var $msg = "";
+
 	if (fname <= 0 || lname <= 0 || email <= 0 || password <= 0 || conf_pass <= 0 || country <= 0){
+        error++;
+        $msg += "Please input all required fields.<br>";
 
+        if (fname <= 0){
+            $("#signup_user_fname").addClass("error");            
+        }
+
+        if (lname <= 0){
+            $("#signup_user_lname").addClass("error");            
+        }
+
+        if (email <= 0){
+            $("#signup_user_email").addClass("error");            
+        }
+
+        if (password <= 0){
+            $("#signup_user_password").addClass("error");            
+        }
+
+        if (conf_pass <= 0){
+            $("#signup_user_conf_password").addClass("error");            
+        }
+
+        if (country <= 0){
+            $("#signup_user_country").addClass("error");            
+        }
+    }
+    
+    if ($("#signup_user_password").val() != $("#signup_user_conf_password").val() ){
+        error++;
+        $msg += "Password does not match<br>";
+        $("#signup_user_password").addClass("error");
+        $("#signup_user_conf_password").addClass("error");
+    }
+    
+    if ($("#signup_user_email").attr("data-exists") == "1"){        
+        error++;
+        $msg += "Email already Exists<br>";
+        $("#signup_user_email").addClass("error");
+    }
+    
+    if (error > 0){
 		swal({
+            html : true,
 			type : "warning",
-			title : "Please input all required fields."
-		});
-
-	}else if ($("#password").val() != $("#conf_pass").val() ){
-
-		swal({
-			type : "warning",
-			title : "Password does not match"
+            title : "Please see all fields",
+            text : $msg
         })
-    }else if ($("#signup_user_email").attr("data-exists") == "1"){        
-		swal({
-			type : "warning",
-			title : "Email already Exists"
-		});
-	}else{
 
+    }else{
+        console.log("insert user");
 		insert_user();
 	}
 
@@ -671,13 +762,23 @@ function insert_user(){
 
 		},success : function(result){
 			swal.close();
-			$("#acc_id").val(result.comp_id);
 			$("input[name=csrf_name]").val(result.token);
-			$("#div-signup-form").hide();
-			$("#btn_signup2").hide();
-			$("#div-confirm-email2").show();
-			$("#btn_confirm2").show();
-		}, error : function(err){
+			// $("#acc_id").val(result.comp_id);
+			// $("#div-signup-form").hide();
+			// $("#btn_signup2").hide();
+			// $("#div-confirm-email2").show();
+			// $("#btn_confirm2").show();
+
+			swal({
+                type : "success",
+				title : "Successfully Saved"
+			}, function(){
+                // location.reload();
+                window.open(base_url + "my-order", "_self");
+            })
+
+
+        }, error : function(err){
 			console.log(err.responseText);
 		}
 	})

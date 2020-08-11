@@ -33,6 +33,10 @@
 	color: rgb(119, 147, 60) !important;
 }
 
+.text-dark-green{
+    color: #006600 !important;
+}
+
 .list-group-item{
 	background: transparent;
 }

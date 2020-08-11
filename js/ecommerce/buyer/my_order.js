@@ -8,7 +8,8 @@ $(document).ready(function(){
 	$("#div-order-dtls").hide();
 	$("#div-checkout-details").hide();
 	$("#div-order-summary").hide();
-	$("#div-order-confirm").hide();
+    $("#div-order-confirm").hide();
+    $("#div-payment-method").hide();
 	// delivery_type();
 	// payment_type();
 
@@ -60,15 +61,17 @@ $(document).ready(function(){
 
 	$("#btn_confirm_order").click(function(){
 		confirm_order();
-	});
+    });
 
 	$("#btn_cancel_order").click(function(){
 		cancel_order();
 	});
 
 	$("#btn_cancel_place").click(function(){
-		cancel_order();
-	});
+		// cancel_order();
+    	$("#div-order-summary").hide();
+    	$("#div-checkout-details").show("slow");
+    });
 
 	$("#btn_order_payment").click(function(){
 		$("#div-home").hide();
@@ -78,10 +81,22 @@ $(document).ready(function(){
 	});
 
 	$("#btn_confirm_order_2").click(function(){
-		$("#oc-payment-method").val($("#summ-payment-method").text());
-		$("#div-order-summary").hide();
-		$("#div-order-confirm").show("slow");
-	});
+		swal({
+			type : "warning",
+			title : "Place your Order? ",
+			text : "Once confirmed, you are no longer allowed to cancel unless the seller cancels the order",
+			showCancelButton: true,
+			confirmButtonClass: "btn-danger",
+			confirmButtonText: "Yes",
+			cancelButtonText: "No",
+		}, function(isConfirm){
+			if (isConfirm){
+                setTimeout(function(){ 
+                    check_place_order();
+                }, 500);				
+			}
+		})
+    });
 
 	$("#btn_cancel_place_2").click(function(){
 		$("#div-order-confirm").hide();
@@ -128,12 +143,22 @@ $(document).ready(function(){
 		if ($(this).val() == "2"){
             get_courier();
             $(".div-modal-delivery-details").hide();
+
+            // $("#div-modal-payment-type-1").css("cursor", "not-allowed");
+            // $("#div-modal-payment-type-1").css("background", "#dddddd");
+            // $("#div-modal-payment-type-1").css("pointer-events", "none");
+
             // $("#div-courier").hide();
 		}else{
             $(".div-modal-delivery-details").show();
             courier();
             // $("#div-courier").show();
-		}
+
+            // $("#div-modal-payment-type-1").css("cursor", "pointer");
+            // $("#div-modal-payment-type-1").css("background", "white");
+            // $("#div-modal-payment-type-1").css("pointer-events", "auto");
+
+        }
 
 
 	});
@@ -273,7 +298,18 @@ $(document).ready(function(){
 		}else if (payment_type == "6"){
 			$("#div-remittance-payment").show();
 			get_remittance();
-		}
+        }
+        
+        if ($(this).val() != ""){
+            $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
+            $("#payment-icon").empty();
+            $("#payment-icon").append("<i class='fas fa-check-circle'></i>");        
+        }else{
+            $(".div-payment").css("background-color", "rgb(235, 241, 222)");
+            $("#payment-icon").empty();
+            $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+}
+
 	});
 
 	$("#btn-modal-delivery").click(function(){
@@ -297,6 +333,24 @@ $(document).ready(function(){
             })
         }
 
+    });
+
+    $("#btn_delivery_payment_type").click(function(){
+
+        if ($("#payment_type_id").val() == "5" || $("#payment_type_id").val() == "6"){
+            if ($("#summ-payment-type-list").val() == "0"){
+                $(".div-payment").css("background-color", "rgb(235, 241, 222)");
+                $("#payment-icon").empty();
+                $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+                swal({
+                    type : "warning",
+                    title : "Please select payment method"
+                }, function(){
+                    $("#modal_payment").modal("show");
+                })
+
+            }
+        }
     });
 
 });
@@ -501,6 +555,14 @@ function get_orders(){
             $("#order_no").text(result.order_no);
             $("#total-cart").text($.number(result.cart_total, 2));
             $("#total-cart-2").text($.number(result.cart_total, 2));
+
+            $("#div_prod_"+result.session_div).find("input[type=checkbox]").prop("checked", false);
+            $("#div_prod_"+result.session_div).find("input[value='"+result.session_prod_id+"']").prop("checked", true);
+
+            if (result.session_prod_id != null){
+                get_order_checkout(result.session_div);
+            }
+
 		}, error : function(err){
 			console.log(err.responseText);
 		}	
@@ -708,18 +770,42 @@ function delete_item(id){
 function payment_selected(id){
 
 	$("#summ-payment-type-list").empty();
+    $("#summ-payment-type-list").append("<option value='0' selected hidden>Payment Method</option>");
 
 	if (id == "5"){
 		bank_list();
-	}else if (id == "6"){
-		remittance_list();
-	}
+        $("#div-payment-method").show("slow");
+        $(".div-payment").css("background-color", "rgb(235, 241, 222)");
+        $("#payment-icon").empty();
+        $("#payment-icon").append("<i class='far fa-check-circle'></i>");
 
-    $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
-	$("#payment_type_id").val(id);
+    }else if (id == "6"){
+		remittance_list();
+        $("#div-payment-method").show("slow");
+        $(".div-payment").css("background-color", "rgb(235, 241, 222)");
+        $("#payment-icon").empty();
+        $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+
+    }else{
+        $("#div-payment-method").hide("slow");
+        $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
+        $("#payment-icon").empty();
+        $("#payment-icon").append("<i class='fas fa-check-circle'></i>");    
+    }
+    
+    // $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
+
+    $("#payment_type_id").val(id);
 	$("#payment_type_id").attr("data-name", $("#div-modal-payment-type-" + id).find("span").text());
 	$(".div-modal-payment-type").css("background", "white");
 	$('#div-modal-payment-type-'+id).css("background", "yellowgreen");
+
+    // if ($("#delivery_type").val() == "2"){
+    //     $("#div-modal-payment-type-1").css("cursor", "not-allowed");
+    //     $("#div-modal-payment-type-1").css("background", "#dddddd");
+    //     $("#div-modal-payment-type-1").css("pointer-events", "none");
+    // }
+
 }
 
 function get_order_checkout(div_id){
@@ -840,8 +926,11 @@ function get_order_checkout(div_id){
                     if (result.payment_type.length == 1){
                         payment_selected(result.payment_type[i].id);
                     }else{
+                        // $(".div-payment").css("background-color", "rgb(235, 241, 222)");
                         $(".div-payment").css("background-color", "rgb(235, 241, 222)");
-                    }
+                        $("#payment-icon").empty();
+                        $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+                        }
 				}
 
 				for (var i = 0; i < result.delivery_type.length; i++) {
@@ -1029,20 +1118,25 @@ function check_delivery_address(){
     // console.log(bill_contact);
 
 	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 ){
+        $(".div-deliver").css("background-color", "rgb(235, 241, 222)");
+        $("#deliver-icon").empty();
+        $("#deliver-icon").append("<i class='far fa-check-circle'></i>");
 		swal({
 			type : "warning",
 			title : "Please input all required fields"
         })
     }else{
         $(".div-deliver").css("background-color", "rgb(0, 128, 0, 0.2)");
+        $("#deliver-icon").empty();
+        $("#deliver-icon").append("<i class='fas fa-check-circle'></i>");
     }
 
 }
 
 function cancel_order(){
     get_billing();
-	$("#div-checkout-details").hide();
 	$("#div-order-summary").hide();
+	$("#div-checkout-details").hide();
 
 	$("#prod_dtls tbody").empty();
 	$("#shipping_fee").text("0.00");
@@ -1067,6 +1161,7 @@ $("#div-bank-payment").hide();
 get_remittance();
 
 var payment_type = $("#payment_type_id").val();
+var payment_method = $("#summ-payment-type-list").val();
 var delivery_type = $("#delivery_type").val();
 var courier = $("#courier").val();
 var courier_name = "";
@@ -1088,26 +1183,26 @@ if (payment_type == "1"){
     $("#div-bank-payment").hide();    
 }
 
-if (delivery_type == "3"){
-    courier_name = "N/A";
+if (delivery_type == "2"){
+    courier_name = "Pick Up";
 }else{
     courier_name = $("#courier :selected").text();
 }
 
-console.log(delivery_type);
-console.log(courier_name);
+// console.log(delivery_type);
+// console.log(courier_name);
 
 var address = $("#bill_address").val() + ", " + ($("#bill_barangay").val() == "" ? "" : ", ") + $("#bill_city").val() + ", " + $("#bill_province").val() + " " + $("#bill_zip").val();
 
 $("#summ-address").text(address);
-$("#summ-contact-no").text($("#bill_mobile").val());
+$("#summ-contact-no").text("+63" + $("#bill_mobile").val());
 $("#summ-contact-person").text($("#bill_contact").val());
 $("#summ-notes").text($("#bill_notes").val());
 
 $("#summ-delivery").text($("#delivery_type :selected").text());
 $("#summ-courier").text(courier_name);
 $("#summ-payment-type").text($("#payment_type_id").attr("data-name"));
-$("#summ-payment-method").text($("#summ-payment-type-list :selected").text());
+$("#summ-payment-method").text(($("#payment_type_id").val() == "1" ? "Cash on Delivery" : $("#summ-payment-type-list :selected").text()));
 
 if (courier == null){
     courier = "";
@@ -1117,7 +1212,7 @@ if (delivery_type == "2"){
     courier = "n/a";
 }
 
-if (payment_type != "0" && courier != ""){
+if (payment_type != "0" && courier != "" || payment_method != "0"){
 	$("#div-home").hide();
 	$("#div-checkout-details").hide();
 	$("#div-order-summary").show("slow");
@@ -1187,17 +1282,30 @@ function get_courier(){
 
                 if ($("#delivery_type").val() == "2"){
                     shipping_fee = 0;
+                    // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
                     $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                    $("#arrive-icon").empty();
+                    $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+            
                     $(".div-modal-delivery-details").hide();
                 }else{
                     shipping_fee = shipping_fee;
                     $(".div-modal-delivery-details").show();
                     if ($("#courier").val() != null){
+                        // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
                         $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                        $("#arrive-icon").empty();
+                        $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+                
                         $("#div-del-not-avail").hide();
                         $("#courier").attr("disabled", false);
                     }else{
+                        // $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
                         $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
+                        $("#arrive-icon").empty();
+                        $("#arrive-icon").append("<i class='far fa-check-circle'></i>");
+                
+
                         $("#div-del-not-avail").show();
                     }    
                 }
@@ -1259,6 +1367,7 @@ function get_remittance(){
 		dataType : "JSON",
 		url : base_url + "Buyer/get_remittance",
 		success : function(result){
+            console.log(result);
 			$("input[name=csrf_name]").val(result.token);
 			$("#remittance_name").text(result.remitt_name);
 			$("#remittance_mobile").text("+63" + result.remitt_contact);
@@ -1431,9 +1540,17 @@ function place_order(){
 			$("input[name=csrf_name]").val(result.token);
 			swal({
 				type : "success",
-				title : "Confirmed Order"
-			}, function(){
-				location.reload();
+				title : "Placed Order"
+			}, function(){                
+                if (payment_type == "1"){
+                    location.reload();
+                }else{
+                    get_remittance();
+                    get_bank();
+                    $("#oc-payment-method").val($("#summ-payment-method").text());
+                    $("#div-order-summary").hide();
+                    $("#div-order-confirm").show("slow");            
+                }
 			})
     	}, error : function(err){
     		console.log(err.responseText);

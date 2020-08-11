@@ -343,17 +343,19 @@
 								<div class="col-12 col-lg-4 col-md-4 col-sm-12 div-deliver">
 									<div class="row">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center border-bottom-light-green">
-											<span class="font-weight-600 font-size-24">1. Deliver to <span class="text-red font-size-16 font-weight-400 font-italic">(required)</span> </span>
+											<span class="font-weight-600 font-size-24">1. Deliver to <span class="text-dark-green font-size-24 font-weight-400"  id="deliver-icon"><i class="far fa-check-circle"></i></span> </span>
 										</div>
-										<div class="col-10 col-lg-8 col-md-10 col-sm-10 mx-auto div-process-btn">
-											<button class="btn btn-orange btn-block" data-toggle="modal" data-target="#modal_address">Enter an Address </button>
+										<div class="col-10 col-lg-8 col-md-10 col-sm-10 mx-auto div-process-btn text-center">
+											<button class="btn btn-orange btn-block" data-toggle="modal" data-target="#modal_address">
+                                                <span class="font-weight-400 text-white">Enter an Address</span>
+                                            </button>
 										</div>
 									</div>
 								</div>
 								<div class="col-12 col-lg-4 col-md-4 col-sm-12 div-arrive">
 									<div class="row">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center border-bottom-light-green">
-											<span class="font-weight-600 font-size-24">2. Arrive by <span class="text-red font-size-16 font-weight-400 font-italic">(required)</span></span>
+											<span class="font-weight-600 font-size-24">2. Arrive by <span class="text-dark-green font-size-24 font-weight-400" id="arrive-icon"><i class="far fa-check-circle"></i></span></span>
 										</div>
 										<div class="col-10 col-lg-8 col-md-10 col-sm-10 mx-auto div-process-btn">
 											<button class="btn btn-yellow-gold btn-block" data-toggle="modal" data-target="#modal_delivery" id="btn-modal-delivery">Select Type</button>
@@ -363,7 +365,7 @@
 								<div class="col-12 col-lg-4 col-md-4 col-sm-12 div-payment">
 									<div class="row">
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center border-bottom-light-green">
-											<span class="font-weight-600 font-size-24">3. Payment Type <span class="text-red font-size-16 font-weight-400 font-italic">(required)</span></span>
+											<span class="font-weight-600 font-size-24">3. Payment Type <span class="text-dark-green font-size-24 font-weight-400" id="payment-icon"><i class="far fa-check-circle"></i></span></span>
 										</div>
 										<div class="col-10 col-lg-8 col-md-10 col-sm-10 mx-auto div-process-btn">
 											<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_payment">Select Payment Type</button>
@@ -479,7 +481,7 @@
 
 					<div class="row mt-2">
 						<div class="col-12 col-lg-4 col-md-12 col-sm-12">
-							<select class='form-control' id="summ-payment-type-list"></select>
+							<!-- <select class='form-control' id="summ-payment-type-list"></select> -->
 						</div>
 					</div>
 
@@ -578,8 +580,9 @@
 
 					<div class="row mb-1">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-							<p class="mb-0">Please click <span class="font-weight-600">"Place my order" button to place your order</span></p>							
-						</div>						
+							<!-- <p class="mb-0">Please click <span class="font-weight-600">"Place my order" button to place your order</span></p>							 -->
+							<p class="mb-0 font-weight-600">Payment Instructions</p>							
+                            </div>						
 					</div>
 
 					<div class="row mb-2">
@@ -592,7 +595,7 @@
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 							<table class="table table-sm table-bordered">
 								<thead>
-									<tr>
+									<tr hidden>
 										<th colspan="2"></th>
 									</tr>
 									<tr>
@@ -652,16 +655,21 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-12 col-lg-6 col-md-6 col-sm-6">
+					<div class="row" hidden>
+						<div class="col-12 col-lg-6 col-md-6 col-sm-6" >
 							<button class="btn btn-primary" id="btn_order_payment">Other Payment Type</button>
 						</div>
 						<div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right pt-4">
-							<button class="btn btn-danger" id="btn_cancel_place_2">Cancel</button>
-							<button class="btn btn-orange" id="btn_place_order">Place my Order</button>
+							<button class="btn btn-danger" id="btn_cancel_place_2" Hidden>Cancel</button>
+							<button class="btn btn-orange" id="btn_place_order" hidden>Place my Order</button>
 						</div>
 					</div>
 
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                            <a href="<?php echo base_url('my-order'); ?>" class="btn btn-primary px-5">Cart</a>
+                        </div>
+                    </div>
 
 				</div>
 			</div>
@@ -849,6 +857,15 @@
 					<div class="row" id="div-payment">
 
 					</div>
+                    <div class="row" id="div-payment-method">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                            <hr style="border-top:2px solid rgb(119, 147, 60);" class="mb-0">
+                        </div>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                            <span class="font-weight-600 font-size-16">Payment Method</span>
+                            <select class='form-control' id="summ-payment-type-list"></select>
+                        </div>
+                    </div>
 				</div>
 			</div>
 			<div class="modal-footer py-2">

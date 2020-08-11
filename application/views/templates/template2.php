@@ -52,7 +52,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script src="<?php echo base_url('js/login.js') ?>"></script>
-    <script src="<?php echo base_url('js/template_login2.js') ?>"></script>
+    <!-- <script src="<?php echo base_url('js/template_login2.js') ?>"></script> -->
     <script src="<?php echo base_url('js/template.js') ?>"></script>
 
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/colorpicker/css/colorpicker.css') ?>"> -->
@@ -210,7 +210,7 @@
                             <span class="font-size-18" style="font-size: 18px !important;">Account Verification</span><br>
                             <small>Enter your 6-digit verification code that was sent to your email.</small>
                         </div>
-                        <div class="col-12 text-right">
+                        <div class="col-12 text-right" hidden>
                             <small class="text-red">Resend Verification Code? </small>
                         </div>
                     </div>
@@ -288,8 +288,8 @@
                             <div class="input-group">
                                 <input type="password" class="form-control form-control-sm textbox-green bd-green" id="signup_user_password">
                                 <div class="input-group-append" style="height: 31px;">
-                                    <span class="input-group-text show_conf_pass cursor-pointer textbox-green bd-green">
-                                    <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
+                                    <span class="input-group-text show_pass cursor-pointer textbox-green bd-green">
+                                    <i class="fa fa-eye-slash" id="pass_icon"></i>
                                     </span>
                                 </div>
                             </div>
@@ -305,6 +305,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <span>Country <span class="text-red">*</span></span>
+                            <select name="" id="signup_user_country" class="form-control form-control-sm textbox-green bd-green"></select>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-2" style="line-height: 1;">
@@ -363,8 +368,8 @@
                                 <div class="input-group">
                                     <input type="password" class="form-control form-control-sm textbox-green" id="signup_conf_password">
                                     <div class="input-group-append border border-dark" style="height: 31px;">
-                                        <span class="input-group-text show_conf_pass cursor-pointer">
-                                        <i class="fa fa-eye-slash" id="conf_pass_icon"></i>
+                                        <span class="input-group-text show_conf_pass-1 cursor-pointer">
+                                        <i class="fa fa-eye-slash" id="conf_pass_icon-1"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -470,7 +475,7 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-12 text-center mx-auto pt-3">
                             <span>An email has been sent to you. Please check your inbox and follow the instruction in the message.</span><br>
-                            <button class="btn btn-orange mt-3" id="resend" hidden>Re-send confirmation email</button>
+                            <button class="btn btn-orange mt-3" id="resend" >Re-send confirmation email</button>
                         </div>
                     </div>
                     <div class="row">
@@ -509,6 +514,39 @@
         </div>
     </div>
 </div>
+
+
+<script>
+$(document).ready(function(){
+
+    $(".show_conf_pass").click(function(){
+        if ($("#signup_user_conf_password").attr("type") == "password"){
+            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
+            $("#conf_pass_icon").addClass("fa fa-eye");
+            $("#signup_user_conf_password").attr("type", "text");
+        }else{
+            $("#conf_pass_icon").removeClass("fa fa-eye");
+            $("#conf_pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_conf_password").attr("type", "password");
+        }
+    });
+
+    $(".show_pass").click(function(){
+        if ($("#signup_user_password").attr("type") == "password"){
+            $("#pass_icon").removeClass("fa fa-eye-slash");
+            $("#pass_icon").addClass("fa fa-eye");
+            $("#signup_user_password").attr("type", "text");
+        }else{
+            $("#pass_icon").removeClass("fa fa-eye");
+            $("#pass_icon").addClass("fa fa-eye-slash");
+            $("#signup_user_password").attr("type", "password");
+        }
+    });
+
+
+});
+
+</script>
 
 
 </body>
