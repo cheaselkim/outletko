@@ -19,6 +19,23 @@
 
     </script>
 
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v8.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <link rel="manifest" href="./manifest.json">
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="apple-touch-icon" href="assets/img/logo-13.png" type="image/png", sizes="2x2">
@@ -39,6 +56,16 @@
 </head>
 <body>
 
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="103466421133227"
+  theme_color="#006600">
+      </div>
 
 <div class="row div-header bg-green " style="">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -278,7 +305,7 @@
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 col-sm-12 text-right">
                     <div class="text-right">
-                        <span style="font-size: 25px;"><span class="text-black">Follow us on :</span> <i class="fab fa-facebook-f text-orange"></i>&nbsp;<i class="fab fa-twitter text-orange"></i>&nbsp;<i class="fab fa-youtube text-orange"></i>&nbsp;</span>
+                        <span style="font-size: 25px;"><span class="text-black">Follow us on :</span> <a href="https://www.facebook.com/outletkopage/"><i class="fab fa-facebook-f text-orange"></i></a> </span>
                     </div>
                 </div>
             </div>
@@ -292,7 +319,6 @@
 
 
 </div>
-
 
 <div class="modal" id="modal_signup_user" style="z-index: 999999;">
     <div class="modal-dialog" style="max-width: 460px;">
