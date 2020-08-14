@@ -15,7 +15,7 @@ class Seller_model extends CI_Model {
         return $result->order_no;
 	}
 
-	public function get_process_order(){
+	public function get_process_order($status){
         $result = $this->db2->query("SELECT buyer_order.*,
         	`delivery_type`.`delivery_type` AS delivery_type_name,
 			CONCAT(`account_buyer`.`first_name`, ' ', `account_buyer`.`last_name`) AS buyer_name,
@@ -25,7 +25,7 @@ class Seller_model extends CI_Model {
 			`account_buyer`.`id` = `buyer_order`.`comp_id` 
 			LEFT JOIN delivery_type ON 
 			`delivery_type`.`id` = `buyer_order`.`delivery_type`
-			WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("1", $this->session->userdata("comp_id")))->result();	
+			WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array($status, $this->session->userdata("comp_id")))->result();	
         return $result;
 
 	}
@@ -70,6 +70,7 @@ class Seller_model extends CI_Model {
 		return $result;
 	}
 
+    
 	public function get_order_products($id){
 		$result = $this->db2->query("
 		SELECT 
@@ -110,9 +111,29 @@ class Seller_model extends CI_Model {
 
     }
 
+    public function get_proof($id){
+        $query = $this->db2->query("SELECT * FROM buyer_proof WHERE order_id = ? ORDER BY id DESC LIMIT 1", array($id))->result();
+        return $query;
+    }
+
+    // Updating Buyer Order
+
 	public function acknowledge_order($id){
+        $query = $this->db2->query("SELECT * FROM buyer_order WHERE id = ?", array($id))->result();
+        $status = "";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                if ($value->payment_type == "1"){
+                    $status = "5";
+                }else{
+                    $status = "2";
+                }
+            }
+        }
+
 		$this->db2->where("id", $id);
-		$this->db2->set("status", "2");
+		$this->db2->set("status", $status);
 		$this->db2->update("buyer_order");
 	}
 
@@ -133,14 +154,14 @@ class Seller_model extends CI_Model {
 			`account_buyer`.`id` = `buyer_order`.`comp_id` 
 			LEFT JOIN delivery_type ON 
 			`delivery_type`.`id` = `buyer_order`.`delivery_type`
-			WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("2", $this->session->userdata("comp_id")))->result();	
+			WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("5", $this->session->userdata("comp_id")))->result();	
         return $result;
 
 	}
 
 	public function delivery_order($id, $courier, $track_no){
 		$this->db2->where("id", $id);
-		$this->db2->set("status", "3");
+		$this->db2->set("status", "6");
 		$this->db2->set("courier", $courier);
 		$this->db2->set("track_no", $track_no);
 		$this->db2->set("date_delivered", date("Y-m-d H:i:s"));
@@ -168,6 +189,27 @@ class Seller_model extends CI_Model {
             ".$date_qry."
             ", array($status, $this->session->userdata("comp_id")))->result();	
         return $result;        
+    }
+
+    // Confirm Payment
+    public function confirm_payment($id, $status, $message){
+
+        $this->db2->set("status", $status);
+        $this->db2->set("payment_message", $message);
+        if ($status == "5"){
+            $this->db2->set("date_denied_payment", date("Y-m-d H:i:s"));
+        }else{
+            $this->db2->set("date_confirm_payment", date("Y-m-d H:i:s"));
+        }
+        $this->db2->where("id", $id);
+        $this->db2->update("buyer_order");
+
+        if ($status == "5"){
+            $this->db2->set("status", "0");
+            $this->db2->where("order_id", $id);
+            $this->db2->update("buyer_proof");
+        }
+
     }
 
 }

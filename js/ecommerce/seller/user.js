@@ -948,6 +948,36 @@ $(document).ready(function(){
     });
 
 
+    // order_status
+    $("#order_status").change(function(){
+        get_process_order();
+    })
+
+    $("#btn_confirm_payment").click(function(){
+        swal({
+            type : "success",
+            title : "Confirm Payment?",
+            type : "input",
+            inputPlaceholder: "Payment Confirmed"
+        },
+        function(inputValue){
+            save_confirm_payment(5, inputValue);
+        })
+    });
+
+    $("#btn_notconfirm_payment").click(function(){
+        swal({
+            type : "success",
+            title : "Payment Denied?",
+            type : "input",
+            inputPlaceholder: "Payment Denied because....."
+        },
+        function(inputValue){
+            save_confirm_payment(4, inputValue);
+        })
+    });
+
+
 });
 
 /* GENERAL FUNCTION */
@@ -2238,6 +2268,13 @@ function order_table(id){
   $("#tbl-po-products tbody tr").remove();
   $("#acknowledge_order_id").val(id);
 
+  $("#btn_confirm_payment").hide();
+  $("#btn_notconfirm_payment").hide();
+  $("#btn_cancel_acknowledge").hide();
+  $("#btn_acknowledge").hide();
+  $("#div-proof-payment").hide();
+
+
   $.ajax({
     data : {id : id, csrf_name : csrf_name},
     type : "POST",
@@ -2250,6 +2287,26 @@ function order_table(id){
       var products = result.products;
       var subtotal = 0;
       var shipping_fee = data[0].shipping_fee;
+
+        if (data[0].status == "1"){
+            $("#btn_cancel_acknowledge").show();
+            $("#btn_acknowledge").show();
+            $("#vw_order_status").text("For Acknowledgement");
+        }else if (data[0].status == "2"){
+            $("#vw_order_status").text("Acknowledge");
+        }else if (data[0].status == "3"){
+            $("#btn_confirm_payment").show();
+            $("#btn_notconfirm_payment").show();
+            $("#div-proof-payment").show();
+            $("#vw_order_status").text("Proof of Payment");
+        }else if (data[0].status == "4"){
+            $("#div-proof-payment").show();
+            $("#vw_order_status").text("Payment Denied");
+        }else if (data[0].status == "5"){
+            $("#div-proof-payment").show();
+            $("#vw_order_status").text("Payment Confirmed");
+        }
+
 
       $("#title_order").text("Order " + data[0].order_no);
       $("#tbl_order_no").text(data[0].order_no);
@@ -2296,6 +2353,37 @@ function order_table(id){
       $("#tbl_subtotal").text($.number(subtotal, 2));
       $("#tbl_ship").text($.number(shipping_fee, 2))
       $("#tbl_total").text($.number((Number(subtotal) + Number(shipping_fee)), 2));
+
+
+      var proof = result.proof;
+        if (proof != "" && (data[0].status == "3" || data[0].status == "4" || data[0].status == "5")){
+            $("#proof-message").text(proof[0].message);
+            var proof_img = result.proof_img;
+            var arr_data = new Array();
+
+                for (var i = 0; i < proof_img.length; i++) {
+                    if (proof_img[i].img != false){
+                        var img = base_url + "images/proof/"+proof_img[i].img;
+                    }
+
+                    var data = {
+                        "img" : img,
+                        "thumb" : img,
+                        "alt" : "Proof of Payment",
+                        "width" : "250px",
+                        "height" : "300px"
+                    }
+
+                    arr_data.push(data);
+                }
+
+            console.log(arr_data.length);
+            if (arr_data.length > 0){
+                var $fotoramaDiv = $('#div-fotorama-2').fotorama();
+                var fotorama = $fotoramaDiv.data('fotorama');
+                fotorama.load(arr_data);    
+            }
+        }
 
     }, error : function(err){
       console.log(err.responseText);
@@ -3803,9 +3891,10 @@ function get_product_info(id){
 
 function get_process_order(){
     var csrf_name = $("input[name=csrf_name]").val();
+    var order_status = $("#order_status").val();
 
     $.ajax({
-      data : {csrf_name : csrf_name},
+      data : {csrf_name : csrf_name, order_status : order_status},
       type : "POST",
       dataType : "JSON",
       url : base_url + "Seller/get_process_order",
@@ -4999,3 +5088,39 @@ function del_coverage_ship(id){
 
 }
 
+// Payment Confirm Proof
+function save_confirm_payment(status, message){
+    var csrf_name = $("input[name=csrf_name]").val();
+    var id = $("#acknowledge_order_id").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name, status : status, message : message, id : id},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Seller/confirm_payment",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+
+            swal({
+                type : "success",
+                title : "Confirmed!",
+                timer : 2000
+            }, function(){
+                get_process_order();
+                $("#div-setting").hide();
+                $("#div-home").hide();
+                $("#div_order").hide();
+                $("#div-my-delivered").hide();
+                $("#div-my-closed").hide();
+        
+                $("#div_order_table").show("slow");
+                $("#div-my-orders").show("slow");
+                $("#modal_myorders").modal("hide");
+        
+            })
+        }, error : function(err){
+            console.log(err.responseText)
+        }
+    })
+
+}

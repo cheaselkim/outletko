@@ -186,7 +186,8 @@ class Buyer_model extends CI_Model {
         $query = $this->db2->query("
             SELECT 
             products.*, buyer_order_products.*, `products`.`id` as prod_id, `buyer_order_products`.`id` AS item_id,
-            `account`.`account_name`
+            `account`.`account_name`,
+            `account`.`link_name`
             FROM 
             buyer_order_products 
             LEFT JOIN products ON 
@@ -334,7 +335,8 @@ class Buyer_model extends CI_Model {
         FROM buyer_order
         LEFT JOIN account ON 
             `account`.`id` = `buyer_order`.`seller_id`
-        WHERE comp_id = ? AND status IN ? ", array($this->session->userdata("comp_id"), array("1", "2")))->result();
+        WHERE comp_id = ? AND status IN ? 
+        ORDER BY status DESC, order_no", array($this->session->userdata("comp_id"), array("1", "2", "3", "4", "5")))->result();
         return $query;
     }
 
@@ -346,7 +348,7 @@ class Buyer_model extends CI_Model {
         FROM buyer_order
         LEFT JOIN account ON 
             `account`.`id` = `buyer_order`.`seller_id`
-        WHERE comp_id = ? AND status = ? ", array($this->session->userdata("comp_id"), "3"))->result();
+        WHERE comp_id = ? AND status = ? ", array($this->session->userdata("comp_id"), "6"))->result();
         return $query;
     }
 
@@ -438,8 +440,21 @@ class Buyer_model extends CI_Model {
         $this->db->update("users", $data);
     }
 
+    // Reviews
+
     public function insert_review($data){
         $this->db2->insert("reviews", $data);
+    }
+
+    // Proof
+
+    public function save_proof($data, $id){
+        $this->db2->insert("buyer_proof", $data);
+        
+        $this->db2->where("id", $id);
+        $this->db2->set("status", 3);
+        $this->db2->update("buyer_order");
+    
     }
 
 }

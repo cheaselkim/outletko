@@ -19,22 +19,22 @@
 
 							<ul class="nav nav-tabs nav-justified">
 								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#div-cart" id="btn-tab-cart">Cart</a>
+									<a class="nav-link active tab-item" data-toggle="tab" href="#div-cart" id="btn-tab-cart">Cart</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#div-ongoing" id="btn-tab-ongoing">Ongoing</a>
+									<a class="nav-link tab-item" data-toggle="tab" href="#div-ongoing" id="btn-tab-ongoing">Ongoing <span class="ml-auto"><span class="badge badge-info" id="span-confirm">0</span> <span class="badge badge-danger" id="span-denied">0</span>  <span class="badge badge-warning" id="span-proof">0</span> <span class="badge badge-primary" id="span-acknowledge">0</span> <span class="badge badge-light" style="border: 1px solid black;" id="span-pending">0</span> </span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#div-complete" id="btn-tab-complete">Complete</a>
+									<a class="nav-link tab-item" data-toggle="tab" href="#div-complete" id="btn-tab-complete">Delivery</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#div-transactions" id="btn-tab-transaction">Transactions</a>
+									<a class="nav-link tab-item mr-0" data-toggle="tab" href="#div-transactions" id="btn-tab-transaction">Transactions</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					
-					<div class="tab-content">
+					<div class="tab-content  pt-2">
 
 						<div class="row" id="div-order-dtls">
 							<div class="col-12 pt-3">
@@ -47,7 +47,74 @@
 										<button class="btn btn-danger" id="btn-order-dtls-back">Back</button>
 									</div>
 								</div>
-								
+
+                                <div class="row mx-0 alert-success py-2 my-1" id="div-proof">
+                                    <div class="col-12">
+
+                                    <div class="row" hidden>
+                                        <div class="col-12">
+                                            <hr style="border-top: 1px solid green;" class="my-2">
+                                        </div>
+                                    </div>
+
+
+                                        <div class="row">
+                                            <div class="col-12 overlay-text alert-danger text-center">
+                                                <span class="">Proof of Payment already sent</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                                <h5>Proof of Payment</h5>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 text-right">
+                                                <button class="btn btn-success" id="btn-send-proof" >Send Proof of Payment</button>                                            
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1 div-proof-denied alert alert-danger py-1" id="div-proof-denied">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <span class="font-weight-600">Payment Denied by Seller</span>
+                                                <p class="mb-0">Reason : <span id="reason-denied"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 pr-0">
+                                                <span class="font-weight-600">Order No</span>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12">
+                                                <input type="text" class="form-control textbox-green bg-white" id="proof-order-no" data-id="" readonly>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 pr-0">
+                                                <span class="font-weight-600">Upload Files <span class="text-red">*</span></span>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12">
+                                                <button class="btn btn-modal-img-upload btn-outline-success btn-block ml-0 w-100" id="btn-upload-proof-file" style="height:35px !important;border-radius:.25rem !important">
+                                                    Upload File
+                                                    <input type="file" id="btn-upload-proof" class="img-upload-modal btn btn-success" style="height:35px !important;border-radius:.25rem !important">
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-12 col-lg-2 col-md-4 col-sm-12 pr-0">
+                                                <span class="font-weight-600">Message <span class="text-red">*</span></span>
+                                            </div>
+                                            <div class="col-12 col-lg-10 col-md-8 col-sm-12">
+                                                <textarea  id="proof-message"  rows="3" class="form-control textbox-green"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <hr style="border-top: 1px solid green;" class="my-2">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
 								<div class="row">
 									<div class="col-12 col-lg-6 col-md-6 col-sm-12">
 										
@@ -65,7 +132,7 @@
 												<span class="font-weight-600">Order Date</span>
 											</div>
 											<div class="col-6 col-lg-8">
-												<span id="vw_order_daet"></span>
+												<span id="vw_order_date"></span>
 											</div>
 										</div>
 
@@ -83,7 +150,7 @@
 												<span class="font-weight-600">Status</span>
 											</div>
 											<div class="col-6 col-lg-8">
-												
+                                                <span id="vw_status" class="alert alert-success my-0 py-0"></span>
 											</div>
 										</div>
 
@@ -305,21 +372,21 @@
 
 						<div class="row tab-pane fade" id="div-ongoing" >
 							<div class="col-12">
-								<div class="row px-4" id="div-list-ongoing">
+								<div class="row px-3" id="div-list-ongoing">
 								</div>							
 							</div>							
 						</div>
 
 						<div class="row tab-pane fade" id="div-complete" >
 							<div class="col-12">
-								<div class="row px-4" id="div-list-complete">
+								<div class="row px-3" id="div-list-complete">
 								</div>							
 							</div>							 
 						</div>
 
 						<div class="row tab-pane fade" id="div-transactions">
 							<div class="col-12">
-								<div class="row px-4" id="div-list-transactions">
+								<div class="row px-3" id="div-list-transactions">
 								</div>							
 							</div>							
 						</div>
@@ -338,7 +405,7 @@
 					
 					<div class="row">
 
-						<div class="col-12 col-lg-12 col-md-12 col-sm-12 div-checkout-details-1">
+						<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-checkout-details-1">
 							<div class="row">
 								<div class="col-12 col-lg-4 col-md-4 col-sm-12 div-deliver">
 									<div class="row">
@@ -401,13 +468,215 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
+
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12"> <!-- div-checkout-details-1 -->
+
+                            <div class="container mx-0" id="div-accordion">
+                                <div id="accordion" class="accordion">
+            
+                                    <div class="card div-billing" id="div-billing" data-id="0">
+                                        <div class="card-header py-1">
+                                            <a class="collapsed card-link  font-size-20" data-toggle="collapse" href="#collapse-billing">
+                                            <i class="fa fa-angle-down"></i> Delivery & Billing Address <span class="text-orange font-size-20 font-weight-400"  id="deliver-icon"><i class="far fa-check-circle"></i></span>
+                                            </a>
+                                        </div>
+
+                                        <div id="collapse-billing" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Full Name</span>
+                                                                    <input type="text" class="form-control bg-white textbox-green" id="bill_name"  value="<?php echo $this->session->userdata('user_fullname'); ?>" readonly>                                                                
+                                                                </div>
+                                                                <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Email <span class="text-red">*</span> </span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_email">
+                                                                </div>
+                                                                <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Mobile No <span class="text-red">*</span> </span>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text bg-white textbox-green" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+                                                                        </div>
+                                                                        <input type="text" class="form-control textbox-green" id="bill_mobile">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Phone No</span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_phone">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                            <span class="font-size-16 mb-1">Address <span class="text-red">*</span> </span>
+                                                            <input type="text" class="form-control textbox-green" id="bill_address">
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-2 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Barangay</span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_barangay">
+                                                                </div>
+                                                                <div class="col-12 col-lg-4 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Town / City <span class="text-red">*</span></span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_city">
+                                                                </div>
+                                                                <div class="col-12 col-lg-4 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Province <span class="text-red">*</span> </span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_province" readonly>
+                                                                </div>
+                                                                <div class="col-12 col-lg-2 col-md-3 col-sm-12">
+                                                                    <span class="font-size-16 mb-1">Zip Code</span>
+                                                                    <input type="text" class="form-control textbox-green" id="bill_zip">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                            <span class="font-size-16 mb-1">Contact Person <span class="text-red">*</span> </span>
+                                                            <input type="text" class="form-control textbox-green" id="bill_contact" value="<?php echo $this->session->userdata('user_fullname'); ?>">
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="save_info" name="example1">
+                                                                <label class="custom-control-label" for="save_info">Save this information for next time?</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
+                                                            <span class="font-size-16 mb-1">Delivery Instructions</span>
+                                                            <textarea class="form-control textbox-green" id="bill_notes" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3 div-shipping-method" id="div-shipping-method" data-id="0">
+                                        <div class="card-header py-1">
+                                            <a class="collapsed card-link font-size-20" data-toggle="collapse" href="#collapse-shipping">
+                                                <i class="fa fa-angle-down"></i> Shipping Details <span class="text-orange font-size-20 font-weight-400" id="arrive-icon"><i class="far fa-check-circle"></i></span>
+                                            </a>
+                                        </div>
+                                        <div id="collapse-shipping" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
+
+                                                <div class="container-fluid px-0">
+    
+                                                    <div class="row" id="div-del-not-avail">
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                                            <span class="text-red font-weight-600 font-size-20">Delivery is not available in your area.</span>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="row">
+
+                                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                                            <span>Delivery Type <span class="text-red">*</span></span>
+                                                            <select class="form-control" id="delivery_type">
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-modal-delivery-details"  id="div-courier" hidden>
+                                                            <span>Courier</span>
+                                                            <select class="form-control" id="courier"></select>
+                                                        </div>
+
+
+
+                                                    </div>
+    
+                                                    <div class="row div-modal-delivery-details">
+                                                        <div class="col-12 col-lg-4 col-md-4 col-sm-12 div-modal-delivery-details">
+                                                            <span>Delivery Fee</span>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text text-black">PHP</span>
+                                                                </div>
+                                                            <input type="text" class="form-control text-right" id="delivery_fee" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row div-modal-delivery-details">
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" >
+                                                            <span>Standard Delivery</span>
+                                                            <input type="text" class="form-control" id="std_delivery" readonly>
+                                                        </div>
+                                                    </div>
+        
+                                                    <div class="row div-modal-delivery-details" hidden>
+                                                        <div class="col-12 col-lg-9 col-md-10 col-sm-12 mx-auto">
+            
+                                                            <div class="row px-0">
+                                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2 px-0 text-center">
+                                                                    <div id="datepicker"></div>
+                                                                    <span class="font-italic text-red" id="deliver_date_note">Note : You are not allowed to choose delivery date</span>								 
+                                                                </div>
+                                                            </div>
+                    
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto" hidden>
+                                                                    <span>Your Order will be delivered on :</span>
+                                                                    <input type="text" class="form-control" id="order_delivered_date" readonly>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="card mt-3 div-hdr-payment" id="div-hdr-payment" data-id="0">
+                                        <div class="card-header py-1">
+                                            <a class="collapsed card-link font-size-20" data-toggle="collapse" href="#collapse-payment">
+                                                <i class="fa fa-angle-down"></i> Payment Method <span class="text-orange font-size-20 font-weight-400" id="payment-icon"><i class="far fa-check-circle"></i></span>
+                                            </a>
+                                        </div>
+                                        <div id="collapse-payment" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="container-fluid">
+                                                    <div class="row" id="div-payment">
+
+                                                    </div>
+                                                    <div class="row" id="div-payment-method">
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                                                            <hr style="border-top:2px solid rgb(119, 147, 60);" class="mb-0">
+                                                        </div>
+                                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                                                            <span class="font-weight-600 font-size-16">Payment Method</span>
+                                                            <select class='form-control' id="summ-payment-type-list"></select>
+                                                        </div>
+                                                    </div>
+                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
 					</div>
 
 					<div class="row mt-3">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12" id="div-order-details">
-							<span class="font-weight-600">Order Summary</span>
+							<span class="font-weight-600">Order Items</span>
 							<div class="row">
 								<div class="col-12 py-2">
 									<div class="row" id="div_order_1">
@@ -431,32 +700,27 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-8">
-											<span class="font-weight-600">Sub Total</span>
+										<div class="col-8 col-lg-10 col-md-10 col-sm-8 text-right pr-0">
+											<span class="font-weight-600 font-size-20">Sub Total</span>
 										</div>
-										<div class="col-4 text-right">
-											<span class="font-weight-600" id="sub_total">0.00</span>												
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-8">
-											<span class="font-weight-600">Shipping Fee</span>
-										</div>
-										<div class="col-4 text-right">
-											<span class="font-weight-600" id="shipping_fee">100.00</span>
+										<div class="col-4 col-lg-2 col-md-2 col-sm-4 text-right pl-0">
+                                        <span class="font-weight-600 font-size-20">&#8369; <span id="sub_total">0.00</span></span>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-12">
-											<hr style="border-top: 1px solid gray;" class="my-1">
+										<div class="col-8 col-lg-10 col-md-10 col-sm-8 text-right pr-0">
+											<span class="font-weight-600 font-size-20">Shipping Fee</span>
+										</div>
+										<div class="col-4 col-lg-2 col-md-2 col-sm-4 text-right pl-0">
+											<span class="font-weight-600 font-size-20">&#8369; <span id="shipping_fee">100.00</span></span>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-6 col-lg-8">
-											<span class="font-weight-600">Total (PHP)</span> 
+										<div class="col-6 col-lg-10 col-md-10 col-sm-8 text-right pr-0">
+											<span class="font-weight-600 font-size-30 text-dark-green">Grand Total</span> 
 										</div>
-										<div class="col-6 col-lg-4 text-right">
-											<span class="font-weight-600" id="total_amount">PHP 0.00</span>
+										<div class="col-6 col-lg-2 col-md-10 col-sm-4 text-right pl-0">
+											<span class="font-weight-600 font-size-30 text-dark-green">&#8369; <span id="total_amount">PHP 0.00</span></span>
 										</div>
 									</div>
 
@@ -466,6 +730,15 @@
 						</div>
 
 					</div>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+                            <div class="bg-green py-2 text-right px-2">
+                                <button class="btn btn-danger font-size-20" id="btn_cancel_order">Cancel</button> &nbsp; &nbsp;
+                                <button class="btn btn-orange  font-size-20" id="btn_confirm_order">Checkout Order</button>
+                            </div>
+                        </div>
+                    </div>
 
 				</div>
 			</div>
@@ -920,4 +1193,20 @@
     </div>
 </div>
 
-
+<!-- <div id="modal-proof" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title">Proof of Payment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" class="btn btn-success" id="btn-send-proof">Send</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div> -->

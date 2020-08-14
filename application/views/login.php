@@ -64,7 +64,8 @@
       <div class="fb-customerchat"
         attribution=setup_tool
         page_id="103466421133227"
-  theme_color="#006600">
+  theme_color="#006600"
+  >
       </div>
 
 <div class="row div-header bg-green " style="">

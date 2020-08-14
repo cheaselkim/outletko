@@ -1,7 +1,7 @@
 <?php 
 
 if (!function_exists("tbl_process_order")){
-	function tbl_process_order($query, $var_status){
+	function tbl_process_order($query, $var_status, $closed){
 
 		$output = "";
 
@@ -28,8 +28,22 @@ if (!function_exists("tbl_process_order")){
 					$status = "For Acknowledgement";
 					$onclick = "order_table(".($value->buyer_order_id).")";
 				}else if ($value->status == "2"){
-					$status = "For Delivery";
-					$onclick = "closed_table(".($value->buyer_order_id).")";
+                    $status = "Acknowledged";
+                    $onclick = "order_table(".($value->buyer_order_id).")";
+					// $onclick = "closed_table(".($value->buyer_order_id).")";
+                }else if ($value->status == "3"){
+                    $status = "Proof of Payment";
+					$onclick = "order_table(".($value->buyer_order_id).")";
+                }else if ($value->status == "4"){
+                    $status = "Proof Denied";
+					$onclick = "order_table(".($value->buyer_order_id).")";
+                }else if ($value->status == "5"){
+                    $status = "Payment Confirmed";
+                    if (empty($closed)){
+                        $onclick = "order_table(".($value->buyer_order_id).")";
+                    }else{
+                        $onclick = "closed_table(".($value->buyer_order_id).")";                        
+                    }
                 }
                 
                 if (!empty($var_status)){

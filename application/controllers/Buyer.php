@@ -116,6 +116,7 @@ class Buyer extends CI_Controller {
                     "prod_id" => $value->prod_id,
                     "account_id" => $value->account_id,
                     "account_name" => $value->account_name,
+                    "link_name" => $value->link_name,
                     "item_id" => $value->item_id,
                     "img_location" => $value->img_location,
                     "product_name" => $value->product_name,
@@ -294,8 +295,14 @@ class Buyer extends CI_Controller {
 	}
 
 	public function get_ongoing_orders(){
-		$result = $this->buyer_model->get_ongoing_orders();
-		$data['result'] = tbl_ongoing_orders($result);
+        $result = $this->buyer_model->get_ongoing_orders();
+        $output = tbl_ongoing_orders($result);
+        $data['result'] = $output['output'];
+        $data['pending'] = $output['pending'];
+        $data['acknowledge'] = $output['acknowledge'];
+        $data['proof'] = $output['proof'];
+        $data['confirm'] = $output['confirm'];
+        $data['denied'] = $output['denied'];
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -387,6 +394,8 @@ class Buyer extends CI_Controller {
  		echo json_encode($data);
  	}
 
+     // reviews
+
     public function save_review(){
         $review = array(
             "comp_id" => $this->input->post("seller_id"),
@@ -399,6 +408,59 @@ class Buyer extends CI_Controller {
         $data['result'] = $this->buyer_model->insert_review($review);
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
+    }
+
+    //proof of payment
+
+    public function save_proof(){
+
+		$files_upload = array();
+
+		$db = $this->load->database('default', TRUE);
+
+		$upload_path = './images/proof/'; 
+        $counts = count($_FILES["files"]["name"]);
+        
+        // var_dump($counts);
+
+        if (!empty($_FILES['files']['name'])){
+
+            for($x = 0; $x < $counts; $x++) { 
+                $files_tmp = $_FILES['files']['tmp_name'][$x];
+                $files_ext = strtolower(pathinfo($_FILES['files']['name'][$x],PATHINFO_EXTENSION));
+                $randname = "file_".$this->input->post('id')."_".rand(1000,1000000) . "." . $files_ext;
+
+                move_uploaded_file($files_tmp,$upload_path.$randname);
+                $files_upload[] = $randname;
+                $file_name = $randname;
+                
+                $config['upload_path'] = './images/proof/'; 
+                $config['image_library'] = 'gd2';  
+                $config['source_image'] = './images/proof/'.$file_name;  
+                $config['create_thumb'] = FALSE;  
+                $config['maintain_ratio'] = TRUE;  
+                $config['quality'] = '100%';  
+                $config['width'] = 600;  
+                $config['height'] = 600;  
+                $config['new_image'] = './images/proof/'.$file_name;  
+                $config['rotation_angle'] = 90;
+                $this->load->library('image_lib', $config);  
+                $this->image_lib->resize();                         
+                $this->image_lib->clear();
+
+            }
+
+
+            $serialized = serialize($files_upload);         
+            $data = array('img_location' => $serialized, "order_id" => $this->input->post("id", TRUE), "message" => $this->input->post('message', TRUE), "date_insert" => date("Y-m-d H:i:s")); 
+            $result = $this->buyer_model->save_proof($data, $this->input->post("id", TRUE));
+
+
+        }
+
+        $this->output->set_content_type('application/json');
+		echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash()));
+
     }
 
 }

@@ -17,8 +17,8 @@ class Seller extends CI_Controller {
 	}
 
 	public function get_process_order(){
-		$result = $this->Seller_model->get_process_order();
-		$data['result'] = tbl_process_order($result, "");
+		$result = $this->Seller_model->get_process_order($this->input->post("order_status"));
+		$data['result'] = tbl_process_order($result, "", "");
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -55,8 +55,20 @@ class Seller extends CI_Controller {
             }
         }
         
+        $proof = $this->Seller_model->get_proof($id);
+        $proof_img = array();
+
+        if (!empty($proof)){
+            foreach ($proof as $key => $value) {
+                $proof_img[$key] = array("img" => unserialize($value->img_location));
+            }
+        }
+
+
         $data['products'] = $products;
         $data['result'] = $this->Seller_model->get_order_id($id);
+        $data['proof'] = $proof;
+        $data['proof_img'] = $proof_img;
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -75,7 +87,7 @@ class Seller extends CI_Controller {
 
 	public function get_close_order(){
         $result = $this->Seller_model->get_close_order();
-		$data['result'] = tbl_process_order($result, "");
+		$data['result'] = tbl_process_order($result, "", "1");
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -94,9 +106,21 @@ class Seller extends CI_Controller {
         $fdate = $this->input->post("fdate");
         $tdate = $this->input->post("tdate");
         $result = $this->Seller_model->get_delivered_order($status, $fdate, $tdate);
-        $data['result'] = tbl_process_order($result, $status);
+        $data['result'] = tbl_process_order($result, $status, "");
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
+
+    // Confirm Payment 
+
+    public function confirm_payment(){
+        $id = $this->input->post("id");
+        $status = $this->input->post("status");
+        $meessage = $this->input->post("message");
+        $data['result'] = $this->Seller_model->confirm_payment($id, $status, $meessage);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 
 }

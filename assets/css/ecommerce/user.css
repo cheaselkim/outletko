@@ -185,6 +185,7 @@ textarea{
     z-index: 9999;
 }
 
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
@@ -443,7 +444,8 @@ textarea{
 .btn-modal-img-upload {
 	margin-left: 55px;
 	justify-content: center;
-	background: #E7E7E7;
+    /* background: #E7E7E7; */
+    background: white;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
@@ -687,7 +689,8 @@ textarea{
 .btn-modal-img-upload {
 	margin-left: 16px;
 	justify-content: center;
-	background: #E7E7E7;
+    /* background: #E7E7E7; */
+    background: white;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
@@ -934,7 +937,8 @@ textarea{
 .btn-modal-img-upload {
 	margin-left: 16px;
 	justify-content: center;
-	background: #E7E7E7;
+    /* background: #E7E7E7; */
+    background: white;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
@@ -1180,7 +1184,8 @@ textarea{
 .btn-modal-img-upload {
 	margin-left: 16px;
 	justify-content: center;
-	background: #E7E7E7;
+    /* background: #E7E7E7; */
+    background: white;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;
@@ -1454,7 +1459,8 @@ textarea{
 .btn-modal-img-upload {
 	margin-left: 15px;
 	justify-content: center;
-	background: #E7E7E7;
+    /* background: #E7E7E7; */
+    background: white;
 	color: black;
 	font-size: 16px;
 	opacity: 1 !important;

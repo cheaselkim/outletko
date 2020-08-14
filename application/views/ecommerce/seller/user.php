@@ -879,7 +879,11 @@
 							<div class="form-inline">
 								<label for="order_status">Status</label>
 								<select class="form-control ml-2" id="order_status">
-									<option>For Acknowledgement</option>
+									<option value="1">For Acknowledgement</option>
+                                    <option value="2">Acknowledged</option>
+                                    <option value="3">Proof of Payment</option>
+                                    <option value="4">Payment Denied</option>
+                                    <option value="5">Payment Confirmed</option>
 								</select>
 							</div>
 						</div>
@@ -902,7 +906,7 @@
 										</div>
 
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-											<span class="h4">Status : For Acknowledgement</span>							
+											<span class="h4">Status : <span id="vw_order_status" class="alert alert-success py-0"></span></span>							
 										</div>
 
 										<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
@@ -1059,7 +1063,25 @@
 											</div>
 										</div>
 
-
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2  alert-primary" id="div-proof-payment">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-md-12">
+                                                    <span class="h4">Proof of Payment</span>
+                                                    <div class="fotorama text-center" id="div-fotorama-2" 
+                                                    data-width="100%"
+                                                    data-minheight="300px"
+                                                    data-maxheight="400px"
+                                                    data-nav="thumbs"  
+                                                    data-auto="false" 
+                                                    data-allowfullscreen="true" 
+                                                    data-fit="contain">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                    <span id="proof-message"></span>
+                                                </div>
+                                            </div>
+                                        </div>
 
 									</div>
 								</div>
@@ -1172,12 +1194,14 @@
 								</div>
 							</div> -->
 
-							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3">
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3" >
 								<div class="row">
 									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 										<button class="btn btn-warning" id="btn_back_acknowledge">Back</button>
 										<button class="btn btn-danger" id="btn_cancel_acknowledge">Cancel</button>
 										<button class="btn btn-success" data-toggle="modal" data-target="#modal_acknowledge" id="btn_acknowledge">Acknowledge</button>
+                                        <button class="btn btn-danger" id="btn_notconfirm_payment">Payment not Accepted</button>
+                                        <button class="btn btn-success" id="btn_confirm_payment">Confirm Payment</button>
 									</div>
 								</div>
 							</div>
@@ -1230,8 +1254,8 @@
 												<span class="h4" id="close_title">Order 10001</span>							
 											</div>
 
-											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-												<span class="h4">Status : For Delivery</span>							
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12 my-2">
+												<span class="h4">Status : <span class="alert alert-success py-0">Payment Confirmed</span></span>							
 											</div>
 
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -1366,7 +1390,7 @@
 										<div class="row">
 											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
 												<button class="btn btn-warning">Cancel</button>
-												<button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Delivered</button>
+												<button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Deliver</button>
 											</div>
 										</div>
 									</div>
@@ -1984,27 +2008,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
-      <div class="modal-header">
+      <div class="modal-header py-1">
         <h4 class="modal-title">Delivery Order</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
       </div>
       <!-- Modal body -->
-      <div class="modal-body">
+      <div class="modal-body py-1">
       	<div class="container">
       		<div class="row">
       			<div class="col-12">
       				<span>Courier <span class="text-red">*</span> </span>
-      				<input type="text" class="form-control" id="delivery_courier">
+      				<input type="text" class="form-control textbox-green" id="delivery_courier">
       			</div>
       			<div class="col-12">
       				<span>Track No <span class="text-red">*</span> </span>
-      				<input type="text" class="form-control" id="delivery_track">
+      				<input type="text" class="form-control textbox-green" id="delivery_track">
       			</div>
       		</div>
       	</div>
       </div>
       <!-- Modal footer -->
-      <div class="modal-footer">
+      <div class="modal-footer py-1">
         <button type="button" class="btn btn-success" id="btn_save_deliver">Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>

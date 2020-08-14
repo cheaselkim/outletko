@@ -304,11 +304,13 @@ $(document).ready(function(){
             $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
             $("#payment-icon").empty();
             $("#payment-icon").append("<i class='fas fa-check-circle'></i>");        
+            $("#div-hdr-payment").attr("data-id", "1");
         }else{
             $(".div-payment").css("background-color", "rgb(235, 241, 222)");
             $("#payment-icon").empty();
             $("#payment-icon").append("<i class='far fa-check-circle'></i>");
-}
+            $("#div-hdr-payment").attr("data-id", "0");
+        }
 
 	});
 
@@ -342,6 +344,7 @@ $(document).ready(function(){
                 $(".div-payment").css("background-color", "rgb(235, 241, 222)");
                 $("#payment-icon").empty();
                 $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+                $("#div-hdr-payment").attr("data-id", "0");
                 swal({
                     type : "warning",
                     title : "Please select payment method"
@@ -351,6 +354,10 @@ $(document).ready(function(){
 
             }
         }
+    });
+
+    $("#btn-send-proof").click(function(){
+        check_proof();
     });
 
 });
@@ -563,6 +570,8 @@ function get_orders(){
                 get_order_checkout(result.session_div);
             }
 
+            get_ongoing_orders();
+
 		}, error : function(err){
 			console.log(err.responseText);
 		}	
@@ -578,7 +587,12 @@ function get_ongoing_orders(){
 		dataType : "JSON",
 		url : base_url + "Buyer/get_ongoing_orders",
 		success : function(result){
-			$("input[name=csrf_name]").val(result.token);
+            $("input[name=csrf_name]").val(result.token);
+            $("#span-pending").text(result.pending);
+            $("#span-acknowledge").text(result.acknowledge);
+            $("#span-proof").text(result.proof);
+            $("#span-confirm").text(result.confirm);
+            $("#span-denied").text(result.denied);
 			$("#div-list-ongoing").html(result.result);
 		}, error : function(err){
 			console.log(err.responseText);
@@ -627,6 +641,15 @@ function view_order(type, id){
 	var csrf_name = $("input[name=csrf_name]").val();
 
     $("#tbl-vw-products").find("td").remove();
+    $("#div-proof").hide();
+    $("#div-proof-denied").hide();
+
+    // $("#div-proof").removeClass("overlay");
+    // $(".overlay-text").css("display", "none");
+
+    $("#vw_status").removeClass("alert alert-danger");
+    $("#vw_status").removeClass("alert alert-success");
+    $("#vw_status").addClass("alert alert-success");
 
 	if (type == "1"){
 		// $("#div-cart").removeClass("active");
@@ -663,12 +686,26 @@ function view_order(type, id){
 			var status = "";
 
 			if (data[0].status == "1"){
-				status = "Pending Acknowledge";
+				status = "Pending to Acknowledge";
 			}else if (data[0].status == "2"){
-				status = "Acknowledge";
-			}else if (data[0].status == "3"){
+                status = "Acknowledged";
+                $("#div-proof").show("slow");
+            }else if (data[0].status == "3"){
+                status = "Proof of Payment Sent";
+                // $("#div-proof").show("slow");
+                // $("#div-proof").addClass("overlay");
+                // $(".overlay-text").css("display", "block");
+            }else if (data[0].status == "4"){
+                status = "Payment denied by Seller";
+                $("#vw_status").removeClass("alert alert-success");
+                $("#vw_status").addClass("alert alert-danger");
+                $("#div-proof").show("slow");
+                $("#div-proof-denied").show("slow");
+            }else if (data[0].status == "5"){
+                status = "Payment confirm by Seller";
+			}else if (data[0].status == "6"){
 				status = "Delivery";
-			}else if (data[0].status == "4"){
+			}else if (data[0].status == "7"){
 				status = "Completed Delivery";
 			}else if (data[0].status == "0"){
 				status = "Cancelled Order";
@@ -676,13 +713,16 @@ function view_order(type, id){
 				status = "";
             }
             
-            // console.log(data[0]);
-
             $("#review-store-name").text(data[0].account_name);
             $("#review-store-id").val(data[0].seller_id);
 
+            $("#reason-denied").text(data[0].payment_message);
+
+            $("#proof-order-no").val(data[0].order_no);
+            $("#proof-order-no").attr("data-id", data[0].id);
+
             $("#vw_order_no").text(data[0].order_no);
-			$("#vw_order_date").text(data[0].order_date);
+			$("#vw_order_date").text($.datepicker.formatDate( "mm/dd/yy", new Date(data[0].order_date)));
 			$("#vw_outlet").text(data[0].account_name);
 			$("#vw_status").text(status);
 
@@ -778,6 +818,7 @@ function payment_selected(id){
         $(".div-payment").css("background-color", "rgb(235, 241, 222)");
         $("#payment-icon").empty();
         $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+        $("#div-hdr-payment").attr("data-id", "0");
 
     }else if (id == "6"){
 		remittance_list();
@@ -785,12 +826,15 @@ function payment_selected(id){
         $(".div-payment").css("background-color", "rgb(235, 241, 222)");
         $("#payment-icon").empty();
         $("#payment-icon").append("<i class='far fa-check-circle'></i>");
+        $("#div-hdr-payment").attr("data-id", "0");
 
     }else{
         $("#div-payment-method").hide("slow");
         $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
         $("#payment-icon").empty();
         $("#payment-icon").append("<i class='fas fa-check-circle'></i>");    
+        $("#div-hdr-payment").attr("data-id", "1");
+
     }
     
     // $(".div-payment").css("background-color", "rgb(0, 128, 0, 0.2)");
@@ -893,6 +937,15 @@ function get_order_checkout(div_id){
                 var font_color = "";
 
                 // console.log(result.payment_type.length);
+                var div_payment = "";
+
+                if (result.payment_type.length > 2){
+                    div_payment = "col-lg-4 col-md-4";
+                }else if (result.payment_type.length > 1){
+                    div_payment = "col-lg-6 col-md-6";
+                }else{
+                    div_payment = "col-lg-12 col-md-12";
+                }
 
 				for (var i = 0; i < result.payment_type.length; i++) {
 					// $("#payment_type").append("<option value='"+result.payment_type[i].id+"'>"+result.payment_type[i].payment_type+"</option>");
@@ -918,10 +971,12 @@ function get_order_checkout(div_id){
 
 
 					$("#div-payment").append(
-					"<div class='col-12 col-lg-12 col-md-12 col-sm-12 text-center mt-2 py-3 div-modal-payment-type cursor-pointer' id='div-modal-payment-type-"+result.payment_type[i].id+"' onclick='payment_selected("+result.payment_type[i].id+")' style='border: 1px solid "+font_color+"'>"+
-						// "<img class='img-fluid' style='height: 70px;' src='"+img_src+"'>" +
-						"<span class='payment-name font-weight-600 font-size-30' style='color: "+font_color+"'>"+result.payment_type[i].payment_type+"</span>" +
-					"</div>");
+                    "<div class='col-12 "+div_payment+" col-sm-12 text-center mt-2 px-1'>" +
+                        "<div class='div-modal-payment-type cursor-pointer' id='div-modal-payment-type-"+result.payment_type[i].id+"' onclick='payment_selected("+result.payment_type[i].id+")' style='border: 1px solid "+font_color+"'>"+
+                            // "<img class='img-fluid' style='height: 70px;' src='"+img_src+"'>" +
+                            "<span class='payment-name font-weight-600 font-size-30' style='color: "+font_color+"'>"+result.payment_type[i].payment_type+"</span>" +
+                        "</div>" +
+                    "</div>");
 
                     if (result.payment_type.length == 1){
                         payment_selected(result.payment_type[i].id);
@@ -930,7 +985,8 @@ function get_order_checkout(div_id){
                         $(".div-payment").css("background-color", "rgb(235, 241, 222)");
                         $("#payment-icon").empty();
                         $("#payment-icon").append("<i class='far fa-check-circle'></i>");
-                        }
+                        $("#div-hdr-payment").attr("data-id", "0");
+                    }
 				}
 
 				for (var i = 0; i < result.delivery_type.length; i++) {
@@ -1090,6 +1146,24 @@ function get_order_checkout(div_id){
                 // bank_list();
 				// remittance_list();
                 $("#delivery_type").val("3");
+
+                setTimeout(() => {
+                    if ($("#div-billing").attr("data-id") == "0"){
+                        $("#collapse-billing").addClass("show");
+                    }
+    
+                    if ($("#div-shipping-method").attr("data-id") == "0"){
+                        $("#collapse-shipping").addClass("show");
+                    }else{
+                        $("#collapse-shipping").removeClass("show");
+                    }
+    
+                    if ($("#div-hdr-payment").attr("data-id") == "0"){
+                        $("#collapse-payment").addClass("show");
+                    }
+                        
+                }, 1000);
+
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
@@ -1125,7 +1199,9 @@ function check_delivery_address(){
 			type : "warning",
 			title : "Please input all required fields"
         })
+        $("#div-billing").attr("data-id", "0");
     }else{
+        $("#div-billing").attr("data-id", "1");
         $(".div-deliver").css("background-color", "rgb(0, 128, 0, 0.2)");
         $("#deliver-icon").empty();
         $("#deliver-icon").append("<i class='fas fa-check-circle'></i>");
@@ -1250,7 +1326,8 @@ function get_courier(){
 	var id = $("#courier").val();
 	var csrf_name = $("input[name=csrf_name]").val();
 	var island_group = $("#bill_province").attr("data-island");
-	var total_order = $("#vw_total_order").text().replace(/,/g, '');
+    // var total_order = $("#vw_total_order").text().replace(/,/g, '');
+    var total_order = $("#sub_total").attr("data-id");
 	var shipping_fee = "";
 
 	if (id != "0"){
@@ -1286,7 +1363,9 @@ function get_courier(){
                     $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
                     $("#arrive-icon").empty();
                     $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
-            
+                    $("#div-shipping-method").attr("data-id", "1");
+                    // $("#collapse-shipping").removeClass("show");
+
                     $(".div-modal-delivery-details").hide();
                 }else{
                     shipping_fee = shipping_fee;
@@ -1296,6 +1375,8 @@ function get_courier(){
                         $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
                         $("#arrive-icon").empty();
                         $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+                        $("#div-shipping-method").attr("data-id", "1");
+                        // $("#collapse-shipping").removeClass("show");
                 
                         $("#div-del-not-avail").hide();
                         $("#courier").attr("disabled", false);
@@ -1304,13 +1385,15 @@ function get_courier(){
                         $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
                         $("#arrive-icon").empty();
                         $("#arrive-icon").append("<i class='far fa-check-circle'></i>");
+                        $("#div-shipping-method").attr("data-id", "0");
+                        // $("#collapse-shipping").addClass("show");
                 
 
                         $("#div-del-not-avail").show();
                     }    
                 }
 
-				var grand_total = Number(total_order) + Number(shipping_fee);
+                var grand_total = Number(total_order) + Number(shipping_fee);
 
 				$("#delivery_fee").val($.number(shipping_fee, 2));			
 				$("#shipping_fee").text($.number(shipping_fee, 2));
@@ -1630,6 +1713,64 @@ function save_rating(){
             })
         }, error : function(err){
             console.log(err.responseText);
+        }
+    })
+
+}
+
+function check_proof(){
+
+    var message = jQuery.trim($("#proof-message").val()).length;
+    var upload_file = $("#btn-upload-proof");
+
+    console.log(upload_file.get(0).files.length);
+    console.log(message);
+
+    if (message <= 0 || upload_file.get(0).files.length <= 0){
+        swal({
+            type : "warning",
+            title : "Please input all required fields"
+        })
+    }else{
+        save_proof();
+    }
+}
+
+function save_proof(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+    var id = $("#proof-order-no").attr("data-id");
+    var message = $("#proof-message").val();
+    var files = $('#btn-upload-proof')[0].files;
+
+    var form_data = new FormData(); 
+
+    for(var count = 0; count<files.length; count++) {
+        var name = files[count].name;
+        form_data.append("files[]", files[count]);
+    }        
+    form_data.append("id", id);
+    form_data.append('csrf_name', csrf_name);
+    form_data.append("message", message);
+
+    $.ajax({
+        data : form_data,
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Buyer/save_proof",
+        crossOrigin : false,
+        contentType: false,
+        processData: false,
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+            swal({
+                type : "success",
+                title : "Successfully Saved"
+            }, function(){
+                location.reload();
+            })
+        }, error : function(err){
+            console.log(err.responseText)
         }
     })
 

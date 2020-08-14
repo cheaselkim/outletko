@@ -12,6 +12,7 @@ if (!function_exists("tbl_products_no_order")){
         $checked = "";
         $bg = "";
         $prod_hidden = "";
+        $link_name = "";
 
         for ($x=0; $x < COUNT($query); $x++) { 
         
@@ -47,6 +48,7 @@ if (!function_exists("tbl_products_no_order")){
                     </div>
             </div>';
 
+            $link_name = base_url().$query[$x]['link_name'];
             
 			if ($account_id  != $query[$x]['account_id']){
 				$div++;
@@ -72,7 +74,7 @@ if (!function_exists("tbl_products_no_order")){
 				$output .= '<div class="col-12 col-sm-12 col-md-12 col-lg-12 py-0 item div-prod" id="div_prod_'.$div.'"> 
 							<div class="row py-1 bg-white-smoke" style="border: 1px solid black;">
 								<div class="col-lg-6 col-md-6 col-sm-12">
-									<span class="h5 font-weight-600">'.$query[$x]['account_name'].'</span>
+									<a href="'.$link_name.'" class="h5 font-weight-600 text-black">'.$query[$x]['account_name'].'</a>
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-12 text-right">
 									<button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$div.')">Proceed to Checkout</button>
@@ -211,7 +213,7 @@ if (!function_exists("tbl_ongoing_orders")){
 
 		$output = "";
 
-		$output .= "<table class='table table-bordered table-sm'>
+		$output .= "<table class='table table-bordered table-sm tbl-order'>
 					<thead>
 						<tr>
 							<th>LN</th>
@@ -225,16 +227,38 @@ if (!function_exists("tbl_ongoing_orders")){
 					<tbody>";
 
 		if (!empty($query)){
-			$status = "";
+            $status = "";
+            $pending = 0;
+            $acknowledge = 0;
+            $confirm = 0;
+            $denied = 0;
+            $proof = 0;
 			foreach ($query as $key => $value) {
 
 				if ($value->status == "1"){
-					$status = "Pending to Acknowledge";
+                    $status = "Pending to Acknowledge";
+                    // $class = "btn-warning";
+                    $class = "";
+                    $pending++;
 				}else if ($value->status == "2"){
-					$status = "Acknowledged";
-				}
+                    $status = "Acknowledged";
+                    $class = "btn-primary";
+                    $acknowledge++;
+				}else if ($value->status == "3"){
+                    $proof++;
+                    $status = "Proof of Payment Sent";
+                    $class = "btn-warning";
+                }else if ($value->status == "4"){
+                    $denied++;
+                    $status = "Payment denied by Seller";
+                    $class = "btn-danger";
+                }else if ($value->status == "5"){
+                    $confirm++;
+                    $status = "Confirm Payment by Seller";
+                    $class = "btn-info";
+                }
 
-				$output .= "<tr class='cursor-pointer' onclick='view_order(2, ".$value->id.")'>
+				$output .= "<tr class='cursor-pointer ".$class."' onclick='view_order(2, ".$value->id.")'>
 								<td>".($key + 1)."</td>
 								<td>".$value->order_no."</td>
 								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
@@ -247,7 +271,7 @@ if (!function_exists("tbl_ongoing_orders")){
 
 		}
 
-		return $output;
+		return array("output" => $output, "pending" => $pending, "acknowledge" => $acknowledge, "proof" => $proof, "confirm" => $confirm, "denied" => $denied);
 
 	}
 }
@@ -257,7 +281,7 @@ if (!function_exists("tbl_complete_orders")){
 
 		$output = "";
 
-		$output .= "<table class='table table-bordered table-sm'>
+		$output .= "<table class='table table-bordered table-sm tbl-order'>
 					<thead>
 						<tr>
 							<th>LN</th>
@@ -298,7 +322,7 @@ if (!function_exists("tbl_transctions_orders")){
 
 		$output = "";
 
-		$output .= "<table class='table table-bordered table-sm'>
+		$output .= "<table class='table table-bordered table-sm tbl-order'>
 					<thead>
 						<tr>
 							<th>LN</th>
