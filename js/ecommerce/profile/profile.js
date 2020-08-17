@@ -1409,7 +1409,9 @@ if (prod_ol == 0){
                     add_to_cart_session(type);
                     if (type == "2"){
                         if ($(document).width() < 768){
-                            window.open(base_url + "login", "_self");
+                            setTimeout(() => {
+                                window.open(base_url + "login", "_self");                                
+                            }, 500);
                         }else{
                             $("#modal_signup_user").modal("show");        
                         }    
@@ -1514,7 +1516,7 @@ function add_to_cart_session(type){
     order = Number(order) + 1;
     var total_cart = ( Number(prod_price) * Number(prod_qty)) + Number(cart);
   
-    // console.log(total_cart);
+    console.log(type);
 
 
     $("#cart-prod-qty").text($.number(prod_qty, 0));

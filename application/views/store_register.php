@@ -160,8 +160,8 @@
                                 <span class='plan-discount-price font-weight-600' hidden>PHP <span class='span-plan-price' data-price='0'>0.00</span></span>
 
                                 <button class="btn btn-warning btn-block py-2 text-center btn-plan" value="0">
-                                    <p class="mb-0 font-weight-600 font-size-35">Sign Up for Outletko Basic</p>
-                                    <p class="mb-0 font-weight-600 font-size-35">FREE</p>
+                                    <p class="mb-0 font-weight-600 font-size-35" style="white-space:normal;word-wrap:normal;">Sign Up for Outletko Basic</p>
+                                    <p class="mb-0 font-weight-600 plan-discount-price">FREE</p>
                                 </button>
                             </div>
 

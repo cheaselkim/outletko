@@ -517,8 +517,6 @@ $(document).ready(function(){
 
     });
 
-
-    
 });
 
 function isEmail(email) {
@@ -763,7 +761,7 @@ function insert_user(){
 			})
 
 		},success : function(result){
-			// swal.close();
+			swal.close();
 			$("input[name=csrf_name]").val(result.token);
 			// $("#acc_id").val(result.comp_id);
 			// $("#div-signup-form").hide();

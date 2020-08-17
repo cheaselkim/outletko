@@ -603,7 +603,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row div-modal-delivery-details">
+                                                    <div class="row div-modal-delivery-details" hidden>
                                                         <div class="col-12 col-lg-12 col-md-12 col-sm-12" >
                                                             <span>Standard Delivery</span>
                                                             <input type="text" class="form-control" id="std_delivery" readonly>
@@ -1004,7 +1004,7 @@
 							<input type="text" class="form-control" id="bill_email">
 						</div>
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
-							<span class="font-size-16 mb-1">Contact Person <span class="text-red">*</span> </span>
+							<span class="font-size-16 mb-1">Contact Person <span class="text-red" hidden>*</span> </span>
 							<input type="text" class="form-control" id="bill_contact" value="<?php echo $this->session->userdata('user_fullname'); ?>">
 						</div>
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">

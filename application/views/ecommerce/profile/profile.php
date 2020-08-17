@@ -340,22 +340,27 @@
                                 </div>
 
 
+                                <div class="row" id="div-prod-variation">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="row mx-1  div-btn-order">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
+                                                        <select class="form-control prod-var" id="prod-var-1"></select>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
+                                                        <select class="form-control prod-var" id="prod-var-2"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row ">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="row div-btn-order mx-1" id="div-btn-order">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="row">
-                                                    <div class="col-12 col-lg-8 col-md-12 col-sm-12">
-                                                        <div class="row">
-                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
-                                                                <select class="form-control prod-var" id="prod-var-1"></select>
-                                                            </div>
-                                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12 mt-1"> 
-                                                                <select class="form-control prod-var" id="prod-var-2"></select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="row mt-2" >
                                                     <div class="col-3 col-lg-1 col-md-2 col-sm-3 pr-1">
                                                         <button class="btn btn-orange btn-block px-0" id="btn_minus"><i class="fas fa-minus"></i></button>

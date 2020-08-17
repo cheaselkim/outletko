@@ -17,6 +17,7 @@ class Profile extends CI_Controller {
 
     public function my_order(){
         $result = $this->login_model->check_session();
+
         if ($result == true){
             $menu = 2;
             $data['user_type'] = $this->session->userdata("user_type");
@@ -489,6 +490,7 @@ class Profile extends CI_Controller {
         $session_prod = $this->session->userdata("prod_session");
         $total = 0;
         $product_price = 0;
+        $products = array();
 
         if (!empty($session_prod)){
             foreach ($session_prod as $key => $value) {
@@ -542,9 +544,15 @@ class Profile extends CI_Controller {
             }
         }
 
+        if (!empty($this->session->userdata("prod_session"))){
+            $order_no = COUNT($this->session->userdata("prod_session"));
+        }else{
+            $order_no = 0;
+        }
+
         $data['orders']  = $products;
         $data['result'] = tbl_products_no_order($products);
-        $data['order_no'] = COUNT($this->session->userdata("prod_session"));
+        $data['order_no'] = $order_no;
         $data['cart_total'] = $total;
         $data['token'] = $this->security->get_csrf_hash();
         $this->session->set_userdata('order_no', $data['order_no']);

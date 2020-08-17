@@ -386,7 +386,7 @@ public function insert_user(){
 
     $result2 = $this->signup_model->register_users($user_data);
 
-    $this->send_email_buyer($account_buyer['verify_code'], $account_buyer['email']);
+    // $this->send_email_buyer($account_buyer['verify_code'], $account_buyer['email']);
 
     $result3 = $this->signup_model->get_account($result['comp_id']);
 

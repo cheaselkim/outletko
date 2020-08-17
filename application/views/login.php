@@ -804,29 +804,29 @@
 <script>
 $(document).ready(function(){
 
-    $(".show_conf_pass").click(function(){
-        if ($("#signup_user_conf_password").attr("type") == "password"){
-            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
-            $("#conf_pass_icon").addClass("fa fa-eye");
-            $("#signup_user_conf_password").attr("type", "text");
-        }else{
-            $("#conf_pass_icon").removeClass("fa fa-eye");
-            $("#conf_pass_icon").addClass("fa fa-eye-slash");
-            $("#signup_user_conf_password").attr("type", "password");
-        }
-    });
+    // $(".show_conf_pass").click(function(){
+    //     if ($("#signup_user_conf_password").attr("type") == "password"){
+    //         $("#conf_pass_icon").removeClass("fa fa-eye-slash");
+    //         $("#conf_pass_icon").addClass("fa fa-eye");
+    //         $("#signup_user_conf_password").attr("type", "text");
+    //     }else{
+    //         $("#conf_pass_icon").removeClass("fa fa-eye");
+    //         $("#conf_pass_icon").addClass("fa fa-eye-slash");
+    //         $("#signup_user_conf_password").attr("type", "password");
+    //     }
+    // });
 
-    $(".show_pass").click(function(){
-        if ($("#signup_user_password").attr("type") == "password"){
-            $("#pass_icon").removeClass("fa fa-eye-slash");
-            $("#pass_icon").addClass("fa fa-eye");
-            $("#signup_user_password").attr("type", "text");
-        }else{
-            $("#pass_icon").removeClass("fa fa-eye");
-            $("#pass_icon").addClass("fa fa-eye-slash");
-            $("#signup_user_password").attr("type", "password");
-        }
-    });
+    // $(".show_pass").click(function(){
+    //     if ($("#signup_user_password").attr("type") == "password"){
+    //         $("#pass_icon").removeClass("fa fa-eye-slash");
+    //         $("#pass_icon").addClass("fa fa-eye");
+    //         $("#signup_user_password").attr("type", "text");
+    //     }else{
+    //         $("#pass_icon").removeClass("fa fa-eye");
+    //         $("#pass_icon").addClass("fa fa-eye-slash");
+    //         $("#signup_user_password").attr("type", "password");
+    //     }
+    // });
 
 
 });

@@ -139,13 +139,13 @@
 
 
 <?php 
-
-    if ($header != ""){
+    if (!empty($header)){
         $this->load->view($header); 
     }
     $this->load->view($page);    
     //   var_dump("template 2");
     //   var_dump($header);
+    //   var_dump($page);
 
     if ($page == "ecommerce/profile/profile"){
       $this->load->view("ecommerce/profile/footer");
@@ -153,32 +153,6 @@
       $this->load->view("templates/footer");
     }
  ?>
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            xfbml            : true,
-            version          : 'v8.0'
-          });
-        };
-
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
-      <!-- Your Chat Plugin code -->
-      <div class="fb-customerchat"
-        attribution=setup_tool
-        page_id="103466421133227"
-  theme_color="#006600">
-      </div>
-
 
 <div class="modal" id="modal_signup_user" style="z-index: 999999;">
     <div class="modal-dialog" style="max-width: 460px;">
@@ -541,38 +515,6 @@
     </div>
 </div>
 
-
-<script>
-$(document).ready(function(){
-
-    $(".show_conf_pass").click(function(){
-        if ($("#signup_user_conf_password").attr("type") == "password"){
-            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
-            $("#conf_pass_icon").addClass("fa fa-eye");
-            $("#signup_user_conf_password").attr("type", "text");
-        }else{
-            $("#conf_pass_icon").removeClass("fa fa-eye");
-            $("#conf_pass_icon").addClass("fa fa-eye-slash");
-            $("#signup_user_conf_password").attr("type", "password");
-        }
-    });
-
-    $(".show_pass").click(function(){
-        if ($("#signup_user_password").attr("type") == "password"){
-            $("#pass_icon").removeClass("fa fa-eye-slash");
-            $("#pass_icon").addClass("fa fa-eye");
-            $("#signup_user_password").attr("type", "text");
-        }else{
-            $("#pass_icon").removeClass("fa fa-eye");
-            $("#pass_icon").addClass("fa fa-eye-slash");
-            $("#signup_user_password").attr("type", "password");
-        }
-    });
-
-
-});
-
-</script>
 
 
 </body>

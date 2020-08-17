@@ -893,6 +893,8 @@ function get_order_checkout(div_id){
 
 		$("#div-home").hide();
 		$("#div-checkout-details").show("slow");
+        console.log(prod_id);
+        console.log(item_id);
 
 	    $.ajax({
 	    	data : {csrf_name : csrf_name, prod_id : prod_id, item_id : item_id},
@@ -1147,22 +1149,23 @@ function get_order_checkout(div_id){
 				// remittance_list();
                 $("#delivery_type").val("3");
 
-                setTimeout(() => {
-                    if ($("#div-billing").attr("data-id") == "0"){
-                        $("#collapse-billing").addClass("show");
-                    }
+                    // if ($("#div-shipping-method").attr("data-id") == "0"){
+                    //     $("#collapse-shipping").addClass("show");
+                    // }else{
+                    //     $("#collapse-shipping").removeClass("show");
+                    // }
     
-                    if ($("#div-shipping-method").attr("data-id") == "0"){
-                        $("#collapse-shipping").addClass("show");
-                    }else{
-                        $("#collapse-shipping").removeClass("show");
-                    }
-    
-                    if ($("#div-hdr-payment").attr("data-id") == "0"){
-                        $("#collapse-payment").addClass("show");
-                    }
+                    // if ($("#div-hdr-payment").attr("data-id") == "0"){
+                    //     $("#collapse-payment").addClass("show");
+                    // }
                         
-                }, 1000);
+
+                if ($("#div-billing").attr("data-id") == "0"){
+                    $("#collapse-billing").addClass("show");
+                }
+
+                $("#collapse-payment").addClass("show");
+                $("#collapse-shipping").addClass("show");
 
 	    	}, error : function(err){
 	    		console.log(err.responseText);
@@ -1190,8 +1193,10 @@ function check_delivery_address(){
     // console.log(bill_mobile);
     // console.log(bill_email);
     // console.log(bill_contact);
+    //|| jQuery.bill(bill_contact).length <= 0
 
-	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 ){
+    if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  
+    || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 ){
         $(".div-deliver").css("background-color", "rgb(235, 241, 222)");
         $("#deliver-icon").empty();
         $("#deliver-icon").append("<i class='far fa-check-circle'></i>");
@@ -1200,6 +1205,35 @@ function check_delivery_address(){
 			title : "Please input all required fields"
         })
         $("#div-billing").attr("data-id", "0");
+
+        if (jQuery.trim(bill_name).length <= 0){
+            $(bill_name).addClass("error");
+        }
+
+        if (jQuery.trim(bill_address).length <= 0){
+            $(bill_address).addClass("error");
+        }
+
+        if (jQuery.trim(bill_city).length <= 0){
+            $(bill_city).addClass("error");
+        }
+
+        if (jQuery.trim(bill_province).length <= 0){
+            $(bill_province).addClass("error");
+        }
+
+        if (jQuery.trim(bill_mobile).length <= 0){
+            $(bill_mobile).addClass("error");
+        }
+
+        if (jQuery.trim(bill_email).length <= 0){
+            $(bill_email).addClass("error");
+        }
+
+        // if (jQuery.trim(bill_contact).length <= 0){
+        //     $(bill_email).addClass("error");
+        // }
+
     }else{
         $("#div-billing").attr("data-id", "1");
         $(".div-deliver").css("background-color", "rgb(0, 128, 0, 0.2)");
@@ -1235,6 +1269,7 @@ function confirm_order(){
 $("#div-remittance-payment").hide();
 $("#div-bank-payment").hide();
 get_remittance();
+check_delivery_address();
 
 var payment_type = $("#payment_type_id").val();
 var payment_method = $("#summ-payment-type-list").val();
@@ -1288,10 +1323,38 @@ if (delivery_type == "2"){
     courier = "n/a";
 }
 
+console.log($("#div-billing").attr("data-id"));
+console.log($("#div-shipping-method").attr("data-id"));
+console.log($("#div-hdr-payment").attr("data-id"));
+
 if (payment_type != "0" && courier != "" || payment_method != "0"){
-	$("#div-home").hide();
-	$("#div-checkout-details").hide();
-	$("#div-order-summary").show("slow");
+
+    if ($("#div-billing").attr("data-id") == "0" || $("#div-shipping-method").attr("data-id") == "0" || $("#div-hdr-payment").attr("data-id") == "0"){
+
+        swal({
+            type : "warning",
+            title : "Please Complete all required fields",
+        })    
+
+        if ($("#div-shipping-method").attr("data-id") == "0"){
+            $("#collapse-shipping").addClass("show");
+        }else{
+            $("#collapse-shipping").removeClass("show");
+        }
+
+        if ($("#div-hdr-payment").attr("data-id") == "0"){
+            $("#collapse-payment").addClass("show");
+        }
+                        
+        if ($("#div-billing").attr("data-id") == "0"){
+            $("#collapse-billing").addClass("show");
+        }
+    
+    }else{
+        $("#div-home").hide();
+        $("#div-checkout-details").hide();
+        $("#div-order-summary").show("slow");    
+    }
 }else{
     if (courier == ""){
         swal({
@@ -1482,7 +1545,7 @@ function check_place_order(){
 	// console.log(bill_province);
 	// console.log(bill_mobile);
 
-	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0 || jQuery.trim(bill_contact).length <= 0){
+	if (jQuery.trim(bill_name).length <= 0 || jQuery.trim(bill_address).length <= 0 || jQuery.trim(bill_city).length <= 0 || jQuery.trim(bill_province).length <= 0  || jQuery.trim(bill_mobile) <=0 || jQuery.trim(bill_email).length <= 0){
 		swal({
 			type : "warning",
 			title : "Please input all required fields"

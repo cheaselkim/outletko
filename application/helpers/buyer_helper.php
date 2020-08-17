@@ -212,6 +212,12 @@ if (!function_exists("tbl_ongoing_orders")){
 	function tbl_ongoing_orders($query){
 
 		$output = "";
+        $pending = 0;
+        $acknowledge = 0;
+        $confirm = 0;
+        $denied = 0;
+        $proof = 0;
+
 
 		$output .= "<table class='table table-bordered table-sm tbl-order'>
 					<thead>
@@ -228,11 +234,6 @@ if (!function_exists("tbl_ongoing_orders")){
 
 		if (!empty($query)){
             $status = "";
-            $pending = 0;
-            $acknowledge = 0;
-            $confirm = 0;
-            $denied = 0;
-            $proof = 0;
 			foreach ($query as $key => $value) {
 
 				if ($value->status == "1"){

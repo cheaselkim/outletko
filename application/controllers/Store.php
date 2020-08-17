@@ -31,7 +31,11 @@ class Store extends CI_Controller {
 				if ($this->session->userdata("validated") == true){
 					// $data['user_type'] = $this->session->userdata('user_type');
                     $result = $this->login_model->check_session();	
-                    $link_name = $this->store_model->get_linkname();
+                    if ($this->session->userdata("user_type") == "2"){
+                        $link_name = $this->store_model->get_linkname();
+                    }else{
+                        $link_name = $this->store_model->get_linkname_id($data['id']);
+                    }
 					if ($result != true){
 						redirect("/");
 					}else{
