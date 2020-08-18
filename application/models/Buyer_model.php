@@ -76,6 +76,11 @@ class Buyer_model extends CI_Model {
        
         $city_query = $this->db2->query("SELECT * FROM account_coverage_city WHERE comp_id = ? AND city = ?", array($id, $city))->result();
         $query = "";
+        
+        if ($weight != "0"){
+            $weight = $weight/1000;
+        }
+
         if (!empty($city_query)){
             $query = $this->db2->query("SELECT 
             `account_coverage_shipping`.`id`,
@@ -301,6 +306,7 @@ class Buyer_model extends CI_Model {
             $this->db2->where("comp_id", $this->session->userdata("comp_id"));
             $this->db2->where("order_id", NULL);
             $this->db2->set("order_id", $id);
+            $this->db2->set("prod_qty", $row['prod_qty']);
             $this->db2->set("prod_price", $row['prod_price']);
             $this->db2->set("prod_total_price", $row['prod_total_price']);
             $this->db2->update("buyer_order_products");
@@ -328,54 +334,133 @@ class Buyer_model extends CI_Model {
     }
 
     public function get_ongoing_orders(){
+
+        // $query = $this->db2->query("
+        // SELECT 
+        //     buyer_order.*, 
+        //     `account`.`account_name`
+        // FROM buyer_order
+        // LEFT JOIN account ON 
+        //     `account`.`id` = `buyer_order`.`seller_id`
+        // WHERE comp_id = ? AND status IN ? 
+        // ORDER BY status DESC, order_no", array($this->session->userdata("comp_id"), array("1", "2", "3", "4", "5")))->result();
+
         $query = $this->db2->query("
         SELECT 
-            buyer_order.*, 
-            `account`.`account_name`
-        FROM buyer_order
+            buyer_order.status,
+            buyer_order.order_no,
+            buyer_order.date_insert AS order_date,
+            buyer_order.total_amount AS grand_total,
+            buyer_order.id AS order_id,
+            products.*, buyer_order_products.*, `products`.`id` AS prod_id, `buyer_order_products`.`id` AS item_id,
+            `account`.`account_name`,
+            `account`.`link_name`
+        FROM 
+            buyer_order
+        LEFT JOIN buyer_order_products ON 
+            buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN products ON 
+            `buyer_order_products`.`prod_id` = `products`.`id`            
         LEFT JOIN account ON 
-            `account`.`id` = `buyer_order`.`seller_id`
-        WHERE comp_id = ? AND status IN ? 
-        ORDER BY status DESC, order_no", array($this->session->userdata("comp_id"), array("1", "2", "3", "4", "5")))->result();
+            `account`.`id` = `products`.`account_id`
+        WHERE 
+            `buyer_order_products`.`comp_id` = ?
+            AND `buyer_order`.`status` IN ? 
+        ORDER BY STATUS DESC, `buyer_order`.`order_no`, `products`.`product_name`
+            ", array($this->session->userdata("comp_id"), array("1", "2", "3", "4", "5")))->result();
+
         return $query;
     }
 
     public function get_complete_orders(){
+        // $query = $this->db2->query("
+        // SELECT 
+        //     buyer_order.*, 
+        //     `account`.`account_name`
+        // FROM buyer_order
+        // LEFT JOIN account ON 
+        //     `account`.`id` = `buyer_order`.`seller_id`
+        // WHERE comp_id = ? AND status = ? ", array($this->session->userdata("comp_id"), "6"))->result();
+
         $query = $this->db2->query("
         SELECT 
-            buyer_order.*, 
-            `account`.`account_name`
-        FROM buyer_order
+            buyer_order.status,
+            buyer_order.order_no,
+            buyer_order.date_insert AS order_date,
+            buyer_order.total_amount AS grand_total,
+            buyer_order.id AS order_id,
+            products.*, buyer_order_products.*, `products`.`id` AS prod_id, `buyer_order_products`.`id` AS item_id,
+            `account`.`account_name`,
+            `account`.`link_name`
+        FROM 
+            buyer_order
+        LEFT JOIN buyer_order_products ON 
+            buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN products ON 
+            `buyer_order_products`.`prod_id` = `products`.`id`            
         LEFT JOIN account ON 
-            `account`.`id` = `buyer_order`.`seller_id`
-        WHERE comp_id = ? AND status = ? ", array($this->session->userdata("comp_id"), "6"))->result();
+            `account`.`id` = `products`.`account_id`
+        WHERE 
+            `buyer_order_products`.`comp_id` = ?
+            AND `buyer_order`.`status` IN ? 
+        ORDER BY STATUS DESC, `buyer_order`.`order_no`, `products`.`product_name`
+            ", array($this->session->userdata("comp_id"), array("6")))->result();
+
+
         return $query;
     }
 
     public function get_transactions_orders(){
+        // $query = $this->db2->query("
+        // SELECT 
+        //     buyer_order.*, 
+        //     `account`.`account_name`
+        // FROM buyer_order
+        // LEFT JOIN account ON 
+        //     `account`.`id` = `buyer_order`.`seller_id`
+        // WHERE comp_id = ? AND status IN ? ", array($this->session->userdata("comp_id"), array("4", "0")))->result();
+
         $query = $this->db2->query("
         SELECT 
-            buyer_order.*, 
-            `account`.`account_name`
-        FROM buyer_order
+            buyer_order.status,
+            buyer_order.order_no,
+            buyer_order.date_insert AS order_date,
+            buyer_order.total_amount AS grand_total,
+            buyer_order.id AS order_id,
+            products.*, buyer_order_products.*, `products`.`id` AS prod_id, `buyer_order_products`.`id` AS item_id,
+            `account`.`account_name`,
+            `account`.`link_name`
+        FROM 
+            buyer_order
+        LEFT JOIN buyer_order_products ON 
+            buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN products ON 
+            `buyer_order_products`.`prod_id` = `products`.`id`            
         LEFT JOIN account ON 
-            `account`.`id` = `buyer_order`.`seller_id`
-        WHERE comp_id = ? AND status IN ? ", array($this->session->userdata("comp_id"), array("4", "0")))->result();
+            `account`.`id` = `products`.`account_id`
+        WHERE 
+            `buyer_order_products`.`comp_id` = ?
+            AND `buyer_order`.`status` IN ? 
+        ORDER BY STATUS DESC, `buyer_order`.`order_no`, `products`.`product_name`
+            ", array($this->session->userdata("comp_id"), array("7", "0")))->result();
+
+
         return $query;
     }
 
     public function complete_order($id){
         $this->db2->where("id", $id);
-        $this->db2->set("status", "4");
+        $this->db2->set("status", "7");
         $this->db2->update("buyer_order");
     }
 
     public function get_order_hdr($id){
+        // DATE(`buyer_order`.`date_insert`) AS order_date,
         $query = $this->db2->query("
         SELECT 
             buyer_order.*, 
-            DATE(`buyer_order`.`date_insert`) AS order_date,
             `account`.`account_name`,
+            DATE_FORMAT(`buyer_order`.`date_insert`, '%d %b %Y %H:%i:%s') AS order_date,
             `delivery_type`.`delivery_type` AS `delivery_type_desc`,
             `payment_type`.`payment_type` AS `payment_type_desc`,
             `city`.`city_desc`,
@@ -403,7 +488,8 @@ class Buyer_model extends CI_Model {
         $query = $this->db2->query("
             SELECT 
                 buyer_order_products.*,
-                `products`.`product_name`
+                `products`.`product_name`,
+                `products`.`img_location`
             FROM buyer_order_products 
             LEFT JOIN products ON 
             `buyer_order_products`.`prod_id` = `products`.`id`

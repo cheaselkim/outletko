@@ -360,6 +360,11 @@ $(document).ready(function(){
         check_proof();
     });
 
+    $("#btn-upload-proof").change(function(e){
+        var fileName = e.target.files[0].name;
+        $("#span-upload-proof").text(fileName);
+    });
+
 });
 
 function bank_list(){
@@ -639,6 +644,7 @@ function get_transactions_orders(){
 function view_order(type, id){
 
 	var csrf_name = $("input[name=csrf_name]").val();
+    var total_items = 0;
 
     $("#tbl-vw-products").find("td").remove();
     $("#div-proof").hide();
@@ -647,9 +653,11 @@ function view_order(type, id){
     // $("#div-proof").removeClass("overlay");
     // $(".overlay-text").css("display", "none");
 
-    $("#vw_status").removeClass("alert alert-danger");
-    $("#vw_status").removeClass("alert alert-success");
-    $("#vw_status").addClass("alert alert-success");
+    // $("#vw_status").removeClass("alert alert-danger");
+    // $("#vw_status").removeClass("alert alert-success");
+    // $("#vw_status").addClass("alert alert-success");
+
+    $("#vw_status").removeClass();
 
 	if (type == "1"){
 		// $("#div-cart").removeClass("active");
@@ -669,6 +677,7 @@ function view_order(type, id){
 
     if (type != "3"){
         $("#div-order-dtls").show("slow");
+		$(window).scrollTop($('#div-order-dtls').offset().top);
     }
 	// $("#div-order-dtls").addClass("show");
 
@@ -687,28 +696,34 @@ function view_order(type, id){
 
 			if (data[0].status == "1"){
 				status = "Pending to Acknowledge";
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 btn-light py-0 my-0 px-2 div-ong-status h4 py-1");
 			}else if (data[0].status == "2"){
                 status = "Acknowledged";
                 $("#div-proof").show("slow");
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 btn-primary py-0 my-0 px-2 div-ong-status h4 py-1");
             }else if (data[0].status == "3"){
                 status = "Proof of Payment Sent";
                 // $("#div-proof").show("slow");
                 // $("#div-proof").addClass("overlay");
                 // $(".overlay-text").css("display", "block");
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 btn-warning py-0 my-0 px-2 div-ong-status h4 py-1");
             }else if (data[0].status == "4"){
                 status = "Payment denied by Seller";
-                $("#vw_status").removeClass("alert alert-success");
-                $("#vw_status").addClass("alert alert-danger");
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 btn-danger py-0 my-0 px-2 div-ong-status h4 py-1");
                 $("#div-proof").show("slow");
                 $("#div-proof-denied").show("slow");
             }else if (data[0].status == "5"){
                 status = "Payment confirm by Seller";
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 btn-info py-0 my-0 px-2 div-ong-status h4 py-1");
 			}else if (data[0].status == "6"){
 				status = "Delivery";
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 px-2 div-ong-status h4 py-1");
 			}else if (data[0].status == "7"){
-				status = "Completed Delivery";
+				status = "Completed Order";
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 px-2 div-ong-status h4 py-1");
 			}else if (data[0].status == "0"){
 				status = "Cancelled Order";
+                $("#vw_status").addClass("col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 px-2 div-ong-status h4 py-1");
 			}else{
 				status = "";
             }
@@ -722,7 +737,7 @@ function view_order(type, id){
             $("#proof-order-no").attr("data-id", data[0].id);
 
             $("#vw_order_no").text(data[0].order_no);
-			$("#vw_order_date").text($.datepicker.formatDate( "mm/dd/yy", new Date(data[0].order_date)));
+			$("#vw_order_date").text(data[0].order_date);
 			$("#vw_outlet").text(data[0].account_name);
 			$("#vw_status").text(status);
 
@@ -735,29 +750,50 @@ function view_order(type, id){
 
 			$("#vw_fullname").text(data[0].buyer_name);
 			$("#vw_contact_person").text(data[0].contact_person);
-			$("#vw_mobile").text(data[0].contact_no);
+			$("#vw_mobile").text("(+63) "+data[0].contact_no);
 			$("#vw_email").text(data[0].email);
 
-			$("#vw_address").text(data[0].delivery_address);
-			$("#vw_barangay").text(data[0].barangay);
-			$("#vw_city").text(data[0].city_desc);
-			$("#vw_province").text(data[0].province_desc);
+			$("#vw_address").text(data[0].delivery_address + ", " + data[0].barangay + ", " + data[0].city_desc + ", " + data[0].province_desc);
+			// $("#vw_barangay").text(data[0].barangay);
+			// $("#vw_city").text(data[0].city_desc);
+			// $("#vw_province").text(data[0].province_desc);
 
-			$("#vw_notes").val(data[0].notes);
+			$("#vw_notes").text(data[0].notes);
 
 			$("#vw_sub_total").text($.number(data[0].sub_total, 2));
 			$("#vw_shipping_fee").text($.number(data[0].shipping_fee, 2));
 			$("#vw_total_amount").text($.number(data[0].total_amount, 2));
 
-			for (var i = 0; i < products.length; i++) {
+            $("#div-order-prod").html(result.products);
 
-				$("#tbl-vw-products").append("<tr><td>" + products[i].product_name + 
-					"</td><td>" + $.number(products[i].prod_qty, 0) + 					
-					"</td><td>" + $.number(products[i].prod_price, 2) + 
-					"</td><td>" + $.number((products[i].prod_qty * products[i].prod_price), 2) + 
-					"</td></tr>");
+			// for (var i = 0; i < products.length; i++) {
 
-			}
+            //     total_items += Number(products[i].prod_qty);
+            //     var img = base_url + "images/products/" + img_location;
+
+            //     $("#div-order-prod").append('<div class="row mb-2">'+
+            //     '<div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">'+
+            //         '<div class="border text-center w-100 ong-prod-img">'+
+            //             '<img src="'+img+'" alt="Product">'+
+            //         '</div>'+
+            //     '</div>'+
+            //     '<div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">'+
+            //         '<div class="row">'+
+            //             '<div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">'+
+            //                 '<p>'+products[i].product_name+'</p>'+
+            //             '</div>'+
+            //             '<div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">'+
+            //                 '<p><span class="d-inline-block d-sm-none">x</span> '+products[i].prod_qty+'</p>'+
+            //             '</div>'+
+            //             '<div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">'+
+            //                 '<p class="font-weight-600 text-dark-green">&#8369; '+$.number(products[i].prod_price, 2)+'</p>'+
+            //             '</div>'+                                                            
+            //         '</div>'+
+            //     '</div>'+
+            // '</div>');
+            // }
+            
+			$("#vw_total_items").text($.number(result.total_items, 0));
 
 
 		}, error : function(err){
@@ -1616,7 +1652,8 @@ function place_order(){
     $("#prod_dtls tbody tr").each(function(row, tr){
     	sub = {
             "item_id" : $(tr).find(".item_id").text(),
-    		"prod_id" : $(tr).find(".prod_id").text(),
+            "prod_id" : $(tr).find(".prod_id").text(),
+            "prod_qty" : $(tr).find(".prod_qty").text(),
     		"prod_price" : $(tr).find(".prod_unit_price").text().replace(/,/g, ''),
     		"prod_total_price" : $(tr).find(".prod_total_price").text().replace(/,/g, '')
     	}
@@ -1673,6 +1710,8 @@ function place_order(){
     // console.log(data_profile);
 
     // console.log(save_info);
+
+    // console.log(prod_id);
 
     // console.log(prod_id);
 

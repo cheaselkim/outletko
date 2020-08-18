@@ -1,0 +1,86 @@
+.border{
+    border: 1px solid green !important;
+}
+
+.border-top-0{
+    border-top: 0 !important;
+}
+
+.ong-prod-img img{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+.ong-prod-img{
+    height: 80px;
+}
+
+.ong-details p{
+    margin-bottom: 0;
+    line-height: 1.1;
+    font-size: 13px;
+}
+
+.div-ong-status{
+    text-align: right;
+}
+
+.btn-order-dtls{
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+.ong-prod-img{
+    height: 70px;
+}
+
+.ong-details{
+    height: 70px;
+    line-height: 50px;
+}
+
+.ong-details p{
+    margin-bottom: 0;
+    line-height: 1.1;
+    font-size: 15px;
+    /* display: inline-block; */
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.div-ong-status{
+    text-align: left;
+}
+
+.btn-order-dtls{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+
+}

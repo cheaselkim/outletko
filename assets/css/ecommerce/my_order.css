@@ -321,6 +321,23 @@
     padding-right: 0;
 }
 
+.tab-item{
+    border: 1px solid green !important;
+    /* border-radius: 10px !important; */
+    border-right: 0px !important;
+    border-radius: 0px !important;
+}
+
+#btn-tab-cart{
+    border-top-left-radius: 10px !important;
+}
+
+#btn-tab-transaction{
+    border-top-right-radius: 10px !important;
+    border-right: 1px solid green !important;
+}
+
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

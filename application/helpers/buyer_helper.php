@@ -217,149 +217,900 @@ if (!function_exists("tbl_ongoing_orders")){
         $confirm = 0;
         $denied = 0;
         $proof = 0;
+        $status = "";
+        $account_id = "";
+        $order_no = "";
+        $prod_var = "";
+        $img = "";
+        $order_id = "";
+        $item = 0;
+        $btn_text = "";
 
+        if (!empty($query)){
+            for ($x=0; $x < COUNT($query); $x++) { 
 
-		$output .= "<table class='table table-bordered table-sm tbl-order'>
-					<thead>
-						<tr>
-							<th>LN</th>
-							<th>Order No</th>
-							<th>Order Date</th>
-							<th>Seller</th>
-							<th>Total Amount</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>";
+                $prod_var = "";
 
-		if (!empty($query)){
-            $status = "";
-			foreach ($query as $key => $value) {
-
-				if ($value->status == "1"){
+                if ($query[$x]['status'] == "1"){
+                    $pending++;
                     $status = "Pending to Acknowledge";
                     // $class = "btn-warning";
-                    $class = "";
-                    $pending++;
-				}else if ($value->status == "2"){
+                    $class = "btn btn-light";
+                    // $btn_text = "See More";
+				}else if ($query[$x]['status'] == "2"){
+                    $acknowledge++;
                     $status = "Acknowledged";
                     $class = "btn-primary";
-                    $acknowledge++;
-				}else if ($value->status == "3"){
+                    // $btn_text = "Send Payment";
+				}else if ($query[$x]['status'] == "3"){
                     $proof++;
                     $status = "Proof of Payment Sent";
                     $class = "btn-warning";
-                }else if ($value->status == "4"){
+                    // $btn_text = "See More";
+                }else if ($query[$x]['status'] == "4"){
                     $denied++;
                     $status = "Payment denied by Seller";
                     $class = "btn-danger";
-                }else if ($value->status == "5"){
+                    // $btn_text = "Resend Payment";
+                }else if ($query[$x]['status'] == "5"){
                     $confirm++;
-                    $status = "Confirm Payment by Seller";
+                    $status = "Payment Confirm by Seller";
                     $class = "btn-info";
+                    // $btn_text = "See More";
                 }
 
-				$output .= "<tr class='cursor-pointer ".$class."' onclick='view_order(2, ".$value->id.")'>
-								<td>".($key + 1)."</td>
-								<td>".$value->order_no."</td>
-								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
-								<td>".$value->account_name."</td>
-								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
-								<td>".$status."</td>
-							</tr>";
+                $img = unserialize($query[$x]['img_location']);
+                $img_loc = base_url().'images/products/'.$img[0];
+    
+                if (!empty($query[$x]['prod_var1'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1']."</p>";
+                }else{
+                    // $variation = "<span>Variation : N\A</span>";
+                }
+    
+                if (!empty($query[$x]['prod_var1']) && !empty($query[$x]['prod_var2'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1'].", ".$query[$x]['prod_var2']."</p>";
+                }
+                    
 
-			}
+                if ($x == 0){
+                    $output .= '
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+    
+                        <div class="row border">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2 h5 py-1 '.$class.'">
+                                <span class="font-weight-600">'.$status.'</span>
+                            </div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                            </div>
+                        </div>
+    
+                        <div class="row border border-top-0">
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                <span>ORDER '.$query[$x]['order_no'].'</span>
+                            </div>
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                            </div>
+                        </div>
 
-		}
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    ';
+    
+                }else{
+                    if ($order_no != $query[$x]['order_no']){
+                        $output .= '
+                        <div class="row border border-top-0">
+                            <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                                <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                            </div>
+                            <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                                <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($total_amount, 2).'</span></span>
+                            </div>
+                        </div>
+        
+                        <div class="row border border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                                <button class="btn btn-success px-5 btn-order-dtls"  onclick="view_order(2, '.$order_id.')">'.$btn_text.'</button>
+                            </div>
+                        </div>';
+                        $output .= "</div>";    
+
+                        $item = 0;
+
+                        $output .= '
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+        
+                            <div class="row border">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2  h5 py-1 '.$class.'">
+                                    <span class="font-weight-600">'.$status.'</span>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                    <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                                </div>
+                            </div>
+        
+                            <div class="row border border-top-0">
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                    <span>ORDER '.$query[$x]['order_no'].'</span>
+                                </div>
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                    <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                                </div>
+                            </div>
+    
+                            <div class="row border py-2 border-top-0">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row">
+    
+                                        <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                            <div class="border text-center w-100 ong-prod-img">
+                                                <img src="'.$img_loc.'" alt="Product">
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                    <p>'.$query[$x]['product_name'].'</p>
+                                                    '.$prod_var.'
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                    <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                    <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                                </div>                                                            
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+    
+                    }else{
+                        $output .= '                       
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>';
+                    }
+    
+                }
+
+
+                $item += $query[$x]['prod_qty'];
+                $total_amount = $query[$x]['total_amount'];
+
+                if ($query[$x]['status'] == "1"){
+                    $btn_text = "See More";
+				}else if ($query[$x]['status'] == "2"){
+                    $btn_text = "Send Payment";
+				}else if ($query[$x]['status'] == "3"){
+                    $btn_text = "See More";
+                }else if ($query[$x]['status'] == "4"){
+                    $btn_text = "Resend Payment";
+                }else if ($query[$x]['status'] == "5"){
+                    $btn_text = "See More";
+                }
+
+
+                if (($x + 1) == COUNT($query)){
+                    $output .= '
+                    <div class="row border border-top-0">
+                        <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                            <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                        </div>
+                        <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                            <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($query[$x]['total_amount'], 2).'</span></span>
+                        </div>
+                    </div>
+    
+                    <div class="row border border-top-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                            <button class="btn btn-success px-5 btn-order-dtls" onclick="view_order(2, '.$order_id.')">'.$btn_text.'</button>
+                        </div>
+                    </div>';
+                    $output .= "</div>";                        
+                }
+
+                $order_no = $query[$x]['order_no'];
+                $order_id = $query[$x]['order_id'];
+
+            }
+        }
+
 
 		return array("output" => $output, "pending" => $pending, "acknowledge" => $acknowledge, "proof" => $proof, "confirm" => $confirm, "denied" => $denied);
 
 	}
 }
 
+if (!function_exists("tbl_products")){
+    function tbl_products($query){
+
+        $output = "";
+        $total_items = 0;
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $total_items += (int)$value->prod_qty;
+
+                $img = unserialize($value->img_location);
+                $img_loc = base_url().'images/products/'.$img[0];
+
+                $output .= '
+                <div class="row my-2">
+                    <div class="col-3 col-lg-1 col-md-6 col-sm-6">
+                        <div class="border text-center w-100 ong-prod-img px-2">
+                            <img src="'.$img_loc.'" alt="Product">
+                        </div>
+                    </div>
+                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details px-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                <p>'.$value->product_name.'</p>
+                            </div>
+                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($value->prod_qty).'</p>
+                            </div>
+                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($value->prod_price, 2).'</p>
+                            </div>                                                            
+                        </div>
+                    </div>
+                </div>';
+
+            }
+        }
+
+        return array("output" => $output, "total_items" => $total_items);
+
+    }
+}
+
+// if (!function_exists("tbl_ongoing_orders")){
+// 	function tbl_ongoing_orders($query){
+
+// 		$output = "";
+//         $pending = 0;
+//         $acknowledge = 0;
+//         $confirm = 0;
+//         $denied = 0;
+//         $proof = 0;
+
+
+// 		$output .= "<table class='table table-bordered table-sm tbl-order'>
+// 					<thead>
+// 						<tr>
+// 							<th>LN</th>
+// 							<th>Order No</th>
+// 							<th>Order Date</th>
+// 							<th>Seller</th>
+// 							<th>Total Amount</th>
+// 							<th>Status</th>
+// 						</tr>
+// 					</thead>
+// 					<tbody>";
+
+// 		if (!empty($query)){
+//             $status = "";
+// 			foreach ($query as $key => $value) {
+
+// 				if ($value->status == "1"){
+//                     $status = "Pending to Acknowledge";
+//                     // $class = "btn-warning";
+//                     $class = "";
+//                     $pending++;
+// 				}else if ($value->status == "2"){
+//                     $status = "Acknowledged";
+//                     $class = "btn-primary";
+//                     $acknowledge++;
+// 				}else if ($value->status == "3"){
+//                     $proof++;
+//                     $status = "Proof of Payment Sent";
+//                     $class = "btn-warning";
+//                 }else if ($value->status == "4"){
+//                     $denied++;
+//                     $status = "Payment denied by Seller";
+//                     $class = "btn-danger";
+//                 }else if ($value->status == "5"){
+//                     $confirm++;
+//                     $status = "Confirm Payment by Seller";
+//                     $class = "btn-info";
+//                 }
+
+// 				$output .= "<tr class='cursor-pointer ".$class."' onclick='view_order(2, ".$value->id.")'>
+// 								<td>".($key + 1)."</td>
+// 								<td>".$value->order_no."</td>
+// 								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
+// 								<td>".$value->account_name."</td>
+// 								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
+// 								<td>".$status."</td>
+// 							</tr>";
+
+// 			}
+
+// 		}
+
+// 		return array("output" => $output, "pending" => $pending, "acknowledge" => $acknowledge, "proof" => $proof, "confirm" => $confirm, "denied" => $denied);
+
+// 	}
+// }
+
+
 if (!function_exists("tbl_complete_orders")){
 	function tbl_complete_orders($query){
 
 		$output = "";
+        $pending = 0;
+        $acknowledge = 0;
+        $confirm = 0;
+        $denied = 0;
+        $proof = 0;
+        $status = "";
+        $account_id = "";
+        $order_no = "";
+        $prod_var = "";
+        $img = "";
+        $order_id = "";
+        $item = 0;
+        $btn_text = "";
 
-		$output .= "<table class='table table-bordered table-sm tbl-order'>
-					<thead>
-						<tr>
-							<th>LN</th>
-							<th>Order No</th>
-							<th>Order Date</th>
-							<th>Seller</th>
-							<th>Total Amount</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>";
+        if (!empty($query)){
+            for ($x=0; $x < COUNT($query); $x++) { 
 
-		if (!empty($query)){
+                $prod_var = "";
+                $class = "btn btn-orange";
+                $status = "Order Delivered";
+                $img = unserialize($query[$x]['img_location']);
+                $img_loc = base_url().'images/products/'.$img[0];
+    
+                if (!empty($query[$x]['prod_var1'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1']."</p>";
+                }else{
+                    // $variation = "<span>Variation : N\A</span>";
+                }
+    
+                if (!empty($query[$x]['prod_var1']) && !empty($query[$x]['prod_var2'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1'].", ".$query[$x]['prod_var2']."</p>";
+                }
+                    
 
-			foreach ($query as $key => $value) {
+                if ($x == 0){
+                    $output .= '
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+    
+                        <div class="row border">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2 h5 py-1 '.$class.'">
+                                <span class="font-weight-600">'.$status.'</span>
+                            </div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                            </div>
+                        </div>
+    
+                        <div class="row border border-top-0">
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                <span>ORDER '.$query[$x]['order_no'].'</span>
+                            </div>
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                            </div>
+                        </div>
+
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    ';
+    
+                }else{
+                    if ($order_no != $query[$x]['order_no']){
+                        $output .= '
+                        <div class="row border border-top-0">
+                            <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                                <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                            </div>
+                            <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                                <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($total_amount, 2).'</span></span>
+                            </div>
+                        </div>
+        
+                        <div class="row border border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                                <button class="btn btn-orange px-5 btn-order-dtls"  onclick="complete_order('.$order_id.')">Delivered</button>
+                            </div>
+                        </div>';
+                        $output .= "</div>";    
+
+                        $item = 0;
+
+                        $output .= '
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+        
+                            <div class="row border">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2  h5 py-1 '.$class.'">
+                                    <span class="font-weight-600">'.$status.'</span>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                    <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                                </div>
+                            </div>
+        
+                            <div class="row border border-top-0">
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                    <span>ORDER '.$query[$x]['order_no'].'</span>
+                                </div>
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                    <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                                </div>
+                            </div>
+    
+                            <div class="row border py-2 border-top-0">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row">
+    
+                                        <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                            <div class="border text-center w-100 ong-prod-img">
+                                                <img src="'.$img_loc.'" alt="Product">
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                    <p>'.$query[$x]['product_name'].'</p>
+                                                    '.$prod_var.'
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                    <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                    <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                                </div>                                                            
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+    
+                    }else{
+                        $output .= '                       
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>';
+                    }
+    
+                }
 
 
-				$output .= "<tr class='cursor-pointer' onclick='view_order(3, ".$value->id.")'>
-								<td>".($key + 1)."</td>
-								<td>".$value->order_no."</td>
-								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
-								<td>".$value->account_name."</td>
-								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
-								<td><button class='btn btn-orange btn-sm' onclick='complete_order(".$value->id.")'>Complete Order</button></td>
-							</tr>";
+                $item += $query[$x]['prod_qty'];
+                $total_amount = $query[$x]['total_amount'];
 
-			}
+                if (($x + 1) == COUNT($query)){
+                    $output .= '
+                    <div class="row border border-top-0">
+                        <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                            <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                        </div>
+                        <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                            <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($query[$x]['total_amount'], 2).'</span></span>
+                        </div>
+                    </div>
+    
+                    <div class="row border border-top-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                            <button class="btn btn-success px-5 btn-order-dtls" onclick="complete_order('.$order_id.')">Delivered</button>
+                        </div>
+                    </div>';
+                    $output .= "</div>";                        
+                }
 
-		}
+                $order_no = $query[$x]['order_no'];
+                $order_id = $query[$x]['order_id'];
 
-		return $output;
+            }
+        }
+
+        return $output;
 
 	}
 }
 
-if (!function_exists("tbl_transctions_orders")){
-	function tbl_transctions_orders($query){
+
+if (!function_exists("tbl_transactions_orders")){
+	function tbl_transactions_orders($query){
 
 		$output = "";
+        $pending = 0;
+        $acknowledge = 0;
+        $confirm = 0;
+        $denied = 0;
+        $proof = 0;
+        $status = "";
+        $account_id = "";
+        $order_no = "";
+        $prod_var = "";
+        $img = "";
+        $order_id = "";
+        $item = 0;
+        $btn_text = "";
 
-		$output .= "<table class='table table-bordered table-sm tbl-order'>
-					<thead>
-						<tr>
-							<th>LN</th>
-							<th>Order No</th>
-							<th>Order Date</th>
-							<th>Seller</th>
-							<th>Total Amount</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>";
-		$status = "";
-		if (!empty($query)){
+        if (!empty($query)){
+            for ($x=0; $x < COUNT($query); $x++) { 
 
-			foreach ($query as $key => $value) {
+                $prod_var = "";
+                $btn_text = "See More";
 
-				if ($value->status == "4"){
-					$status = "Completed Order";
-				}else{
-					$status = "Cancelled Order";
-				}
+                if ($query[$x]['status'] == "7"){
+                    $class = "btn btn-success";
+                    $status = "Completed Order";    
+                }else{
+                    $class = "btn btn-danger";
+                    $status = "Cancelled Order";    
+                }
 
-				$output .= "<tr class='cursor-pointer' onclick='view_order(4, ".$value->id.")'>
-								<td>".($key + 1)."</td>
-								<td>".$value->order_no."</td>
-								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
-								<td>".$value->account_name."</td>
-								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
-								<td>".$status."</td>
-							</tr>";
 
-			}
+                $img = unserialize($query[$x]['img_location']);
+                $img_loc = base_url().'images/products/'.$img[0];
+    
+                if (!empty($query[$x]['prod_var1'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1']."</p>";
+                }else{
+                    // $variation = "<span>Variation : N\A</span>";
+                }
+    
+                if (!empty($query[$x]['prod_var1']) && !empty($query[$x]['prod_var2'])){
+                    $prod_var = "<p class='mb-0 text-gray'>".$query[$x]['prod_var1'].", ".$query[$x]['prod_var2']."</p>";
+                }
+                    
 
-		}
+                if ($x == 0){
+                    $output .= '
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+    
+                        <div class="row border">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2 h5 py-1 '.$class.'">
+                                <span class="font-weight-600">'.$status.'</span>
+                            </div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                            </div>
+                        </div>
+    
+                        <div class="row border border-top-0">
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                <span>ORDER '.$query[$x]['order_no'].'</span>
+                            </div>
+                            <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                            </div>
+                        </div>
 
-		return $output;
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    ';
+    
+                }else{
+                    if ($order_no != $query[$x]['order_no']){
+                        $output .= '
+                        <div class="row border border-top-0">
+                            <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                                <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                            </div>
+                            <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                                <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($total_amount, 2).'</span></span>
+                            </div>
+                        </div>
+        
+                        <div class="row border border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                                <button class="btn btn-success px-5 btn-order-dtls"  onclick="view_order(4, '.$order_id.')">'.$btn_text.'</button>
+                            </div>
+                        </div>';
+                        $output .= "</div>";    
+
+                        $item = 0;
+
+                        $output .= '
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+        
+                            <div class="row border">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-0 my-0 text-right px-2  h5 py-1 '.$class.'">
+                                    <span class="font-weight-600">'.$status.'</span>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
+                                    <span class="font-weight-600">'.$query[$x]['account_name'].'</span>
+                                </div>
+                            </div>
+        
+                            <div class="row border border-top-0">
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
+                                    <span>ORDER '.$query[$x]['order_no'].'</span>
+                                </div>
+                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right px-2">
+                                    <span>'.date("d M Y G:i:s", strtotime($query[$x]['order_date'])).'</span>
+                                </div>
+                            </div>
+    
+                            <div class="row border py-2 border-top-0">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row">
+    
+                                        <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                            <div class="border text-center w-100 ong-prod-img">
+                                                <img src="'.$img_loc.'" alt="Product">
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                    <p>'.$query[$x]['product_name'].'</p>
+                                                    '.$prod_var.'
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                    <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                                </div>
+                                                <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                    <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                                </div>                                                            
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+    
+                    }else{
+                        $output .= '                       
+                        <div class="row border py-2 border-top-0">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-3 col-lg-1 col-md-6 col-sm-6 px-2">
+                                        <div class="border text-center w-100 ong-prod-img">
+                                            <img src="'.$img_loc.'" alt="Product">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-lg-11 col-md-6 col-sm-6 px-2 ong-details">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 text-left">
+                                                <p>'.$query[$x]['product_name'].'</p>
+                                                '.$prod_var.'
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-2 col-sm-12 text-right">
+                                                <p><span class="d-inline-block d-sm-none">x</span> '.number_format($query[$x]['prod_qty'], 0).'</p>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-12 text-right">
+                                                <p class="font-weight-600 text-dark-green">&#8369; '.number_format($query[$x]['product_unit_price'], 2).'</p>
+                                            </div>                                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>';
+                    }
+    
+                }
+
+
+                $item += $query[$x]['prod_qty'];
+                $total_amount = $query[$x]['total_amount'];
+
+                if ($query[$x]['status'] == "1"){
+                    $btn_text = "See More";
+				}else if ($query[$x]['status'] == "2"){
+                    $btn_text = "Send Payment";
+				}else if ($query[$x]['status'] == "3"){
+                    $btn_text = "See More";
+                }else if ($query[$x]['status'] == "4"){
+                    $btn_text = "Resend Payment";
+                }else if ($query[$x]['status'] == "5"){
+                    $btn_text = "See More";
+                }
+
+
+                if (($x + 1) == COUNT($query)){
+                    $output .= '
+                    <div class="row border border-top-0">
+                        <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
+                            <span class="font-weight-600">Item/s : <span class="text-dark-green">'.$item.'</span></span>
+                        </div>
+                        <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
+                            <span class="font-weight-600">Total : <span class="text-dark-green">&#8369; '.number_format($query[$x]['total_amount'], 2).'</span></span>
+                        </div>
+                    </div>
+    
+                    <div class="row border border-top-0">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right py-1 px-2">
+                            <button class="btn btn-success px-5 btn-order-dtls" onclick="view_order(4, '.$order_id.')">'.$btn_text.'</button>
+                        </div>
+                    </div>';
+                    $output .= "</div>";                        
+                }
+
+                $order_no = $query[$x]['order_no'];
+                $order_id = $query[$x]['order_id'];
+
+            }
+        }
+
+
+        // return array("output" => $output, "pending" => $pending, "acknowledge" => $acknowledge, "proof" => $proof, "confirm" => $confirm, "denied" => $denied);
+        return $output;
 
 	}
 }
+
+
+// if (!function_exists("tbl_transctions_orders")){
+// 	function tbl_transctions_orders($query){
+
+// 		$output = "";
+
+// 		$output .= "<table class='table table-bordered table-sm tbl-order'>
+// 					<thead>
+// 						<tr>
+// 							<th>LN</th>
+// 							<th>Order No</th>
+// 							<th>Order Date</th>
+// 							<th>Seller</th>
+// 							<th>Total Amount</th>
+// 							<th>Status</th>
+// 						</tr>
+// 					</thead>
+// 					<tbody>";
+// 		$status = "";
+// 		if (!empty($query)){
+
+// 			foreach ($query as $key => $value) {
+
+// 				if ($value->status == "4"){
+// 					$status = "Completed Order";
+// 				}else{
+// 					$status = "Cancelled Order";
+// 				}
+
+// 				$output .= "<tr class='cursor-pointer' onclick='view_order(4, ".$value->id.")'>
+// 								<td>".($key + 1)."</td>
+// 								<td>".$value->order_no."</td>
+// 								<td>".date('m/d/Y', strtotime($value->date_insert))."</td>
+// 								<td>".$value->account_name."</td>
+// 								<td class='text-right'>".number_format($value->total_amount, 2)."</td>
+// 								<td>".$status."</td>
+// 							</tr>";
+
+// 			}
+
+// 		}
+
+// 		return $output;
+
+// 	}
+// }

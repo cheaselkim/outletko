@@ -1798,7 +1798,7 @@
 		                    		</select>
 	                    		</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
-		                    		<span class="font-weight-600">Weight <span class="text-red" hidden>*</span></span>
+		                    		<span class="font-weight-600">Weight (g) <span class="text-red" hidden>*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_weight">
 		                    	</div>
 		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">

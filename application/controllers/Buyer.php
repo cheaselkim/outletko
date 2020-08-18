@@ -296,7 +296,55 @@ class Buyer extends CI_Controller {
 
 	public function get_ongoing_orders(){
         $result = $this->buyer_model->get_ongoing_orders();
-        $output = tbl_ongoing_orders($result);
+        $products = array();
+        $total = 0;
+
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $total += ($value->product_unit_price * $value->prod_qty);
+                $product_price = $value->product_unit_price;
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);
+                    $product_price = $this->buyer_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                    $product_price = $product_price;
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->buyer_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+
+                // var_dump($prod_var1);
+                $products[$key] = array(
+                    "item_id" => $value->item_id,
+                    "status" => $value->status,
+                    "prod_id" => $value->prod_id,
+                    "account_id" => $value->account_id,
+                    "account_name" => $value->account_name,
+                    "link_name" => $value->link_name,
+                    "item_id" => $value->item_id,
+                    "img_location" => $value->img_location,
+                    "product_name" => $value->product_name,
+                    "product_unit_price" => $product_price,
+                    "prod_avail" => $value->product_available,
+                    "prod_qty" => $value->prod_qty,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2,
+                    "prod_var1_id" => $value->prod_var1,
+                    "prod_var2_id" => $value->prod_var2,
+                    "order_no" => $value->order_no,
+                    "order_date" => $value->order_date,
+                    "total_amount" => $value->grand_total,
+                    "order_id" => $value->order_id
+                );
+            }
+        }    
+        
+        $output = tbl_ongoing_orders($products);
         $data['result'] = $output['output'];
         $data['pending'] = $output['pending'];
         $data['acknowledge'] = $output['acknowledge'];
@@ -309,14 +357,112 @@ class Buyer extends CI_Controller {
 
 	public function get_complete_orders(){
 		$result = $this->buyer_model->get_complete_orders();
-		$data['result'] = tbl_complete_orders($result);
+
+        $products = array();
+        $total = 0;
+
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $total += ($value->product_unit_price * $value->prod_qty);
+                $product_price = $value->product_unit_price;
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);
+                    $product_price = $this->buyer_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                    $product_price = $product_price;
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->buyer_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+
+                // var_dump($prod_var1);
+                $products[$key] = array(
+                    "item_id" => $value->item_id,
+                    "status" => $value->status,
+                    "prod_id" => $value->prod_id,
+                    "account_id" => $value->account_id,
+                    "account_name" => $value->account_name,
+                    "link_name" => $value->link_name,
+                    "item_id" => $value->item_id,
+                    "img_location" => $value->img_location,
+                    "product_name" => $value->product_name,
+                    "product_unit_price" => $product_price,
+                    "prod_avail" => $value->product_available,
+                    "prod_qty" => $value->prod_qty,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2,
+                    "prod_var1_id" => $value->prod_var1,
+                    "prod_var2_id" => $value->prod_var2,
+                    "order_no" => $value->order_no,
+                    "order_date" => $value->order_date,
+                    "total_amount" => $value->grand_total,
+                    "order_id" => $value->order_id
+                );
+            }
+        }    
+
+        $data['result'] = tbl_complete_orders($products);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
 
 	public function get_transactions_orders(){
 		$result = $this->buyer_model->get_transactions_orders();
-		$data['result'] = tbl_transctions_orders($result);
+    
+        $products = array();
+        $total = 0;
+
+        if (!empty($result)){
+            foreach ($result as $key => $value) {
+                $total += ($value->product_unit_price * $value->prod_qty);
+                $product_price = $value->product_unit_price;
+
+                if ($value->prod_var1 != "0"){
+                    $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);
+                    $product_price = $this->buyer_model->get_variation_price($value->prod_var1);
+                }else{
+                    $prod_var1 = "";
+                    $product_price = $product_price;
+                }
+
+                if ($value->prod_var2 != "0"){
+                    $prod_var2 = $this->buyer_model->get_variation($value->prod_var2);
+                }else{
+                    $prod_var2 = "";
+                }
+
+                // var_dump($prod_var1);
+                $products[$key] = array(
+                    "item_id" => $value->item_id,
+                    "status" => $value->status,
+                    "prod_id" => $value->prod_id,
+                    "account_id" => $value->account_id,
+                    "account_name" => $value->account_name,
+                    "link_name" => $value->link_name,
+                    "item_id" => $value->item_id,
+                    "img_location" => $value->img_location,
+                    "product_name" => $value->product_name,
+                    "product_unit_price" => $product_price,
+                    "prod_avail" => $value->product_available,
+                    "prod_qty" => $value->prod_qty,
+                    "prod_var1" => $prod_var1,
+                    "prod_var2" => $prod_var2,
+                    "prod_var1_id" => $value->prod_var1,
+                    "prod_var2_id" => $value->prod_var2,
+                    "order_no" => $value->order_no,
+                    "order_date" => $value->order_date,
+                    "total_amount" => $value->grand_total,
+                    "order_id" => $value->order_id
+                );
+            }
+        }    
+
+        $data['result'] = tbl_transactions_orders($products);
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
@@ -329,9 +475,11 @@ class Buyer extends CI_Controller {
 	}
 
 	public function view_order(){
-		$id = $this->input->post("id");
+        $id = $this->input->post("id");
+        $products = tbl_products($this->buyer_model->get_order_products($id));
 		$data['result'] = $this->buyer_model->get_order_hdr($id);
-		$data['products'] = $this->buyer_model->get_order_products($id);
+        $data['products'] = $products['output'];
+        $data['total_items'] = $products['total_items'];
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
  	}
