@@ -55,7 +55,13 @@ class Store extends CI_Controller {
 				
 				// var_dump($this->session->userdata());
 
-					$this->template->load("0", $data);			
+                if ($this->session->userdata("user_type") == "1"){
+                    $menu = "9";
+                }else{
+                    $menu = "0";
+                }
+
+                $this->template->load($menu, $data);			
 			}else{
 				redirect("/");
 			}

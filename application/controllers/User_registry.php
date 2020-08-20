@@ -176,13 +176,13 @@ class User_registry extends CI_Controller {
 			$link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
 			$link_name = substr($link_name, 0, 15);
 
-            $check_linkname = $this->user_registry_model->check_linkname($link_name, 0, 15);
+            $check_linkname = $this->user_registry_model->check_linkname($link_name, 0, 20);
 
             if ($check_linkname > 0){
-                $link_name = substr($link_name, 0, 8);
+                $link_name = substr($link_name, 0, 12);
                 $link_name = $link_name.$account_id;
             }else{
-                $link_name = substr($link_name, 0, 15);
+                $link_name = substr($link_name, 0, 20);
             }
     
 

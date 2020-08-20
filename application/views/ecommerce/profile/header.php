@@ -16,6 +16,7 @@
 			<li class="nav-item" hidden>
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_signup"><span class=" text-white">Register your Store</span></a>
 			</li>
+            <?php if ($this->session->userdata("user_type") != "1"){?>
             <li class="nav-item d-none d-sm-block">
                 <span class='nav-link font-small text-yellow' style="color: yellow;">Cart Total : PHP <span id="total-cart"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span>
             </li>
@@ -37,6 +38,7 @@
 			<li class="nav-item" hidden>
                   <button class="btn btn-block btn-transparent bd-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-store text-white"></i> <span class="text-white">Register</span></button>
 			</li>    
+            <?php }?>
 		</ul>
 	</div>  
 </nav>

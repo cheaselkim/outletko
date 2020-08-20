@@ -77,9 +77,11 @@ class Buyer_model extends CI_Model {
         $city_query = $this->db2->query("SELECT * FROM account_coverage_city WHERE comp_id = ? AND city = ?", array($id, $city))->result();
         $query = "";
         
-        if ($weight != "0"){
+        if ($weight != 0){
             $weight = $weight/1000;
         }
+
+        // var_dump($weight);
 
         if (!empty($city_query)){
             $query = $this->db2->query("SELECT 

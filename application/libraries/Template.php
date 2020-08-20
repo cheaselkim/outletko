@@ -86,10 +86,11 @@
 							}							
 						}
 					}else if ($menu == "6"){
-
 					}else if ($menu == "7"){
-
-					}
+					}else if ($menu == "9"){
+                        $data['header'] = 'ecommerce/profile/header';
+						$data['page'] = 'ecommerce/profile/profile';
+                    }
 				}else if ($user_type == "2"){
 					/*eoutletsuite application*/
 					$data['header'] = 'application/header';

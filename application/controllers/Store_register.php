@@ -66,15 +66,15 @@ class Store_register extends CI_Controller {
         $eoutletsuite_pass = $this->randomString();
 
         // $link_name = substr($info_outletko['link_name'], 0, 15);
-        $check_linkname = $this->signup_model->check_linkname(substr($info_outletko['link_name'], 0, 15));
+        $check_linkname = $this->signup_model->check_linkname(substr($info_outletko['link_name'], 0, 20));
 
         // var_dump($check_linkname);
 
         if ($check_linkname > 0){
-            $link_name = substr($info_outletko['link_name'], 0, 8);
+            $link_name = substr($info_outletko['link_name'], 0, 12);
             $link_name = $link_name.$account_id;
         }else{
-            $link_name = substr($info_outletko['link_name'], 0, 15);
+            $link_name = substr($info_outletko['link_name'], 0, 20);
         }
 
 

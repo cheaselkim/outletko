@@ -34,7 +34,7 @@ class Search_model extends CI_Model {
 			`province`.`id` = `account`.`province`
 			LEFT JOIN city ON 
 			`city`.`id` = `account`.`city`
-			INNER JOIN products ON 
+			LEFT JOIN products ON 
 			`account`.`id` = `products`.`account_id`
             WHERE 
             `account`.`store_status` = ? AND 
