@@ -871,7 +871,6 @@
 			<!-- DIV MY ORDERS  -->
 			<div class="row mt-3 pb-5" id="div-my-orders">
 				<div class="col-12 col-md-12 col-lg-12  py-3" >
-                <input type="hidden" id="acknowledge_order_id" value="0">
 
 					<div class="row" id="div_order_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -895,133 +894,323 @@
 						</div>
 					</div>
 
-					<div class="row mx-0" id="div_order">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        
-                            <div class="row">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-0">
-                                    <button class="btn btn-warning" id="btn_back_acknowledge">Back</button>
-                                    <button class="btn btn-danger" id="btn_cancel_acknowledge">Cancel</button>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal_acknowledge" id="btn_acknowledge">Acknowledge</button>
-                                    <button class="btn btn-danger" id="btn_notconfirm_payment">Denied</button>
-                                    <button class="btn btn-success" id="btn_confirm_payment">Confirmed</button>
-                                </div>
-                            </div>
+					<div class="row" id="div_order">
 
-                            <div class="row border mt-3">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2 alert-success">
-                                    <span class="font-weight-600" id="vw_order_status">Status</span>
-                                </div>
-                            </div>
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="row">
 
-                            <div class="row border border-top-0">
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
-                                    <span>ORDER <span id="tbl_order_no"></span> </span>
-                                </div>
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right">
-                                    <span id="tbl_order_date"></span>
-                                </div>
-                            </div>
+								<div class="col-lg-8 col-md-8 col-sm-12">
+									<div class="row">
+										<input type="hidden" id="acknowledge_order_id" value="0">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span class="h4" id="title_order"></span>							
+										</div>
 
-                            <div class="row py-2 alert-primary my-2" id="div-proof-payment">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12">
-                                            <span class="h4">Proof of Payment</span>
-                                            <div class="fotorama text-center" id="div-fotorama-3" 
-                                            data-width="100%"
-                                            data-ratio="4/3"
-                                            data-minheight="200px"
-                                            data-maxheight="400px"
-                                            data-nav="thumbs"  
-                                            data-auto="false" 
-                                            data-allowfullscreen="true" 
-                                            data-fit="contain">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span class="h4">Status : <span id="vw_order_status" class="alert alert-success py-0"></span></span>							
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+											<div class="row">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Order No : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_order_no"></span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Order Date : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_order_date"></span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-4 col-lg-2 col-md-3 col-sm-4">
+													<span class="font-weight-600">Customer : </span>
+												</div>
+												<div class="col-8 col-lg-10 col-md-9 col-sm-8">
+													<span id="tbl_from"></span>
+												</div>
+											</div>
+												<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+													<table class="table table-sm table-bordered">
+														<thead>
+															<tr>
+																<th>Order No</th>
+																<th>Order Date</th>
+																<th>From</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td id="tbl_order_no"></td>
+																<td id="tbl_order_date"></td>
+																<td id="tbl_from"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div> -->
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<hr class="my-1" style="border-top: 1px dashed #77933c">
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div class="row">
+												<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Delivery Type : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_type">For Delivery</span>
+															<input type="hidden" id="po_delivery_type_id">												
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Delivery Date : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_date"></span>
+															<input type="hidden" id="po_delivery_date">												
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-4 col-md-4 col-sm-6">
+															<span class="font-weight-600">Courier : </span>
+														</div>
+														<div class="col-6 col-lg-8 col-md-8 col-sm-6">
+															<span id="po_delivery_courier">For Delivery</span>
+															<input type="hidden" id="po_delivery_courier_id">												
+														</div>
+													</div>
+													
+												</div>
+												<div class="col-12 col-lg-6 col-md-6 col-sm-12">
+													
+													<div class="row">
+														<div class="col-6 col-lg-5 col-md-6 col-sm-6">
+															<span class="font-weight-600">Payment Type : </span>
+														</div>
+														<div class="col-6 col-lg-7 col-md-6 col-sm-6">
+															<span id="po_payment_type">Cash on Delivery</span>
+															<input type="hidden" id="po_payment_type_id">
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6 col-lg-5 col-md-6 col-sm-6">
+															<span class="font-weight-600">Payment Method : </span>
+														</div>
+														<div class="col-6 col-lg-7 col-md-6 col-sm-6">
+															<span id="po_payment_method">Cash on Delivery</span>
+															<input type="hidden" id="po_payment_method_id">
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<hr class="my-1" style="border-top: 1px dashed #77933c">
+										</div>										
+
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div style="height: 300px; overflow: auto;">
+
+												<table class="table table-sm table-bordered" id="tbl-po-products">
+													<thead>
+														<tr>
+															<th>Product</th>
+															<th>Variation</th>
+															<th>Qty</th>
+															<th>Unit Price</th>
+															<th>Total</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Abracada Seedlings</td>
+															<td>10</td>
+															<td>25.00</td>
+															<td>250.00</td>
+														</tr>
+													</tbody>
+													<tfoot >
+														<tr style="border-top: 2px dotted black;">
+															<td colspan="4" class="font-weight-600">Subtotal</td>
+															<td id="tbl_subtotal" class="font-weight-600"></td>
+														</tr>
+														<tr>
+															<td colspan="4" class="font-weight-600">Shipping</td>
+															<td id="tbl_ship" class="font-weight-600"></td>
+														</tr>
+														<tr>
+															<td colspan="4" class="font-weight-600">Total</td>
+															<td id="tbl_total" class="font-weight-600"></td>
+														</tr>
+													</tfoot>
+												</table>
+												
+											</div>
+										</div>
+
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 py-2  alert-primary" id="div-proof-payment">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-md-12">
+                                                    <span class="h4">Proof of Payment</span>
+                                                    <div class="fotorama text-center" id="div-fotorama-2" 
+                                                    data-width="100%"
+                                                    data-minheight="300px"
+                                                    data-maxheight="400px"
+                                                    data-nav="thumbs"  
+                                                    data-auto="false" 
+                                                    data-allowfullscreen="true" 
+                                                    data-fit="contain">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                    <span id="proof-message"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                            <span id="proof-message"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Payment Type</span> <br></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="po_payment_types"></p>
-                                    <p class='mb-0' id="po_payment_method"></p>
-                                    <input type="hidden" id="po_payment_method_id">
-                                    <input type="hidden" id="po_payment_type_id">
-                                </div>
-                            </div>
+									</div>
+								</div>
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Delivery Type</span></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="po_delivery_type"></p>
-                                    <p class='mb-0' id="po_delivery_date"></p>
-                                    <p class='mb-0' id="po_delivery_courier"></p>
-                                    <input type="hidden" id="po_delivery_type_id">
-                                    <input type="hidden" id="po_delivery_courier_id">												
-                                    <input type="hidden" id="po_delivery_date_id">																								
-                                </div>
-                            </div>
+								<div class="col-lg-4 col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span class="h4">Information</span>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>House no., Building and Street Name</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_1" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Barangay</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_barangay" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>City / Municipilaty</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_city" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Province</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_prov" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Zip Code</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_zip" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Mobile Number</span>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text bg-white" id="basic-addon1" style="border-right: 0 !important;">+63</span>
+												</div>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_mobile" readonly>
+											</div>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>PHONE Number</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_phone" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Email Address</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_email" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Contact Person</span>
+											<input type="text" class="form-control textbox-green2 textbox-readonly" id="addr_contact_person" readonly>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<span>Delivery Instructions</span>
+											<textarea class="form-control textbox-green2 textbox-readonly" rows="3" id="addr_notes" readonly></textarea>
+										</div>
+									</div>
+								</div>
 
-                            <div class="row border my-2">
-                                <div class="col -12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <span class="font-weight-600">Delivery & Billing Address</span>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    <p class="mb-0" id="tbl_from"></p>
-                                    <p class="mb-0" id="addr_mobile"></p>
-                                    <p class="mb-0" id="addr_phone"></p>
-                                    <p class="mb-0" id="addr_email"></p>
-                                    <p class="mb-0" id="addr_contact_person"></p>
-                                    <p class="mb-0" id="addr_1"></p>
-                                    <p class="mb-0" id="addr_notes"></p>
-                                </div>
-                            </div>
+							</div>
+						</div>
+						
+						<div class="col-lg-12 col-md-12 col-sm-12">
 
-                            <div class="row border pb-2 mt-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+							<!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Delivery Type : </span>
+										<span id="po_delivery_type">For Delivery</span>
+										<input type="hidden" id="po_delivery_type_id">												
+									</div>
+								</div>
+							</div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                            <span class="font-weight-600">Products</span>
-                                        </div>
-                                    </div>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Delivery Date : </span>
+										<span id="po_delivery_date"></span>
+										<input type="hidden" id="po_delivery_date">												
+									</div>
+								</div>
+							</div>
 
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-order-prod">
-                                        
-                                        </div>
-                                    </div>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Courier : </span>
+										<span id="po_delivery_courier">For Delivery</span>
+										<input type="hidden" id="po_delivery_courier_id">												
+									</div>
+								</div>
+							</div>
 
-                                </div>
-                            </div>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Payment Type : </span>
+										<span id="po_payment_type">Cash on Delivery</span>
+										<input type="hidden" id="po_payment_type_id">
+									</div>
+								</div>
+							</div>
 
-                            <div class="row border my-2">
-                                <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
-                                    <span class="font-weight-600">Item : <span id="vw_total_items">1</span></span>
-                                </div>
-                                <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
-                                    <p class="font-weight-400 mb-0">Sub Total : <span class="font-weight-600">&#8369; <span id="tbl_subtotal">800,000.00</span></span></p>
-                                    <p class="font-weight-400 mb-0">Shipping Fee : <span class="font-weight-600">&#8369; <span id="tbl_ship">800,000.00</span></span></p>
-                                </div>
-                            </div>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<span>Payment Method : </span>
+										<span id="po_payment_method">Cash on Delivery</span>
+										<input type="hidden" id="po_payment_method_id">
+									</div>
+								</div>
+							</div> -->
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-2">
-                                    <p class="font-weight-600 mb-0 text-dark-green">Grand Total : <span>&#8369; <span id="tbl_total">800,000.00</span></span></p>
-                                </div>
-                            </div>
+							<div class="col-12 col-lg-12 col-md-12 col-sm-12 pb-1 pt-3" >
+								<div class="row">
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+										<button class="btn btn-warning" id="btn_back_acknowledge">Back</button>
+										<button class="btn btn-danger" id="btn_cancel_acknowledge">Cancel</button>
+										<button class="btn btn-success" data-toggle="modal" data-target="#modal_acknowledge" id="btn_acknowledge">Acknowledge</button>
+                                        <button class="btn btn-danger" id="btn_notconfirm_payment">Payment not Accepted</button>
+                                        <button class="btn btn-success" id="btn_confirm_payment">Confirm Payment</button>
+									</div>
+								</div>
+							</div>
 
-                        </div>
+
+						</div>
+
+
 					</div>
 
 
@@ -1033,7 +1222,6 @@
 
 			<div class="row mt-3 pb-5" id="div-my-closed">
 				<div class="col-12 col-md-12 col-lg-12 post-body py-3" id="">
-                <input type="hidden" id="close_order_id" value="0">
 
 					<div class="row" id="div_closed_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -1053,107 +1241,165 @@
 						</div>
 					</div>
 
-					<div class="row mx-0" id="div_closed">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        
-                            <div class="row">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-0">
-                                    <button class="btn btn-warning">Cancel</button>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Deliver</button>
-                                </div>
-                            </div>
+					<div class="row" id="div_closed">
+						<input type="hidden" id="close_order_id" value="0">
 
-                            <div class="row border mt-3">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2 alert-success">
-                                    <span class="font-weight-600" id="close_order_status">Status</span>
-                                </div>
-                            </div>
+							<div class="col-lg-12 col-md-12 col-sm-12">
 
-                            <div class="row border border-top-0">
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
-                                    <span>ORDER <span id="tbl_close_order_no"></span> </span>
-                                </div>
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right">
-                                    <span id="tbl_close_order_date"></span>
-                                </div>
-                            </div>
+								<div class="row">
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Payment Type</span> <br></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="close_payment_type"></p>
-                                    <p class='mb-0' id="close_payment_method"></p>
-                                    <input type="hidden" id="close_payment_method_id">
-                                    <input type="hidden" id="close_payment_type_id">
-                                </div>
-                            </div>
+									<div class="col-lg-8 col-md-8 col-sm-12">
+										<div class="row">
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Delivery Type</span></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="close_delivery_type"></p>
-                                    <p class='mb-0' id="close_delivery_date"></p>
-                                    <p class='mb-0' id="close_delivery_courier"></p>
-                                    <input type="hidden" id="close_delivery_type_id">
-                                    <input type="hidden" id="close_delivery_courier_id">												
-                                    <input type="hidden" id="close_delivery_date_id">																								
-                                </div>
-                            </div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4" id="close_title">Order 10001</span>							
+											</div>
 
-                            <div class="row border my-2">
-                                <div class="col -12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <span class="font-weight-600">Delivery & Billing Address</span>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    <p class="mb-0" id="tbl_close_from"></p>
-                                    <p class="mb-0" id="close_addr_mobile"></p>
-                                    <p class="mb-0" id="close_ddr_phone"></p>
-                                    <p class="mb-0" id="close_addr_email"></p>
-                                    <p class="mb-0" id="close_addr_contact_person"></p>
-                                    <p class="mb-0" id="close_addr_1"></p>
-                                    <p class="mb-0" id="close_addr_notes"></p>
-                                </div>
-                            </div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12 my-2">
+												<span class="h4">Status : <span class="alert alert-success py-0">Payment Confirmed</span></span>							
+											</div>
 
-                            <div class="row border pb-2 mt-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="row">
+													<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+														<table class="table table-sm table-bordered">
+															<thead>
+																<tr>
+																	<th>Order No</th>
+																	<th>Order Date</th>
+																	<th>From</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td id="tbl_close_order_no"></td>
+																	<td id="tbl_close_order_date"></td>
+																	<td id="tbl_close_from"></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div style="height: 300px; overflow: auto;">
 
-                                    <div class="row mb-2">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                            <span class="font-weight-600">Products</span>
-                                        </div>
-                                    </div>
+													<table class="table table-sm table-bordered" id="tbl-close-products"> 
+														<thead>
+															<tr>
+                                                                <th>Product</th>
+                                                                <th>Variation</th>
+																<th>Qty</th>
+																<th>Unit Price</th>
+																<th>Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Abracada Seedlings</td>
+																<td>N/A</td>
+																<td>10</td>
+																<td>25.00</td>
+																<td>250.00</td>
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<td colspan="4">Subtotal</td>
+																<td id="tbl_close_subtotal">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="4">Shipping</td>
+																<td id="tbl_close_ship">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="4">Total</td>
+																<td id="tbl_close_total">0.00</td>
+															</tr>
+														</tfoot>
+													</table>
+													
+												</div>
+											</div>
 
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="close-div-order-prod">
-                                        
-                                        </div>
-                                    </div>
+										</div>
+									</div>
 
-                                </div>
-                            </div>
+									<div class="col-lg-4 col-md-4 col-sm-12">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Address</span>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>House no., Building and Street Name</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_1" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Barangay</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_barangay" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>City / Municipilaty</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_city" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Province</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_prov" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Mobile Number</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_mobile" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Email Address</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_email" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Contact Person</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="close_addr_contact_person" readonly>
+											</div>
 
-                            <div class="row border my-2">
-                                <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
-                                    <span class="font-weight-600">Item : <span id="close_total_items">1</span></span>
-                                </div>
-                                <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
-                                    <p class="font-weight-400 mb-0">Sub Total : <span class="font-weight-600">&#8369; <span id="tbl_close_subtotal">800,000.00</span></span></p>
-                                    <p class="font-weight-400 mb-0">Shipping Fee : <span class="font-weight-600">&#8369; <span id="tbl_close_ship">800,000.00</span></span></p>
-                                </div>
-                            </div>
+										</div>
+									</div>
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-2">
-                                    <p class="font-weight-600 mb-0 text-dark-green">Grand Total : <span>&#8369; <span id="tbl_close_total">800,000.00</span></span></p>
-                                </div>
-                            </div>
+								</div>
 
-                        </div>
+								<div class="row">
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Delivery Type : </span>
+												<span id="close_delivery_type">For Delivery</span>		
+												<input type="hidden" id="close_delivery_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Payment Type : </span>
+												<span id="close_payment_type">Cash on Delivery</span>
+												<input type="hidden" id="close_payment_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pb-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<button class="btn btn-warning">Cancel</button>
+												<button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Deliver</button>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
 					</div>
 
 
@@ -1166,7 +1412,6 @@
 
 			<div class="row mt-3 pb-5" id="div-my-delivered">
 				<div class="col-12 col-md-12 col-lg-12 post-body py-3" id="">
-                <input type="hidden" id="close_order_id" value="0">
 
 					<div class="row" id="div_delivered_table">
 						<div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -1206,107 +1451,163 @@
 						</div>
 					</div>
 
-					<div class="row mx-0" id="div_delivered">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                        
-                            <div class="row">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-0">
-                                    <button class="btn btn-warning">Cancel</button>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal_deliver">Deliver</button>
-                                </div>
-                            </div>
+					<div class="row" id="div_delivered">
+						<input type="hidden" id="close_order_id" value="0">
 
-                            <div class="row border mt-3">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2 alert-success">
-                                    <span class="font-weight-600" id="span-delivered-status">Status</span>
-                                </div>
-                            </div>
+							<div class="col-lg-12 col-md-12 col-sm-12">
 
-                            <div class="row border border-top-0">
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2">
-                                    <span>ORDER <span id="tbl_delivered_order_no"></span> </span>
-                                </div>
-                                <div class="col-6 col-lg-auto col-md-6 col-sm-6 px-2 text-right">
-                                    <span id="tbl_delivered_order_date"></span>
-                                </div>
-                            </div>
+								<div class="row">
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Payment Type</span> <br></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="delivered_payment_type"></p>
-                                    <p class='mb-0' id="delivered_payment_method"></p>
-                                    <input type="hidden" id="delivered_payment_method_id">
-                                    <input type="hidden" id="delivered_payment_type_id">
-                                </div>
-                            </div>
+									<div class="col-lg-8 col-md-8 col-sm-12">
+										<div class="row">
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <p class="mb-0"><span class="font-weight-600">Delivery Type</span></p>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 pl-4">
-                                    <p class='mb-0' id="delivered_delivery_type"></p>
-                                    <p class='mb-0' id="delivered_delivery_date"></p>
-                                    <p class='mb-0' id="delivered_delivery_courier"></p>
-                                    <input type="hidden" id="delivered_delivery_type_id">
-                                    <input type="hidden" id="delivered_delivery_courier_id">												
-                                    <input type="hidden" id="delivered_delivery_date_id">																								
-                                </div>
-                            </div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4" id="delivered_title">Order 10001</span>							
+											</div>
 
-                            <div class="row border my-2">
-                                <div class="col -12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                    <span class="font-weight-600">Delivery & Billing Address</span>
-                                </div>
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                    <p class="mb-0" id="tbl_delivered_from"></p>
-                                    <p class="mb-0" id="delivered_addr_mobile"></p>
-                                    <p class="mb-0" id="delivered_addr_phone"></p>
-                                    <p class="mb-0" id="delivered_addr_email"></p>
-                                    <p class="mb-0" id="delivered_addr_contact_person"></p>
-                                    <p class="mb-0" id="delivered_addr_1"></p>
-                                    <p class="mb-0" id="delivered_addr_notes"></p>
-                                </div>
-                            </div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Status : <span id="span-delivered-status"></span></span>							
+											</div>
 
-                            <div class="row border pb-2 mt-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div class="row">
+													<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+														<table class="table table-sm table-bordered">
+															<thead>
+																<tr>
+																	<th>Order No</th>
+																	<th>Order Date</th>
+																	<th>From</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td id="tbl_delivered_order_no"></td>
+																	<td id="tbl_delivered_order_date"></td>
+																	<td id="tbl_delivered_from"></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<div style="height: 300px; overflow: auto;">
 
-                                    <div class="row mb-2">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 px-2">
-                                            <span class="font-weight-600">Products</span>
-                                        </div>
-                                    </div>
+													<table class="table table-sm table-bordered" id="tbl-delivered-products"> 
+														<thead>
+															<tr>
+																<th>Product</th>
+																<th>Variation</th>
+																<th>Qty</th>
+																<th>Unit Price</th>
+																<th>Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Abracada Seedlings</td>
+																<td>10</td>
+																<td>25.00</td>
+																<td>250.00</td>
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<td colspan="4">Subtotal</td>
+																<td id="tbl_delivered_subtotal">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="4">Shipping</td>
+																<td id="tbl_delivered_ship">0.00</td>
+															</tr>
+															<tr>
+																<td colspan="4">Total</td>
+																<td id="tbl_delivered_total">0.00</td>
+															</tr>
+														</tfoot>
+													</table>
+													
+												</div>
+											</div>
 
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="delivered-div-order-prod">
-                                        
-                                        </div>
-                                    </div>
+										</div>
+									</div>
 
-                                </div>
-                            </div>
+									<div class="col-lg-4 col-md-4 col-sm-12">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span class="h4">Address</span>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>House no., Building and Street Name</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_1" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Barangay</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_barangay" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>City / Municipilaty</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_city" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Province</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_prov" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Mobile Number</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_mobile" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Email Address</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_email" readonly>
+											</div>
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Contact Person</span>
+												<input type="text" class="form-control textbox-green2 textbox-readonly" id="delivered_addr_contact_person" readonly>
+											</div>
 
-                            <div class="row border my-2">
-                                <div class="col-4 col-lg-6 col-md-6 col-sm-6 px-2">
-                                    <span class="font-weight-600">Item : <span id="delivered_total_items">1</span></span>
-                                </div>
-                                <div class="col-8 col-lg-6 col-md-6 col-sm-6 text-right px-2">
-                                    <p class="font-weight-400 mb-0">Sub Total : <span class="font-weight-600">&#8369; <span id="tbl_delivered_subtotal">800,000.00</span></span></p>
-                                    <p class="font-weight-400 mb-0">Shipping Fee : <span class="font-weight-600">&#8369; <span id="tbl_delivered_ship">800,000.00</span></span></p>
-                                </div>
-                            </div>
+										</div>
+									</div>
 
-                            <div class="row border my-2">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-right px-2">
-                                    <p class="font-weight-600 mb-0 text-dark-green">Grand Total : <span>&#8369; <span id="tbl_delivered_total">800,000.00</span></span></p>
-                                </div>
-                            </div>
+								</div>
 
-                        </div>
+								<div class="row">
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Delivery Type : </span>
+												<span id="delivered_delivery_type">For Delivery</span>		
+												<input type="hidden" id="delivered_delivery_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 py-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<span>Payment Type : </span>
+												<span id="delivered_payment_type">Cash on Delivery</span>
+												<input type="hidden" id="delivered_payment_type_id">										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pb-1">
+										<div class="row">
+											<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+												<button class="btn btn-warning" id="btn-delivered-back">Back</button>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
 					</div>
 
 

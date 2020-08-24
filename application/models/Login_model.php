@@ -112,7 +112,7 @@ class Login_model extends CI_Model {
 
     if (!empty($this->session->userdata("validated"))){
       $user_id = $this->security->xss_clean($this->session->userdata("user_id"));
-      $query = $this->db->query("SELECT * FROM users WHERE id = ? ", array($user_id))->result();
+      $query = $this->db->query("SELECT * FROM users WHERE id = ? AND `users`.`status` = ?", array($user_id, 1))->result();
     }else{
       $query = "";
     }

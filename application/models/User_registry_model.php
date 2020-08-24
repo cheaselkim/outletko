@@ -274,8 +274,11 @@ class User_registry_model extends CI_Model {
 
 	public function insert_account_outletko($data, $id){
 		$this->db2->where("id", $id);
-		$this->db2->update("account", $data);
-	}
+        $this->db2->update("account", $data);
+        
+        $prod_cat = array("comp_id" => $id, "account_id" => $id, "product_category" => "Product Item", "date_insert" => date("Y-m-d H:i:s"));
+        $this->db2->insert("product_category", $prod_cat);
+    }
 
 	public function insert_user_outletko($data, $comp_id){
 		$this->db->insert("users", $data);

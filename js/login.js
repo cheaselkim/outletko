@@ -7,6 +7,8 @@ $(document).ready(function(){
         user_country();
     }, 2000);
 
+    $("#div-buyer-regisration").hide();
+
     $("#wrong_pass").hide();
     $("#div-body").css("display", "block");
 	$("#signup_next").hide();
@@ -33,6 +35,10 @@ $(document).ready(function(){
 
     $(document).on('show.bs.modal', '#modal_signup', function () {
     });
+
+    $("#btn-buyer-register").click(function(){
+        $("#div-buyer-regisration").show("slow");
+    })
 
     $("#go").click(function(){
         var password = $("#website_password").val();
@@ -492,8 +498,9 @@ $(document).ready(function(){
     $("#signup_user_email").blur(function(){
         var email = $(this).val();
         var csrf_name = $("input[name='csrf_name']").val();
-        // console.log(email);
-            $("#signup_user_email").attr("data-exists", "0");
+        $("#signup_user_email").attr("data-exists", "0");
+        console.log(isEmail(email));
+        if (isEmail(email)){
             $.ajax({
                 data : {email : email, csrf_name : csrf_name},
                 type : "POST",
@@ -514,7 +521,9 @@ $(document).ready(function(){
                     console.log(err.responseText);
                 }
             })
-
+        }else{
+            $(this).addClass("error");
+        }
     });
 
 
@@ -719,6 +728,12 @@ function check_signup_field(){
         error++;
         $msg += "Email already Exists<br>";
         $("#signup_user_email").addClass("error");
+    }
+
+    if (isEmail($("#signup_user_email").val()) != true){
+        $("#signup_user_email").addClass("error");
+        error++;
+        $msg += "Invalid Email";
     }
     
     if (error > 0){

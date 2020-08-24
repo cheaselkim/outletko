@@ -3,8 +3,13 @@ $(document).ready(function(){
 	setInterval(
 		function(){ 
 			get_order();
-		},3000);
+    },3000);
 
+
+    $('.navbar-collapse li:not(.dropdown-toggle)').click(function(){
+        if($(window).width() < 768 )
+            $('.navbar-collapse').collapse('hide');
+    });        
 });
 
 function get_order(){

@@ -28,6 +28,9 @@
     transition: transform 3s ease, -webkit-transform 3s ease;
 }
 
+.error{
+    border:1px solid red !important;
+}
 
 /* Text Color */
 .text-black{

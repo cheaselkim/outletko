@@ -134,6 +134,10 @@ class Signup_model extends CI_Model {
     public function register($account){
       // var_dump($account);
         $this->db2->insert('account', $account);
+
+        $prod_cat = array("comp_id" => $this->db2->insert_id(), "account_id" => $this->db2->insert_id(), "product_category" => "Product Item", "date_insert" => date("Y-m-d H:i:s"));
+        $this->db2->insert("product_category", $prod_cat);
+
         return ($this->db2->affected_rows() == 1) ? $this->db2->insert_id() : false;
     }
     

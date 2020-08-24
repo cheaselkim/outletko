@@ -166,7 +166,8 @@ textarea{
 }
 
 #div-my-orders, #div-my-delivered, #div-my-closed, #div-aboutus, #div-payment{
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
+    background: white;
 }
 
 .pcr-button{

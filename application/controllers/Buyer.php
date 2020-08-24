@@ -420,7 +420,8 @@ class Buyer extends CI_Controller {
         if (!empty($result)){
             foreach ($result as $key => $value) {
                 $total += ($value->product_unit_price * $value->prod_qty);
-                $product_price = $value->product_unit_price;
+                // $product_price = $value->product_unit_price;
+                $product_price = $value->prod_price;
 
                 if ($value->prod_var1 != "0"){
                     $prod_var1 = $this->buyer_model->get_variation($value->prod_var1);

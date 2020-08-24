@@ -319,13 +319,13 @@ $(document).ready(function(){
         $("#btn-day-"+i).val(0);
         }
 
-        $('#ftime').timepicker({
-            startTime: '8:00'      
-        });
+        // $('#ftime').timepicker({
+        //     startTime: '8:00'      
+        // });
 
-        $('#ttime').timepicker({
-            startTime: '17:00'
-        });
+        // $('#ttime').timepicker({
+        //     startTime: '17:00'
+        // });
 
 
 
@@ -344,25 +344,25 @@ $(document).ready(function(){
     });
 
 
-    $('#ftime').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 30,
-        defaultTime : '8',
-        startTime: '8:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
+    // $('#ftime').timepicker({
+    //     timeFormat: 'h:mm p',
+    //     interval: 30,
+    //     defaultTime : '8',
+    //     startTime: '8:00',
+    //     dynamic: false,
+    //     dropdown: true,
+    //     scrollbar: true
+    // });
 
-    $('#ttime').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 30,
-        defaultTime: '17',
-        startTime: '17:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
+    // $('#ttime').timepicker({
+    //     timeFormat: 'h:mm p',
+    //     interval: 30,
+    //     defaultTime: '17',
+    //     startTime: '17:00',
+    //     dynamic: false,
+    //     dropdown: true,
+    //     scrollbar: true
+    // });
 
     $("#free_shipping").change(function(){
     if ($(this).is(":checked")){
@@ -1075,64 +1075,64 @@ function copyToClipboard(element) {
 
 function createColorPicker(color){
 
-    const pickr = Pickr.create({
-        el: '#colorpicker',
-        theme: 'nano', // or 'monolith', or 'nano'
-        default : color,
-        swatches: [
-            'rgb(0,0,0)',
-            'rgb(0,0,128)',
-            'rgb(0,0,255)',
-            'rgb(0,128,0)',
-            'rgb(0,255,255)',
-            'rgb(128,0,0)',
-            'rgb(128,0,128)',
-            'rgb(128,128,0)',
-            'rgb(128,128,128)',
-            'rgb(192,192,192)',
-            'rgb(255,0,0)',
-            'rgb(255,0,255)',
-            'rgb(255,255,0)',
-            'rgb(255,255,255)'
-        ],        
-        components: {
-            // Main components
-            preview: true,
-            opacity: false,
-            hue: true,
+    // const pickr = Pickr.create({
+    //     el: '#colorpicker',
+    //     theme: 'nano', // or 'monolith', or 'nano'
+    //     default : color,
+    //     swatches: [
+    //         'rgb(0,0,0)',
+    //         'rgb(0,0,128)',
+    //         'rgb(0,0,255)',
+    //         'rgb(0,128,0)',
+    //         'rgb(0,255,255)',
+    //         'rgb(128,0,0)',
+    //         'rgb(128,0,128)',
+    //         'rgb(128,128,0)',
+    //         'rgb(128,128,128)',
+    //         'rgb(192,192,192)',
+    //         'rgb(255,0,0)',
+    //         'rgb(255,0,255)',
+    //         'rgb(255,255,0)',
+    //         'rgb(255,255,255)'
+    //     ],        
+    //     components: {
+    //         // Main components
+    //         preview: true,
+    //         opacity: false,
+    //         hue: true,
     
-            // Input / output Options
-            interaction: {
-                hex: false,
-                rgba: false,
-                hsla: false,
-                hsva: false,
-                cmyk: false,
-                input: true,
-                clear: true,
-                save: true
-            }
-        }
-    });
+    //         // Input / output Options
+    //         interaction: {
+    //             hex: false,
+    //             rgba: false,
+    //             hsla: false,
+    //             hsva: false,
+    //             cmyk: false,
+    //             input: true,
+    //             clear: true,
+    //             save: true
+    //         }
+    //     }
+    // });
     
-    pickr.on('init', instance => {
-        // console.log('init', instance);
-    }).on('save', (color, instance) => {
-        console.log('save', color.toHEXA().toString());
-        $(".pcr-app").removeClass("visible");
-        $("#color-val").val(color.toHEXA().toString());
-        $(".div-header").css("background", color.toHEXA().toString());
-        $(".div-left-setting").css("background", color.toHEXA().toString());
-        $(".div-left-aboutus").css("background", color.toHEXA().toString());
-        lightOrDark(color.toHEXA().toString());
-    }).on('clear', (color, instance) => {
-        $("#color-val").val("#77933c");
-        $(".div-header").css("background", "#77933c");
-        $(".div-left-setting").css("background", "#77933c");
-        $(".div-left-aboutus").css("background", "#77933c");
-        $(".pcr-app").removeClass("visible");
-        // console.log('clear', instance);
-    });
+    // pickr.on('init', instance => {
+    //     // console.log('init', instance);
+    // }).on('save', (color, instance) => {
+    //     console.log('save', color.toHEXA().toString());
+    //     $(".pcr-app").removeClass("visible");
+    //     $("#color-val").val(color.toHEXA().toString());
+    //     $(".div-header").css("background", color.toHEXA().toString());
+    //     $(".div-left-setting").css("background", color.toHEXA().toString());
+    //     $(".div-left-aboutus").css("background", color.toHEXA().toString());
+    //     lightOrDark(color.toHEXA().toString());
+    // }).on('clear', (color, instance) => {
+    //     $("#color-val").val("#77933c");
+    //     $(".div-header").css("background", "#77933c");
+    //     $(".div-left-setting").css("background", "#77933c");
+    //     $(".div-left-aboutus").css("background", "#77933c");
+    //     $(".pcr-app").removeClass("visible");
+    //     // console.log('clear', instance);
+    // });
     
 
 }
@@ -1877,13 +1877,13 @@ function index(){
         $("#ftime").val(result.appointment[0].start_time);
         $("#ttime").val(result.appointment[0].end_time);
 
-        $("#ftime").timepicker({
-          startTime : result.appointment[0].startTime
-        });
+        // $("#ftime").timepicker({
+        //   startTime : result.appointment[0].startTime
+        // });
 
-        $("#ttime").timepicker({
-          startTime : result.appointment[0].startTime
-        });
+        // $("#ttime").timepicker({
+        //   startTime : result.appointment[0].startTime
+        // });
       }
       // console.log(result.warranty);
       if (result.warranty.length != 0){
@@ -2313,16 +2313,16 @@ function order_table(id){
       $("#tbl_order_date").text(data[0].order_date);
       $("#tbl_from").text(data[0].buyer_name);
 
-      $("#addr_1").val(data[0].delivery_address);
-      $("#addr_barangay").val(data[0].barangay);
-      $("#addr_city").val(data[0].city_desc);
-      $("#addr_prov").val(data[0].province_desc);
-      $("#addr_mobile").val(data[0].contact_no);
-      $("#addr_email").val(data[0].email);
-      $("#addr_contact_person").val(data[0].contact_name);
-      $("#addr_notes").val(data[0].notes);
-      $("#addr_zip").val(data[0].zip_code);
-      $("#addr_phone").val(data[0].phone_no);
+      $("#addr_1").text(data[0].delivery_address + ", " + data[0].barangay + ", " + data[0].city_desc + ", " + data[0].province_desc);
+    //   $("#addr_barangay").text(data[0].barangay);
+    //   $("#addr_city").text(data[0].city_desc);
+    //   $("#addr_prov").text(data[0].province_desc);
+      $("#addr_mobile").text("+63" + data[0].contact_no);
+      $("#addr_email").text(data[0].email);
+      $("#addr_contact_person").text(data[0].contact_name + " (Contact Person)");
+      $("#addr_notes").text(data[0].notes);
+    //   $("#addr_zip").text(data[0].zip_code);
+      $("#addr_phone").text(data[0].phone_no);
 
       $("#po_delivery_type").text(data[0].delivery_type_desc);
       $("#po_delivery_date").text((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
@@ -2330,6 +2330,7 @@ function order_table(id){
       $("#po_payment_type").text(data[0].payment_type_desc);
       $("#po_delivery_type_id").val(data[0].delivery_type_id);
       $("#po_payment_type_id").val(data[0].payment_type_id);
+      $("#po_delivery_date_id").val((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
 
       if (data[0].payment_type_id == "5" || data[0].payment_type_id == "6"){
         $("#po_payment_method").text(data[0].payment_method_desc);
@@ -2339,20 +2340,24 @@ function order_table(id){
         $("#po_payment_method_id").text(data[0].payment_method_id);
       }
 
-      for (var i = 0; i < products.length; i++) {
+      $("#div-order-prod").html(result.products);
 
-        $("#tbl-po-products tbody").append("<tr><td>"+ products[i].product_name + 
-        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
-        "</td><td>" + $.number(products[i].prod_qty) + 
-        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-        "</td></tr>");
-        subtotal += (products[i].prod_qty * products[i].product_unit_price);
-      }
 
-      $("#tbl_subtotal").text($.number(subtotal, 2));
-      $("#tbl_ship").text($.number(shipping_fee, 2))
-      $("#tbl_total").text($.number((Number(subtotal) + Number(shipping_fee)), 2));
+    //   for (var i = 0; i < products.length; i++) {
+
+    //     $("#tbl-po-products tbody").append("<tr><td>"+ products[i].product_name + 
+    //     "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+    //     "</td><td>" + $.number(products[i].prod_qty) + 
+    //     "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+    //     "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+    //     "</td></tr>");
+    //     subtotal += (products[i].prod_qty * products[i].product_unit_price);
+    //   }
+
+      $("#vw_total_items").text($.number(result.total_items, 0));
+      $("#tbl_subtotal").text($.number(data[0].sub_total, 2));
+      $("#tbl_ship").text($.number(data[0].shipping_fee, 2))
+      $("#tbl_total").text($.number(data[0].total_amount, 2));
 
 
       var proof = result.proof;
@@ -2369,19 +2374,19 @@ function order_table(id){
                     var data = {
                         "img" : img,
                         "thumb" : img,
-                        "alt" : "Proof of Payment",
-                        "width" : "250px",
-                        "height" : "300px"
+                        "alt" : "Proof of Payment"
                     }
 
                     arr_data.push(data);
                 }
 
-            console.log(arr_data.length);
             if (arr_data.length > 0){
-                var $fotoramaDiv = $('#div-fotorama-2').fotorama();
+                var $fotoramaDiv = $('#div-fotorama-3').fotorama();
                 var fotorama = $fotoramaDiv.data('fotorama');
                 fotorama.load(arr_data);    
+                setTimeout(() => {
+                    $("#div-fotorama-3").fotorama();                    
+                }, 500);
             }
         }
 
@@ -2407,46 +2412,75 @@ function closed_table(id){
     dataType : "JSON",
     url : base_url + "Seller/get_order_id",
     success : function(result){
-      $("input[name=csrf_name]").val(result.token);
+        $("input[name=csrf_name]").val(result.token);
 
-      var data = result.result;
-      var products = result.products;
-      var subtotal = 0;
-      var shipping_fee = data[0].shipping_fee;
+        var data = result.result;
+        var products = result.products;
+        var subtotal = 0;
+        var shipping_fee = data[0].shipping_fee;
 
-      $("#close_title").text("Order " + data[0].order_no);
-      $("#tbl_close_order_no").text(data[0].order_no);
-      $("#tbl_close_order_date").text(data[0].order_date);
-      $("#tbl_close_from").text(data[0].buyer_name);
-
-      $("#close_addr_1").val(data[0].delivery_address);
-      $("#close_addr_barangay").val(data[0].barangay);
-      $("#close_addr_city").val(data[0].city_desc);
-      $("#close_addr_prov").val(data[0].province_desc);
-      $("#close_addr_mobile").val(data[0].contact_no);
-      $("#close_addr_email").val(data[0].email);
-      $("#close_addr_contact_person").val(data[0].contact_name);
-
-      $("#close_delivery_type").text(data[0].delivery_type_desc);
-      $("#close_payment_type").text(data[0].payment_type_desc);
-      $("#close_delivery_type_id").val(data[0].delivery_type_id);
-      $("#close_payment_type_id").val(data[0].payment_type_id);
+        if (data[0].status == "5"){
+            $("#close_order_status").text("For Delivery");
+        }
 
 
-      for (var i = 0; i < products.length; i++) {
+        $("#close_title").text("Order " + data[0].order_no);
+        $("#tbl_close_order_no").text(data[0].order_no);
+        $("#tbl_close_order_date").text(data[0].order_date);
+        $("#tbl_close_from").text(data[0].buyer_name);
 
-        $("#tbl-close-products tbody").append("<tr><td>"+ products[i].product_name + 
-        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
-        "</td><td>" + $.number(products[i].prod_qty) + 
-        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-        "</td></tr>");
-        subtotal += (products[i].prod_qty * products[i].product_unit_price);
-      }
+        $("#close_addr_1").text(data[0].delivery_address + ", " + data[0].barangay + ", " + data[0].city_desc + ", " + data[0].province_desc);
+    //   $("#close_addr_barangay").val(data[0].barangay);
+    //   $("#close_addr_city").val(data[0].city_desc);
+    //   $("#close_addr_prov").val(data[0].province_desc);
 
-      $("#tbl_close_subtotal").text($.number(subtotal, 2));
-      $("#tbl_close_ship").text($.number(shipping_fee, 2))
-      $("#tbl_close_total").text($.number((Number(subtotal) + Number(shipping_fee)), 2));
+        $("#close_addr_mobile").text("+63" + data[0].contact_no);
+        $("#close_addr_email").text(data[0].email);
+        $("#close_addr_contact_person").text(data[0].contact_name + " (Contact Person)");
+        $("#close_addr_notes").text(data[0].notes);
+        //   $("#addr_zip").text(data[0].zip_code);
+        $("#close_addr_phone").text(data[0].phone_no);
+
+
+        $("#close_delivery_type").text(data[0].delivery_type_desc);
+        $("#close_delivery_date").text((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
+        $("#close_delivery_courier").text(data[0].courier_name);
+        $("#close_payment_type").text(data[0].payment_type_desc);
+        $("#close_delivery_type_id").val(data[0].delivery_type_id);
+        $("#close_payment_type_id").val(data[0].payment_type_id);
+        $("#close_delivery_date_id").val((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
+
+        if (data[0].payment_type_id == "5" || data[0].payment_type_id == "6"){
+        $("#close_payment_method").text(data[0].payment_method_desc);
+        $("#close_payment_method_id").text(data[0].payment_method_id);
+        }else{
+        $("#close_payment_method").text(data[0].payment_type_desc);
+        $("#close_payment_method_id").text(data[0].payment_method_id);
+        }
+
+        // $("#close_delivery_type").text(data[0].delivery_type_desc);
+        // $("#close_payment_type").text(data[0].payment_type_desc);
+        // $("#close_delivery_type_id").val(data[0].delivery_type_id);
+        // $("#close_payment_type_id").val(data[0].payment_type_id);
+
+        $("#close-div-order-prod").html(result.products);
+
+        // for (var i = 0; i < products.length; i++) {
+
+        // $("#tbl-close-products tbody").append("<tr><td>"+ products[i].product_name + 
+        // "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+        // "</td><td>" + $.number(products[i].prod_qty) + 
+        // "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+        // "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+        // "</td></tr>");
+        // subtotal += (products[i].prod_qty * products[i].product_unit_price);
+        // }
+
+        $("#close_total_items").text($.number(result.total_items, 0));
+
+        $("#tbl_close_subtotal").text($.number(data[0].subtotal, 2));
+        $("#tbl_close_ship").text($.number(data[0].shipping_fee, 2))
+        $("#tbl_close_total").text($.number(data[0].total_amount, 2));
 
     }, error : function(err){
       console.log(err.responseText);
@@ -2478,10 +2512,10 @@ function delivered_table(id){
         var subtotal = 0;
         var shipping_fee = data[0].shipping_fee;
   
-        if (data[0].status == "2"){
+        if (data[0].status == "5"){
             status_desc = "For Delivery";            
-        }else if (data[0].status == "3"){
-            status_desc = "Closed Order";
+        }else if (data[0].status == "6"){
+            status_desc = "Order Completed";
         }
 
         $("#span-delivered-status").text(status_desc);
@@ -2498,26 +2532,45 @@ function delivered_table(id){
         $("#delivered_addr_email").val(data[0].email);
         $("#delivered_addr_contact_person").val(data[0].contact_name);
   
+        // $("#delivered_delivery_type").text(data[0].delivery_type_desc);
+        // $("#delivered_payment_type").text(data[0].payment_type_desc);
+        // $("#delivered_delivery_type_id").val(data[0].delivery_type_id);
+        // $("#delivered_payment_type_id").val(data[0].payment_type_id);
+  
         $("#delivered_delivery_type").text(data[0].delivery_type_desc);
+        $("#delivered_delivery_date").text((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
+        $("#delivered_delivery_courier").text(data[0].courier_name);
         $("#delivered_payment_type").text(data[0].payment_type_desc);
         $("#delivered_delivery_type_id").val(data[0].delivery_type_id);
         $("#delivered_payment_type_id").val(data[0].payment_type_id);
-  
-  
-        for (var i = 0; i < products.length; i++) {
-  
-        $("#tbl-delivered-products tbody").append("<tr><td>"+ products[i].product_name + 
-        "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
-        "</td><td>" + $.number(products[i].prod_qty) + 
-        "</td><td>" + $.number(products[i].product_unit_price, 2) +           
-        "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
-        "</td></tr>");
-          subtotal += (products[i].prod_qty * products[i].product_unit_price);
+        $("#delivered_delivery_date_id").val((data[0].delivery_date == "0000-00-00" ? "No Delivery Date" : data[0].delivery_date_format));
+
+        if (data[0].payment_type_id == "5" || data[0].payment_type_id == "6"){
+            $("#delivered_payment_method").text(data[0].payment_method_desc);
+            $("#delivered_payment_method_id").text(data[0].payment_method_id);
+        }else{
+            $("#delivered_payment_method").text(data[0].payment_type_desc);
+            $("#delivered_payment_method_id").text(data[0].payment_method_id);
         }
+
+        $("#delivered-div-order-prod").html(result.products);
+
+        // for (var i = 0; i < products.length; i++) {
   
-        $("#tbl_delivered_subtotal").text($.number(subtotal, 2));
-        $("#tbl_delivered_ship").text($.number(shipping_fee, 2))
-        $("#tbl_delivered_total").text($.number((Number(subtotal) + Number(shipping_fee)), 2));
+        // $("#tbl-delivered-products tbody").append("<tr><td>"+ products[i].product_name + 
+        // "</td><td>" + (products[i].prod_var1 == "" ? "N/A" : products[i].prod_var1) + (products[i].prod_var2 == "" ? "" : "," + products[i].prod_var2) + 
+        // "</td><td>" + $.number(products[i].prod_qty) + 
+        // "</td><td>" + $.number(products[i].product_unit_price, 2) +           
+        // "</td><td>" + $.number((products[i].prod_qty * products[i].product_unit_price), 2) +
+        // "</td></tr>");
+        //   subtotal += (products[i].prod_qty * products[i].product_unit_price);
+        // }
+
+        $("#delivered_total_items").text($.number(result.total_items, 0));
+  
+        $("#tbl_delivered_subtotal").text($.number(data[0].subtotal, 2));
+        $("#tbl_delivered_ship").text($.number(data[0].shipping_fee, 2))
+        $("#tbl_delivered_total").text($.number(data[0].total_amount, 2));
   
       }, error : function(err){
         console.log(err.responseText);

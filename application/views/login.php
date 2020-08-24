@@ -428,10 +428,11 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                            <span class="text-green">For Outletko User Account</span>
+                            <span class="text-green">For Outletko Buyer Account</span>
+                            <button class="btn btn-orange btn-block" id="btn-buyer-register">Click Here to Register as Buyer</button>                        
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="div-buyer-regisration">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <span >First Name <span class="text-red">*</span></span>
                             <input type="text" class="form-control form-control-sm textbox-green bd-green" id="signup_user_fname">
@@ -471,8 +472,6 @@
                             <span>Country <span class="text-red">*</span></span>
                             <select name="" id="signup_user_country" class="form-control form-control-sm textbox-green bd-green"></select>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-2" style="line-height: 1;">
                             <span>By clicking <span class="font-weight-600">"SIGN UP"</span>, I agree to Outletko's <a href="<?php echo base_url('terms'); ?>">Terms and Conditions</a> and <a href="<?php echo base_url('privacy'); ?>">Privacy Policy</a> </span>
                         </div>

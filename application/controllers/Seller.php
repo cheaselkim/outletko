@@ -30,13 +30,15 @@ class Seller extends CI_Controller {
 
         if (!empty($order_prod)){
             foreach ($order_prod as $key => $value) {
-                $product_price = $value->product_unit_price;
+                // $product_price = $value->product_unit_price;
+                $product_price = $value->prod_price;
+
                 if ($value->prod_var1 != "0"){
                     $prod_var1 = $this->Seller_model->get_variation($value->prod_var1);
-                    $product_price = $this->Seller_model->get_variation_price($value->prod_var1);
+                    // $product_price = $this->Seller_model->get_variation_price($value->prod_var1);
                 }else{
                     $prod_var1 = "";
-                    $product_price = $product_price;
+                    // $product_price = $product_price;
                 }
 
                 if ($value->prod_var2 != "0"){
@@ -47,8 +49,9 @@ class Seller extends CI_Controller {
 
                 $products[$key] = array(
                     "product_name" => $value->product_name,
+                    "img_location" => $value->img_location,
                     "prod_qty" => $value->prod_qty,
-                    "product_unit_price" => $product_price,
+                    "prod_price" => $product_price,
                     "prod_var1" => $prod_var1,
                     "prod_var2" => $prod_var2
                 );
@@ -64,8 +67,10 @@ class Seller extends CI_Controller {
             }
         }
 
+        $product_data = tbl_products($products);
 
-        $data['products'] = $products;
+        $data['products'] = $product_data['output'];
+        $data['total_item'] = $product_data['total_items'];
         $data['result'] = $this->Seller_model->get_order_id($id);
         $data['proof'] = $proof;
         $data['proof_img'] = $proof_img;

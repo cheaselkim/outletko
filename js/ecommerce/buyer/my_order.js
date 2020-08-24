@@ -24,6 +24,9 @@ $(document).ready(function(){
 	$(".prod_total_price").number(true, 2);
 	$("#sub_total").number(true, 2);
 
+
+    $("#div-del-not-avail").hide();
+
 	// $(".btn_checkout").click(function(){
 	// 	$("#div-home").hide();
 	// 	$("#div-checkout-details").show();
@@ -490,40 +493,44 @@ function courier(){
     var city = $("#bill_city").attr("data-id");
     var prov = $("#bill_province").attr("data-id");
 	var total_weight = "";
-	$("#courier").empty();
+    $("#courier").empty();
 
+    if ($("#delivery_type").attr("data-free") != "1"){
 
-	$("#prod_dtls tbody").each(function(row, tr){
-		var weight = $(tr).find(".prod_weight").text();
-		var qty = $(tr).find(".prod_qty").text();
-		var weight_qty = weight * qty;
+        $("#prod_dtls tbody").each(function(row, tr){
+            var weight = $(tr).find(".prod_weight").text();
+            var qty = $(tr).find(".prod_qty").text();
+            var weight_qty = weight * qty;
 
-		total_weight += weight_qty;
-	})
+            total_weight += weight_qty;
+        })
 
-    var data = {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov};
-    // console.log(data);
+        var data = {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov};
+        // console.log(data);
 
-    $.ajax({
-		data : {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov},
-		type : "POST",
-		dataType : "JSON",
-		url : base_url + "Buyer/courier",
-		success : function(result){
-			$("input[name=csrf_name]").val(result.token);
-			$("#courier").empty();
-            // console.log(result.result);
-            for (var i = 0; i < result.result.length; i++) {
-				$("#courier").append("<option value='"+result.result[i].id+"'>"+result.result[i].courier+"</option>");
+        $.ajax({
+            data : {id : id, csrf_name : csrf_name, total_weight : total_weight, city : city, prov : prov},
+            type : "POST",
+            dataType : "JSON",
+            url : base_url + "Buyer/courier",
+            success : function(result){
+                $("input[name=csrf_name]").val(result.token);
+                $("#courier").empty();
+                // console.log(result.result);
+                for (var i = 0; i < result.result.length; i++) {
+                    $("#courier").append("<option value='"+result.result[i].id+"'>"+result.result[i].courier+"</option>");
+                }
+                
+                get_courier();
+
+            }, error : function(err){
+                console.log(err.responseText);
             }
-            
-			get_courier();
-
-		}, error : function(err){
-			console.log(err.responseText);
-		}
-	})
-
+        })
+    }else{
+        $("#div-shipping-method").attr("data-id", "1");
+        $("#courier").append("<option value='0'>Free Delivery</option>");
+    }
 }
 
 
@@ -929,8 +936,8 @@ function get_order_checkout(div_id){
 
 		$("#div-home").hide();
 		$("#div-checkout-details").show("slow");
-        console.log(prod_id);
-        console.log(item_id);
+        // console.log(prod_id);
+        // console.log(item_id);
 
 	    $.ajax({
 	    	data : {csrf_name : csrf_name, prod_id : prod_id, item_id : item_id},
@@ -947,11 +954,11 @@ function get_order_checkout(div_id){
                 $("#datepicker").attr("data-deldate", result.cust_del_date[0].del_date);
                 check_delivery_address();
 
-                setTimeout(function(){ 
-                    courier();
+                // setTimeout(function(){ 
+                //     courier();
                     // get_billing();
                     // console.log("get_billing");
-                 }, 500);
+                //  }, 500);
 
 				if (result.cust_del_date[0].del_date == "1"){
 					$('#datepicker').datepicker('enable');
@@ -961,15 +968,28 @@ function get_order_checkout(div_id){
                     $("#deliver_date_note").show();
 				}
 
+                // console.log("Free Shipping " + result.cust_del_date[0].free_shipping );
+
+                $("#delivery_type").attr("data-free", result.cust_del_date[0].free_shipping);
+
 				if (result.cust_del_date[0].free_shipping == "1"){
 					$("#courier").empty();
 					$("#courier").attr("disabled", true);
 					$("#courier").append("<option value='0'>Free Delivery</option>");
 					$("#delivery_fee").val("0.00");
-				}else{
+
+                    $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                    $("#arrive-icon").empty();
+                    $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+                    $("#div-shipping-method").attr("data-id", "1");
+                    $("#div-del-not-avail").hide();
+        
+                }else{
 					$("#courier").empty();
-					$("#courier").attr("disabled", false);
-					courier();
+                    $("#courier").attr("disabled", false);
+                    setTimeout(() => {
+                        courier();
+                    }, 500);
 				}
 
                 var font_color = "";
@@ -1203,6 +1223,19 @@ function get_order_checkout(div_id){
                 $("#collapse-payment").addClass("show");
                 $("#collapse-shipping").addClass("show");
 
+                setTimeout(() => {
+                    if ($("#div-checkout-details").is(":visible")){
+                        swal({
+                            type : "warning",
+                            title : "You took long to checkout",
+                            // timer : 3000
+                        }, function(){
+                            location.reload();
+                        })
+                    }
+                }, 1000000);
+
+
 	    	}, error : function(err){
 	    		console.log(err.responseText);
 	    	}
@@ -1427,91 +1460,104 @@ function get_courier(){
 	var island_group = $("#bill_province").attr("data-island");
     // var total_order = $("#vw_total_order").text().replace(/,/g, '');
     var total_order = $("#sub_total").attr("data-id");
-	var shipping_fee = "";
+    var shipping_fee = "";
 
-	if (id != "0"){
-		$.ajax({
-			data : {id : id, csrf_name : csrf_name},
-			type : "POST",
-			dataType : "JSON",
-			url : base_url + "Buyer/get_courier",
-			success : function(result){
-				$("input[name=csrf_name]").val(result.token);
+    console.log(id);
+    console.log($("#delivery_type").attr("data-free"));
+    
+	// if (id == "0"){
+        if ($("#delivery_type").attr("data-free") == "1"){
+            $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+            $("#arrive-icon").empty();
+            $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+            $("#div-shipping-method").attr("data-id", "1");
+            $("#div-del-not-avail").hide();
+        }else{
+            if (id != "0"){
+                $.ajax({
+                    data : {id : id, csrf_name : csrf_name},
+                    type : "POST",
+                    dataType : "JSON",
+                    url : base_url + "Buyer/get_courier",
+                    success : function(result){
+                        $("input[name=csrf_name]").val(result.token);
 
-                if (result.result.length != 0){
-                    // if (island_group == "1"){
-                    //     shipping_fee = result.result[0].sf_mm;
-                    // }else if (island_group == "2"){
-                    //     shipping_fee = result.result[0].sf_luz;				
-                    // }else if (island_group == "3"){
-                    //     shipping_fee = result.result[0].sf_vis;
-                    // }else if (island_group == "4"){
-                    //     shipping_fee = result.result[0].sf_min;
-                    // }else{
-                    //     shipping_fee = "0";
-                    // }    
+                        if (result.result.length != 0){
+                            // if (island_group == "1"){
+                            //     shipping_fee = result.result[0].sf_mm;
+                            // }else if (island_group == "2"){
+                            //     shipping_fee = result.result[0].sf_luz;				
+                            // }else if (island_group == "3"){
+                            //     shipping_fee = result.result[0].sf_vis;
+                            // }else if (island_group == "4"){
+                            //     shipping_fee = result.result[0].sf_min;
+                            // }else{
+                            //     shipping_fee = "0";
+                            // }    
 
-                    shipping_fee = result.result[0].amount;
-                }else{
-                    shipping_fee = "0";
-                }
+                            shipping_fee = result.result[0].amount;
+                        }else{
+                            shipping_fee = "0";
+                        }
 
-                if ($("#delivery_type").val() == "2"){
-                    shipping_fee = 0;
-                    // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
-                    $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
-                    $("#arrive-icon").empty();
-                    $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
-                    $("#div-shipping-method").attr("data-id", "1");
-                    // $("#collapse-shipping").removeClass("show");
+                        if ($("#delivery_type").val() == "2"){
+                            shipping_fee = 0;
+                            // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                            $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                            $("#arrive-icon").empty();
+                            $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+                            $("#div-shipping-method").attr("data-id", "1");
+                            // $("#collapse-shipping").removeClass("show");
 
-                    $(".div-modal-delivery-details").hide();
-                }else{
-                    shipping_fee = shipping_fee;
-                    $(".div-modal-delivery-details").show();
-                    if ($("#courier").val() != null){
-                        // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
-                        $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
-                        $("#arrive-icon").empty();
-                        $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
-                        $("#div-shipping-method").attr("data-id", "1");
-                        // $("#collapse-shipping").removeClass("show");
-                
-                        $("#div-del-not-avail").hide();
-                        $("#courier").attr("disabled", false);
-                    }else{
-                        // $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
-                        $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
-                        $("#arrive-icon").empty();
-                        $("#arrive-icon").append("<i class='far fa-check-circle'></i>");
-                        $("#div-shipping-method").attr("data-id", "0");
-                        // $("#collapse-shipping").addClass("show");
-                
+                            $(".div-modal-delivery-details").hide();
+                        }else{
+                            shipping_fee = shipping_fee;
+                            $(".div-modal-delivery-details").show();
+                            if ($("#courier").val() != null){
+                                // $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                                $(".div-arrive").css("background-color", "rgb(0, 128, 0, 0.2)");
+                                $("#arrive-icon").empty();
+                                $("#arrive-icon").append("<i class='fas fa-check-circle'></i>");
+                                $("#div-shipping-method").attr("data-id", "1");
+                                // $("#collapse-shipping").removeClass("show");
+                        
+                                $("#div-del-not-avail").hide();
+                                $("#courier").attr("disabled", false);
+                            }else{
+                                // $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
+                                $(".div-arrive").css("background-color", "rgb(235, 241, 222)");
+                                $("#arrive-icon").empty();
+                                $("#arrive-icon").append("<i class='far fa-check-circle'></i>");
+                                $("#div-shipping-method").attr("data-id", "0");
+                                // $("#collapse-shipping").addClass("show");
+                        
 
-                        $("#div-del-not-avail").show();
-                    }    
-                }
+                                $("#div-del-not-avail").show();
+                            }    
+                        }
 
-                var grand_total = Number(total_order) + Number(shipping_fee);
+                        var grand_total = Number(total_order) + Number(shipping_fee);
 
-				$("#delivery_fee").val($.number(shipping_fee, 2));			
-				$("#shipping_fee").text($.number(shipping_fee, 2));
-				$("#shipping_fee").attr("data-id", shipping_fee);
-				$("#total_amount").text($.number(grand_total, 2));
-				$("#total_amount").attr("data-id", grand_total);
-				$("#vw_delivery_fee").text($.number(shipping_fee, 2));			
-				$("#vw_grand_total").text($.number(grand_total, 2));			
-				$("#summ-total-order").text($.number(total_order, 2));			
-				$("#summ-shipping-fee").text($.number(shipping_fee, 2));
-				$("#summ-delivery-fee").text($.number(shipping_fee, 2));			
-				$("#summ-grand-total").text($.number(grand_total, 2));		
+                        $("#delivery_fee").val($.number(shipping_fee, 2));			
+                        $("#shipping_fee").text($.number(shipping_fee, 2));
+                        $("#shipping_fee").attr("data-id", shipping_fee);
+                        $("#total_amount").text($.number(grand_total, 2));
+                        $("#total_amount").attr("data-id", grand_total);
+                        $("#vw_delivery_fee").text($.number(shipping_fee, 2));			
+                        $("#vw_grand_total").text($.number(grand_total, 2));			
+                        $("#summ-total-order").text($.number(total_order, 2));			
+                        $("#summ-shipping-fee").text($.number(shipping_fee, 2));
+                        $("#summ-delivery-fee").text($.number(shipping_fee, 2));			
+                        $("#summ-grand-total").text($.number(grand_total, 2));		
 
 
-			}, error : function(err){
-				console.log(err.responseText);
-			}
-		})
-	}
+                    }, error : function(err){
+                        console.log(err.responseText);
+                    }
+                })
+            }        
+        }
+    // }
 }
 
 function get_bank(){

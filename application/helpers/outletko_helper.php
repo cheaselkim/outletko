@@ -577,7 +577,7 @@ if (!function_exists("featured_store")){
                     $pad_logo = "pr-2";
                     $pad_name = "pl-0";
 
-                    $css_product = "background-image: url('".$prod_img."');background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
+                    $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
                     $button = '<div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
                                         <a href="'.$href_url.'" class="btn btn-orange px-4 btn-sm text-black btn-see-more">See More</a>
@@ -621,7 +621,7 @@ if (!function_exists("featured_store")){
 
                     $pad_logo = "pr-0";
                     $pad_name = "pl-2";
-                    $css_product = "background-image: url('".$prod_img."');background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
+                    $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
@@ -665,7 +665,7 @@ if (!function_exists("featured_store")){
 
                     $pad_logo = "";
                     $pad_name = "pl-0";
-                    $css_product = "background-image: url('".$prod_img."');background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
+                    $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
@@ -708,7 +708,7 @@ if (!function_exists("featured_store")){
                     }
                     $pad_logo = "";
                     $pad_name = "pl-0";
-                    $css_product = "background-image: url('".$prod_img."');background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
+                    $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>

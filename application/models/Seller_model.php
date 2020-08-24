@@ -36,7 +36,7 @@ class Seller_model extends CI_Model {
 				`province`.`province_desc`,
 				`city`.`city_desc`,
 				`courier`.`courier` AS courier_name,
-				DATE_FORMAT(`buyer_order`.`date_insert`, '%m/%d/%Y %h:%i:%s %p') AS order_date,
+				DATE_FORMAT(`buyer_order`.`date_insert`, '%m/%d/%Y %H:%i:%s') AS order_date,
 				DATE_FORMAT(`buyer_order`.`delivery_date`, '%m/%d/%Y') AS delivery_date_format,
 				buyer_order.*,
 				CONCAT(`account_buyer`.`first_name`, ' ', `account_buyer`.`last_name`) AS buyer_name,
@@ -75,7 +75,8 @@ class Seller_model extends CI_Model {
 		$result = $this->db2->query("
 		SELECT 
 			`products`.`product_name`,
-			`products`.`product_unit_price`,
+            `products`.`product_unit_price`,
+            `products`.`img_location`,
 			buyer_order_products.*
 		FROM buyer_order_products
 		LEFT JOIN products ON 
