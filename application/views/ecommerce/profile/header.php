@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-md " style="height: 40px;background: #006600;">
 	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>" id="search-header-title"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></a>
     <a href="<?php echo base_url('my-order')?>"><span class='nav-link font-small text-yellow d-block d-sm-none' style="color: yellow;">Cart: PHP <span id="total-cart-2"><?php echo number_format($this->session->userdata('cart_total'), 2); ?></span> </span></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="margin-top: -2%;">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="margin-top: -5%;border:1px solid orange;">
         <span class="fas fa-bars text-orange" style="font-size: 25px;"></span>
 	</button>
 	<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">

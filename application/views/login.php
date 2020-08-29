@@ -53,20 +53,31 @@
     <script src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
     <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
+    <style>
+        html{
+            scroll-behavior:smooth;
+        }
+    </style>
+
 </head>
 <body>
 
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
+<!-- Your Chat Plugin code -->
+<div class="fb-customerchat" attribution=setup_tool page_id="103466421133227" theme_color="#006600"></div>
 
 
-      <!-- Your Chat Plugin code -->
-      <div class="fb-customerchat"
-        attribution=setup_tool
-        page_id="103466421133227"
-  theme_color="#006600"
-  >
-      </div>
+<div class="row d-flex d-sm-none"  style="position:fixed;z-index:9999;top: 100px; width: 103%;">
+    <div class="col-auto py-2 ml-auto pr-0 pl-1" style="background:rgba(0,102,0, 0.5)">
+        <p class="mb-0 mx-2 text-white font-weight-600">
+        Lesson Videos? <br> 
+        <a class="btn btn-success" href="#div-videos"> Click Here</a>
+        </p>
+    </div>
+</div>
+
+
 
 <div class="row div-header bg-green " style="">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -246,7 +257,7 @@
         </div>
     </div>
 
-    <div class="row div-videos">
+    <div class="row div-videos" id="div-videos">
     
         <div class="col-12 col-lg-12 col-md-12 col-sm-12">
             <span class="span-featured-products text-yellow font-weight-600">Lesson Videos</span>

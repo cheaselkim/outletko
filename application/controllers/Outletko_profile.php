@@ -39,6 +39,7 @@ class Outletko_profile extends CI_Controller {
         $status = "";
         $now_date = "";
         $end_date = "";
+        $plan = "";
 
         if (!empty($result)){
             foreach ($result as $key => $value) {
@@ -46,6 +47,7 @@ class Outletko_profile extends CI_Controller {
                 $renewal_date = date("m/d/Y", strtotime($value->renewal_date));
                 $now_date = strtotime(date("Y-m-d"));
                 $end_date = strtotime($value->renewal_date);
+                $plan = $value->subscription_type;
             }
         }
 
@@ -56,11 +58,15 @@ class Outletko_profile extends CI_Controller {
         if ($renew_date == "0000-00-00"){
             $status = "2";
         }else{
-            if ($datediff <= 30){
-                $status = "1";
+            if ($plan != "10"){
+                if ($datediff <= 30){
+                    $status = "1";
+                }else{
+                    $status = "0";
+                }        
             }else{
-                $status = "0";
-            }    
+                $plan = "2";
+            }
         }
 
         if ($check_subs == "1"){

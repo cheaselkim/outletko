@@ -24,7 +24,7 @@
 					<div class="div-prof-details">
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center px-0">
-								<span class="font-weight-600  text-buss-name" id="text-buss-name"></span>
+                                <p class="font-weight-600  text-buss-name mb-0" id="text-buss-name"></p>
 							</div>
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: -12px;" hidden>
 								<span class="text-yellow text-buss-type" id="text-buss-type"></span>
@@ -37,7 +37,7 @@
 									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-contact-no" style="margin-top: -0.5%;">
 										<span class=" text-buss-address" id="text-buss-contact-no"></span>												
 									</div>
-									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-email" style="margin-top: -0.5%;">
+									<div class="col-lg-6 col-md-6 col-sm-12 div-buss-email  d-none d-md-block" style="margin-top: -0.5%;">
 										<span class=" text-buss-address" id="text-buss-email"></span>												
 										<span class="text-white text-buss-address" id="text-buss-tel-no" hidden></span>												
 									</div>
@@ -75,18 +75,18 @@
 	</div>
 </div>
 
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4 d-none d-md-block">
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2 div-header-4">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
 				<div class="div-store-img-prof" id="div-store-img-1" style="height: 315px;">
 				</div>
 			</div>
-			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
+			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0 d-none d-md-block">
 				<div class="div-store-img-prof" id="div-store-img-2" style="height: 315px;">
 				</div>
 			</div>
-			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0">
+			<div class="col-12 col-lg-4 col-md-4 col-sm-12 mt-1 px-0 d-none d-md-block">
 				<div class="div-store-img-prof" id="div-store-img-3" style="height: 315px;">
 				</div>
 			</div>

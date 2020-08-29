@@ -80,6 +80,7 @@ $("#btn-footer-back").click(function(){
     $(".div-header-4").show();
     $("#div-product-details").hide();    
     $("#div-footer-btn-order").hide();
+    $("#div-store-img-1").show();
     $(window).scrollTop($('#div-posted-prod').offset().top);    
     // $("#btn-del-info").popover('hide');
     // $("#btn-del-info-2").popover('hide');
@@ -164,7 +165,7 @@ $("#btn-footer-back").click(function(){
   });
 
 
-  $("#prod-category").click(function(){
+  $("#prod-category").change(function(){
     product_by_cat($(this).val());
   });
 
@@ -248,7 +249,7 @@ function get_profile(id){
     
     var address = (result.result[0].street == null ? "" : (result.result[0].street == "" ? "" : result.result[0].street  + ", ")) + 
             (result.result[0].village == null ? "" : (result.result[0].village == "" ? "" : result.result[0].village + ", "))  + 
-            (result.result[0].barangay == null ? "" : (result.result[0].barangay == "" ? "" : result.result[0].barangay + ","))  + 
+            (result.result[0].barangay == null ? "" : (result.result[0].barangay == "" ? "" : result.result[0].barangay + ", "))  + 
             (result.result[0].city_desc == null ? "" : (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ")) + 
             (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
@@ -698,6 +699,9 @@ $("#std_del").hide();
 $(".div-header-3").hide();
 $("#div-details").show();
 
+if ($(document).width() < 768){
+    $("#div-store-img-1").hide();
+}
 
 // $("#btn-del-info").popover('hide');
 // $("#btn-del-info-2").popover('hide');

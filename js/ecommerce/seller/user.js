@@ -319,13 +319,13 @@ $(document).ready(function(){
         $("#btn-day-"+i).val(0);
         }
 
-        // $('#ftime').timepicker({
-        //     startTime: '8:00'      
-        // });
+        $('#ftime').timepicker({
+            startTime: '8:00'      
+        });
 
-        // $('#ttime').timepicker({
-        //     startTime: '17:00'
-        // });
+        $('#ttime').timepicker({
+            startTime: '17:00'
+        });
 
 
 
@@ -344,25 +344,25 @@ $(document).ready(function(){
     });
 
 
-    // $('#ftime').timepicker({
-    //     timeFormat: 'h:mm p',
-    //     interval: 30,
-    //     defaultTime : '8',
-    //     startTime: '8:00',
-    //     dynamic: false,
-    //     dropdown: true,
-    //     scrollbar: true
-    // });
+    $('#ftime').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        defaultTime : '8',
+        startTime: '8:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 
-    // $('#ttime').timepicker({
-    //     timeFormat: 'h:mm p',
-    //     interval: 30,
-    //     defaultTime: '17',
-    //     startTime: '17:00',
-    //     dynamic: false,
-    //     dropdown: true,
-    //     scrollbar: true
-    // });
+    $('#ttime').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        defaultTime: '17',
+        startTime: '17:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 
     $("#free_shipping").change(function(){
     if ($(this).is(":checked")){
@@ -1075,64 +1075,64 @@ function copyToClipboard(element) {
 
 function createColorPicker(color){
 
-    // const pickr = Pickr.create({
-    //     el: '#colorpicker',
-    //     theme: 'nano', // or 'monolith', or 'nano'
-    //     default : color,
-    //     swatches: [
-    //         'rgb(0,0,0)',
-    //         'rgb(0,0,128)',
-    //         'rgb(0,0,255)',
-    //         'rgb(0,128,0)',
-    //         'rgb(0,255,255)',
-    //         'rgb(128,0,0)',
-    //         'rgb(128,0,128)',
-    //         'rgb(128,128,0)',
-    //         'rgb(128,128,128)',
-    //         'rgb(192,192,192)',
-    //         'rgb(255,0,0)',
-    //         'rgb(255,0,255)',
-    //         'rgb(255,255,0)',
-    //         'rgb(255,255,255)'
-    //     ],        
-    //     components: {
-    //         // Main components
-    //         preview: true,
-    //         opacity: false,
-    //         hue: true,
+    const pickr = Pickr.create({
+        el: '#colorpicker',
+        theme: 'nano', // or 'monolith', or 'nano'
+        default : color,
+        swatches: [
+            'rgb(0,0,0)',
+            'rgb(0,0,128)',
+            'rgb(0,0,255)',
+            'rgb(0,128,0)',
+            'rgb(0,255,255)',
+            'rgb(128,0,0)',
+            'rgb(128,0,128)',
+            'rgb(128,128,0)',
+            'rgb(128,128,128)',
+            'rgb(192,192,192)',
+            'rgb(255,0,0)',
+            'rgb(255,0,255)',
+            'rgb(255,255,0)',
+            'rgb(255,255,255)'
+        ],        
+        components: {
+            // Main components
+            preview: true,
+            opacity: false,
+            hue: true,
     
-    //         // Input / output Options
-    //         interaction: {
-    //             hex: false,
-    //             rgba: false,
-    //             hsla: false,
-    //             hsva: false,
-    //             cmyk: false,
-    //             input: true,
-    //             clear: true,
-    //             save: true
-    //         }
-    //     }
-    // });
+            // Input / output Options
+            interaction: {
+                hex: false,
+                rgba: false,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+    });
     
-    // pickr.on('init', instance => {
-    //     // console.log('init', instance);
-    // }).on('save', (color, instance) => {
-    //     console.log('save', color.toHEXA().toString());
-    //     $(".pcr-app").removeClass("visible");
-    //     $("#color-val").val(color.toHEXA().toString());
-    //     $(".div-header").css("background", color.toHEXA().toString());
-    //     $(".div-left-setting").css("background", color.toHEXA().toString());
-    //     $(".div-left-aboutus").css("background", color.toHEXA().toString());
-    //     lightOrDark(color.toHEXA().toString());
-    // }).on('clear', (color, instance) => {
-    //     $("#color-val").val("#77933c");
-    //     $(".div-header").css("background", "#77933c");
-    //     $(".div-left-setting").css("background", "#77933c");
-    //     $(".div-left-aboutus").css("background", "#77933c");
-    //     $(".pcr-app").removeClass("visible");
-    //     // console.log('clear', instance);
-    // });
+    pickr.on('init', instance => {
+        // console.log('init', instance);
+    }).on('save', (color, instance) => {
+        console.log('save', color.toHEXA().toString());
+        $(".pcr-app").removeClass("visible");
+        $("#color-val").val(color.toHEXA().toString());
+        $(".div-header").css("background", color.toHEXA().toString());
+        $(".div-left-setting").css("background", color.toHEXA().toString());
+        $(".div-left-aboutus").css("background", color.toHEXA().toString());
+        lightOrDark(color.toHEXA().toString());
+    }).on('clear', (color, instance) => {
+        $("#color-val").val("#77933c");
+        $(".div-header").css("background", "#77933c");
+        $(".div-left-setting").css("background", "#77933c");
+        $(".div-left-aboutus").css("background", "#77933c");
+        $(".pcr-app").removeClass("visible");
+        // console.log('clear', instance);
+    });
     
 
 }
@@ -1877,13 +1877,13 @@ function index(){
         $("#ftime").val(result.appointment[0].start_time);
         $("#ttime").val(result.appointment[0].end_time);
 
-        // $("#ftime").timepicker({
-        //   startTime : result.appointment[0].startTime
-        // });
+        $("#ftime").timepicker({
+          startTime : result.appointment[0].startTime
+        });
 
-        // $("#ttime").timepicker({
-        //   startTime : result.appointment[0].startTime
-        // });
+        $("#ttime").timepicker({
+          startTime : result.appointment[0].startTime
+        });
       }
       // console.log(result.warranty);
       if (result.warranty.length != 0){
@@ -2112,7 +2112,9 @@ function index(){
             product_allowed = 24;
         }
 
-        if (result.product_rows <= product_allowed){
+        // console.log("Rows " + result.product_rows);
+
+        if (result.product_rows < product_allowed){
             var e2 = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' ">' +
             '<div class="div-list-img">' +
                     '<img src="'+base_url+'images/products/plus2.png"  alt="image" data-toggle="modal" onclick="clear_prod_model();" data-target="#img_upload" id="btn-img-upload-1" class=" cursor-pointer">' +

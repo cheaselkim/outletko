@@ -20,9 +20,16 @@ class Outletko_model extends CI_Model {
         $query = $this->db2->query("SELECT 
         `account`.*, 
         `account`.`id` AS comp_id,
-        `account_store`.`loc_image` AS img_location FROM account
+        `account_store`.`loc_image` AS img_location,
+        `city`.`city_desc`,
+        `province`.`province_desc` AS prov_desc
+        FROM account
         -- INNER JOIN products ON 
         -- `products`.`id` = `account`.`featured_product`
+        INNER JOIN city ON 
+        `city`.`id` = `account`.`city`
+        INNER JOIN province ON 
+        `city`.`province_id` = `province`.`id`
         INNER JOIN account_store ON 
         `account_store`.`id` = `account`.`featured_img`
         WHERE `account`.`featured_store` = ? AND `account`.`country` = ?

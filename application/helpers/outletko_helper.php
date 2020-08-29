@@ -487,6 +487,7 @@ if (!function_exists("featured_store")){
                 $a_href_end = "";
                 $account_name = $value->account_name;
                 $button = "";
+                $location = $value->city_desc.", ".$value->prov_desc;
 
                 if (!empty($value->bg_color)){
                     $colour = $value->bg_color;
@@ -579,7 +580,7 @@ if (!function_exists("featured_store")){
 
                     $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
                     $button = '<div class="row">
-                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6 div-outlet-button  " '.$btn_hidden.'>
                                         <a href="'.$href_url.'" class="btn btn-orange px-4 btn-sm text-black btn-see-more">See More</a>
                                     </div>
                                 </div>
@@ -624,7 +625,7 @@ if (!function_exists("featured_store")){
                     $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
-                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6 div-outlet-button  " '.$btn_hidden.'>
                                         <a href="'.$href_url.'" class="btn btn-orange px-4 btn-sm text-black btn-see-more">See More</a>
                                     </div>
                                 </div>
@@ -668,7 +669,7 @@ if (!function_exists("featured_store")){
                     $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
-                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6 div-outlet-button  " '.$btn_hidden.'>
                                         <a href="'.$href_url.'" class="btn btn-orange px-4 btn-sm text-black btn-see-more">See More</a>
                                     </div>
                                 </div>
@@ -711,7 +712,7 @@ if (!function_exists("featured_store")){
                     $css_product = "background: url('".$prod_img."') white;background-size: ".$bg_size." 100%;background-repeat: no-repeat;background-position: center center;";
 
                     $button = '<div class="row">
-                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-outlet-button  " '.$btn_hidden.'>
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6 div-outlet-button  " '.$btn_hidden.'>
                                         <a href="'.$href_url.'" class="btn btn-orange px-4 btn-sm text-black btn-see-more">See More</a>
                                     </div>
                                 </div>
@@ -722,6 +723,11 @@ if (!function_exists("featured_store")){
 
                 }
 
+                // <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-right" '.$btn_hidden.' >
+                //     <p class="mb-0">'.$location.'</p>
+                // </div>
+
+
                 $css_logo = "background-image: url('".$comp_img."');background-size: 100% 100%;background-repeat: no-repeat;background-position: center center;";
 
                 $output .= '<div class="col-12 col-lg-3 col-md-6 col-sm-12 px-1 '.$mt.'">
@@ -731,13 +737,14 @@ if (!function_exists("featured_store")){
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                              
                                 <div class="row div-outlet-store">
-                                    <div class="col-3 col-lg-4 col-md-3 col-sm-12 '.$pad_logo.'">
+                                    <div class="col-3 col-lg-4 col-md-3 col-sm-12 '.$pad_logo.' pr-2">
                                         <div class="div-outlet-logo" style="'.$css_logo.'">
 
                                         </div>
                                     </div>
                                     <div class="col-8 col-lg-8 col-md-8 col-sm-12 '.$pad_name.'" style="'.$pad_top.'">
                                         <span class="font-weight-600 span-outlet-name text-'.$text_color.'">'.$account_name.'</span>
+                                        <p class="mb-0 span-outlet-about text-'.$text_color.'">'.$location.'</p>
                                     </div>
                                 </div>                            
 
@@ -830,8 +837,8 @@ if (!function_exists("featured_product")){
     
                 }else{
     
-                    if (strlen($value->product_name) > 20){
-                        $product_name = substr($value->product_name, 0, 20)."..";
+                    if (strlen($value->product_name) > 25){
+                        $product_name = substr($value->product_name, 0, 25)."..";
                     }
     
                     $margin = "";
@@ -863,7 +870,7 @@ if (!function_exists("featured_product")){
                                 </div> 
                                 <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
                                     <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">'.$product_name.'</p>
-                                    <p class="text-red font-weight-600 prod-price">'.$curr.' '.number_format($value->product_unit_price, 2).'</p> 
+                                    <p class="text-red font-weight-600 prod-price mb-0">'.$curr.' '.number_format($value->product_unit_price, 2).'</p> 
                                 </div>
                             </div>
                         </a>

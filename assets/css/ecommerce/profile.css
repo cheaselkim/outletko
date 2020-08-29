@@ -154,6 +154,11 @@
     display: block;
     margin-top: -70px;
 }
+
+.div-display-products{
+    padding-left: 0;
+    padding-right: 0;
+}
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

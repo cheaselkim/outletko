@@ -261,18 +261,22 @@ textarea{
 }
 
 .div-prof-pic{
-	height: 100px;
-	width: 130px;
+	height: 90px;
+    /* width: 130px; */
+    width: 105px;
     background: white;
     padding-top: 8.3%;
 }
 
 .div-prof-details{
-	min-height: 160px;
+    /* min-height: 160px; */
+    min-height: 120px;
 }
 
 .text-buss-name{
-	font-size: 30px;
+    /* font-size: 30px; */
+    font-size: 25px;
+    margin-top: 10px;
 }
 
 .text-buss-type{
@@ -280,7 +284,8 @@ textarea{
 }
 
 .text-buss-address{
-	font-size: 16px;
+    /* font-size: 16px; */
+    font-size:14px;
 }
 
 .text-span-header-clickable{
@@ -348,8 +353,10 @@ textarea{
 }
 
 .posted-prod{
-	padding-left: 12px;
-	padding-right: 12px;
+	/* padding-left: 12px;
+	padding-right: 12px; */
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .div-list-img{
