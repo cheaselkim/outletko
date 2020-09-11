@@ -61,6 +61,22 @@ class Signup extends CI_Controller {
       echo json_encode($data);
     }
 
+    public function get_prov(){
+        $query = $this->signup_model->get_prov($this->input->post("town"), $this->input->post("country"));
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                // $result = array("prov_id" => $value->prov_id, "city_id" => $value->id, "prov_desc" => $value->prov_desc);
+                $data['prov_id'] = $value->province_id;
+                $data['city_id'] = $value->id;
+                $data['prov_desc'] = $value->prov_desc;
+            }
+        }
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);          
+    }
+
     public function save_data() {
         $status = "failed";
         $info_outletsuite = $this->input->post('info_outletsuite', TRUE);

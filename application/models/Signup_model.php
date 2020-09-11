@@ -72,6 +72,8 @@ class Signup_model extends CI_Model {
     }
 
     public function search_partner($partner){
+
+
         $query = $this->db->query("
         SELECT
         id AS partner_id,
@@ -88,6 +90,24 @@ class Signup_model extends CI_Model {
 
     public function country(){
         $query = $this->db->query("SELECT * FROM country WHERE id IN ? ", array(array(12, 131, 173, 191, 240)))->result();
+        return $query;
+    }
+
+    public function get_prov($city, $country){
+        if (empty($country)){
+            $country = "173";
+        }
+
+        $query = $this->db2->query("SELECT 
+        city.*, 
+        `province`.`province_desc` AS prov_desc
+        FROM city 
+        INNER JOIN province ON 
+        `city`.`province_id` = `province`.`id` 
+        WHERE city_desc LIKE ? AND 
+        `province`.`country` = ?  
+        LIMIT 1", array($city."%", $country))->result();
+
         return $query;
     }
 
@@ -137,6 +157,10 @@ class Signup_model extends CI_Model {
 
         $prod_cat = array("comp_id" => $this->db2->insert_id(), "account_id" => $this->db2->insert_id(), "product_category" => "Product Item", "date_insert" => date("Y-m-d H:i:s"));
         $this->db2->insert("product_category", $prod_cat);
+
+        $warranty = array("comp_id" => $this->db2->insert_id(), "date_insert" => date("Y-m-d H:i:s"));
+        $this->db2->insert("account_warranty", $warranty);
+
 
         return ($this->db2->affected_rows() == 1) ? $this->db2->insert_id() : false;
     }

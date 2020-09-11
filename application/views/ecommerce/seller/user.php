@@ -1490,7 +1490,7 @@
 			                    		<option></option>
 			                    	</select>
 		                    	</div>
-		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1 d-none d-sm-block">
 		                    		<span class="font-weight-600">Condition <span class="text-red">*</span></span>
 		                    		<select class="form-control textbox-green2" id="prod_condition">
 		                    			<option value="1">New</option>
@@ -1501,7 +1501,7 @@
 		                    		<span class="font-weight-600">Weight (g) <span class="text-red" hidden>*</span></span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_weight">
 		                    	</div>
-		                    	<div class="col-6 col-md-4 col-lg-4 mt-1">
+		                    	<div class="col-6 col-md-4 col-lg-4 mt-1 d-none d-sm-block">
 		                    		<span class="font-weight-600">Stock</span>
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_stock">
 		                    		<input type="text" class="form-control textbox-green2 text-right" id="prod_stock2" readonly>

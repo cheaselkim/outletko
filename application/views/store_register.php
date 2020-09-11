@@ -308,7 +308,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-12 col-lg-6 col-md-6 col-sm-12" hidden>
                                             <span>Zip Code  </span>
                                             <input type="text" class="form-control form-control-sm textbox-green" id="info-zipcode" >
                                         </div>
@@ -318,12 +318,12 @@
                                                 <option value="" selected hidden></option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12 div-email">
                                             <span>Email Address <span class="text-red">*</span></span>
                                             <input type="email" class="form-control form-control-sm textbox-green" id="info-email" data-exists="0" data-parsley-trigger="focusin focusout" data-parsley-type="email" required>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Mobile No <span class="text-red">*</span></span>
                                             <div class="input-group">
@@ -333,8 +333,6 @@
                                                 <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-mobile" data-parsley-length="[10, 10]" data-parsley-length-message="This value should be exactly 10 digits long" data-parsley-type="digits" data-parsley-trigger="focusin focusout" required>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Phone No</span>
                                             <div class="input-group">
@@ -344,6 +342,8 @@
                                                 <input type="text" class="form-control form-control-sm textbox-green w-75" id="info-phone" data-parsley-type="number" data-parsley-trigger="focusin focusout">
                                             </div>                                        
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                                             <span>Partner <span class="text-red">*</span></span>
                                             <input readonly disabled type="text" class="form-control form-control-sm textbox-green" value="HOUSE ACCOUNT  (000001)" id="info-partner" data-parsley-trigger="focusin focusout" required data-id="1" data-lvl-2="0" data-lvl-3="0">

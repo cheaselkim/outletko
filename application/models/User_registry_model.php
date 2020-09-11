@@ -278,6 +278,10 @@ class User_registry_model extends CI_Model {
         
         $prod_cat = array("comp_id" => $id, "account_id" => $id, "product_category" => "Product Item", "date_insert" => date("Y-m-d H:i:s"));
         $this->db2->insert("product_category", $prod_cat);
+
+        $warranty = array("comp_id" => $id, "date_insert" => date("Y-m-d H:i:s"));
+        $this->db2->insert("account_warranty", $warranty);
+
     }
 
 	public function insert_user_outletko($data, $comp_id){

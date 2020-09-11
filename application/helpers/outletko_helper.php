@@ -518,12 +518,14 @@ if (!function_exists("featured_store")){
 
                 if ($resolution < 768){
 
-                    if ($account_name_length > 24){
+                    if ($account_name_length > 25){
                         $css_name = "padding-top: 8px";
-                        $pad_top = "padding-top: 2px";
+                        $pad_top = "padding-top: 0px";
+                        $account_name = substr($account_name, 0, 25)."...";
                     }else{
                         $css_name = "padding-top: 8px";
-                        $pad_top = "padding-top: 9px";
+                        $pad_top = "padding-top: 0px";
+                        $about_us = substr($account_name, 0, 25);
                     }
 
                     if (strlen($value->about_us) > 70){
@@ -546,7 +548,7 @@ if (!function_exists("featured_store")){
                     $pad_outlet = "mt-3";
                     $btn_hidden = "hidden";
                     $pad_logo = "pr-2";
-                    $pad_name = "pl-0";
+                    $pad_name = "pl-0 pr-1";
 
                     $a_href = "<a href='".$href_url."'>";
                     $a_href_end = "</a>";
@@ -742,7 +744,7 @@ if (!function_exists("featured_store")){
 
                                         </div>
                                     </div>
-                                    <div class="col-8 col-lg-8 col-md-8 col-sm-12 '.$pad_name.'" style="'.$pad_top.'">
+                                    <div class="col-9 col-lg-8 col-md-8 col-sm-12 '.$pad_name.'" style="'.$pad_top.'">
                                         <span class="font-weight-600 span-outlet-name text-'.$text_color.'">'.$account_name.'</span>
                                         <p class="mb-0 span-outlet-about text-'.$text_color.'">'.$location.'</p>
                                     </div>

@@ -185,6 +185,28 @@ $(document).ready(function(){
         }
     });    
     
+    $("#info-town").blur(function(){
+        var town = $("#info-town").val();
+        var csrf_name = $("input[name=csrf_name]").val();
+        var country = $("#info-country").val();
+        console.log(csrf_name);
+        $.ajax({
+            data : {town : town, csrf_name : csrf_name, country : country},
+            type : "POST",
+            dataType : "JSON",
+            url : base_url + "Signup/get_prov",
+            success : function(data){
+                console.log(data);
+                $("input[name=csrf_name]").val(data.token);
+                $("#info-town").attr("data-id", data.city_id);
+                $("#info-town").attr("data-prov", data.prov_id);    
+                $("#info-province").val(data.prov_desc);
+            }, error : function(err){
+                console.log(err.responseText)
+            }
+        })
+    })
+
     $('#info-form').parsley({
         errors: {
             container: function ( elem ) {

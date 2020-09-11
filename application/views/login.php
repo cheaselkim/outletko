@@ -68,7 +68,7 @@
 <div class="fb-customerchat" attribution=setup_tool page_id="103466421133227" theme_color="#006600"></div>
 
 
-<div class="row d-flex d-sm-none"  style="position:fixed;z-index:9999;top: 100px; width: 103%;">
+<div class="row d-flex d-sm-none"  style="position:fixed;z-index:9999;top: 150px; width: 103%;">
     <div class="col-auto py-2 ml-auto pr-0 pl-1" style="background:rgba(0,102,0, 0.5)">
         <p class="mb-0 mx-2 text-white font-weight-600">
         Lesson Videos? <br> 
@@ -108,11 +108,11 @@
                                 <span class="appended" data-code="<?php echo $this->session->userdata("IPCountryCode"); ?>"><img class="img-flag" src="<?php echo 'https://www.countryflags.io/'.$this->session->userdata("IPCountryCode").'/flat/24.png'?>"> <?php echo $this->session->userdata("IPCurrencyCode"); ?></span>
                             </button>
                             <div class="dropdown-menu">
-                                <span class="dropdown-item cursor-pointer" data-code="PH"><img class="img-flag" src="https://www.countryflags.io/ph/flat/24.png" > PHP</span>
-                                <span class="dropdown-item cursor-pointer" data-code="AU"><img class="img-flag" src="https://www.countryflags.io/au/flat/24.png" > AUD</span>
-                                <span class="dropdown-item cursor-pointer" data-code="SG"><img class="img-flag" src="https://www.countryflags.io/sg/flat/24.png" > SGD</span>
-                                <span class="dropdown-item cursor-pointer" data-code="MY"><img class="img-flag" src="https://www.countryflags.io/my/flat/24.png" > MYR</span>
-                                <span class="dropdown-item cursor-pointer" data-code="VN"><img class="img-flag" src="https://www.countryflags.io/vn/flat/24.png" > VND</span>
+                                <span class="dropdown-item cursor-pointer" data-code="PH"><img class="img-flag" src="https://www.countryflags.io/ph/flat/24.png" alt="PH"> PHP</span>
+                                <span class="dropdown-item cursor-pointer" data-code="AU"><img class="img-flag" src="https://www.countryflags.io/au/flat/24.png" alt="AU"> AUD</span>
+                                <span class="dropdown-item cursor-pointer" data-code="SG"><img class="img-flag" src="https://www.countryflags.io/sg/flat/24.png" alt="SG"> SGD</span>
+                                <span class="dropdown-item cursor-pointer" data-code="MY"><img class="img-flag" src="https://www.countryflags.io/my/flat/24.png" alt="MY"> MYR</span>
+                                <span class="dropdown-item cursor-pointer" data-code="VN"><img class="img-flag" src="https://www.countryflags.io/vn/flat/24.png" alt="VN"> VND</span>
                             </div>
                         </div>
                     </div>
@@ -140,6 +140,16 @@
                             </li>
                             <?php }?>
                         </ul>
+                    </div>
+                    <div class="py-0 my-2 w-100 d-block d-sm-none" style="order:5;">
+                        <div class="row">
+                            <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                                <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('login')?>" style="border: 1px solid white;"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>
+                            </div>
+                            <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                                <button class="btn btn-block btn-transparent btn-orange" id="btn_mod_signup" data-toggle='modal' data-target="#modal_signup"><i class="fas fa-user text-black"></i> <span class="text-black">Sign Up</span></button>
+                            </div>
+                        </div>
                     </div>
                 </nav>
 
@@ -404,7 +414,7 @@
     </div>
 </div>
 
-<div class="modal" id="modal_signup">
+<div class="modal" id="modal_signup" style="z-index:9999;">
     <div class="modal-dialog" style="max-width: 480px;">
         <div class="modal-content">
             <div class="modal-header py-2" style="background:green;">
@@ -492,7 +502,7 @@
                     <div class="row">
                         <div class="col-lg-12 pb-2" style="line-height: 25px;">
                             <span class="font-size-18" style="font-size: 18px !important;">Create an Outletko Account for your business.</span><br>
-                            <small>User Sign Up? <a class="cursor-pointer" id="a_signup"><u>Sign Up here</u></a> </small><br>
+                            <small>User Sign Up? <span class="cursor-pointer" id="a_signup"><u>Sign Up here</u></span> </small><br>
                             <small>Please enter the required <span class="text-red">(*)</span> information</small>
                         </div>
                     </div>
