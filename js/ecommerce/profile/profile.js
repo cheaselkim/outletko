@@ -604,20 +604,28 @@ function get_profile(id){
           store_img = base_url + "images/store/" + store[i].image;
           if (store[i].img_order == "1"){
             $("#div-store-img-1").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-1').css('background-size', "100% 100%");
             $('#div-store-img-1').css('background-repeat', "no-repeat");
             $('#div-store-img-1').css('background-position', "center center");    
           }else if (store[i].img_order == "2"){
             $("#div-store-img-2").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-2').css('background-size', "100% 100%");
             $('#div-store-img-2').css('background-repeat', "no-repeat");
             $('#div-store-img-2').css('background-position', "center center");    
           }else{
             $("#div-store-img-3").css("background-image", "url('"+store_img+"')");
-            $('#div-store-img-3').css('background-size', "100% 100%");
             $('#div-store-img-3').css('background-repeat', "no-repeat");
             $('#div-store-img-3').css('background-position', "center center");    
           }
+
+          if ($(window).width() < 768){
+            $('#div-store-img-1').css('background-size', "contain");
+            $('#div-store-img-2').css('background-size', "contain");
+            $('#div-store-img-3').css('background-size', "contain");
+          }else{
+            $('#div-store-img-1').css('background-size', "100% 100%");
+            $('#div-store-img-2').css('background-size', "100% 100%");
+            $('#div-store-img-3').css('background-size', "100% 100%");
+          }
+
         }
         
         if ($("#comp-prod-id").val() != "0"){

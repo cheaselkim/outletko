@@ -78,10 +78,18 @@
 </div>
 
 
+<div class="container-fluid border-bottom">
+    <div class="row bg-green py-2">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+            <span class="text-white">Do you want to resell? &nbsp;&nbsp;<a type="button" href="https://www.resell.outletko.com/" class="btn btn-outline-success btn-sm text-white">Click Here!</a> </span>
+        </div>
+    </div>
+</div>
 
 <div class="row div-header bg-green " style="">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
         <div class="row">
+
 
             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
 

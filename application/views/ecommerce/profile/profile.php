@@ -902,3 +902,18 @@
         </div>
     </div>
 </div>
+
+
+<style>
+@media only screen and (max-width: 600px) {
+    
+    .div-store-img-prof{
+        height: 270px !important;
+        border: 1px solid #AEDCBF;
+        background-image: url("../../icons/img-icon1.jpg");
+        background-size: 100% 100%;
+        padding-top: 200px;
+    }
+
+}
+</style>
