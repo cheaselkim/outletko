@@ -56,7 +56,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="div-left-contacts">					
+						<div class="div-left-contacts bg-white">					
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 pt-2">
 								<div class="row">
 									<div class="col-6">								
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="col pad-right pad-md-right" >
-					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3">
+					<div  class="col-12 col-sm-12 col-md-12 col-lg-12 div-center pt-2 pb-3 bg-white">
 						<!-- POST DETAILS -->
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -1315,6 +1315,79 @@
 
 			<!-- DIV MY DELIVERED -->
 
+            <!-- DIV MY PERFORMANCE  -->
+            <div class="row mt-3 pb-5 " id="div-my-performance">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 bg-white py-3 h-100 div-my-performance">
+                    
+                    <div class="row mb-2">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <span class="h4">My Performance</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-4 col-md-4 col-sm-12 py-1">
+                            <select name="" id="report-type" class="form-control">
+                                <option value="0">Chart</option>
+                                <option value="1">Sales Summary</option>
+                                <option value="2">Sales per Category (Summary)</option>
+                                <option value="3">Sales per Product (Summary)</option>
+                                <option value="4" hidden>Sales per Product Variations (Summary)</option>
+                                <option value="5">Sales per Payment Type (Summary)</option>
+                                <option value="6">Sales per Delivery Type (Summary)</option>
+                                <option value="7">Sales per Category (Detailed)</option>
+                                <option value="8">Sales per Product (Detailed)</option>
+                                <option value="9" hidden>Sales per Product Variations (Detailed)</option>
+                                <option value="10">Sales per Payment Type (Detailed)</option>
+                                <option value="11">Sales per Delivery Type (Detailed)</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-2 col-md-2 col-sm-12 py-1">
+                            <input type="date" name="" id="report-fdate" class="form-control" value="<?php echo date('Y-m-01')?>">
+                        </div>
+                        <div class="col-12 col-lg-2 col-md-2 col-sm-12 py-1">
+                            <input type="date" name="" id="report-tdate" class="form-control" value="<?php echo date('Y-m-d')?>">
+                        </div>
+                        <div class="col-12 col-lg-3 col-md-3 col-sm-12 py-1">
+                            <select name="" id="report-status" class="form-control">
+                                <option value="0" hidden></option>
+                                <option value="1">For Acknowledgement</option>
+                                <option value="2">Acknowledgement</option>
+                                <option value="3">Proof of Payment</option>
+                                <option value="4">Payment Denied</option>
+                                <option value="5">Payment Confirmed</option>
+                                <option value="6">For Delivery</option>
+                                <option value="7">Delivered</option>
+                                <option value="0">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-1 col-md-1 col-sm-12 py-1">
+                            <button class="btn btn-orange btn-block" id="report-filter">Filter</button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" id="div-my-performance-chart">
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-6">
+                            <div class="div-chart">
+                                <canvas id="chart-year" width="200" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-6">
+                            <div class="div-chart">
+                                <canvas id="chart-week" width="200" height="200"></canvas>                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-my-performance-report">
+                        
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <!-- DIV MY PERFORMANCE -->
 
 		</div>
 		<div class="col-2 col-sm-12 col-md-2 col-lg-2 pr-0 pl-1" hidden>
@@ -1747,6 +1820,29 @@
       </div>
       <div class="modal-body">
       	<div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="font-weight-600">First Name</span>
+      				<input type="text" class="form-control textbox-green2 text-capitalize" value="<?php echo $this->session->userdata("user_fname") ?>" id="fname">                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="font-weight-600">Middle Name</span>
+      				<input type="text" class="form-control textbox-green2 text-capitalize" value="<?php echo $this->session->userdata("user_mname") ?>" id="mname">                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <span class="font-weight-600">Last Name</span>
+      				<input type="text" class="form-control textbox-green2 text-capitalize" value="<?php echo $this->session->userdata("user_lname") ?>" id="lname">                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <hr class="mt-2 mb-1" style="border-top: 1px solid black;">
+                </div>
+            </div>
       		<div class="row">
       			<div class="col-12">
       				<span class="font-weight-600">Username</span>
@@ -1759,8 +1855,8 @@
 					<div class="input-group">
 						<input type="password" class="form-control form-control-sm textbox-green" id="curr_pass">
 						<div class="input-group-append" style="height: 31px;"  >
-							<span class="input-group-text show_pass cursor-pointer">
-								<i class="fa fa-eye-slash" id="pass_icon"></i>
+							<span class="input-group-text show_pass cursor-pointer" id="btn_curr_pass">
+								<i class="fa fa-eye-slash" id="curr_pass_icon"></i>
 							</span>
 						</div>
 					</div>
@@ -1773,8 +1869,8 @@
 					<div class="input-group">
 						<input type="password" class="form-control form-control-sm textbox-green" id="new_pass">
 						<div class="input-group-append" style="height: 31px;"  >
-							<span class="input-group-text show_pass cursor-pointer">
-								<i class="fa fa-eye-slash" id="pass_icon"></i>
+							<span class="input-group-text show_pass cursor-pointer" id="btn_new_pass">
+								<i class="fa fa-eye-slash" id="new_pass_icon"></i>
 							</span>
 						</div>
 					</div>
@@ -1787,8 +1883,8 @@
 					<div class="input-group">
 						<input type="password" class="form-control form-control-sm textbox-green" id="conf_pass">
 						<div class="input-group-append" style="height: 31px;"  >
-							<span class="input-group-text show_pass cursor-pointer">
-								<i class="fa fa-eye-slash" id="pass_icon"></i>
+							<span class="input-group-text show_pass cursor-pointer" id="btn_conf_pass">
+								<i class="fa fa-eye-slash" id="conf_pass_icon"></i>
 							</span>
 						</div>
 					</div>
@@ -2152,3 +2248,15 @@
         </div>
     </div>
 </div>
+
+
+<style>
+
+@media only screen and (min-width: 1920px) {
+
+.div-chart{
+    height: 350px;
+}
+	
+}
+</style>

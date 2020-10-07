@@ -2,6 +2,8 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ecommerce/profile.css') ?>"> -->
 <script type="text/javascript" src="<?php echo base_url('js/ecommerce/seller/header.js') ?>"></script>
+<script src="<?php echo base_url('assets/node_modules/chart.js/dist/Chart.min.js'); ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/node_modules/chart.js/dist/Chart.min.css'); ?>">
 
 <style>
 .text-yellow{
@@ -26,6 +28,9 @@
 			</li>
 			<li class="nav-item" id="renew-outletko" hidden>
 				<!-- <a class="nav-link font-small text-yellow cursor-pointer" style="color: yellow;" href="<?php echo base_url('/renew-store');?>">Renew Outletko</a> -->
+			</li>
+			<li class="nav-item" >
+				<a class="nav-link font-small text-white text-uppercase cursor-pointer" id="my-performance">My Performance</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link font-small cursor-pointer" data-toggle="modal" data-target="#modal_myorders"><span class="text-uppercase text-white">My Orders </span> <span class="badge badge-light" id="order_no">

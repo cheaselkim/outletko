@@ -419,9 +419,15 @@ class Outletko_profile extends CI_Controller {
         $username = $this->input->post("username");
         $password = $this->input->post("curr_pass");
         $new_password = $this->input->post("new_pass");
+        $fname = $this->input->post("fname");
+        $mname = $this->input->post("mname");
+        $lname = $this->input->post("lname");
 
         if (!empty($password)){
             $result_curr_password = $this->outletko_profile_model->check_curr_password($password);
+            if ($result_curr_password == 0){
+                $result_password = $this->outletko_profile_model->save_password($new_password);
+            }    
         }else{
             $result_curr_password = 0;
         }
@@ -430,8 +436,8 @@ class Outletko_profile extends CI_Controller {
             $result_username = $this->outletko_profile_model->save_username($username); 
         }
 
-        if ($result_curr_password == 0){
-            $result_password = $this->outletko_profile_model->save_password($new_password);
+        if (!empty($fname) || !empty($mname) || !empty($lname)){
+            $result_name = $this->outletko_profile_model->save_name($fname, $mname, $lname);
         }
 
         $data['token'] = $this->security->get_csrf_hash();

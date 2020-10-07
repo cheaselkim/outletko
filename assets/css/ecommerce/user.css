@@ -515,6 +515,16 @@ textarea{
     padding-right: 2rem;
 }
 
+/* MY PERFORMANCE */
+
+.div-my-performance{
+    min-height: 500px;
+}
+
+.div-chart{
+    height: 250px;
+}
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -736,6 +746,16 @@ textarea{
 	background-image: url("../../icons/img-icon1.jpg");
 	background-size: 100% 100%;
 	padding-top: 200px;
+}
+
+/* MY PERFORMANCE */
+
+.div-my-performance{
+    min-height: 500px;
+}
+
+.div-chart{
+    height: 250px;
 }
 
 
@@ -996,6 +1016,17 @@ textarea{
     margin-top: -70px;
 }
 
+/* MY PERFORMANCE */
+
+.div-my-performance{
+    min-height: 500px;
+}
+
+.div-chart{
+    height: 250px;
+}
+
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -1246,6 +1277,17 @@ textarea{
 .div-not-avail{
     padding-left: 30px;
 }
+
+/* MY PERFORMANCE */
+
+.div-my-performance{
+    min-height: 500px;
+}
+
+.div-chart{
+    height: 250px;
+}
+
 
 }
 
@@ -1539,9 +1581,23 @@ textarea{
     padding-left: 30px;
 }
 
+/* MY PERFORMANCE */
+
+.div-my-performance{
+    min-height: 500px;
+}
+
+.div-chart{
+    height: 350px;
+}
+
+
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {
 
+.div-chart{
+    height: 350px;
+}
 	
 }

@@ -213,4 +213,305 @@ class Seller_model extends CI_Model {
 
     }
 
+    // Report
+
+    public function report_year(){
+
+        $query = $this->db2->query("SELECT 
+        MONTH(buyer_order.date_insert) AS date_insert,
+        SUM(buyer_order_products.prod_total_price) AS total_price
+        FROM buyer_order
+        INNER JOIN buyer_order_products ON 
+        buyer_order_products.order_id = buyer_order.id
+        WHERE MONTH(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status != ? AND YEAR(buyer_order.date_insert) = ? AND buyer_order.seller_id = ?
+        GROUP BY MONTH(buyer_order.date_insert)
+        ORDER BY (buyer_order.date_insert)", array(1, 12, 0, date("Y"), $this->session->userdata("comp_id")))->result();
+
+        $data['jan'] = 0;
+        $data['feb'] = 0;
+        $data['mar'] = 0;
+        $data['apr'] = 0;
+        $data['may'] = 0;
+        $data['jun'] = 0;
+        $data['jul'] = 0;
+        $data['aug'] = 0;
+        $data['sep'] = 0;
+        $data['oct'] = 0;
+        $data['nov'] = 0;
+        $data['dec'] = 0;
+
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                if ($value->date_insert == "1"){
+                    $data['jan'] = $value->total_price;
+                }else if ($value->date_insert == "2"){
+                    $data['feb'] = $value->total_price;
+                }else if ($value->date_insert == "3"){
+                    $data['mar'] = $value->total_price;
+                }else if ($value->date_insert == "4"){
+                    $data['apr'] = $value->total_price;
+                }else if ($value->date_insert == "5"){
+                    $data['may'] = $value->total_price;
+                }else if ($value->date_insert == "6"){
+                    $data['jun'] = $value->total_price;
+                }else if ($value->date_insert == "7"){
+                    $data['jul'] = $value->total_price;
+                }else if ($value->date_insert == "8"){
+                    $data['aug'] = $value->total_price;
+                }else if ($value->date_insert == "9"){
+                    $data['sep'] = $value->total_price;
+                }else if ($value->date_insert == "10"){
+                    $data['oct'] = $value->total_price;
+                }else if ($value->date_insert == "11"){
+                    $data['nov'] = $value->total_price;
+                }else if ($value->date_insert == "12"){
+                    $data['dec'] = $value->total_price;
+                }
+            }
+        }
+
+        return $data;
+    }
+
+    public function report_week(){
+
+        $sunday = date( 'Y-m-d', strtotime( 'last sunday' ));
+        $saturday = date('Y-m-d', strtotime("+6 days", strtotime($sunday)));
+
+        $query = $this->db2->query("SELECT 
+        DATE_FORMAT(buyer_order.date_insert, '%a') AS date_name,
+        DATE(buyer_order.date_insert) AS date_insert,
+        SUM(buyer_order_products.prod_total_price) AS total_price
+        FROM buyer_order
+        INNER JOIN buyer_order_products ON 
+        buyer_order_products.order_id = buyer_order.id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status != ? AND buyer_order.seller_id = ?
+        GROUP BY DATE(buyer_order.date_insert)
+        ORDER BY (buyer_order.date_insert)
+        ", array($sunday, $saturday, "0", $this->session->userdata("comp_id")))->result();
+        
+        $data['sun'] = 0;
+        $data['mon'] = 0;
+        $data['tue'] = 0;
+        $data['wed'] = 0;
+        $data['thu'] = 0;
+        $data['fri'] = 0;
+        $data['sat'] = 0;
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                if ($value->date_name == "Sun"){
+                    $data['sun'] = $value->total_price;
+                }else if ($value->date_name == "Mon"){
+                    $data['mon'] = $value->total_price;
+                }else if ($value->date_name == "Tue"){
+                    $data['tue'] = $value->total_price;
+                }else if ($value->date_name == "Wed"){
+                    $data['wed'] = $value->total_price;
+                }else if ($value->date_name == "Thu"){
+                    $data['thu'] = $value->total_price;
+                }else if ($value->date_name == "Fri"){
+                    $data['fri'] = $value->total_price;
+                }else if ($value->date_name == "Sat"){
+                    $data['sat'] = $value->total_price;
+                }
+            }
+        }
+
+        return $data;
+    }
+
+    public function report_sales_summary($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        DATE(buyer_order.date_insert) AS order_date,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        INNER JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY DATE(buyer_order.date_insert)
+        ORDER BY (buyer_order.date_insert)", array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_product_category($fdate, $tdate, $status){
+        
+        $query = $this->db2->query("SELECT 
+        product_category.product_category,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT  JOIN products ON 
+        buyer_order_products.prod_id = products.id
+        LEFT JOIN product_category ON 
+        product_category.id = products.product_category
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY product_category.id
+        ORDER BY product_category.product_category",
+        array($fdate, $tdate, $status, $this->session->userdata('comp_id')))->result();
+        return $query;
+
+    }
+
+    public function report_products($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        products.product_name,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT  JOIN products ON 
+        buyer_order_products.prod_id = products.id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY DATE(buyer_order.date_insert)
+        ORDER BY (buyer_order.date_insert)", array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_payment_type($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        payment_type.payment_type,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN account_payment_type ON 
+        account_payment_type.payment_type_id = buyer_order.payment_type
+        LEFT JOIN payment_type ON 
+        payment_type.id = account_payment_type.payment_type_id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY buyer_order.payment_type
+        ORDER BY payment_type.payment_type"
+        , array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_delivery_type($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        delivery_type.delivery_type,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN account_delivery_type ON 
+        account_delivery_type.delivery_type_id = buyer_order.delivery_type
+        LEFT JOIN delivery_type ON 
+        delivery_type.id = account_delivery_type.delivery_type_id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY buyer_order.delivery_type
+        ORDER BY delivery_type.delivery_type"
+        , array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_product_category_dtl($fdate, $tdate, $status){
+        
+        $query = $this->db2->query("SELECT 
+        DATE(buyer_order.date_insert) AS order_date,
+        product_category.product_category,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT  JOIN products ON 
+        buyer_order_products.prod_id = products.id
+        LEFT JOIN product_category ON 
+        product_category.id = products.product_category
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY product_category.id, DATE(buyer_order.date_insert)
+        ORDER BY product_category.product_category, DATE(buyer_order.date_insert)",
+        array($fdate, $tdate, $status, $this->session->userdata('comp_id')))->result();
+        return $query;
+
+    }
+
+    public function report_products_dtl($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        DATE(buyer_order.date_insert) AS order_date,
+        products.product_name,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT  JOIN products ON 
+        buyer_order_products.prod_id = products.id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY DATE(buyer_order.date_insert), DATE(buyer_order.date_insert)
+        ORDER BY (buyer_order.date_insert), DATE(buyer_order.date_insert)", array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_payment_type_dtl($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        DATE(buyer_order.date_insert) AS order_date,
+        payment_type.payment_type,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN account_payment_type ON 
+        account_payment_type.payment_type_id = buyer_order.payment_type
+        LEFT JOIN payment_type ON 
+        payment_type.id = account_payment_type.payment_type_id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY buyer_order.payment_type, DATE(buyer_order.date_insert)
+        ORDER BY payment_type.payment_type, DATE(buyer_order.date_insert)"
+        , array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+    public function report_delivery_type_dtl($fdate, $tdate, $status){
+
+        $query = $this->db2->query("SELECT 
+        DATE(buyer_order.date_insert) AS order_date,
+        delivery_type.delivery_type,
+        COUNT(buyer_order.order_no) AS total_order,
+        SUM(buyer_order_products.prod_qty) AS total_qty,
+        SUM(buyer_order_products.prod_price) AS total_amount
+        FROM buyer_order
+        LEFT  JOIN buyer_order_products ON 
+        buyer_order.id = buyer_order_products.order_id
+        LEFT JOIN account_delivery_type ON 
+        account_delivery_type.delivery_type_id = buyer_order.delivery_type
+        LEFT JOIN delivery_type ON 
+        delivery_type.id = account_delivery_type.delivery_type_id
+        WHERE DATE(buyer_order.date_insert) BETWEEN ? AND ? AND buyer_order.status = ? AND buyer_order.seller_id = ?
+        GROUP BY buyer_order.delivery_type, DATE(buyer_order.date_insert)
+        ORDER BY delivery_type.delivery_type, DATE(buyer_order.date_insert)"
+        , array($fdate, $tdate, $status, $this->session->userdata("comp_id")))->result();
+        return $query;
+
+    }
+
+
 }

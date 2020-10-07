@@ -384,6 +384,63 @@ class Outletko_profile_model extends CI_Model {
         $this->db->update("users");
     }
 
+    public function save_name($fname, $mname, $lname){
+
+        if (!empty($fname)){
+            $this->db->where("id", $this->session->userdata("user_id"));
+            $this->db->set("first_name", $fname);
+            $this->db->update("users");
+
+            $this->db->where("account_id", $this->session->userdata("account_id"));
+            $this->db->set("first_name", $fname);
+            $this->db->update("account_application");
+
+            $this->db2->where("account_id", $this->session->userdata("account_id"));
+            $this->db2->set("first_name", $fname);
+            $this->db2->update("account");
+        }
+
+        if (!empty($mname)){
+            $this->db->where("id", $this->session->userdata("user_id"));
+            $this->db->set("middle_name", $mname);
+            $this->db->update("users");
+
+            $this->db->where("account_id", $this->session->userdata("account_id"));
+            $this->db->set("middle_name", $mname);
+            $this->db->update("account_application");
+
+            $this->db2->where("account_id", $this->session->userdata("account_id"));
+            $this->db2->set("middle_name", $mname);
+            $this->db2->update("account");
+
+        }
+
+        if (!empty($lname)){
+            $this->db->where("id", $this->session->userdata("user_id"));
+            $this->db->set("last_name", $lname);
+            $this->db->update("users");
+
+            $this->db->where("account_id", $this->session->userdata("account_id"));
+            $this->db->set("last_name", $lname);
+            $this->db->update("account_application");
+
+            $this->db2->where("account_id", $this->session->userdata("account_id"));
+            $this->db2->set("last_name", $lname);
+            $this->db2->update("account");
+
+        }
+
+        $query = $this->db->query("SELECT * FROM users WHERE id = ?", array($this->session->userdata("user_id")))->result();
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                $this->session->set_userdata("user_fullname", $value->first_name." ".$value->last_name);
+                $this->session->set_userdata("user_fname", $value->first_name);
+                $this->session->set_userdata("user_mname", $value->middle_name);
+                $this->session->set_userdata("user_lname", $value->last_name);
+            }
+        }
+    }
+
     public function update_aboutus($data){
         $this->db2->where('account_id',$this->session->userdata("account_id"));
         $this->db2->update('account',$data);

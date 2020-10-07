@@ -127,5 +127,59 @@ class Seller extends CI_Controller {
         echo json_encode($data);
     }
 
+    // Report
+
+    public function report(){
+        $type = $this->input->post("type");
+        $status = $this->input->post("status");
+        $fdate = $this->input->post("fdate");
+        $tdate = $this->input->post("tdate");
+        $data['report_year'] = "";
+        $data['report_week'] = "";
+        $data['report_tbl'] = "";
+
+        if ($type == "0"){
+            $data['report_year'] = $this->Seller_model->report_year();
+            $data['report_week'] = $this->Seller_model->report_week();
+        }else if ($type == "1"){
+            $result = $this->Seller_model->report_sales_summary($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_sales_summary($result);
+        }else if ($type == "2"){
+            $result = $this->Seller_model->report_product_category($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_product_category($result, $type);
+        }else if ($type == "3"){
+            $result = $this->Seller_model->report_products($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_rpt_products($result, $type);
+        }else if ($type == "4"){
+            // $result = $this->Seller_model->report_product_variation($fdate, $tdate, $status);
+            // $data['report_tbl'] = tbl_product_variation($result);
+        }else if ($type == "5"){
+            $result = $this->Seller_model->report_payment_type($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_payment_type($result, $type);
+        }else if ($type == "6"){
+            $result = $this->Seller_model->report_delivery_type($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_delivery_type($result, $type);
+        }else if ($type == "7"){
+            $result = $this->Seller_model->report_product_category_dtl($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_product_category($result, $type);
+        }else if ($type == "8"){
+            $result = $this->Seller_model->report_products_dtl($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_rpt_products($result, $type);
+        }else if ($type == "9"){
+            // $result = $this->Seller_model->report_product_variation($fdate, $tdate, $status);
+            // $data['report_tbl'] = tbl_product_variation($result);
+        }else if ($type == "10"){
+            $result = $this->Seller_model->report_payment_type_dtl($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_payment_type($result, $type);
+        }else if ($type == "11"){
+            $result = $this->Seller_model->report_delivery_type_dtl($fdate, $tdate, $status);
+            $data['report_tbl'] = tbl_delivery_type($result, $type);
+        }
+        
+
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
 
 }

@@ -40,6 +40,7 @@ $(document).ready(function(){
     $("#div-prod-ship-fee").hide();
     $("#span-linkname").hide();
     $("#span-linkname-error").hide();
+    $("#div-my-performance").hide();
 
     if ($(document).width() > 1200){
         $("#div-store-img-btn-1").hide();
@@ -168,6 +169,7 @@ $(document).ready(function(){
         $("#div-my-orders").hide();
         $("#div-my-closed").hide();
 		$("#list_payment").removeClass("active");
+		$("#div-my-performance").hide();
 
 
 		$("#div-setting").show("slow");
@@ -183,9 +185,71 @@ $(document).ready(function(){
 		$("#div-my-delivered").hide();
         $("#div-my-orders").hide();
         $("#div-my-closed").hide();
+		$("#div-my-performance").hide();
 
 		$("#div-home").show("slow");
 	});
+
+    $("#my-performance").click(function(){
+        $("#div-home").hide();
+		$("#div-payment").hide();
+		$("#div-my-delivered").hide();
+        $("#div-my-orders").hide();
+        $("#div-my-closed").hide();
+		$("#list_payment").removeClass("active");
+		$("#div-setting").hide();
+		$("#div-my-delivered").hide();
+        $("#div-my-orders").hide();
+        $("#div-my-closed").hide();
+
+        prf_report();
+        $("#report-type").val("0");
+        $("#report-status").val("0");
+        $("#report-fdate").val("");
+        $("#report-tdate").val("");
+        
+        $("#report-status").attr("disabled", true);
+        $("#report-fdate").attr("disabled", true);
+        $("#report-tdate").attr("disabled", true);
+
+
+		$("#div-my-performance").show("slow");
+
+    });
+
+	/* REPORT CHANGE */
+
+    $("#report-type").change(function(){
+    
+        if ($(this).val() == "0"){
+            $("#report-status").val("0");
+            $("#report-fdate").val("");
+            $("#report-tdate").val("");            
+            $("#report-status").attr("disabled", true);
+            $("#report-fdate").attr("disabled", true);  
+            $("#report-tdate").attr("disabled", true);
+        }else{
+
+            if ($("#report-fdate").val() == "" || $("#report-tdate").val() == ""){
+                $("#report-fdate").val($.datepicker.formatDate('yy-mm-01', new Date()));
+                $("#report-tdate").val($.datepicker.formatDate('yy-mm-dd', new Date()));                
+            }
+
+            $("#report-status").val("1");
+            $("#report-status").attr("disabled", false);
+            $("#report-fdate").attr("disabled", false);
+            $("#report-tdate").attr("disabled", false);
+
+
+        }
+        prf_report();
+    });
+
+    $("#report-filter").click(function(){
+        prf_report();
+    });
+
+	/* REPORT CHANGE */
 
 	/* SETTINGS LINK */
 
@@ -258,6 +322,7 @@ $(document).ready(function(){
 		$("#div_order").hide();
         $("#div-my-delivered").hide();
         $("#div-my-closed").hide();
+		$("#div-my-performance").hide();
 
 		$("#div_order_table").show("slow");
 		$("#div-my-orders").show("slow");
@@ -272,6 +337,7 @@ $(document).ready(function(){
 		$("#div-my-orders").hide();
         $("#div-my-delivered").hide();
         $("#div_closed").hide();
+		$("#div-my-performance").hide();
 
 		$("#div_closed_table").show("slow");
 		$("#div-my-closed").show("slow");
@@ -285,6 +351,7 @@ $(document).ready(function(){
 		$("#div-my-orders").hide();
         $("#div-my-closed").hide();
         $("#div_delivered").hide();
+		$("#div-my-performance").hide();
 
 		$("#div_delivered_table").show("slow");
 		$("#div-my-delivered").show("slow");
@@ -605,6 +672,43 @@ $(document).ready(function(){
         }
 
     });
+
+    $("#btn_curr_pass").click(function(){
+        if ($("#curr_pass").attr("type") == "password"){
+            $("#curr_pass").attr("type", "text");
+            $("#curr_pass_icon").removeClass("fa fa-eye-slash");
+            $("#curr_pass_icon").addClass("fa fa-eye");    
+        }else{
+            $("#curr_pass").attr("type", "password");
+            $("#curr_pass_icon").removeClass("fa fa-eye");
+            $("#curr_pass_icon").addClass("fa fa-eye-slash");    
+        }
+    });
+
+    $("#btn_new_pass").click(function(){
+        if ($("#new_pass").attr("type") == "password"){
+            $("#new_pass").attr("type", "text");
+            $("#new_pass_icon").removeClass("fa fa-eye-slash");
+            $("#new_pass_icon").addClass("fa fa-eye");    
+        }else{
+            $("#new_pass").attr("type", "password");
+            $("#new_pass_icon").removeClass("fa fa-eye");
+            $("#new_pass_icon").addClass("fa fa-eye-slash");    
+        }
+    });
+
+    $("#btn_conf_pass").click(function(){
+        if ($("#conf_pass").attr("type") == "password"){
+            $("#conf_pass").attr("type", "text");
+            $("#conf_pass_icon").removeClass("fa fa-eye-slash");
+            $("#conf_pass_icon").addClass("fa fa-eye");    
+        }else{
+            $("#conf_pass").attr("type", "password");
+            $("#conf_pass_icon").removeClass("fa fa-eye");
+            $("#conf_pass_icon").addClass("fa fa-eye-slash");    
+        }
+    });
+
 
     $("#prod_std_delivery").change(function(){
     // if ($(this).val() == "3"){
@@ -4207,10 +4311,13 @@ function save_setting(){
     var username = $("#uname").val();
     var curr_pass = $("#curr_pass").val();
     var new_pass = $("#new_pass").val();
+    var fname = $("#fname").val();
+    var mname = $("#mname").val();
+    var lname = $("#lname").val();
 
     $.ajax({
         url : base_url + "Outletko_profile/save_setting",
-        data : {csrf_name : csrf_name, username : username, curr_pass : curr_pass, new_pass : new_pass},
+        data : {csrf_name : csrf_name, username : username, curr_pass : curr_pass, new_pass : new_pass, fname : fname, lname : lname, mname : mname},
         type : "POST",
         dataType : "JSON",
         success : function(result){
@@ -5177,5 +5284,166 @@ function save_confirm_payment(status, message){
             console.log(err.responseText)
         }
     })
+
+}
+
+function prf_report(){
+
+    var csrf_name = $("input[name='csrf_name']").val();
+    var type = $("#report-type").val();
+    var status = $("#report-status").val();
+    var fdate = $("#report-fdate").val();
+    var tdate = $("#report-tdate").val();
+
+    $("#div-my-performance-report").hide();
+    $("#div-my-performance-chart").hide();
+
+    console.log(type);
+
+    $.ajax({
+        data : {csrf_name : csrf_name, type : type, status : status, fdate : fdate, tdate : tdate},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Seller/report",
+        success : function(result){
+            $("input[name='csrf_name']").val(result.token);
+
+            if (type == "0"){
+                prf_chart(result.report_year, result.report_week);
+                console.log(result);
+                $("#div-my-performance-chart").show("slow");
+            }else{
+                $("#div-my-performance-report").html(result.report_tbl);
+                $("#div-my-performance-report").show("slow");
+            }
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+function prf_chart(report_year, report_week){
+
+    var ctx = document.getElementById('chart-year').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Sales For a Year',
+                data: [report_year.jan, report_year.feb, report_year.mar, report_year.apr, report_year.may, report_year.jun, report_year.jul, report_year.aug, report_year.sep, report_year.oct, report_year.nov, report_year.dec],
+                backgroundColor: [
+                    'rgba(255, 0, 0, 1)',
+                    'rgba(255, 125, 0, 1)',
+                    'rgba(255, 255, 0, 1)',
+                    'rgba(125, 255, 0, 1)',
+                    'rgba(0, 255, 0, 1)',
+                    'rgba(0, 255, 125, 1)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(0, 125, 255, 1)',
+                    'rgba(0, 0, 255, 1)',
+                    'rgba(125, 0, 255, 1)',
+                    'rgba(255, 0, 255, 1)',
+                    'rgba(255, 0, 125, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 0, 0, 1)',
+                    'rgba(255, 125, 0, 1)',
+                    'rgba(255, 255, 0, 1)',
+                    'rgba(125, 255, 0, 1)',
+                    'rgba(0, 255, 0, 1)',
+                    'rgba(0, 255, 125, 1)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(0, 125, 255, 1)',
+                    'rgba(0, 0, 255, 1)',
+                    'rgba(125, 0, 255, 1)',
+                    'rgba(255, 0, 255, 1)',
+                    'rgba(255, 0, 125, 1)'
+                ],
+                borderWidth: 0.5
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            maintainAspectRatio: false,
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Sales for a Year'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById('chart-week').getContext('2d');
+    var myChart = new Chart(ctx2, {
+        type: 'line',
+        options: {
+            responsive: true,
+            maintainAspectRatio: false        
+        },
+        data: {
+            labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            datasets: [{
+                label: 'Sales for a Week',
+                data: [report_week.sun, report_week.mon, report_week.tue, report_week.wed, report_week.thu, report_week.fri, report_week.sat],
+                backgroundColor: [
+                    'rgba(0, 102, 0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0, 102, 0, 1)'
+                ],
+                pointBackgroundColor : [
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)'
+                ],
+                pointBorderColor : [
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 140, 0, 1)'
+                ],
+                borderWidth: 2,
+                pointBorderWidth : 3,
+                pointHitRadius : 3
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Sales for a Week'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
 }

@@ -799,8 +799,8 @@ if (!function_exists("featured_product")){
     
                 if ($resolution < 768){
     
-                    if (strlen($value->product_name) > 10){
-                        $product_name = substr($value->product_name, 0, 10)."..";
+                    if (strlen($value->product_name) > 15){
+                        $product_name = substr($value->product_name, 0, 15)."..";
                     }
     
                     if ($key % 2 == 0){
@@ -868,7 +868,7 @@ if (!function_exists("featured_product")){
                     $output .= '<div class="col-6 col-lg-3 col-md-6 col-sm-6 '.$pad_div.'">
                         <a href="'.$href_url.'">
                             <div class="div-hot-prod">
-                                <div class="card div-hot-prod-img" id="div-card-prod-i" style="'.$css_product.'"> 
+                                <div class="card div-hot-prod-img mb-0" id="div-card-prod-i" style="'.$css_product.'"> 
                                 </div> 
                                 <div class="col-12 text-center px-2 div-card-prod-name py-1"> 
                                     <p class="card-title prod-title text-green-white font-weight-600 text-capitalize align-middle mb-0">'.$product_name.'</p>

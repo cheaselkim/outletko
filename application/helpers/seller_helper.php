@@ -151,6 +151,244 @@ if (!function_exists("tbl_products")){
     }
 }
 
+if (!function_exists("tbl_sales_summary")){
+    function tbl_sales_summary($query){
+
+        $output = "";
+
+        $output .= "<table class='table table-sm table-bordered'>
+                    <thead>
+                        <tr>
+                            <th class='btn-success'>Order Date</th>
+                            <th class='btn-success'>Total Order</th>
+                            <th class='btn-success'>Total Qty</th>
+                            <th class='btn-success'>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                
+                $output .= "<tr>
+                                <td>".date('m/d/Y', strtotime($value->order_date))."</td>
+                                <td class='text-center'>".number_format($value->total_order, 0)."</td>
+                                <td class='text-center'>".number_format($value->total_qty, 0)."</td>
+                                <td class='text-right'>".number_format($value->total_amount, 2)."</td>
+                            </tr>";
+
+            }
+        }else{
+            $output.=   "<tr>
+                            <td>No Data</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>";
+
+        return $output;
+    }
+}
+
+if (!function_exists("tbl_product_category")){
+    function tbl_product_category($query, $type){
+
+        $output = "";
+
+        $output .= "<table class='table table-sm table-bordered'>
+                    <thead>
+                        <tr>";
+                        
+                        if ($type == "7"){
+                            $output .= "<th class='btn-success'>Order Date</th>";
+                        }
+
+        $output .=          "<th class='btn-success'>Product Category</th>
+                            <th class='btn-success'>Total Order</th>
+                            <th class='btn-success'>Total Qty</th>
+                            <th class='btn-success'>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                
+                $output .= "<tr>";
+
+                    if ($type == "7"){
+                        $output .= "<td>".date('m/d/Y', strtotime($value->order_date))."</td>";
+                    }
+
+                $output .= "<td>".$value->product_category."</td>
+                                <td class='text-center'>".number_format($value->total_order, 0)."</td>
+                                <td class='text-center'>".number_format($value->total_qty, 0)."</td>
+                                <td class='text-right'>".number_format($value->total_amount, 2)."</td>
+                            </tr>";
+
+            }
+        }else{
+            $output.=   "<tr>
+                            <td>No Data</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>";
+
+        return $output;
+    }
+}
+
+if (!function_exists("tbl_rpt_products")){
+    function tbl_rpt_products($query, $type){
+
+        $output = "";
+
+        $output .= "<table class='table table-sm table-bordered'>
+                    <thead>
+                        <tr>";
+                        
+                        if ($type == "8"){
+                            $output .= "<th class='btn-success'>Order Date</th>";
+                        }
+        $output .=          "<th class='btn-success'>Product</th>
+                            <th class='btn-success'>Total Order</th>
+                            <th class='btn-success'>Total Qty</th>
+                            <th class='btn-success'>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+
+                $output .= "<tr>";
+
+                            if ($type == "8"){
+                                $output .= "<td>".date("m/d/Y", strtotime($value->order_date))."</td>";
+                            }
+                $output .=      "<td>".$value->product_name."</td>
+                                <td class='text-center'>".number_format($value->total_order, 0)."</td>
+                                <td class='text-center'>".number_format($value->total_qty, 0)."</td>
+                                <td class='text-right'>".number_format($value->total_amount, 2)."</td>
+                            </tr>";
+
+            }
+        }else{
+            $output.=   "<tr>
+                            <td>No Data</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>";
+
+        return $output;
+    }
+}
+
+if (!function_exists("tbl_payment_type")){
+    function tbl_payment_type($query, $type){
+
+        $output = "";
+
+        $output .= "<table class='table table-sm table-bordered'>
+                    <thead>
+                        <tr>";
+
+                        if ($type == "10"){
+                            $output .= "<th class='btn-success'>Order Date</th>";
+                        }
+
+        $output .=      "<th class='btn-success'>Payment Type</th>
+                            <th class='btn-success'>Total Order</th>
+                            <th class='btn-success'>Total Qty</th>
+                            <th class='btn-success'>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                
+                $output .= "<tr>";
+
+                        if ($type == "10"){
+                            $output .= "<td>".date("m/d/Y", strtotime($value->order_date))."</td>";
+                        }
+
+                $output .=      "<td>".$value->payment_type."</td>
+                                <td class='text-center'>".number_format($value->total_order, 0)."</td>
+                                <td class='text-center'>".number_format($value->total_qty, 0)."</td>
+                                <td class='text-right'>".number_format($value->total_amount, 2)."</td>
+                            </tr>";
+
+            }
+        }else{
+            $output.=   "<tr>
+                            <td>No Data</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>";
+
+        return $output;
+    }
+}
+
+
+if (!function_exists("tbl_delivery_type")){
+    function tbl_delivery_type($query, $type){
+
+        $output = "";
+
+        $output .= "<table class='table table-sm table-bordered'>
+                    <thead>
+                        <tr>";
+                        
+                        if ($type == "11"){
+                            $output .= "<th class='btn-success'>Order Date</th>";
+                        }
+        $output .=          "<th class='btn-success'>Delivery Type</th>
+                            <th class='btn-success'>Total Order</th>
+                            <th class='btn-success'>Total Qty</th>
+                            <th class='btn-success'>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        if (!empty($query)){
+            foreach ($query as $key => $value) {
+                
+                $output .= "<tr>";
+
+                        if ($type == "11"){
+                            $output .= "<td>".date("m/d/Y", strtotime($value->order_date))."</td>";
+                        }
+
+                $output .=      "<td>".$value->delivery_type."</td>
+                                <td class='text-center'>".number_format($value->total_order, 0)."</td>
+                                <td class='text-center'>".number_format($value->total_qty, 0)."</td>
+                                <td class='text-right'>".number_format($value->total_amount, 2)."</td>
+                            </tr>";
+
+            }
+        }else{
+            $output.=   "<tr>
+                            <td>No Data</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>";
+
+        return $output;
+    }
+}
+
 
 // if (!function_exists("tbl_process_order")){
 // 	function tbl_process_order($query, $var_status, $closed){
