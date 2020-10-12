@@ -21,6 +21,8 @@ class Search extends CI_Controller {
             $data['tbl'] = "";
         }
 
+        $data['store'] = 0;
+
 		// $this->load->view("login_search", $data);
 		
 		$data['id'] = "";
@@ -71,7 +73,8 @@ class Search extends CI_Controller {
 		$data['account_id'] = 0;
 		$data['owner'] = 0;
 		$data['edit'] = 0;
-		$data['width'] = 1366;
+        $data['width'] = 1366;
+        $data['store'] = 0;
 
 		if ($this->session->userdata("validated") == true){
 			$result = $this->login_model->check_session();
@@ -105,7 +108,7 @@ class Search extends CI_Controller {
                 <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
             </div>";
         }else{
-            $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
+             $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
             $query2 = $this->search_model->search_product($data['prov_id'], $data['city_id'], $data['product']);
             $data['tbl_store'] = tbl_query($query);		    
             $data['tbl_prod'] = tbl_prod($query2, $this->input->cookie('window_width', TRUE), $this->session->userdata("IPCurrencyCode"));
@@ -126,7 +129,8 @@ class Search extends CI_Controller {
         }
 
 		// $this->load->view("login_search", $data);
-		
+        
+        $data['store'] = 0;
 		$data['id'] = "";
 		$menu = 1;
 		$data['function'] = 0;

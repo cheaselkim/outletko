@@ -104,4 +104,30 @@ class Store_model extends CI_Model {
         return $query->link_name;
     }
 
+    public function all_store(){
+
+		$query = $this->db2->query("
+			SELECT 
+			account.*,
+			`city`.`city_desc`,
+			`province`.`province_desc`,
+			`products`.`product_description` 
+			FROM account 
+			LEFT JOIN province ON 
+			`province`.`id` = `account`.`province`
+			LEFT JOIN city ON 
+			`city`.`id` = `account`.`city`
+			LEFT JOIN products ON 
+			`account`.`id` = `products`.`account_id`
+            WHERE 
+            `account`.`store_status` = ?
+            AND `account`.`country` = ?
+			GROUP BY `account`.`account_name`
+			ORDER BY `account`.`account_name`
+		", array(1, $this->session->userdata("IPCountryID")))->result();
+
+        return $query;
+
+    }
+
 }

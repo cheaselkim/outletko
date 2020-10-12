@@ -42,9 +42,10 @@
 </head>
 <body>
 
-<input type="hidden" name="prov_id" value="<?php echo $prov_id ?>">
-<input type="hidden" name="city_id" value="<?php echo $city_id ?>">
-<input type="hidden" name="product" value="<?php echo $product ?>">
+<input type="hidden" name="prov_id" value="<?php echo $prov_id; ?>">
+<input type="hidden" name="city_id" value="<?php echo $city_id; ?>">
+<input type="hidden" name="product" value="<?php echo $product; ?>">
+<input type="hidden" name="store-show" id="store-show" value="<?php echo $store; ?>">
 
 <div class="container pt-3 pb-4">
     <div class="row">
