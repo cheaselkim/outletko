@@ -7,13 +7,13 @@
     <meta name="description" content="eoutletsuite, eoutletsuite, eoutletsuite.com, outletko">
     <meta name="keywords" content="eoutletsuite, eoutletsuite.com, outletko">
 
-    <link rel="icon" href="assets/img/icon2.png" type="image/png" sizes="2x2">
+    <link rel="icon" href="<?php echo base_url('assets/img/logo-13.png')?>" type="image/png" sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login3.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/scroll_words.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/outletko/login_search.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/ecommerce/login_search.css') ?>">
 
     <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
@@ -21,6 +21,11 @@
     <script src="<?php echo base_url('assets/js/style.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.js') ?>"></script>
+    <script src="<?php echo base_url('js/ecommerce/login_search.js')?>"></script>
+
+    <script type=text/javascript>
+        document.cookie = 'window_width='+window.innerWidth+'; expires=Fri, 3 Aug 2901 20:47:11 UTC; path=/';
+    </script>
 
     <style>
 
@@ -43,15 +48,34 @@
 
 <div class="container pt-3 pb-4">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
 
-            <div class="row bg-white" style="min-height: 700px; height: auto;">
-                <div class="col-12 px-4 py-3">
-                    
-                    <?php 
-                        echo $tbl;
-                     ?>
-
+            <div class="row bg-white" style="min-height: 700px; height: auto;"> 
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 text-right div-bar-tab">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success" id="btn-prod">Products</button>
+                                <button type="button" class="btn btn-outline-success" id="btn-store">Store</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="div-prod">
+                        <div class="col-12 px-0 pb-3">
+                            <div class="row">
+                            <?php 
+                                echo $tbl_prod;
+                            ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="div-store">
+                        <div class="col-12 px-4 pb-3">                        
+                            <?php 
+                                    echo $tbl_store;
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
 

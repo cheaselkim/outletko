@@ -48,7 +48,7 @@
 <!-- SEARCH -->
 <div class="container pt-2 ">
 	<div class="row">
-		<div class="col-12 col-md-11 col-lg-12 mx-auto ">
+		<div class="col-12 col-md-12 col-lg-12 mx-auto div-search-bar">
 
 			<form action="<?php echo site_url('Search/query') ?>" method="GET">
 				<div class="row  ">

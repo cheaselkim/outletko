@@ -268,8 +268,14 @@
                             </div>
                         </div> -->
 
-                            
+                        
 
+            </div>
+
+            <div class="row pt-3">
+                <div class="col-12 col-lg-6 col-md-12 col-sm-12 text-center mx-auto">
+                    <a class="btn btn-outline-success btn-block" href="<?php echo base_url('store/all')?>"><span class="h3 font-weight-600">View All</span></a>
+                </div>
             </div>
 
         </div>

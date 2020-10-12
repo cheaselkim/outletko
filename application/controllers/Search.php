@@ -88,21 +88,41 @@ class Search extends CI_Controller {
     
     public function query(){
 
-		$data['city_id']  = $this->input->get("city_id");
-		$data['prov_id'] = $this->input->get("prov_id");
-		$data['product'] = $this->input->get("product_outlet");	
+		$data['city_id']  = $this->input->get("city_id", TRUE);
+		$data['prov_id'] = $this->input->get("prov_id", TRUE);
+        $data['product'] = $this->input->get("product_outlet", TRUE);	
+        $data['tbl_prod'] = "";
 
 
 		// $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
 		// $data['tbl'] = tbl_query($query);		
 
         if (empty($data['city_id']) && empty($data['prov_id']) && empty($data['product'])){
-            $data['tbl'] = "<div class='row'>
+            $data['tbl_store'] = "<div class='row'>
                                 <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
                             </div>";
+            $data['tbl_prod'] = "<div class='row'>
+                <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
+            </div>";
         }else{
             $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
-            $data['tbl'] = tbl_query($query);		    
+            $query2 = $this->search_model->search_product($data['prov_id'], $data['city_id'], $data['product']);
+            $data['tbl_store'] = tbl_query($query);		    
+            $data['tbl_prod'] = tbl_prod($query2, $this->input->cookie('window_width', TRUE), $this->session->userdata("IPCurrencyCode"));
+
+            if (empty($query)){
+                $data['tbl_store'] = "<div class='row'>
+                <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
+            </div>";
+            }
+
+            if (empty($query2)){
+                $data['tbl_prod'] = "<div class='row'>
+                <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
+            </div>";
+
+            }
+        
         }
 
 		// $this->load->view("login_search", $data);
