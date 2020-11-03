@@ -22,7 +22,8 @@ class Login extends CI_Controller {
                 $this->session->set_userdata("IPCountry", "Philippines");
                 $this->session->set_userdata("IPContinent", "Asia");
                 $this->session->set_userdata("IPCurrencyCode", "PHP");
-                $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+                $this->session->set_userdata("IPTimeZone", "Asia/Manila");  
+                $this->session->set_userdata("IPCurrencySymbol", '&#8369;');
             }else{
                 $result = $this->login_model->search_currency($dataArray->geoplugin_countryCode);
                 if (!empty($result)){
@@ -43,6 +44,10 @@ class Login extends CI_Controller {
                     $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
                 }
             }
+        }
+
+        if ($this->session->userdata("IPCountryCode") == "PH"){
+            $this->session->set_userdata("IPCurrencySymbol", '&#8369;');
         }
 
 		// var_dump($result);

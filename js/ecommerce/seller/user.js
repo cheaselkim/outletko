@@ -30,6 +30,8 @@ $(document).ready(function(){
     // $("#div-aboutus").hide();
     // $("#div-payment").show();
 
+    
+
     $("#div-setting").hide();
     $("#div-my-orders").hide();
     $("#div_order").hide();
@@ -73,6 +75,9 @@ $(document).ready(function(){
         
     $("#cov-ship-kg").number(true, 0);
     $("#cov-ship-fee").number(true, 2);
+
+    $(".discount-price").number(true, 2);
+    $(".discount-percent").number(true, 2);
 
     $("#span-aboutus").hide();
     $("#div-card-variation").hide();
@@ -493,7 +498,7 @@ $(document).ready(function(){
     });
 
     $("#btn-variation").click(function(){
-        variations();
+        variations(1);
     });
 
 
@@ -1082,6 +1087,23 @@ $(document).ready(function(){
     });
 
 
+    // Discount Computation
+
+    $("#prod_price").keyup(function(){
+        // $("#discount-unit-price-1").val($(this).val());
+        variations(0);
+    });
+
+    $(document).on("keyup", ".discount-price", function(){
+        var id = $(this).attr("id").substring(15);
+        compute_discount(id, 1);
+    });
+
+    $(document).on("keyup", ".discount-percent", function(){
+        var id = $(this).attr("id").substring(17);
+        compute_discount(id, 2);
+    });
+
 });
 
 /* GENERAL FUNCTION */
@@ -1096,6 +1118,11 @@ function avoidSplChars(e) {
         e.preventDefault(); 
       }
     } 
+
+}
+
+function remove_comma(amount){
+    return amount.replace(/,/g, "");
 }
 
 function lightOrDark(color) {
@@ -1861,7 +1888,7 @@ function index(){
         $("#input_mobile").val(result.result[0].mobile_no);
         $("#input_telephone").val(result.result[0].telephone_no);
 
-        $("#input_website").val(result.result[0].facebook);
+        $("#input_website").val(result.result[0].website);
         $("#input_facebook").val(result.result[0].facebook);
         $("#input_twitter").val(result.result[0].twitter);
         $("#input_instagram").val(result.result[0].instagram);
@@ -2083,6 +2110,8 @@ function index(){
         var prod_price = "";
         var min_price = "";
         var max_price = "";
+        var percent_off = "";
+
         $('#posted_prod').empty();
         for(var x = 0; x<result.products.length; x++) {
             var href_url = base_url +'images/products/'+result.products[x].img_location[0];
@@ -2090,6 +2119,9 @@ function index(){
             var prod_unit_price = result.products[x].product_unit_price;
             var margin = "";
             var margin_plus_image = "";
+            var percent_off = "";
+            var discount_percent = "";
+            var discount_price = "";
 
             if (x > 3){
               margin = "mt-4";
@@ -2149,15 +2181,36 @@ function index(){
                 }
             } 
 
+            if (result.products[x]['max_percent'] != 0){
+                if (result.products[x]['min_discount'] == result.products[x]['max_discount']){
+                    prod_price = $.number(result.products[x]['min_discount'], 2);
+                }else{
+                    prod_price = $.number(result.products[x]['min_discount'], 2) + " - " + $.number(result.products[x]['max_discount'], 2);
+                }
+            }
+
             // if (min_price == null){
             //     prod_price = $.number(prod_unit_price, 2);    
             // }
+
+            // discount_prod_price = '<span class="font-weight-600 font-size-14 text-red  list-prod-price">&#8369; '+ prod_price +'</span><br>' +
+            //                       '<small class="">&#8369; <strike>'+ prod_price +'</strike></small>';
+
+            discount_prod_price = '<span class="font-weight-600 font-size-14 text-red  list-prod-price"> &#8369; '+ prod_price +'</span><br>' 
+
+            if (result.products[x]['product_available'] != "0"){
+                if (result.products[x]['max_percent'] != 0){
+                    percent_off = '<h6 class="ribbon">' + $.number(result.products[x]['max_percent'], 0) + '% OFF</h6>';
+                }
+            }
+
 
             pad = "";
             var e = $('<div class="col col-6 col-md-6 col-lg-3 '+margin+' '+pad+' "   >'+
                         '<div class="div-list-img cursor-pointer mx-auto" id="div-list-img-'+x+'" alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
         						// '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">'+
-            					'<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
+                                percent_off +
+                                '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');">'+
             						// '<i class="fa fa-camera"></i>'+
                       '</div>'+
                       '<div class="col-lg-12 text-center py-4 div-img-update" style="margin-top: 40%;background:rgb(0,0,0,0.3);height:45%;" id="div-img-update-'+x+'">' +
@@ -2166,13 +2219,16 @@ function index(){
                       '</div>' +
         					'</div>'+
                   '<div class="bd-green text-center cursor-pointer div-list-img-btn py-1" onclick="get_product_info('+result.products[x]['id']+');" data-toggle="modal" data-target="#img_upload">' + 
-                    '<span class="font-weight-600 list-prod-name" >'+ product_name +'</span><br>' + 
-                    '<span class="font-weight-600 font-size-14 text-red  list-prod-price">PHP '+ prod_price +'</span>' +
+                    '<p class="font-weight-600 list-prod-name" >'+ product_name +'</p>' + 
+                    discount_prod_price + 
                     '</div>' +
         				'</div>');
 
                 $('#posted_prod').append(e);  
                 $("#div-img-update-"+x+"").hide();
+                // $("#div-list-img-"+x+"").addClass("prod-discount");
+                // $(".prod-discount:before").css("content", "20% OFF");
+
 
                 if (result.products[x]['product_available'] == "0"){
                     $("#div-list-img-"+x+"").addClass("prod-not-avail");
@@ -2686,17 +2742,27 @@ function delivered_table(id){
   
 }
   
-function variations(){
+function variations(dtype){
 
-  var csrf_name = $("input[name=csrf_name]").val();
-  var prod_id = $("#prod_id").val();
-  var var_length = $("#div-card-variation .card").length;
-  $("#modal_variations").modal("show");
-  $("#div-card-variation").hide();      
+var csrf_name = $("input[name=csrf_name]").val();
+var prod_id = $("#prod_id").val();
+var var_length = $("#div-card-variation .card").length;
 
-  for (var i = 1; i < (Number(var_length) + 1); i++) {
+if (dtype == "1"){
+    $("#modal_variations").modal("show");
+    $("#div-card-variation").hide();      
+}
+
+// if ($("#div-discount").is(":visible") == false){
+    if ($("#div-variation-price").find("div").length > 0){
+        $("#div-variation-price").empty();
+    }      
+// }
+
+for (var i = 1; i < (Number(var_length) + 1); i++) {
     $("#div-card-variation div").remove();
-  }
+}        
+
 
   $.ajax({
     data : {csrf_name : csrf_name, prod_id : prod_id},
@@ -2708,6 +2774,7 @@ function variations(){
 
       var data = result.data;
       var var_type = result.var_type;
+      var data_discount = result.discount;
 
       for (var i = 0; i < data.length; i++) {
 
@@ -2782,11 +2849,60 @@ function variations(){
       $("#variation_price2").attr("readonly", true);
 
       var type = 0;
+      var type_var = 0;
+      var curr = result.curr;
+      var dis_price = 0;
+      var discount_price = 0;
+      var discount_percent = 0;
+      var new_price = 0;
+
+      console.log(data_discount);
 
       for (var i = 0; i < data.length; i++) {
         type += 1;
         for (var x = 0; x < var_type.length; x++) {
-          if (data[i].id == var_type[x].variation_id){
+
+            if (i == 0){
+                // if ($("#div-discount").is(":visible") == false){
+                    if (data[i].id == var_type[x].variation_id){
+                        dis_price++;
+                        discount_price = 0;
+                        discount_percent = 0;
+                        new_price = 0;
+
+                        for (var a = 0; a < data_discount.length; a++) {
+                            if (var_type[x].id == data_discount[a].var_id){
+                                discount_price = data_discount[a].discount_price;
+                                discount_percent = data_discount[a].discount_percent;
+                                new_price = data_discount[a].new_price;                                
+                            }
+                        }
+
+                        $("#div-variation-price").append('<div class="row div-var-type-dis-price pt-3">'+
+                            '<div class="col-6 col-lg-3 col-md-3 col-sm-6 pt-1 pad-right">'+
+                                '<input type="text" name="" id="dis-variation-'+dis_price+'" class="form-control dis-variation bg-white" value="'+var_type[x].type+'" data-id="'+var_type[x].id+'" readonly>'+
+                            '</div>'+
+                            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                                '<input type="text" name="" id="discount-unit-price-'+dis_price+'" class="form-control text-right discount-unit-price bg-white" value="'+$.number(var_type[x].unit_price, 2)+'" readonly>'+
+                            '</div>'+
+                            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                                '<input type="text" name="" id="discount-price-'+dis_price+'" class="form-control text-right discount-price" value="'+$.number(discount_price, 2)+'">'+
+                            '</div>'+
+                            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                                '<input type="text" name="" id="discount-percent-'+dis_price+'" class="form-control text-right discount-percent px-1" value="'+$.number(discount_percent, 2)+'">'+
+                            '</div>'+
+                            '<div class="col-6 col-lg-3 col-md-3 col-sm-6 pt-1 pad-left">'+
+                                '<input type="text" name="" id="discount-new-price-'+dis_price+'" class="form-control text-right discount-new-price px-1 bg-white" value="'+$.number(new_price, 2)+'" readonly>'+
+                            '</div>'+
+                        '</div>');
+
+                        compute_discount(dis_price, 2);
+
+                    }
+                // }
+            }
+    
+            if (data[i].id == var_type[x].variation_id){
             $("#div-variation-type_"+type+ " table tbody").append(
                   '<tr>' + 
                     '<td class="var_type">'+var_type[x].type+'</td>' +
@@ -2802,6 +2918,38 @@ function variations(){
 
         }
       }
+
+      if (data.length == 0){
+
+        for (var a = 0; a < data_discount.length; a++) {
+            if (data_discount[a].var_id == "0"){
+                discount_price = data_discount[a].discount_price;
+                discount_percent = data_discount[a].discount_percent;
+                new_price = data_discount[a].new_price;                                
+            }
+        }
+
+        $("#div-variation-price").append('<div class="row div-var-type-dis-price pt-3">'+
+            '<div class="col-6 col-lg-3 col-md-3 col-sm-6 pt-1 pad-right">'+
+                '<input type="text" name="" id="dis-variation-1" class="form-control dis-variation bg-white" value="Unit Price" data-id="0" readonly>'+
+            '</div>'+
+            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                '<input type="text" name="" id="discount-unit-price-1" class="form-control text-right discount-unit-price bg-white" value="'+$("#prod_price").val()+'" readonly>'+
+            '</div>'+
+            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                '<input type="text" name="" id="discount-price-1" class="form-control text-right discount-price" value="'+discount_price+'">'+
+            '</div>'+
+            '<div class="col-6 col-lg-2 col-md-2 col-sm-6 pt-1 pad-center">'+
+                '<input type="text" name="" id="discount-percent-1" class="form-control text-right discount-percent px-1" value="'+discount_percent+'">'+
+            '</div>'+
+            '<div class="col-6 col-lg-3 col-md-3 col-sm-6 pt-1 pad-left">'+
+                '<input type="text" name="" id="discount-new-price-1" class="form-control text-right discount-new-price px-1 bg-white" value="'+new_price+'" readonly>'+
+            '</div>'+
+        '</div>');
+        
+        compute_discount(1, 2);
+        
+    }
 
       $("#div-card-variation").show("slow");      
 
@@ -2841,6 +2989,10 @@ function variations(){
 
         });
 
+
+        $(".discount-price").number(true, 2);
+        $(".discount-percent").number(true, 2);
+    
     }, error : function(err){
       console.log(err.responseText);
     }
@@ -2875,7 +3027,7 @@ function add_variation(){
             url : base_url + "Outletko_profile/save_variation",
             success : function(result){
                 $("input[name=csrf_name]").val(result.token);
-                variations();
+                variations(1);
             }, error : function(err){
                 console.log(err.responseText);
             }
@@ -2908,7 +3060,7 @@ function update_var(num){
         success : function(result){
             console.log(result);
             $("input[name=csrf_name]").val(result.token);
-            variations();
+            variations(1);
         }, error : function(err){
             console.log(err.responseText);
         }
@@ -2935,7 +3087,7 @@ function del_var(id){
                 url : base_url + "Outletko_profile/del_variation",
                 success : function(result){
                     $("input[name=csrf_name]").val(result.token);
-                    variations();
+                    variations(1);
                 }, error : function(err){
                     console.log(err.responseText);
                 }
@@ -2979,7 +3131,7 @@ if (variation_type == ""){
             $("input[name=csrf_name]").val(result.token);
             console.log(result);
             if (upload_img.get(0).files.length <= 0){
-                variations();
+                variations(1);
             }else{
                 save_variation_img(type, result.result);
             }
@@ -3055,7 +3207,7 @@ function save_variation_img(type, id){
                 if(result.status == "success") {
                     $("#save_product").removeAttr('disabled');
                     swal.close();
-                    variations();
+                    variations(1);
                     // swal({
                     //     title : "Successfully Save",
                     //     type : "success",
@@ -3103,7 +3255,7 @@ function del_var_type(id){
                 url : base_url + "Outletko_profile/del_variation_type",
                 success : function(result){
                     $("input[name=csrf_name]").val(result.token);
-                    variations();
+                    variations(1);
                 }, error : function(err){
                     console.log(err.responseText);
                 }
@@ -3690,8 +3842,25 @@ function save_product(){
     ship_fee_o_mm : prod_ship_fee_o_mm
     } 
 
-    var data = {product : product, action : action,prod_id : prod_id, csrf_name : csrf_name};
-    //return false;
+    var discount = [];
+    var dis_length = $('.dis-variation').length;
+
+    for (let i = 1; i <= dis_length; i++) {
+        
+        var dis_data = {
+            "var_id" : $("#dis-variation-"+i).attr("data-id"),
+            "unit_price" : $("#discount-unit-price-"+i).val().replace(/,/g, ''),
+            "discount_price" : $("#discount-price-"+i).val().replace(/,/g, ''),
+            "discount_percent" : $("#discount-percent-"+i).val().replace(/,/g, ''),
+            "new_price" : $("#discount-new-price-"+i).val().replace(/,/g, '')
+        }
+
+        discount.push(dis_data);
+    }
+
+    console.log(discount);
+
+    var data = {product : product, action : action,prod_id : prod_id, csrf_name : csrf_name, discount : discount};
     $.ajax({
 
         data : data
@@ -3911,6 +4080,7 @@ function clear_prod_model(){
     $("#prod_warranty").val($("#inp_warranty").val());
     $("#delete_product").hide();
     $('input[type=file]').val(null);
+    // variations(1);
     check_product_online();
 }
 
@@ -3920,6 +4090,7 @@ function get_product_info(id){
     var max_price = "";
     var prod_price = "";
     $("#delete_product").show();
+    $("#div-discount").collapse("hide");
     $.ajax({
         url : base_url + "Outletko_profile/get_product_info",
         type : "POST",
@@ -3942,6 +4113,8 @@ function get_product_info(id){
             $("#prod_warranty").val(data.products[0].product_warranty);
             $("#prod_id").val(data.products[0].id);
             $("#unserialized_files").val(data.products[0].img_location[0]);
+
+            variations(0);
 
             if (data.products[0].product_available == "0"){
                 $("#not_avail").prop("checked", true);
@@ -5445,5 +5618,33 @@ function prf_chart(report_year, report_week){
             }
         }
     });
+
+}
+
+// Compute Discount
+function compute_discount(id, type){
+
+    var unit_price = $("#discount-unit-price-"+id).val().replace(/,/g, "");
+    var dis_price = $("#discount-price-"+id).val().replace(/,/g, "");
+    var dis_percent = $("#discount-percent-"+id).val().replace(/,/g, "");
+    var new_price = "";
+
+    var price_dis = 0;
+    var percent_dis = 0;
+
+    if (type == "1"){
+        new_price = unit_price - dis_price;
+        percent_dis = ((unit_price - new_price) / unit_price) * 100;
+        price_dis = dis_price;
+    }else{
+        price_dis = unit_price * (dis_percent / 100);
+        percent_dis = dis_percent;
+    }
+
+    new_price = unit_price - price_dis;
+
+    $("#discount-price-"+id).val($.number(price_dis, 2));
+    $("#discount-percent-"+id).val($.number(percent_dis, 2));
+    $("#discount-new-price-"+id).val($.number(new_price, 2));
 
 }

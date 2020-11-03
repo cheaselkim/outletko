@@ -120,6 +120,13 @@ class Outletko_profile extends CI_Controller {
             }
         }
 
+        $data['discount'] = $this->outletko_profile_model->get_discount($prod_id);
+
+        if ($this->session->userdata("IPCurrencyCode") == "PHP"){
+            $curr = "&#8369;";
+        }
+
+        $data['curr'] = $curr;
         $data['data'] = $this->outletko_profile_model->variations($prod_id);
         $data['var_type'] = $prod;        
         $data['token'] = $this->security->get_csrf_hash();
@@ -188,7 +195,7 @@ class Outletko_profile extends CI_Controller {
     	$id = $this->session->userdata("account_id");
     	$result = $this->outletko_profile_model->get_products($id);
         $ol_products = $this->outletko_profile_model->get_ol_products();
-    	$data['result'] = $this->outletko_profile_model->get_profile_dtl($id);
+        $data['result'] = $this->outletko_profile_model->get_profile_dtl($id);
     	$data['prod_cat'] = $this->outletko_profile_model->get_product_category($id);
     	$data['token'] = $this->security->get_csrf_hash();
         $data['payment_type'] = $this->outletko_profile_model->get_payment_type();
@@ -234,11 +241,23 @@ class Outletko_profile extends CI_Controller {
         //         "id" => $row->id);
         // }
         $products = array();
-        $min_price = "";
-        $max_price = "";
+        $min_price = 0;
+        $max_price = 0;
+        $min_discount = 0;
+        $max_discount = 0;
+        $max_percent = 0;
+        $min_percent = 0;
         foreach ($result as $key => $value) {
             $unserialized_files = unserialize($value->img_location); 
             $variation_price = $this->outletko_profile_model->get_variation_price($value->id);
+            $discount_price = $this->outletko_profile_model->get_product_discount($value->id);
+
+            $min_price = 0;
+            $max_price = 0;
+            $min_discount = 0;
+            $max_discount = 0;
+            $max_percent = 0;
+            $min_percent = 0;
 
             if (!empty($variation_price)){
                 foreach ($variation_price as $key2 => $value2) {
@@ -247,12 +266,26 @@ class Outletko_profile extends CI_Controller {
                 }
             }
 
+            if (!empty($discount_price)){
+                foreach ($discount_price as $key3 => $value3) {
+                    $max_discount = $value3->max_discount;
+                    $min_discount = $value3->min_discount;
+                    $max_percent = $value3->max_percent;
+                    $min_percent = $value3->min_percent;
+                }
+            }
+
+
             $products[$key] = array(
                 'product_name' => $value->product_name,
                 "product_description" => $value->product_description,
                 "product_unit_price" => $value->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,
+                "max_percent" => (int)$max_percent,
+                "min_percent" => (int)$min_percent,
+                "max_discount" => (int)$max_discount,
+                "min_discount" => (int)$min_discount,
                 "img_location" => $unserialized_files,
                 "product_available" => $value->product_available,
                 "id" => $value->id);
@@ -581,6 +614,7 @@ class Outletko_profile extends CI_Controller {
 		$action = $this->input->post('action', TRUE);
         $product = $this->input->post('product', TRUE);
         $prod_id = $this->input->post('prod_id', TRUE);
+        $discount = $this->input->post("discount", TRUE);
         $product['account_id'] = $account_id;
         
         if($prod_id == ""){
@@ -593,6 +627,10 @@ class Outletko_profile extends CI_Controller {
             $product['account_id'] = $this->session->userdata("comp_id");
             $product['comp_id'] = $this->session->userdata("comp_id");
             $id = $this->outletko_profile_model->update_product($product);
+        }
+
+        if (!empty($discount)){
+            $result_dis = $this->outletko_profile_model->save_discount($discount, $id);
         }
         
         // if($query == true){

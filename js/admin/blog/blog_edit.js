@@ -64,11 +64,24 @@ function get_blog(){
         success : function(result){
             $("input[name=csrf_name]").val(result.token);
 
-            $('#div-img-blog').css('background', 'url("' + base_url + "images/blog/" + result.img + '")');
-            $('#div-img-blog').css('background-size', "contain");
-            $('#div-img-blog').css('background-repeat', "no-repeat");
-            $('#div-img-blog').css('background-position', "center center");            
+            console.log(result.media_type);
 
+            if (result.media_type == "video"){
+                $("#div-img-blog").append("<video controls playsinline id='div-video'><source src='"+ base_url + "images/blog/" + result.media +"'></video>");
+                $("#div-img-blog").addClass("text-center");
+                $("#div-video").css("object-fit", "contain");
+                $("#div-video").css("display", "inline-block");
+                $("#div-video").css("height", "100%");
+                $("#div-video").css("width", "100%");
+
+            }else if (result.media_type == "image"){
+                $('#div-img-blog').css('background', 'url("' + base_url + "images/blog/" + result.media + '")');
+                $('#div-img-blog').css('background-size', "contain");
+                $('#div-img-blog').css('background-repeat', "no-repeat");
+                $('#div-img-blog').css('background-position', "center center");                
+            }
+
+            $("#category").val(result.category);
             $("#title").val(result.title);
             $("#author").val(result.author);
             $("#status").val(result.status);
@@ -94,6 +107,43 @@ function get_blog(){
 
 }
 
+function overwrite_display(){
+
+    var csrf_name = $("input[name=csrf_name]").val();
+
+    $.ajax({
+        data : {csrf_name : csrf_name},
+        type : "POST",
+        dataType : "JSON",
+        url : base_url + "Blog/overwrite_display",
+        success : function(result){
+            $("input[name=csrf_name]").val(result.token);
+
+            var data = result.data;
+            console.log(data.length);
+
+            
+            if (data.length > 0){
+                for (let i = 0; i < data.length; i++) {
+                    $("#display-blog").append('<div class="form-check">'+
+                    '<label class="form-check-label">'+
+                        '<input type="radio" class="form-check-input overwrite-radio" name="optradio" value="'+data[i].id+'" style="height: 18px !important;">'+data[i].title+
+                    '</label>'+
+                '</div>');                    
+                }
+            }
+            
+            $("#modal-overwrite-blog").modal("show");
+
+
+        }, error : function(err){
+            console.log(err.responseText);
+        }
+    })
+
+}
+
+
 function check_display_images(){
     var csrf_name = $("input[name=csrf_name]").val();
 
@@ -107,19 +157,28 @@ function check_display_images(){
 
             // console.log($("#display").attr("data-id"));
                 
+            console.log(result.result);
+
             if ($("#display").attr("data-id") == "0"){
-                swal({
-                    type : "warning",
-                    title : "Overwrite?",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "No",
-                  }, function(isConfirm){
-                    if (!isConfirm){
-                        $("#display").prop("checked", false);
-                    }
-                  })        
+                if (result.result == "3"){
+                    swal({
+                        type : "warning",
+                        title : "Overwrite?",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes",
+                        cancelButtonText: "No",
+                      }, function(isConfirm){
+                        if (isConfirm){
+                                overwrite_display();
+                            // $("#display").prop("checked", false);
+                        }else{
+                            $("#display").prop("checked", false);
+                        }
+                      })            
+                }else{
+
+                }
 
 
                 // if (result.result == "1"){
@@ -143,13 +202,36 @@ function check_display_images(){
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#div-img-blog').css('background', 'url("' + e.target.result + '")');
-            $('#div-img-blog').css('background-size', "contain");
-            $('#div-img-blog').css('background-repeat', "no-repeat");
-            $('#div-img-blog').css('background-position', "center center");
+        var file = input.files[0];
+        var file_type = file["type"]; 
+        $('#div-img-blog').empty();
+        $('#div-img-blog').css('background', '');
+        $('#div-img-blog').css('background-size', "contain");
+        $('#div-img-blog').css('background-repeat', "no-repeat");
+        $('#div-img-blog').css('background-position', "center center");
+
+        if (file_type.slice(0, 5) === "video"){
+            reader.onload = function (e) {
+                // $('#div-img-blog').css('background', 'url("' + e.target.result + '")');
+                $("#div-img-blog").append("<video controls playsinline id='div-video'><source src='"+e.target.result+"'></video>");
+                $("#div-img-blog").addClass("text-center");
+                $("#div-video").css("object-fit", "contain");
+                $("#div-video").css("display", "inline-block");
+                $("#div-video").css("height", "100%");
+                $("#div-video").css("width", "100%");
+            }
+        }else{
+            reader.onload = function (e) {
+                $('#div-img-blog').css('background', 'url("' + e.target.result + '")');
+                $('#div-img-blog').css('background-size', "contain");
+                $('#div-img-blog').css('background-repeat', "no-repeat");
+                $('#div-img-blog').css('background-position', "center center");
+            }    
         }
+
         reader.readAsDataURL(input.files[0]);
+
+
     }
 }
 
@@ -187,20 +269,23 @@ function save_blog(){
     var img = $("#UploadImgBlog").val();
     var title = $("#title").val();
     var author = $("#author").val();
+    var category = $("#category").val();
     var content = $("#summernote").summernote("code");
     var csrf_name = $("input[name=csrf_name]").val();
     var id = $("#trans_id").val();
     var status = $("#status").val();
     var display = "";
+    var overwrite = "";
 
     if ($("#display").is(":checked")){
         display = "1";
+        overwrite = $(".overwrite-radio:checked").val();
     }else{
         display = "0";
     }
 
     $.ajax({
-        data : {title : title, author : author, content : content, csrf_name : csrf_name, id : id, display : display, status : status},
+        data : {category : category, title : title, author : author, content : content, csrf_name : csrf_name, id : id, display : display, overwrite : overwrite, status : status},
         type : "POST",
         dataType : "JSON",
         url : base_url + "Blog/update_blog",
@@ -239,10 +324,12 @@ function save_img(img, id){
 
     form_data.append('id', id); 
     form_data.append('csrf_name', csrf_name);
+    form_data.append("file_type", files[0].type.slice(0, 5));
+
     //return false   
-    console.log(files);
-    console.log(csrf_name);
-    console.log(form_data);
+    // console.log(files);
+    // console.log(csrf_name);
+    // console.log(form_data);
 
     $.ajax({
     data : form_data, 

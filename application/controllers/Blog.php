@@ -16,6 +16,7 @@ class Blog extends CI_Controller {
     public function insert_blog(){
 
         $array = array(
+            "category" => $this->input->post("category"),
             "title" => $this->input->post("title"),
             "author" => $this->input->post("author"),
             "content" => $this->input->post("content"),
@@ -24,7 +25,7 @@ class Blog extends CI_Controller {
         );
 
         if ($this->input->post("display") == "1"){
-            $result = $this->blog_model->update_display();
+            $result = $this->blog_model->update_display($this->input->post("overwrite"));
         }
 
 
@@ -39,7 +40,9 @@ class Blog extends CI_Controller {
 
         if (!empty($result)){
             foreach($result as $key => $value){
-                $data['img'] = unserialize($value->img_path);
+                $data['media_type'] = $value->media_type;
+                $data['media'] = unserialize($value->media_path);
+                $data['category'] = $value->category;
                 $data['title'] = $value->title;
                 $data['author'] = $value->author;
                 $data['content'] = $value->content;
@@ -55,6 +58,7 @@ class Blog extends CI_Controller {
     public function update_blog(){
         $id = $this->input->post("id");
         $array = array(
+            "category" => $this->input->post("category"),
             "title" => $this->input->post("title"),
             "author" => $this->input->post("author"),
             "content" => $this->input->post("content"),
@@ -64,7 +68,7 @@ class Blog extends CI_Controller {
         );
 
         if ($this->input->post("display") == "1"){
-            $result = $this->blog_model->update_display();
+            $result = $this->blog_model->update_display($this->input->post("overwrite"));
         }
 
         $data['result'] = $this->blog_model->update_blog($array, $id);
@@ -100,7 +104,9 @@ class Blog extends CI_Controller {
 
         if (!empty($result)){
             foreach($result as $key => $value){
-                $data['img'] = unserialize($value->img_path);
+                $data['media_type'] = $value->media_type;
+                $data['media'] = unserialize($value->media_path);
+                $data['category'] = $value->category;
                 $data['title'] = $value->title;
                 $data['author'] = $value->author;
                 $data['content'] = $value->content;
@@ -146,7 +152,7 @@ class Blog extends CI_Controller {
 
         $serialized = serialize($files_upload); 
         
-        $data = array('img_path' => $serialized); 
+        $data = array('media_path' => $serialized, "media_type" => $this->input->post("file_type")); 
         $result = $this->blog_model->upload_image_file($data, $this->input->post("id", TRUE));
         $this->output->set_content_type('application/json');
         echo json_encode(array('status' => $result, 'token' => $this->security->get_csrf_hash())); 
@@ -155,6 +161,12 @@ class Blog extends CI_Controller {
 
     public function check_display_images(){
         $data['result'] = $this->blog_model->check_display_images();
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function overwrite_display(){
+        $data['data'] = $this->blog_model->get_display();
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }

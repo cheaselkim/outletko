@@ -56,6 +56,7 @@ class Profile_model extends CI_Model {
         $this->db2->from('products');
         $this->db2->where('account_id', $id);
         $this->db2->where("product_status", 1);
+        $this->db2->order_by("product_available", "DESC");
         // $this->db2->limit(6);
         $query = $this->db2->get();
         return $query->result();
@@ -97,6 +98,21 @@ class Profile_model extends CI_Model {
         ", array($id, "1"))->result();
         return $query;
     }    
+
+    public function get_discount_price($id){
+        $query = $this->db2->query("SELECT  
+        MAX(new_price) AS max_discount,
+        MIN(new_price) AS min_discount,
+        MAX(discount_percent) AS max_percent,
+        MIN(discount_percent) AS min_percent
+        FROM product_discount WHERE prod_id = ?", array($id))->result();
+        return $query;
+    }
+
+    public function get_prod_var_discount($id){
+        $query = $this->db2->query("SELECT * FROM product_discount WHERE var_id = ? ", array($id))->result();
+        return $query;
+    }
 
     public function get_prod_variation($variation){
         $query = $this->db2->query("SELECT `account_variation_type`.`type` AS var_type FROM account_variation_type WHERE id = ?", array($variation))->result();

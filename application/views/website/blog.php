@@ -4,12 +4,6 @@
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <input type="hidden" id="trans_id">
 
-<style>
-.p-content{
-    font-size: 18px;
-}
-</style>
-
 <div class="container  mt-3 mb-3" style="min-height: 87vh;">
     <div class="row">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 pt-3 pad-left pad-right">
@@ -56,7 +50,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                    <span class="font-size-40 font-weight-600" id="blog-title">Let Customers Come to You</span>
+                    <span class="font-weight-600 blog-title" id="blog-title">Let Customers Come to You</span>
                 </div>
             </div>
 
@@ -96,3 +90,4 @@
         </div>
     </div>
 </div>
+

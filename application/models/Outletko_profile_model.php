@@ -131,6 +131,14 @@ class Outletko_profile_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_discount($id){
+        $this->db2->select("*");
+        $this->db2->from("product_discount");
+        $this->db2->where("prod_id", $id);
+        $query = $this->db2->get();
+        return $query->result();
+    }
+
     public function get_variation_price($id){
         $query = $this->db2->query("SELECT 
         MAX(unit_price) AS max_unit_price,
@@ -140,6 +148,16 @@ class Outletko_profile_model extends CI_Model {
         `account_variation`.`id` = `account_variation_type`.`variation_id`
         WHERE `account_variation`.`prod_id` = ? AND variation_class = ?        
         ", array($id, "1"))->result();
+        return $query;
+    }
+
+    public function get_product_discount($id){
+        $query = $this->db2->query("SELECT  
+        MAX(new_price) AS max_discount,
+        MIN(new_price) AS min_discount,
+        MAX(discount_percent) AS max_percent,
+        MIN(discount_percent) AS min_percent
+        FROM product_discount WHERE prod_id = ?", array($id))->result();
         return $query;
     }
 
@@ -708,6 +726,32 @@ class Outletko_profile_model extends CI_Model {
         return $status;
 
 
+    }
+
+    public function save_discount($discount, $prod_id){
+
+        // var_dump($discount);
+        // var_dump($prod_id);
+
+        for($i = 0; $i<count($discount); $i++) {
+            $discount[$i]['comp_id'] = $this->session->userdata("comp_id"); 
+            $discount[$i]['prod_id'] = $prod_id;
+
+            $query = $this->db2->query("SELECT * FROM product_discount WHERE prod_id = ? AND var_id = ?", array($discount[$i]['prod_id'], $discount[$i]['var_id']))->result();
+
+            if (!empty($query)){
+                foreach ($query as $key => $value) {
+                    $id = $value->id;
+                    $discount[$i]['date_update'] = date("Y-m-d h:i:sa");
+                    $this->db2->where("id", $id);
+                    $this->db2->update("product_discount", $discount[$i]);                    
+                }
+            }else{
+                $discount[$i]['date_insert'] = date("Y-m-d h:i:sa");
+                $this->db2->insert('product_discount',$discount[$i]);
+            }
+
+        }      
     }
     
     public function insert_prov_city($data, $area){

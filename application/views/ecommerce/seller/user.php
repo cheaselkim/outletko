@@ -1463,7 +1463,7 @@
 
 <!-- Modal for Image Upload -->
 <div class="modal" id="img_upload">
-    <div class="modal-dialog modal-lg"> <!-- modal-dialog-scrollable modal-half -->
+    <div class="modal-dialog modal-lg modal-dialog-scrollable"> <!-- modal-dialog-scrollable modal-half -->
         <div class="modal-content">
             <div class="modal-header modal-hdr-bg pt-2 pb-0">
                 <div class="col-xs-12 col-md-12">
@@ -1584,9 +1584,46 @@
 
 		                    <div class="form-group mb-0 mt-2 row" >
 		                    	<div class="col-12 col-md-12 col-lg-12">
-		                    		<button class="form-control textbox-green2" id="btn-variation">Variations</button>
+		                    		<button class="btn btn-outline-success btn-block" id="btn-variation">Variations</button>
 		                    	</div>
 		                    </div>
+
+                            <div class="form-group-mb-0 mt-2 row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <button class="btn btn-outline-success btn-block" data-toggle="collapse" data-target="#div-discount">Discount</button>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 collapse pt-3" id="div-discount">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="alert alert-warning mt-1 mb-0 py-2">
+                                                <span>Recompute the Discount, Please save to update the data.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 col-lg-3 col-md-3 col-sm-6 pad-right">
+                                            <span class="font-weight-600">Variation</span>
+                                        </div>
+                                        <div class="col-6 col-lg-2 col-md-2 col-sm-6 pad-center">
+                                            <span class="font-weight-600">Unit Price (<?php echo $this->session->userdata('IPCurrencySymbol'); ?>)</span>
+                                        </div>
+                                        <div class="col-6 col-lg-2 col-md-2 col-sm-6 pad-center">
+                                            <span class="font-weight-600">Discount (<?php echo $this->session->userdata('IPCurrencySymbol'); ?>)</span>
+                                        </div>
+                                        <div class="col-6 col-lg-2 col-md-2 col-sm-6 pad-centers">
+                                            <span class="font-weight-600">Discount (%)</span>
+                                        </div>
+                                        <div class="col-6 col-lg-3 col-md-3 col-sm-6 pad-left">
+                                            <span class="font-weight-600">New Price (<?php echo $this->session->userdata('IPCurrencySymbol'); ?>)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="div-variation-price">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 		                    <div class="form-group mb-0 row" >
 		                    	<div class="col-12 col-md-12 col-lg-12 mt-1">

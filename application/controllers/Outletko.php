@@ -51,10 +51,12 @@ class Outletko extends CI_Controller {
 	public function blog(){
 		$result = $this->outletko_model->blog();
 		$width = $this->input->post("width");
-		$heeader_content = "";
+        $heeader_content = "";
+        $content = "";
 
 		if (!empty($result)){
 			foreach($result as $key => $value){
+                $content = "";
 
 				// if ($width <= 768){
 				// 	$heeader_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 380)."...");
@@ -66,14 +68,24 @@ class Outletko extends CI_Controller {
 					$heeader_content = (substr($value->content, 0, 500)."...");
 				}else{
 					$heeader_content = (substr($value->content, 0, 1000)."...");
-				}
+                }
+                
 
+                if ($width <= 768){
+                    $content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 165)."...");
+                }else if ($width <= 998){
+                    $content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 175)."...");
+                }else{
+                    $content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."...");
+                }
+
+                // $content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."...");
 
 				$data['result'][$key] = array(
 					"id" => $value->id,
                     "title" => $value->title,
                     "author" => $value->author,
-					"content" => (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 240)."..."),
+					"content" => $content,
 					"header_content" => $heeader_content,
 					"img" => unserialize($value->img_path),
 					"display" => $value->display,
@@ -101,34 +113,40 @@ class Outletko extends CI_Controller {
 		
 		if ($id_content == "4579328"){
 			$menu = 7;
-            $result = $this->outletko_model->get_blog($id);
+            $result = $this->outletko_model->get_blog($id);            
 
             foreach ($result as $key => $value) {
 
-                if (strlen($value->content) > 100){
-                    $desc_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 100)."...");
-                }else{
-                    $desc_content = (trim(preg_replace('/<[^>]*>/', ' ', $value->content)));
-                }
+                $href = "https://blog.outletko.com/".strtolower(str_replace(" ", "-", preg_replace('/[^A-Za-z0-9 ]/', '', $value->title)))."/".$this->randomNumber(6).$value->id.$this->randomNumber(5);
 
-                $data['title'] = $value->title;
-                $data['author'] = $value->author;
-                $data['desc_content'] = $desc_content;
-                $img = unserialize($value->img_path);
-                $data['img'] = $img[0];
-            }
+                // redirect($href);
 
-			$data['id'] = $id;
-			$data['function'] = 0;
-			$data['sub_module'] = 0;
-			$data['user_type'] = 7;
-			$data['menu_module'] = 0;
-			$data['account_id'] = 0;
-			$data['owner'] = 0;
-			$data['edit'] = 0;
-			$data['width'] = 1366;
+                header('location: '.$href.  '');
 
-			$this->template->load($menu, $data);	
+                // if (strlen($value->content) > 100){
+                //     $desc_content = (substr(trim(preg_replace('/<[^>]*>/', ' ', $value->content)), 0, 100)."...");
+                // }else{
+                //     $desc_content = (trim(preg_replace('/<[^>]*>/', ' ', $value->content)));
+                // }
+
+                // $data['title'] = $value->title;
+                // $data['author'] = $value->author;
+                // $data['desc_content'] = $desc_content;
+                // $img = unserialize($value->img_path);
+                // $data['img'] = $img[0];
+            }   
+
+			// $data['id'] = $id;
+			// $data['function'] = 0;
+			// $data['sub_module'] = 0;
+			// $data['user_type'] = 7;
+			// $data['menu_module'] = 0;
+			// $data['account_id'] = 0;
+			// $data['owner'] = 0;
+			// $data['edit'] = 0;
+			// $data['width'] = 1366;
+
+			// $this->template->load($menu, $data);	
 		}else{
 			redirect("/");
 		}
@@ -159,6 +177,17 @@ class Outletko extends CI_Controller {
 		echo json_encode($data);
 	}
 
-
+    public function randomNumber($length) {
+        $str = "";
+        // $characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+        $characters = range(0, 9);
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+          $rand = mt_rand(0, $max);
+          $str .= $characters[$rand];
+        }
+        return str_shuffle($str);
+    }
+    
 
 }

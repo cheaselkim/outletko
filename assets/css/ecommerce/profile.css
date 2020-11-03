@@ -1,3 +1,35 @@
+.ribbon {
+    margin: 0;
+    padding: 0;
+    background: #006600;
+    color:s;
+    padding:0.3em 0;
+    position: absolute;
+    font-weight: 600;
+    top:0;
+    right:28px;
+    /* transform: translateX(30%) translateY(0%) rotate(45deg); */
+    transform-origin: top left;
+}
+
+.ribbon:before,
+.ribbon:after {
+content: '';
+position: absolute;
+top:0;
+margin: 0; /* tweak */
+width: 20%;
+height: 100%;
+background: #006600;
+}
+.ribbon:before {
+right:100%;
+}
+
+.bg-green{
+    background: #006600;
+}
+
 .text-green-orig{
     color: green;
 }
@@ -17,6 +49,12 @@
 
 .tab-content .tab-pane{
     padding: 0;
+}
+
+.link-icons{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
 }
 
 
@@ -159,6 +197,14 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+.link-icons{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -174,14 +220,29 @@
         background-size: 100% 100%;
         padding-top: 200px;
     }
+
+
+    .link-icons{
+        color: white;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
 .div-header{
-    height: 215px;
+    height: 240px;
 }
+
+.link-icons{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 
 .div-list-img{
     height: 200px;
@@ -213,8 +274,15 @@
 @media only screen and (min-width: 992px) {
 
 .div-header{
-    height: 215px;
+    height: 240px;
 }
+
+.link-icons{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 
 .div-prod-img{
     height: 100px;
@@ -328,9 +396,16 @@
 }
 
 .div-header{
-	min-height: 100px;
+	min-height: 240px;
 	height: auto;
 }
+
+.link-icons{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 
 .div-prof-pic{
 	height: 100px;	
@@ -400,6 +475,10 @@
 	background-image: url("../../icons/img-icon1.jpg");
 	background-size: 100% 100%;
 	padding-top: 303px;
+}
+
+.ribbon {
+    right: 47px;
 }
 
 }

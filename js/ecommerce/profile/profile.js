@@ -38,6 +38,17 @@ $(document).ready(function(){
     //     content: $('#popover-content')
     // });
 
+    $("#link-products").click(function(){
+        $("#div-display-products").show();
+        $(".div-header-2").show();
+        $(".div-header-3").show();
+        $(".div-header-4").show();
+        $("#div-product-details").hide();    
+        $("#div-footer-btn-order").hide();
+        $(window).scrollTop($('#div-posted-prod').offset().top - 100);    
+            
+    });
+
   $("#btn_back").click(function(){
     $("#div-display-products").show();
     $(".div-header-2").show();
@@ -296,6 +307,7 @@ function get_profile(id){
         $("#email_text").text(" "+ (result.result[0].email == null ? "" : result.result[0].email));
         $("#tel_text").text(" "+(result.result[0].telephone_no == null ? "" : result.result[0].telephone_no));
         $("#mobile_text").text(" "+(result.result[0].mobile_no == null ? "" : "+63"+result.result[0].mobile_no));
+        $("#web_text").text(" "+ (result.result[0].website == null ? "" : result.result[0].website));
         $("#fb_text").text(" "+ (result.result[0].facebook == null ? "" : result.result[0].facebook));
         $("#twitter_text").text(" "+ (result.result[0].twitter == null ? "" : result.result[0].twitter));
         $("#insta_text").text(" "+ (result.result[0].instagram == null ? "" : result.result[0].instagram));
@@ -308,6 +320,36 @@ function get_profile(id){
         $("#twitter_text").prepend("<i class='fab fa-twitter-square'></i>");
         $("#insta_text").prepend("<i class='fab fa-instagram'></i>");
         $("#shopee_text").prepend("<i class='fas fa-shopping-bag'></i>");
+
+        var link_website = result.result[0].website;
+        var link_facebook = result.result[0].facebook;
+        var link_instagram = result.result[0].instagram;
+
+        if (link_website.length > 0){
+            $("#link-website").attr("href", link_website);            
+        }else{
+            $("#link-website").hide();
+        }
+
+        if (link_facebook.length > 0){
+            $("#link-facebook").attr("href", link_facebook);            
+        }else{
+            $("#link-facebook").hide();
+        }
+
+        if (link_instagram.length > 0){
+            $("#link-instagram").attr("href", link_instagram);            
+        }else{
+            $("#link-instagram").hide();
+        }
+
+        if (link_website.length <= 0 && link_facebook.length <= 0 && link_instagram <= 0){
+            $("#div-links").attr("hidden", true);
+        }else{
+            $("#div-links").attr("hidden", false);
+        }
+
+
     //for text
     
     
@@ -446,6 +488,7 @@ function get_profile(id){
             var margin = "";
             var margin_plus_image = "";
             var avail = result.products[x].avail;
+            var percent_off = "";
 
             if (x > 3){
               margin = "mt-3";
@@ -502,11 +545,28 @@ function get_profile(id){
                 }
             } 
 
+            if (result.products[x]['max_percent'] != 0){
+                if (result.products[x]['min_discount'] == result.products[x]['max_discount']){
+                    prod_price = $.number(result.products[x]['min_discount'], 2);
+                }else{
+                    prod_price = $.number(result.products[x]['min_discount'], 2) + " - " + $.number(result.products[x]['max_discount'], 2);
+                }
+            }
+
+            discount_prod_price = '<span class="font-weight-600 font-size-14 text-red  list-prod-price">&#8369; '+ prod_price +'</span><br>' 
+
+            if (result.products[x].avail != "0"){
+                if (result.products[x]['max_percent'] != 0){
+                    percent_off = '<h6 class="ribbon">' + $.number(result.products[x]['max_percent'], 0) + '% OFF</h6>';
+                }
+            }
+
 
             var e = $('<div class="col col-6 col-md-4 col-lg-3  mt-3 '+margin+' ">'+
             '<div class="div-list-img cursor-pointer mx-auto bd-green" id="div-list-prod-'+x+'">'+
                 '<div id="div-list-img-'+x+'" class="div-list-prod" onclick="get_product_info('+result.products[x]['id']+');">' +  
             // '<img src="'+href_url+'" class="cursor-pointer"  alt="image" onclick="get_product_info('+result.products[x]['id']+');" >'+
+                    percent_off +
                     '<div class="btn" onclick="get_product_info('+result.products[x]['id']+');" hidden>'+
                     // '<i class="fa fa-camera"></i>'+
                     '</div>'+
@@ -514,7 +574,7 @@ function get_profile(id){
             '</div>'+
             '<div class=" text-center cursor-pointer div-list-img-btn py-1 mx-auto bg-white" onclick="get_product_info('+result.products[x]['id']+');" >' + 
               '<span class="font-weight-600 list-prod-name">'+product_name+'</span><br>' + 
-              '<span class="font-weight-600 font-size-16 text-red list-prod-price">PHP '+ prod_price +'</span>' + 
+              '<span class="font-weight-600 font-size-16 text-red list-prod-price"> '+ discount_prod_price +'</span>' + 
             '</div>' +
           '</div>');
 
@@ -833,7 +893,7 @@ $.ajax({
         $("#prod-desc-2").html(data.products[0].product_description + "<br>");
         $("#prod-other-details-1").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
         $("#prod-other-details-2").text((data.products[0].product_other_details == null ? "" : (data.products[0].product_other_details == "" ? "" : data.products[0].product_other_details)));
-        $("#prod-price").text("PHP " + $.number(data.products[0].product_unit_price, 2));
+        $("#prod-price").html("&#8369; " + $.number(data.products[0].product_unit_price, 2));
         $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
         $("#prod-condition").text("Condition : " + (data.products[0].product_condition == "1" ? "New" : "Used"));
         $("#prod-stock").text("Stock : " + $.number(data.products[0].product_stock, 0));
@@ -931,22 +991,46 @@ $.ajax({
         // console.log(max_price);
         // console.log(result.products[x]['product_unit_price']);
 
+        var dis_percent = "";
+
+        console.log(data.products[0]['max_discount']);
+
+        if (data.products[0]['product_available'] != "0"){
+            if (data.products[0]['max_percent'] != "0"){
+                dis_percent = "<small class='text-yellow bg-green px-3 font-weight-600 ml-3'>" + data.products[0]['max_percent'] + "% OFF</small>";
+                if (min_price == null){
+                    prod_price = data.products[0]['max_discount'];
+                }else{
+                    min_price = data.products[0]['min_discount'];
+                    max_price = data.products[0]['max_discount'];    
+                }
+            }
+        }else{
+            dis_percent = "";
+        }
+
+
         if (min_price == null){
-            prod_price = $.number(data.products[0].product_unit_price, 2)  
-            $("#prod-price").text("PHP " + prod_price);
-            $("#prod-price2").text("PHP " + prod_price);
+            if (data.products[0]['max_discount'] != 0){
+                prod_price = $.number(prod_price, 2);
+            }else{
+                prod_price = $.number(data.products[0].product_unit_price, 2)  
+            }
+            $("#prod-price").html("&#8369;  " + prod_price + dis_percent);
+            $("#prod-price2").html("&#8369;  " + prod_price + dis_percent);
             $("#cart-prod-price").text($.number(data.products[0].product_unit_price, 2));
             $("#cart_total_amount").text($.number(data.products[0].product_unit_price, 2));
             $("#prod-price").show();
             $("#prod-price2").hide();
+
         }else{
             if (min_price != ""){
                 prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
             }else{
                 prod_price = $.number(min_price, 2) + " - " + $.number(max_price, 2);
             }
-            $("#prod-price").text("PHP " + $.number(min_price, 2));
-            $("#prod-price2").text("PHP " + prod_price);
+            $("#prod-price").html("&#8369;  " + $.number(min_price, 2) + dis_percent);
+            $("#prod-price2").html("&#8369;  " + prod_price + dis_percent);
             $("#cart-prod-price").text($.number(0, 2));
             $("#cart_total_amount").text($.number(0, 2));
             $("#prod-price2").show();
@@ -1029,7 +1113,7 @@ $.ajax({
 
             for (var x = 0; x < var_type.length; x++) {
                 if (variation[i].id == var_type[x].variation_id){
-                    $("#prod-var-"+ (i + 1)).append("<option value='"+var_type[x].id+"' data-price='"+var_type[x].unit_price+"'>"+var_type[x].type+"</option>");
+                    $("#prod-var-"+ (i + 1)).append("<option value='"+var_type[x].id+"' data-price='"+var_type[x].unit_price+"' data-percent='"+var_type[x].discount+"'>"+var_type[x].type+"</option>");
                 }
             }
         }
@@ -1044,7 +1128,13 @@ $.ajax({
         $(document).on('change', '#prod-var-1' , function() {
             // console.log($(this).find(':selected').attr("data-price"));
             var price = $(this).find(':selected').attr("data-price");
-            $("#prod-price").text($.number(price, 2));
+            var prod_var_discount = "";
+
+            if ($(this).find(":selected").attr("data-percent") != 0){
+                prod_var_discount = "<small class='bg-green font-weight-600 px-3 text-yellow ml-3'>"+$.number($(this).find(":selected").attr("data-percent"), 0)+"% OFF</small>";
+            }
+
+            $("#prod-price").html("&#8369; " + $.number(price, 2) + prod_var_discount);
             // $("#prod-price2").text($.number(price, 2));
             $("#cart_total_amount").text($.number(($("#prod_qty").val() * price), 2));
             $(this).removeClass("error");

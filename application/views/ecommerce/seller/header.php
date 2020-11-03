@@ -12,7 +12,7 @@
 </style>
 
 <!-- NAVRBAR -->
-<nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: #006600;">
+<nav class="navbar navbar-expand-md sticky-top" style="height: 40px;background: #006600; z-index: 999999;">
 	<a class="navbar-brand font-small font-weight-bold" href="<?php echo base_url() ?>"><span class="text-white">Outlet</span><span class="text-yellow">ko</span></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="color: black;background: #c3d69b;margin-top: -18px;">
 		<span class="fas fa-bars"></span>

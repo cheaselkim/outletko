@@ -74,7 +74,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
-                    <span class="font-size-40 font-weight-600" id="blog_title">Let Customers Come to You</span>
+                    <span class="font-weight-600 blog-title" id="blog_title">Let Customers Come to You</span>
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
                     <span class="font-size-20">by <span id="blog_author" class="text-capitalize ">Juan Dela Cruz</span> </span>
@@ -112,6 +112,7 @@
 <?php 
     $this->load->view("templates/footer");
 ?>
+
 
 </body>
 </html>

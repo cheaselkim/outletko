@@ -172,11 +172,15 @@ function get_blog(data){
                     "</div>"+
                 "</div> "+
                 "<div class='row'>"+
-                    "<div class='col-12 col-lg-12 col-md-12 col-sm-12'>"+
-                        "<p class='mb-0 font-weight-600 font-size-25'>"+data[i].title+"</p>"+
-                        "<p class='mb-0' class='p-content' id='div-content-"+i+"'>"+content+"</p>"+
-                        "<a href='"+url+"'>Read More >>></a>"+
+                    "<div class='col-12 col-lg-12 col-md-12 col-sm-12 div-blog-title'>"+
+                        "<p class='mb-0 font-weight-600 blog-list-title'>"+data[i].title+"</p>"+
                     "</div>"+
+                    "<div class='col-12 col-lg-12 col-md-12 col-sm-12 div-blog-content'>" +
+                        "<p class='mb-0 p-content d-none d-sm-block' id='div-content-"+i+"'>"+content+"</p>"+
+                    "</div>"+
+                    "<div class='col-12 col-lg-12 col-md-12 col-sm-12'>" + 
+                        "<a href='"+url+"'>Read More >>></a>"+
+                    "</div>" +
                 "</div>"+
             "</div>");
 

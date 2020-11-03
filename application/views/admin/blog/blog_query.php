@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" placeholder="Title" id="blog_title">
                 </div>
                 <div class="col-12 col-lg-2 col-md-3 col-sm-12 pad-center">
-                    <select class="form-control" id="blog_author">
+                    <select class="form-control px-1" id="blog_author">
                         <option value="" hidden>Author</option>
                         <option value="">All</option>
                     </select>
@@ -71,6 +71,32 @@
             </div>
             <div class="modal-footer py-1">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-overwrite-blog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-1">
+                <h4 class="modal-title">Display Blog</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body py-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <p class="mb-2 text-red">Please Choose which display to remove</p>
+                        </div>
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" id="display-blog">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" class="btn btn-success" id="ovewrite-confirm" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

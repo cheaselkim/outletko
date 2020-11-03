@@ -34,8 +34,9 @@ class Blog_model extends CI_Model {
         $this->db2->delete("blog");
     }
 
-    public function update_display(){
+    public function update_display($id){
         $this->db2->set("display", "0");
+        $this->db2->where("id", $id);
         $this->db2->update("blog");
     }
 
@@ -61,16 +62,16 @@ class Blog_model extends CI_Model {
             $query_status = "AND `blog`.`status`= '".$blog_status."'";
         }
 
-        $query = $this->db2->query("SELECT id, title, author, date_insert FROM blog WHERE date_insert IS NOT NULL 
+        $query = $this->db2->query("SELECT id, title, author, date_insert, category FROM blog WHERE date_insert IS NOT NULL 
         ".$query_date." ".$query_title." ".$query_status."  ".$query_author."
         ")->result();
         return $query;
     }
 
     public function delete_file($id){
-        $result = $this->db2->query("SELECT img_path FROM blog WHERE id = ? ", array($id))->row();
+        $result = $this->db2->query("SELECT media_path FROM blog WHERE id = ? ", array($id))->row();
         $status = true;
-        $img = unserialize($result->img_path);
+        $img = unserialize($result->media_path);
 
         if (!empty($img[0])){
             unlink('./images/blog/'.$img[0]);
@@ -103,6 +104,11 @@ class Blog_model extends CI_Model {
         $query = $this->db2->query("SELECT COUNT(*) AS display_count FROM blog WHERE display = ?", array(1))->row();
 
         return $query->display_count;
+    }
+
+    public function get_display(){
+        $query = $this->db2->query("SELECT * FROM blog WHERE `blog`.`display` = ? AND `blog`.`status` = ? ", array(1, 1))->result();
+        return $query;
     }
 
     public function get_author(){

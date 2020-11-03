@@ -72,12 +72,27 @@ class Profile extends CI_Controller {
                 $file = "";
             }
 
+            $max_discount = 0;
+            $min_discount = 0;
+            $max_percent = 0;
+            $min_percent = 0;
+
             $variation_price = $this->profile_model->get_variation_price($value->id);
+            $discount_price = $this->profile_model->get_discount_price($value->id);
 
             if (!empty($variation_price)){
                 foreach ($variation_price as $key2 => $value2) {
                     $min_price = $value2->min_unit_price;
                     $max_price = $value2->max_unit_price;
+                }
+            }
+
+            if (!empty($discount_price)){
+                foreach ($discount_price as $key3 => $value3) {
+                    $max_discount = $value3->max_discount;
+                    $min_discount = $value3->min_discount;
+                    $max_percent = $value3->max_percent;
+                    $min_percent = $value3->min_percent;
                 }
             }
 
@@ -88,6 +103,10 @@ class Profile extends CI_Controller {
                 "product_unit_price" => $value->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,
+                "max_discount" => (int)$max_discount,
+                "min_discount" => (int)$min_discount,
+                "max_percent" => (int)$max_percent,
+                "min_percent" => (int)$min_percent,
                 "img_location" => $file,
                 "avail" => $value->product_available,
                 "id" => $value->id);
@@ -147,6 +166,11 @@ class Profile extends CI_Controller {
             //     $file = "";
             // }
 
+            $max_discount = "";
+            $min_discount = "";
+            $max_percent = "";
+            $min_percent = "";
+
             if (!empty($variation_price)){
                 foreach ($variation_price as $key2 => $value2) {
                     $min_price = $value2->min_unit_price;
@@ -165,6 +189,16 @@ class Profile extends CI_Controller {
             $prod_var_type = $this->profile_model->get_prod_var_type($row->id);
             $coverage_area = $this->profile_model->get_coverage_area($row->account_id);
             $delivery_area = $this->profile_model->get_delivery_area($row->account_id);
+            $discount_price = $this->profile_model->get_discount_price($row->id);
+
+            if (!empty($discount_price)){
+                foreach ($discount_price as $key => $value3) {
+                    $max_discount = $value3->max_discount;
+                    $min_discount = $value3->min_discount;
+                    $max_percent = $value3->max_percent;
+                    $min_percent = $value3->min_percent;
+                }
+            }
 
             $account_id = $row->account_id;
 
@@ -177,6 +211,10 @@ class Profile extends CI_Controller {
                 "product_unit_price" => $row->product_unit_price,
                 "min_price" => $min_price,
                 "max_price" => $max_price,
+                "max_discount" => (int)$max_discount,
+                "min_discount" => (int)$min_discount,
+                "max_percent" => (int)$max_percent,
+                "min_percent" => (int)$min_percent,
                 "product_category" => $row->product_category,
                 "product_condition" => $row->product_condition,
                 "product_stock" => $row->product_stock,
@@ -194,12 +232,25 @@ class Profile extends CI_Controller {
 
                 if (!empty($prod_var_type)){
                     foreach ($prod_var_type as $key2 => $value2) {
+                        $var_price = $value2->unit_price;
+                        $var_discount = 0;
+
+                        $result_discount = $this->profile_model->get_prod_var_discount($value2->id);
+
+                        if (!empty($result_discount)){
+                            foreach ($result_discount as $key4 => $value4) {
+                                $var_price = $value4->new_price;
+                                $var_discount = $value4->discount_percent;
+                            }
+                        }
+
                         $prod_unserialize_img = unserialize($value2->img_location);
                         $prod_var_arr[$key2] = array(
                             "id" => $value2->id,
                             "variation_id" => $value2->variation_id,
                             "type" => $value2->type,
-                            "unit_price" => $value2->unit_price,
+                            "discount" => $var_discount,
+                            "unit_price" => $var_price,
                             "img_location" => $prod_unserialize_img
                         );
                         // $prod_img[$key2] = array("img" => $prod_unserialize_img);

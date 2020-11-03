@@ -49,6 +49,9 @@
 							<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: -0.75%;">
 								<span class="text-white text-buss-address" id="text-buss-email2"></span>												
 							</div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center" id="div-links" hidden>
+                                <span class="text-white text-buss-address">Links : <span><a href="" id="link-website" class="link-icons"><i class="fas fa-globe"></i></a></span> <span><a href="" id="link-facebook" class="link-icons"><i class="fab fa-facebook-square"></i></a></span> <span><a href="" id="link-instagram" class="link-icons"><i class="fab fa-instagram"></i></a></span> </span>
+                            </div>
 						</div>	
 					</div>
 				</div>
@@ -102,7 +105,7 @@
     <div class="container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#div-products">Products</a>
+                <a class="nav-link active" data-toggle="tab" href="#div-products" id="link-products">Products</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#div-reviews">Reviews</a>
@@ -203,8 +206,8 @@
                                     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="row">
                                             <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                                                <span class="font-size-20 text-orange font-weight-600" id="prod-price2">PHP 25.00 </span>
-                                                <span class="font-size-20 text-orange font-weight-600" id="prod-price">PHP 25.00</span>
+                                                <span class="font-size-20 text-orange font-weight-600" id="prod-price2"></span>
+                                                <span class="font-size-20 text-orange font-weight-600" id="prod-price"></span>
                                                 <br>
                                                 <span class="font-size-18 font-weight-500" id="prod-desc-2"></span>                                            
                                             </div>

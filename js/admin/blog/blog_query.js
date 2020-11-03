@@ -71,12 +71,29 @@ $.ajax({
     url : base_url + "Blog/blog_query",
     success : function(result){
         $("input[name=csrf_name]").val(result.token);
+        console.log(result.media_type);
 
-
-        $('#modal-div-img-blog').css('background', 'url("' + base_url + "images/blog/" + result.img + '")');
-        $('#modal-div-img-blog').css('background-size', "100% 100%");
+        $('#modal-div-img-blog').empty();
+        $('#modal-div-img-blog').css('background', '');
+        $('#modal-div-img-blog').css('background-size', "contain");
         $('#modal-div-img-blog').css('background-repeat', "no-repeat");
         $('#modal-div-img-blog').css('background-position', "center center");
+
+
+        if (result.media_type == "video"){
+            $("#modal-div-img-blog").append("<video controls playsinline id='div-video'><source src='"+base_url + "images/blog/" + result.media+"'></video>");
+            $("#modal-div-img-blog").addClass("text-center");
+            $("#div-video").css("object-fit", "contain");
+            $("#div-video").css("display", "inline-block");
+            $("#div-video").css("height", "100%");
+            $("#div-video").css("width", "100%");
+        }else{
+            $('#modal-div-img-blog').css('background', 'url("' + base_url + "images/blog/" + result.media + '")');
+            $('#modal-div-img-blog').css('background-size', "100% 100%");
+            $('#modal-div-img-blog').css('background-repeat', "no-repeat");
+            $('#modal-div-img-blog').css('background-position', "center center");    
+        }
+
 
         $("#blog-title").text(result.title);
         $("#div-blog-content").append(result.content);
