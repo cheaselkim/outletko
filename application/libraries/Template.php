@@ -16,7 +16,6 @@
 				$owner = $data['owner'];
 				$width = $data['width'];
 
-
 				if ($user_type == "1"){
 					/*admin*/
 					$data['header'] = 'admin/header';
@@ -534,7 +533,13 @@
                         $data['page'] = 'login_search';
                     }else if ($menu == "2"){
 						$data['page'] = 'ecommerce/profile/my_order';
-					}else{
+                    }else if ($menu == "3"){
+                        $data['page'] = 'ecommerce/profile/checkout_guest';
+                    }else if ($menu == "4"){
+                        $data['page'] = 'ecommerce/profile/payment';
+                    }else if ($menu == "5"){
+                        $data['page'] = 'ecommerce/profile/track_order';
+                    }else{
 						$data['page'] = 'ecommerce/profile/profile';
 					}
 

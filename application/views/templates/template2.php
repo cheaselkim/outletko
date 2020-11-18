@@ -202,6 +202,20 @@
                             <a href="<?php echo base_url('forgot_password')?>"><span class="text-red">Forgot Password?</span></a>
                         </div>
                     </div>
+                    <div class="row" hidden id="div-checkout-guest">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <hr style="border-top: 1px solid green;" class="mt-1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <button class="btn btn-success btn-block" id="checkout-guest">Checkout as Guest</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="container font-size-18" id="div-confirm-email">
                     <input type="hidden" id="acc_id">

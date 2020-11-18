@@ -575,6 +575,7 @@ class Profile extends CI_Controller {
                     $products[$key] = array(
                         "item_id" => $key,
                         "prod_id" => $prod_id,
+                        "comp_id" => $value2->comp_id,
                         "account_id" => $value2->account_id,
                         "account_name" => $value2->account_name,
                         "img_location" => $value2->img_location,
@@ -611,8 +612,29 @@ class Profile extends CI_Controller {
 
         echo json_encode($data);
 
+    }
 
+    // remove Product
 
+    public function remove_item(){
+        $prod_id = $this->input->post("prod_id");
+
+        $session_prod = $this->session->userdata("prod_session");
+        // var_dump($session_prod);
+        // var_dump($prod_id);
+
+        foreach ($session_prod as $key => $value) {
+            $session_prod_id = $value['prod_id'];
+
+            if ($prod_id == $session_prod_id){
+                unset($session_prod[$key]);
+            }
+
+        }
+
+        $this->session->set_userdata("prod_session", $session_prod);
+        $data['token'] = $this->security->get_csrf_hash();
+        echo json_encode($data);
     }
 
 }

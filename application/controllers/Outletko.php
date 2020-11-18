@@ -7,9 +7,52 @@ class Outletko extends CI_Controller {
         parent::__construct();
         $this->load->helper("outletko");
         $this->load->model("outletko_model");
+        $this->load->model("guest_model");
     }
 
-	public function featured_outlet(){
+    public function email_acknowledge(){
+        $result_data = $this->guest_model->get_buyer_data(27);
+        $data['href'] = base_url()."pay-link/1234562712345";
+        $data['name'] = $result_data['name'];
+        $this->load->view("email/email_acknowledge", $data);
+    }
+
+    public function randomlink(){
+        $order_id = 58;
+        $payid = $this->randomNumber(6).$order_id.$this->randomNumber(5);
+        var_dump($payid);
+    }
+
+    public function email_decline(){
+        $result_data = $this->guest_model->get_buyer_data(27);
+
+        $data['href'] = base_url()."pay-link/1234562712345";
+        $data['comp_name'] = $result_data['seller_name'];
+        $data['name'] = $result_data['name'];
+        $this->load->view("email/email_payment_decline", $data);
+    }
+
+    public function email_approve(){
+        $result_data = $this->guest_model->get_buyer_data(27);
+
+        $data['href'] = base_url()."pay-link/1234562712345";
+        $data['comp_name'] = $result_data['seller_name'];
+        $data['name'] = $result_data['name'];
+        $this->load->view("email/email_payment_approve", $data);
+    }
+
+    public function email_order_decline(){
+        $result_data = $this->guest_model->get_buyer_data(27);
+
+        $data['href'] = base_url()."pay-link/1234562712345";
+        $data['comp_name'] = $result_data['seller_name'];
+        $data['name'] = $result_data['name'];
+        $data['order_no'] = $result_data['order_no'];
+        $data['order_date'] = $result_data['order_date'];
+        $this->load->view("email/email_order_decline", $data);
+    }
+
+    public function featured_outlet(){
 		$result = $this->outletko_model->featured_outlet();
 
 		foreach ($result as $key => $value) {
@@ -35,17 +78,23 @@ class Outletko extends CI_Controller {
     }
     public function menu($menu){
 
-		$data['id'] = "";
-		$data['function'] = 0;
-		$data['sub_module'] = 0;
-		$data['user_type'] = 7;
-		$data['menu_module'] = 0;
-		$data['account_id'] = 0;
-		$data['owner'] = 0;
-		$data['edit'] = 0;
-		$data['width'] = 1366;
 
-		$this->template->load($menu, $data);	
+        if ($menu == "6"){
+            // var_dump($menu);
+            header("Location:https://blog.outletko.com/");
+        }else{  
+            $data['id'] = "";
+            $data['function'] = 0;
+            $data['sub_module'] = 0;
+            $data['user_type'] = 7;
+            $data['menu_module'] = 0;
+            $data['account_id'] = 0;
+            $data['owner'] = 0;
+            $data['edit'] = 0;
+            $data['width'] = 1366;
+
+            $this->template->load($menu, $data);	
+        }
 	}
 	
 	public function blog(){

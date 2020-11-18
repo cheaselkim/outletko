@@ -11,7 +11,7 @@ class Seller_model extends CI_Model {
 	}
 
 	public function get_order(){
-        $result = $this->db2->query("SELECT COUNT(*) AS order_no FROM buyer_order WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array("1", $this->session->userdata("comp_id")))->row();	
+        $result = $this->db2->query("SELECT COUNT(*) AS order_no FROM buyer_order WHERE `buyer_order`.`status` = ? AND seller_id = ? ORDER BY id DESC", array("1", $this->session->userdata("comp_id")))->row();	
         return $result->order_no;
 	}
 
@@ -25,7 +25,8 @@ class Seller_model extends CI_Model {
 			`account_buyer`.`id` = `buyer_order`.`comp_id` 
 			LEFT JOIN delivery_type ON 
 			`delivery_type`.`id` = `buyer_order`.`delivery_type`
-			WHERE `buyer_order`.`status` = ? AND seller_id = ? ", array($status, $this->session->userdata("comp_id")))->result();	
+            WHERE `buyer_order`.`status` = ? AND seller_id = ? 
+            ORDER BY `buyer_order`.`id` DESC", array($status, $this->session->userdata("comp_id")))->result();	
         return $result;
 
 	}
@@ -115,6 +116,41 @@ class Seller_model extends CI_Model {
     public function get_proof($id){
         $query = $this->db2->query("SELECT * FROM buyer_proof WHERE order_id = ? ORDER BY id DESC LIMIT 1", array($id))->result();
         return $query;
+    }
+
+    public function get_buyer_temporary_type($id){
+        $query = $this->db2->query("SELECT 		
+        `account_buyer`.`temporary`
+        FROM buyer_order
+        LEFT JOIN account_buyer ON 
+        `account_buyer`.`id` = `buyer_order`.`comp_id` 
+        WHERE `buyer_order`.`id` = ?
+        ", array($id))->row();
+        return $query->temporary;
+    }
+
+    public function get_buyer_data($id){
+        $query = $this->db2->query("SELECT 
+        buyer_order.*, 
+        account_buyer.email,
+        account_buyer.first_name,
+        account_buyer.last_name,
+        account.account_name AS seller_name
+        FROM buyer_order 
+        LEFT JOIN account_buyer ON
+        buyer_order.comp_id = account_buyer.id 
+        LEFT JOIN account ON 
+        account.id = buyer_order.seller_id
+        WHERE `buyer_order`.`id` = ? ", array($id))->row();
+        
+        $data['comp_id'] = $query->comp_id;
+        $data['name'] = $query->first_name." ".$query->last_name;
+        $data['email'] = $query->email;
+        $data['order_id'] = $query->id;
+        $data['seller_name'] = $query->seller_name;
+        $data['order_no'] = $query->order_no;
+        $data['order_date'] = date("F d, Y H:i:s", strtotime($query->date_insert));
+        return $data;
     }
 
     // Updating Buyer Order

@@ -108,10 +108,16 @@ class Search extends CI_Controller {
                 <img src='https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png' alt='No Data Found' class='img-fluid'>
             </div>";
         }else{
-             $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
+            $query = $this->search_model->search_product_outlet($data['prov_id'], $data['city_id'], $data['product']);
             $query2 = $this->search_model->search_product($data['prov_id'], $data['city_id'], $data['product']);
             $data['tbl_store'] = tbl_query($query);		    
             $data['tbl_prod'] = tbl_prod($query2, $this->input->cookie('window_width', TRUE), $this->session->userdata("IPCurrencyCode"));
+
+            // if (empty($query)){
+            //     if(!empty($query2)){
+            //         $query = $this->search_model->search_product_by_outlet($data['prov_id'], $data['city_id'], $data['product']);
+            //     } 
+            // }
 
             if (empty($query)){
                 $data['tbl_store'] = "<div class='row'>

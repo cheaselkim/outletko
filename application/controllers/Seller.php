@@ -79,14 +79,29 @@ class Seller extends CI_Controller {
 	}
 
 	public function acknowledge_order(){
-		$data['result'] = $this->Seller_model->acknowledge_order($this->input->post("id"));
+        $data['result'] = $this->Seller_model->acknowledge_order($this->input->post("id"));
+        $result = $this->Seller_model->get_buyer_temporary_type($this->input->post("id"));
+
+        if ($result == "1"){
+            $result_data = $this->Seller_model->get_buyer_data($this->input->post("id"));
+            $this->send_acknowledge_email($result_data['comp_id'], $result_data['name'], $this->input->post("id"), $result_data['email']);
+        }
+
 		$data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
 
 	public function cancel_acknowledge_order(){
 		$data['result'] = $this->Seller_model->cancel_acknowledge_order($this->input->post("id"));
-		$data['token'] = $this->security->get_csrf_hash();
+
+        $result = $this->Seller_model->get_buyer_temporary_type($this->input->post("id"));
+
+        if ($result == "1"){
+            $result_data = $this->Seller_model->get_buyer_data($this->input->post("id"));
+            $this->send_order_decline($result_data['seller_name'], $result_data['name'], $result_data['order_no'], $result_data['order_date'], $result_data['email']);
+        }
+
+        $data['token'] = $this->security->get_csrf_hash();
 		echo json_encode($data);
 	}
 
@@ -123,6 +138,18 @@ class Seller extends CI_Controller {
         $status = $this->input->post("status");
         $meessage = $this->input->post("message");
         $data['result'] = $this->Seller_model->confirm_payment($id, $status, $meessage);
+
+        $result = $this->Seller_model->get_buyer_temporary_type($this->input->post("id"));
+
+        if ($result == "1"){
+            $result_data = $this->Seller_model->get_buyer_data($this->input->post("id"));
+            if ($status == "4"){
+                $this->send_declined_payment($result_data['seller_name'], $result_data['name'], $this->input->post("id"), $result_data['email']);
+            }else{
+                $this->send_confirm_payment($result_data['seller_name'], $result_data['name'], $result_data['email']);
+            }
+        }
+
         $data['token'] = $this->security->get_csrf_hash();
         echo json_encode($data);
     }
@@ -181,5 +208,230 @@ class Seller extends CI_Controller {
         echo json_encode($data);
     }
 
+    // Email
+
+    public function send_acknowledge_email($comp_id, $name, $order_id, $email){
+        
+		$this->load->library("email");
+		$status = 0;
+		$randomString = "";
+		$result = 1;
+        $data = array();
+
+        // $data['account_id'] = $account_id;
+		// $data['password'] = $randomString;
+		// $data['email'] = $email;
+        $payid = $this->randomNumber(6).$order_id.$this->randomNumber(5);
+        $data['href'] = base_url()."pay-link/".$payid;
+        $data['name'] = $name;
+
+
+        $message = $this->load->view("email/email_acknowledge", $data, TRUE);
+
+		if ($result > 0){
+	        $config = array(
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+
+	                );
+
+
+	        $this->email->initialize($config)
+	                    ->set_newline("\r\n")
+	                    ->from('noreply@outletko.com', 'Order Acknowledgement')
+                        ->bcc("checkoutguest@outletko.com")
+                        ->to($email)
+	                    ->subject('Order Acknowledgement')
+	                    ->message($message);
+
+
+	        if($this->email->send()) {
+	        	$status = 1;
+	        }else {
+	        	$status = $this->email->print_debugger();
+        	}
+	    }else{
+	    	$status = 0;
+	    }
+	    
+	    return $status;
+
+    }
+
+    public function send_order_decline($seller_name, $name, $order_no, $order_date, $email){
+        
+		$this->load->library("email");
+		$status = 0;
+		$randomString = "";
+		$result = 1;
+        $data = array();
+
+        // $data['account_id'] = $account_id;
+		// $data['password'] = $randomString;
+		// $data['email'] = $email;
+        $data['comp_name'] = $seller_name;
+        $data['name'] = $name;
+        $data['order_no'] = $order_no;
+        $data['order_date'] = $order_date;
+
+        $message = $this->load->view("email/email_order_decline", $data, TRUE);
+
+		if ($result > 0){
+	        $config = array(
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+
+	                );
+
+
+	        $this->email->initialize($config)
+	                    ->set_newline("\r\n")
+	                    ->from('noreply@outletko.com', 'Order Decline')
+                        ->bcc("checkoutguest@outletko.com")
+                        ->to($email)
+	                    ->subject('Order Decline')
+	                    ->message($message);
+
+
+	        if($this->email->send()) {
+	        	$status = 1;
+	        }else {
+	        	$status = $this->email->print_debugger();
+        	}
+	    }else{
+	    	$status = 0;
+	    }
+        
+        // var_dump($message);
+
+	    return $status;
+
+    }
+
+    public function send_confirm_payment($seller_name, $name, $email){
+
+		$this->load->library("email");
+		$status = 0;
+		$randomString = "";
+		$result = 1;
+        $data = array();
+
+        $data['comp_name'] = $seller_name;
+        $data['name'] = $name;
+
+
+        $message = $this->load->view("email/email_payment_approve", $data, TRUE);
+
+		if ($result > 0){
+	        $config = array(
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+
+	                );
+
+
+	        $this->email->initialize($config)
+	                    ->set_newline("\r\n")
+	                    ->from('noreply@outletko.com', 'Payment Confirmation')
+                        ->bcc("checkoutguest@outletko.com")
+                        ->to($email)
+	                    ->subject('Payment Confirmation')
+	                    ->message($message);
+
+
+	        if($this->email->send()) {
+	        	$status = 1;
+	        }else {
+	        	$status = $this->email->print_debugger();
+        	}
+	    }else{
+	    	$status = 0;
+	    }
+	    
+	    return $status;
+
+    }
+
+    public function send_declined_payment($seller_name, $name, $order_id, $email){
+        
+		$this->load->library("email");
+		$status = 0;
+		$randomString = "";
+		$result = 1;
+        $data = array();
+
+        $payid = $this->randomNumber(6).$order_id.$this->randomNumber(5);
+        $data['href'] = base_url()."pay-link/".$payid;
+        $data['comp_name'] = $seller_name;
+        $data['name'] = $name;
+
+
+        $message = $this->load->view("email/email_payment_decline", $data, TRUE);
+
+		if ($result > 0){
+	        $config = array(
+                        'protocol' => 'mail',
+                        'mail_type' => 'html',
+                        'smtp_host' => 'mail.outletko.com',
+                        'smtp_port' => '465',
+                        'smtp_user' => 'noreply@outletko.com',
+                        'smtp_pass' => 'eoutletsuite_noreply',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+
+	                );
+
+
+	        $this->email->initialize($config)
+	                    ->set_newline("\r\n")
+	                    ->from('noreply@outletko.com', 'Payment Decline')
+                        ->bcc("checkoutguest@outletko.com")
+                        ->to($email)
+	                    ->subject('Payment Decline')
+	                    ->message($message);
+
+
+	        if($this->email->send()) {
+	        	$status = 1;
+	        }else {
+	        	$status = $this->email->print_debugger();
+        	}
+	    }else{
+	    	$status = 0;
+	    }
+	    
+	    return $status;
+    }
+
+    public function randomNumber($length) {
+        $str = "";
+        // $characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+        $characters = range(0, 9);
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+          $rand = mt_rand(0, $max);
+          $str .= $characters[$rand];
+        }
+        return str_shuffle($str);
+    }
+    
 
 }

@@ -93,5 +93,12 @@ $route['verification'] = 'Store_register/verification';
 
 $route['products/(:any)'] = "store/products/$1";
 
+$route['checkout-guest'] = "Guest/checkout";
+$route['checkout-guest/(:num)'] = "Guest/checkout_id/$1";
+
+$route['pay-link/(:any)'] = 'Guest/paylink/$1';
+$route['order-payment'] = 'Guest/order_payment';
+$route['track-my-order'] = 'Guest/track_order';
+
 $route['(:any)'] = 'store/store/$1';    
 

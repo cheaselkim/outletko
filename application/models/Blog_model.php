@@ -107,7 +107,7 @@ class Blog_model extends CI_Model {
     }
 
     public function get_display(){
-        $query = $this->db2->query("SELECT * FROM blog WHERE `blog`.`display` = ? AND `blog`.`status` = ? ", array(1, 1))->result();
+        $query = $this->db2->query("SELECT * FROM blog WHERE `blog`.`display` = ? AND `blog`.`status` = ? ORDER BY id DESC", array(1, 1))->result();
         return $query;
     }
 

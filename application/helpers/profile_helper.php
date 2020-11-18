@@ -115,6 +115,7 @@ if (!function_exists("tbl_products_no_order")){
                         </div>
                 </div>';
 
+                $comp_id = $query[$x]['comp_id'];
                 
                 if ($account_id  != $query[$x]['account_id']){
                     $div++;
@@ -138,7 +139,7 @@ if (!function_exists("tbl_products_no_order")){
                                         <span class="h5 font-weight-600">'.$query[$x]['account_name'].'</span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 text-right">
-                                        <button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$div.')">Proceed to Checkout</button>
+                                        <button class="btn btn-orange font-weight-600 btn-sm btn_checkout" id="btn_checkout" onclick="get_order_checkout('.$comp_id.')">Proceed to Checkout</button>
                                     </div>
                                 </div>
                                 <div class="row border-1" style="'.$bg.'">

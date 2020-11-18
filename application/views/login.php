@@ -78,7 +78,7 @@
 </div>
 
 
-<div class="container-fluid border-bottom">
+<div class="container-fluid border-bottom" hidden>
     <div class="row bg-green py-2">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
             <span class="text-white">Do you want to resell? &nbsp;&nbsp;<a type="button" href="https://www.resell.outletko.com/" class="btn btn-outline-success btn-sm text-white">Click Here!</a> </span>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="collapsibleNavbar" style="z-index: 999999;">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item py-1 pad-right" >
+                            <li class="nav-item py-1 pad-right" hidden>
                                 <a href="<?php echo base_url('/blog'); ?>" class="btn btn-block bg-transparent text-white" style="font-size:17px;"><i class="fas fa-rss"></i> <span class="text-white">News & Insights</span></a>
                             </li>
                             <?php if ($this->session->userdata("validated")){ ?>
@@ -139,6 +139,9 @@
                                 <a class="btn btn-block btn-transparent btn-orange" href="<?php echo base_url('my-order')?>"><i class="fas fa-user text-black" ></i> <span class="text-black">My Account</span></a>
                             </li>
                             <?php }else {?>
+                                <li class="nav-item py-1 pad-left" >
+                                <a class="btn btn-block btn-transparent " href="<?php echo base_url('track-my-order')?>"><i class="fas fa-truck text-white"></i><span class="text-white">Track MyOrder</span></a>
+                            </li>
                             <li class="nav-item py-1 pad-right">
                                 <button class="btn btn-block bg-transparent text-white d-none d-sm-block" style="border: 1px solid white;" id="btn_mod_signin" data-toggle="modal" data-target="#modal_signup_user"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></button>
                                 <a class="btn btn-block bg-transparent text-white d-block d-sm-none" href="<?php echo base_url('login')?>" style="border: 1px solid white;"><i class="fas fa-sign-in-alt text-white"></i> <span class="text-white">Sign in</span></a>

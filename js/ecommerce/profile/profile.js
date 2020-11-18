@@ -1004,6 +1004,17 @@ $.ajax({
                     min_price = data.products[0]['min_discount'];
                     max_price = data.products[0]['max_discount'];    
                 }
+            }else{
+                // maxpercent = 0;
+                if (data.products[0]['min_percent'] == "0"){
+                    prod_price = data.products[0]['product_unit_price'];
+                }
+                // if (min_price == null){
+                //     prod_price = data.products[0]['max_discount'];
+                // }else{
+                //     min_price = data.products[0]['min_discount'];
+                //     max_price = data.products[0]['max_discount'];    
+                // }
             }
         }else{
             dis_percent = "";
