@@ -4,9 +4,9 @@
     "start_url": "https://www.outletko.com",
     "scope": "./",    
     "display": "standalone",
-    "background_color": "#77933c",
+    "background_color": "#006600",
     "description": "Outletko is a digital platform technology and service that enables enterprises to connect to people and the community, and gives growth to business. It provides facility for full digital transformation for micro and small enterprises.",
-    "theme_color": "#77933c",
+    "theme_color": "#006600",
     "icons": [
       {
         "src": "./assets/img/logo-13-2x.png",

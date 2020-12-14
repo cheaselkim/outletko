@@ -8,6 +8,81 @@ class Login extends CI_Controller {
 	      	$this->load->model("login_model");
 	}
 
+    public function test(){
+        // $this->load->helper("cookie");
+        // $this->load->library('encryption');
+        $account_id = $this->session->userdata("account_id");
+        // var_dump($account_id);
+
+        // var_dump($cookie);
+        // $this->encryption->initialize(array('driver' => 'mcrypt'));
+        // var_dump($this->encryption->encrypt("test"));
+
+        // $this->encryption->initialize(
+        //     array(
+        //             'cipher' => 'des',
+        //             'mode' => 'CFB8',
+        //             'key' => '<a 24-character random string>'
+        //     )
+        // );
+
+        $expire = time() + 21600; // 12 hour expiry
+
+        $account_id = $this->encryption->encrypt($this->session->userdata('account_id'));
+        $user_id = $this->encryption->encrypt($this->session->userdata('user_id') == "" ? "1"  :  $this->session->userdata("user_id"));        
+
+        // var_dump($account_id);
+        // var_dump($user_id);
+
+        var_dump(time());
+
+        $cookie_accountid = array(
+            'name'   => 'remember_me',
+            'value'  => $account_id,                            
+            'expire' => '300',                                                                                   
+            'secure' => TRUE
+        );
+
+        $cookie_userid = array(
+            'name'   => 'user_id',
+            'value'  => $user_id,                            
+            'expire' => '300',                                                                                   
+            'secure' => TRUE
+        );
+
+        // set cookies
+        $this->input->set_cookie($cookie_accountid);
+        $this->input->set_cookie($cookie_userid);
+        // set_cookie($account_id);
+        // var_dump($this->input->cookie('remember_me'));
+
+        // get cookies
+        $account = $this->input->cookie("remember_me");
+        $user = $this->input->cookie("user_id");
+
+        // var_dump($this->encryption->decrypt($account));
+        var_dump($this->encryption->decrypt($user));
+    }
+
+    public function test_cookies(){
+        if(!empty($this->input->cookie('uid_token'))){
+            // $this->load->library('encryption');
+
+            // $this->encryption->initialize(
+            //     array(
+            //             'cipher' => 'des',
+            //             'mode' => 'CFB8',
+            //             'key' => '<a 24-character random string>'
+            //     )
+            // );
+    
+
+            $user = $this->input->cookie("uid_token");          
+            var_dump($user);  
+            var_dump($this->encryption->decrypt($user));
+        }
+    }
+
 	public function login(){		
 		$result = $this->login_model->check_session();
 
@@ -196,15 +271,55 @@ class Login extends CI_Controller {
 	    $result = $this->login_model->login();
 	    if ($result == false){
 			$this->session->set_flashdata("log_error", "1");
-	    }
+        }
+        
+        $this->load->helper("cookie");
+        $this->load->library('encryption');
+
+        $expire = time() + 21600; // 12 hour expiry
+        // $this->encryption->initialize(
+        //     array(
+        //             'cipher' => 'des',
+        //             'mode' => 'CFB8',
+        //             'key' => '<a 24-character random string>'
+        //     )
+        // );
+
+        $account_id = $this->encryption->encrypt($this->session->userdata('account_id'));
+        $user_id = $this->encryption->encrypt($this->session->userdata('user_id'));        
+
+        $cookie_accountid = array(
+            'name'   => 'aid_token',
+            'value'  => $account_id,                            
+            'expire' => '300',                                                                                   
+            'secure' => TRUE
+        );
+
+        $cookie_userid = array(
+            'name'   => 'uid_token',
+            'value'  => $user_id,                            
+            'expire' => '300',                                                                                   
+            'secure' => TRUE
+        );
+
+        $this->input->set_cookie($cookie_accountid);
+        $this->input->set_cookie($cookie_userid);
+
+
 	    redirect('/');
 	}
 
 	public function logout(){
         $value_account_id = $this->session->userdata("account_id");
         session_destroy();
-        setcookie("account_id", $value_account_id, 0,"/", "outletko.com", 0);
-		redirect("/");
+        // setcookie("account_id", $value_account_id, 0,"/", "outletko.com", 0);
+        $this->load->helper("cookie");
+        // $this->input->delete_cookie("remember_me");
+        // $this->input->delete_cookie("account_id");
+        delete_cookie("aid_token");
+        delete_cookie("uid_token");
+        delete_cookie("rtoken");
+        redirect("/");
 	}
 
 	public function menu(){

@@ -204,7 +204,13 @@ right:100%;
     margin-right: 5px;
 }
 
+.list-prod-price{
+    bottom: 2px !important;
+}
 
+.list-prod-name{
+    line-height: 12px;
+}
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -479,6 +485,10 @@ right:100%;
 
 .ribbon {
     right: 47px;
+}
+
+.list-prod-price{
+    bottom: 2px !important;
 }
 
 }

@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/outletko';
+$config['base_url'] = 'http://localhost/outletko/';
+// $config['base_url'] = 'https://www.outletko.com';
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +325,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '<a 32-character random string>';
 
 /*
 |--------------------------------------------------------------------------
@@ -396,14 +397,16 @@ $config['sess_regenerate_destroy'] = FALSE;
 | 'cookie_secure'   = Cookie will only be set if a secure HTTPS connection exists.
 | 'cookie_httponly' = Cookie will only be accessible via HTTP(S) (no javascript)
 |
-| Note: These settings (with the exception of 'cookie_prefix' and
+| Note: These settings (with the exception of 'cookie_prefix' and   
 |       'cookie_httponly') will also affect sessions.
 |
 */
 $config['cookie_prefix']	= '';
+// $config['cookie_domain']	= 'outletko.com'; // localhost
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
+$config['cookie_secure']	= TRUE;
+// $config['cookie_secure']	= FALSE; // localhost
 $config['cookie_httponly'] 	= FALSE;
 
 /*

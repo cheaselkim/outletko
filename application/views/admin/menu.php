@@ -49,15 +49,15 @@
 
           </a>
 
-          <a class="card disabled" id="menu_3"> 
+          <a class="card disabled" id="menu_3" href="https://blog.outletko.com/login"> 
 
-            <div class="w-100 div-list-menu" onclick="main_menu(3);">
+            <div class="w-100 div-list-menu" > <!-- onclick="main_menu(3);" -->
 
               <div class="card-body card-body-menu text-center">
 
                 <img src="<?php echo base_url('assets/images/app_menu/blog.png') ?>" class='img-fluid mb-2'>
 
-                <span class="h3 font-weight-bold">Outletko Blog</span>
+                <span class="h3 font-weight-bold text-black">Outletko Blog </span>
 
               </div>
 

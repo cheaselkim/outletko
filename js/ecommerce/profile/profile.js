@@ -521,10 +521,10 @@ function get_profile(id){
                     product_name = product_name.substring(0, 50) + "....";
                 }    
             }else{
-                if (product_name.length <= 55){
+                if (product_name.length <= 42){
                     product_name = product_name;
                 }else{
-                    product_name = product_name.substring(0, 55) + "....";
+                    product_name = product_name.substring(0, 42) + "....";
                 }    
             }
 

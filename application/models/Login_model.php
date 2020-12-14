@@ -62,7 +62,7 @@ class Login_model extends CI_Model {
                         "user_type" => $value->user_type,
                         "all_access" => $value->all_access,
                         "owner" => $result,
-                        "order_no" => $resullt3->order_no,
+                        "order_no" => $result3->order_no,
                         "login" => 1,
                         "validated" => true
           				);
@@ -93,9 +93,11 @@ class Login_model extends CI_Model {
   			}
   		}
   		$expire = time()+3600; // 1 hour expiry
-        setcookie("account_id", $value_account_id, $expire,"/", "outletko.com", 0);
+        // setcookie("account_id", $value_account_id, $expire,"/", "outletko.com", 0);
+        // setcookie("test", $value_account_id, time() + (86400 * 30), "/");
 
-
+        // var_dump($user_array);
+        
   		if (!empty($user_array)){
   			$this->session->set_userdata($user_array);
   			return true;
@@ -109,12 +111,24 @@ class Login_model extends CI_Model {
 
   public function check_session(){
     $query = "";
+    $user = $this->input->cookie("uid_token");
+    $rid = $this->input->cookie('rtoken');    
 
+    
     if (!empty($this->session->userdata("validated"))){
-      $user_id = $this->security->xss_clean($this->session->userdata("user_id"));
-      $query = $this->db->query("SELECT * FROM users WHERE id = ? AND `users`.`status` = ?", array($user_id, 1))->result();
+        if (!empty($rid)){
+            $user_id = $this->security->xss_clean($this->session->userdata("user_id"));
+            $query = $this->db->query("SELECT * FROM users WHERE id = ? AND `users`.`status` = ?", array($user_id, 1))->result();
+        }else{
+            $query = "";
+        }
     }else{
-      $query = "";
+        if (!empty($rid)){
+            $user_id = $this->encryption->decrypt($user);
+            $query = $this->db->query("SELECT * FROM users WHERE id = ? AND `users`.`status` = ?", array($user_id, 1))->result();
+        }else{
+            $query = "";
+        }
     }
 
     // if($this->session->userdata("login") != NULL && $_COOKIE["account_id"] != "undefined"){

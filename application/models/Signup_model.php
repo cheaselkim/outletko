@@ -437,8 +437,8 @@ class Signup_model extends CI_Model {
           }
         }
 
-        $expire = time()+3600; // 1 hour expiry
-        setcookie("account_id", $value_account_id, $expire,"/", "outletko.com", 0);
+        // $expire = time()+3600; // 1 hour expiry
+        // setcookie("account_id", $value_account_id, $expire,"/", "outletko.com", 0);
 
         if (!empty($user_array)){
           $this->session->set_userdata($user_array);
