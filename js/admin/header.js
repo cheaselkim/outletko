@@ -17,7 +17,7 @@ function all_access(){
 		success : function(data){
 			$("input[name=csrf_name]").val(data.token);
 			if (data.result == "1"){
-				for (var i = 1; i <= 5; i++) {
+				for (var i = 1; i <= 4; i++) {
 					$("#menu_"+i).removeClass("disabled");
 				}
 			}else{
@@ -51,13 +51,11 @@ function main_menu($module){
 				window.open(base_url + "app/1/" + result.roles, "_self");
 			}else{
 				$("#header-menu").text(result.menu);
-                if ($module == "12"){
-                    window.open(base_url + "app/4/0/0", "_self");
-                }else{
-                    $("#menu-content").html(result.roles);
-                    $("#sales_modal").modal("show");    
-                }
-
+				$("#menu-content").html(result.roles);
+				$("#sales_modal").modal("show");
+				if ($module == "4"){
+					$("#sales_modal").css("margin-top", "-10%");
+				}
 			}
 		}, error : function(err){
 			console.log(err.responseText);

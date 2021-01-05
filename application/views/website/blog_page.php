@@ -113,6 +113,5 @@
     $this->load->view("templates/footer");
 ?>
 
-
 </body>
 </html>

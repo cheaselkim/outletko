@@ -154,9 +154,9 @@ function get_featured_outlet(){
 
 function get_featured(){
 
-    var csrf_name = $("input[name=csrf_name]").val();
     var resolution = $(document).width();
-
+    var csrf_name = $("input[name=csrf_name]").val();
+    
     $("#div-carousel-inner").html("");
     $("#div-list-product").html("");
     $(".carousel-indicators").find("li:not(:first-child)").remove();
@@ -172,10 +172,11 @@ function get_featured(){
             $("#div-list-product").html(result.featured_store);
 
             var carousel = result.carousel.length / 4;
-            carousel = carousel.toFixed(0);
+            carousel = Number(carousel.toFixed(0)) + Number(1);
+
 
             for (let i = 1; i < carousel; i++) {
-                $(".carousel-indicators").append('<li data-target="#div-slideshow" data-slide-to="'+i+'" ></li>');
+                $(".carousel-indicators").append('<li data-target="#div-slideshow" data-slide-to="'+(i)+'" ></li>');
             }
 
             setTimeout(function(){ 

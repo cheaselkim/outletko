@@ -1,4 +1,13 @@
+user-agent : *
+Disallow: /controllers/
+Disallow: /cgi-bin/
+Disallow: /assets/
+Disallow: /model/
+Disallow: /libraries/
+Disallow: /helpers/
+Disallow: /system/
 
+Sitemap: https://www.outletko.com/sitemap.xml
 #Begin Attracta SEO Tools Sitemap. Do not remove
 sitemap: http://cdn.attracta.com/sitemap/5859239.xml.gz
 #End Attracta SEO Tools Sitemap. Do not remove

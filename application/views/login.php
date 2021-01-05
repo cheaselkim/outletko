@@ -40,7 +40,7 @@
     <link rel="icon" href="assets/img/logo-13.png" type="image/png" sizes="2x2">
     <link rel="apple-touch-icon" href="assets/img/logo-13.png" type="image/png", sizes="2x2">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>"  >
-    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login6.min.css') ?>" >
+    <link async rel="stylesheet" href="<?php echo base_url('assets/css/login6.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" >
     <link defer rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css') ?>">
     <script type="text/javascript">var base_url = "<?php echo base_url(); ?>"; </script>
@@ -50,7 +50,7 @@
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
     <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
-    <script src="<?php echo base_url('js/featured_outlet.min.js')?>" ></script>
+    <script src="<?php echo base_url('js/featured_outlet.js')?>" ></script>
     <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
     <style>
@@ -185,9 +185,10 @@
             <!-- The slideshow -->
             <div class="carousel-inner" id="div-carousel-inner">
 
+
             </div>
 
-            <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-featured" id="">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 div-featured" id="div-hot-products" hidden>
                 <span class="text-white font-weight-600">Hot Products</span>
             </div>
 

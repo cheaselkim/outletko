@@ -654,7 +654,6 @@ function copyToClipboard(element) {
 }
 
 function readURL(input, type) {
-    console.log(input.files);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         
@@ -672,10 +671,7 @@ function readURL(input, type) {
           }
         }else if (type == "2"){
           reader.onload = function (e) {
-              console.log(e);
               $('#img-upload').attr('src', e.target.result);
-              $("#div-fotorama").empty();
-              $("#div-fotoroma").append("<img src='"+e.target.result+"'>");
           }
         }else if (type == "3"){
           reader.onload = function (e) {
@@ -876,8 +872,6 @@ function index(){
     			  (result.result[0].city_desc == null ? "" : (result.result[0].city_desc == "" ? "" : result.result[0].city_desc + ", ") ) + 
     			  (result.result[0].province_desc == null ? "" : (result.result[0].province_desc == "" ? "" : result.result[0].province_desc)) ;
 
-        console.log(result.delivery_type);
-
     //for text
         $(".div-header").css("background", "#"+result.result[0].bg_color);
         $("#colorpicker").css("background", "#"+result.result[0].bg_color);
@@ -996,12 +990,10 @@ function index(){
 
       }
 
-      console.log(result.delivery_type);
 
       for (var i = 0; i < result.delivery_type.length; i++) {
         var delivery_type_id = result.delivery_type[i].delivery_type_id;
         var check = result.delivery_type[i].delivery_type_check;
-
 
         if (check == 1){
           $("#delivery_"+ (i + 1) ).prop("checked", true);

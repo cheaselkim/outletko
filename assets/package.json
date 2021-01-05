@@ -83,11 +83,5 @@
       "fonts",
       "js"
     ]
-  },
-  "dependencies": {
-    "@simonwep/pickr": "^1.5.1",
-    "bootstrap-colorpicker": "^3.2.0",
-    "chart.js": "^2.9.3",
-    "parsleyjs": "^2.9.2"
   }
 }

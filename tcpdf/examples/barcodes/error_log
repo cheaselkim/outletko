@@ -1,0 +1,160 @@
+[02-Jun-2020 20:46:05 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svg.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:05 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_png.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:05 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_html.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:05 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svgi.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:38 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svg.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:38 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svg.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svg.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_png.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_png.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svg.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_png.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_png.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_html.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_html.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:39 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_html.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:40 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svgi.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:40 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svgi.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:40 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_html.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:40 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svgi.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747
+[02-Jun-2020 20:46:40 Europe/London] PHP Fatal error:  Uncaught ArithmeticError: Bit shift by negative number in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php:747
+Stack trace:
+#0 /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php(589): PDF417->getErrorCorrectionLevel(-1, 14)
+#1 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(289): PDF417->__construct('http://www.tcpd...', -1, 2, Array)
+#2 /home/outletk1/public_html/tcpdf/tcpdf_barcodes_2d.php(69): TCPDF2DBarcode->setBarcode('http://www.tcpd...', 'PDF417')
+#3 /home/outletk1/public_html/tcpdf/examples/barcodes/example_2d_pdf417_svgi.php(46): TCPDF2DBarcode->__construct('http://www.tcpd...', 'PDF417')
+#4 {main}
+  thrown in /home/outletk1/public_html/tcpdf/include/barcodes/pdf417.php on line 747

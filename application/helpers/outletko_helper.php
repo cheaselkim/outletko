@@ -778,6 +778,22 @@ if (!function_exists("featured_product")){
     
         $output = "";
 
+        $img_banner = base_url()."assets/img/featured-store.png";
+    
+        $output .= '<div class="carousel-item  mt-3 w-100 active">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12"> 
+                <div class="div-carousel-banner">
+                    <div class="row mx-0">
+                        <p class="font-weight-600 ">Micro and Small Entrepreneurs <br> E-commerce Portal</p>
+                        <img src="'.$img_banner.'" alt="Featured Store and Product">
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+        // $data = null;
+
+
         if (!empty($data)){
             foreach ($data as $key => $value) {
                 $active = "";
@@ -796,7 +812,7 @@ if (!function_exists("featured_product")){
     
                 $css_product = "background-image: url('".$prod_img."');background-size: auto 100%;background-repeat: no-repeat;background-position: center center;";
                 $product_name = $value->product_name;
-    
+
                 if ($resolution < 768){
     
                     if (strlen($value->product_name) > 15){
@@ -849,13 +865,17 @@ if (!function_exists("featured_product")){
     
                 }
 
+                    // if ($key == 0){
+                    //     $output .= "</div></div></div></div>";
+                    // }
+                    
                     if ($key % 4 == 0){
                         if ($key != 0){
                             $output .= "</div></div></div></div>";
                         }
 
                         if ($key == 0){
-                            $active = "active";
+                            // $active = "active";
                         }                    
 
                         $output .= '<div class="carousel-item '.$pad.' mt-5 w-100 '.$active.'">
