@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-    get_featured();
+    setTimeout(() => {
+        get_featured();
+    }, 2000);
 
     if ($(document).width() <= 600){
         $(".div-featured span").removeClass("text-white");
@@ -160,6 +162,9 @@ function get_featured(){
     $("#div-carousel-inner").html("");
     $("#div-list-product").html("");
     $(".carousel-indicators").find("li:not(:first-child)").remove();
+
+    console.log(resolution);
+    console.log(csrf_name);
 
     $.ajax({
         data : {csrf_name : csrf_name, resolution : resolution},
