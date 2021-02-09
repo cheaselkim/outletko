@@ -69,9 +69,10 @@ class Outletko extends CI_Controller {
 		echo json_encode($data);
     }
     
+
     public function featured(){
-        $data['featured_store'] = featured_store($this->outletko_model->featured_store(), $this->input->post("resolution"));
-        $data['featured_product'] = featured_product($this->outletko_model->featured_product(), $this->input->post("resolution"), $this->session->userdata("IPCurrencyCode"));
+        $data['featured_store'] = featured_store($this->outletko_model->featured_store(), $this->input->get("resolution"));
+        $data['featured_product'] = featured_product($this->outletko_model->featured_product(), $this->input->get("resolution"), $this->session->userdata("IPCurrencyCode"));
         $data['carousel'] = $this->outletko_model->featured_product();
         // $data['asfd'] = $this->outletko_model->featured_product();
         $data['token'] = $this->security->get_csrf_hash();

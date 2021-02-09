@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
-    setTimeout(() => {
-        get_featured();
-    }, 2000);
+    // setTimeout(() => {
+    //     get_featured();
+    // }, 2000);
+
+    get_featured();
 
     if ($(document).width() <= 600){
         $(".div-featured span").removeClass("text-white");
@@ -166,9 +168,15 @@ function get_featured(){
     console.log(resolution);
     console.log(csrf_name);
 
+	if (document.location.href == base_url){
+		href_url = "Outletko/test";
+	}else{
+		href_url = base_url +  "Outletko/test";
+	}
+
     $.ajax({
         data : {csrf_name : csrf_name, resolution : resolution},
-        type : "POST",
+        type : "GET",
         dataType : "JSON",
         url : "Outletko/featured",
         success : function(result){

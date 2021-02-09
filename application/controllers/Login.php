@@ -9,78 +9,8 @@ class Login extends CI_Controller {
 	}
 
     public function test(){
-        // $this->load->helper("cookie");
-        // $this->load->library('encryption');
-        $account_id = $this->session->userdata("account_id");
-        // var_dump($account_id);
+        var_dump($_SESSION);
 
-        // var_dump($cookie);
-        // $this->encryption->initialize(array('driver' => 'mcrypt'));
-        // var_dump($this->encryption->encrypt("test"));
-
-        // $this->encryption->initialize(
-        //     array(
-        //             'cipher' => 'des',
-        //             'mode' => 'CFB8',
-        //             'key' => '<a 24-character random string>'
-        //     )
-        // );
-
-        $expire = time() + 21600; // 12 hour expiry
-
-        $account_id = $this->encryption->encrypt($this->session->userdata('account_id'));
-        $user_id = $this->encryption->encrypt($this->session->userdata('user_id') == "" ? "1"  :  $this->session->userdata("user_id"));        
-
-        // var_dump($account_id);
-        // var_dump($user_id);
-
-        var_dump(time());
-
-        $cookie_accountid = array(
-            'name'   => 'remember_me',
-            'value'  => $account_id,                            
-            'expire' => '300',                                                                                   
-            'secure' => TRUE
-        );
-
-        $cookie_userid = array(
-            'name'   => 'user_id',
-            'value'  => $user_id,                            
-            'expire' => '300',                                                                                   
-            'secure' => TRUE
-        );
-
-        // set cookies
-        $this->input->set_cookie($cookie_accountid);
-        $this->input->set_cookie($cookie_userid);
-        // set_cookie($account_id);
-        // var_dump($this->input->cookie('remember_me'));
-
-        // get cookies
-        $account = $this->input->cookie("remember_me");
-        $user = $this->input->cookie("user_id");
-
-        // var_dump($this->encryption->decrypt($account));
-        var_dump($this->encryption->decrypt($user));
-    }
-
-    public function test_cookies(){
-        if(!empty($this->input->cookie('uid_token'))){
-            // $this->load->library('encryption');
-
-            // $this->encryption->initialize(
-            //     array(
-            //             'cipher' => 'des',
-            //             'mode' => 'CFB8',
-            //             'key' => '<a 24-character random string>'
-            //     )
-            // );
-    
-
-            $user = $this->input->cookie("uid_token");          
-            var_dump($user);  
-            var_dump($this->encryption->decrypt($user));
-        }
     }
 
 	public function login(){		
@@ -91,7 +21,7 @@ class Login extends CI_Controller {
             $ip = $_SERVER['REMOTE_ADDR']; // This will contain the ip of the request
             $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
 
-            if ($ip == "::1"){
+            if ($ip == "::1" || $ip == "127.0.0.1"){
                 $this->session->set_userdata("IPCountryID", "173");
                 $this->session->set_userdata("IPCountryCode", "PH");
                 $this->session->set_userdata("IPCountry", "Philippines");
@@ -100,88 +30,66 @@ class Login extends CI_Controller {
                 $this->session->set_userdata("IPTimeZone", "Asia/Manila");  
                 $this->session->set_userdata("IPCurrencySymbol", '&#8369;');
             }else{
-                $result = $this->login_model->search_currency($dataArray->geoplugin_countryCode);
-                if (!empty($result)){
-                    foreach ($result as $key => $value) {
-                        $this->session->set_userdata("IPCountryID", $value->id);
-                        $this->session->set_userdata("IPCountryCode", $value->code);
-                        $this->session->set_userdata("IPCountry", $value->country);
-                        $this->session->set_userdata("IPContinent", $value->area);
-                        $this->session->set_userdata("IPCurrencyCode", $value->currency);
-                        $this->session->set_userdata("IPTimeZone", date_default_timezone_get());    
-                    }
-                }else{
-                    $this->session->set_userdata("IPCountryID", "173");
-                    $this->session->set_userdata("IPCountryCode", "PH");
-                    $this->session->set_userdata("IPCountry", "Philippines");
-                    $this->session->set_userdata("IPContinent", "Asia");
-                    $this->session->set_userdata("IPCurrencyCode", "PHP");
-                    $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
-                }
+                // $result = $this->login_model->search_currency($dataArray->geoplugin_countryCode);
+                // if (!empty($result)){
+                //     foreach ($result as $key => $value) {
+                //         $this->session->set_userdata("IPCountryID", $value->id);
+                //         $this->session->set_userdata("IPCountryCode", $value->code);
+                //         $this->session->set_userdata("IPCountry", $value->country);
+                //         $this->session->set_userdata("IPContinent", $value->area);
+                //         $this->session->set_userdata("IPCurrencyCode", $value->currency);
+                //         $this->session->set_userdata("IPTimeZone", date_default_timezone_get());    
+                //     }
+                // }else{
+                //     $this->session->set_userdata("IPCountryID", "173");
+                //     $this->session->set_userdata("IPCountryCode", "PH");
+                //     $this->session->set_userdata("IPCountry", "Philippines");
+                //     $this->session->set_userdata("IPContinent", "Asia");
+                //     $this->session->set_userdata("IPCurrencyCode", "PHP");
+                //     $this->session->set_userdata("IPTimeZone", "Asia/Manila");    
+                // }
             }
         }
 
+
+        
         if ($this->session->userdata("IPCountryCode") == "PH"){
             $this->session->set_userdata("IPCurrencySymbol", '&#8369;');
         }
 
-		// var_dump($result);
-
 		if ($result != true){
 			$this->template->load("", ($data = null));
 		}else{
-			$result = $this->login_model->check_otp();
-			
-			// if ($this->session->userdata("user_type") == "5"){
-			// 	redirect('/my-order');
-			// }else{
-				if ($result > 0){
-					$this->load->view("website/otp_password");
-				}else{
-                    $this->session->unset_userdata("otp");
-					// $data['edit'] = 0;
-					// $data['function'] = 0;
-					// $data['sub_module'] = "";
-					// $data['menu_module'] = 0;
-					// $data['menu_module'] = 0;
-					// $data['user_type'] = $this->session->userdata('user_type');
-					// $data['account_id'] = $this->session->userdata("account_id");
-					// $this->template->load("0", $data);		
+            $result = $this->login_model->check_otp();
+            if ($result > 0){
+                $this->load->view("website/otp_password");
+            }else{
+                $this->session->unset_userdata("otp");
+                if ($this->session->userdata("user_type") == "4"){
+                    redirect($this->session->userdata("link_name"));
+                }else{
+                    if (($this->session->userdata("login") == "1") && ($this->session->userdata("all_access") == "1") && ($this->session->userdata("user_type") == "2")){
+                        $this->session->set_userdata("login", "0");
+                        redirect('app/6/17/0');
+                    }else{
+                        $data['sub_module'] = 0;
+                        $data['menu_module'] = 0;
+                        $data['edit'] = 0;
+                        $data['function'] = 0;
+                        $data['width'] = 1366;
+                        $data['user_type'] = $this->session->userdata('user_type');
+                        $data['account_id'] = $this->session->userdata("account_id");
+                        $data['owner'] = 0;
 
-					if ($this->session->userdata("user_type") == "4"){
-						// redirect("store/".str_replace(' ', '', strtolower($this->session->userdata("account_name"))));
-						// $link_name = str_replace(' ', '', strtolower($this->session->userdata("link_name")));
-						// $link_name = preg_replace("/[^a-zA-Z]/", "", $link_name);
+                        if ($this->session->userdata("user_type") == "5"){
+                            $this->template->load("", $data);							
+                        }else{
+                            $this->template->load("0", $data);							
+                        }
+                    }					
+                }				
 
-						// redirect(str_replace(' ', '', strtolower($link_name)));
-						redirect($this->session->userdata("link_name"));
-					}else{
-						if (($this->session->userdata("login") == "1") && ($this->session->userdata("all_access") == "1") && ($this->session->userdata("user_type") == "2")){
-							$this->session->set_userdata("login", "0");
-							redirect('app/6/17/0');
-						// }else if ($this->session->userdata("user_type") == "3"){
-						// 	redirect('/');
-						}else{
-							$data['sub_module'] = 0;
-							$data['menu_module'] = 0;
-							$data['edit'] = 0;
-							$data['function'] = 0;
-							$data['width'] = 1366;
-							$data['user_type'] = $this->session->userdata('user_type');
-							$data['account_id'] = $this->session->userdata("account_id");
-                            $data['owner'] = 0;
-
-                            if ($this->session->userdata("user_type") == "5"){
-                                $this->template->load("", $data);							
-                            }else{
-                                $this->template->load("0", $data);							
-                            }
-						}					
-					}				
-
-				}
-
-			// }
+            }
 
 		}
 	}

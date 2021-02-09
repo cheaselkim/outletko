@@ -3,9 +3,9 @@ $(document).ready(function(){
     // $("#website_modal").modal("show");
     // $("#modal-image").modal("show");
 
-    setTimeout(() => {
-        user_country();
-    }, 2000);
+    // setTimeout(() => {
+    //     user_country();
+    // }, 2000);
 
     $("#div-buyer-regisration").hide();
 
@@ -579,7 +579,7 @@ function user_country(){
         url : href_url,
         dataType : "JSON",
         success : function(data){
-            $("input[name=csrf_name]").val(data.token);
+                $("input[name=csrf_name]").val(data.token);
             console.log(data);
             for (var i = 0; i < data.result.length; i++) {
                 $("#signup_user_country").append("<option value='"+data.result[i].id+"'>"+data.result[i].country+"</option>");

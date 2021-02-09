@@ -49,7 +49,7 @@
     <script defer src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/all.min.js') ?>" ></script>
     <script defer src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
-    <script defer src="<?php echo base_url('js/login.min.js') ?>" ></script>
+    <script defer src="<?php echo base_url('js/login.js') ?>" ></script>
     <script src="<?php echo base_url('js/featured_outlet.js')?>" ></script>
     <!-- <script src="<?php echo base_url('/app.js')?>"></script> -->
 
@@ -86,7 +86,7 @@
     </div>
 </div>
 
-<div class="row div-header bg-green " style="">
+<div class="row div-header bg-green ">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
         <div class="row">
 
